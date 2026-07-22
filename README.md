@@ -11,11 +11,12 @@
 | Priority | Path | What |
 |----------|------|------|
 | **0** | **[PLAN-SOURCE-OF-TRUTH.md](./PLAN-SOURCE-OF-TRUTH.md)** | **Locked plan** until replaced |
-| **1** | **[PHASE1-CLOSEOUT.md](./PHASE1-CLOSEOUT.md)** | Phase 1 done/left + next-session bridge |
-| **2** | **[NEXT-SESSION-PROMPT.md](./NEXT-SESSION-PROMPT.md)** | Kickoff prompt to paste |
-| **3** | **[GITHUB-PRESENTATION.md](./GITHUB-PRESENTATION.md)** | How public work will be shown |
-| **4** | **[PHASE1-IMMERSION/](./PHASE1-IMMERSION/)** | Issues, PRs, metrics, deep study |
-| **5** | [lfx-riscv-param-extraction-prework/](./lfx-riscv-param-extraction-prework/) | Earlier seed notes (upgrade into A+B) |
+| **1** | **[PROGRESS.md](./PROGRESS.md)** | **Done vs left** (keep updated) |
+| **2** | **[PHASE1-CLOSEOUT.md](./PHASE1-CLOSEOUT.md)** | Phase 1 done/left + next-session bridge |
+| **3** | **[NEXT-SESSION-PROMPT.md](./NEXT-SESSION-PROMPT.md)** | Kickoff prompt to paste |
+| **4** | **[GITHUB-PRESENTATION.md](./GITHUB-PRESENTATION.md)** | How public work will be shown |
+| **5** | **[PHASE1-IMMERSION/](./PHASE1-IMMERSION/)** | Issues, PRs, metrics, deep study |
+| **6** | [lfx-riscv-param-extraction-prework/](./lfx-riscv-param-extraction-prework/) | Earlier seed notes (upgrade into A+B) |
 
 ---
 
