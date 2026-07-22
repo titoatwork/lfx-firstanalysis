@@ -14,7 +14,7 @@
 |-------|--------|
 | Technical immersion | **DONE** (except pilot) |
 | Community immersion | **IN PROGRESS** |
-| Pilot `machine.adoc` | **READY offline** (needs key; $0 spent; see PILOT-READY.md) |
+| Pilot `machine.adoc` | **ACCEPTED PARTIAL** (option 3): chunk_021 OK ~$0.04; chunk_020 TPM documented; no retry |
 | Phase 2 public scaffold | **DONE** locally |
 | Phase 2 Artifact B | **DONE** offline (schema-valid drafts) |
 | Phase 2 Artifact A | **NOT STARTED** (API) |
@@ -33,7 +33,7 @@
 | Deep study pack | **DONE** → `PHASE1-IMMERSION\` |
 | Phase 1 GT reproduce | **DONE** (223 params) |
 | Metrics remeasure | **DONE** (72.9% / 88.4%) |
-| Pilot extract | **NOT DONE** — offline setup READY (`PILOT-READY.md`); wait key |
+| Pilot extract | **ACCEPTED PARTIAL** (option 3) — see pilot-manifest.md; Phase 1 tech closed under honest partial pilot |
 | Public prototype layout | **DONE** → `riscv-param-extraction\` |
 | Artifact B exporter | **DONE** (83 named + 20 new, 103/103 schema-ok) |
 
@@ -47,7 +47,7 @@
 | sig-unifieddb | blocked on membership |
 | Full archives read | partial (RSS only) |
 | SIG calendar | **USER TODO** |
-| Slack logistics channel | **USER TODO** |
+| Slack logistics channel | **JOINED** (2026-07-22) — `#risc-v-mentorship-questions` only; Allen Baum posted “see answer under risc-v-mentorship-questions” (paste full answer when available) |
 | LFX mentee profile (not Apply) | **USER TODO** |
 
 ---
@@ -74,8 +74,8 @@ Then complete Artifact A; push public repo when user approves.
 
 ## Next session priority
 
-1. Read `PHASE1-IMMERSION/06-measured-local/PILOT-READY.md`  
-2. One pilot only (`gpt4o`, `PROMPT_VERSION=v2`, `--retries 0`) after key  
-3. STOP — show cost; Artifact A only if user authorizes  
-4. User: community clicks; single GitHub home = lfx-firstanalysis  
+1. **Artifact A** only if user authorizes spend (remaining ~$5 OpenAI)  
+2. User: community (lists after membership, calendar, LFX mentee profile ≠ Apply)  
+3. Single GitHub home = `titoatwork/lfx-firstanalysis`  
+4. Do not re-pilot chunk_020 unless user reopens option 1/2  
 5. Do not restart Phase 1 technical study  

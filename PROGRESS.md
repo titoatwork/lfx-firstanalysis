@@ -17,7 +17,7 @@
 |------|--------|
 | Study + reproduce + docs | **Done** |
 | Community half of Phase 1 | **In progress** (you) |
-| Pilot `machine.adoc` | **READY offline** — waiting API key ([PILOT-READY.md](./PHASE1-IMMERSION/06-measured-local/PILOT-READY.md)); **$0 spent** |
+| Pilot `machine.adoc` | **ACCEPTED PARTIAL** (user option 3, 2026-07-22) — chunk_021 OK (~$0.04); chunk_020 TPM-blocked documented; **no further pilot spend**. $ left for A later. |
 | Phase 2 folder in **lfx-firstanalysis** | **`riscv-param-extraction/`** (2026-07-22) |
 | Selection weapon **B** | **Done offline** (83+20 schema-valid drafts) |
 | Selection weapon **A** | **Not started** (needs API) |
@@ -85,7 +85,7 @@ Source: [PHASE1-IMMERSION/06-measured-local/metrics_summary.json](./PHASE1-IMMER
 | # | Task | Done? |
 |---|------|-------|
 | 1 | LFX **mentee profile** only (not Apply) | [ ] |
-| 2 | Slack → `#risc-v-mentorship-questions` (logistics only) | [ ] |
+| 2 | Slack → `#risc-v-mentorship-questions` (logistics only) | [x] **Joined** (2026-07-22); Allen Baum pointed to answer in that channel — paste text into notes when captured |
 | 3 | SIG/tech **calendar** | [ ] |
 | 4 | Watch membership approval on **your** Gmail | [ ] |
 | 5 | If approved: join **sig-parameters** + **sig-unifieddb** | [ ] |
@@ -96,7 +96,7 @@ Source: [PHASE1-IMMERSION/06-measured-local/metrics_summary.json](./PHASE1-IMMER
 
 | # | Task | Done? |
 |---|------|-------|
-| 1 | **Pilot** `machine.adoc` ([PILOT-READY.md](./PHASE1-IMMERSION/06-measured-local/PILOT-READY.md)) | [ ] offline READY; needs key |
+| 1 | **Pilot** `machine.adoc` ([pilot-manifest.md](./PHASE1-IMMERSION/06-measured-local/pilot-manifest.md)) | [x] **ACCEPTED PARTIAL** (option 3) — honest claim only |
 | 2 | Phase 2 code in [lfx-firstanalysis](https://github.com/titoatwork/lfx-firstanalysis) per presentation rules | [x] path `riscv-param-extraction/` (2026-07-22) |
 | 3 | **Artifact A** — multi-model + agreement tables | [ ] API |
 | 4 | **Artifact B** — CSV → draft UDB YAML + schema validate | [x] offline (iterate domain fill later) |

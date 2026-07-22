@@ -1,8 +1,9 @@
 # Pilot READY — offline setup complete
 
-**Status:** READY for key (zero API calls made while writing this)  
-**Date prepared:** 2026-07-22  
-**Budget law:** OpenAI credits ~$5 total · first paid action = **one** `pilot` only · target **cents** · stop if path looks > ~$0.50 before finish  
+**Status:** PILOT **ACCEPTED PARTIAL** (user option 3, 2026-07-22) — see [pilot-manifest.md](./pilot-manifest.md)  
+**Date prepared:** 2026-07-22 · **Run:** same day  
+**Outcome:** chunk_021 OK (~$0.04); chunk_020 failed org TPM 30k vs ~44k — **no retry** (save $ for Artifact A)  
+**Budget law:** OpenAI credits ~$5 total · further paid work only with explicit user yes  
 
 ---
 
