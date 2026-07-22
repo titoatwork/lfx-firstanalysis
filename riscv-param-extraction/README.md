@@ -1,107 +1,96 @@
-# Phase 2 — param export prototype (Artifact B)
+# RISC-V architectural parameter extraction (pre-apply)
 
-**Lives in:** [titoatwork/lfx-firstanalysis](https://github.com/titoatwork/lfx-firstanalysis) under `riscv-param-extraction/`  
-**First committed here:** **2026-07-22** (Phase 2 code — not Phase 1 study)  
-**Do not confuse with:** Phase 1 immersion pack at repo root / `PHASE1-IMMERSION/` (earlier commits)
+Public selection surface for [LFX Mentorship Part II — AI-assisted extraction of architectural parameters](https://mentorship.lfx.linuxfoundation.org/project/22296947-cecb-4a8f-8bcb-4f34710e9f66).
 
-This folder is the Phase 2 public-selection work for [LFX Part II — architectural parameter extraction](https://mentorship.lfx.linuxfoundation.org/project/22296947-cecb-4a8f-8bcb-4f34710e9f66).
+**Home:** [titoatwork/lfx-firstanalysis](https://github.com/titoatwork/lfx-firstanalysis) · path `riscv-param-extraction/`  
+**Not a second product repo.** Credit Part I to [@ishaan-arora-1](https://github.com/ishaan-arora-1) / [riscv/riscv-unified-db](https://github.com/riscv/riscv-unified-db) PRs #1765–#1832 — this work **reproduces and extends**, it does not claim Spring authorship.
 
-Part I already shipped extract → analyze → spreadsheet on PR branches of [riscv/riscv-unified-db](https://github.com/riscv/riscv-unified-db) (#1765–#1832, mentee [@ishaan-arora-1](https://github.com/ishaan-arora-1)). Gaps addressed here: **export spreadsheet → draft UDB param YAML** (Artifact B, this folder) and later **multi-model measurement** (Artifact A, needs API).
-
-Does **not** claim Part I authorship. Not an unsolicited bulk PR into UDB.
-
-### Work log (this folder)
-
-| Date | What landed |
-|------|-------------|
-| **2026-07-22** | Artifact B: CSV→draft UDB YAML exporter, 83 named + 20 new schema-valid drafts, metrics tables, tests. Pilot + Artifact A still pending API. |
+Part I already shipped extract → analyze → spreadsheet on open PR branches. Open gaps for Part II selection: **multi-model measurement** (Artifact A, not run yet) and **export of spreadsheet rows to draft UDB param YAML** (Artifact B, done here), plus **run manifests** (Obj 3).
 
 ---
 
-## Measured numbers (reproduction)
+## Measured numbers
 
 | Work | Result |
 |------|--------|
-| Phase 1 GT on live UDB | **223** params; 100% any / **91%** strong spec match |
-| Part I v2 remeasure (GT 185) | adjusted recall **72.9%**, class acc **88.4%**, WARL **50%** |
-| Same LLM output vs live GT 223 | adjusted recall **64.2%**, class acc **88.6%**, WARL **50%** |
-| `parameters.csv` `named=yes` | **87** rows / **83** unique (all already present in UDB on this freeze) |
-| Artifact B named export | **83/83** schema-valid drafts (`results/export_b_named.json`) |
-| Artifact B new candidates | **20/20** schema-valid drafts not in UDB (`results/export_b_new.json`) |
-| Artifact A multi-model | **Not run** (API key) |
+| Phase 1 GT (live UDB) | **223** params; 100% any / **91%** strong match |
+| Part I v2 remeasure (GT 185) | adj recall **72.9%**, class acc **88.4%**, WARL **50%** |
+| Same LLM output vs live GT 223 | adj recall **64.2%**, class acc **88.6%**, WARL **50%** |
+| Pilot machine.adoc | **COMPLETE_WITH_MODEL_SPLIT** — 021 **gpt-4o** (6 params), 020 **gpt-4o-mini** (9 params); total ~**$0.05** |
+| `parameters.csv` named=yes | **87** rows / **83** unique (not 97) |
+| Artifact B named export | **83/83** schema-valid |
+| Artifact B new (limit 20) | **20/20** schema-valid |
+| Artifact A multi-model | **Not run** |
 
-Full tables: [docs/metrics.md](docs/metrics.md). Design: [docs/design.md](docs/design.md). Session log: [docs/WORKLOG-2026-07-22.md](docs/WORKLOG-2026-07-22.md).
+Full tables: [docs/metrics.md](docs/metrics.md).  
+Pilot manifest (tokens, models, limitations): [manifests/pilot-machine-adoc.md](manifests/pilot-machine-adoc.md).  
+Design notes: [docs/design.md](docs/design.md).
+
+### Pilot model-split (detail)
+
+| Chunk | Model | In / out tokens | Params | ~USD |
+|-------|--------|----------------:|-------:|-----:|
+| chunk_021 | gpt-4o-2024-11-20 | 10 115 / 1 152 | 6 | ~0.037 |
+| chunk_020 | gpt-4o-mini-2024-07-18 | 44 874 / 1 541 | 9 | ~0.008 |
+
+gpt-4o org TPM **30 000** blocked the large chunk (~**44 373** input); mini completed it. **Not** a pure gpt-4o full machine.adoc pilot.
 
 ---
 
-## Artifact B — CSV → draft UDB YAML (runs offline)
-
-From this directory:
+## How to run Artifact B (offline, $0)
 
 ```text
+cd riscv-param-extraction
 pip install -r requirements.txt
 
-python -m export.csv_to_param_yaml ^
-  --csv data/parameters.csv ^
-  --out drafts/param ^
-  --mode named ^
-  --udb-root ..\riscv-unified-db ^
-  --clean
-
-python -m export.csv_to_param_yaml ^
-  --mode new --limit 20 ^
-  --udb-root ..\riscv-unified-db ^
-  --out drafts/param-new
-```
-
-- Drafts under `drafts/param/` (or `--out`). Every file is marked **DRAFT**.  
-- Report: `results/export_b_*.json`  
-- Schemas: `export/schemas/param_schema.json`
-
-```text
+python -m export.csv_to_param_yaml --csv data/parameters.csv --out drafts/param --mode named --udb-root ../riscv-unified-db --clean
+python -m export.csv_to_param_yaml --mode new --limit 20 --udb-root ../riscv-unified-db --out drafts/param-new --clean
 python -m unittest discover -s tests -v
 ```
 
----
+- Drafts: `drafts/param/`, `drafts/param-new/` (all marked **DRAFT**)  
+- Reports: `results/export_b_*.json`  
+- Schema: `export/schemas/param_schema.json`
 
-## Artifact A — multi-model (needs API key)
-
-Not run yet. When a key is available:
-
-1. Pilot on `machine.adoc` in local UDB (`extract.py pilot`) — see `../PHASE1-IMMERSION/06-measured-local/pilot-RUNBOOK.md`  
-2. Full second-model run + agreement vs committed `claude-sonnet-4`  
-3. Manifest under `manifests/`  
-
-Scaffold: [pipeline/README.md](pipeline/README.md).
+Pilot extraction needs a local `riscv-unified-db` on `lfx-1832` and **your own** API key — see [manifests/pilot-machine-adoc.md](manifests/pilot-machine-adoc.md). This repo does not ship keys or full chunk JSON dumps.
 
 ---
 
-## Limitations (honest)
+## Limitations
 
-- Named params already exist in UDB; B is a **draft export + validation path**, not 83 new architecture parameters.  
-- `value_type` alone does not recover enum members or range bounds — drafts leave TODOs.  
-- Prefer `--udb-root` for `definedBy` copy.  
-- No multi-model metrics until a real second-model run.  
-- Do not merge these drafts upstream without SIG / mentor review.
+- Named params already exist in UDB; B is a **draft export + validation** path, not 83 new architecture parameters.  
+- Pilot used **two OpenAI models** for machine.adoc because of TPM limits.  
+- Artifact A (full multi-model vs Claude baseline) **not run**.  
+- Do not merge draft YAML upstream without SIG / mentor review.  
+- No unsolicited bulk PR into `riscv/riscv-unified-db`.
+
+---
+
+## Links
+
+| Resource | URL |
+|----------|-----|
+| Part II LFX project | https://mentorship.lfx.linuxfoundation.org/project/22296947-cecb-4a8f-8bcb-4f34710e9f66 |
+| Upstream UDB | https://github.com/riscv/riscv-unified-db |
+| Part I plans | issues #1747, #1751 |
+| Part I PRs | #1765–#1832 |
+| This monorepo | https://github.com/titoatwork/lfx-firstanalysis |
 
 ---
 
 ## Layout
 
 ```text
-riscv-param-extraction/   # this folder inside lfx-firstanalysis
+riscv-param-extraction/
   README.md
-  docs/metrics.md
+  docs/metrics.md          # remeasure + pilot + B tables
   docs/design.md
-  docs/WORKLOG-2026-07-22.md
+  manifests/               # Obj 3 run records
   export/                  # Artifact B
-  pipeline/                # Artifact A (scaffold)
-  manifests/
-  drafts/param/
-  drafts/param-new/
-  results/
+  drafts/param/            # DRAFT YAML (named)
+  drafts/param-new/        # DRAFT YAML (new candidates)
+  results/                 # B reports + pilot name summary
+  pipeline/                # Artifact A scaffold
   data/parameters.csv
   tests/
 ```
-
-Parent repo home: https://github.com/titoatwork/lfx-firstanalysis  

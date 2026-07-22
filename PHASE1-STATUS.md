@@ -14,7 +14,7 @@
 |-------|--------|
 | Technical immersion | **DONE** (except pilot) |
 | Community immersion | **IN PROGRESS** |
-| Pilot `machine.adoc` | **COMPLETE_WITH_MODEL_SPLIT**: 021=gpt-4o; 020=gpt-4o-mini (TPM workaround); ~$0.05 total |
+| Pilot `machine.adoc` | **COMPLETE_WITH_MODEL_SPLIT** + **public evidence** in `riscv-param-extraction/manifests/` + `docs/metrics.md` |
 | Phase 2 public scaffold | **DONE** locally |
 | Phase 2 Artifact B | **DONE** offline (schema-valid drafts) |
 | Phase 2 Artifact A | **NOT STARTED** (API) |

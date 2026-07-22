@@ -1,5 +1,9 @@
 # Pilot manifest — COMPLETE_WITH_MODEL_SPLIT (2026-07-22)
 
+**Canonical public copy (mentor-facing):**  
+[`riscv-param-extraction/manifests/pilot-machine-adoc.md`](../../riscv-param-extraction/manifests/pilot-machine-adoc.md)  
+Metrics tables: [`riscv-param-extraction/docs/metrics.md`](../../riscv-param-extraction/docs/metrics.md)
+
 **Status:** machine.adoc pilot coverage complete via **honest model split**  
 **No secrets in this file.** Key was session env only; unset after runs. Rotate if exposed in chat.
 

@@ -17,7 +17,7 @@
 |------|--------|
 | Study + reproduce + docs | **Done** |
 | Community half of Phase 1 | **In progress** (you) |
-| Pilot `machine.adoc` | **COMPLETE_WITH_MODEL_SPLIT** (2026-07-22) — 021=gpt-4o (6 params ~$0.04); 020=gpt-4o-mini (9 params ~$0.008); total pilot ~$0.05. 021 not rebilled. |
+| Pilot `machine.adoc` | **COMPLETE_WITH_MODEL_SPLIT** (~$0.05) — public evidence: `riscv-param-extraction/manifests/pilot-machine-adoc.md` + `docs/metrics.md` |
 | Phase 2 folder in **lfx-firstanalysis** | **`riscv-param-extraction/`** (2026-07-22) |
 | Selection weapon **B** | **Done offline** (83+20 schema-valid drafts) |
 | Selection weapon **A** | **Not started** (needs API) |

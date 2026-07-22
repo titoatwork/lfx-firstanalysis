@@ -1,0 +1,47 @@
+{
+  "status": "COMPLETE_WITH_MODEL_SPLIT",
+  "date": "2026-07-22",
+  "prompt_version": "v2",
+  "source": "machine.adoc",
+  "approx_total_pilot_usd": 0.05,
+  "chunks": [
+    {
+      "chunk_id": "chunk_021",
+      "model_id": "gpt-4o-2024-11-20",
+      "model_alias": "gpt4o",
+      "input_tokens": 10115,
+      "output_tokens": 1152,
+      "params_found": 6,
+      "approx_cost_usd": 0.037,
+      "parameter_names": [
+        "PMP_GRANULARITY",
+        "PMP_HARDWIRED_PRIVILEGES",
+        "PMP_CHECKS_ON_M_MODE",
+        "NUM_PMP_ENTRIES",
+        "PMPADDR_WIDTH",
+        "PMP_REGION_GRAIN"
+      ]
+    },
+    {
+      "chunk_id": "chunk_020",
+      "model_id": "gpt-4o-mini-2024-07-18",
+      "model_alias": "gpt4o-mini",
+      "input_tokens": 44874,
+      "output_tokens": 1541,
+      "params_found": 9,
+      "approx_cost_usd": 0.008,
+      "parameter_names": [
+        "MISA_EXTENSIONS",
+        "COUNTINHIBIT_EN",
+        "MTVEC_MODES",
+        "M_MODE_ENDIANNESS",
+        "REPORT_ENCODING_IN_MTVAL_ON_ILLEGAL_INSTRUCTION",
+        "MCONFIGPTR_OPTIONAL",
+        "MIMPID_IMPLEMENTED",
+        "MHARTID_IMPLEMENTED",
+        "MSTATUS_MIE_MPRV_RESET"
+      ],
+      "note": "gpt-4o TPM 30000 blocked ~44373 input; completed with gpt-4o-mini"
+    }
+  ]
+}

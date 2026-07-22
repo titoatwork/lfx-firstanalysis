@@ -1,70 +1,78 @@
-# LFX Mentorship — Workspace
+# LFX Mentorship — lfx-firstanalysis
 
 **Owner:** Ibteshamul Haque · GitHub: [titoatwork](https://github.com/titoatwork)  
 **Primary project:** [AI-assisted architectural parameter extraction – Part II](https://mentorship.lfx.linuxfoundation.org/project/22296947-cecb-4a8f-8bcb-4f34710e9f66)  
-**Doctrine:** Contributor before Aug 5 (reproduce → measure → SIG → A+B → apply Jul 31–Aug 2)
+**Mentors:** Allen Baum, Ajit Dingankar · **Upstream:** [riscv/riscv-unified-db](https://github.com/riscv/riscv-unified-db)
+
+**Single public home** for this campaign. Do not treat any other personal repo as the prototype product surface.
+
+Part I (Spring) already built extract → analyze → spreadsheet on open PR branches (#1765–#1832, mentee [@ishaan-arora-1](https://github.com/ishaan-arora-1)). This repo **reproduces**, **measures**, and adds **export + pilot evidence** — it does not claim Part I authorship.
 
 ---
 
-## Start here (new chat / new agent)
+## 5-minute mentor path
 
-| Priority | Path | What |
-|----------|------|------|
-| **0** | **[HANDOFF-NEW-SESSION.md](./HANDOFF-NEW-SESSION.md)** | **Paste kickoff + load order for new sessions** |
-| **1** | **[AGENT-RULES.md](./AGENT-RULES.md)** | **All session rules** (do not hallucinate process) |
-| **2** | **[PLAN-SOURCE-OF-TRUTH.md](./PLAN-SOURCE-OF-TRUTH.md)** | Locked plan until replaced |
-| **3** | **[PROGRESS.md](./PROGRESS.md)** | Done vs left (keep updated) |
-| **4** | **[PHASE1-CLOSEOUT.md](./PHASE1-CLOSEOUT.md)** | Phase 1 technical closeout |
-| **5** | **[GITHUB-PRESENTATION.md](./GITHUB-PRESENTATION.md)** | How public work is shown |
-| **6** | **[PHASE1-IMMERSION/](./PHASE1-IMMERSION/)** | Issues, PRs, metrics, deep study |
-| **7** | [NEXT-SESSION-PROMPT.md](./NEXT-SESSION-PROMPT.md) | Shorter kickoff variant |
-| **8** | **[riscv-param-extraction/](./riscv-param-extraction/)** | **Phase 2 code (2026-07-22): Artifact B CSV→UDB draft YAML** |
-| **9** | [lfx-riscv-param-extraction-prework/](./lfx-riscv-param-extraction-prework/) | Earlier seed notes (upgrade into A+B) |
+| Step | Open |
+|------|------|
+| 1. Measured tables | [riscv-param-extraction/docs/metrics.md](./riscv-param-extraction/docs/metrics.md) |
+| 2. Pilot manifest (models, tokens, cost, limitations) | [riscv-param-extraction/manifests/pilot-machine-adoc.md](./riscv-param-extraction/manifests/pilot-machine-adoc.md) |
+| 3. Artifact B code + drafts | [riscv-param-extraction/](./riscv-param-extraction/) |
+| 4. How presentation is locked | [GITHUB-PRESENTATION.md](./GITHUB-PRESENTATION.md) |
 
-**This GitHub repo is the single home:** https://github.com/titoatwork/lfx-firstanalysis  
-Do not treat a separate `riscv-param-extraction` GitHub repo as canonical (if one exists by mistake, ignore/delete it).
+### Snapshot numbers (do not invent beyond these)
+
+| Item | Value |
+|------|--------|
+| Part I v2 remeasure (GT 185) | adj recall **72.9%**, class acc **88.4%**, WARL **50%** |
+| Same vs live GT 223 | adj recall **64.2%** |
+| Pilot machine.adoc | **model split**: gpt-4o (chunk_021) + gpt-4o-mini (chunk_020); ~**$0.05** |
+| Artifact B | **83/83** named + **20/20** new schema-valid drafts |
+| Artifact A multi-model | **Not run** |
+| named=yes in CSV | **87** rows / **83** unique — never claim 97 without recount |
+
+Honest pilot claim: completed machine.adoc with **model split** because gpt-4o org TPM (30k) blocked the large chunk (~44k input). **Not** a pure gpt-4o full pilot.
 
 ---
 
-## Local only (not in this GitHub repo)
+## Repo map
+
+| Path | Role |
+|------|------|
+| **[riscv-param-extraction/](./riscv-param-extraction/)** | Public prototype: metrics, pilot manifest, Artifact B |
+| [PHASE1-IMMERSION/](./PHASE1-IMMERSION/) | Phase 1 evidence pack (issues, PR dumps, deep study) |
+| [PLAN-SOURCE-OF-TRUTH.md](./PLAN-SOURCE-OF-TRUTH.md) | Locked plan |
+| [PROGRESS.md](./PROGRESS.md) | Done vs left |
+| [AGENT-RULES.md](./AGENT-RULES.md) | Session rules for agents |
+| [GITHUB-PRESENTATION.md](./GITHUB-PRESENTATION.md) | How work is shown on GitHub |
+
+### Local only (not in this GitHub repo)
 
 | Path | Why |
 |------|-----|
-| `riscv-unified-db/` | Full clone of upstream + Part I branches — clone yourself: `https://github.com/riscv/riscv-unified-db` and fetch `lfx-*` PR branches (see closeout) |
+| `riscv-unified-db/` | Full upstream clone + `lfx-*` branches — clone separately; gitignored |
 
 ---
 
-## Progress (summary)
+## Agent / session files
 
-| Item | Status | When / where |
-|------|--------|----------------|
-| Clone UDB + Part I PR branches | Done **locally** | — |
-| GT reproduce + metrics remeasure | Done (72.9% / 88.4%) | `PHASE1-IMMERSION/06-measured-local/` |
-| Deep study pack | Done | `PHASE1-IMMERSION/` (~2026-07-21) |
-| Membership | Submitted (wait) | user |
-| **Artifact B** (CSV→draft YAML) | **Done offline** | **`riscv-param-extraction/` · 2026-07-22** |
-| Pilot / Artifact A | Not yet (API) | — |
-
----
-
-## Primary LFX target
-
-| Field | Value |
-|-------|--------|
-| Mentors | Allen Baum, Ajit Dingankar |
-| Upstream | https://github.com/riscv/riscv-unified-db |
-| Apply | Through 2026-08-05; plan submit Jul 31–Aug 2 |
-
----
-
-## Other files
-
-| File | Purpose |
-|------|---------|
-| [HANDOFF-CONTRIBUTOR.md](./HANDOFF-CONTRIBUTOR.md) | Earlier agent handoff (defer to plan lock) |
+| Path | What |
+|------|------|
+| [HANDOFF-NEW-SESSION.md](./HANDOFF-NEW-SESSION.md) | New-chat kickoff |
+| [HANDOFF-NEXT-SESSION.md](./HANDOFF-NEXT-SESSION.md) | Pilot-budget handoff (historical) |
+| [PHASE1-CLOSEOUT.md](./PHASE1-CLOSEOUT.md) | Phase 1 closeout bridge |
 | [PHASE1-STATUS.md](./PHASE1-STATUS.md) | Short status board |
-| [APPLICATION-PLAN.md](./APPLICATION-PLAN.md) | Application package notes |
-| [COMPETITION-UDB-ANALYSIS.md](./COMPETITION-UDB-ANALYSIS.md) | Tier A/B/C competition |
-| [RESUME-DRAFT.md](./RESUME-DRAFT.md) | Resume seed |
-| [PROJECTS.md](./PROJECTS.md) | AI / CFI / DFI cards |
-| [HANDOFF.md](./HANDOFF.md) | Broader year-4 context |
+
+---
+
+## Limitations
+
+- Artifact A (full multi-model vs Claude) not run.  
+- Pilot used two OpenAI models on machine.adoc (TPM).  
+- Artifact B drafts are **DRAFT** — not unsolicited UDB merges.  
+- Apply to Part II only after A+B evidence (plan: Jul 31–Aug 2).
+
+---
+
+## Apply window (plan)
+
+Submit Part II **Jul 31–Aug 2** (not last day). Official deadline through **2026-08-05**.

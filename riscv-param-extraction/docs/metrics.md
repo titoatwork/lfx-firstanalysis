@@ -1,8 +1,8 @@
 # Metrics
 
-Tables only. Numbers are **user-measured** on the local `riscv-unified-db` checkout (`lfx-1832`) unless marked pending. Do not invent pilot/A results.
+Tables only. Numbers are **user-measured** unless marked pending. Do not invent pilot/A results.
 
-Credit: Part I pipeline and committed results — [@ishaan-arora-1](https://github.com/ishaan-arora-1) / [riscv/riscv-unified-db](https://github.com/riscv/riscv-unified-db) PRs #1765–#1832. Remeasure here is independent reproduction, not authorship of Part I.
+Credit: Part I pipeline and committed results — [@ishaan-arora-1](https://github.com/ishaan-arora-1) / [riscv/riscv-unified-db](https://github.com/riscv/riscv-unified-db) PRs #1765–#1832. Remeasure and pilot here are independent reproduction, **not** Part I authorship.
 
 ---
 
@@ -15,7 +15,7 @@ Credit: Part I pipeline and committed results — [@ishaan-arora-1](https://gith
 | Any keyword match / strong | 100% / 91% |
 | Classes | DIRECT 140 · CSR_RW 55 · WARL 26 · SW_RULE 2 |
 
-Source: local `export_udb_params` → `map_params_to_spec` → `generate_report` (2026-07-21 session).
+Source: local `export_udb_params` → `map_params_to_spec` → `generate_report` (2026-07-21).
 
 ---
 
@@ -39,21 +39,40 @@ Against **live GT 223** (same LLM output): adjusted recall **64.2%**, class acc 
 
 ---
 
-## 3. Spreadsheet baseline (Artifact B input)
+## 3. Pilot — machine.adoc (2026-07-22)
+
+**Status:** `COMPLETE_WITH_MODEL_SPLIT`  
+**Manifest:** [manifests/pilot-machine-adoc.md](../manifests/pilot-machine-adoc.md)
+
+| Chunk | Model | In | Out | Params | ~USD |
+|-------|--------|---:|----:|-------:|-----:|
+| chunk_021 | gpt-4o-2024-11-20 | 10 115 | 1 152 | **6** | ~0.037 |
+| chunk_020 | gpt-4o-mini-2024-07-18 | 44 874 | 1 541 | **9** | ~0.008 |
+| **Total** | model split | **54 989** | **2 693** | **15** | **~0.05** |
+
+| Limitation | Detail |
+|------------|--------|
+| Why not pure gpt-4o | Org TPM **30 000** for gpt-4o; chunk_020 needed ~**44 373** input tokens |
+| Artifact A | **Not run** (full multi-model corpus compare) |
+| Full corpus extract | **Not run** |
+
+---
+
+## 4. Spreadsheet baseline (Artifact B input)
 
 | Metric | Value |
 |--------|------:|
 | `parameters.csv` rows | 346 |
 | `named=yes` rows | **87** |
 | Unique `named=yes` names | **83** |
-| Overlap with UDB `spec/std/isa/param/*.yaml` | **83 / 83** (all named already in UDB on this freeze) |
-| Unique names not in UDB (candidates) | **257** (all `named=no`) |
+| Overlap with UDB `spec/std/isa/param/*.yaml` | **83 / 83** |
+| Unique names not in UDB | **257** (`named=no`) |
 
 Do **not** claim 97 named params without re-counting the CSV in use.
 
 ---
 
-## 4. Artifact A — multi-model (pending API)
+## 5. Artifact A — multi-model (not run)
 
 | Metric | Status |
 |--------|--------|
@@ -64,7 +83,7 @@ Do **not** claim 97 named params without re-counting the CSV in use.
 
 ---
 
-## 5. Artifact B — export validation (2026-07-22)
+## 6. Artifact B — export validation (2026-07-22)
 
 Reports: `results/export_b_named.json`, `results/export_b_new.json`.
 
