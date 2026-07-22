@@ -1,6 +1,6 @@
 # Progress — done vs left
 
-**Last updated:** 2026-07-22 (session: public prototype + Artifact B)  
+**Last updated:** 2026-07-22 (session: B on lfx-firstanalysis + pilot offline READY)  
 **Plan lock:** [PLAN-SOURCE-OF-TRUTH.md](./PLAN-SOURCE-OF-TRUTH.md)  
 **Session rules:** [AGENT-RULES.md](./AGENT-RULES.md)  
 **New chat handoff:** [HANDOFF-NEW-SESSION.md](./HANDOFF-NEW-SESSION.md)  
@@ -17,7 +17,7 @@
 |------|--------|
 | Study + reproduce + docs | **Done** |
 | Community half of Phase 1 | **In progress** (you) |
-| Pilot `machine.adoc` | **Blocked** (API key) |
+| Pilot `machine.adoc` | **READY offline** — waiting API key ([PILOT-READY.md](./PHASE1-IMMERSION/06-measured-local/PILOT-READY.md)); **$0 spent** |
 | Phase 2 folder in **lfx-firstanalysis** | **`riscv-param-extraction/`** (2026-07-22) |
 | Selection weapon **B** | **Done offline** (83+20 schema-valid drafts) |
 | Selection weapon **A** | **Not started** (needs API) |
@@ -90,13 +90,13 @@ Source: [PHASE1-IMMERSION/06-measured-local/metrics_summary.json](./PHASE1-IMMER
 | 4 | Watch membership approval on **your** Gmail | [ ] |
 | 5 | If approved: join **sig-parameters** + **sig-unifieddb** | [ ] |
 | 6 | Read list archives (full after join) | [ ] |
-| 7 | Optional: API key ready for pilot | [ ] |
+| 7 | Optional: API key ready for pilot | [ ] ($5 OpenAI budget; give only when agent shows READY) |
 
 ### Next coding session(s)
 
 | # | Task | Done? |
 |---|------|-------|
-| 1 | **Pilot** `machine.adoc` ([pilot-RUNBOOK.md](./PHASE1-IMMERSION/06-measured-local/pilot-RUNBOOK.md)) | [ ] API |
+| 1 | **Pilot** `machine.adoc` ([PILOT-READY.md](./PHASE1-IMMERSION/06-measured-local/PILOT-READY.md)) | [ ] offline READY; needs key |
 | 2 | Phase 2 code in [lfx-firstanalysis](https://github.com/titoatwork/lfx-firstanalysis) per presentation rules | [x] path `riscv-param-extraction/` (2026-07-22) |
 | 3 | **Artifact A** — multi-model + agreement tables | [ ] API |
 | 4 | **Artifact B** — CSV → draft UDB YAML + schema validate | [x] offline (iterate domain fill later) |

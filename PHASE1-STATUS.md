@@ -14,7 +14,7 @@
 |-------|--------|
 | Technical immersion | **DONE** (except pilot) |
 | Community immersion | **IN PROGRESS** |
-| Pilot `machine.adoc` | **BLOCKED — needs API key** |
+| Pilot `machine.adoc` | **READY offline** (needs key; $0 spent; see PILOT-READY.md) |
 | Phase 2 public scaffold | **DONE** locally |
 | Phase 2 Artifact B | **DONE** offline (schema-valid drafts) |
 | Phase 2 Artifact A | **NOT STARTED** (API) |
@@ -33,7 +33,7 @@
 | Deep study pack | **DONE** → `PHASE1-IMMERSION\` |
 | Phase 1 GT reproduce | **DONE** (223 params) |
 | Metrics remeasure | **DONE** (72.9% / 88.4%) |
-| Pilot extract | **NOT DONE** (API) |
+| Pilot extract | **NOT DONE** — offline setup READY (`PILOT-READY.md`); wait key |
 | Public prototype layout | **DONE** → `riscv-param-extraction\` |
 | Artifact B exporter | **DONE** (83 named + 20 new, 103/103 schema-ok) |
 
@@ -74,6 +74,8 @@ Then complete Artifact A; push public repo when user approves.
 
 ## Next session priority
 
-1. If API ready → pilot → Artifact A  
-2. Else → user community clicks + `gh repo create` / push prototype  
-3. Do not restart Phase 1 technical study  
+1. Read `PHASE1-IMMERSION/06-measured-local/PILOT-READY.md`  
+2. One pilot only (`gpt4o`, `PROMPT_VERSION=v2`, `--retries 0`) after key  
+3. STOP — show cost; Artifact A only if user authorizes  
+4. User: community clicks; single GitHub home = lfx-firstanalysis  
+5. Do not restart Phase 1 technical study  
