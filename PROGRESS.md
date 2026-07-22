@@ -2,6 +2,8 @@
 
 **Last updated:** 2026-07-22  
 **Plan lock:** [PLAN-SOURCE-OF-TRUTH.md](./PLAN-SOURCE-OF-TRUTH.md)  
+**Session rules:** [AGENT-RULES.md](./AGENT-RULES.md)  
+**New chat handoff:** [HANDOFF-NEW-SESSION.md](./HANDOFF-NEW-SESSION.md)  
 **Phase 1 handoff:** [PHASE1-CLOSEOUT.md](./PHASE1-CLOSEOUT.md)  
 **This GitHub repo:** https://github.com/titoatwork/lfx-firstanalysis  
 **Local UDB clone (not in git):** `riscv-unified-db/` on branch `lfx-1832`
