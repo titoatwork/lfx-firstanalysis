@@ -14,7 +14,7 @@
 |-------|--------|
 | Technical immersion | **DONE** (except pilot) |
 | Community immersion | **IN PROGRESS** |
-| Pilot `machine.adoc` | **ACCEPTED PARTIAL** (option 3): chunk_021 OK ~$0.04; chunk_020 TPM documented; no retry |
+| Pilot `machine.adoc` | **COMPLETE_WITH_MODEL_SPLIT**: 021=gpt-4o; 020=gpt-4o-mini (TPM workaround); ~$0.05 total |
 | Phase 2 public scaffold | **DONE** locally |
 | Phase 2 Artifact B | **DONE** offline (schema-valid drafts) |
 | Phase 2 Artifact A | **NOT STARTED** (API) |
@@ -33,7 +33,7 @@
 | Deep study pack | **DONE** → `PHASE1-IMMERSION\` |
 | Phase 1 GT reproduce | **DONE** (223 params) |
 | Metrics remeasure | **DONE** (72.9% / 88.4%) |
-| Pilot extract | **ACCEPTED PARTIAL** (option 3) — see pilot-manifest.md; Phase 1 tech closed under honest partial pilot |
+| Pilot extract | **DONE (model split)** — see pilot-manifest.md |
 | Public prototype layout | **DONE** → `riscv-param-extraction\` |
 | Artifact B exporter | **DONE** (83 named + 20 new, 103/103 schema-ok) |
 
@@ -74,8 +74,8 @@ Then complete Artifact A; push public repo when user approves.
 
 ## Next session priority
 
-1. **Artifact A** only if user authorizes spend (remaining ~$5 OpenAI)  
+1. **Artifact A** only if user authorizes spend (most of ~$5 still left)  
 2. User: community (lists after membership, calendar, LFX mentee profile ≠ Apply)  
 3. Single GitHub home = `titoatwork/lfx-firstanalysis`  
-4. Do not re-pilot chunk_020 unless user reopens option 1/2  
+4. Do not re-pilot without user OK  
 5. Do not restart Phase 1 technical study  
