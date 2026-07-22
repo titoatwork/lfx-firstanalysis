@@ -1,0 +1,28 @@
+# Secrets
+.env
+.env.*
+*.pem
+**/secrets/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+
+# Large / local-only dumps
+results/large/
+*.jsonl
+param_extraction/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

@@ -1,11 +1,12 @@
 # Progress — done vs left
 
-**Last updated:** 2026-07-22  
+**Last updated:** 2026-07-22 (session: public prototype + Artifact B)  
 **Plan lock:** [PLAN-SOURCE-OF-TRUTH.md](./PLAN-SOURCE-OF-TRUTH.md)  
 **Session rules:** [AGENT-RULES.md](./AGENT-RULES.md)  
 **New chat handoff:** [HANDOFF-NEW-SESSION.md](./HANDOFF-NEW-SESSION.md)  
 **Phase 1 handoff:** [PHASE1-CLOSEOUT.md](./PHASE1-CLOSEOUT.md)  
-**This GitHub repo:** https://github.com/titoatwork/lfx-firstanalysis  
+**This GitHub repo (ONLY public home):** https://github.com/titoatwork/lfx-firstanalysis  
+**Phase 2 code path (in this repo):** `riscv-param-extraction/` — first landed **2026-07-22**  
 **Local UDB clone (not in git):** `riscv-unified-db/` on branch `lfx-1832`
 
 ---
@@ -16,8 +17,10 @@
 |------|--------|
 | Study + reproduce + docs | **Done** |
 | Community half of Phase 1 | **In progress** (you) |
-| Pilot `machine.adoc` | **Next session** (API key) |
-| Selection weapons A / B | **Not started** |
+| Pilot `machine.adoc` | **Blocked** (API key) |
+| Phase 2 folder in **lfx-firstanalysis** | **`riscv-param-extraction/`** (2026-07-22) |
+| Selection weapon **B** | **Done offline** (83+20 schema-valid drafts) |
+| Selection weapon **A** | **Not started** (needs API) |
 | Apply to Part II | **After A/B** (Jul 31–Aug 2) |
 
 ---
@@ -66,9 +69,9 @@ Source: [PHASE1-IMMERSION/06-measured-local/metrics_summary.json](./PHASE1-IMMER
 
 | Item | Status |
 |------|--------|
-| Public prototype repo (A/B home) | **Not started** (separate from this analysis repo) |
-| Artifact A multi-model | **Not started** |
-| Artifact B YAML exporter | **Not started** |
+| Phase 2 A/B home | **Inside this repo** — `riscv-param-extraction/` on `lfx-firstanalysis` (2026-07-22). Not a second GitHub product repo. |
+| Artifact A multi-model | **Not started** (API) |
+| Artifact B YAML exporter | **Done offline** — 83 named + 20 new, all schema-valid; reports in `results/export_b_*.json` |
 | Stretch C WARL | **Not started** |
 | Application / cover letter / resume submit | **Not started** |
 | SIG warm period | **Not started** |
@@ -93,11 +96,11 @@ Source: [PHASE1-IMMERSION/06-measured-local/metrics_summary.json](./PHASE1-IMMER
 
 | # | Task | Done? |
 |---|------|-------|
-| 1 | **Pilot** `machine.adoc` ([pilot-RUNBOOK.md](./PHASE1-IMMERSION/06-measured-local/pilot-RUNBOOK.md)) | [ ] |
-| 2 | Public GitHub repo per [GITHUB-PRESENTATION.md](./GITHUB-PRESENTATION.md) | [ ] |
-| 3 | **Artifact A** — multi-model + agreement tables | [ ] |
-| 4 | **Artifact B** — CSV → draft UDB YAML + schema validate | [ ] |
-| 5 | Manifests every run (Obj 3) | [ ] |
+| 1 | **Pilot** `machine.adoc` ([pilot-RUNBOOK.md](./PHASE1-IMMERSION/06-measured-local/pilot-RUNBOOK.md)) | [ ] API |
+| 2 | Phase 2 code in [lfx-firstanalysis](https://github.com/titoatwork/lfx-firstanalysis) per presentation rules | [x] path `riscv-param-extraction/` (2026-07-22) |
+| 3 | **Artifact A** — multi-model + agreement tables | [ ] API |
+| 4 | **Artifact B** — CSV → draft UDB YAML + schema validate | [x] offline (iterate domain fill later) |
+| 5 | Manifests every run (Obj 3) | [ ] after pilot/A |
 | 6 | Stretch **C** (WARL) only if A+B done | [ ] |
 | 7 | Short **sig-parameters** note after A+B (when on list) | [ ] |
 | 8 | **No** big unsolicited UDB PR (ask on-list first) | — |
@@ -126,10 +129,10 @@ Source: [PHASE1-IMMERSION/06-measured-local/metrics_summary.json](./PHASE1-IMMER
 | Requirement | Progress |
 |-------------|----------|
 | Reproduced pipeline | **Yes** |
-| Measured multi-model / improvement | **No** (needs A) |
+| Measured multi-model / improvement | **No** (needs A + API) |
 | Showed up at SIG | **No** (membership/list/meeting) |
 | 9-week plan ↔ 5 objectives | **Not written** (Phase 3) |
-| Reviewable A+B artifacts | **No** |
+| Reviewable A+B artifacts | **B yes (local)**; A no; public push pending |
 
 ---
 

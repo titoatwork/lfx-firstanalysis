@@ -75,7 +75,7 @@ done
 
 ## Phase 2 — Prototype (July 24–31)
 
-Own **public repo** (user’s GitHub). Two required artifacts:
+Home: **same** public repo `titoatwork/lfx-firstanalysis` (folder `riscv-param-extraction/`). Do not invent a second GitHub product repo unless user asks. Two required artifacts:
 
 | ID | Artifact | Maps to |
 |----|----------|---------|

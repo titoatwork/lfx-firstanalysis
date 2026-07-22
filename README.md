@@ -18,7 +18,11 @@
 | **5** | **[GITHUB-PRESENTATION.md](./GITHUB-PRESENTATION.md)** | How public work is shown |
 | **6** | **[PHASE1-IMMERSION/](./PHASE1-IMMERSION/)** | Issues, PRs, metrics, deep study |
 | **7** | [NEXT-SESSION-PROMPT.md](./NEXT-SESSION-PROMPT.md) | Shorter kickoff variant |
-| **8** | [lfx-riscv-param-extraction-prework/](./lfx-riscv-param-extraction-prework/) | Earlier seed notes (upgrade into A+B) |
+| **8** | **[riscv-param-extraction/](./riscv-param-extraction/)** | **Phase 2 code (2026-07-22): Artifact B CSV→UDB draft YAML** |
+| **9** | [lfx-riscv-param-extraction-prework/](./lfx-riscv-param-extraction-prework/) | Earlier seed notes (upgrade into A+B) |
+
+**This GitHub repo is the single home:** https://github.com/titoatwork/lfx-firstanalysis  
+Do not treat a separate `riscv-param-extraction` GitHub repo as canonical (if one exists by mistake, ignore/delete it).
 
 ---
 
@@ -30,15 +34,16 @@
 
 ---
 
-## Phase 1 progress (summary)
+## Progress (summary)
 
-| Item | Status |
-|------|--------|
-| Clone UDB + Part I PR branches | Done **locally** |
-| GT reproduce + metrics remeasure | Done (72.9% / 88.4% — see `PHASE1-IMMERSION/06-measured-local/`) |
-| Deep study pack | Done |
-| Membership | Submitted (wait) |
-| Pilot / A / B | Not yet |
+| Item | Status | When / where |
+|------|--------|----------------|
+| Clone UDB + Part I PR branches | Done **locally** | — |
+| GT reproduce + metrics remeasure | Done (72.9% / 88.4%) | `PHASE1-IMMERSION/06-measured-local/` |
+| Deep study pack | Done | `PHASE1-IMMERSION/` (~2026-07-21) |
+| Membership | Submitted (wait) | user |
+| **Artifact B** (CSV→draft YAML) | **Done offline** | **`riscv-param-extraction/` · 2026-07-22** |
+| Pilot / Artifact A | Not yet (API) | — |
 
 ---
 

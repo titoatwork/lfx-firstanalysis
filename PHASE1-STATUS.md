@@ -1,9 +1,10 @@
 # Phase 1 Immersion — Status
 
-**Last updated:** 2026-07-21 (session closeout)  
+**Last updated:** 2026-07-22  
 **Plan lock:** `PLAN-SOURCE-OF-TRUTH.md`  
-**Full handoff:** `PHASE1-CLOSEOUT.md` ← **start next session here**  
-**Identity / emails:** see `PLAN-SOURCE-OF-TRUTH.md` only (do not re-prompt every session)
+**Full handoff:** `PHASE1-CLOSEOUT.md`  
+**Identity / emails:** see `PLAN-SOURCE-OF-TRUTH.md` only (do not re-prompt every session)  
+**Phase 2 code:** `riscv-param-extraction/` inside https://github.com/titoatwork/lfx-firstanalysis (2026-07-22)
 
 ---
 
@@ -13,8 +14,10 @@
 |-------|--------|
 | Technical immersion | **DONE** (except pilot) |
 | Community immersion | **IN PROGRESS** |
-| Pilot `machine.adoc` | **READY — needs API key** |
-| Phase 2 A/B | **NOT STARTED** |
+| Pilot `machine.adoc` | **BLOCKED — needs API key** |
+| Phase 2 public scaffold | **DONE** locally |
+| Phase 2 Artifact B | **DONE** offline (schema-valid drafts) |
+| Phase 2 Artifact A | **NOT STARTED** (API) |
 
 ---
 
@@ -30,7 +33,9 @@
 | Deep study pack | **DONE** → `PHASE1-IMMERSION\` |
 | Phase 1 GT reproduce | **DONE** (223 params) |
 | Metrics remeasure | **DONE** (72.9% / 88.4%) |
-| Pilot extract | **NOT DONE** |
+| Pilot extract | **NOT DONE** (API) |
+| Public prototype layout | **DONE** → `riscv-param-extraction\` |
+| Artifact B exporter | **DONE** (83 named + 20 new, 103/103 schema-ok) |
 
 ### Community
 | Item | Status |
@@ -52,20 +57,23 @@
 - GT live: **223** params; match 100% / strong 91%  
 - Part I v2 vs GT185: **72.9%** adj recall, **88.4%** class acc, WARL **50%**  
 - vs GT223: **64.2%** adj recall  
-- `named=yes` in parameters.csv: **~87** (not uncritically “97”)
+- `named=yes` in parameters.csv: **87** rows / **83** unique (not uncritically “97”)  
+- Artifact B: **83/83** named + **20/20** new schema-valid (local)
 
 ---
 
-## Remaining to call Phase 1 “fully done” per plan text
+## Remaining Phase 1 “fully done” per plan text
 
 1. User: calendar + Slack + LFX profile  
 2. Wait: membership approve → join lists → read archives  
 3. API: pilot on machine.adoc + save manifest  
 
-Then Phase 2 per plan lock.
+Then complete Artifact A; push public repo when user approves.
 
 ---
 
-## Next session
+## Next session priority
 
-Paste kickoff from bottom of `PHASE1-CLOSEOUT.md`.
+1. If API ready → pilot → Artifact A  
+2. Else → user community clicks + `gh repo create` / push prototype  
+3. Do not restart Phase 1 technical study  

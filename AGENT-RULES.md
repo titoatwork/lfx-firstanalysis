@@ -36,9 +36,11 @@ Any new agent or chat session **must** load this file together with `PLAN-SOURCE
 | 6 | **PHASE1-IMMERSION/DEEP-STUDY-COMPLETE.md** | Technical deep study (do not re-scrape from zero) |
 | 7 | **NEXT-SESSION-PROMPT.md** / **HANDOFF-NEW-SESSION.md** | Kickoff templates |
 
-**Repo on GitHub (docs/analysis):** https://github.com/titoatwork/lfx-firstanalysis  
+**Repo on GitHub (single home — Phase 1 docs + Phase 2 code):** https://github.com/titoatwork/lfx-firstanalysis  
+**Phase 2 path in that repo:** `riscv-param-extraction/` (Artifact B from 2026-07-22)  
 **Local workspace:** `Desktop\LFX-Mentorship\`  
-**Local UDB (not in git):** `riscv-unified-db\` branch `lfx-1832`
+**Local UDB (not in git):** `riscv-unified-db\` branch `lfx-1832`  
+**Do not** invent a second public GitHub product repo unless user explicitly asks.
 
 ---
 

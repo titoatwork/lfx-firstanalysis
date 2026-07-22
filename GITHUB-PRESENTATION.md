@@ -10,7 +10,7 @@
 
 | Rule | Detail |
 |------|--------|
-| **Home** | **User’s** public GitHub repo (default `titoatwork/<repo>` unless user renames) |
+| **Home** | **`titoatwork/lfx-firstanalysis`** (single repo). Phase 2 code under `riscv-param-extraction/`. Do not invent a second public repo unless user asks. |
 | **Not first** | Giant unsolicited PR into `riscv/riscv-unified-db` |
 | **Credit** | Link Part I issues/PRs (#1747–#1832, #1765–#1832); never claim Spring as ours |
 | **Identity** | User’s GitHub/email only — see `PLAN-SOURCE-OF-TRUTH.md` |
@@ -102,12 +102,13 @@ Names/layout: **UDB / params / recall / WARL** vocabulary — not chatbot-starte
 
 ## 8. When Phase 2 starts (first GitHub steps)
 
-1. Create public repo under user account  
-2. README skeleton + `docs/metrics.md` with **already measured** 72.9% numbers  
+1. Work **in** `titoatwork/lfx-firstanalysis` (already exists) — path `riscv-param-extraction/`  
+2. Folder README + `docs/metrics.md` with **already measured** 72.9% numbers  
 3. Implement A then B to fill tables for real  
 4. Manifests on every run  
+5. Date new work clearly (e.g. `docs/WORKLOG-YYYY-MM-DD.md`) so it is not confused with Phase 1 commits  
 
-Do **not** invent a different repo layout without updating this file and `PLAN-SOURCE-OF-TRUTH.md`.
+Do **not** invent a different repo or layout without updating this file and `PLAN-SOURCE-OF-TRUTH.md`.
 
 ---
 
