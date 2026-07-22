@@ -1,0 +1,23 @@
+# Full UDB clone lives locally only (large nested git repo; clone upstream separately)
+riscv-unified-db/
+
+# Scratch / duplicate of PHASE1-IMMERSION measured bits
+immersion-workspace/
+
+# Secrets / env
+.env
+.env.*
+*.pem
+**/secrets*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/

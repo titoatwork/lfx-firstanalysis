@@ -1,9 +1,8 @@
 # LFX Mentorship — Workspace
 
-**Last refreshed:** 2026-07-19  
-**Owner:** Ibteshamul Haque  
-**Primary project:** AI-assisted extraction of architectural parameters – **Part II**  
-**Goal:** Crack LFX Fall 2026  
+**Owner:** Ibteshamul Haque · GitHub: [titoatwork](https://github.com/titoatwork)  
+**Primary project:** [AI-assisted architectural parameter extraction – Part II](https://mentorship.lfx.linuxfoundation.org/project/22296947-cecb-4a8f-8bcb-4f34710e9f66)  
+**Doctrine:** Contributor before Aug 5 (reproduce → measure → SIG → A+B → apply Jul 31–Aug 2)
 
 ---
 
@@ -11,24 +10,32 @@
 
 | Priority | Path | What |
 |----------|------|------|
-| **1** | **[lfx-riscv-param-extraction-prework/](./lfx-riscv-param-extraction-prework/)** | **Full pre-work pack** (README, notes, examples, essay, interview) |
-| **2** | [lfx-riscv-param-extraction-prework/notes/TONIGHT-DEEP-STUDY.md](./lfx-riscv-param-extraction-prework/notes/TONIGHT-DEEP-STUDY.md) | Your study checklist tonight |
-| **3** | [RESUME-DRAFT.md](./RESUME-DRAFT.md) | Resume → PDF **tomorrow** |
-| **4** | [72H-CHECKLIST.md](./72H-CHECKLIST.md) | Campaign checklist |
+| **0** | **[PLAN-SOURCE-OF-TRUTH.md](./PLAN-SOURCE-OF-TRUTH.md)** | **Locked plan** until replaced |
+| **1** | **[PHASE1-CLOSEOUT.md](./PHASE1-CLOSEOUT.md)** | Phase 1 done/left + next-session bridge |
+| **2** | **[NEXT-SESSION-PROMPT.md](./NEXT-SESSION-PROMPT.md)** | Kickoff prompt to paste |
+| **3** | **[GITHUB-PRESENTATION.md](./GITHUB-PRESENTATION.md)** | How public work will be shown |
+| **4** | **[PHASE1-IMMERSION/](./PHASE1-IMMERSION/)** | Issues, PRs, metrics, deep study |
+| **5** | [lfx-riscv-param-extraction-prework/](./lfx-riscv-param-extraction-prework/) | Earlier seed notes (upgrade into A+B) |
 
 ---
 
-## All files
+## Local only (not in this GitHub repo)
 
-| File | Purpose |
-|------|---------|
-| [HANDOFF.md](./HANDOFF.md) | Master handoff (year-4 + LFX) |
-| [PROJECTS.md](./PROJECTS.md) | AI / CFI / DFI cards |
-| [DEEP-STUDY-AI-PART-II.md](./DEEP-STUDY-AI-PART-II.md) | Deep research dump |
-| [STUDY-AI-PART-II.md](./STUDY-AI-PART-II.md) | Earlier study notes |
-| [COMPETITION-UDB-ANALYSIS.md](./COMPETITION-UDB-ANALYSIS.md) | Traffic / competition |
-| [SARGANTANA-ANALYSIS.md](./SARGANTANA-ANALYSIS.md) | CFI/DFI repo (backup) |
-| [prework-draft/](./prework-draft/) | Early draft (superseded by full pack) |
+| Path | Why |
+|------|-----|
+| `riscv-unified-db/` | Full clone of upstream + Part I branches — clone yourself: `https://github.com/riscv/riscv-unified-db` and fetch `lfx-*` PR branches (see closeout) |
+
+---
+
+## Phase 1 progress (summary)
+
+| Item | Status |
+|------|--------|
+| Clone UDB + Part I PR branches | Done **locally** |
+| GT reproduce + metrics remeasure | Done (72.9% / 88.4% — see `PHASE1-IMMERSION/06-measured-local/`) |
+| Deep study pack | Done |
+| Membership | Submitted (wait) |
+| Pilot / A / B | Not yet |
 
 ---
 
@@ -36,38 +43,20 @@
 
 | Field | Value |
 |-------|--------|
-| Project | AI params Part II |
-| Link | https://mentorship.lfx.linuxfoundation.org/project/22296947-cecb-4a8f-8bcb-4f34710e9f66 |
-| Repo | https://github.com/riscv/riscv-unified-db |
-| Apply | **15 Jul – 5 Aug 2026** |
-| Term | **15 Sep – 15 Nov 2026** (API) |
 | Mentors | Allen Baum, Ajit Dingankar |
-| Seats | ~1 paid (RVI) |
+| Upstream | https://github.com/riscv/riscv-unified-db |
+| Apply | Through 2026-08-05; plan submit Jul 31–Aug 2 |
 
 ---
 
-## Sequence
+## Other files
 
-```text
-NOW: pre-work pack done → tonight deep study (you)
-TOMORROW: resume PDF + LFX profile + publish pre-work repo
-THEN: Apply Part II (optional CFI/DFI only if RTL ready)
-```
-
----
-
-## Outreach
-
-| Person | Status |
-|--------|--------|
-| Ankit | Cold message ready / send |
-| Ishaan | Connect pending — do **not** withdraw; full DM after accept |
-
----
-
-## Re-verify before apply
-
-- [ ] LFX still Accepting  
-- [ ] Deadline still 5 Aug  
-- [ ] Spring PR merge state  
-- [ ] Pre-work public URL in essay  
+| File | Purpose |
+|------|---------|
+| [HANDOFF-CONTRIBUTOR.md](./HANDOFF-CONTRIBUTOR.md) | Earlier agent handoff (defer to plan lock) |
+| [PHASE1-STATUS.md](./PHASE1-STATUS.md) | Short status board |
+| [APPLICATION-PLAN.md](./APPLICATION-PLAN.md) | Application package notes |
+| [COMPETITION-UDB-ANALYSIS.md](./COMPETITION-UDB-ANALYSIS.md) | Tier A/B/C competition |
+| [RESUME-DRAFT.md](./RESUME-DRAFT.md) | Resume seed |
+| [PROJECTS.md](./PROJECTS.md) | AI / CFI / DFI cards |
+| [HANDOFF.md](./HANDOFF.md) | Broader year-4 context |

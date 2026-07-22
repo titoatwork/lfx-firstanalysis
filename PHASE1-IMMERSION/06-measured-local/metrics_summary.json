@@ -1,0 +1,97 @@
+{
+  "part1_committed_file": {
+    "total_udb_params": 185,
+    "debug_spec_params": 8,
+    "total_llm_params_deduped": 346,
+    "raw_recall": 0.6973,
+    "adjusted_recall": 0.7288,
+    "adjusted_recall_pct": "72.9%",
+    "classification_accuracy": 0.8837,
+    "classification_accuracy_pct": "88.4%",
+    "matched_non_debug_count": 129,
+    "per_class_recall": {
+      "NORM_DIRECT": {
+        "found": 83,
+        "total": 100
+      },
+      "NORM_CSR_RW": {
+        "found": 32,
+        "total": 51
+      },
+      "NORM_CSR_WARL": {
+        "found": 12,
+        "total": 24
+      },
+      "SW_RULE": {
+        "found": 2,
+        "total": 2
+      }
+    },
+    "new_params_total": 256
+  },
+  "user_measured_v2_vs_committed_gt185": {
+    "total_udb_params": 185,
+    "debug_spec_params": 8,
+    "total_llm_params_deduped": 346,
+    "raw_recall": 0.6973,
+    "adjusted_recall": 0.7288,
+    "adjusted_recall_pct": "72.9%",
+    "classification_accuracy": 0.8837,
+    "classification_accuracy_pct": "88.4%",
+    "matched_non_debug_count": 129,
+    "per_class_recall": {
+      "NORM_DIRECT": {
+        "found": 83,
+        "total": 100
+      },
+      "NORM_CSR_WARL": {
+        "found": 12,
+        "total": 24
+      },
+      "NORM_CSR_RW": {
+        "found": 32,
+        "total": 51
+      },
+      "SW_RULE": {
+        "found": 2,
+        "total": 2
+      }
+    },
+    "new_params_total": 256
+  },
+  "user_measured_v2_vs_regenerated_gt223": {
+    "total_udb_params": 223,
+    "debug_spec_params": 8,
+    "total_llm_params_deduped": 346,
+    "raw_recall": 0.6188,
+    "adjusted_recall": 0.6419,
+    "adjusted_recall_pct": "64.2%",
+    "classification_accuracy": 0.8864,
+    "classification_accuracy_pct": "88.6%",
+    "matched_non_debug_count": 138,
+    "per_class_recall": {
+      "NORM_DIRECT": {
+        "found": 92,
+        "total": 138
+      },
+      "NORM_CSR_WARL": {
+        "found": 12,
+        "total": 24
+      },
+      "NORM_CSR_RW": {
+        "found": 32,
+        "total": 51
+      },
+      "SW_RULE": {
+        "found": 2,
+        "total": 2
+      }
+    },
+    "new_params_total": 248
+  },
+  "phase1_export_delta": {
+    "committed_params": 185,
+    "regenerated_params": 223,
+    "delta": 38
+  }
+}
