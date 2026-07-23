@@ -1,6 +1,6 @@
 # Progress — done vs left
 
-**Last updated:** 2026-07-22 (session: B on lfx-firstanalysis + pilot offline READY)  
+**Last updated:** 2026-07-23 (profile done; public evidence pushed; A still open)  
 **Plan lock:** [PLAN-SOURCE-OF-TRUTH.md](./PLAN-SOURCE-OF-TRUTH.md)  
 **Session rules:** [AGENT-RULES.md](./AGENT-RULES.md)  
 **New chat handoff:** [HANDOFF-NEW-SESSION.md](./HANDOFF-NEW-SESSION.md)  
@@ -84,7 +84,7 @@ Source: [PHASE1-IMMERSION/06-measured-local/metrics_summary.json](./PHASE1-IMMER
 
 | # | Task | Done? |
 |---|------|-------|
-| 1 | LFX **mentee profile** only (not Apply) | [ ] |
+| 1 | LFX **mentee profile** only (not Apply) | [x] **Completed** (2026-07-23) — resume uploaded on profile; still **not** project Apply |
 | 2 | Slack → `#risc-v-mentorship-questions` (logistics only) | [x] **Joined** (2026-07-22); Allen Baum pointed to answer in that channel — paste text into notes when captured |
 | 3 | SIG/tech **calendar** | [ ] |
 | 4 | Watch membership approval on **your** Gmail | [ ] |
@@ -110,7 +110,7 @@ Source: [PHASE1-IMMERSION/06-measured-local/metrics_summary.json](./PHASE1-IMMER
 | # | Task | Done? |
 |---|------|-------|
 | 1 | Cover letter (measured numbers + A/B links + 9-week plan) | [ ] |
-| 2 | 1-page resume | [ ] |
+| 2 | 1-page resume | [~] **Uploaded on mentee profile** (2026-07-23); refresh before project Apply if A ships |
 | 3 | **Apply** to Part II | [ ] |
 | 4 | Optional parallel CFI/DFI apps (separate letters) | [ ] |
 
@@ -132,13 +132,13 @@ Source: [PHASE1-IMMERSION/06-measured-local/metrics_summary.json](./PHASE1-IMMER
 | Measured multi-model / improvement | **No** (needs A + API) |
 | Showed up at SIG | **No** (membership/list/meeting) |
 | 9-week plan ↔ 5 objectives | **Not written** (Phase 3) |
-| Reviewable A+B artifacts | **B yes (local)**; A no; public push pending |
+| Reviewable A+B artifacts | **B yes (public)**; pilot yes (public model-split); **A no** |
 
 ---
 
 ## Next chat
 
-Paste [NEXT-SESSION-PROMPT.md](./NEXT-SESSION-PROMPT.md) with status brackets filled.
+Paste the kickoff block in **[HANDOFF-NEW-SESSION.md](./HANDOFF-NEW-SESSION.md)** (full rules + live state as of 2026-07-23).
 
 ---
 

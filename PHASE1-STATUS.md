@@ -48,7 +48,7 @@
 | Full archives read | partial (RSS only) |
 | SIG calendar | **USER TODO** |
 | Slack logistics channel | **JOINED** (2026-07-22) — `#risc-v-mentorship-questions` only; Allen Baum posted “see answer under risc-v-mentorship-questions” (paste full answer when available) |
-| LFX mentee profile (not Apply) | **USER TODO** |
+| LFX mentee profile (not Apply) | **DONE** (2026-07-23) — profile + resume on form; Apply later after A |
 
 ---
 
