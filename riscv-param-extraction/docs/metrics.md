@@ -53,8 +53,8 @@ Against **live GT 223** (same LLM output): adjusted recall **64.2%**, class acc 
 | Limitation | Detail |
 |------------|--------|
 | Why not pure gpt-4o | Org TPM **30 000** for gpt-4o; chunk_020 needed ~**44 373** input tokens |
-| Artifact A | **Not run** (full multi-model corpus compare) |
-| Full corpus extract | **Not run** |
+| Artifact A | **Done** — full gpt-4o-mini corpus (see §5); not pure gpt-4o |
+| Full corpus extract (mini) | **Done** 2026-07-24/25 |
 
 ---
 
@@ -72,14 +72,85 @@ Do **not** claim 97 named params without re-counting the CSV in use.
 
 ---
 
-## 5. Artifact A — multi-model (not run)
+## 5. Artifact A — multi-model (gpt-4o-mini vs Claude Part I)
 
-| Metric | Status |
-|--------|--------|
-| Second model full run | **Not run** |
-| Per-class recall vs claude-sonnet-4 | — |
-| Inter-model agreement | — |
-| Hallucination-overlap | — |
+**Status:** `COMPLETE` (2026-07-24 → 2026-07-25)  
+**Manifest:** [manifests/artifact-a-gpt-4o-mini.md](../manifests/artifact-a-gpt-4o-mini.md)  
+**Agreement JSON:** [results/artifact_a_agreement.json](../results/artifact_a_agreement.json)
+
+Second model: **gpt-4o-mini-2024-07-18**, `PROMPT_VERSION=v2`, **60/60** param-bearing chunks, **0** errors.  
+Headline metrics vs **GT 185** (Part I freeze). Claude baseline = committed Part I v2 (not re-billed).
+
+### 5.1 Run cost (gpt-4o-mini)
+
+| Field | Value |
+|------:|
+| Chunks OK / errors | **60 / 0** |
+| Raw params (pre-dedup) | 239 |
+| Input tokens | **868 976** |
+| Output tokens | **51 718** |
+| Approx cost (USD, list rates ~$0.15/M in · $0.60/M out) | **~$0.16** |
+
+### 5.2 Per-model metrics vs GT 185
+
+| Metric | Claude-sonnet-4 (Part I v2) | gpt-4o-mini (this run) |
+|--------|----------------------------:|-----------------------:|
+| Deduped LLM params | 346 | **230** |
+| Adjusted recall | **72.9%** | **32.2%** |
+| Classification accuracy (exact matches only) | **88.4%** (76/86) | **100%** (11/11)† |
+| WARL recall | **50%** (12/24) | **12.5%** (3/24) |
+| Matched non-debug UDB | 129 | **57** |
+
+† Mini class-acc denominator is small (only **11** exact name matches). Do **not** read this as “better than Claude overall.”
+
+| Class | Claude found/total | Mini found/total |
+|-------|-------------------:|-----------------:|
+| NORM_DIRECT | 83/100 | **48/100** |
+| NORM_CSR_RW | 32/51 | **6/51** |
+| NORM_CSR_WARL | 12/24 | **3/24** |
+| SW_RULE | 2/2 | **0/2** |
+
+**Honest summary:** gpt-4o-mini is **substantially worse** than Claude-sonnet-4 on adjusted recall and every per-class recall row under this pipeline. Useful as a multi-model ablation / cost baseline, not as a replacement for Claude-quality extract.
+
+### 5.3 Inter-model agreement (parameter names)
+
+| Metric | Value |
+|--------|------:|
+| Unique Claude | 346 |
+| Unique mini | 230 |
+| Shared names | **21** |
+| Only Claude | 325 |
+| Only mini | 209 |
+| Jaccard (name) | **3.8%** |
+| Match rate vs Claude | 6.1% |
+| Match rate vs mini | 9.1% |
+| Class agreement on shared | **81.0%** (17/21) |
+
+Shared-name sample: `CACHE_BLOCK_SIZE`, `ELEN`, `VLEN`, `MTVEC_MODES`, `NUM_PMP_ENTRIES`, `XLEN`, …
+
+### 5.4 Hallucination-overlap (high-conf proposed-new)
+
+Proposed-new = name **not** in GT185 UDB set and no trusted `existing_udb_name` hit; **confidence=high** only.
+
+| Metric | Value |
+|--------|------:|
+| Proposed-new Claude | 236 |
+| Proposed-new mini | 218 |
+| Both models | **9** |
+| Only Claude | 227 |
+| Only mini | 209 |
+| Overlap rate vs Claude | 3.8% |
+| Overlap rate vs mini | 4.1% |
+
+Low both-model overlap on “new” names → most proposed-new are model-private (higher hallucination risk); the **9** both-model hits are higher-priority review candidates.
+
+### 5.5 Limitations (A)
+
+- Second model is **gpt-4o-mini**, not full gpt-4o corpus (TPM + budget).  
+- Org TPM forced ~60s waits between large chunks; run ~49 min wall clock.  
+- `analyze.py --model` must precede the subcommand (`--model gpt-4o-mini all`).  
+- Full per-chunk JSON stays local under UDB clone (not shipped in this monorepo).  
+- Do not claim mini “matched or beat Claude.”
 
 ---
 
