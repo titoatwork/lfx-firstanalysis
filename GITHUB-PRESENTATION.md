@@ -91,6 +91,8 @@ Names/layout: **UDB / params / recall / WARL** vocabulary — not chatbot-starte
 | Many cosmetic UDB PRs for “GSoC optics” | Wrong filter for this project |
 | Private-only “trust me” results | Not auditible |
 | Generic AI README template | User quality bar |
+| Personal notes, Slack dumps, competition strategy essays | Mentors need evidence, not process diary |
+| Agent-only handoff spam as the main product | Noise; keep local unless user ships it |
 
 ---
 

@@ -1,11 +1,14 @@
 # HANDOFF — new session (canonical kickoff)
 
-**Prepared:** 2026-07-23  
+**Prepared:** 2026-07-23 (session close — leftover list + rival context recorded)  
 **Workspace:** `Desktop\LFX-Mentorship\`  
 **Public monorepo (ONLY):** https://github.com/titoatwork/lfx-firstanalysis  
 
 Paste the block under **KICKOFF PROMPT** into a new chat. Also open this file.  
-**Do not invent a parallel plan.** Obey locked files.
+**Do not invent a parallel plan.** User owns the plan; agent tracks done and executes when told.
+
+**Leftover checklist:** [LEFTOVER-WORK.md](./LEFTOVER-WORK.md)  
+**Progress:** [PROGRESS.md](./PROGRESS.md)
 
 ---
 
@@ -19,13 +22,15 @@ READ IN ORDER (do not skip; do not invent process):
 1. AGENT-RULES.md
 2. PLAN-SOURCE-OF-TRUTH.md
 3. PROGRESS.md
-4. PHASE1-STATUS.md
-5. PHASE1-CLOSEOUT.md
-6. GITHUB-PRESENTATION.md
+4. LEFTOVER-WORK.md
+5. PHASE1-STATUS.md
+6. PHASE1-CLOSEOUT.md
+7. GITHUB-PRESENTATION.md
 Skim as needed: PHASE1-IMMERSION/DEEP-STUDY-COMPLETE.md
 Public evidence: riscv-param-extraction/docs/metrics.md + manifests/pilot-machine-adoc.md
 
 Role: execution only until I change instructions.
+User owns the plan; agent tracks what is done and executes only when told.
 Quality: exceptional code, not generic/AI-slop; slow; multi-iterate; domain voice (UDB / param / WARL / adjusted recall).
 Honesty: never invent metrics, merges, pilot/A results, or Part I authorship.
 
@@ -63,9 +68,10 @@ HARD RULES (violations = campaign risk)
 8. LFX mentee PROFILE ≠ project Apply. Apply only Phase 3 (plan: Jul 31–Aug 2) after A+B evidence preferred.
 9. No cold email spam to mentors. No confidential COLIDE links. No CGPA on resume materials.
 10. Do NOT restart Phase 1 technical immersion (no re-clone/re-fetch/re-scrape from zero).
-11. API budget: treat OpenAI credits as scarce (~$5 historically). No paid calls without user key + explicit scope. No auto-retry loops. Never write keys to disk/git/README/chat echo if avoidable; session env only; unset after.
-12. Named param count: measured ~87 rows / 83 unique — NEVER claim 97 without recount.
+11. API budget: treat OpenAI credits as scarce (~$5 historically; pilot used ~$0.05). No paid calls without user key + explicit scope. No auto-retry loops. Never write keys to disk/git/README/chat echo if avoidable; session env only; unset after.
+12. Named param count: measured 87 rows / 83 unique — NEVER claim 97 without recount.
 13. Pilot honesty: COMPLETE_WITH_MODEL_SPLIT — NOT “pure gpt-4o full machine.adoc pilot.”
+14. User makes the plan. Agent tracks done state and executes only on go. Do not invent roadmap.
 
 ═══════════════════════════════════════
 STATE (fill brackets only if wrong; else keep)
@@ -83,9 +89,11 @@ STATE (fill brackets only if wrong; else keep)
   - chunk_020: gpt-4o-mini-2024-07-18 — 44874 in + 1541 out, 9 params, ~$0.008
   - Why split: gpt-4o org TPM 30k blocked ~44k input on large chunk
   - Public: riscv-param-extraction/manifests/pilot-machine-adoc.md
+  - OpenAI path VERIFIED (key worked 2026-07-22; recheck balance before A)
 - Artifact B: DONE — 83/83 named + 20/20 new schema-valid drafts in monorepo
 - Artifact A multi-model: [NOT STARTED]
 - Stretch C WARL: [NOT STARTED]
+- Grounding/provenance public suite: [NOT SHIPPED as product] (optional with A)
 - Cover letter / formal Apply: [NOT STARTED]
 - Public monorepo: titoatwork/lfx-firstanalysis (mentor evidence pushed; personal notes NOT pushed)
 - Local UDB: riscv-unified-db/ branch lfx-1832 (not in git)
@@ -120,30 +128,42 @@ WHAT IS DONE (do not redo)
 - Mentor-facing README / metrics surface on GitHub
 - Membership form submitted; Slack joined; LFX profile + resume on profile
 - Identity / presentation / “single repo” rules documented after 2026-07-22 incident
+- Rival landscape researched 2026-07-23 (public only; see LEFTOVER-WORK / prior session notes)
+- User will author execution plan; agent does not invent parallel plan
 
 ═══════════════════════════════════════
-WHAT IS LEFT (priority order)
+WHAT IS LEFT (see LEFTOVER-WORK.md — priority order is USER’s plan)
 ═══════════════════════════════════════
 USER CLICKS / WAIT:
-1. Membership approval email → join sig-parameters + sig-unifieddb from Gmail on roster
+1. Membership approval → join sig-parameters + sig-unifieddb from Gmail on roster
 2. SIG/tech calendar subscribe; meetings: listen; one-sentence intro only if asked
 3. Read list archives after join
 
-TECHNICAL (highest selection gap):
-1. Artifact A — multi-model run + agreement / hallucination-overlap vs claude-sonnet-4
+TECHNICAL:
+1. Artifact A — multi-model + agreement / hallucination-overlap vs claude-sonnet-4
    - Needs user API authorization + budget discipline
-   - Honest numbers if worse
+   - Honest numbers if worse; TPM-aware (gpt-4o 30k)
    - Manifest every run (Obj 3)
-2. Optional offline B polish (enum/range domain fill) — not required for A
-3. Stretch C WARL only if A+B done
+2. Grounding/provenance + unified metrics/README surface (with A)
+3. Optional offline B polish (enum/range) — not required for A
+4. Stretch C WARL only if A+B done
 
 PHASE 3 APPLY (plan Jul 31–Aug 2, not last day Aug 5):
-1. Cover letter: who + research; measured Part I remeasure; A/B links; 9-week ↔ 5 objectives; 30 h/wk; IST
-2. Resume refresh on profile if A ships new numbers
-3. Apply to Part II only (unless user changes max-3 strategy)
-4. Optional CFI/DFI only with separate letters
+1. Cover letter: who + research; measured Part I; A/B links; 9-week ↔ 5 objectives; 30 h/wk; IST
+2. Resume refresh if A ships; Apply to Part II only (unless user changes)
+3. Optional CFI/DFI only with separate letters
 
 PHASE 4: SIG presence; iterate public repo; interview = walkthrough of visible work
+
+═══════════════════════════════════════
+COMPETITION SNAPSHOT (public; do not obsess unless user asks)
+═══════════════════════════════════════
+- Tier-1 extraction packets: AnshulPatil2005, devadarshnair, singhharsh1708 (+ lighter aryansri05)
+- Applicant signals: hjaat (#2053 + gist), Maanvi212006 (comment on #2053)
+- UDB PR swarm (krrishverma1805-web, Purav001, …) = wrong arena for this seat
+- Shared 2-snippet “coding challenge” = circulating applicant pattern; NOT seen as LFX file attachment
+- A alone is necessary but not sufficient vs polished challenge kits; need A + grounding + surface on Part I stack
+- Pre-apply UDB merges required: 0. Win with measured public artifacts.
 
 ═══════════════════════════════════════
 GITHUB / PRESENTATION RULES
@@ -164,46 +184,42 @@ CHANNEL RULES
 - mentorships@riscv.org: program logistics
 
 ═══════════════════════════════════════
-COMPETITION / ETIQUETTE NOTES
-═══════════════════════════════════════
-- Competitor signal observed (e.g. hjaat gist / Slack technical Q): do not match with Slack essay spam. Win with measured public artifacts.
-- Pre-apply UDB merges required: 0. No GSoC-style PR spam.
-- Optional invited draft PR only after A+B + list OK.
-
-═══════════════════════════════════════
 THIS SESSION DEFAULT
 ═══════════════════════════════════════
-Continue highest-outcome next steps per locked plan only.
-Highest technical gap: Artifact A when user authorizes spend.
-Otherwise: offline polish, status accuracy, Apply package drafting when user asks — no fake A numbers.
-Community: guide user only; they click Slack/calendar/lists.
-Do not restart Phase 1 technical study.
-Do not re-run pilot unless user reopens scope.
+User owns the plan. Confirm state from PROGRESS + LEFTOVER-WORK.
+Do not invent next steps order. Wait for user’s plan/go.
+Highest historical tech gap: Artifact A when user authorizes spend.
+Do not restart Phase 1. Do not re-run pilot unless user reopens.
 Ask before any git push or paid API work.
+OpenAI key: session env only when user sets it; never paste key into chat/docs.
 
-Start: read AGENT-RULES + PLAN + PROGRESS, confirm state table above, propose next action and wait for my go.
+Start: read AGENT-RULES + PLAN + PROGRESS + LEFTOVER-WORK, confirm state table above, list leftovers briefly, wait for my plan.
 ```
 
 ---
 
 ## After the new chat starts
 
-Agent should confirm:
+Agent should:
 
-1. Files loaded  
-2. State table matches disk  
-3. Next action (usually **Artifact A design/run** only if user authorizes API spend, or **Apply package** near Jul 31)
+1. Load files in order  
+2. Confirm state table matches disk  
+3. Point at **LEFTOVER-WORK.md**  
+4. **Wait for user’s plan** — do not invent execution order  
+5. On go: execute only scoped work; update PROGRESS + LEFTOVER-WORK when checkboxes flip  
 
 ## Local-only reminders (not for GitHub)
 
 - Personal notes / slack-notes stay local  
 - Keys never committed  
 - `riscv-unified-db/` never pushed  
+- Competition strategy essays stay local unless user ships  
 
 ## Related files
 
 | File | Role |
 |------|------|
+| `LEFTOVER-WORK.md` | Live leftover checklist |
 | `AGENT-RULES.md` | Full session law |
 | `PLAN-SOURCE-OF-TRUTH.md` | Plan lock |
 | `PROGRESS.md` | Done vs left |

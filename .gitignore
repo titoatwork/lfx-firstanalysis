@@ -4,6 +4,13 @@ riscv-unified-db/
 # Scratch / duplicate of PHASE1-IMMERSION measured bits
 immersion-workspace/
 
+# Personal / agent-only notes — NOT for mentors (do not push)
+PHASE1-IMMERSION/09-pointers/slack-notes.md
+**/slack-notes.md
+**/private/
+**/PERSONAL*.md
+**/*-PRIVATE.md
+
 # Secrets / env
 .env
 .env.*

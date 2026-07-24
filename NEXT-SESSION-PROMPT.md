@@ -1,13 +1,17 @@
-# Use HANDOFF-NEXT-SESSION.md
+# Next session kickoff
 
-The verified pilot-budget handoff lives in **[HANDOFF-NEXT-SESSION.md](./HANDOFF-NEXT-SESSION.md)**.
+**Canonical handoff:** [HANDOFF-NEW-SESSION.md](./HANDOFF-NEW-SESSION.md)  
+**Leftovers:** [LEFTOVER-WORK.md](./LEFTOVER-WORK.md)  
+**Progress:** [PROGRESS.md](./PROGRESS.md)
 
-Short kickoff if needed:
+Paste the full **KICKOFF PROMPT** block from `HANDOFF-NEW-SESSION.md` into a new chat.
+
+Short form if needed:
 
 ```text
-EXECUTE HANDOFF-NEXT-SESSION.md + PLAN-SOURCE-OF-TRUTH.md + AGENT-RULES.md
-Role: execution only. Zero API until I paste key.
-Primary: pilot machine.adoc gpt4o once (PROMPT_VERSION=v2, --retries 0) per PILOT-READY.md
-Budget: ~$5 OpenAI; pilot cents only; no extract.py run / no A without my yes.
-Do not restart Phase 1. Single GitHub home: titoatwork/lfx-firstanalysis.
+EXECUTE HANDOFF-NEW-SESSION.md + PLAN-SOURCE-OF-TRUTH.md + AGENT-RULES.md + LEFTOVER-WORK.md
+Role: execution only. User owns the plan; agent tracks done and waits for go.
+Do not invent roadmap. Do not restart Phase 1. Do not re-pilot without my OK.
+Single GitHub home: titoatwork/lfx-firstanalysis → riscv-param-extraction/
+A not started; B done; pilot COMPLETE_WITH_MODEL_SPLIT. No push/API without my explicit yes.
 ```

@@ -1,10 +1,11 @@
 # Phase 1 Immersion — Status
 
-**Last updated:** 2026-07-22  
+**Last updated:** 2026-07-23  
 **Plan lock:** `PLAN-SOURCE-OF-TRUTH.md`  
-**Full handoff:** `PHASE1-CLOSEOUT.md`  
-**Identity / emails:** see `PLAN-SOURCE-OF-TRUTH.md` only (do not re-prompt every session)  
-**Phase 2 code:** `riscv-param-extraction/` inside https://github.com/titoatwork/lfx-firstanalysis (2026-07-22)
+**Full handoff:** `PHASE1-CLOSEOUT.md` (historical; pilot/community superseded by PROGRESS)  
+**Leftovers:** `LEFTOVER-WORK.md`  
+**Identity / emails:** see `PLAN-SOURCE-OF-TRUTH.md` only  
+**Phase 2 code:** `riscv-param-extraction/` inside https://github.com/titoatwork/lfx-firstanalysis  
 
 ---
 
@@ -12,12 +13,13 @@
 
 | Track | Status |
 |-------|--------|
-| Technical immersion | **DONE** (except pilot) |
+| Technical immersion | **DONE** |
 | Community immersion | **IN PROGRESS** |
-| Pilot `machine.adoc` | **COMPLETE_WITH_MODEL_SPLIT** + **public evidence** in `riscv-param-extraction/manifests/` + `docs/metrics.md` |
-| Phase 2 public scaffold | **DONE** locally |
-| Phase 2 Artifact B | **DONE** offline (schema-valid drafts) |
+| Pilot `machine.adoc` | **COMPLETE_WITH_MODEL_SPLIT** + public evidence |
+| Phase 2 public scaffold | **DONE** |
+| Phase 2 Artifact B | **DONE** (schema-valid drafts) |
 | Phase 2 Artifact A | **NOT STARTED** (API) |
+| User plan ownership | User designs; agent tracks/executes on go |
 
 ---
 
@@ -33,22 +35,22 @@
 | Deep study pack | **DONE** → `PHASE1-IMMERSION\` |
 | Phase 1 GT reproduce | **DONE** (223 params) |
 | Metrics remeasure | **DONE** (72.9% / 88.4%) |
-| Pilot extract | **DONE (model split)** — see pilot-manifest.md |
+| Pilot extract | **DONE (model split)** |
 | Public prototype layout | **DONE** → `riscv-param-extraction\` |
-| Artifact B exporter | **DONE** (83 named + 20 new, 103/103 schema-ok) |
+| Artifact B exporter | **DONE** (83 named + 20 new) |
 
 ### Community
 | Item | Status |
 |------|--------|
-| Individual membership + Schedule A | **SUBMITTED** (wait ≤1 week) |
+| Individual membership + Schedule A | **SUBMITTED** (pending approval) |
 | Kendall mapping email | **SENT** |
 | Membership approved | pending |
 | sig-parameters | blocked on membership |
 | sig-unifieddb | blocked on membership |
 | Full archives read | partial (RSS only) |
 | SIG calendar | **USER TODO** |
-| Slack logistics channel | **JOINED** (2026-07-22) — `#risc-v-mentorship-questions` only; Allen Baum posted “see answer under risc-v-mentorship-questions” (paste full answer when available) |
-| LFX mentee profile (not Apply) | **DONE** (2026-07-23) — profile + resume on form; Apply later after A |
+| Slack logistics channel | **JOINED** (2026-07-22) |
+| LFX mentee profile (not Apply) | **DONE** (2026-07-23) |
 
 ---
 
@@ -57,25 +59,23 @@
 - GT live: **223** params; match 100% / strong 91%  
 - Part I v2 vs GT185: **72.9%** adj recall, **88.4%** class acc, WARL **50%**  
 - vs GT223: **64.2%** adj recall  
-- `named=yes` in parameters.csv: **87** rows / **83** unique (not uncritically “97”)  
-- Artifact B: **83/83** named + **20/20** new schema-valid (local)
+- `named=yes`: **87** rows / **83** unique  
+- Artifact B: **83/83** named + **20/20** new schema-valid  
+- Pilot: **~$0.05** COMPLETE_WITH_MODEL_SPLIT  
 
 ---
 
-## Remaining Phase 1 “fully done” per plan text
+## Remaining (see LEFTOVER-WORK.md)
 
-1. User: calendar + Slack + LFX profile  
-2. Wait: membership approve → join lists → read archives  
-3. API: pilot on machine.adoc + save manifest  
-
-Then complete Artifact A; push public repo when user approves.
+1. User: calendar + membership → lists  
+2. Technical: Artifact A (+ grounding/surface); optional B polish; C after A+B  
+3. Phase 3: cover letter + Apply Jul 31–Aug 2  
+4. Do not re-pilot / restart Phase 1 without user OK  
 
 ---
 
-## Next session priority
+## Next session
 
-1. **Artifact A** only if user authorizes spend (most of ~$5 still left)  
-2. User: community (lists after membership, calendar, LFX mentee profile ≠ Apply)  
+1. Load **HANDOFF-NEW-SESSION.md** kickoff  
+2. Confirm state; **wait for user’s plan**  
 3. Single GitHub home = `titoatwork/lfx-firstanalysis`  
-4. Do not re-pilot without user OK  
-5. Do not restart Phase 1 technical study  

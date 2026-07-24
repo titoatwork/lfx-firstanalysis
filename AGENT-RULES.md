@@ -51,6 +51,20 @@ Any new agent or chat session **must** load this file together with `PLAN-SOURCE
 | **Before any create/push/delete on GitHub** | Confirm target repo URL with user if there is any ambiguity |
 | **Why** | A wrong public repo splits the campaign story, confuses mentors, and can tank selection optics |
 
+### What goes on GitHub vs stays local (user rule)
+
+**Push only mentor-auditable evidence** (numbers, manifests, how-to-run, draft code, honest limitations).  
+**Do not push** personal notes, competition strategy, Slack dumps, agent handoffs-for-self, pep talks, or “thinking out loud” unless the user **explicitly** orders that file.
+
+| Ship (public) | Keep local (default) |
+|---------------|----------------------|
+| `riscv-param-extraction/` metrics, manifests, export code, DRAFT YAML, small results | `riscv-unified-db/` clone |
+| Measured tables, pilot model-split facts | `**/slack-notes.md`, personal strategy notes |
+| Plan lock / presentation rules if already tracked and useful | Handoff drafts the user marks private |
+| Phase 1 immersion dumps already used as evidence | Keys, `.env`, secrets |
+
+When in doubt: **leave untracked / gitignored** and ask before adding to a push.
+
 ---
 
 ## 3. Identity (do not ask user to restate every chat)
