@@ -1,0 +1,462 @@
+{
+  "total_txt_chunks": 79,
+  "param_bearing_chunks_claude_done": 60,
+  "claude_input_tokens_status": 1030983,
+  "claude_output_tokens_status": 83189,
+  "content_est_tokens_param_chunks": 469492,
+  "tpm_risky_gpt4o_ge_28k": [
+    {
+      "chunk_id": "chunk_015",
+      "chars": 118843,
+      "est_content_tokens": 31274,
+      "tpm_risky_gpt4o": true,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_020",
+      "chars": 155542,
+      "est_content_tokens": 40932,
+      "tpm_risky_gpt4o": true,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_055",
+      "chars": 116838,
+      "est_content_tokens": 30747,
+      "tpm_risky_gpt4o": true,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_058",
+      "chars": 145068,
+      "est_content_tokens": 38176,
+      "tpm_risky_gpt4o": true,
+      "source_file": ""
+    }
+  ],
+  "mini_already_done": [
+    "chunk_020"
+  ],
+  "chunks": [
+    {
+      "chunk_id": "chunk_020",
+      "chars": 155542,
+      "est_content_tokens": 40932,
+      "tpm_risky_gpt4o": true,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_058",
+      "chars": 145068,
+      "est_content_tokens": 38176,
+      "tpm_risky_gpt4o": true,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_015",
+      "chars": 118843,
+      "est_content_tokens": 31274,
+      "tpm_risky_gpt4o": true,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_055",
+      "chars": 116838,
+      "est_content_tokens": 30747,
+      "tpm_risky_gpt4o": true,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_045",
+      "chars": 93819,
+      "est_content_tokens": 24689,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_060",
+      "chars": 92161,
+      "est_content_tokens": 24253,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_059",
+      "chars": 87776,
+      "est_content_tokens": 23099,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_044",
+      "chars": 75662,
+      "est_content_tokens": 19911,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_002",
+      "chars": 71043,
+      "est_content_tokens": 18696,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_067",
+      "chars": 66821,
+      "est_content_tokens": 17584,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_061",
+      "chars": 52974,
+      "est_content_tokens": 13941,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_040",
+      "chars": 49624,
+      "est_content_tokens": 13059,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_048",
+      "chars": 47644,
+      "est_content_tokens": 12538,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_009",
+      "chars": 42267,
+      "est_content_tokens": 11123,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_057",
+      "chars": 40038,
+      "est_content_tokens": 10536,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_007",
+      "chars": 38672,
+      "est_content_tokens": 10177,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_018",
+      "chars": 37076,
+      "est_content_tokens": 9757,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_028",
+      "chars": 34007,
+      "est_content_tokens": 8949,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_004",
+      "chars": 26506,
+      "est_content_tokens": 6975,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_043",
+      "chars": 26467,
+      "est_content_tokens": 6965,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_001",
+      "chars": 25284,
+      "est_content_tokens": 6654,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_013",
+      "chars": 24663,
+      "est_content_tokens": 6490,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_078",
+      "chars": 24306,
+      "est_content_tokens": 6396,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_051",
+      "chars": 19776,
+      "est_content_tokens": 5204,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_027",
+      "chars": 18145,
+      "est_content_tokens": 4775,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_017",
+      "chars": 16410,
+      "est_content_tokens": 4318,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_021",
+      "chars": 15119,
+      "est_content_tokens": 3979,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_072",
+      "chars": 12473,
+      "est_content_tokens": 3282,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_011",
+      "chars": 12382,
+      "est_content_tokens": 3258,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_012",
+      "chars": 11726,
+      "est_content_tokens": 3086,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_068",
+      "chars": 11333,
+      "est_content_tokens": 2982,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_064",
+      "chars": 10511,
+      "est_content_tokens": 2766,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_076",
+      "chars": 10199,
+      "est_content_tokens": 2684,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_042",
+      "chars": 9621,
+      "est_content_tokens": 2532,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_031",
+      "chars": 9257,
+      "est_content_tokens": 2436,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_026",
+      "chars": 8975,
+      "est_content_tokens": 2362,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_074",
+      "chars": 8821,
+      "est_content_tokens": 2321,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_069",
+      "chars": 8705,
+      "est_content_tokens": 2291,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_046",
+      "chars": 8588,
+      "est_content_tokens": 2260,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_038",
+      "chars": 8496,
+      "est_content_tokens": 2236,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_065",
+      "chars": 7965,
+      "est_content_tokens": 2096,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_019",
+      "chars": 7147,
+      "est_content_tokens": 1881,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_070",
+      "chars": 7008,
+      "est_content_tokens": 1844,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_052",
+      "chars": 6648,
+      "est_content_tokens": 1749,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_050",
+      "chars": 6600,
+      "est_content_tokens": 1737,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_073",
+      "chars": 6074,
+      "est_content_tokens": 1598,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_014",
+      "chars": 5548,
+      "est_content_tokens": 1460,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_047",
+      "chars": 5476,
+      "est_content_tokens": 1441,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_034",
+      "chars": 5434,
+      "est_content_tokens": 1430,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_066",
+      "chars": 5314,
+      "est_content_tokens": 1398,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_077",
+      "chars": 5152,
+      "est_content_tokens": 1356,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_071",
+      "chars": 5081,
+      "est_content_tokens": 1337,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_063",
+      "chars": 3911,
+      "est_content_tokens": 1029,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_075",
+      "chars": 2484,
+      "est_content_tokens": 654,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_079",
+      "chars": 2389,
+      "est_content_tokens": 629,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_041",
+      "chars": 2193,
+      "est_content_tokens": 577,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_003",
+      "chars": 2117,
+      "est_content_tokens": 557,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_054",
+      "chars": 1745,
+      "est_content_tokens": 459,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_049",
+      "chars": 1110,
+      "est_content_tokens": 292,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    },
+    {
+      "chunk_id": "chunk_053",
+      "chars": 1046,
+      "est_content_tokens": 275,
+      "tpm_risky_gpt4o": false,
+      "source_file": ""
+    }
+  ]
+}
