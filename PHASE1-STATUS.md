@@ -76,6 +76,8 @@
 
 ## Next session
 
-1. Load **HANDOFF-NEW-SESSION.md** kickoff  
-2. Confirm state; **wait for user’s plan**  
+1. Load **AGENTS.md** (Grok auto) + **HANDOFF-NEW-SESSION.md** kickoff  
+2. Confirm state via **PROGRESS.md** + **LEFTOVER-WORK.md**; **wait for user’s plan**  
 3. Single GitHub home = `titoatwork/lfx-firstanalysis`  
+4. Artifact A plan when go: **PHASE2-PLAN.md**  
+

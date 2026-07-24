@@ -2,9 +2,12 @@
 
 **Status:** LOCKED until user explicitly replaces  
 **Owner:** Ibteshamul Haque  
-**Last updated:** 2026-07-22  
+**Last updated:** 2026-07-24  
 
 Any new agent or chat session **must** load this file together with `PLAN-SOURCE-OF-TRUTH.md`. Do not reinvent process, etiquette, or presentation.
+
+**Grok auto-load entry:** root `AGENTS.md` (always on). Also: `HANDSOFF.md`, `RECURRING_MISTAKES.md`, `.grok/rules/*`.  
+This file is the **full** process law; `AGENTS.md` is the short always-on slice. Prefer quoting locked files over inventing process.
 
 ---
 
@@ -28,13 +31,16 @@ Any new agent or chat session **must** load this file together with `PLAN-SOURCE
 
 | Order | File | Purpose |
 |-------|------|---------|
-| 1 | **AGENT-RULES.md** (this file) | Session rules — do not hallucinate process |
+| 0 | **AGENTS.md** + **HANDSOFF.md** + **RECURRING_MISTAKES.md** | Grok always-on / no-touch / lessons (token-cheap) |
+| 1 | **AGENT-RULES.md** (this file) | Full session rules — do not hallucinate process |
 | 2 | **PLAN-SOURCE-OF-TRUTH.md** | Full plan (phases, join tiers, INPUT, non-goals) |
-| 3 | **PROGRESS.md** | Done vs left checklist |
-| 4 | **PHASE1-CLOSEOUT.md** | Phase 1 technical closeout + pilot/community leftovers |
+| 3 | **PROGRESS.md** + **LEFTOVER-WORK.md** | Done vs left + live leftovers |
+| 4 | **PHASE2-PLAN.md** | Artifact A execution (when doing Phase 2 tech) |
 | 5 | **GITHUB-PRESENTATION.md** | How work is shown on GitHub |
-| 6 | **PHASE1-IMMERSION/DEEP-STUDY-COMPLETE.md** | Technical deep study (do not re-scrape from zero) |
-| 7 | **NEXT-SESSION-PROMPT.md** / **HANDOFF-NEW-SESSION.md** | Kickoff templates |
+| 6 | **PHASE1-CLOSEOUT.md** / **PHASE1-STATUS.md** | Phase 1 bridge + short board (historical + status) |
+| 7 | **PHASE1-IMMERSION/DEEP-STUDY-COMPLETE.md** | Technical deep study (do not re-scrape from zero) |
+| 8 | **HANDOFF-NEW-SESSION.md** / **NEXT-SESSION-PROMPT.md** | Kickoff templates |
+| map | **`.grok/rules/00-context-map.md`** | What *not* to load by default |
 
 **Repo on GitHub (SINGLE home — Phase 1 docs + Phase 2 code):** https://github.com/titoatwork/lfx-firstanalysis  
 **Phase 2 path in that repo:** `riscv-param-extraction/` (Artifact B from 2026-07-22)  
@@ -209,10 +215,10 @@ Analysis GitHub:              github.com/titoatwork/lfx-firstanalysis
 
 ## 12. When user says “start” / next work order
 
-1. Read this file + plan lock + PROGRESS.md  
-2. If API ready → pilot  
-3. Then public prototype repo per GITHUB-PRESENTATION.md  
-4. Then A → B → manifests  
+1. Read `AGENTS.md` + `HANDSOFF.md` + `RECURRING_MISTAKES.md` + this file + plan lock + `PROGRESS.md` + `LEFTOVER-WORK.md`  
+2. Pilot is **done** (COMPLETE_WITH_MODEL_SPLIT) — do not re-run unless user reopens  
+3. Public surface already under `riscv-param-extraction/` in this monorepo  
+4. Next technical selection weapon when authorized: **Artifact A** per `PHASE2-PLAN.md` (B already done)  
 5. Community: only guide user; they click Slack/calendar/lists  
 6. Application only after A+B evidence  
 
