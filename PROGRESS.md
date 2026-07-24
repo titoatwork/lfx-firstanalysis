@@ -1,6 +1,6 @@
 # Progress — done vs left
 
-**Last updated:** 2026-07-24 (agent context stack organized for Grok; A still open; user owns plan)  
+**Last updated:** 2026-07-25 (Artifact A done + §5.0 reframe; Stretch C optional; user owns plan)  
 **Plan lock:** [PLAN-SOURCE-OF-TRUTH.md](./PLAN-SOURCE-OF-TRUTH.md)  
 **Grok entry:** [AGENTS.md](./AGENTS.md) · [HANDSOFF.md](./HANDSOFF.md) · [RECURRING_MISTAKES.md](./RECURRING_MISTAKES.md)  
 **Session rules:** [AGENT-RULES.md](./AGENT-RULES.md)  
@@ -79,7 +79,7 @@ Public tables: [riscv-param-extraction/docs/metrics.md](./riscv-param-extraction
 | Item | Status |
 |------|--------|
 | Phase 2 A/B home | **Inside this repo** — `riscv-param-extraction/` (not a second product repo) |
-| Artifact A multi-model | **Not started** (API) |
+| Artifact A multi-model | **Done** (2026-07-24/25) — gpt-4o-mini 60/60; adj 32.2% vs Claude 72.9%; Jaccard 3.8%; WARL 12.5%; ~$0.16 |
 | Artifact B YAML exporter | **Done offline** — 83 named + 20 new, all schema-valid |
 | Stretch C WARL | **Not started** |
 | Application / cover letter | **Not started** |
@@ -88,7 +88,8 @@ Public tables: [riscv-param-extraction/docs/metrics.md](./riscv-param-extraction
 ### Session 2026-07-23 notes (state tracking)
 
 - Confirmed OpenAI pilot key **worked** (docs/manifests); TPM 30k on gpt-4o large chunk  
-- Artifact A **still not started**; can use existing OpenAI path when user authorizes  
+- Artifact A **Done** (2026-07-24/25): gpt-4o-mini 60/60; adj 32.2% vs Claude 72.9%; name Jaccard 3.8%; high-conf new both 9; ~$0.16; see metrics.md §5.0  
+
 - Public rival scan (Tier-1 packets: Anshul, Devadarsh, Harsh; UDB swarm ≠ seat race)  
 - Coding challenge = shared applicant pattern; **not** seen as LFX file attachment  
 - User: **makes plan**; agent: **tracks done + executes on go**
@@ -116,10 +117,10 @@ Canonical short list: **[LEFTOVER-WORK.md](./LEFTOVER-WORK.md)**
 |---|------|-------|
 | 1 | Pilot `machine.adoc` | [x] COMPLETE_WITH_MODEL_SPLIT |
 | 2 | Phase 2 path in lfx-firstanalysis | [x] `riscv-param-extraction/` |
-| 3 | **Artifact A** multi-model + agreement | [ ] API |
+| 3 | **Artifact A** multi-model + agreement | [x] Done 2026-07-24/25 (mini 32.2% / Jaccard 3.8%) |
 | 4 | Artifact B exporter | [x] 83+20 (optional domain polish later) |
 | 5 | Grounding/provenance public suite | [ ] with A preferred |
-| 6 | Manifests every serious run | [~] pilot yes; A no |
+| 6 | Manifests every serious run | [x] pilot + Artifact A |
 | 7 | Stretch **C** WARL only if A+B done | [ ] |
 | 8 | Short list note after A+B (when on list) | [ ] |
 | 9 | No big unsolicited UDB PR | standing rule |
@@ -148,7 +149,7 @@ Canonical short list: **[LEFTOVER-WORK.md](./LEFTOVER-WORK.md)**
 | Requirement | Progress |
 |-------------|----------|
 | Reproduced pipeline | **Yes** |
-| Measured multi-model / improvement | **No** (needs A + API) |
+| Measured multi-model / improvement | **Yes** (A done; mini worse than Claude — honest ablation) |
 | Showed up at SIG | **No** (membership/list/meeting) |
 | 9-week plan ↔ 5 objectives | **Not written** (Phase 3) |
 | Reviewable A+B artifacts | **B yes (public)**; pilot yes; **A no** |

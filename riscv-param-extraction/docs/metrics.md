@@ -81,6 +81,16 @@ Do **not** claim 97 named params without re-counting the CSV in use.
 Second model: **gpt-4o-mini-2024-07-18**, `PROMPT_VERSION=v2`, **60/60** param-bearing chunks, **0** errors.  
 Headline metrics vs **GT 185** (Part I freeze). Claude baseline = committed Part I v2 (not re-billed).
 
+### 5.0 What this run establishes
+
+1. **Cross-model name agreement is near zero under an identical prompt.** Claude-sonnet-4 and gpt-4o-mini extracted **346** and **230** unique parameter names on the same 60 chunks with the same v2 prompt; only **21** names were shared (Jaccard **3.8%**). Pipeline and source text were held constant, so the disagreement is attributable to the model, not the extract/analyze path.
+
+2. **Single-model “discoveries” are mostly model-private and cannot be trusted individually.** High-confidence proposed-new counts were Claude **236** and mini **218**, with only **9** proposed by both. Those **9** form a prioritized human-review queue; the remaining model-private proposals (~**440** combined exclusive) are not evidence of real parameters until reviewed. That is a measured argument for a review protocol, not an opinion.
+
+3. **The cost/quality curve is steep and now quantified.** On the same 60 chunks, mini reached **32.2%** adjusted recall against the Claude baseline **72.9%**, with tokens (**868 976** in / **51 718** out) and cost (**~$0.16**) published alongside. Mini is not competitive with Claude on this task; the gap is measured, not speculated.
+
+These three findings are why a Fall plan should put **cross-model gating** and a **human-review rubric** ahead of chasing raw single-model recall.
+
 ### 5.1 Run cost (gpt-4o-mini)
 
 | Field | Value |
