@@ -28,7 +28,7 @@ Agent **tracks state only** until user issues a plan. User designs order and sco
 
 | # | Task | Status | Notes |
 |---|------|--------|--------|
-| 1 | **Artifact A** — multi-model + agreement / hallucination-overlap vs claude-sonnet-4 | **Not started** | Needs user API auth + budget; OpenAI path proven in pilot; gpt-4o TPM 30k known |
+| 1 | **Artifact A** — multi-model + agreement / hallucination-overlap vs claude-sonnet-4 | **Done** (2026-07-24/25) | gpt-4o-mini 60/60; adj 32.2% vs Claude 72.9%; Jaccard 3.8%; ~$0.16; public metrics §5 |
 | 2 | Grounding / provenance on drafts + A outputs (mentor-auditable) | Open | Steal *bar* from challenge kits; apply on Part I stack, not only 2-snippet demo |
 | 3 | Unified public surface after A (metrics.md + manifests + README order) | Partial | Remeasure + pilot + B already public; A empty |
 | 4 | Optional **B polish** (enum/range domain fill) | Optional | Not required for A |
