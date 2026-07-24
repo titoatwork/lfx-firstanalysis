@@ -1,10 +1,13 @@
 # Progress — done vs left
 
-**Last updated:** 2026-07-23 (session close: leftovers + handoff refreshed; A still open; user owns plan)  
+**Last updated:** 2026-07-24 (agent context stack organized for Grok; A still open; user owns plan)  
 **Plan lock:** [PLAN-SOURCE-OF-TRUTH.md](./PLAN-SOURCE-OF-TRUTH.md)  
+**Grok entry:** [AGENTS.md](./AGENTS.md) · [HANDSOFF.md](./HANDSOFF.md) · [RECURRING_MISTAKES.md](./RECURRING_MISTAKES.md)  
 **Session rules:** [AGENT-RULES.md](./AGENT-RULES.md)  
 **New chat handoff:** [HANDOFF-NEW-SESSION.md](./HANDOFF-NEW-SESSION.md)  
 **Leftover checklist:** [LEFTOVER-WORK.md](./LEFTOVER-WORK.md)  
+**Phase 2 A plan:** [PHASE2-PLAN.md](./PHASE2-PLAN.md)  
+**Context map:** [.grok/rules/00-context-map.md](./.grok/rules/00-context-map.md)  
 **Phase 1 handoff:** [PHASE1-CLOSEOUT.md](./PHASE1-CLOSEOUT.md)  
 **This GitHub repo (ONLY public home):** https://github.com/titoatwork/lfx-firstanalysis  
 **Phase 2 code path (in this repo):** `riscv-param-extraction/` — first landed **2026-07-22**  

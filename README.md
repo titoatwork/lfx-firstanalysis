@@ -42,7 +42,7 @@ Honest pilot claim: completed machine.adoc with **model split** because gpt-4o o
 | [PHASE1-IMMERSION/](./PHASE1-IMMERSION/) | Phase 1 evidence pack (issues, PR dumps, deep study) |
 | [PLAN-SOURCE-OF-TRUTH.md](./PLAN-SOURCE-OF-TRUTH.md) | Locked plan |
 | [PROGRESS.md](./PROGRESS.md) | Done vs left |
-| [AGENT-RULES.md](./AGENT-RULES.md) | Session rules for agents |
+| [AGENTS.md](./AGENTS.md) / [AGENT-RULES.md](./AGENT-RULES.md) | Grok entry + full session rules |
 | [GITHUB-PRESENTATION.md](./GITHUB-PRESENTATION.md) | How work is shown on GitHub |
 
 ### Local only (not in this GitHub repo)
@@ -53,14 +53,23 @@ Honest pilot claim: completed machine.adoc with **model split** because gpt-4o o
 
 ---
 
-## Agent / session files
+## Agent / session files (Grok-first)
 
 | Path | What |
 |------|------|
-| [HANDOFF-NEW-SESSION.md](./HANDOFF-NEW-SESSION.md) | New-chat kickoff |
+| **[AGENTS.md](./AGENTS.md)** | **Grok auto-load** — short ops + current work |
+| **[HANDSOFF.md](./HANDSOFF.md)** | Hard no-touch list |
+| **[RECURRING_MISTAKES.md](./RECURRING_MISTAKES.md)** | Known failure modes |
+| **[.grok/rules/](./.grok/rules/)** | Context map, hard constraints, measured facts |
+| [AGENT-RULES.md](./AGENT-RULES.md) | Full session law |
+| [LEFTOVER-WORK.md](./LEFTOVER-WORK.md) | Canonical live leftovers |
+| [PHASE2-PLAN.md](./PHASE2-PLAN.md) | Artifact A plan |
+| [HANDOFF-NEW-SESSION.md](./HANDOFF-NEW-SESSION.md) | New-chat kickoff paste |
+| [NEXT-SESSION-PROMPT.md](./NEXT-SESSION-PROMPT.md) | Short kickoff pointer |
 | [HANDOFF-NEXT-SESSION.md](./HANDOFF-NEXT-SESSION.md) | Pilot-budget handoff (historical) |
 | [PHASE1-CLOSEOUT.md](./PHASE1-CLOSEOUT.md) | Phase 1 closeout bridge |
 | [PHASE1-STATUS.md](./PHASE1-STATUS.md) | Short status board |
+| [riscv-param-extraction/AGENTS.md](./riscv-param-extraction/AGENTS.md) | Prototype package rules |
 
 ---
 

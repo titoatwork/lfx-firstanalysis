@@ -1,9 +1,12 @@
 # Leftover work — live list
 
-**Last updated:** 2026-07-23 (end of session — rival scan done; user owns next plan)  
+**Last updated:** 2026-07-24 (canonical leftover list for agents)  
 **Plan lock:** [PLAN-SOURCE-OF-TRUTH.md](./PLAN-SOURCE-OF-TRUTH.md)  
 **Progress detail:** [PROGRESS.md](./PROGRESS.md)  
-**Handoff:** [HANDOFF-NEW-SESSION.md](./HANDOFF-NEW-SESSION.md)
+**Grok entry:** [AGENTS.md](./AGENTS.md)  
+**Handoff:** [HANDOFF-NEW-SESSION.md](./HANDOFF-NEW-SESSION.md)  
+**Phase 2 A plan:** [PHASE2-PLAN.md](./PHASE2-PLAN.md)  
+**Personal mirror (optional):** [LEFT-TODO.md](./LEFT-TODO.md) — agents prefer **this** file over LEFT-TODO
 
 Agent **tracks state only** until user issues a plan. User designs order and scope.
 

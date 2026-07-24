@@ -1,14 +1,18 @@
 # HANDOFF — new session (canonical kickoff)
 
 **Prepared:** 2026-07-23 (session close — leftover list + rival context recorded)  
-**Workspace:** `Desktop\LFX-Mentorship\`  
+**Refreshed:** 2026-07-24 — Grok context stack (`AGENTS.md`, `HANDSOFF.md`, `RECURRING_MISTAKES.md`, `.grok/rules/`)  
+**Workspace (historical Windows):** `Desktop\LFX-Mentorship\`  
+**This checkout:** `…/2026_projects/lfx-firstanalysis`  
 **Public monorepo (ONLY):** https://github.com/titoatwork/lfx-firstanalysis  
 
 Paste the block under **KICKOFF PROMPT** into a new chat. Also open this file.  
+**Grok** already auto-loads `AGENTS.md` + `.grok/rules/`; still open leftovers + progress.  
 **Do not invent a parallel plan.** User owns the plan; agent tracks done and executes when told.
 
 **Leftover checklist:** [LEFTOVER-WORK.md](./LEFTOVER-WORK.md)  
-**Progress:** [PROGRESS.md](./PROGRESS.md)
+**Progress:** [PROGRESS.md](./PROGRESS.md)  
+**Grok entry:** [AGENTS.md](./AGENTS.md)
 
 ---
 
@@ -19,15 +23,18 @@ HANDOFF — new session. Workspace: Desktop\LFX-Mentorship\
 GitHub (ONLY public home): https://github.com/titoatwork/lfx-firstanalysis
 
 READ IN ORDER (do not skip; do not invent process):
+0. AGENTS.md + HANDSOFF.md + RECURRING_MISTAKES.md  (Grok auto-loads AGENTS + .grok/rules)
 1. AGENT-RULES.md
 2. PLAN-SOURCE-OF-TRUTH.md
 3. PROGRESS.md
 4. LEFTOVER-WORK.md
-5. PHASE1-STATUS.md
-6. PHASE1-CLOSEOUT.md
-7. GITHUB-PRESENTATION.md
+5. PHASE2-PLAN.md (if technical Phase 2 / Artifact A)
+6. PHASE1-STATUS.md
+7. PHASE1-CLOSEOUT.md
+8. GITHUB-PRESENTATION.md
 Skim as needed: PHASE1-IMMERSION/DEEP-STUDY-COMPLETE.md
 Public evidence: riscv-param-extraction/docs/metrics.md + manifests/pilot-machine-adoc.md
+Token map: .grok/rules/00-context-map.md (do not load every root *.md)
 
 Role: execution only until I change instructions.
 User owns the plan; agent tracks what is done and executes only when told.
@@ -219,7 +226,11 @@ Agent should:
 
 | File | Role |
 |------|------|
+| `AGENTS.md` | Grok always-on entry |
+| `HANDSOFF.md` / `RECURRING_MISTAKES.md` | No-touch + lessons |
+| `.grok/rules/` | Context map + hard constraints + facts |
 | `LEFTOVER-WORK.md` | Live leftover checklist |
+| `PHASE2-PLAN.md` | Artifact A plan |
 | `AGENT-RULES.md` | Full session law |
 | `PLAN-SOURCE-OF-TRUTH.md` | Plan lock |
 | `PROGRESS.md` | Done vs left |
