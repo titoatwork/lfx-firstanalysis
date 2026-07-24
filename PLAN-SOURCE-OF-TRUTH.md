@@ -2,7 +2,7 @@
 
 **Status:** LOCKED for current work  
 **Owner:** Ibteshamul Haque (tito / GitHub as confirmed separately — not friend accounts)  
-**Last locked:** 2026-07-21 · **Rules companion:** `AGENT-RULES.md` · **New chat:** `HANDOFF-NEW-SESSION.md`  
+**Last locked:** 2026-07-21 · **Rules companion:** `AGENT-RULES.md` · **Grok entry:** `AGENTS.md` · **New chat:** `HANDOFF-NEW-SESSION.md`  
 **Replace only when user sends a new plan explicitly**
 
 ---
