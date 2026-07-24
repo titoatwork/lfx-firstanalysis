@@ -1,13 +1,37 @@
-# pipeline/ — Artifact A (multi-model)
+# pipeline/ — Artifact A (multi-model, offline analysis)
 
-**Status:** scaffold only until an API key is available.
+Thin, domain-named tools. **No LLM calls here.**
 
-Plan order (locked):
+| Module | Role |
+|--------|------|
+| `load_results.py` | Load merged or deduped Part I JSON; UDB name sets |
+| `agreement.py` | Name agreement + high-conf proposed-new overlap |
+| `compare_models.py` | CLI → markdown tables + JSON summary |
+| `stage_for_analyze.py` | Copy `results/v2/all_results_*.json` → where `analyze.py` reads; optional GT185 restore |
 
-1. Phase 1 **pilot** on `machine.adoc` (`extract.py pilot`) in the local UDB clone  
-2. Then full second-model run (gpt4o or gemini) with v2 prompts  
-3. Agreement / hallucination-overlap tables vs committed `claude-sonnet-4`  
+## Plan
 
-This directory will hold thin, domain-named wrappers and comparison scripts — not a generic chatbot app. Manifests for every serious run go in `../manifests/`.
+See [../manifests/artifact-a-plan.md](../manifests/artifact-a-plan.md).
 
-Do not invent multi-model metrics until a real run exists.
+## Offline self-check (Claude vs Claude)
+
+```powershell
+cd riscv-param-extraction
+python -m pipeline.compare_models `
+  --a ..\riscv-unified-db\param_extraction\results\v2\deduped_claude-sonnet-4.json `
+  --b ..\riscv-unified-db\param_extraction\results\v2\deduped_claude-sonnet-4.json `
+  --model-a claude-sonnet-4 --model-b claude-sonnet-4 `
+  --udb-param-dir ..\riscv-unified-db\spec\std\isa\param
+```
+
+Expect Jaccard **100%** and full class agreement on shared names.
+
+## After gpt-4o-mini run
+
+1. `extract.py merge --model gpt4o-mini` (with `PROMPT_VERSION=v2`)  
+2. `python -m pipeline.stage_for_analyze --model-display gpt-4o-mini --restore-gt185`  
+3. `analyze.py all --model gpt-4o-mini`  
+4. `python -m pipeline.compare_models --a <claude deduped> --b <mini deduped> ...`  
+5. Fill `docs/metrics.md` §5 + `manifests/artifact-a-gpt-4o-mini.md`
+
+Do not invent multi-model metrics until a real second-model run exists.
