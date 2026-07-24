@@ -17,7 +17,7 @@ Part I already shipped extract → analyze → spreadsheet on open PR branches. 
 | Part I v2 remeasure (GT 185) | adj recall **72.9%**, class acc **88.4%**, WARL **50%** |
 | Same LLM output vs live GT 223 | adj recall **64.2%**, class acc **88.6%**, WARL **50%** |
 | Pilot machine.adoc | **COMPLETE_WITH_MODEL_SPLIT** — 021 **gpt-4o** (6 params), 020 **gpt-4o-mini** (9 params); total ~**$0.05** |
-| **Artifact A** (gpt-4o-mini, 60 chunks, GT185) | adj recall **32.2%**, WARL **12.5%**, name Jaccard vs Claude **3.8%** — **worse than Claude (honest)**; ~**$0.16** |
+| **Artifact A** (gpt-4o-mini, 60 chunks, GT185) | Primary finding: under an **identical** v2 prompt, name Jaccard vs Claude is only **3.8%** (21 shared); high-conf “new” overlap **9** of ~220 each — see [docs/metrics.md §5.0](docs/metrics.md). Also: adj recall **32.2%** vs Claude **72.9%** (mini **worse**, honest); WARL **12.5%**; ~**$0.16** |
 | `parameters.csv` named=yes | **87** rows / **83** unique (not 97) |
 | Artifact B named export | **83/83** schema-valid |
 | Artifact B new (limit 20) | **20/20** schema-valid |
@@ -36,7 +36,9 @@ Design notes: [docs/design.md](docs/design.md).
 
 gpt-4o org TPM **30 000** blocked the large chunk (~**44 373** input); mini completed it. **Not** a pure gpt-4o full machine.adoc pilot.
 
-### Artifact A vs Claude (GT185) — summary
+### Artifact A — what the run establishes (see metrics §5.0)
+
+Under the **same** v2 prompt and chunk set, two models disagree almost completely on parameter *names* (Jaccard **3.8%**) and almost completely on high-confidence “new” proposals (**9** shared). That motivates cross-model gating and human review. Mini is also **substantially worse** on adjusted recall (**32.2%** vs Claude **72.9%**) — full tables in [docs/metrics.md](docs/metrics.md) §5.
 
 | Metric | Claude-sonnet-4 | gpt-4o-mini |
 |--------|----------------:|------------:|
