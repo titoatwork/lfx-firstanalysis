@@ -5,38 +5,35 @@
 **User owns the plan.** Agent tracks state and executes only on go. Do not invent a parallel roadmap.
 
 **Full agent law:** [`AGENT-RULES.md`](./AGENT-RULES.md).  
-**Canonical dated handoff:** [`HANDOFF-2026-07-26.md`](./HANDOFF-2026-07-26.md)  
-Also: `HANDSOFF.md`, `RECURRING_MISTAKES.md`, `.grok/rules/*`, `PLAN-SPINE-AND-SPEAR.md`, `TIMELINE-SPINE-SPEAR.md`.
+**Canonical handoff (wake still 26 Jul morning):** [`HANDOFF-2026-07-26-MORNING.md`](./HANDOFF-2026-07-26-MORNING.md)  
+Also: `HANDSOFF.md`, `RECURRING_MISTAKES.md`, `.grok/rules/*`, `LEFTOVER-WORK.md`.
 
 ---
 
-## Current work (2026-07-26 close)
+## Current work (2026-07-26 pre-sleep → wake same morning)
 
 | Area | State |
 |------|--------|
-| Branch | **`main` / `origin/main` @ `ca70796`** (packet + metrics pushed) |
-| Doctrine | **Spine first, spear second** — see `PLAN-SPINE-AND-SPEAR.md` |
-| Phase 1 technical | **DONE** |
-| Pilot | **COMPLETE_WITH_MODEL_SPLIT** (~$0.05) |
-| Artifact **B** | **DONE** — 83+20 schema-valid |
-| Artifact **A** | **DONE** — mini 32.2% vs Claude 72.9%; Jaccard 3.8%; ~$0.16 |
-| v3 WARL ablation | **DONE — null** (WARL 8.3%) |
-| Original Artifact C | **Deferred** post-apply |
-| Application packet | **On main** — `application-packet/` |
-| Apply Part II | **NOT submitted** — target **Jul 31** (hard stop Aug 2) |
-| Membership / lists | Submitted; lists blocked |
-| Next | User: resume PDF + Apply · Agent: wait for go / apply polish / `GO SPINE+SPEAR phase1` |
+| Branch | **`main` / `origin/main` @ `58f91de`** (challenge + CI) |
+| Doctrine | Erase Anshul · unbiased hostile · no fanfic |
+| Phase 1 / pilot / A / B / v3 | **DONE** (null WARL on v3) |
+| **Coding challenge + CI** | **DONE + pushed** |
+| Live multi-model (`results/live/`) | **NOT done** |
+| UDB PR | Draft only — not opened |
+| Apply Part II | **NOT submitted** — **Jul 31** (not morning of 26) |
+| Membership / lists | In progress |
+| Agent next | Wait for: `GO LIVE MULTI-MODEL` · `GO OPEN UDB PR` · `GO ERASE ANSHUL` · `push` |
 
-Live leftovers: **`LEFTOVER-WORK.md`**. Progress: **`PROGRESS.md`**.  
-**New chat:** paste kickoff from **`HANDOFF-2026-07-26.md`**.
+Live leftovers: **`LEFTOVER-WORK.md`**.  
+**Do not** rebuild challenge/CI from zero. Grok sub ≠ extract API.
 
 ---
 
 ## Session start
 
-1. Read **`HANDOFF-2026-07-26.md`** if present, else this file → `AGENT-RULES.md` → `HANDSOFF.md` → `RECURRING_MISTAKES.md`.  
-2. Confirm `PROGRESS.md` + `LEFTOVER-WORK.md` + `docs/metrics.md` (disk > stale handoffs).  
-3. Default: help Apply path or wait for go. Spine wins over spear if time is short.  
+1. Read **`HANDOFF-2026-07-26-MORNING.md`** → this → `AGENT-RULES.md` → `HANDSOFF.md` → `RECURRING_MISTAKES.md`.  
+2. Confirm `PROGRESS.md` + `LEFTOVER-WORK.md` + `docs/metrics.md` + `git rev-parse HEAD` (disk > stale).  
+3. Default: confirm state; wait for go.  
 4. Never push / paid API / second public repo without explicit user text.
 
 ---

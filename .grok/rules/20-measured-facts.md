@@ -21,4 +21,7 @@ Artifact A (v2, mini, 60/60): COMPLETE — adj 32.2% vs Claude 72.9%; WARL 12.5%
 v3 WARL ablation (mini):     COMPLETE null: adj 35.0%; WARL 8.3% (2/24) vs A WARL 12.5%
 ```
 
+Apply status: **NOT submitted** as of 2026-07-26 (target Jul 31).  
+Handoff: `HANDOFF-2026-07-26.md`.
+
 If disk disagrees after a real remeasure, update metrics.md + this file + AGENTS.md + AGENT-RULES.md §9 in the same session.
