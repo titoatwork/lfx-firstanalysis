@@ -9,19 +9,20 @@ Also: `PLAN-SOURCE-OF-TRUTH.md`, `HANDSOFF.md`, `RECURRING_MISTAKES.md`, `.grok/
 
 ---
 
-## Current work (2026-07-25)
+## Current work (2026-07-26)
 
 | Area | State |
 |------|--------|
-| Branch | `analysis/reframe-a` (local; tip may be ahead of `origin/main`) |
+| Branch | `application/packet-2026-07-26` (local) · `main`/`origin/main` at `499ee96` until user says push |
 | Phase 1 technical | **DONE** — do not restart immersion |
 | Pilot `machine.adoc` | **COMPLETE_WITH_MODEL_SPLIT** (~$0.05) — do not re-pilot without user OK |
 | Artifact **B** (CSV → draft YAML) | **DONE** — 83 named + 20 new, schema-valid |
-| Artifact **A** (multi-model, v2 prompt) | **DONE** (2026-07-24/25) — gpt-4o-mini 60/60; adj 32.2% vs Claude 72.9%; Jaccard 3.8%; ~$0.16 |
-| Stretch **C** / v3 WARL prompt ablation | **DONE — null for WARL** (60/60; adj 35.0%; WARL 8.3% worse than A) |
-| Apply Part II | Not started (plan Jul 31–Aug 2; deadline Aug 5) |
+| Artifact **A** (multi-model, v2 prompt) | **DONE** — gpt-4o-mini 60/60; adj 32.2% vs Claude 72.9%; Jaccard 3.8%; ~$0.16 · **public on main** |
+| Prompt v3 WARL ablation | **DONE — null for WARL** (adj 35.0%; WARL 8.3%) · public metrics §6 |
+| Original Artifact C (CSR-field context) | **Deferred** until after apply (not run) |
+| Apply Part II | **Packet drafted locally** (`application-packet/`) — user submits Jul 31–Aug 2 |
 | Membership / lists | Submitted; lists blocked on approval |
-| Next plan author | **User** (agent leads execution when told) |
+| Next focus | Application review + submit; no new broad experiments |
 
 Live leftovers: **`LEFTOVER-WORK.md`**. Done vs left: **`PROGRESS.md`**.  
 Knowledge map (all doc stores, not just handoffs): **`.grok/rules/00-context-map.md`**.

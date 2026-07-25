@@ -1,14 +1,15 @@
 # AGENTS.md — `riscv-param-extraction/`
 
-Scoped rules for the public prototype package. Root `AGENTS.md` + `HANDSOFF.md` still apply.
+Scoped rules for the public prototype package. Root `AGENTS.md` + `HANDSOFF.md` + `AGENT-RULES.md` still apply.
 
 ## Purpose
 
 Mentor-auditable selection surface for LFX Part II:
 
 - Remeasure + pilot evidence (`docs/metrics.md`, `manifests/`)
-- Artifact **B**: CSV → draft UDB param YAML + schema validate
-- Artifact **A**: multi-model agreement (not run yet — see root `PHASE2-PLAN.md`)
+- Artifact **B**: CSV → draft UDB param YAML + schema validate (**done**)
+- Artifact **A**: multi-model agreement vs Claude (**done** — gpt-4o-mini v2)
+- Prompt **v3** WARL ablation (**done** — honest null for WARL)
 
 This directory is **not** a separate GitHub product. Home is monorepo `titoatwork/lfx-firstanalysis`.
 
@@ -23,6 +24,7 @@ This directory is **not** a separate GitHub product. Home is monorepo `titoatwor
 | `drafts/param/`, `drafts/param-new/` | DRAFT YAML only |
 | `data/parameters.csv` | Source spreadsheet rows |
 | `results/` | Small reports; large dumps stay out |
+| `pipeline/` | Artifact A agreement tools |
 | `tests/` | Offline unit tests for export |
 
 ## Commands (offline B)
@@ -46,11 +48,13 @@ python -m unittest discover -s tests -v
 
 ## Do not
 
-- Re-pilot or full multi-model extract from this folder without root plan + user spend go-ahead
+- Re-pilot or re-run full multi-model extract without root plan + user spend go-ahead
 - Commit API keys or full chunk JSON dumps
-- Invent Artifact A tables
-- Claim named count 97 (use 87 rows / 83 unique)
+- Invent tables; claim named count 97 (use 87 rows / 83 unique)
+- Claim v3 “fixed WARL” or mini beat Claude
+- Run original CSR-field Artifact C without leakage audit + user spend go
 
 ## Presentation order
 
-Follow root `GITHUB-PRESENTATION.md`: numbers → how to run → limitations. Pass test: Baum can audit one draft’s provenance; Dingankar can recompute a metric.
+Follow root `GITHUB-PRESENTATION.md`: numbers → how to run → limitations.  
+Pass test: Baum can audit one draft’s provenance; Dingankar can recompute a metric.

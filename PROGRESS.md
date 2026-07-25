@@ -1,6 +1,6 @@
 # Progress — done vs left
 
-**Last updated:** 2026-07-25 (A done; v3 in progress; agent-rules + state docs synced)  
+**Last updated:** 2026-07-26 (application packet drafted locally; tech prework frozen)  
 **Plan lock:** [PLAN-SOURCE-OF-TRUTH.md](./PLAN-SOURCE-OF-TRUTH.md)  
 **Grok entry:** [AGENTS.md](./AGENTS.md) · [HANDSOFF.md](./HANDSOFF.md) · [RECURRING_MISTAKES.md](./RECURRING_MISTAKES.md)  
 **Agent rules (full law):** [AGENT-RULES.md](./AGENT-RULES.md)  
@@ -122,20 +122,22 @@ Canonical short list: **[LEFTOVER-WORK.md](./LEFTOVER-WORK.md)**
 | 3 | **Artifact A** multi-model + agreement | [x] Done 2026-07-24/25 (mini 32.2% / Jaccard 3.8%) |
 | 4 | Artifact B exporter | [x] 83+20 (optional domain polish later) |
 | 5 | Grounding/provenance public suite | [ ] optional |
-| 6 | Manifests every serious run | [x] pilot + Artifact A; [ ] v3 when done |
-| 7 | Stretch **C** / v3 WARL ablation | [x] null result documented (WARL worse) |
-| 8 | Short list note after A+B (when on list) | [ ] |
-| 9 | No big unsolicited UDB PR | standing rule |
-| 10 | Doc sync (agent rules / state files) | [x] 2026-07-25 session |
+| 6 | Manifests every serious run | [x] pilot + Artifact A + v3 (public) |
+| 7 | Prompt v3 WARL ablation | [x] null result documented (WARL worse) |
+| 8 | Original Artifact C (CSR-field context) | [ ] **deferred** post-apply |
+| 9 | Short list note after A+B (when on list) | [ ] |
+| 10 | No big unsolicited UDB PR | standing rule |
+| 11 | Application packet (local) | [x] `application-packet/` 2026-07-26 |
 
 ### Phase 3 (Jul 31–Aug 2)
 
 | # | Task | Done? |
 |---|------|-------|
-| 1 | Cover letter | [ ] |
-| 2 | Resume on profile | [~] uploaded; refresh if A ships |
-| 3 | **Apply** to Part II | [ ] |
-| 4 | Optional CFI/DFI | [ ] |
+| 1 | Cover letter / essay modules | [x] draft in `application-packet/ESSAY-PART-II.md` — user review |
+| 2 | Nine-week plan ↔ 5 objectives | [x] `application-packet/NINE-WEEK-PLAN.md` |
+| 3 | Resume on profile | [~] uploaded 2026-07-23; refresh PDF with A/B/v3 bullets |
+| 4 | **Apply** to Part II | [ ] user click; target Jul 31 (buffer Aug 2) |
+| 5 | Optional CFI/DFI | [ ] default **skip** (Part II only) |
 
 ### Phase 4 (after apply)
 
@@ -154,8 +156,8 @@ Canonical short list: **[LEFTOVER-WORK.md](./LEFTOVER-WORK.md)**
 | Reproduced pipeline | **Yes** |
 | Measured multi-model / improvement | **Yes** (A done; mini worse than Claude — honest ablation) |
 | Showed up at SIG | **No** (membership/list/meeting) |
-| 9-week plan ↔ 5 objectives | **Not written** (Phase 3) |
-| Reviewable A+B artifacts | **B yes (public)**; pilot yes; **A no** |
+| 9-week plan ↔ 5 objectives | **Drafted** (`application-packet/NINE-WEEK-PLAN.md`) — user review |
+| Reviewable A+B (+v3 null) artifacts | **Yes public** on `origin/main` |
 
 ---
 
