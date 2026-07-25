@@ -12,9 +12,12 @@ Complement `HANDSOFF.md`. If conflict with a casual user ask that implies spend/
 ## Money / API
 
 - No API until user provides key **and** scopes the run
-- Prefer offline work; pilot already spent ~$0.05
-- Artifact A default model: **gpt-4o-mini** (not full gpt-4o corpus)
+- Prefer offline work; pilot ~$0.05; Artifact A ~$0.16 already spent
+- Do not re-run A without user OK; v3 only with scoped resume
+- Default extract model when approved: **gpt-4o-mini** (not full gpt-4o corpus)
 - `--retries 0` on paid extract; stop if projected spend unsafe
+- Never run two extract.py jobs in parallel
+- Prefer key in shell env only; rotate if pasted in chat
 
 ## Honesty
 

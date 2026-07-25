@@ -2,7 +2,9 @@
 
 **Status:** LOCKED until user explicitly replaces  
 **Owner:** Ibteshamul Haque  
-**Last updated:** 2026-07-24  
+**Last updated:** 2026-07-25  
+
+**This is the detailed agent-rules file.** Short entry: `AGENTS.md`. Hard no-touch: `HANDSOFF.md`. Lessons: `RECURRING_MISTAKES.md`. Plan lock: `PLAN-SOURCE-OF-TRUTH.md`.
 
 Any new agent or chat session **must** load this file together with `PLAN-SOURCE-OF-TRUTH.md`. Do not reinvent process, etiquette, or presentation.
 
@@ -103,24 +105,24 @@ When in doubt: **leave untracked / gitignored** and ask before adding to a push.
 ### Phase 1 — Immersion
 | Rule | Detail |
 |------|--------|
-| **Technical** | Treat as **COMPLETE** except pilot — **do not re-clone, re-fetch PRs, or restart deep study** |
-| **Pilot** | `machine.adoc` via `extract.py pilot` — needs user API key; runbook: `PHASE1-IMMERSION/06-measured-local/pilot-RUNBOOK.md` |
+| **Technical** | **COMPLETE** — **do not re-clone, re-fetch PRs, or restart deep study** |
+| **Pilot** | **COMPLETE_WITH_MODEL_SPLIT** — do not re-run unless user reopens |
 | **Membership** | Individual submitted; wait approval |
 | **Lists** | After approval: sig-parameters + sig-unifieddb from user Gmail |
 | **Slack** | `#risc-v-mentorship-questions` — **logistics only**, never technical design |
 | **Calendar** | Subscribe; meetings: listen; one-sentence intro only if asked |
 | **LFX profile** | Mentee profile OK anytime — **NOT project Apply** |
-| **Apply** | Phase 3 only (Jul 31–Aug 2) after A+B |
+| **Apply** | Phase 3 only (Jul 31–Aug 2) after A+B preferred |
 
 ### Phase 2 — Prototype
 | Rule | Detail |
 |------|--------|
-| **Home** | User’s **public** repo (presentation per `GITHUB-PRESENTATION.md`) |
-| **A** | Multi-model run + agreement vs claude-sonnet-4; honest if worse |
-| **B** | parameters.csv → draft param YAML + schema validation |
-| **named=yes count** | Use **measured ~87** on current CSV; do not blindly claim 97 |
-| **C** | WARL stretch **only if A+B done** |
-| **Manifests** | Every serious run = Obj 3 |
+| **Home** | **Only** `titoatwork/lfx-firstanalysis` → `riscv-param-extraction/` (`GITHUB-PRESENTATION.md`) |
+| **A** | **DONE** (gpt-4o-mini v2, 60/60) — honest worse-than-Claude; do not re-run without user OK |
+| **B** | **DONE** — 83 named + 20 new schema-valid drafts |
+| **named=yes count** | **87 rows / 83 unique** — never claim 97 without recount |
+| **C / v3** | WARL stretch or prompt ablation only with user go; ship metrics only if complete + real lift (or honest null) |
+| **Manifests** | Every serious run = Obj 3 (pilot + A done; v3 when complete) |
 | **List post** | After A+B + list access: short summary + link |
 | **UDB PRs** | **No unsolicited big PRs**; ask on-list if draft welcome |
 
@@ -181,10 +183,16 @@ When in doubt: **leave untracked / gitignored** and ask before adding to a push.
 GT regenerate (live UDB):     223 params; 100% any / 91% strong match
 Part I v2 remeasure (GT185):  adjusted recall 72.9%, class acc 88.4%, WARL 50%
 vs live GT223:                adjusted recall 64.2%, class acc 88.6%, WARL 50%
-parameters.csv named=yes:      ~87
-Local branches:               lfx-1765 … lfx-1832; work on lfx-1832
+parameters.csv named=yes:      87 rows / 83 unique
+Artifact B:                   83/83 named + 20/20 new schema-valid
+Pilot:                        COMPLETE_WITH_MODEL_SPLIT ~$0.05
+Artifact A (v2 mini 60/60):   adj 32.2% vs Claude 72.9%; WARL 12.5%; Jaccard 3.8%;
+                              high-conf new both 9; ~$0.16
+Local UDB branch:             lfx-1832 (gitignored; never push)
 Analysis GitHub:              github.com/titoatwork/lfx-firstanalysis
 ```
+
+Authoritative public tables: `riscv-param-extraction/docs/metrics.md`.
 
 ---
 
@@ -213,11 +221,32 @@ Analysis GitHub:              github.com/titoatwork/lfx-firstanalysis
 
 ---
 
-## 12. When user says “start” / next work order
+## 12. Knowledge stores (not only handoffs)
 
-1. Read `AGENTS.md` + `HANDSOFF.md` + `RECURRING_MISTAKES.md` + this file + plan lock + `PROGRESS.md` + `LEFTOVER-WORK.md`  
+Agents must use the **full doc surface**, not only `HANDOFF-*.md`:
+
+| Store | Role |
+|-------|------|
+| `AGENT-RULES.md` (this file) + `AGENTS.md` | Agent law |
+| `PLAN-SOURCE-OF-TRUTH.md` + `Prompt.md` | Plan + execution steps |
+| `PROGRESS.md` + `LEFTOVER-WORK.md` | Live campaign state |
+| `riscv-param-extraction/docs/metrics.md` + `manifests/` | Scientific / mentor truth |
+| `PHASE1-IMMERSION/` | Issues, PRs, deep study, measured Phase 1 |
+| `lfx-riscv-param-extraction-prework/` | Essay/profile/study notes |
+| Local `riscv-unified-db/param_extraction/results/` | Run ground truth (v2/v3) |
+
+Map: `.grok/rules/00-context-map.md`. Prefer **metrics + disk** over lagging handoff prose.
+
+---
+
+## 13. When user says “start” / next work order
+
+1. Read `AGENTS.md` + **this file** + `HANDSOFF.md` + `RECURRING_MISTAKES.md` + plan lock + `PROGRESS.md` + `LEFTOVER-WORK.md`  
 2. Pilot is **done** (COMPLETE_WITH_MODEL_SPLIT) — do not re-run unless user reopens  
-3. Public surface already under `riscv-param-extraction/` in this monorepo  
+3. Artifact A is **done** — do not re-run full A without user OK  
+4. If v3 leftovers exist, finish/analyze before inventing new paid work  
+5. Public surface already under `riscv-param-extraction/` in this monorepo  
+6. Phase 3 apply packet is the main remaining campaign product after tech closeout  
 4. Next technical selection weapon when authorized: **Artifact A** per `PHASE2-PLAN.md` (B already done)  
 5. Community: only guide user; they click Slack/calendar/lists  
 6. Application only after A+B evidence  

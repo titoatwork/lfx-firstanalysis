@@ -5,9 +5,10 @@ Grok auto-loads `AGENTS.md` + this rules dir. **Do not** load every root `*.md` 
 ## Always on (already loaded or read first)
 
 1. `AGENTS.md` — short ops + current work  
-2. `HANDSOFF.md` — no-touch  
-3. `RECURRING_MISTAKES.md` — known failure modes  
-4. This file + sibling rules under `.grok/rules/`
+2. **`AGENT-RULES.md`** — **full agent law** (the detailed rules file)  
+3. `HANDSOFF.md` — no-touch  
+4. `RECURRING_MISTAKES.md` — known failure modes  
+5. This file + sibling rules under `.grok/rules/`
 
 ## Default state files (read when starting real work)
 
@@ -21,9 +22,21 @@ Grok auto-loads `AGENTS.md` + this rules dir. **Do not** load every root `*.md` 
 
 | File | Why |
 |------|-----|
-| `AGENT-RULES.md` | Full session law |
+| **`AGENT-RULES.md`** | **Full agent rules / session law** — required |
 | `PLAN-SOURCE-OF-TRUTH.md` | Plan lock |
 | `GITHUB-PRESENTATION.md` | Public surface rules |
+| `Prompt.md` | Master execution steps (A done; use for apply / stretch) |
+
+## Other knowledge stores (not handoffs only)
+
+| Store | Why |
+|-------|-----|
+| `riscv-param-extraction/docs/metrics.md` + `manifests/` | Mentor-facing measured truth |
+| `PHASE1-IMMERSION/` | Issues, PRs, deep study, measured Phase 1 |
+| `lfx-riscv-param-extraction-prework/` | Essay / profile / concept notes |
+| Local `riscv-unified-db/param_extraction/` | Live extract results (v2/v3) — never push |
+| `APPLICATION-PLAN.md`, `RESUME-DRAFT.md` | Apply phase |
+| `COMPETITION-UDB-ANALYSIS.md` | Rival context (optional) |
 
 ## Kickoff templates
 

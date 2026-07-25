@@ -2,7 +2,7 @@
 
 Obey absolutely. If a task requires touching something listed here, **stop and ask**.
 
-Last updated: 2026-07-24
+Last updated: 2026-07-25
 
 ---
 
@@ -15,7 +15,8 @@ Last updated: 2026-07-24
 | Unsolicited big PRs to `riscv/riscv-unified-db` | Wrong pre-apply strategy; list ask first after A+B |
 | Paid OpenAI/API calls (any model) | Budget scarce; need key + scoped go-ahead |
 | Re-run pilot `machine.adoc` / `extract.py pilot` | Already COMPLETE_WITH_MODEL_SPLIT |
-| Full `extract.py run` / Artifact A corpus | Only after A plan + spend go-ahead |
+| Full Artifact A re-run (v2 corpus) | A already COMPLETE — only if user reopens |
+| New full extract / v3 resume | Only with key + scoped spend; never parallel two extract jobs |
 | Commit / paste API keys, `.env`, secrets | Security |
 | Push nested `riscv-unified-db/` | Large local clone; gitignored on purpose |
 | Rewrite `PLAN-SOURCE-OF-TRUTH.md` as a new plan | Locked until user explicitly replaces |
@@ -29,6 +30,7 @@ Last updated: 2026-07-24
 
 - Phase 1 immersion from zero (re-clone, re-fetch all PR dumps, re-scrape issues, invent metrics)
 - Artifact B core exporter + 83/83 + 20/20 schema-valid drafts (optional polish only if asked)
+- Artifact A multi-model (gpt-4o-mini v2 60/60) — already manifested; do not re-bill
 - Claiming Part I / Spring work as this user’s authorship
 - “Create public prototype repo” as a **new** GitHub repo (use monorepo path instead)
 

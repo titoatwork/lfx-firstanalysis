@@ -16,5 +16,5 @@ EXECUTE AGENTS.md + HANDSOFF.md + RECURRING_MISTAKES.md + HANDOFF-NEW-SESSION.md
 Role: execution only. User owns the plan; agent tracks done and waits for go.
 Do not invent roadmap. Do not restart Phase 1. Do not re-pilot without my OK.
 Single GitHub home: titoatwork/lfx-firstanalysis → riscv-param-extraction/
-A not started; B done; pilot COMPLETE_WITH_MODEL_SPLIT. No push/API without my explicit yes.
+A DONE (mini 32.2% / Jaccard 3.8%); B done; pilot COMPLETE_WITH_MODEL_SPLIT; v3 WARL ablation may be in progress. No push/API without my explicit yes. Load AGENT-RULES.md.
 ```
