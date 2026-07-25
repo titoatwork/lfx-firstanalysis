@@ -1,6 +1,8 @@
 # Ibteshamul Haque
 **Resume draft for LFX Mentorship (Fall 2026)** — 1 page · no CGPA  
-**Action:** Copy into Word/Google Docs → set margins ~0.6" → export **PDF** → upload to LFX
+
+**Prefer the updated Part II–focused content:** [`application-packet/RESUME-CONTENT.md`](./application-packet/RESUME-CONTENT.md) (includes A/B/v3 measured bullets).  
+**Action:** Fill personal fields → Word/Google Docs → margins ~0.6" → export **PDF** → upload to LFX
 
 Replace bracketed fields with your real details.
 
