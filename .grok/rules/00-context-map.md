@@ -5,10 +5,11 @@ Grok auto-loads `AGENTS.md` + this rules dir. **Do not** load every root `*.md` 
 ## Always on (already loaded or read first)
 
 1. `AGENTS.md` — short ops + current work  
-2. **`AGENT-RULES.md`** — **full agent law** (the detailed rules file)  
-3. `HANDSOFF.md` — no-touch  
-4. `RECURRING_MISTAKES.md` — known failure modes  
-5. This file + sibling rules under `.grok/rules/`
+2. **`HANDOFF-2026-07-26.md`** — **canonical dated handoff** (prefer over old HANDOFF-NEW-SESSION)  
+3. **`AGENT-RULES.md`** — **full agent law**  
+4. `HANDSOFF.md` — no-touch  
+5. `RECURRING_MISTAKES.md` — known failure modes  
+6. This file + sibling rules under `.grok/rules/`
 
 ## Default state files (read when starting real work)
 
@@ -42,11 +43,12 @@ Grok auto-loads `AGENTS.md` + this rules dir. **Do not** load every root `*.md` 
 
 | File | Use |
 |------|-----|
-| `HANDOFF-NEW-SESSION.md` | **Canonical** long kickoff paste |
+| **`HANDOFF-2026-07-26.md`** | **Canonical** session handoff + paste prompt (2026-07-26) |
 | `NEXT-SESSION-PROMPT.md` | Short pointer + short paste |
-| `HANDOFF-NEXT-SESSION.md` | **Archived** pilot-budget handoff (pilot already done) |
-| `HANDOFF-CONTRIBUTOR.md` | Older contributor path (pre-monorepo polish) |
-| `HANDOFF.md` | Year/master plan (large) — only if user asks year strategy |
+| `HANDOFF-NEW-SESSION.md` | Older long kickoff — **state may lag** |
+| `PLAN-SPINE-AND-SPEAR.md` · `TIMELINE-SPINE-SPEAR.md` | Spine+spear doctrine + calendar |
+| `HANDOFF-NEXT-SESSION.md` | **Archived** pilot-budget handoff |
+| `HANDOFF.md` | Year/master plan — only if user asks year strategy |
 
 ## Phase / tech
 
