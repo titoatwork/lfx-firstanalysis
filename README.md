@@ -60,15 +60,16 @@ Honest pilot claim: completed machine.adoc with **model split** because gpt-4o o
 | Path | What |
 |------|------|
 | **[AGENTS.md](./AGENTS.md)** | **Grok auto-load** — short ops + current work |
+| **[AGENT-RULES.md](./AGENT-RULES.md)** | Full agent law |
 | **[HANDSOFF.md](./HANDSOFF.md)** | Hard no-touch list |
 | **[RECURRING_MISTAKES.md](./RECURRING_MISTAKES.md)** | Known failure modes |
 | **[.grok/rules/](./.grok/rules/)** | Context map, hard constraints, measured facts |
-| [AGENT-RULES.md](./AGENT-RULES.md) | Full session law |
 | [LEFTOVER-WORK.md](./LEFTOVER-WORK.md) | Canonical live leftovers |
-| [PHASE2-PLAN.md](./PHASE2-PLAN.md) | Artifact A plan |
-| [HANDOFF-NEW-SESSION.md](./HANDOFF-NEW-SESSION.md) | New-chat kickoff paste |
+| [PROGRESS.md](./PROGRESS.md) | Done vs left |
+| **[application-packet/](./application-packet/)** | Local Part II essay, 9-week plan, resume content, claim ledger |
+| [PHASE2-PLAN.md](./PHASE2-PLAN.md) | Phase 2 A/B path (historical + status) |
+| [HANDOFF-NEW-SESSION.md](./HANDOFF-NEW-SESSION.md) | New-chat kickoff paste (may lag; prefer PROGRESS) |
 | [NEXT-SESSION-PROMPT.md](./NEXT-SESSION-PROMPT.md) | Short kickoff pointer |
-| [HANDOFF-NEXT-SESSION.md](./HANDOFF-NEXT-SESSION.md) | Pilot-budget handoff (historical) |
 | [PHASE1-CLOSEOUT.md](./PHASE1-CLOSEOUT.md) | Phase 1 closeout bridge |
 | [PHASE1-STATUS.md](./PHASE1-STATUS.md) | Short status board |
 | [riscv-param-extraction/AGENTS.md](./riscv-param-extraction/AGENTS.md) | Prototype package rules |
