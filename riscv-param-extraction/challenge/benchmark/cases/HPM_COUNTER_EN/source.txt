@@ -1,0 +1,1 @@
+Which hardware performance counters are implemented is implementation-defined. Software discovers which counters exist.

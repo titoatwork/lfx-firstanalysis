@@ -1,0 +1,13 @@
+$schema: param_schema.json#
+kind: parameter
+name: ASID_WIDTH
+long_name: Asid Width (re-derived)
+description: The number of implemented ASID bits is implementation-defined, with a
+  maximum of 16 for XLEN=64 and 9 for XLEN=32.
+definedBy:
+  extension:
+    name: Sm
+schema:
+  type: integer
+  minimum: 0
+  maximum: 16

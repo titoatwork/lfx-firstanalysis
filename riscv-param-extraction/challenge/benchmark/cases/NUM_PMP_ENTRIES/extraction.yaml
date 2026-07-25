@@ -1,0 +1,16 @@
+$schema: param_schema.json#
+kind: parameter
+name: NUM_PMP_ENTRIES
+long_name: Num Pmp Entries (re-derived)
+description: An implementation may have zero, sixteen, or sixty-four physical memory
+  protection entries. The number of implemented PMP entries is implementation-defined
+  within the architectural constraints.
+definedBy:
+  extension:
+    name: Sm
+schema:
+  type: integer
+  enum:
+  - 0
+  - 16
+  - 64

@@ -1,0 +1,12 @@
+$schema: param_schema.json#
+kind: parameter
+name: cache-block-size
+long_name: Deliberately broken name pattern
+description: |
+  Lowercase hyphenated name must fail UPPER_SNAKE_CASE checks.
+definedBy:
+  extension:
+    name: Zicbom
+schema:
+  type: integer
+  minimum: 1

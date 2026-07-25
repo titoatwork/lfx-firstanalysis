@@ -1,0 +1,1 @@
+ELEN is the maximum size in bits of a vector element that any operation can produce or consume. ELEN is implementation-defined for the V extension.

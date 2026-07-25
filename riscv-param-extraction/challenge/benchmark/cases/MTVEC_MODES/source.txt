@@ -1,0 +1,1 @@
+If mtvec is writable, the set of values the MODE field may hold can vary by implementation. MODE may support Direct and/or Vectored modes.

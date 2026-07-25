@@ -1,0 +1,11 @@
+$schema: param_schema.json#
+kind: parameter
+name: PMLEN
+long_name: Pmlen (re-derived)
+description: The number of high-order bits of an address that are masked by the pointer
+  masking facility is implementation-defined.
+definedBy:
+  extension:
+    name: Sm
+schema:
+  type: integer

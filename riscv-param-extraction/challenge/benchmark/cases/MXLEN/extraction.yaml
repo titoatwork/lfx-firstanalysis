@@ -1,0 +1,14 @@
+$schema: param_schema.json#
+kind: parameter
+name: MXLEN
+long_name: Mxlen (re-derived)
+description: The MXL field indicates the effective XLEN in M-mode, a constant termed
+  MXLEN. MXLEN is 32 or 64.
+definedBy:
+  extension:
+    name: Sm
+schema:
+  type: integer
+  enum:
+  - 32
+  - 64

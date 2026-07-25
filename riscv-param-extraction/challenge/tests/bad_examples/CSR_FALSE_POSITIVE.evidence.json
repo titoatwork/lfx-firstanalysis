@@ -1,0 +1,5 @@
+{
+  "name": "CSR_READ_WRITE_MODE",
+  "snippet": "csr_address_mapping.txt",
+  "quote": "this quote is not in the csr snippet at all and should fail grounding"
+}
