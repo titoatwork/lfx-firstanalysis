@@ -1,0 +1,16 @@
+Snippet: csr_address_mapping.txt (Privileged Spec §2.1 CSR Address Mapping Conventions)
+
+Result: ZERO parameters.
+
+Rationale:
+- The passage defines a fixed encoding convention for the CSR address space
+  (12-bit space; csr[11:10] R/W vs RO; csr[9:8] privilege).
+- "By convention" here is a shared architectural mapping, not an
+  implementation-specific choice left open for software-observable configuration
+  in the sense of UDB architectural parameters.
+- No optionality triggers (implementation-specific / optional / may-as-choice)
+  grant an implementation freedom that should be modeled as a parameter from
+  this excerpt alone.
+
+A prompt that over-triggers on "sounds technical" text would incorrectly invent
+parameters such as CSR_READ_WRITE_MODE or NUM_CSRS from this snippet.

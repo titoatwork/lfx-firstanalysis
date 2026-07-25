@@ -1,0 +1,8 @@
+Source class: software-facing interrupt advice (not an implementation-configurable hardware parameter).
+Constructed hard-negative control for the coding challenge (optionality word "should" present).
+
+Machine timer interrupts are usually level-triggered. Software should tolerate a
+spurious timer interrupt and should clear the interrupt pending bit only when
+appropriate for the platform timer model. Implementations should document how
+software discovers the timer device, but this paragraph itself does not define
+a free hardware configuration parameter named in the ISA sense.

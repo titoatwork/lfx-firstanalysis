@@ -1,0 +1,1 @@
+each of which represents a contiguous, naturally aligned power-of-two (or _NAPOT_) range of memory locations.

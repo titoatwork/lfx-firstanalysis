@@ -1,0 +1,46 @@
+name: ci
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  challenge-and-export:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: riscv-param-extraction
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Validate curated challenge results
+        run: python challenge/scripts/validate.py --results challenge/results/curated
+
+      - name: Bad fixtures must fail
+        run: python challenge/scripts/validate.py --results challenge/tests/bad_examples --expect-fail
+
+      - name: Hard negatives
+        run: python challenge/scripts/check_negatives.py
+
+      - name: Markup grounding modes
+        run: python challenge/scripts/check_grounding_modes.py
+
+      - name: Multi-strategy matrix
+        run: python challenge/scripts/score_strategies.py
+
+      - name: Known-param benchmark (n=15, caveat-first)
+        run: python challenge/benchmark/scripts/score_recall.py
+
+      - name: Export unit tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Full challenge ci_check
+        run: python challenge/scripts/ci_check.py

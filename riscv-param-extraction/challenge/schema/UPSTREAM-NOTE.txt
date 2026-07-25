@@ -1,0 +1,1 @@
+Schemas vendored from riscv/riscv-unified-db (spec/schemas/), BSD-3-Clause-Clear. See upstream repo.

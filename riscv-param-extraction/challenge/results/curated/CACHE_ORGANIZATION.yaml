@@ -1,0 +1,23 @@
+# Challenge curated result — opaque string; value space not enumerable in snippet.
+# yaml-language-server: $schema=../../schema/param_schema.json
+
+$schema: param_schema.json#
+kind: parameter
+name: CACHE_ORGANIZATION
+long_name: Cache organization
+description: |
+  Organization of a cache (implementation-specific). The manual does not give an
+  enumerable value space for "organization" in this excerpt — only that software
+  must be able to discover cache information via the execution environment.
+
+  SIG scoping recommended before treating this as schema-complete. An alternative
+  modeling judgment is to decline emission entirely (opaque string validates
+  little); this pack emits it as a review candidate with minimal schema.
+definedBy:
+  extension:
+    anyOf:
+      - name: Zicbom
+      - name: Zicbop
+      - name: Zicboz
+schema:
+  type: string

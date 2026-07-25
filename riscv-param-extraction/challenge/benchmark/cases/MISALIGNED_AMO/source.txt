@@ -1,0 +1,1 @@
+Support for misaligned AMOs may be implementation-defined.

@@ -1,0 +1,4 @@
+{
+  "name": "CSR_TOP_BITS_PROSE",
+  "quote": "The top two bits (csr[11:10]) indicate whether the register is read/write (00,01, or 10) or read-only (11)"
+}

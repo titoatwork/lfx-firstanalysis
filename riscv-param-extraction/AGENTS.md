@@ -10,6 +10,7 @@ Mentor-auditable selection surface for LFX Part II:
 - Artifact **B**: CSV → draft UDB param YAML + schema validate (**done**)
 - Artifact **A**: multi-model agreement vs Claude (**done** — gpt-4o-mini v2)
 - Prompt **v3** WARL ablation (**done** — honest null for WARL)
+- **Coding challenge pack** (`challenge/`) — 2 snippets, validate, negatives, robustness, CI
 
 This directory is **not** a separate GitHub product. Home is monorepo `titoatwork/lfx-firstanalysis`.
 
@@ -19,6 +20,7 @@ This directory is **not** a separate GitHub product. Home is monorepo `titoatwor
 |------|------|
 | `docs/metrics.md` | Public measured tables only |
 | `docs/design.md` | Decisions / non-goals |
+| `challenge/` | Shared LFX coding-challenge pack (Path A) |
 | `manifests/` | One file per serious run (Obj 3) |
 | `export/` | Artifact B exporter + schemas |
 | `drafts/param/`, `drafts/param-new/` | DRAFT YAML only |
@@ -34,6 +36,7 @@ pip install -r requirements.txt
 python -m export.csv_to_param_yaml --csv data/parameters.csv --out drafts/param --mode named --udb-root ../riscv-unified-db --clean
 python -m export.csv_to_param_yaml --mode new --limit 20 --udb-root ../riscv-unified-db --out drafts/param-new --clean
 python -m unittest discover -s tests -v
+python challenge/scripts/ci_check.py
 ```
 
 `--udb-root` expects a **local** UDB checkout (sibling `../riscv-unified-db` or path user provides). Do not vendor UDB into this monorepo.
