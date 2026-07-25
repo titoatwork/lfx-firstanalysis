@@ -164,7 +164,48 @@ Low both-model overlap on “new” names → most proposed-new are model-privat
 
 ---
 
-## 6. Artifact B — export validation (2026-07-22)
+## 6. Stretch C ablation — prompt v3 WARL guidance (gpt-4o-mini)
+
+**Status:** `COMPLETE` (2026-07-25) — **honest null / negative for WARL**  
+**Manifest:** [manifests/stretch-c-v3-warl.md](../manifests/stretch-c-v3-warl.md)  
+**Metrics JSON:** [results/metrics_gpt-4o-mini.v3.json](../results/metrics_gpt-4o-mini.v3.json)
+
+Same model (**gpt-4o-mini**), same 60 param-bearing chunks, **PROMPT_VERSION=v3** (v2 + structural WARL recognition section only; no GT name leakage). Compared to Artifact A mini under **v2**.
+
+### 6.0 Headline
+
+| Metric | A mini (v2) | v3 mini | Δ |
+|--------|------------:|--------:|--:|
+| Adjusted recall (GT185) | **32.2%** | **35.0%** | +2.8 pp |
+| WARL recall (`NORM_CSR_WARL`) | **12.5%** (3/24) | **8.3%** (2/24) | **−4.2 pp** |
+| NORM_DIRECT | 48/100 | 53/100 | +5 |
+| NORM_CSR_RW | 6/51 | 7/51 | +1 |
+| Deduped LLM params | 230 | 204 | −26 |
+| Class acc (exact only) | 100% (11/11) | 80% (8/10) | small n |
+
+**Honest claim:** Adding WARL-focused prompt text **did not improve** gold WARL recall; it **worsened** it. Overall adjusted recall ticked up slightly (mostly DIRECT). Raw extraction tagged more rows as WARL (**59** raw class labels vs **~36** on v2), but those did **not** translate into more GT WARL hits — over-labeling without better name/alignment quality.
+
+**Do not** present v3 as a successful Stretch C WARL attack. Treat as a measured **prompt ablation null result** (useful for the Fall plan: need CSR-field aux context or different strategy, not prompt-only WARL essay).
+
+### 6.1 Run cost (v3 full corpus)
+
+| Field | Value |
+|------:|
+| Chunks OK / errors | **60 / 0** |
+| Input tokens | **901 796** |
+| Output tokens | **48 731** |
+| Approx cost (USD) | **~$0.16** |
+| Resume note | Mid-run 401 (dead key) then completed with rotated key; good chunks not re-billed |
+
+### 6.2 Limitations (v3)
+
+- Still **gpt-4o-mini**, not Claude-quality extract.  
+- WARL “lift” target failed; report as null.  
+- Per-chunk JSON stays local under UDB `results/v3/`.  
+
+---
+
+## 7. Artifact B — export validation (2026-07-22)
 
 Reports: `results/export_b_named.json`, `results/export_b_new.json`.
 
