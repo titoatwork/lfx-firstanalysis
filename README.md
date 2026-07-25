@@ -15,9 +15,11 @@ Part I (Spring) already built extract → analyze → spreadsheet on open PR bra
 | Step | Open |
 |------|------|
 | 1. Measured tables | [riscv-param-extraction/docs/metrics.md](./riscv-param-extraction/docs/metrics.md) |
-| 2. Pilot manifest (models, tokens, cost, limitations) | [riscv-param-extraction/manifests/pilot-machine-adoc.md](./riscv-param-extraction/manifests/pilot-machine-adoc.md) |
-| 3. Artifact B code + drafts | [riscv-param-extraction/](./riscv-param-extraction/) |
-| 4. How presentation is locked | [GITHUB-PRESENTATION.md](./GITHUB-PRESENTATION.md) |
+| 2. Artifact A manifest | [riscv-param-extraction/manifests/artifact-a-gpt-4o-mini.md](./riscv-param-extraction/manifests/artifact-a-gpt-4o-mini.md) |
+| 3. Pilot manifest | [riscv-param-extraction/manifests/pilot-machine-adoc.md](./riscv-param-extraction/manifests/pilot-machine-adoc.md) |
+| 4. Artifact B code + drafts | [riscv-param-extraction/](./riscv-param-extraction/) |
+| 5. Agent rules | [AGENT-RULES.md](./AGENT-RULES.md) · [AGENTS.md](./AGENTS.md) |
+| 6. How presentation is locked | [GITHUB-PRESENTATION.md](./GITHUB-PRESENTATION.md) |
 
 ### Snapshot numbers (do not invent beyond these)
 
@@ -27,7 +29,7 @@ Part I (Spring) already built extract → analyze → spreadsheet on open PR bra
 | Same vs live GT 223 | adj recall **64.2%** |
 | Pilot machine.adoc | **model split**: gpt-4o (chunk_021) + gpt-4o-mini (chunk_020); ~**$0.05** |
 | Artifact B | **83/83** named + **20/20** new schema-valid drafts |
-| Artifact A multi-model | **Not run** |
+| Artifact A multi-model | **Done** — gpt-4o-mini adj **32.2%** vs Claude **72.9%**; Jaccard **3.8%**; ~**$0.16** (see metrics §5) |
 | named=yes in CSV | **87** rows / **83** unique — never claim 97 without recount |
 
 Honest pilot claim: completed machine.adoc with **model split** because gpt-4o org TPM (30k) blocked the large chunk (~44k input). **Not** a pure gpt-4o full pilot.
@@ -75,7 +77,7 @@ Honest pilot claim: completed machine.adoc with **model split** because gpt-4o o
 
 ## Limitations
 
-- Artifact A (full multi-model vs Claude) not run.  
+- Artifact A second model is **gpt-4o-mini** (not full gpt-4o); mini **underperforms** Claude on recall (honest ablation).  
 - Pilot used two OpenAI models on machine.adoc (TPM).  
 - Artifact B drafts are **DRAFT** — not unsolicited UDB merges.  
 - Apply to Part II only after A+B evidence (plan: Jul 31–Aug 2).

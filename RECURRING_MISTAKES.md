@@ -2,7 +2,7 @@
 
 Living lesson catalog for agents on this campaign repo. Read at session start; append when a failure mode is real.
 
-Last updated: 2026-07-24
+Last updated: 2026-07-25
 
 ---
 
@@ -50,7 +50,11 @@ Last updated: 2026-07-24
 | Default retries doubling spend | `--retries 0` for paid extract paths |
 | Full gpt-4o corpus on ~$5 budget | Pilot proved TPM + cost risk; default A path is **gpt-4o-mini** (see `PHASE2-PLAN.md`) |
 | Writing key to README / handoff / commit | Session env only; unset after |
+| Pasting API key into chat | Prefer shell-only; **rotate** after any chat paste |
+| Running two extract.py jobs in parallel | Race on result JSON; kill stuck job; single resume only |
 | Auto re-spend on parse failure | Diagnose offline; ask before second paid attempt |
+| Trusting handoff prose over metrics.md / disk | Multi-layer docs; metrics + results win |
+| Claiming Artifact A “not started” after 2026-07-25 | A is done; see metrics §5 + artifact-a manifest |
 
 ---
 

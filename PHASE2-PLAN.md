@@ -13,10 +13,10 @@
 | ID | Artifact | Status | Notes |
 |----|----------|--------|--------|
 | **B** | CSV → draft UDB YAML + schema validate | **DONE** | 83 named unique + 20 new drafts; monorepo path |
-| **A** | Multi-model extract + agreement vs Claude Part I | **TODO** | Main Phase 2 work |
-| **C** | WARL recall stretch | Later | Only if A+B solid and budget left |
-| **Obj 3** | Manifests every serious run | In progress | Pilot manifests exist; A needs full run manifests |
-| **Public surface** | README + `docs/metrics.md` + samples | Partial | Publish pilot + A tables; no secrets |
+| **A** | Multi-model extract + agreement vs Claude Part I | **DONE** (2026-07-24/25) | mini 32.2% vs Claude 72.9%; Jaccard 3.8%; ~$0.16 |
+| **C** | WARL recall stretch / v3 prompt ablation | **Done — null WARL** | Prompt-only v3 did not lift WARL; see metrics §6 |
+| **Obj 3** | Manifests every serious run | Pilot + A done | Add v3 manifest when complete |
+| **Public surface** | README + `docs/metrics.md` + samples | Mostly done | A tables public; push reframe if needed |
 
 **Do not** re-open pilot unless user says so.  
 **Do not** full `extract.py run` on gpt-4o without a cost gate (TPM + $).

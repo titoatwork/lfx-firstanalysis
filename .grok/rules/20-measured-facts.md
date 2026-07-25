@@ -2,6 +2,7 @@
 
 Source of truth for tables: `riscv-param-extraction/docs/metrics.md`  
 Pilot detail: `riscv-param-extraction/manifests/pilot-machine-adoc.md`  
+Artifact A detail: `riscv-param-extraction/manifests/artifact-a-gpt-4o-mini.md`  
 Local remeasure JSON: `PHASE1-IMMERSION/06-measured-local/metrics_summary.json`
 
 ```
@@ -15,7 +16,9 @@ Pilot:                       COMPLETE_WITH_MODEL_SPLIT ~$0.05
   chunk_021: gpt-4o-2024-11-20 — ~10115 in / 1152 out, 6 params, ~$0.037
   chunk_020: gpt-4o-mini-2024-07-18 — ~44874 in / 1541 out, 9 params, ~$0.008
   reason: gpt-4o org TPM 30k blocked ~44k input chunk
-Artifact A multi-model:      NOT RUN
+Artifact A (v2, mini, 60/60): COMPLETE — adj 32.2% vs Claude 72.9%; WARL 12.5%;
+                              name Jaccard 3.8%; high-conf new both 9; ~$0.16
+v3 WARL ablation (mini):     COMPLETE null: adj 35.0%; WARL 8.3% (2/24) vs A WARL 12.5%
 ```
 
-If disk disagrees after a real remeasure, update metrics.md + this file + AGENTS.md in the same session.
+If disk disagrees after a real remeasure, update metrics.md + this file + AGENTS.md + AGENT-RULES.md §9 in the same session.

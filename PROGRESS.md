@@ -1,9 +1,9 @@
 # Progress — done vs left
 
-**Last updated:** 2026-07-25 (Artifact A done + §5.0 reframe; Stretch C optional; user owns plan)  
+**Last updated:** 2026-07-25 (A done; v3 in progress; agent-rules + state docs synced)  
 **Plan lock:** [PLAN-SOURCE-OF-TRUTH.md](./PLAN-SOURCE-OF-TRUTH.md)  
 **Grok entry:** [AGENTS.md](./AGENTS.md) · [HANDSOFF.md](./HANDSOFF.md) · [RECURRING_MISTAKES.md](./RECURRING_MISTAKES.md)  
-**Session rules:** [AGENT-RULES.md](./AGENT-RULES.md)  
+**Agent rules (full law):** [AGENT-RULES.md](./AGENT-RULES.md)  
 **New chat handoff:** [HANDOFF-NEW-SESSION.md](./HANDOFF-NEW-SESSION.md)  
 **Leftover checklist:** [LEFTOVER-WORK.md](./LEFTOVER-WORK.md)  
 **Phase 2 A plan:** [PHASE2-PLAN.md](./PHASE2-PLAN.md)  
@@ -26,7 +26,7 @@
 | Selection weapon **B** | **Done offline** (83+20 schema-valid drafts) |
 | Selection weapon **A** | **Done** (gpt-4o-mini 60/60; adj recall 32.2% vs Claude 72.9%; ~$0.16) |
 | Grounding / provenance suite | **Not shipped** as public product |
-| Stretch **C** WARL | **Not started** |
+| Stretch **C** / v3 WARL ablation | **Done — null WARL** (adj 35.0%; WARL 8.3% &lt; A 12.5%) |
 | Apply to Part II | **Not started** (plan Jul 31–Aug 2) |
 | Next plan author | **User** (agent tracks done / executes on go) |
 
@@ -69,6 +69,8 @@ Part I v2 vs GT185:        adjusted recall 72.9%, class acc 88.4%, WARL 50%
 Part I v2 vs live GT223:   adjusted recall 64.2%, class acc 88.6%, WARL 50%
 parameters.csv named=yes:   87 rows / 83 unique
 Pilot total spend:         ~$0.05
+Artifact A (v2 mini):      adj 32.2% / Jaccard 3.8% / WARL 12.5% / ~$0.16
+v3 WARL ablation:          adj 35.0%; WARL 8.3% (2/24) — null Stretch C
 ```
 
 Source: [PHASE1-IMMERSION/06-measured-local/metrics_summary.json](./PHASE1-IMMERSION/06-measured-local/metrics_summary.json)  
@@ -81,7 +83,7 @@ Public tables: [riscv-param-extraction/docs/metrics.md](./riscv-param-extraction
 | Phase 2 A/B home | **Inside this repo** — `riscv-param-extraction/` (not a second product repo) |
 | Artifact A multi-model | **Done** (2026-07-24/25) — gpt-4o-mini 60/60; adj 32.2% vs Claude 72.9%; Jaccard 3.8%; WARL 12.5%; ~$0.16 |
 | Artifact B YAML exporter | **Done offline** — 83 named + 20 new, all schema-valid |
-| Stretch C WARL | **Not started** |
+| Stretch C / v3 WARL ablation | **Done — null for WARL** (metrics §6) |
 | Application / cover letter | **Not started** |
 | SIG warm period | **Not started** |
 
@@ -119,11 +121,12 @@ Canonical short list: **[LEFTOVER-WORK.md](./LEFTOVER-WORK.md)**
 | 2 | Phase 2 path in lfx-firstanalysis | [x] `riscv-param-extraction/` |
 | 3 | **Artifact A** multi-model + agreement | [x] Done 2026-07-24/25 (mini 32.2% / Jaccard 3.8%) |
 | 4 | Artifact B exporter | [x] 83+20 (optional domain polish later) |
-| 5 | Grounding/provenance public suite | [ ] with A preferred |
-| 6 | Manifests every serious run | [x] pilot + Artifact A |
-| 7 | Stretch **C** WARL only if A+B done | [ ] |
+| 5 | Grounding/provenance public suite | [ ] optional |
+| 6 | Manifests every serious run | [x] pilot + Artifact A; [ ] v3 when done |
+| 7 | Stretch **C** / v3 WARL ablation | [x] null result documented (WARL worse) |
 | 8 | Short list note after A+B (when on list) | [ ] |
 | 9 | No big unsolicited UDB PR | standing rule |
+| 10 | Doc sync (agent rules / state files) | [x] 2026-07-25 session |
 
 ### Phase 3 (Jul 31–Aug 2)
 

@@ -74,6 +74,7 @@ Pilot extraction needs a local `riscv-unified-db` on `lfx-1832` and **your own**
 - Named params already exist in UDB; B is a **draft export + validation** path, not 83 new architecture parameters.  
 - Pilot used **two OpenAI models** for machine.adoc because of TPM limits.  
 - Artifact A second model is **gpt-4o-mini** (budget/TPM), **not** full gpt-4o; mini **underperforms** Claude on recall (32.2% vs 72.9%).  
+- Prompt **v3** WARL ablation: overall adj **35.0%** but WARL **worse** (8.3% vs 12.5%) — honest null; see metrics §6.  
 - Per-chunk extraction JSON stays in the local UDB clone; public surface ships aggregates + manifests.  
 - Do not merge draft YAML upstream without SIG / mentor review.  
 - No unsolicited bulk PR into `riscv/riscv-unified-db`.
