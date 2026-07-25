@@ -4,37 +4,40 @@
 **Role:** execution agent for LFX Part II prep (AI-assisted RISC-V param extraction).  
 **User owns the plan.** Agent tracks state and executes only on go. Do not invent a parallel roadmap.
 
-**Full agent law:** [`AGENT-RULES.md`](./AGENT-RULES.md) (read this — it is the detailed rules file).  
-Also: `PLAN-SOURCE-OF-TRUTH.md`, `HANDSOFF.md`, `RECURRING_MISTAKES.md`, `.grok/rules/*`.
+**Full agent law:** [`AGENT-RULES.md`](./AGENT-RULES.md).  
+**Canonical dated handoff:** [`HANDOFF-2026-07-26.md`](./HANDOFF-2026-07-26.md)  
+Also: `HANDSOFF.md`, `RECURRING_MISTAKES.md`, `.grok/rules/*`, `PLAN-SPINE-AND-SPEAR.md`, `TIMELINE-SPINE-SPEAR.md`.
 
 ---
 
-## Current work (2026-07-26)
+## Current work (2026-07-26 close)
 
 | Area | State |
 |------|--------|
-| Branch | `application/packet-2026-07-26` (local) · `main`/`origin/main` at `499ee96` until user says push |
-| Phase 1 technical | **DONE** — do not restart immersion |
-| Pilot `machine.adoc` | **COMPLETE_WITH_MODEL_SPLIT** (~$0.05) — do not re-pilot without user OK |
-| Artifact **B** (CSV → draft YAML) | **DONE** — 83 named + 20 new, schema-valid |
-| Artifact **A** (multi-model, v2 prompt) | **DONE** — gpt-4o-mini 60/60; adj 32.2% vs Claude 72.9%; Jaccard 3.8%; ~$0.16 · **public on main** |
-| Prompt v3 WARL ablation | **DONE — null for WARL** (adj 35.0%; WARL 8.3%) · public metrics §6 |
-| Original Artifact C (CSR-field context) | **Deferred** until after apply (not run) |
-| Apply Part II | **Packet drafted locally** (`application-packet/`) — user submits Jul 31–Aug 2 |
-| Membership / lists | Submitted; lists blocked on approval |
-| Next focus | Application review + submit; no new broad experiments |
+| Branch | **`main` / `origin/main` @ `ca70796`** (packet + metrics pushed) |
+| Doctrine | **Spine first, spear second** — see `PLAN-SPINE-AND-SPEAR.md` |
+| Phase 1 technical | **DONE** |
+| Pilot | **COMPLETE_WITH_MODEL_SPLIT** (~$0.05) |
+| Artifact **B** | **DONE** — 83+20 schema-valid |
+| Artifact **A** | **DONE** — mini 32.2% vs Claude 72.9%; Jaccard 3.8%; ~$0.16 |
+| v3 WARL ablation | **DONE — null** (WARL 8.3%) |
+| Original Artifact C | **Deferred** post-apply |
+| Application packet | **On main** — `application-packet/` |
+| Apply Part II | **NOT submitted** — target **Jul 31** (hard stop Aug 2) |
+| Membership / lists | Submitted; lists blocked |
+| Next | User: resume PDF + Apply · Agent: wait for go / apply polish / `GO SPINE+SPEAR phase1` |
 
-Live leftovers: **`LEFTOVER-WORK.md`**. Done vs left: **`PROGRESS.md`**.  
-Knowledge map (all doc stores, not just handoffs): **`.grok/rules/00-context-map.md`**.
+Live leftovers: **`LEFTOVER-WORK.md`**. Progress: **`PROGRESS.md`**.  
+**New chat:** paste kickoff from **`HANDOFF-2026-07-26.md`**.
 
 ---
 
-## Session start (when user says start / continue)
+## Session start
 
-1. Read this file → **`AGENT-RULES.md`** → **`HANDSOFF.md`** → **`RECURRING_MISTAKES.md`**.
-2. Confirm state against `PROGRESS.md` + `LEFTOVER-WORK.md` + disk (`docs/metrics.md`, UDB results). Prefer **disk + metrics** over stale handoffs.
-3. State the next concrete step **or wait** if the user has not given a plan/go.
-4. Never push / never paid API / never second public repo without explicit user text.
+1. Read **`HANDOFF-2026-07-26.md`** if present, else this file → `AGENT-RULES.md` → `HANDSOFF.md` → `RECURRING_MISTAKES.md`.  
+2. Confirm `PROGRESS.md` + `LEFTOVER-WORK.md` + `docs/metrics.md` (disk > stale handoffs).  
+3. Default: help Apply path or wait for go. Spine wins over spear if time is short.  
+4. Never push / paid API / second public repo without explicit user text.
 
 ---
 
@@ -42,88 +45,47 @@ Knowledge map (all doc stores, not just handoffs): **`.grok/rules/00-context-map
 
 | Rule | Detail |
 |------|--------|
-| **Single public home** | Only `titoatwork/lfx-firstanalysis`. Phase 2 code = `riscv-param-extraction/` **inside** this monorepo. Never `gh repo create` a second product repo. |
-| **Never push** | Default: no `git push` without explicit user **push**. |
-| **No unsolicited UDB PRs** | No big PRs to `riscv/riscv-unified-db` without list ask + user OK. |
-| **No invented metrics** | Use measured tables only (`docs/metrics.md` + manifests). |
-| **API spend** | Zero paid calls without user key **and** explicit scope. `--retries 0`. Keys: session env only; never commit / paste into docs. Prefer user sets key in shell (chat paste = rotate after). |
-| **Pilot honesty** | Claim **model split** (gpt-4o + gpt-4o-mini), not pure gpt-4o full pilot. |
-| **Named count** | **87** rows / **83** unique — never claim 97 without recount. |
-| **Part I credit** | @ishaan-arora-1 / PRs #1765–#1832 — never claim as user authorship. |
-| **LFX profile ≠ Apply** | Apply only Phase 3 after evidence preferred. |
-| **Slack** | `#risc-v-mentorship-questions` = logistics only. Technical → lists after membership. |
-| **Identity** | GitHub `titoatwork`. Lists: `ibteshamulhaque01@gmail.com`. **Never** use friend Gmail `asquare567@gmail.com`. |
-
-Full tables: **`AGENT-RULES.md`**, `PLAN-SOURCE-OF-TRUTH.md`, `GITHUB-PRESENTATION.md`.
+| **Single public home** | Only `titoatwork/lfx-firstanalysis` → `riscv-param-extraction/` |
+| **Never push** | Without explicit **push** |
+| **No bulk UDB dump PR** | Standing |
+| **No invented metrics** | `docs/metrics.md` + manifests only |
+| **API** | Key + scope; `--retries 0`; rotate if pasted in chat |
+| **Pilot** | Model split, not pure gpt-4o |
+| **Named count** | 87 rows / 83 unique — never 97 |
+| **Part I credit** | @ishaan-arora-1 / PRs #1765–#1832 |
+| **Identity** | `ibteshamulhaque01@gmail.com` · never `asquare567@gmail.com` |
+| **Coding challenge** | Not official LFX requirement; spear pack optional |
 
 ---
 
 ## Measured facts (do not invent)
 
 ```
-GT live UDB:                 223 params; 100% any / 91% strong match
-Part I v2 vs GT185:          adj recall 72.9%, class acc 88.4%, WARL 50%
-Part I v2 vs live GT223:     adj recall 64.2%, class acc 88.6%, WARL 50%
-parameters.csv named=yes:     87 rows / 83 unique
-Artifact B:                  83/83 named + 20/20 schema-valid
-Pilot spend:                 ~$0.05 COMPLETE_WITH_MODEL_SPLIT
-Artifact A (v2, mini, 60/60): adj 32.2% vs Claude 72.9%; WARL 12.5%; Jaccard 3.8%;
-                             high-conf new both models 9; ~$0.16
-v3 WARL ablation (mini):     COMPLETE null: adj 35.0%; WARL 8.3% (2/24) — worse WARL than A
+GT223: 100% any / 91% strong
+Claude v2 GT185: 72.9% adj / 88.4% class / WARL 50%
+vs GT223: 64.2% adj
+B: 83/83 + 20/20 schema-valid · named 87/83
+Pilot: ~$0.05 model-split
+A mini: 32.2% adj / Jaccard 3.8% / WARL 12.5% / ~$0.16
+v3: 35.0% adj / WARL 8.3% null / ~$0.16
 ```
 
-Public tables: `riscv-param-extraction/docs/metrics.md`  
-Pilot manifest: `riscv-param-extraction/manifests/pilot-machine-adoc.md`  
-Artifact A manifest: `riscv-param-extraction/manifests/artifact-a-gpt-4o-mini.md`
-
 ---
 
-## What to load (task → files)
+## What to load
 
-| Task | Read (in order) |
-|------|-----------------|
-| **Any new session** | `AGENTS.md` → **`AGENT-RULES.md`** → `HANDSOFF.md` → `RECURRING_MISTAKES.md` → `PROGRESS.md` → `LEFTOVER-WORK.md` |
-| **Full process law** | `AGENT-RULES.md` + `PLAN-SOURCE-OF-TRUTH.md` |
-| **Kickoff paste** | `HANDOFF-NEW-SESSION.md` (may lag; prefer PROGRESS) · short: `NEXT-SESSION-PROMPT.md` |
-| **Phase 2 / A** | `PHASE2-PLAN.md` (historical A path) + `docs/metrics.md` §5 |
-| **Stretch C / v3** | Local UDB `prompts/v3/` + `results/v3/` — document only after complete run |
-| **Public presentation** | `GITHUB-PRESENTATION.md` + root `README.md` + `riscv-param-extraction/README.md` |
-| **Export / B code** | `riscv-param-extraction/AGENTS.md` + `docs/design.md` |
-| **Phase 1 evidence** | `PHASE1-IMMERSION/` (do not re-scrape from zero) |
-| **Deep study** | `PHASE1-IMMERSION/DEEP-STUDY-COMPLETE.md` only if needed |
-| **Apply packet** | `Prompt.md` STEP 7–8, `lfx-riscv-param-extraction-prework/application/`, `RESUME-DRAFT.md` |
-| **Year strategy** | `HANDOFF.md`, `PROJECTS.md` — only if user asks |
-
-Full map: `.grok/rules/00-context-map.md`.
-
----
-
-## Paths
-
-| Path | Role |
-|------|------|
-| `riscv-param-extraction/` | Mentor-facing prototype (metrics, A, B, manifests) |
-| `PHASE1-IMMERSION/` | Phase 1 evidence pack |
-| `lfx-riscv-param-extraction-prework/` | Early apply notes / essay drafts |
-| `riscv-unified-db/` | Local UDB clone only — **gitignored**, never push |
-| Workspace | `Desktop\LFX-Mentorship\` |
-
----
-
-## Quality
-
-- Exceptional code; multi-iterate; domain voice (UDB / param / WARL / adjusted recall).
-- Prefer reversible local work; small diffs; match existing style.
-- Fix root causes; no workarounds that mute checks.
-- When blocked: say so and wait — do not invent a bypass plan.
-- Prefer **metrics.md + results JSON + PROGRESS** over stale handoff prose.
+| Task | Files |
+|------|--------|
+| **New session** | `HANDOFF-2026-07-26.md` → this → rules → PROGRESS → LEFTOVER |
+| **Apply** | `application-packet/*` + claim ledger |
+| **Spear/challenge** | `PLAN-SPINE-AND-SPEAR.md` + timeline |
+| **Metrics** | `riscv-param-extraction/docs/metrics.md` |
+| **Competition** | `COMPETITION-REPORT-2026-07-26.md` (local) |
 
 ---
 
 ## Update this file when
 
-- Branch / current objective changes  
-- Artifact A / v3 / Apply status flips  
-- A durable hard rule is added (also write `AGENT-RULES.md` / `HANDSOFF.md` / `RECURRING_MISTAKES.md`)
+Branch tip changes · Apply submitted · spear phase1 lands · C starts · durable new rule
 
 *Prefer quoting locked files over inventing process.*

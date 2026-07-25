@@ -1,0 +1,1 @@
+Support for misaligned loads and stores to main memory is implementation-defined. An implementation may raise a misaligned exception instead.

@@ -1,0 +1,1 @@
+VLEN is the number of bits in a single vector register. VLEN is an implementation-defined power of two.

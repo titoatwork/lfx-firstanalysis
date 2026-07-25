@@ -1,0 +1,1 @@
+The capacity and organization of a cache and the size of a cache block are both implementation-specific. In the initial set of CMO extensions, the size of a cache block shall be uniform throughout the system.

@@ -1,0 +1,11 @@
+$schema: param_schema.json#
+kind: parameter
+name: VLEN
+long_name: Vlen (re-derived)
+description: VLEN is the number of bits in a single vector register. VLEN is an implementation-defined
+  power of two.
+definedBy:
+  extension:
+    name: Sm
+schema:
+  type: integer

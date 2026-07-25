@@ -1,0 +1,11 @@
+$schema: param_schema.json#
+kind: parameter
+name: ELEN
+long_name: Elen (re-derived)
+description: ELEN is the maximum size in bits of a vector element that any operation
+  can produce or consume. ELEN is implementation-defined for the V extension.
+definedBy:
+  extension:
+    name: Sm
+schema:
+  type: integer

@@ -1,0 +1,4 @@
+{
+  "parameters": [],
+  "reason": "Text uses should for software guidance / documentation advice, not an implementation-defined architectural parameter value space."
+}

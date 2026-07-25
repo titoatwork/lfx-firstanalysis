@@ -14,12 +14,22 @@ Part I (Spring) already built extract → analyze → spreadsheet on open PR bra
 
 | Step | Open |
 |------|------|
-| 1. Measured tables | [riscv-param-extraction/docs/metrics.md](./riscv-param-extraction/docs/metrics.md) |
-| 2. Artifact A manifest | [riscv-param-extraction/manifests/artifact-a-gpt-4o-mini.md](./riscv-param-extraction/manifests/artifact-a-gpt-4o-mini.md) |
-| 3. Pilot manifest | [riscv-param-extraction/manifests/pilot-machine-adoc.md](./riscv-param-extraction/manifests/pilot-machine-adoc.md) |
-| 4. Artifact B code + drafts | [riscv-param-extraction/](./riscv-param-extraction/) |
-| 5. Agent rules | [AGENT-RULES.md](./AGENT-RULES.md) · [AGENTS.md](./AGENTS.md) |
-| 6. How presentation is locked | [GITHUB-PRESENTATION.md](./GITHUB-PRESENTATION.md) |
+| 1. **Coding challenge pack** | [riscv-param-extraction/challenge/](./riscv-param-extraction/challenge/) (2 snippets · validate · CSR=0 · CI) |
+| 2. Measured corpus tables | [riscv-param-extraction/docs/metrics.md](./riscv-param-extraction/docs/metrics.md) |
+| 3. Snippet vs corpus comparison | Challenge README **Path A / Path B** table |
+| 4. Artifact A / pilot manifests | [manifests/](./riscv-param-extraction/manifests/) |
+| 5. Artifact B export + drafts | [riscv-param-extraction/](./riscv-param-extraction/) (`export/`, `drafts/`) |
+| 6. Apply packet (local) | [application-packet/](./application-packet/) |
+| 7. Agent rules | [AGENT-RULES.md](./AGENT-RULES.md) · [AGENTS.md](./AGENTS.md) |
+
+### Two paths (do not collapse them)
+
+| Path | What it proves | What it is not |
+|------|----------------|----------------|
+| **A — Challenge** | Shared LFX coding task: optionality extract, grounding, schema YAML, zero on CSR negative control, fail-closed fixtures | Not full-manual recall |
+| **B — Corpus science** | GT223/185 remeasure, 60-chunk multi-model, bulk export, honest WARL null | Not a substitute for the challenge pack |
+
+Spring credit: [@ishaan-arora-1](https://github.com/ishaan-arora-1) / UDB PRs #1765–#1832.
 
 ### Snapshot numbers (do not invent beyond these)
 
@@ -40,7 +50,9 @@ Honest pilot claim: completed machine.adoc with **model split** because gpt-4o o
 
 | Path | Role |
 |------|------|
-| **[riscv-param-extraction/](./riscv-param-extraction/)** | Public prototype: metrics, pilot manifest, Artifact B |
+| **[riscv-param-extraction/](./riscv-param-extraction/)** | Public prototype: metrics, export, challenge, manifests |
+| **[riscv-param-extraction/challenge/](./riscv-param-extraction/challenge/)** | LFX coding-challenge supersession pack |
+| [application-packet/](./application-packet/) | Part II essay / plan / claim ledger |
 | [PHASE1-IMMERSION/](./PHASE1-IMMERSION/) | Phase 1 evidence pack (issues, PR dumps, deep study) |
 | [PLAN-SOURCE-OF-TRUTH.md](./PLAN-SOURCE-OF-TRUTH.md) | Locked plan |
 | [PROGRESS.md](./PROGRESS.md) | Done vs left |
@@ -68,8 +80,10 @@ Honest pilot claim: completed machine.adoc with **model split** because gpt-4o o
 | [PROGRESS.md](./PROGRESS.md) | Done vs left |
 | **[application-packet/](./application-packet/)** | Local Part II essay, 9-week plan, resume content, claim ledger |
 | [PHASE2-PLAN.md](./PHASE2-PLAN.md) | Phase 2 A/B path (historical + status) |
-| [HANDOFF-NEW-SESSION.md](./HANDOFF-NEW-SESSION.md) | New-chat kickoff paste (may lag; prefer PROGRESS) |
-| [NEXT-SESSION-PROMPT.md](./NEXT-SESSION-PROMPT.md) | Short kickoff pointer |
+| **[HANDOFF-2026-07-26.md](./HANDOFF-2026-07-26.md)** | **Canonical** next-chat handoff (2026-07-26) |
+| [NEXT-SESSION-PROMPT.md](./NEXT-SESSION-PROMPT.md) | Short kickoff paste |
+| [PLAN-SPINE-AND-SPEAR.md](./PLAN-SPINE-AND-SPEAR.md) · [TIMELINE-SPINE-SPEAR.md](./TIMELINE-SPINE-SPEAR.md) | Spine+spear doctrine + calendar |
+| [HANDOFF-NEW-SESSION.md](./HANDOFF-NEW-SESSION.md) | Older kickoff (may lag) |
 | [PHASE1-CLOSEOUT.md](./PHASE1-CLOSEOUT.md) | Phase 1 closeout bridge |
 | [PHASE1-STATUS.md](./PHASE1-STATUS.md) | Short status board |
 | [riscv-param-extraction/AGENTS.md](./riscv-param-extraction/AGENTS.md) | Prototype package rules |
@@ -81,7 +95,9 @@ Honest pilot claim: completed machine.adoc with **model split** because gpt-4o o
 - Artifact A second model is **gpt-4o-mini** (not full gpt-4o); mini **underperforms** Claude on recall (honest ablation).  
 - Pilot used two OpenAI models on machine.adoc (TPM).  
 - Artifact B drafts are **DRAFT** — not unsolicited UDB merges.  
-- Apply to Part II only after A+B evidence (plan: Jul 31–Aug 2).
+- Challenge `results/curated/` are **quote-grounded reference results** for CI; live multi-model API matrices are optional under `challenge/results/live/`.  
+- Do **not** claim challenge-scale scores beat Spring corpus recall on equal footing.  
+- Apply to Part II target **Jul 31** (hard stop Aug 2; official ~Aug 5).
 
 ---
 

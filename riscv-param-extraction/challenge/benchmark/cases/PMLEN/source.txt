@@ -1,0 +1,1 @@
+The number of high-order bits of an address that are masked by the pointer masking facility is implementation-defined.

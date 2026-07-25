@@ -1,0 +1,1 @@
+The MXL field indicates the effective XLEN in M-mode, a constant termed MXLEN. MXLEN is 32 or 64.
