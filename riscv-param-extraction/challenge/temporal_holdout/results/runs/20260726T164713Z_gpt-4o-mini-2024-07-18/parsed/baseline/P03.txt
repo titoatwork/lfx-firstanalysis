@@ -1,0 +1,42 @@
+```yaml
+- $schema: param_schema.json#
+  kind: parameter
+  name: SATP_MODE
+  long_name: Supervisor Address Translation Mode
+  description: |
+    The MODE field in the `satp` register specifies the address translation and protection mode. 
+    When SXLEN=64, the valid settings for MODE are Bare, Sv39, Sv48, and Sv57. 
+    Implementations are not required to support all MODE settings, and writing an unsupported MODE has no effect.
+  definedBy: extension: { name: S }
+  schema: { type: string }
+
+- $schema: param_schema.json#
+  kind: parameter
+  name: SATP_MODE_BARE
+  long_name: Bare Mode
+  description: |
+    In Bare mode, supervisor virtual addresses are equal to supervisor physical addresses, 
+    and there is no additional memory protection. To select Bare mode, software must write 
+    zero to the remaining fields of `satp`. Attempting to select Bare mode with a nonzero 
+    pattern in the remaining fields has an unspecified effect.
+  definedBy: extension: { name: S }
+  schema: { type: boolean }
+```
+
+```json
+{
+  "eval": true,
+  "items": [
+    {
+      "name": "SATP_MODE",
+      "class": "NORM_CSR_RW",
+      "quote": "Implementations are not required to support all MODE settings, and if `satp` is written with an unsupported MODE, the entire write has no effect."
+    },
+    {
+      "name": "SATP_MODE_BARE",
+      "class": "NORM_CSR_RW",
+      "quote": "To select MODE=Bare, software must write zero to the remaining fields of `satp`."
+    }
+  ]
+}
+```

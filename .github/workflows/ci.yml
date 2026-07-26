@@ -39,6 +39,12 @@ jobs:
       - name: Known-param benchmark (n=15, caveat-first)
         run: python challenge/benchmark/scripts/score_recall.py
 
+      - name: Temporal holdout unit tests
+        run: python challenge/temporal_holdout/tests/test_holdout.py -v
+
+      - name: Temporal holdout leakage gate (fail-closed)
+        run: python challenge/temporal_holdout/scripts/leak_scan.py
+
       - name: Export unit tests
         run: python -m unittest discover -s tests -v
 

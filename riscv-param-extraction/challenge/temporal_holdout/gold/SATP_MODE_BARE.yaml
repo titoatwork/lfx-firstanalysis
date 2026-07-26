@@ -1,0 +1,5 @@
+kind: parameter
+name: SATP_MODE_BARE
+class: NORM_CSR_WARL
+schema:
+  type: boolean

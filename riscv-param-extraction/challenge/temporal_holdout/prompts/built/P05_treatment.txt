@@ -1,0 +1,392 @@
+You extract architectural parameters from RISC-V ISA Manual excerpts for the
+RISC-V Unified Database (UDB).
+
+OPTIONALITY TRIGGERS (emit a parameter only if text supports an implementation choice):
+  may, might, should, optional, optionally,
+  implementation-defined, implementation-specific,
+  WARL, WLRL (when the legal value set is implementation-defined)
+
+NOT PARAMETERS:
+  - Fixed architectural conventions ("by convention", mandatory encodings)
+  - Normative shall/must that leave no software-observable choice
+  - Software/compiler advice that does not configure hardware
+  - Content not present in the provided SOURCE (closed world; context is assist only)
+
+ANTI-HALLUCINATION
+1. Every parameter needs a verbatim quote from SOURCE (preferred) or from the
+   CSR/FIELD CONTEXT block if provided.
+2. Returning ZERO parameters is valid when there is no implementation choice.
+3. Prefer independent parameters; do not invent names not justified by text.
+4. If value space is unspecified, use a minimal schema; do not invent enums.
+
+OUTPUT FORMAT — UDB parameter documents only (must validate against param_schema):
+Emit zero or more YAML documents. Each document MUST use ONLY these fields
+(do NOT add a class field — UDB schema forbids additional properties):
+  $schema: param_schema.json#
+  kind: parameter
+  name: UPPER_SNAKE_CASE
+  long_name: short title
+  description: |
+    ...
+  definedBy:   # MUST match the case guidance below; do NOT default everything to Sm
+    ...
+  schema: { type: integer|boolean|string|array|... }
+
+definedBy MUST be case-correct. Valid shapes include:
+  extension: { name: Sm }          # machine-mode
+  extension: { name: S }           # supervisor
+  extension: { name: Zvl32b }      # vector (e.g. SEW-related)
+  param: { name: NUM_PMP_ENTRIES, greaterThan: 0 }   # gated by another param
+
+CASE-SPECIFIC definedBy GUIDANCE (use this for parameters you emit from THIS source):
+Machine-mode endianness: definedBy extension name Sm.
+
+EVALUATION METADATA (separate from UDB docs — not validated as parameters):
+After all parameter YAML docs, emit ONE JSON object:
+  {
+    "eval": true,
+    "items": [
+      {
+        "name": "PARAM_NAME",
+        "class": "NORM_CSR_WARL|NORM_CSR_RW|NORM_DIRECT|OTHER",
+        "quote": "verbatim quote from SOURCE or context"
+      }
+    ]
+  }
+Include one items[] entry per emitted parameter (same name). If zero parameters,
+emit: {"eval": true, "items": []}
+
+SOURCE:
+====
+The SUM (permit Supervisor User Memory access) bit modifies the
+privilege with which S-mode loads and stores access virtual memory.
+[#norm:mstatus_sum_op]#When SUM=0, S-mode memory accesses to pages that are accessible by U-mode
+(U=1 in <<sv32pte>>) will fault. When SUM=1, these accesses are permitted.#
+[#norm:mstatus_sum_op_no-vm]#SUM has no effect when page-based virtual memory is not in effect.#
+Note that, [#norm:mstatus_sum_op_mprv_mpp]#while SUM is ordinarily ignored when not
+executing in S-mode, it _is_ in effect when MPRV=1 and MPP=S.#
+[#norm:mstatus_sum_rdonly0]#SUM is read-only 0 if S-mode is not supported or if `satp`.MODE is read-only 0.#
+
+[[norm:mstatus_mxr_sum_op_acc_fault]]
+The MXR and SUM mechanisms only affect the interpretation of permissions
+encoded in page-table entries. In particular, they have no impact on
+whether access-fault exceptions are raised due to PMAs or PMP.
+
+===== Endianness Control in `mstatus` and `mstatush` Registers
+
+[#norm:mstatus_mstatush_xbe_warl]#The MBE, SBE, and UBE bits in `mstatus` and `mstatush` are *WARL* fields# that
+control the endianness of memory accesses other than instruction fetches.
+[#norm:endianness_inst_fetch_little]#Instruction fetches are always little-endian.#
+
+[[norm:mstatus_mbe_op]]
+MBE controls whether non-instruction-fetch memory accesses made from
+M-mode (assuming `mstatus`.MPRV=0) are little-endian (MBE=0) or
+big-endian (MBE=1).
+
+[[norm:mstatus_sbe_op]]
+If S-mode is not supported, SBE is read-only 0. Otherwise, SBE controls
+whether explicit load and store memory accesses made from S-mode are
+little-endian (SBE=0) or big-endian (SBE=1).
+
+[[norm:mstatus_ube_op]]
+If U-mode is not supported, UBE is read-only 0. Otherwise, UBE controls
+whether explicit load and store memory accesses made from U-mode are
+little-endian (UBE=0) or big-endian (UBE=1).
+
+[#norm:mstatus_sbe_implicit]#For _implicit_ accesses to supervisor-level memory management data
+structures, such as page tables, endianness is always controlled by SBE.#
+[#norm:mstatus_sbe_change_fence]#Since changing SBE alters the implementation’s interpretation of these
+data structures, if any such data structures remain in use across a
+change to SBE, M-mode software must follow such a change to SBE by
+executing an SFENCE.VMA instruction with _rs1_=`x0` and _rs2_=`x0`.#
+
+[NOTE]
+====
+Only in contrived scenarios will a given memory-management data
+structure be interpreted as both little-endian and big-endian. In
+practice, SBE will only be changed at runtime on world switches, in
+which case neither the old nor new memory-management data structure will
+be reinterpreted in a different endianness. In this case, no additional
+SFENCE.VMA is necessary, beyond what would ordinarily be required for a
+world switch.
+====
+
+[#norm:mstatus_sbe_rocopy]#If S-mode is supported, an implementation may make SBE be a read-only
+
+
+CSR/FIELD CONTEXT (leakage-audited; may be incomplete):
+-----
+# source_relpath: spec/std/isa/csr/mstatus.yaml
+# source_sha256_16: 37fcd26222f4b541
+# CSR context (scrubbed) — mstatus
+# Parameter names and gold schema values removed for leakage control.
+CSR long_name: Machine Status
+CSR description:
+The mstatus register tracks and controls the hart's current operating state.
+address: 768
+writable: True
+priv_mode: M
+length: [PARAM]
+fields:
+  - field: SD
+    description: |
+      Read-only bit that summarizes whether either the FS, XS, or VS
+      fields signal the presence of some dirty state.
+  - field: MDT
+    description: |
+      Written to 1 when entering M-mode from an exception/interrupt.
+      When returning via an MRET instruction, the bit is written to 0.
+      On reset in set to 1, and software should write it to 0 when boot sequence is done.
+      When mstatus.MDT=1, direct write by CSR instruction cannot set mstatus.MIE to 1, if not written together.
+  - field: MPELP
+    description: |
+      Holds the previous Expected Landing Pad (`ELP`) state when entering
+      M-mode from a trap, and is restored to `ELP` on `MRET`.
+      
+      Defined by the Zicfilp extension.
+      
+      Encoded as:
+      
+      * 0 - `NO_LP_EXPECTED` - no landing pad instruction expected.
+      * 1 - `LP_EXPECTED` - a landing pad instruction is expected.
+  - field: MPV
+    description: |
+      Written with the prior virtualization mode when entering M-mode from an exception/interrupt.
+      When returning via an MRET instruction, the virtualization mode becomes the value of MPV unless MPP=3, in which case the virtualization mode is always 0.
+      Can also be written by software.
+  - field: GVA
+    description: |
+      When a trap is taken and a guest virtual address is written into mtval, GVA is set.
+      When a trap is taken and a guest virtual address is written into mtval, GVA is cleared.
+  - field: MBE
+    description: |
+      Controls the endianness of data M-mode (0 = little, 1 = big).
+      Instructions are always little endian, regardless of the data setting.
+      
+      [when,"[PARAM] == little"]
+      Since the CPU does not support big endian, this is hardwired to 0.
+      
+      [when,"[PARAM] == big"]
+      Since the CPU does not support little endian, this is hardwired to 1.
+    type_hint: return ([PARAM] == "dynamic") ? CsrFieldType::RW : CsrFieldType::RO;
+
+  - field: SBE
+    description: |
+      Controls the endianness of S-mode (0 = little, 1 = big).
+      Instructions are always little endian, regardless of the data setting.
+      
+      [when,"[PARAM] == little"]
+      Since the CPU does not support big endian, this is hardwired to 0.
+      
+      [when,"[PARAM] == big"]
+      Since the CPU does not support little endian, this is hardwired to 1.
+    type_hint: return ([PARAM] == "dynamic") ? CsrFieldType::RW : CsrFieldType::RO;
+
+  - field: SXL
+    description: |
+      Sets the effective XLEN for S-mode (0 = 32-bit, 1 = 64-bit, 2 = 128-bit [reserved]).
+      
+      [when,"[PARAM]==32"]
+      Since the CPU only supports [PARAM]==32, this is hardwired to 1.
+      
+      [when,"[PARAM]==64"]
+      Since the CPU only supports [PARAM]==64, this is hardwired to 2.
+      
+      [when,"[PARAM]=3264"]
+      --
+      It is not valid to have [PARAM] less than [PARAM].
+      
+      It is UNDEFINED_LEGAL what will happen if a software sets `mstatus.SXL` to be greater than `mstatus.UXL`.
+      
+      It is UNDEFINED_LEGAL to set the MSB of SXL.
+      --
+    type_hint: return (implemented?(ExtensionName::S) && $array_size([PARAM]) > 1) ? CsrFieldType::RW : CsrFieldType::RO;
+
+  - field: UXL
+    description: |
+      U-mode XLEN.
+      
+      Sets the effective XLEN for U-mode (1 = 32-bit, 2 = 64-bit, 3 = 128-bit [reserved]).
+      
+      [when,"[PARAM] == 32"]
+      Since the CPU only supports [PARAM]==32, this is hardwired to 1.
+      
+      [when,"[PARAM] == 64"]
+      Since the CPU only supports [PARAM]==64, this is hardwired to 2.
+      
+      
+      [when,"[PARAM] == 3264"]
+      --
+      It is not valid to have [PARAM] less than [PARAM].
+      
+      It is UNDEFINED_LEGAL what will happen if a software sets `mstatus.SXL` to be greater than `mstatus.UXL`.
+      
+      It is UNDEFINED_LEGAL to set the MSB of UXL.
+      --
+    type_hint: return ($array_size([PARAM]) > 1) ? CsrFieldType::RW : CsrFieldType::RO;
+
+  - field: SPELP
+    description: |
+      Holds the previous Expected Landing Pad (`ELP`) state when entering
+      (H)S-mode from a trap, and is restored to `ELP` on `SRET`.
+      
+      Defined by the Zicfilp extension.
+      
+      Encoded as:
+      
+      * 0 - `NO_LP_EXPECTED` - no landing pad instruction expected.
+      * 1 - `LP_EXPECTED` - a landing pad instruction is expected.
+  - field: TSR
+    description: |
+      When 1, attempts to execute the `sret` instruction while executing in HS/S-mode
+      will raise an Illegal Instruction exception.
+      
+      [when,"ext?(:H)"]
+      Does not affect the behavior of `sret` in VS_mode (see `hstatus.VTSR`).
+  - field: TW
+    description: |
+      When 1, the WFI instruction will raise an Illegal Instruction trap after an
+      implementaion-defined wait period when executed in a mode other than M-mode.
+      
+      When 0, the `wfi` instruction is permitted to wait forever in (H)S-mode but must
+      trap after an implementation-defined wait period in U-mode.
+  - field: TVM
+    description: |
+      When 1, an `Illegal Instruction` trap occurs when
+      
+      * writing the `satp` CSR, executing an `sfence.vma`, or executing an `sinval.vma` while in (H)S-mode (but not VS-mode)
+      * writing the `hgtap` CSR, executing an `hfence.gvma`, or executing an `hinval.gvma` while in HS-mode
+      
+      Notably, `mstatus.TVM` does *not* cause
+      
+      *`hfence.vvma`, `sfence.w.inval`, or `sfence.inval.ir` to trap.
+      * Any additional traps in VS-mode (controlled via `hstatus.VTVM` instead).
+  - field: MXR
+    description: |
+      When 1, loads from pages marked readable *or executable* are allowed.
+      When 0, loads from pages marked executable raise a Page Fault exception.
+  - field: SUM
+    description: |
+      When 0, an S-mode read or an M-mode read with mstatus.MPRV=1 and mstatus.MPP=01
+      to a 'U' (user) page will cause an ILLEGAL INSTRUCTION exception.
+    type_hint: # only writable if there is some translation supported
+if (has_virt_mem?()) {
+  return CsrFieldType::RW;
+} else {
+  return CsrFieldType::RO;
+}
+
+  - field: MPRV
+    description: |
+      When 1, loads and stores behave as if the current virtualization mode:privilege level was
+      `mstatus.MPV`:`mstatus.MPP`.
+      
+      `mstatus.MPRV` is cleared on any exception return (`mret` or `sret` instruction, regardless of the trap handler privilege mode).
+    type_hint: return (CSR[misa].U == 1'b1) ? CsrFieldType::RWH : CsrFieldType::RO;
+
+  - field: XS
+    description: |
+      Summarizes the current state of any custom extension state.
+      Either 0 - Off, 1 - Initial, 2 - Clean, 3 - Dirty.
+      Since there are no custom extensions in the base spec, this field is read-only 0.
+  - field: FS
+    description: |
+      When 0, floating point instructions (from F and D extensions) are disabled,
+      and cause `ILLEGAL INSTRUCTION` exceptions.
+      When a floating point register, or the fCSR register is written, FS obtains the value 3.
+      Values 1 and 2 are valid write values for software, but are not interpreted by hardware
+      other than to possibly enable a previously-disabled floating point unit.
+  - field: MPP
+    description: |
+      Written by hardware in two cases:
+      
+      * Written with the prior nominal privilege level when entering M-mode from an exception/interrupt.
+      * Written with 0 when executing an `mret` instruction to return from an exception in M-mode.
+      
+      Can also be written by software without immediate side-effect.
+      
+      Affects execution in two cases:
+      
+      * On a return from an exception from M-mode, the machine will
+      enter the privilege level stored in MPP before clearing the field.
+      * When `mstatus.MPRV` is set, loads and stores behave as if the current privilege level were MPP.
+  - field: VS
+    description: |
+      When 0, vector instructions (from the V extension) are disabled, and cause ILLEGAL INSTRUCTION exceptions.
+      When a vector register or vector CSR is written, VS obtains the value 3.
+      Values 1 and 2 are valid write values for software, but are not interpreted by hardware
+      other than to possibly enable a previously-disabled vector unit.
+  - field: SPP
+    description: |
+      Written by hardware in two cases:
+      
+      * Written with the prior nominal privilege level when entering (H)S-mode from an exception/interrupt.
+      * Written with 0 when executing an `sret` instruction to return from an exception in (H)S-mode or (unlikely) M-mode.
+      
+      Can also be written by software without immediate side-effect.
+      
+      Affects execution in one case:
+      
+      * On a return from an exception using the `sret` instruction in (H)S-mode or (unlikely) M-mode,
+        the machine will enter the privilege level stored in SPP before clearing the field.
+      
+      Notably, `mstatus.SPP` does not affect exception return in VS-mode (see `vsstatus.SPP`).
+  - field: MPIE
+    description: |
+      Written by hardware in two cases:
+      
+      * Written with prior value of `mstatus.MIE` when entering M-mode from an exception/interrupt.
+      * Written with the value 1 when returning from an exception in M-mode (via the `mret` instruction).
+      
+      Can also be written by software without immediate side effect.
+      
+      Other than serving as a record of nested traps as described above, `mstatus.MPIE` does not affect execution.
+  - field: UBE
+    description: |
+      Controls the endianness of U-mode (0 = little, 1 = big).
+      Instructions are always little endian, regardless of the data setting.
+      
+      [when,"[PARAM] == 'little'"]
+      Since the CPU does not support big endian in U-mode, this is hardwired to 0.
+      
+      [when,"[PARAM] == 'big'"]
+      Since the CPU does not support little endian in U-mode, this is hardwired to 1.
+    type_hint: return ([PARAM] == "dynamic") ? CsrFieldType::RW : CsrFieldType::RO;
+
+  - field: SPIE
+    description: |
+      Written by hardware in two cases:
+      
+      * Written with prior value of `mstatus.SIE` when entering (H)S-mode from an exception/interrupt.
+      * Written with the value 1 when returning from an exception via the `sret` instruction in (H)S-mode or (unlikely) M-mode.
+      
+      Can also be written by software without immediate side effect.
+      
+      Other than serving as a record of nested traps as described above, `mstatus.SPIE` does not affect execution.
+    type_hint: return (CSR[misa].S == 1'b1) ? CsrFieldType::RWH : CsrFieldType::RO;
+
+  - field: MIE
+    description: |
+      Written by hardware in two cases:
+      
+      * Written with the value 0 when entering M-mode from an exception/interrupt.
+      * Written with the prior value of `mstatus.MPIE` when returning from an exception in M-mode (via `mret`).
+      
+      Affects execution by:
+      
+      * When 0, all interrupts are disabled when the current privilege level is M.
+      * When 1, interrupts that are not otherwise disabled with a field in `mie` are enabled.
+  - field: SIE
+    description: |
+      Written by hardware in two cases:
+      
+      * Written with the value 0 when entering (H)S-mode from an exception/interrupt.
+      * Written with the prior value of `mstatus.SPIE` when returning from an exception via `sret` in (H)S-mode or (unlikely) M-mode.
+      
+      Affects execution by:
+      
+      * When 0, all (H)S-mode interrupts are disabled when the current privilege level is (H)S (M-mode interrupts are still enabled).
+      * When 1, (H)S-mode interrupts that are not otherwise disabled with a field in `sie` are enabled.
+    type_hint: return (CSR[misa].S == 1'b1) ? CsrFieldType::RWH : CsrFieldType::RO;
+-----
+

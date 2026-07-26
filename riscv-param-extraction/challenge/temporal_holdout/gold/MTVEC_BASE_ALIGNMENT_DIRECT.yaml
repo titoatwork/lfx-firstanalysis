@@ -1,0 +1,5 @@
+kind: parameter
+name: MTVEC_BASE_ALIGNMENT_DIRECT
+class: NORM_CSR_WARL
+schema:
+  type: integer

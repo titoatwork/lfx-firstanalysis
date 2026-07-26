@@ -1,0 +1,7 @@
+Source class: fixed CSR address encoding convention (negative control).
+
+By convention, the upper bits of a CSR address encode the lowest privilege
+mode that can access the CSR and whether the CSR is read-only. This mapping
+simplifies hardware decode. Implementations follow the same convention so
+software can rely on the encoding; it is not an optional architectural
+parameter.

@@ -1,0 +1,8 @@
+{
+  "case": "P04",
+  "chars": 1087,
+  "condition": "baseline",
+  "ok": true,
+  "prompt_sha256_expected": "ca0c7b262b45fc0443422b2551d77d0e546ea34318499458cda603b05f9b4fc8",
+  "status": "ok"
+}
