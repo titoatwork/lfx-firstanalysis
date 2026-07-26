@@ -1,0 +1,11 @@
+{
+  "provider": "openrouter",
+  "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+  "free_only": true,
+  "usage": {
+    "prompt_tokens": 709,
+    "completion_tokens": 871,
+    "total_tokens": 1580
+  },
+  "text_chars": 11
+}

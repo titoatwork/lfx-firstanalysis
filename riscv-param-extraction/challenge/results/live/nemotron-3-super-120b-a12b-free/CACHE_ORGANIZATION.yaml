@@ -1,0 +1,19 @@
+# Live extract: nvidia/nemotron-3-super-120b-a12b:free via OpenRouter free tier
+# Prompt: challenge/prompts/v3_schema_constrained.md · temperature 0
+# yaml-language-server: $schema=../../schema/param_schema.json
+
+$schema: param_schema.json#
+kind: parameter
+name: CACHE_ORGANIZATION
+long_name: Cache Organization
+description: |
+  The organization of a cache is implementation-specific.
+definedBy:
+  extension:
+    anyOf:
+      - name: Zicbom
+      - name: Zicbop
+      - name: Zicboz
+schema:
+  type: integer
+  minimum: 0

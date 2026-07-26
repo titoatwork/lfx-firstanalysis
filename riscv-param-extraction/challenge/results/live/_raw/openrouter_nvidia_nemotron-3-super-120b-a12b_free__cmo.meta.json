@@ -1,0 +1,11 @@
+{
+  "provider": "openrouter",
+  "model": "nvidia/nemotron-3-super-120b-a12b:free",
+  "free_only": true,
+  "usage": {
+    "prompt_tokens": 677,
+    "completion_tokens": 1330,
+    "total_tokens": 2007
+  },
+  "text_chars": 1504
+}
