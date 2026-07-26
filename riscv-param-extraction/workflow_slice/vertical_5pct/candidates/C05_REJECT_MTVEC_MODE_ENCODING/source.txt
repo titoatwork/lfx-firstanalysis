@@ -1,0 +1,18 @@
+Source file: ext/riscv-isa-manual/src/priv/machine.adoc
+Pinned UDB tree commit for schema cross-check: 2307e29b70f1a1f482da282f682062c6aa68e71d
+Subsection: Machine Trap-Vector Base-Address (mtvec) Register — MODE encoding table
+Anchor: norm:mtvec_mode_enc
+
+[[norm:mtvec_mode_enc]]
+.Encoding of mtvec MODE field.
+
+|Value |Name |Description
+|0 |Direct |All traps set pc to BASE.
+|1 |Vectored |Asynchronous interrupts set pc to BASE+4×cause.
+|≥2 |--- |Reserved
+
+When MODE=Direct, all traps into machine mode cause the pc to be set to the
+address in the BASE field. When MODE=Vectored, all synchronous exceptions into
+machine mode cause the pc to be set to the address in the BASE field, whereas
+interrupts cause the pc to be set to the address in the BASE field plus four
+times the interrupt cause number.

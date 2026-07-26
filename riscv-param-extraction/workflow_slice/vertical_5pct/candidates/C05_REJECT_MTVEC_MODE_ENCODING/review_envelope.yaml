@@ -1,0 +1,54 @@
+# Review envelope — NOT a UDB param file.
+# Hard reject: CSR field encoding / fixed ISA semantics, not an architectural parameter.
+candidate_id: C05_REJECT_MTVEC_MODE_ENCODING
+pipeline_stage: human_review_record
+
+evidence:
+  excerpt: >-
+    Encoding of mtvec MODE field. Value 0 Direct: All traps set pc to BASE.
+    Value 1 Vectored: Asynchronous interrupts set pc to BASE+4×cause.
+    Values ≥2 Reserved.
+  source_file: ext/riscv-isa-manual/src/priv/machine.adoc
+  source_commit_pin: 2307e29b70f1a1f482da282f682062c6aa68e71d
+  subsection: Machine Trap-Vector Base-Address (mtvec) Register — MODE encoding
+  anchor: norm:mtvec_mode_enc
+
+classification:
+  class: CSR_FIELD_NOT_PARAM
+  named: true
+  config_dependent: false
+  uncertainty: null
+  rationale: >
+    The MODE *encodings* (0=Direct, 1=Vectored, ≥2 reserved) are fixed by the
+    ISA. They define field semantics, not an implementation-chosen value or
+    legal-set parameter. The implementation choice is which MODE values are
+    *supported* (that is MTVEC_MODES / C03), not what 0 and 1 mean.
+
+duplicate_decision:
+  status: not_applicable
+  related_existing: MTVEC_MODES
+  rationale: >
+    If a model extracts "MODE_DIRECT_ENCODING=0" style candidates, treat as
+    false positive / field-not-parameter. Do not mark existing/new against
+    param/*.yaml; reject before export.
+
+proposed:
+  name: null
+  definedBy: null
+  note: No UDB name; rejection is the decision.
+
+schema_validation:
+  review_envelope_is_udb_valid: false
+  clean_param_yaml: null
+  clean_param_valid: null
+  reason: no export on reject
+
+reviewer:
+  decision: reject
+  reject_reason: csr_field_not_architectural_parameter
+  decision_date: "2026-07-27"
+  unresolved_questions: []
+  notes: >
+    This is more valuable than five easy successes: it documents the project
+    judgment line between CSR field encoding tables and parameters. No param.yaml
+    is intentionally absent.

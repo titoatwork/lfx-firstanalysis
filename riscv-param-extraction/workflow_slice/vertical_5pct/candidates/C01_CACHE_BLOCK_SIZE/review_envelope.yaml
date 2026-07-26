@@ -1,0 +1,51 @@
+# Review envelope — NOT a UDB param file. Do not merge this into spec/std/isa/param/.
+candidate_id: C01_CACHE_BLOCK_SIZE
+pipeline_stage: human_review_record
+
+evidence:
+  excerpt: >-
+    The capacity and organization of a cache and the size of a cache block are both
+    implementation-specific, and the execution environment provides software a
+    means to discover information about the caches and cache blocks in a system.
+  source_file: ext/riscv-isa-manual/src/unpriv/cmo.adoc
+  local_mirror: challenge/snippets/cmo_cache_block.txt
+  source_commit_pin: 2307e29b70f1a1f482da282f682062c6aa68e71d
+  subsection: Memory and Caches / Cache Management Operations
+  anchor: norm:cache_block_size
+
+classification:
+  class: NORM_DIRECT
+  named: false
+  config_dependent: false
+  uncertainty: null
+  rationale: >
+    Spec explicitly delegates cache-block size to the implementation
+    (implementation-specific). Uniformity shall-constraint is a constraint,
+    not a second free parameter.
+
+duplicate_decision:
+  status: existing
+  udb_name: CACHE_BLOCK_SIZE
+  udb_path: spec/std/isa/param/CACHE_BLOCK_SIZE.yaml
+  rationale: Matches existing curated parameter by meaning and name.
+
+proposed:
+  name: CACHE_BLOCK_SIZE
+  definedBy:
+    extension:
+      anyOf:
+        - name: Zicbom
+        - name: Zicbop
+        - name: Zicboz
+  note: definedBy is multi-extension anyOf, not single subsection owner.
+
+schema_validation:
+  review_envelope_is_udb_valid: false
+  clean_param_yaml: param.yaml
+  clean_param_valid: true  # checked by validate_slice.py
+
+reviewer:
+  decision: approve_export
+  decision_date: "2026-07-27"
+  unresolved_questions: []
+  notes: Export only param.yaml; keep envelope out of UDB tree.

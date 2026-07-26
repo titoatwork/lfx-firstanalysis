@@ -1,0 +1,48 @@
+# Review envelope — NOT a UDB param file.
+candidate_id: C02_NUM_PMP_ENTRIES
+pipeline_stage: human_review_record
+
+evidence:
+  excerpt: >-
+    An implementation may have zero, sixteen, or sixty-four physical memory
+    protection entries. The number of implemented PMP entries is
+    implementation-defined within the architectural constraints.
+  source_file: ext/riscv-isa-manual/src/priv/machine.adoc
+  source_commit_pin: 2307e29b70f1a1f482da282f682062c6aa68e71d
+  subsection: Physical Memory Protection
+  anchor: null
+
+classification:
+  class: NORM_DIRECT
+  named: false
+  config_dependent: false
+  uncertainty: low
+  rationale: >
+    Count is explicitly implementation-defined; legal values constrained to
+    0/16/64 by architecture appearance rules.
+
+duplicate_decision:
+  status: existing
+  udb_name: NUM_PMP_ENTRIES
+  udb_path: spec/std/isa/param/NUM_PMP_ENTRIES.yaml
+  rationale: Direct match to curated NUM_PMP_ENTRIES.
+
+proposed:
+  name: NUM_PMP_ENTRIES
+  definedBy:
+    extension:
+      name: Sm
+
+schema_validation:
+  review_envelope_is_udb_valid: false
+  clean_param_yaml: param.yaml
+  clean_param_valid: true
+
+reviewer:
+  decision: approve_export
+  decision_date: "2026-07-27"
+  unresolved_questions:
+    - >
+      UDB also models NUM_USABLE_PMP_ENTRIES separately; this candidate is only
+      the implemented-entry count, not usable count.
+  notes: Do not collapse usable-count into this parameter without separate evidence.

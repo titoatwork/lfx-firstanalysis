@@ -1,0 +1,8 @@
+Source file: ext/riscv-isa-manual/src/priv/machine.adoc (PMP section)
+Pinned UDB tree commit for schema cross-check: 2307e29b70f1a1f482da282f682062c6aa68e71d
+Subsection: Physical Memory Protection
+Anchor: (none recorded in cleaned extract)
+
+An implementation may have zero, sixteen, or sixty-four physical memory
+protection entries. The number of implemented PMP entries is
+implementation-defined within the architectural constraints.

@@ -1,0 +1,14 @@
+Source file: ext/riscv-isa-manual/src/unpriv/cmo.adoc (local mirror: challenge/snippets/cmo_cache_block.txt)
+Pinned UDB tree commit for schema cross-check: 2307e29b70f1a1f482da282f682062c6aa68e71d
+Subsection: Memory and Caches / Cache Management Operations
+Anchor (when present in raw manual): norm:cache_block_size
+
+Caches organize copies of data into cache blocks, each of which represents a
+contiguous, naturally aligned power-of-two (or NAPOT) range of memory
+locations. A cache block is identified by any of the physical addresses
+corresponding to the underlying memory locations. The capacity and
+organization of a cache and the size of a cache block are both
+implementation-specific, and the execution environment provides software a
+means to discover information about the caches and cache blocks in a system.
+In the initial set of CMO extensions, the size of a cache block shall be
+uniform throughout the system.

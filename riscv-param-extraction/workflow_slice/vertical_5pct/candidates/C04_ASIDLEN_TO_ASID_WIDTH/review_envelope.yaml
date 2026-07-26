@@ -1,0 +1,58 @@
+# Review envelope — NOT a UDB param file.
+# WARL / rename-dedup exercise: do not invent a second parameter named ASIDLEN.
+candidate_id: C04_ASIDLEN_TO_ASID_WIDTH
+pipeline_stage: human_review_record
+
+evidence:
+  excerpt: >-
+    The number of ASID bits is UNSPECIFIED and may be zero. The number of
+    implemented ASID bits, termed ASIDLEN, is also implementation-defined.
+    The maximal value of ASIDLEN, termed ASIDMAX, is 9 for Sv32 or 16 for
+    Sv39, Sv48, and Sv57.
+  source_file: ext/riscv-isa-manual/src/priv/supervisor.adoc
+  source_commit_pin: 2307e29b70f1a1f482da282f682062c6aa68e71d
+  subsection: Supervisor Address Translation and Protection (satp) Register
+  anchor: norm:asidlen
+
+classification:
+  class: NORM_CSR_WARL
+  named: true
+  config_dependent: true
+  uncertainty: null
+  rationale: >
+    Spec names the quantity ASIDLEN; legal width is implementation-chosen
+    within ASIDMAX. This is a width/parameter case, not a free-standing
+    second concept from ASIDMAX alone.
+
+duplicate_decision:
+  status: existing
+  proposed_extract_name: ASIDLEN
+  udb_name: ASID_WIDTH
+  udb_path: spec/std/isa/param/ASID_WIDTH.yaml
+  alignment: rename_alias
+  rationale: >
+    Compare-by-name alone would miss the match (ASIDLEN vs ASID_WIDTH).
+    Compare-by-meaning maps to existing ASID_WIDTH. Must not emit status:new
+    under name ASIDLEN. Demonstrates why skill "compare by name and meaning"
+    needs explicit alias/alignment rules (Part I one-to-many groups).
+
+proposed:
+  name: ASID_WIDTH
+  definedBy:
+    extension:
+      name: S
+  note: Prefer UDB existing name; record ASIDLEN as alias in review only.
+
+schema_validation:
+  review_envelope_is_udb_valid: false
+  clean_param_yaml: param.yaml
+  clean_param_valid: true
+
+reviewer:
+  decision: approve_export
+  decision_date: "2026-07-27"
+  unresolved_questions:
+    - Whether ASIDMAX should remain only a schema bound vs a separate param.
+  notes: >
+    Dedup decision is the educational load of this candidate. Export uses
+    ASID_WIDTH, never a new ASIDLEN.yaml.

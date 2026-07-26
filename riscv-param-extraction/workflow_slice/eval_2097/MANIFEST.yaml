@@ -1,0 +1,136 @@
+# Frozen adversarial evaluation pack for upstream skill PR #2097
+# (docs: add extract-parameters-from-subsection agent skill)
+#
+# Mode: rule-level adversarial fixtures — no paid model required.
+# Skill under review: uditjainstjis/riscv-unified-db @ feat/extract-parameters-skill
+# Skill file: .agents/skills/extract-parameters-from-subsection/SKILL.md
+
+pack_id: eval-2097-v1
+target_pr: https://github.com/riscv/riscv-unified-db/pull/2097
+target_issue: https://github.com/riscv/riscv-unified-db/issues/2096
+evaluation_mode: rule_adversarial
+paid_model_required: false
+
+checks:
+  - evidence_excerpt_present
+  - source_anchor_optional_but_recorded
+  - duplicate_status_existing_or_new
+  - definedBy_shape
+  - schema_validity_udb_param  # clean param only — NOT the skill's parameters: wrapper
+  - false_positive_on_negatives
+  - warl_not_always_parameter
+  - review_envelope_vs_udb_yaml_separation
+
+positives:
+  - id: POS_DIRECT_CACHE_BLOCK
+    class: NORM_DIRECT
+    gold_name: CACHE_BLOCK_SIZE
+    expect_signal: implementation-specific
+    expect_status: existing
+    path: cases/positives/POS_DIRECT_CACHE_BLOCK/
+
+  - id: POS_DIRECT_NUM_PMP
+    class: NORM_DIRECT
+    gold_name: NUM_PMP_ENTRIES
+    expect_signal: implementation-defined count
+    expect_status: existing
+    path: cases/positives/POS_DIRECT_NUM_PMP/
+
+  - id: POS_CSR_RW_MTVEC_ACCESS
+    class: NORM_CSR_RW
+    gold_name: MTVEC_ACCESS
+    expect_signal: may be read-only / writable
+    expect_status: existing
+    path: cases/positives/POS_CSR_RW_MTVEC_ACCESS/
+
+  - id: POS_WARL_MTVEC_MODES
+    class: NORM_CSR_WARL
+    gold_name: MTVEC_MODES
+    expect_signal: WARL legal set for MODE
+    expect_status: existing
+    path: cases/positives/POS_WARL_MTVEC_MODES/
+    notes: >
+      True WARL parameter: legal MODE set is implementation-chosen.
+      Skill correctly flags WARL as signal — but must not treat EVERY WARL
+      mention as a new free-standing parameter without checking if the
+      legal set is already fixed by the ISA.
+
+  - id: POS_WARL_ASID_WIDTH
+    class: NORM_CSR_WARL
+    gold_name: ASID_WIDTH
+    expect_signal: UNSPECIFIED / ASIDLEN
+    expect_status: existing
+    path: cases/positives/POS_WARL_ASID_WIDTH/
+
+negatives:
+  - id: NEG_FIXED_ENCODING
+    kind: fixed_csr_encoding
+    expect_params: 0
+    path: cases/negatives/NEG_FIXED_ENCODING/
+    skill_risk: >
+      "by convention" / fixed address mapping must not become parameters
+      even if technical.
+
+  - id: NEG_SOFTWARE_ADVICE
+    kind: non_normative_or_software_advice
+    expect_params: 0
+    path: cases/negatives/NEG_SOFTWARE_ADVICE/
+    skill_risk: >
+      "should"/"may" in software/compiler advice — skill contextual
+      optionally/may rules can over-fire without a hardware config choice.
+
+  - id: NEG_SHALL_NO_DELEGATION
+    kind: normative_no_implementation_choice
+    expect_params: 0
+    path: cases/negatives/NEG_SHALL_NO_DELEGATION/
+    skill_risk: >
+      Pure shall/must constraints without implementation-defined choice
+      are not parameters.
+
+  - id: NEG_WARL_FIXED_LEGAL_SET
+    kind: warl_word_but_isa_fixed
+    expect_params: 0
+    path: cases/negatives/NEG_WARL_FIXED_LEGAL_SET/
+    skill_risk: >
+      Skill lists WARL under "almost always name a parameter." If WARL is
+      only used to describe a field whose legal values are fully fixed by
+      the ISA text (no implementation choice of the set), emitting a
+      parameter is a false positive / misclassification risk — central
+      Part II WARL problem.
+
+skill_structural_critiques:
+  - id: WRAPPER_NOT_UDB_FILE
+    severity: high
+    detail: >
+      Output shape uses top-level parameters: list plus excerpt/source/
+      classification/status. That is a review envelope, not a file that
+      validates as param_schema.json (no kind/$schema/long_name/description
+      required fields; wrapper key is an additionalProperty).
+
+  - id: WARL_ALWAYS_POSITIVE
+    severity: high
+    detail: >
+      Skill ranks WARL as a strong almost-always-positive signal without
+      requiring that the *legal value set* be implementation-chosen.
+      WARL misclassification is a known Spring/Part II failure mode.
+
+  - id: COMPARE_BY_NAME_AND_MEANING
+    severity: medium
+    detail: >
+      "Compare by name and by meaning" for existing/new is underspecified.
+      Renames and conceptual duplicates need explicit alias/alignment rules
+      (Part I used curated one-to-many groups).
+
+  - id: DEFINEDBY_FROM_SUBSECTION
+    severity: medium
+    detail: >
+      Inferring definedBy solely from the subsection's owning extension
+      is unsafe when a parameter is gated by multiple extensions or by
+      another parameter (e.g. CMO anyOf; PMP usable count gated by NUM_PMP).
+
+  - id: NO_NEGATIVE_CONTROLS_OR_VALIDATOR
+    severity: high
+    detail: >
+      Skill provides worked examples but no adversarial negatives, no
+      automated schema check on emitted candidates, and no required
+      separation of review metadata from mergeable UDB YAML.

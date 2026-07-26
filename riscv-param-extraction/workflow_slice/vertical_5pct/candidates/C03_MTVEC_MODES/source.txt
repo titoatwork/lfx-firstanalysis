@@ -1,0 +1,26 @@
+Source file: ext/riscv-isa-manual/src/priv/machine.adoc
+Pinned UDB tree commit for schema cross-check: 2307e29b70f1a1f482da282f682062c6aa68e71d
+Subsection: Machine Trap-Vector Base-Address (mtvec) Register
+Anchors: norm:mtvec_sz_warl_acc, norm:mtvec_mode_enc, norm:mtvec_mode_direct_op
+
+==== Machine Trap-Vector Base-Address (`mtvec`) Register
+
+[#norm:mtvec_sz_warl_acc]#The `mtvec` register is an MXLEN-bit *WARL* read/write register that holds
+trap vector configuration, consisting of a vector base address (BASE)
+and a vector mode (MODE).#
+
+[#norm:mtvec_mandatory]#The `mtvec` register must always be implemented#, but
+[#norm:mtvec_rdonly]#can contain a read-only value.#
+If `mtvec` is writable, the set of values the register
+may hold can vary by implementation.
+
+[[norm:mtvec_mode_enc]]
+.Encoding of mtvec MODE field.
+|Value |Name |Description
+|0 |Direct |All traps set pc to BASE.
+|1 |Vectored |Asynchronous interrupts set pc to BASE+4×cause.
+|≥2 |--- |Reserved
+
+The encoding of the MODE field is shown above.
+[#norm:mtvec_mode_direct_op]#When MODE=Direct, all traps into
+machine mode cause the `pc` to be set to the address in the BASE field.#

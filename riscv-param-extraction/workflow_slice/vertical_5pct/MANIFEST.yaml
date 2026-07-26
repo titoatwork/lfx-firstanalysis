@@ -1,0 +1,62 @@
+# 5% vertical slice: evidence → review envelope → (optional) clean UDB YAML
+# Frozen decisions — another contributor must reproduce without trusting us.
+# No bulk PR; no paid model required for this package.
+
+slice_id: vertical-5pct-v1
+source_udb_commit: 2307e29b70f1a1f482da282f682062c6aa68e71d
+source_udb_note: local riscv-unified-db tip used for schema/param gold cross-check
+paid_model_required: false
+
+pipeline:
+  - spec_evidence
+  - candidate
+  - duplicate_decision
+  - human_review_record
+  - validated_udb_yaml_if_approved
+  - pr_ready_package_shape
+
+rules:
+  - review_envelope never mixed into param.yaml
+  - param.yaml emitted only when decision is approve_export
+  - reject cases have review_envelope only
+  - every decision cites exact excerpt + source pin
+
+candidates:
+  - id: C01_CACHE_BLOCK_SIZE
+    path: candidates/C01_CACHE_BLOCK_SIZE/
+    class: NORM_DIRECT
+    decision: approve_export
+    duplicate_status: existing
+    notes: clean DIRECT parameter; multi-extension definedBy (anyOf)
+
+  - id: C02_NUM_PMP_ENTRIES
+    path: candidates/C02_NUM_PMP_ENTRIES/
+    class: NORM_DIRECT
+    decision: approve_export
+    duplicate_status: existing
+    notes: implementation-defined count with architectural enum constraints
+
+  - id: C03_MTVEC_MODES
+    path: candidates/C03_MTVEC_MODES/
+    class: NORM_CSR_WARL
+    decision: approve_export
+    duplicate_status: existing
+    notes: true WARL — legal MODE *set* is implementation-chosen
+
+  - id: C04_ASIDLEN_TO_ASID_WIDTH
+    path: candidates/C04_ASIDLEN_TO_ASID_WIDTH/
+    class: NORM_CSR_WARL
+    decision: approve_export
+    duplicate_status: existing
+    notes: >
+      WARL/width rename-dedup exercise. Spec term ASIDLEN maps to existing
+      UDB name ASID_WIDTH; must not open a second parameter.
+
+  - id: C05_REJECT_MTVEC_MODE_ENCODING
+    path: candidates/C05_REJECT_MTVEC_MODE_ENCODING/
+    class: CSR_FIELD_NOT_PARAM
+    decision: reject
+    duplicate_status: not_applicable
+    notes: >
+      MODE value encodings 0/1 are ISA-fixed field semantics, not an
+      implementation-defined architectural parameter. Hard judgment case.

@@ -1,0 +1,52 @@
+# Review envelope — NOT a UDB param file.
+candidate_id: C03_MTVEC_MODES
+pipeline_stage: human_review_record
+
+evidence:
+  excerpt: >-
+    The mtvec register is an MXLEN-bit WARL read/write register that holds
+    trap vector configuration, consisting of a vector base address (BASE)
+    and a vector mode (MODE). If mtvec is writable, the set of values the
+    register may hold can vary by implementation.
+  source_file: ext/riscv-isa-manual/src/priv/machine.adoc
+  source_commit_pin: 2307e29b70f1a1f482da282f682062c6aa68e71d
+  subsection: Machine Trap-Vector Base-Address (mtvec) Register
+  anchor: norm:mtvec_sz_warl_acc
+
+classification:
+  class: NORM_CSR_WARL
+  named: false
+  config_dependent: true
+  uncertainty: null
+  rationale: >
+    True WARL parameter: the *set of legal MODE values* is
+    implementation-chosen (subset of {0,1}; values ≥2 reserved). Distinct
+    from mere presence of the word WARL on a field with a fully fixed legal set.
+
+duplicate_decision:
+  status: existing
+  udb_name: MTVEC_MODES
+  udb_path: spec/std/isa/param/MTVEC_MODES.yaml
+  rationale: Matches curated MTVEC_MODES (array of legal MODE integers).
+
+proposed:
+  name: MTVEC_MODES
+  definedBy:
+    extension:
+      name: Sm
+
+schema_validation:
+  review_envelope_is_udb_valid: false
+  clean_param_yaml: param.yaml
+  clean_param_valid: true
+
+reviewer:
+  decision: approve_export
+  decision_date: "2026-07-27"
+  unresolved_questions:
+    - >
+      MTVEC_ACCESS (ro vs rw) is a sibling parameter; MODE legal set interacts
+      with access type (ro implies size==1). Keep parameters separate.
+  notes: >
+    WARL positive control for the slice. Contrasts with C05 (encoding table
+    is not a parameter) and with eval_2097 NEG_WARL_FIXED_LEGAL_SET.

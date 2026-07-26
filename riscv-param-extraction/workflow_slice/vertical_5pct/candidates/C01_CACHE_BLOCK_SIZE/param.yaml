@@ -1,0 +1,21 @@
+# Clean UDB-shaped parameter YAML — review metadata stripped.
+# For demonstration / local validation only; not an unsolicited bulk upstream dump.
+# yaml-language-server: $schema=../../../../challenge/schema/param_schema.json
+
+$schema: param_schema.json#
+kind: parameter
+name: CACHE_BLOCK_SIZE
+long_name: Cache block size
+description: |
+  Observable size of a cache block in bytes. The size of a cache block is
+  implementation-specific. In the initial set of CMO extensions, the size of a
+  cache block shall be uniform throughout the system.
+definedBy:
+  extension:
+    anyOf:
+      - name: Zicbom
+      - name: Zicbop
+      - name: Zicboz
+schema:
+  type: integer
+  minimum: 1

@@ -1,0 +1,9 @@
+Source file: ext/riscv-isa-manual/src/priv/supervisor.adoc
+Pinned UDB tree commit for schema cross-check: 2307e29b70f1a1f482da282f682062c6aa68e71d
+Subsection: Supervisor Address Translation and Protection (satp) Register
+Anchor: norm:asidlen
+
+The number of ASID bits is UNSPECIFIED and may be zero. The number of
+implemented ASID bits, termed ASIDLEN, is also implementation-defined.
+The maximal value of ASIDLEN, termed ASIDMAX, is 9 for Sv32 or 16 for
+Sv39, Sv48, and Sv57.

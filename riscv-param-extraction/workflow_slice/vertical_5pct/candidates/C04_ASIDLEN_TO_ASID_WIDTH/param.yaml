@@ -1,0 +1,19 @@
+# Clean UDB-shaped parameter YAML — review metadata stripped.
+# Name is ASID_WIDTH (UDB), not ASIDLEN (spec colloquial).
+# yaml-language-server: $schema=../../../../challenge/schema/param_schema.json
+
+$schema: param_schema.json#
+kind: parameter
+name: ASID_WIDTH
+long_name: Number of implemented ASID bits
+description: |
+  Number of implemented ASID bits (spec term ASIDLEN). Maximum is 16 for
+  XLEN==64 / Sv39-57, and 9 for XLEN==32 / Sv32. The number of ASID bits is
+  UNSPECIFIED and may be zero.
+definedBy:
+  extension:
+    name: S
+schema:
+  type: integer
+  minimum: 0
+  maximum: 16
