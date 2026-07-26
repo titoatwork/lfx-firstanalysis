@@ -83,7 +83,7 @@
 
 ---
 
-## Week 5 — Oct 13–19: Reproducible agent / workflow packaging
+## Week 5 — Oct 13–19: Reproducible pipeline / workflow packaging
 
 | Work | Obj | Deliverable |
 |------|-----|-------------|
