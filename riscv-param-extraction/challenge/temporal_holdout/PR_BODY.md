@@ -42,6 +42,7 @@ Treatment context forbids exact/normalized gold parameter names and GT YAML bodi
 2. `feat(eval): add leakage-audited CSR context builder`
 3. `results(eval): wire CI and results layout for holdout pilot`
 4. `fix(eval): holdout scoring integrity (schema, infra, metrics)`
+5. `fix(eval): pre-live gates — schema class, grounding, pin, 26/26`
 
 ## Status (honest)
 
@@ -53,13 +54,13 @@ Treatment context forbids exact/normalized gold parameter names and GT YAML bodi
 
 **Draft PR:** live measurements are **not** included yet. Do not treat CI green as experimental result.
 
-Integrity fixes in commit 4:
+### Pre-live integrity (must hold before any API call)
 
-- `openai` declared in `requirements.txt`
-- API failures → `INFRA_ERROR` (excluded from model metrics; not scored as zeros)
-- `schema_validity` uses jsonschema vs vendored `param_schema.json`
-- `name_agnostic_detection` implemented (keyword/type signal)
-- classification accuracy denominator = all scored positives
+- UDB param YAML: **no `class` field** (schema `additionalProperties: false`); class + quote live in eval metadata JSON
+- Schema validity: **untouched** docs (no `$schema`/`kind` injection)
+- Grounding: **per extracted param**; missing quote = fail (in denominator)
+- Model pin mismatch: **fail-closed** (exit before calls)
+- Primary comparison: **26/26** successful calls only; refuse overwrite of existing run dir; failures retained under `failed_attempts/`
 
 ## Reproduce (CI / local, no API)
 

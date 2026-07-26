@@ -5,19 +5,18 @@
 | Item | Status |
 |------|--------|
 | Preregistered manifest / gold / prompts | **Frozen** (before live outputs) |
-| Live baseline + treatment (`gpt-4o-mini-2024-07-18`) | **Pending** local `OPENAI_API_KEY` + spend decision |
-| Parsed outputs | `parsed/{baseline,treatment}/` after live run |
-| Raw API text (including failures) | `raw/` |
-| Scores + review queue | `scored/` after `score_holdout.py` |
-
-**Infra vs model:** files marked `# INFRA_ERROR:` or `*.status.json` with `ok: false` are **excluded** from model metrics (not scored as empty extractions).
+| Live baseline + treatment (`gpt-4o-mini-2024-07-18`) | **Pending** local `OPENAI_API_KEY` after pre-live gates |
+| Run tree | `runs/<run_id>/` (refuse overwrite) |
+| Primary pointer | `PRIMARY_RUN.json` only if **26/26** complete |
+| Scores | `scored/` after `score_holdout.py` (refuses incomplete primary) |
 
 ## Commands
 
 ```bash
 python challenge/temporal_holdout/scripts/run_live.py --estimate
+# pin must match; wrong model exits 2 with no calls
 python challenge/temporal_holdout/scripts/run_live.py --live --model gpt-4o-mini-2024-07-18
 python challenge/temporal_holdout/scripts/score_holdout.py
 ```
 
-Do not hand-edit model outputs. Null treatment results are publishable.
+Primary comparison requires 26/26 successful calls. Incomplete runs keep `failed_attempts/` but are not claimed as the experiment.
