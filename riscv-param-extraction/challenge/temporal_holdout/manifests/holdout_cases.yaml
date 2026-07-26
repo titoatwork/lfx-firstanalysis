@@ -1,0 +1,248 @@
+# Preregistered temporal holdout — Artifact C pilot
+# COMMIT THIS BEFORE any model outputs.
+#
+# Scope claim (defensible):
+#   10 / 223 public UDB parameters ≈ 4.5% vertical pilot + 3 hard negatives.
+#   NOT 5% of mentors' current internal pipeline (see UDB issue #2053 scope notes).
+#
+# Hypothesis:
+#   Leakage-audited CSR/field context improves WARL detection and classification
+#   vs source-excerpt-only baseline, under temporal separation from the fixed model.
+
+schema_version: 1
+pilot_id: temporal-holdout-artifact-c-v1
+preregistered: true
+preregistered_before_outputs: true
+
+pins:
+  model_id: gpt-4o-mini-2024-07-18
+  model_release_date: "2024-07-18"
+  model_note: >
+    Fixed snapshot for both conditions. Knowledge/training cutoff is not fully
+    public; temporal rule uses model *release date* vs UDB param first-add date.
+  udb_repo: https://github.com/riscv/riscv-unified-db
+  udb_sha: 5b7eccdebeb28d9a616434a4bcc5345e1f3f8939
+  isa_manual_path: ext/riscv-isa-manual
+  isa_manual_sha: 7fc198f13ad89e9608e9404be1c7a8119c14c13b
+  temperature: 0
+  prompt_version: holdout-v1
+
+temporal_rule: >
+  Positive cases must have UDB param YAML first-introduced (git --diff-filter=A
+  on current path) strictly after pins.model_release_date. ISA Manual prose may
+  be older; separation targets formal UDB parameter identity / gold YAML, not
+  full pretraining of RISC-V text.
+
+scale_claim: >
+  10 positives of 223 public parameters (~4.5%) plus 3 hard negatives.
+  Report raw counts and case table only — no grand statistical claims.
+
+conditions:
+  baseline:
+    id: baseline
+    description: Source excerpt only (no CSR/field context block).
+  treatment:
+    id: treatment
+    description: >
+      Source excerpt plus leakage-audited CSR/field context (no exact/normalized
+      gold parameter names, no ground-truth YAML bodies).
+
+metrics:
+  - name_agnostic_detection   # gold param warranted? (existence / class signal)
+  - exact_or_alias_name_recall
+  - classification_accuracy   # WARL / CSR_RW / DIRECT / negative
+  - warl_recall               # among WARL gold cases only
+  - schema_validity           # emitted YAML parses + type present
+  - quote_grounding           # evidence quote in source (baseline) or source∪context (treatment)
+  - type_fidelity             # schema.type matches gold when present
+  - negative_control_fp       # any param emitted on negatives = FP
+
+positives:
+  - id: P01
+    name: MTVEC_MODES
+    class: NORM_CSR_WARL
+    strata: warl
+    udb_first_add_date: "2026-01-08"
+    udb_first_add_sha: b00da83bd921949d0ba59129293cec4a33f76bc9
+    gold_path: gold/MTVEC_MODES.yaml
+    source_path: cases/positives/MTVEC_MODES/source.txt
+    source_provenance:
+      file: machine.adoc
+      lines: "1207-1259"
+    csr_context_ids: [mtvec]
+    aliases: [MTVEC_MODE, MTVEC_MODE_SUPPORT, TRAP_VECTOR_MODES]
+
+  - id: P02
+    name: MSTATUS_FS_LEGAL_VALUES
+    class: NORM_CSR_WARL
+    strata: warl
+    udb_first_add_date: "2026-01-08"
+    udb_first_add_sha: b00da83bd921949d0ba59129293cec4a33f76bc9
+    gold_path: gold/MSTATUS_FS_LEGAL_VALUES.yaml
+    source_path: cases/positives/MSTATUS_FS_LEGAL_VALUES/source.txt
+    source_provenance:
+      file: machine.adoc
+      lines: "841-1020"
+    csr_context_ids: [mstatus]
+    aliases: [MSTATUS_FS_VALUES, FS_LEGAL_VALUES, MSTATUS_FS]
+
+  - id: P03
+    name: SATP_MODE_BARE
+    class: NORM_CSR_WARL
+    strata: warl
+    udb_first_add_date: "2026-01-08"
+    udb_first_add_sha: b00da83bd921949d0ba59129293cec4a33f76bc9
+    gold_path: gold/SATP_MODE_BARE.yaml
+    source_path: cases/positives/SATP_MODE_BARE/source.txt
+    source_provenance:
+      file: supervisor.adoc
+      note: satp MODE / Bare excerpts
+    csr_context_ids: [satp]
+    aliases: [SATP_BARE, SATP_MODE_BARE_SUPPORTED]
+
+  - id: P04
+    name: MTVEC_BASE_ALIGNMENT_DIRECT
+    class: NORM_CSR_WARL
+    strata: warl
+    udb_first_add_date: "2026-01-08"
+    udb_first_add_sha: b00da83bd921949d0ba59129293cec4a33f76bc9
+    gold_path: gold/MTVEC_BASE_ALIGNMENT_DIRECT.yaml
+    source_path: cases/positives/MTVEC_BASE_ALIGNMENT_DIRECT/source.txt
+    source_provenance:
+      file: machine.adoc
+      lines: "1221-1224"
+    csr_context_ids: [mtvec]
+    aliases: [MTVEC_BASE_ALIGN, MTVEC_ALIGNMENT_DIRECT]
+
+  - id: P05
+    name: M_MODE_ENDIANNESS
+    class: NORM_CSR_WARL
+    strata: warl
+    udb_first_add_date: "2026-01-08"
+    udb_first_add_sha: b00da83bd921949d0ba59129293cec4a33f76bc9
+    gold_path: gold/M_MODE_ENDIANNESS.yaml
+    source_path: cases/positives/M_MODE_ENDIANNESS/source.txt
+    source_provenance:
+      file: machine.adoc
+      note: MBE / endianness
+    csr_context_ids: [mstatus]
+    aliases: [M_ENDIANNESS, MSTATUS_MBE_ENDIANNESS, MACHINE_ENDIANNESS]
+
+  - id: P06
+    name: MTVEC_ACCESS
+    class: NORM_CSR_RW
+    strata: csr_rw
+    udb_first_add_date: "2026-01-08"
+    udb_first_add_sha: b00da83bd921949d0ba59129293cec4a33f76bc9
+    gold_path: gold/MTVEC_ACCESS.yaml
+    source_path: cases/positives/MTVEC_ACCESS/source.txt
+    source_provenance:
+      file: machine.adoc
+      lines: "1217-1220"
+    csr_context_ids: [mtvec]
+    aliases: [MTVEC_WRITABLE, MTVEC_RO_OR_RW]
+
+  - id: P07
+    name: TRAP_ON_ILLEGAL_WLRL
+    class: NORM_DIRECT
+    strata: wlrl
+    udb_first_add_date: "2026-01-08"
+    udb_first_add_sha: b00da83bd921949d0ba59129293cec4a33f76bc9
+    gold_path: gold/TRAP_ON_ILLEGAL_WLRL.yaml
+    source_path: cases/positives/TRAP_ON_ILLEGAL_WLRL/source.txt
+    source_provenance:
+      file: priv-csrs.adoc
+      note: WLRL definition
+    csr_context_ids: []
+    aliases: [WLRL_TRAP, ILLEGAL_WLRL_TRAP]
+
+  - id: P08
+    name: NUM_USABLE_PMP_ENTRIES
+    class: NORM_DIRECT
+    strata: direct
+    udb_first_add_date: "2026-07-17"
+    udb_first_add_sha: cce649b7db97fcfb19749776987059fefe0af0ea
+    gold_path: gold/NUM_USABLE_PMP_ENTRIES.yaml
+    source_path: cases/positives/NUM_USABLE_PMP_ENTRIES/source.txt
+    source_provenance:
+      file: machine.adoc
+      lines: "3362-3367"
+    csr_context_ids: [pmpcfg0]
+    aliases: [USABLE_PMP_ENTRIES, PMP_USABLE_COUNT]
+    temporal_strength: strong  # first-add after bulk consolidate
+
+  - id: P09
+    name: SEW_MIN
+    class: NORM_DIRECT
+    strata: direct
+    udb_first_add_date: "2026-02-02"
+    udb_first_add_sha: 1b0f935fc177965e471d19676991dad887075d54
+    gold_path: gold/SEW_MIN.yaml
+    source_path: cases/positives/SEW_MIN/source.txt
+    source_provenance:
+      file: v-st-ext.adoc
+      note: fractional LMUL / narrowest SEW
+    csr_context_ids: [vstart]
+    aliases: [MIN_SEW, NARROWEST_SEW]
+    temporal_strength: strong
+
+  - id: P10
+    name: MCOUNTINHIBIT_IMPLEMENTED
+    class: NORM_DIRECT
+    strata: direct
+    udb_first_add_date: "2026-04-29"
+    udb_first_add_sha: 2102948e71e5f81b8fe3fc66b597d837ee1d9d3b
+    gold_path: gold/MCOUNTINHIBIT_IMPLEMENTED.yaml
+    source_path: cases/positives/MCOUNTINHIBIT_IMPLEMENTED/source.txt
+    source_provenance:
+      file: machine.adoc
+      lines: "1663-1685"
+    csr_context_ids: [mcountinhibit]
+    aliases: [MCOUNTINHIBIT_EXISTS, HAS_MCOUNTINHIBIT]
+    temporal_strength: strong
+
+negatives:
+  - id: N01
+    name: FIXED_CSR_ENCODING
+    class: NEGATIVE
+    negative_kind: fixed_csr_encoding
+    source_path: cases/negatives/FIXED_CSR_ENCODING/source.txt
+    expected_params: 0
+
+  - id: N02
+    name: SHALL_ONLY_UNIFORM
+    class: NEGATIVE
+    negative_kind: normative_non_configurable
+    source_path: cases/negatives/SHALL_ONLY_UNIFORM/source.txt
+    expected_params: 0
+
+  - id: N03
+    name: SW_MAY_SHOULD_ADVICE
+    class: NEGATIVE
+    negative_kind: software_guidance
+    source_path: cases/negatives/SW_MAY_SHOULD_ADVICE/source.txt
+    expected_params: 0
+
+strata_counts:
+  warl: 5
+  csr_rw_or_wlrl: 2  # P06 CSR_RW + P07 WLRL
+  direct: 3
+  negatives: 3
+
+leakage_gate:
+  fail_closed: true
+  forbid:
+    - exact_parameter_name
+    - normalized_parameter_name
+    - ground_truth_yaml_content
+  record:
+    - source_shas
+    - prompt_hash
+    - context_hash
+
+acceptance:
+  - Manifest and gold committed before any live model output.
+  - Leakage fixtures under fixtures/leaked must fail leak_scan.
+  - CI runs unit tests + leak_scan + scorer on committed artifacts (no paid API).
+  - Live baseline vs treatment uses identical model_id and temperature.
+  - Null / negative treatment results published without hand-repair.
