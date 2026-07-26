@@ -1,0 +1,11 @@
+{
+  "provider": "openrouter",
+  "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "free_only": true,
+  "usage": {
+    "prompt_tokens": 709,
+    "completion_tokens": 375,
+    "total_tokens": 1084
+  },
+  "text_chars": 87
+}

@@ -36,7 +36,7 @@ Write prompts that extract architectural parameters from ISA Manual excerpts, wh
 | Modeling notes | `docs/modeling-notes.md` |
 | Scale/cost | `docs/scale_and_cost.md` |
 | Live multi-model how-to | `docs/LIVE_MULTI_MODEL.md` |
-| **Live multi-model results** | `results/live/` — OpenAI + Gemini free + Groq Llama 70B free (see `MANIFEST.md`) |
+| **Live multi-model results** | `results/live/` — OpenAI + Gemini + Groq + OpenRouter Nemotron free (see `MANIFEST.md`) |
 | Optional live extract | `scripts/extract.py` (no API unless `--live` + key) |
 
 ### How to run (local / CI)
@@ -72,10 +72,11 @@ CSR snippet: see `results/curated/csr_address_mapping.NO_PARAMETERS_FOUND.txt`.
 
 ### Live multi-model (2026-07-26)
 
-**OpenAI + Google free + Groq free (open-weight).** Not Sonnet/Opus/GLM. Details: [`results/live/MANIFEST.md`](./results/live/MANIFEST.md).
+**OpenAI + Google free + Groq free + OpenRouter free (Nemotron Ultra).** Not Sonnet/Opus/GLM. Details: [`results/live/MANIFEST.md`](./results/live/MANIFEST.md).
 
 | Model | CMO | CSR negative control |
 |-------|-----|----------------------|
+| `nemotron-3-ultra-550b-a55b:free` (OpenRouter) | **3** | **PASS** zero |
 | `gemini-3.6-flash` (free) | **3** | **PASS** zero |
 | `llama-3.3-70b-versatile` (Groq free) | **3** | **FAIL** 5 false positives |
 | `gpt-4o-mini-2024-07-18` | 1 | **FAIL** 1 false positive |
@@ -83,6 +84,7 @@ CSR snippet: see `results/curated/csr_address_mapping.NO_PARAMETERS_FOUND.txt`.
 | curated (CI gold, not live) | 3 | PASS |
 
 ```bash
+python challenge/scripts/validate.py --results challenge/results/live/nemotron-3-ultra-550b-a55b-free
 python challenge/scripts/validate.py --results challenge/results/live/gemini-3.6-flash
 python challenge/scripts/validate.py --results challenge/results/live/llama-3.3-70b-versatile
 python challenge/scripts/validate.py --results challenge/results/live/gpt-4o-2024-11-20
