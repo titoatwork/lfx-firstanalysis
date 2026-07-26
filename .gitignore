@@ -1,5 +1,5 @@
 # =============================================================================
-# Local only — never push (agent / personal / strategy / large clones)
+# Local-only paths — not part of the public mentor surface
 # =============================================================================
 
 # Full UDB clone (large nested git)
@@ -8,7 +8,7 @@ riscv-unified-db/
 # Scratch / duplicate immersion workspace
 immersion-workspace/
 
-# Agent / Grok / session law (local execution only)
+# Private working notes and tool config
 AGENTS.md
 AGENT-RULES.md
 HANDSOFF.md
@@ -16,7 +16,7 @@ RECURRING_MISTAKES.md
 .grok/
 **/AGENTS.md
 
-# Session handoffs & agent prompts
+# Session / planning notes
 HANDOFF*.md
 NEXT-SESSION*.md
 LEFTOVER-WORK.md
@@ -25,7 +25,7 @@ LEFT-TODO.md
 72H-CHECKLIST.md
 LIVE-VERIFY*.md
 
-# Competition / overmatch strategy (private)
+# Private strategy and study notes
 COMPETITION*.md
 FINAL-DRAFT*.md
 OVERMATCH*.md
@@ -78,6 +78,6 @@ venv/
 *.egg-info/
 .pytest_cache/
 
-# Friend/agent runbooks (local)
+# Local runbooks
 TOMORROW*.md
 
