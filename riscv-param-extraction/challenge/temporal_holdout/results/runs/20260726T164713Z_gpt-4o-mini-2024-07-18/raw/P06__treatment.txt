@@ -1,0 +1,51 @@
+```yaml
+- $schema: param_schema.json#
+  kind: parameter
+  name: MTVC_WRITABLE
+  long_name: mtvec Writable
+  description: |
+    The `mtvec` register can contain a read-only value. If `mtvec` is writable, the set of values the register may hold can vary by implementation.
+  definedBy: extension: { name: Sm }
+  schema: { type: boolean }
+
+- $schema: param_schema.json#
+  kind: parameter
+  name: MTVC_BASE_LEGAL_VALUES
+  long_name: mtvec BASE Legal Values
+  description: |
+    The implementation physical memory map may restrict which values are legal in the BASE field of the `mtvec` register.
+  definedBy: extension: { name: Sm }
+  schema: { type: string }
+
+- $schema: param_schema.json#
+  kind: parameter
+  name: MTVC_MODE
+  long_name: mtvec Mode
+  description: |
+    Vectoring mode for asynchronous interrupts. 0 - Direct, 1 - Vectored. When Direct, all synchronous exceptions and asynchronous interrupts jump to (`mtvec.BASE` << 2). When Vectored, asynchronous interrupts jump to (`mtvec.BASE` << 2 + `mcause.CAUSE`*4) while synchronous exceptions continue to jump to (`mtvec.BASE` << 2).
+  definedBy: extension: { name: Sm }
+  schema: { type: integer }
+```
+
+```json
+{
+  "eval": true,
+  "items": [
+    {
+      "name": "MTVC_WRITABLE",
+      "class": "NORM_CSR_RW",
+      "quote": "If `mtvec` is writable, the set of values the register may hold can vary by implementation."
+    },
+    {
+      "name": "MTVC_BASE_LEGAL_VALUES",
+      "class": "NORM_CSR_WARL",
+      "quote": "The implementation physical memory map may restrict which values are legal in this field."
+    },
+    {
+      "name": "MTVC_MODE",
+      "class": "NORM_CSR_RW",
+      "quote": "Vectoring mode for asynchronous interrupts."
+    }
+  ]
+}
+```
