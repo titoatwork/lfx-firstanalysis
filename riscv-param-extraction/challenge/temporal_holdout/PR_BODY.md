@@ -24,6 +24,7 @@ Under temporal separation from a fixed model snapshot, **leakage-audited CSR/fie
 | UDB | `5b7eccde` |
 | ISA manual | `7fc198f1` |
 | Temperature | 0 |
+| Prompt | `holdout-v1.2` (case-correct `definedBy` guidance) |
 
 Temporal rule: each positive’s UDB param first-add date is **after** model release.
 
@@ -34,33 +35,29 @@ source → scrubbed CSR context → fail-closed leak_scan → baseline|treatment
   → extract → score vs frozen gold → review_queue
 ```
 
-Treatment context forbids exact/normalized gold parameter names and GT YAML bodies. Prompt/context hashes recorded under `prompts/built/PROMPT_HASHES.json`.
-
-## Commits
-
-1. `test(eval): preregister temporal holdout and scoring rubric`
-2. `feat(eval): add leakage-audited CSR context builder`
-3. `results(eval): wire CI and results layout for holdout pilot`
-4. `fix(eval): holdout scoring integrity (schema, infra, metrics)`
-5. `fix(eval): pre-live gates — schema class, grounding, pin, 26/26`
+Treatment context forbids exact/normalized gold parameter names and GT YAML bodies. Prompt/context hashes under `prompts/built/PROMPT_HASHES.json`.
 
 ## Status (honest)
 
 | Item | State |
 |------|--------|
-| Offline harness + leak gate + unit tests | Implemented |
+| Offline harness + leak gate + unit tests | Implemented (CI green) |
 | Live baseline vs treatment (26 calls) | **Pending** — not claimed until raw/scores committed |
 | Null / negative treatment result | Acceptable if published honestly |
 
 **Draft PR:** live measurements are **not** included yet. Do not treat CI green as experimental result.
 
-### Pre-live integrity (must hold before any API call)
+## Pre-live integrity gates
 
-- UDB param YAML: **no `class` field** (schema `additionalProperties: false`); class + quote live in eval metadata JSON
-- Schema validity: **untouched** docs (no `$schema`/`kind` injection)
-- Grounding: **per extracted param**; missing quote = fail (in denominator)
-- Model pin mismatch: **fail-closed** (exit before calls)
-- Primary comparison: **26/26** successful calls only; refuse overwrite of existing run dir; failures retained under `failed_attempts/`
+- UDB param YAML: **no `class` field**; class + quote in eval metadata JSON only  
+- Schema validity: **untouched** docs (no `$schema`/`kind` injection); totals include **all** extracted docs (positives **and** negatives)  
+- Grounding: **per extracted param**; missing quote = fail (in denominator)  
+- Model pin mismatch: **fail-closed** (exit before calls)  
+- `definedBy`: **case-correct guidance** (e.g. `Zvl32b` for SEW_MIN; not hard-coded `Sm` everywhere)  
+- Runs under `results/runs/<id>/` with **no overwrite**  
+- **PRIMARY_RUN.json** written once only; a second complete run cannot replace it (use `--debug-run` for non-primary)  
+- Primary score requires adjacent **RUN_META.json** validating: pinned model, prompt version/hash, **26 unique successful (case, condition) pairs**, zero failures, `primary_comparison_eligible`  
+- File presence alone is **not** enough for a primary claim  
 
 ## Reproduce (CI / local, no API)
 
@@ -72,7 +69,7 @@ python challenge/temporal_holdout/scripts/leak_scan.py
 python challenge/scripts/ci_check.py
 ```
 
-Live (only with key + spend go):
+Live (only with local key; never commit secrets):
 
 ```bash
 python challenge/temporal_holdout/scripts/run_live.py --estimate
@@ -80,13 +77,7 @@ python challenge/temporal_holdout/scripts/run_live.py --live --model gpt-4o-mini
 python challenge/temporal_holdout/scripts/score_holdout.py
 ```
 
-## Acceptance
-
-- [x] Manifest/gold committed before model outputs  
-- [x] Leaked fixture fails `leak_scan --expect-fail`  
-- [x] Unit tests + leak_scan in CI  
-- [ ] Live baseline vs treatment raw results published (spend go)
-
 ## Honesty
 
 Case table + raw counts only (n=10). No claim of statistical significance or “beats Anshul.”
+Credit: Spring Part I — [@ishaan-arora-1](https://github.com/ishaan-arora-1) / #1765–#1832.

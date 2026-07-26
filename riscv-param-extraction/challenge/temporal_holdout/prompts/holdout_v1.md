@@ -1,4 +1,4 @@
-# Holdout prompt v1.1 — baseline / treatment (shared template)
+# Holdout prompt v1.2 — baseline / treatment (shared template)
 
 **Status:** frozen for pilot `temporal-holdout-artifact-c-v1` (pre-live integrity revision).  
 **Do not edit** after first live run without bumping `prompt_version`.
@@ -7,6 +7,7 @@ Placeholders:
 
 - `{{SOURCE}}` — case source excerpt  
 - `{{CONTEXT_BLOCK}}` — empty for baseline; CSR/field block for treatment  
+- `{{DEFINEDBY_GUIDANCE}}` — case-specific definedBy shape (not a free license to invent)
 
 ```text
 You extract architectural parameters from RISC-V ISA Manual excerpts for the
@@ -39,10 +40,18 @@ Emit zero or more YAML documents. Each document MUST use ONLY these fields
   long_name: short title
   description: |
     ...
-  definedBy:
-    extension:
-      name: Sm
+  definedBy:   # MUST match the case guidance below; do NOT default everything to Sm
+    ...
   schema: { type: integer|boolean|string|array|... }
+
+definedBy MUST be case-correct. Valid shapes include:
+  extension: { name: Sm }          # machine-mode
+  extension: { name: S }           # supervisor
+  extension: { name: Zvl32b }      # vector (e.g. SEW-related)
+  param: { name: NUM_PMP_ENTRIES, greaterThan: 0 }   # gated by another param
+
+CASE-SPECIFIC definedBy GUIDANCE (use this for parameters you emit from THIS source):
+{{DEFINEDBY_GUIDANCE}}
 
 EVALUATION METADATA (separate from UDB docs — not validated as parameters):
 After all parameter YAML docs, emit ONE JSON object:
