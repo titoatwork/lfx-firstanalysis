@@ -36,7 +36,7 @@ Write prompts that extract architectural parameters from ISA Manual excerpts, wh
 | Modeling notes | `docs/modeling-notes.md` |
 | Scale/cost | `docs/scale_and_cost.md` |
 | Live multi-model how-to | `docs/LIVE_MULTI_MODEL.md` |
-| **Live multi-model results** | `results/live/` — **8 live models** (see `MANIFEST.md`) |
+| **Live multi-model results** | `results/live/` — **10 live models** (see `MANIFEST.md`) |
 | Optional live extract | `scripts/extract.py` (no API unless `--live` + key) |
 
 ### How to run (local / CI)

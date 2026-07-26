@@ -1,0 +1,20 @@
+# Live extract: poolside/laguna-s-2.1:free via OpenRouter free tier
+# Prompt: v3 · temperature 0 · useful dual-snippet filter passed
+# yaml-language-server: $schema=../../schema/param_schema.json
+
+$schema: param_schema.json#
+kind: parameter
+name: CACHE_BLOCK_SIZE
+long_name: Cache block size
+description: |
+  The size of a cache block in bytes. Implementation-specific; uniform
+  throughout the system in the initial set of CMO extensions.
+definedBy:
+  extension:
+    anyOf:
+      - name: Zicbom
+      - name: Zicbop
+      - name: Zicboz
+schema:
+  type: integer
+  minimum: 1

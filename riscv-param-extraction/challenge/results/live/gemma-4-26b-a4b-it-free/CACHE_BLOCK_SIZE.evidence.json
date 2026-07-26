@@ -1,0 +1,9 @@
+{
+  "name": "CACHE_BLOCK_SIZE",
+  "snippet": "cmo_cache_block.txt",
+  "quote": "The capacity and organization of a cache and the size of a cache block are both implementation-specific",
+  "model": "google/gemma-4-26b-a4b-it:free",
+  "provider": "openrouter",
+  "tier": "free",
+  "notes": "Under-extract vs curated (only block size)."
+}

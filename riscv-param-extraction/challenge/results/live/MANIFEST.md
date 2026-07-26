@@ -28,13 +28,20 @@
 | **llama-3.3-70b-versatile** | Groq free | **3** | **FAIL** 5 FP | Open-weight precision fail |
 | **gpt-4o-2024-11-20** | OpenAI | **1** | **PASS** | Under-extract CMO |
 | **gpt-4o-mini-2024-07-18** | OpenAI | **1** | **FAIL** 1 FP | Under-extract + CSR fail |
+| **poolside/laguna-s-2.1:free** | OpenRouter free | **1** | **FAIL** 1 FP | Real text both sides; CMO under-extract; CSR false +ve |
+| **google/gemma-4-26b-a4b-it:free** | OpenRouter free | **1** | **FAIL** 1 FP | Real text both sides; same pattern as Laguna |
 | curated (not live) | — | 3 | PASS | CI gold |
+
+### Useful-output filter (2026-07-26 later)
+
+Re-probed remaining free models; **accepted only if both snippets returned real text** (rejected empty `(No output)`).  
+Accepted: Laguna S, Gemma-4-26B. Rejected empty CSR: Nemotron nano-omni reasoning. 429/empty probe: several others.
 
 ## Comparison to Anshul (challenge axis)
 
 | Axis | Anshul | Us now |
 |------|--------|--------|
-| Live multi-model dirs | Sonnet / Opus / GLM (3) | **8 live models** across 4 providers |
+| Live multi-model dirs | Sonnet / Opus / GLM (3) | **10 live models** across 4 providers |
 | Free strong legs | GLM playground | **Nemotron Ultra + Gemini + Ling** (CMO=3, CSR pass) |
 | CSR all models pass | Yes | **No** — mini + Llama fail (honest) |
 | Merged UDB PR | #1967 | Still draft only |
@@ -53,6 +60,8 @@ python challenge/scripts/validate.py --results challenge/results/live/gemini-3.6
 python challenge/scripts/validate.py --results challenge/results/live/llama-3.3-70b-versatile
 python challenge/scripts/validate.py --results challenge/results/live/gpt-4o-2024-11-20
 python challenge/scripts/validate.py --results challenge/results/live/gpt-4o-mini-2024-07-18
+python challenge/scripts/validate.py --results challenge/results/live/laguna-s-2.1-free
+python challenge/scripts/validate.py --results challenge/results/live/gemma-4-26b-a4b-it-free
 ```
 
 ## Cost
