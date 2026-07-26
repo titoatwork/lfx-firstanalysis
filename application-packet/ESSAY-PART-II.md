@@ -23,16 +23,18 @@ box. Against the pinned 185-parameter gold I remeasured 72.9% adjusted recall,
 parameter set, adjusted recall falls to 64.2%, which shows why pinned and
 evolving golds both matter.
 
-I then shipped two concrete pre-apply artifacts in
-github.com/titoatwork/lfx-firstanalysis: a schema-valid draft UDB YAML exporter
-(83 existing named parameters + 20 candidates) and a controlled 60-chunk second-
-model run with gpt-4o-mini (PROMPT v2). Mini reached only 32.2% adjusted recall
-versus the public Claude baseline of 72.9%, with 3.8% parameter-name Jaccard.
-A prompt-only WARL ablation was negative (matched WARL 3/24 → 2/24).
+I then shipped pre-apply work in github.com/titoatwork/lfx-firstanalysis: a
+schema-valid draft UDB YAML exporter (83 existing named + 20 candidates); a
+controlled 60-chunk second-model run with gpt-4o-mini (PROMPT v2) that reached
+only 32.2% adjusted recall versus the public Claude baseline of 72.9% (name
+Jaccard 3.8%); a prompt-only WARL ablation that was negative for WARL
+(3/24 → 2/24); and a coding-challenge pack with fail-closed CI plus a live
+multi-model matrix on the shared two ISA snippets (honest under-extract and
+false-positive cases included—not only best-case runs).
 
 These results motivate grounded CSR context, cross-model/human review gates,
-explicit provenance, and small reviewable PRs—not bulk generation. I can commit
-≥30 hours/week for the Fall term.
+explicit provenance, and small reviewable UDB PRs—not bulk generation. I can
+commit ≥30 hours/week for the Fall term.
 ```
 
 ---
@@ -71,13 +73,17 @@ shared names (Jaccard 3.8%), and nine high-confidence proposed-new names that
 appear in both models—still candidates requiring human review, not confirmed
 parameters. A prompt-only WARL guidance ablation (v3) slightly raised overall
 adjusted recall to 35.0% but reduced matched WARL recall from 3/24 to 2/24: more
-confident labeling is not more correct labeling.
+confident labeling is not more correct labeling. Separately, a coding-challenge
+pack (shared two-snippet task, quote grounding, fail-closed fixtures, CI) and a
+live multi-model matrix document which free and commercial models over-trigger
+or under-extract on the same prompts—supporting review gates rather than
+single-model trust.
 
 What Part II must do differently. Ground model output in CSR/spec context with a
 leakage audit; treat cross-model agreement as a review signal, not automatic
 truth; keep provenance (spec file, anchor, excerpt, class, confidence, run id);
-export only reviewed findings; open small PRs with reproduction commands instead
-of another enormous generated dump.
+export only reviewed findings; open small issue-linked UDB PRs (schema/data
+correctness) instead of another enormous generated dump.
 
 Prior research credibility. I am a 4th-year CS undergraduate. I completed a
 faculty research attachment at Universiti Malaya under Prof. Por Lip Yee (on-site
