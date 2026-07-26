@@ -1,0 +1,4 @@
+Model: poolside/laguna-s-2.1:free
+Expected: ZERO parameters
+Live: 1 false positive CSR_ADDRESS_SPACE_BITS
+Note: model argued width is a parameter while admitting other text is convention.

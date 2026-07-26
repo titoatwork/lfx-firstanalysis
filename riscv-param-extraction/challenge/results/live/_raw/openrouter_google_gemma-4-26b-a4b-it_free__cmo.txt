@@ -1,0 +1,20 @@
+```yaml
+$schema: param_schema.json#
+kind: parameter
+name: CACHE_BLOCK_SIZE
+long_name: Cache block size
+description: |
+  The size of a cache block in bytes. The text states this is implementation-specific.
+definedBy: Privileged ISA
+schema:
+  type: integer
+  minimum: 1
+```
+
+```json
+{
+  "name": "CACHE_BLOCK_SIZE",
+  "snippet": "riscv-isa-manual/src/cmo.adoc",
+  "quote": "The capacity and organization of a cache and the size of a cache block are both implementation-specific"
+}
+```

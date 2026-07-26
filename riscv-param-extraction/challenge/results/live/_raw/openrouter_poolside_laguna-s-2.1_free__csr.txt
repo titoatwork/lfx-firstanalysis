@@ -1,0 +1,33 @@
+```yaml
+$schema: param_schema.json#
+kind: parameter
+name: CSR_ADDRESS_SPACE_BITS
+long_name: CSR address encoding width
+description: |
+  The number of bits in the CSR address encoding space.
+  "The standard RISC-V ISA sets aside a 12-bit encoding space (csr[11:0]) for up to 4,096 CSRs."
+definedBy: Privileged ISA
+schema:
+  type: integer
+  minimum: 1
+```
+
+```json
+{
+  "name": "CSR_ADDRESS_SPACE_BITS",
+  "snippet": "priv-csrs.adoc",
+  "quote": "The standard RISC-V ISA sets aside a 12-bit encoding space (csr[11:0]) for up to 4,096 CSRs."
+}
+```
+
+---
+
+**Rationale for zero additional parameters:**
+
+- The text describes **fixed architectural conventions**, not implementation choices:
+  - "By convention, the upper 4 bits..." → convention, not a parameter.
+  - "The top two bits (csr[11:10]) indicate whether the register is read/write (00, 01, or 10) or read-only (11)" → normative encoding, not a choice.
+  - "The next two bits (csr[9:8]) encode the lowest privilege level that can access the CSR" → fixed encoding scheme.
+- No **modality words** (`may`, `might`, `should`, `optional`, `implementation-defined`, etc.) appear in the snippet.
+- No **implementation-defined** or **implementation-specific** behavior is mentioned.
+- Therefore, only the **explicitly stated numeric width** of the CSR address space qualifies as a parameter.

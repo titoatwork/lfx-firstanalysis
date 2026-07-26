@@ -1,0 +1,17 @@
+# Live extract: poolside/laguna-s-2.1:free via OpenRouter free tier
+# Prompt: v3 · temperature 0 · useful dual-snippet filter passed
+# yaml-language-server: $schema=../../schema/param_schema.json
+
+$schema: param_schema.json#
+kind: parameter
+name: CSR_ADDRESS_SPACE_BITS
+long_name: CSR address encoding width
+description: |
+  The number of bits in the CSR address encoding space (model false positive:
+  fixed ISA convention, not an implementation-configurable parameter).
+definedBy:
+  extension:
+    name: Sm
+schema:
+  type: integer
+  minimum: 1

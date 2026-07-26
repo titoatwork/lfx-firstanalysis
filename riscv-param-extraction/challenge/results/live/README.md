@@ -12,6 +12,8 @@ Live LLM runs on the two challenge snippets (not curated CI gold).
 | `llama-3.3-70b-versatile/` | Groq free | CMO=3; CSR 5 FP |
 | `gpt-4o-mini-2024-07-18/` | OpenAI | CMO=1; CSR FP |
 | `gpt-4o-2024-11-20/` | OpenAI | CMO=1; CSR=0 |
+| `laguna-s-2.1-free/` | OpenRouter free | CMO=1; CSR FP (useful text) |
+| `gemma-4-26b-a4b-it-free/` | OpenRouter free | CMO=1; CSR FP (useful text) |
 | `_raw/` | — | unmodified API text (+ usage meta, no keys) |
 | `MANIFEST.md` | — | run facts, matrix, honesty |
 
