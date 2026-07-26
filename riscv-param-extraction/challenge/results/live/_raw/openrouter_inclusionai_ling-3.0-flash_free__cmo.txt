@@ -1,0 +1,54 @@
+```yaml
+$schema: param_schema.json#
+kind: parameter
+name: CACHE_BLOCK_SIZE
+long_name: Cache Block Size
+description: |
+  The size of a cache block, which is implementation-specific.
+  In the initial set of CMO extensions, the size of a cache block
+  shall be uniform throughout the system. The value space is not
+  specified by the text.
+definedBy: Privileged ISA
+schema:
+  type: integer
+  minimum: 1
+```
+
+```json
+{ "name": "CACHE_BLOCK_SIZE", "snippet": "cmo_cache_block.txt", "quote": "the size of a cache block are both implementation-specific" }
+```
+
+```yaml
+$schema: param_schema.json#
+kind: parameter
+name: CACHE_CAPACITY
+long_name: Cache Capacity
+description: |
+  The capacity of a cache, which is implementation-specific.
+  The value space is not specified by the text.
+definedBy: Privileged ISA
+schema:
+  type: integer
+  minimum: 1
+```
+
+```json
+{ "name": "CACHE_CAPACITY", "snippet": "cmo_cache_block.txt", "quote": "The capacity and organization of a cache and the size of a cache block are both implementation-specific" }
+```
+
+```yaml
+$schema: param_schema.json#
+kind: parameter
+name: CACHE_ORGANIZATION
+long_name: Cache Organization
+description: |
+  The organization of a cache, which is implementation-specific.
+  The value space is not specified by the text.
+definedBy: Privileged ISA
+schema:
+  type: string
+```
+
+```json
+{ "name": "CACHE_ORGANIZATION", "snippet": "cmo_cache_block.txt", "quote": "The capacity and organization of a cache and the size of a cache block are both implementation-specific" }
+```

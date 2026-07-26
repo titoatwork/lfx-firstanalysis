@@ -1,0 +1,11 @@
+{
+  "provider": "openrouter",
+  "model": "inclusionai/ling-3.0-flash:free",
+  "free_only": true,
+  "usage": {
+    "prompt_tokens": 703,
+    "completion_tokens": 5066,
+    "total_tokens": 5769
+  },
+  "text_chars": 1520
+}
