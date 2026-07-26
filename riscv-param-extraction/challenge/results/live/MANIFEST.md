@@ -10,7 +10,7 @@
 
 - Live matrix on the **two challenge snippets**, not the 60-chunk corpus Artifact A.
 - **Models chosen freely** (challenge does not fix model names).
-- Free: **Gemini**, **Groq Llama**, **OpenRouter** (Nemotron Ultra/Super/Nano, Ling-3.0 Flash) + usage **OpenAI**. **Not** Sonnet/Opus/GLM.
+- Free: **Gemini**, **Groq Llama**, **OpenRouter** (Nemotron Ultra/Super/Nano, Ling-3.0 Flash, Laguna S, Gemma-4-26B) + usage **OpenAI**. **Not** Sonnet/Opus/GLM.
 - `definedBy` normalized to schema-valid UDB shape when models emitted free-form strings.
 - Curated `results/curated/` remains CI gold; live dirs are comparative evidence.
 - **API keys never committed.**
@@ -43,7 +43,7 @@ Accepted: Laguna S, Gemma-4-26B. Rejected empty CSR: Nemotron nano-omni reasonin
 |------|--------|--------|
 | Live multi-model dirs | Sonnet / Opus / GLM (3) | **10 live models** across 4 providers |
 | Free strong legs | GLM playground | **Nemotron Ultra + Gemini + Ling** (CMO=3, CSR pass) |
-| CSR all models pass | Yes | **No** — mini + Llama fail (honest) |
+| CSR all models pass | Yes | **No** — mini + Llama + Laguna + Gemma fail (honest) |
 | Merged UDB PR | #1967 | Still draft only |
 
 Corpus GT / export / WARL null: monorepo Path B (`docs/metrics.md`).
@@ -67,4 +67,5 @@ python challenge/scripts/validate.py --results challenge/results/live/gemma-4-26
 ## Cost
 
 - OpenAI: cents. Free providers: rate limits only.
-- Laguna S / Gemma free were **429 rate-limited** at probe time — not run.
+- **Shipped free OpenRouter legs** (real dual-snippet text): Nemotron Ultra/Super/Nano, Ling-3.0 Flash, **Laguna S 2.1**, **Gemma-4-26B**.
+- **Not run** (429 or empty probe on later hunt): e.g. `google/gemma-4-31b-it:free` (429), Laguna XS/M, gpt-oss-20b, north-mini-code, Nemotron nano-omni (empty CSR) — see “Useful-output filter” above.

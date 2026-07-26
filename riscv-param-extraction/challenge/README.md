@@ -72,7 +72,7 @@ CSR snippet: see `results/curated/csr_address_mapping.NO_PARAMETERS_FOUND.txt`.
 
 ### Live multi-model (2026-07-26)
 
-**8 live models** (OpenAI×2 + Google free + Groq free + OpenRouter free×4). Not Sonnet/Opus/GLM. See [`results/live/MANIFEST.md`](./results/live/MANIFEST.md).
+**10 live models** (OpenAI×2 + Google free + Groq free + OpenRouter free×6). Not Sonnet/Opus/GLM. Full matrix: [`results/live/MANIFEST.md`](./results/live/MANIFEST.md).
 
 | Model | CMO | CSR |
 |-------|-----|-----|
@@ -84,7 +84,11 @@ CSR snippet: see `results/curated/csr_address_mapping.NO_PARAMETERS_FOUND.txt`.
 | Llama 3.3 70B Groq free | **3** | FAIL 5 FP |
 | gpt-4o | 1 | PASS |
 | gpt-4o-mini | 1 | FAIL 1 FP |
+| Laguna S 2.1 free | 1 | FAIL 1 FP |
+| Gemma 4 26B free | 1 | FAIL 1 FP |
 | curated (CI gold) | 3 | PASS |
+
+\*PASS* = CSR empty/`(No output)` treated as zero with caveat (see MANIFEST).
 
 ```bash
 python challenge/scripts/ci_check.py   # curated/CI only

@@ -2,15 +2,18 @@
 
 ## Status (2026-07-26)
 
-**Live OpenAI dual-model run is committed** under `results/live/`:
+**10 live model dirs** under [`results/live/`](../results/live/) — full table in [`MANIFEST.md`](../results/live/MANIFEST.md).
 
-| Model | CMO | CSR |
-|-------|-----|-----|
-| `gpt-4o-mini-2024-07-18` | 1 (under-extract) | false positive |
-| `gpt-4o-2024-11-20` | 1 (under-extract) | zero (correct) |
+Headline (do not invent beyond MANIFEST):
 
-See [`../results/live/MANIFEST.md`](../results/live/MANIFEST.md).  
-**Not yet:** Anthropic Sonnet/Opus or open-weight (GLM/Ollama) legs — Anshul still leads model-family breadth.
+| Band | Models | CMO / CSR pattern |
+|------|--------|-------------------|
+| Strong free | Nemotron Ultra, Ling-3.0 Flash, Gemini 3.6 Flash | CMO **3** · CSR **PASS** |
+| Free + caveat | Nemotron Super/Nano | CMO 3 or 1 · CSR empty→0 (PASS*) |
+| Open-weight fail CSR | Groq Llama 70B, Laguna S, Gemma-4-26B | CMO 3 or 1 · CSR **FAIL** FP |
+| OpenAI | gpt-4o, gpt-4o-mini | CMO **1** · gpt-4o CSR PASS · mini CSR FAIL |
+
+**Not run:** Anthropic Sonnet/Opus (no key). Direct DeepSeek (insufficient balance). Some free OR probes 429/empty (e.g. Gemma-4-31B).
 
 Offline we also ship: curated gold + CSR=0, multi-strategy matrix, denser fail-closed CI.
 
@@ -29,13 +32,7 @@ set OPENAI_API_KEY=...   # user shell only; never commit
 python challenge/scripts/extract.py --snippet challenge/snippets/cmo_cache_block.txt --live --model gpt-4o-mini-2024-07-18 --retries 0
 ```
 
-Recommended full matrix (match/beat Anshul breadth):
-
-| Leg | Model | Role | Status |
-|-----|--------|------|--------|
-| 1 | gpt-4o-mini | primary cheap | **Done** |
-| 2 | gpt-4o (or Sonnet) | stronger / disagreement | **gpt-4o done**; Sonnet needs `ANTHROPIC_API_KEY` |
-| 3 | open-weight (GLM / Groq / Ollama) | omission vs hallucination | **Not run** |
+OpenRouter / Groq / Gemini use their own keys and base URLs (see MANIFEST for models already shipped).
 
 After runs: place YAML + `*.evidence.json` under `results/live/<model>/`, then:
 
@@ -43,4 +40,5 @@ After runs: place YAML + `*.evidence.json` under `results/live/<model>/`, then:
 python challenge/scripts/validate.py --results challenge/results/live/<model>
 ```
 
-**Campaign rules:** key + spend cap + explicit go; `--retries 0`; never commit secrets.
+**Campaign rules:** key + spend cap + explicit go; `--retries 0`; never commit secrets.  
+**Honesty:** curated ≠ live; live multi-model is snippet-scale only.
