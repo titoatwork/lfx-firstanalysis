@@ -14,11 +14,15 @@
 
 ## Metrics (all counted per condition)
 
-### 0. Infrastructure failures (not model metrics)
+### 0. Primary comparison gate (26/26)
 
-If a result file is missing, or marked `# INFRA_ERROR:` / `*.status.json` with
-`ok: false`, the case is **excluded** from model metrics. It is **not** scored
-as a model zero. Report `infra_or_missing` separately.
+Primary baseline-vs-treatment comparison is published **only** when a run has
+**all expected calls successful** (13 cases × 2 conditions = 26/26) under the
+same run id. Incomplete runs retain failed attempts under `failed_attempts/`
+but are **not** eligible for the primary table unless `--allow-incomplete`
+(debug only).
+
+Both conditions must score the **same** full case set (no asymmetric exclusion).
 
 ### 1. Name-agnostic detection recall (positives only)
 
@@ -43,6 +47,9 @@ Hit if any extracted `name` equals gold `name` or an entry in `aliases`
 **Denominator = all scored positives** (not only name hits). A name-miss or
 missing/unknown class counts as **incorrect**.
 
+`class` is read from **eval metadata JSON** (`{"eval": true, "items":[...]}`),
+**not** from the UDB parameter YAML (UDB schema has `additionalProperties: false`).
+
 Among name hits, predicted `class` must match gold group:
 
 | Gold | Accept |
@@ -57,19 +64,19 @@ Among scored P01–P05: fraction with exact/alias name hit.
 
 ### 5. Schema validity
 
-Fraction of extracted documents that **validate** against vendored UDB
-`challenge/schema/param_schema.json` via jsonschema Draft7 (+ refs). Not a
-two-field name/type presence check.
+Fraction of extracted parameter documents that **validate as-is** against
+vendored UDB `challenge/schema/param_schema.json` (jsonschema Draft7).  
+**No injection** of missing `$schema` / `kind` / fields before validation.  
+A `class` property on a param doc must **fail** schema validity.
 
 ### 6. Quote grounding
 
-If sibling evidence JSON/YAML provides `quote`, require whitespace-normalized
-substring of:
+**Per extracted parameter document** (denominator = number of extracted params):
 
-- baseline: source.txt only  
-- treatment: source.txt + context block  
-
-Missing quote → not grounded (counts against grounding rate, not automatic recall fail).
+- Look up matching eval item by `name` and require a non-empty `quote`.
+- Quote must be a whitespace-normalized substring of source (baseline) or
+  source∪context (treatment).
+- **Missing quote = not grounded (failure)** — included in denominator.
 
 ### 7. Type fidelity
 

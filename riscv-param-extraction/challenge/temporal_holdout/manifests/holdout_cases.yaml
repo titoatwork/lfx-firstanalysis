@@ -25,7 +25,10 @@ pins:
   isa_manual_path: ext/riscv-isa-manual
   isa_manual_sha: 7fc198f13ad89e9608e9404be1c7a8119c14c13b
   temperature: 0
-  prompt_version: holdout-v1
+  prompt_version: holdout-v1.1
+  prompt_note: >
+    v1.1 pre-live: class moved to eval metadata JSON (UDB schema forbids class on
+    param docs); grounding requires per-param quotes; pin fail-closed; 26/26 run gate.
 
 temporal_rule: >
   Positive cases must have UDB param YAML first-introduced (git --diff-filter=A
