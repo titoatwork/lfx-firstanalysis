@@ -48,14 +48,15 @@ conditions:
       gold parameter names, no ground-truth YAML bodies).
 
 metrics:
-  - name_agnostic_detection   # gold param warranted? (existence / class signal)
+  - name_agnostic_detection   # implemented: name hit OR schema-valid + keyword/type signal
   - exact_or_alias_name_recall
-  - classification_accuracy   # WARL / CSR_RW / DIRECT / negative
+  - classification_accuracy   # den = all scored positives; name-miss = incorrect
   - warl_recall               # among WARL gold cases only
-  - schema_validity           # emitted YAML parses + type present
+  - schema_validity           # jsonschema vs challenge/schema/param_schema.json
   - quote_grounding           # evidence quote in source (baseline) or source∪context (treatment)
   - type_fidelity             # schema.type matches gold when present
   - negative_control_fp       # any param emitted on negatives = FP
+  # Infrastructure failures (API errors) are EXCLUDED from model metrics — not scored as zeros.
 
 positives:
   - id: P01

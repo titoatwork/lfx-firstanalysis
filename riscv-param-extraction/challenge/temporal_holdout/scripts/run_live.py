@@ -4,6 +4,9 @@ Run frozen-model baseline and treatment for the holdout pilot.
 
 Requires OPENAI_API_KEY and explicit --live. Estimates cost first with --estimate.
 
+Integrity: API / transport failures are recorded as INFRA_ERROR and are NOT
+written as empty model extractions for scoring.
+
 Usage:
   python run_live.py --estimate
   python run_live.py --live --model gpt-4o-mini-2024-07-18
@@ -32,20 +35,24 @@ def cases(manifest: dict) -> list[dict]:
 
 
 def estimate(manifest: dict) -> None:
-    n = len(cases(manifest)) * 2  # baseline + treatment
-    # rough: 1.5k in / 400 out tokens per call for mini
+    n = len(cases(manifest)) * 2
     in_tok = n * 1500
     out_tok = n * 400
-    # gpt-4o-mini list prices approx $0.15/1M in $0.60/1M out (order-of-magnitude)
     cost = in_tok / 1e6 * 0.15 + out_tok / 1e6 * 0.60
     print(f"cases: {len(cases(manifest))} × 2 conditions = {n} calls")
     print(f"est tokens: ~{in_tok} in / ~{out_tok} out")
     print(f"est cost gpt-4o-mini: ~${cost:.3f} (order-of-magnitude)")
     print("Requires explicit --live + OPENAI_API_KEY. No retries.")
+    print("Dependency: openai (see requirements.txt).")
 
 
 def call_openai(model: str, prompt: str) -> str:
-    from openai import OpenAI
+    try:
+        from openai import OpenAI
+    except ImportError as exc:
+        raise RuntimeError(
+            "openai package not installed. pip install -r requirements.txt"
+        ) from exc
 
     client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
     resp = client.chat.completions.create(
@@ -54,6 +61,35 @@ def call_openai(model: str, prompt: str) -> str:
         temperature=0,
     )
     return resp.choices[0].message.content or ""
+
+
+def write_infra_error(parsed_path: Path, raw_path: Path, err: str, case_id: str, cond: str) -> None:
+    """Record infrastructure failure; scorer must exclude these from model metrics."""
+    body = f"# INFRA_ERROR: {err}\n# case={case_id} condition={cond}\n"
+    raw_path.write_text(body, encoding="utf-8")
+    parsed_path.write_text(body, encoding="utf-8")
+    status = {
+        "ok": False,
+        "status": "infra_error",
+        "error": err,
+        "case": case_id,
+        "condition": cond,
+    }
+    parsed_path.with_suffix(parsed_path.suffix + ".status.json").write_text(
+        json.dumps(status, indent=2) + "\n", encoding="utf-8"
+    )
+    raw_path.with_suffix(raw_path.suffix + ".status.json").write_text(
+        json.dumps(status, indent=2) + "\n", encoding="utf-8"
+    )
+
+
+def write_success(parsed_path: Path, raw_path: Path, text: str, case_id: str, cond: str) -> None:
+    raw_path.write_text(text, encoding="utf-8")
+    parsed_path.write_text(text, encoding="utf-8")
+    status = {"ok": True, "status": "ok", "case": case_id, "condition": cond, "chars": len(text)}
+    parsed_path.with_suffix(parsed_path.suffix + ".status.json").write_text(
+        json.dumps(status, indent=2) + "\n", encoding="utf-8"
+    )
 
 
 def main() -> int:
@@ -90,12 +126,13 @@ def main() -> int:
 
     RAW.mkdir(parents=True, exist_ok=True)
     PARSED.mkdir(parents=True, exist_ok=True)
-    meta = {
+    meta: dict = {
         "model": args.model,
         "temperature": 0,
         "started": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "calls": [],
     }
+    failures = 0
 
     for case in cases(manifest):
         for cond in ("baseline", "treatment"):
@@ -105,36 +142,41 @@ def main() -> int:
                 return 2
             prompt = prompt_path.read_text(encoding="utf-8")
             print(f"calling {case['id']} {cond} ...", flush=True)
-            try:
-                text = call_openai(args.model, prompt)
-                err = None
-            except Exception as exc:  # noqa: BLE001
-                text = ""
-                err = str(exc)
-                print(f"  FAIL: {err}", file=sys.stderr)
-
             raw_path = RAW / f"{case['id']}__{cond}__{args.model}.txt"
-            raw_path.write_text(text if text else f"# ERROR: {err}\n", encoding="utf-8")
             parsed_dir = PARSED / cond
             parsed_dir.mkdir(parents=True, exist_ok=True)
-            (parsed_dir / f"{case['id']}.txt").write_text(text, encoding="utf-8")
+            parsed_path = parsed_dir / f"{case['id']}.txt"
+
+            try:
+                text = call_openai(args.model, prompt)
+                write_success(parsed_path, raw_path, text, case["id"], cond)
+                err = None
+            except Exception as exc:  # noqa: BLE001
+                err = f"{type(exc).__name__}: {exc}"
+                print(f"  INFRA_ERROR: {err}", file=sys.stderr)
+                write_infra_error(parsed_path, raw_path, err, case["id"], cond)
+                failures += 1
+
             meta["calls"].append(
                 {
                     "id": case["id"],
                     "condition": cond,
                     "ok": err is None,
+                    "status": "ok" if err is None else "infra_error",
                     "error": err,
                     "raw": str(raw_path.relative_to(ROOT)),
-                    "chars": len(text),
+                    "chars": 0 if err else len(text),
                 }
             )
 
-    meta_path = RAW / "RUN_META.json"
     meta["finished"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+    meta["failures"] = failures
+    meta_path = RAW / "RUN_META.json"
     meta_path.write_text(json.dumps(meta, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(f"wrote {meta_path}")
-    print("Next: python score_holdout.py")
-    return 0
+    print(f"failures (infra): {failures}")
+    print("Next: python score_holdout.py  # infra cases excluded from model metrics")
+    return 1 if failures else 0
 
 
 if __name__ == "__main__":
