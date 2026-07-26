@@ -1,0 +1,28 @@
+{
+  "csr": {
+    "mcountinhibit": {
+      "path": "spec/std/isa/csr/Zicntr/mcountinhibit.yaml",
+      "sha256_16": "ab8e46561e7cb4a1"
+    },
+    "mstatus": {
+      "path": "spec/std/isa/csr/mstatus.yaml",
+      "sha256_16": "37fcd26222f4b541"
+    },
+    "mtvec": {
+      "path": "spec/std/isa/csr/mtvec.yaml",
+      "sha256_16": "1e4e45c81d7d8a4f"
+    },
+    "pmpcfg0": {
+      "path": "spec/std/isa/csr/I/pmpcfg0.yaml",
+      "sha256_16": "ec1145e7ba96e941"
+    },
+    "satp": {
+      "path": "spec/std/isa/csr/satp.yaml",
+      "sha256_16": "7eb266e6c66f1ffb"
+    },
+    "vstart": {
+      "path": "spec/std/isa/csr/V/vstart.yaml",
+      "sha256_16": "87405d0dd4336428"
+    }
+  }
+}

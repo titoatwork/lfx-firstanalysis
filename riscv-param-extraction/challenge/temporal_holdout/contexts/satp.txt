@@ -1,0 +1,46 @@
+# source_relpath: spec/std/isa/csr/satp.yaml
+# source_sha256_16: 7eb266e6c66f1ffb
+# CSR context (scrubbed) — satp
+# Parameter names and gold schema values removed for leakage control.
+CSR long_name: Supervisor Address Translation and Protection
+CSR description:
+Controls the translation mode in (H)S-mode and U-mode, and holds the current ASID and page table base pointer.
+address: 384
+writable: True
+priv_mode: S
+length: [PARAM]
+fields:
+  - field: MODE
+    description: |
+      *Translation Mode*
+      
+      Controls the current translation mode according to the table below.
+      
+      [separator="!",%autowidth]
+      !===
+      ! Value ! Name ! Description
+      
+      ! 0 ! Bare a! No translation -> virtual address == physical address
+      <%- if ext?(:Sv39) -%>
+      ! 8 ! Sv39 ! 39-bit virtual address translation
+      <%- end -%>
+      <%- if ext?(:Sv48) -%>
+      ! 9 ! Sv48 ! 48-bit virtual address translation
+      <%- end -%>
+      <%- if ext?(:Sv57) -%>
+      ! 10 ! Sv57 ! 57-bit virtual address translation
+      <%- end -%>
+      !===
+      
+      Any other value shall be ignored on a write.
+  - field: ASID
+    description: |
+      *Address Space ID*
+  - field: PPN
+    description: |
+      *Physical Page Number*
+      
+      The physical address of the active root page table is PPN << 12.
+      
+      Can only hold values that correspond to a valid page table base, which
+      will be implementation-dependent.
