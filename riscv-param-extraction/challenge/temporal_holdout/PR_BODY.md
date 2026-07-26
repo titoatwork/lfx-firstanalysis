@@ -41,8 +41,25 @@ Treatment context forbids exact/normalized gold parameter names and GT YAML bodi
 1. `test(eval): preregister temporal holdout and scoring rubric`
 2. `feat(eval): add leakage-audited CSR context builder`
 3. `results(eval): wire CI and results layout for holdout pilot`
+4. `fix(eval): holdout scoring integrity (schema, infra, metrics)`
 
-Live baseline vs treatment numbers are **pending** explicit spend approval + `OPENAI_API_KEY` (~$0.01–0.05 est.). Null treatment is acceptable if the harness is sound.
+## Status (honest)
+
+| Item | State |
+|------|--------|
+| Offline harness + leak gate + unit tests | Implemented |
+| Live baseline vs treatment (26 calls) | **Pending** — not claimed until raw/scores committed |
+| Null / negative treatment result | Acceptable if published honestly |
+
+**Draft PR:** live measurements are **not** included yet. Do not treat CI green as experimental result.
+
+Integrity fixes in commit 4:
+
+- `openai` declared in `requirements.txt`
+- API failures → `INFRA_ERROR` (excluded from model metrics; not scored as zeros)
+- `schema_validity` uses jsonschema vs vendored `param_schema.json`
+- `name_agnostic_detection` implemented (keyword/type signal)
+- classification accuracy denominator = all scored positives
 
 ## Reproduce (CI / local, no API)
 
