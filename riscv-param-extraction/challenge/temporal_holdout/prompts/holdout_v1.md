@@ -1,6 +1,6 @@
-# Holdout prompt v1 — baseline / treatment (shared template)
+# Holdout prompt v1.1 — baseline / treatment (shared template)
 
-**Status:** frozen for pilot `temporal-holdout-artifact-c-v1`.  
+**Status:** frozen for pilot `temporal-holdout-artifact-c-v1` (pre-live integrity revision).  
 **Do not edit** after first live run without bumping `prompt_version`.
 
 Placeholders:
@@ -30,23 +30,34 @@ ANTI-HALLUCINATION
 3. Prefer independent parameters; do not invent names not justified by text.
 4. If value space is unspecified, use a minimal schema; do not invent enums.
 
-CLASS LABEL (optional field on each param):
-  NORM_CSR_WARL | NORM_CSR_RW | NORM_DIRECT | OTHER
-
-OUTPUT FORMAT
-Emit zero or more YAML documents. Each document:
+OUTPUT FORMAT — UDB parameter documents only (must validate against param_schema):
+Emit zero or more YAML documents. Each document MUST use ONLY these fields
+(do NOT add a class field — UDB schema forbids additional properties):
   $schema: param_schema.json#
   kind: parameter
   name: UPPER_SNAKE_CASE
-  class: NORM_CSR_WARL   # if known
   long_name: short title
   description: |
     ...
-  definedBy: Privileged ISA
+  definedBy:
+    extension:
+      name: Sm
   schema: { type: integer|boolean|string|array|... }
 
-Also emit a sibling evidence object (JSON) per parameter:
-  { "name": "...", "quote": "..." }
+EVALUATION METADATA (separate from UDB docs — not validated as parameters):
+After all parameter YAML docs, emit ONE JSON object:
+  {
+    "eval": true,
+    "items": [
+      {
+        "name": "PARAM_NAME",
+        "class": "NORM_CSR_WARL|NORM_CSR_RW|NORM_DIRECT|OTHER",
+        "quote": "verbatim quote from SOURCE or context"
+      }
+    ]
+  }
+Include one items[] entry per emitted parameter (same name). If zero parameters,
+emit: {"eval": true, "items": []}
 
 SOURCE:
 {{SOURCE}}

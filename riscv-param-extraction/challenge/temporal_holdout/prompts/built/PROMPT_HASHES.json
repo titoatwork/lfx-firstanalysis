@@ -2,7 +2,7 @@
   "cases": [
     {
       "baseline_path": "prompts\\built\\P01_baseline.txt",
-      "baseline_prompt_sha256": "9cf78d8d8cf165794227f79d37850eb19b931e15d608fb522e7a898778f75c32",
+      "baseline_prompt_sha256": "4e7e83374f7afb8a4b29e833380c1e7299742576aebcf8691ae44edf5928026f",
       "context_ids": [
         "mtvec"
       ],
@@ -14,11 +14,11 @@
       "source_path": "cases/positives/MTVEC_MODES/source.txt",
       "source_sha256": "5042bcbc7cc7c827c5078afdebbbce87c69c009e13fd692163e04227e5beec6b",
       "treatment_path": "prompts\\built\\P01_treatment.txt",
-      "treatment_prompt_sha256": "6251ca74aa9f15be0f88d8c8b60afec530d762207b38ebf5d4b942eb9744de5e"
+      "treatment_prompt_sha256": "b88cf1cfe0e8ee7ced799ee7f40a659f065a4b641b7fb46c79d0544767722123"
     },
     {
       "baseline_path": "prompts\\built\\P02_baseline.txt",
-      "baseline_prompt_sha256": "6d5d64e823126c08b2dfdc7a2ca7428dc16f9d640ba8948a8d8e95de9097b02d",
+      "baseline_prompt_sha256": "1e47188f57ef34e571a1d93e181a8811023b7891b03a2a61a4e041052bdb4c76",
       "context_ids": [
         "mstatus"
       ],
@@ -30,11 +30,11 @@
       "source_path": "cases/positives/MSTATUS_FS_LEGAL_VALUES/source.txt",
       "source_sha256": "3c02a450f2fc1d38d5cf63255df18e08dbf754b8b5c0950c396fbd31cd1df25d",
       "treatment_path": "prompts\\built\\P02_treatment.txt",
-      "treatment_prompt_sha256": "05ca8214f91f12d12d454403009308cbdb1b31277baa0164d132499ad9e61732"
+      "treatment_prompt_sha256": "31ba04492a1a4449902d61858a15965ed0693e9877457c1ee487c11165888103"
     },
     {
       "baseline_path": "prompts\\built\\P03_baseline.txt",
-      "baseline_prompt_sha256": "4ff1e1d82f06268498546f02d05126bf5d59b49d7059d084a5cef7bee8da6ab2",
+      "baseline_prompt_sha256": "1b2d2e81796e151413bdee2a9dbb9fee6566ab6a426f6edada62677c0502c259",
       "context_ids": [
         "satp"
       ],
@@ -46,11 +46,11 @@
       "source_path": "cases/positives/SATP_MODE_BARE/source.txt",
       "source_sha256": "0853341df8e658a87cbbf1fc85fda4f8defb7e03d74d72893004cde95cfed811",
       "treatment_path": "prompts\\built\\P03_treatment.txt",
-      "treatment_prompt_sha256": "017173a9be6d947ba352826f17162ed60d293369e87e5590391ce6ad6278e003"
+      "treatment_prompt_sha256": "a69563480ef1079d3cad83e34574686b930385ff1e8baa032142022256fd1e7a"
     },
     {
       "baseline_path": "prompts\\built\\P04_baseline.txt",
-      "baseline_prompt_sha256": "aa46d9ba3a8f49fe3789fab2dbcb2d84e102bc182107c21d28a6f50994976d6a",
+      "baseline_prompt_sha256": "a92f1b5983894ca917f0905eb0570f9f1eacb0f093ee86bcd3ab1589f5c302f1",
       "context_ids": [
         "mtvec"
       ],
@@ -62,11 +62,11 @@
       "source_path": "cases/positives/MTVEC_BASE_ALIGNMENT_DIRECT/source.txt",
       "source_sha256": "fc2ac35464f8ee6f1fb504fe66747f480f151acd73df5b6c411e9c7ee16d217b",
       "treatment_path": "prompts\\built\\P04_treatment.txt",
-      "treatment_prompt_sha256": "c523b1774ebc7d56ce2e3678949d47c7623883376cd346039222bae0bc904129"
+      "treatment_prompt_sha256": "6c00e0718c95f99ed995d50dc5f39f3a2818296abf2337d90a45b192a1ccbdce"
     },
     {
       "baseline_path": "prompts\\built\\P05_baseline.txt",
-      "baseline_prompt_sha256": "4171f9336f298dd2fb1a5f9021a142a08d33239701158769d7293a4b899f6c0c",
+      "baseline_prompt_sha256": "a952218f7619afe66f462ed660450fe558c05bc00ca1e30877343468a2939fdf",
       "context_ids": [
         "mstatus"
       ],
@@ -78,11 +78,11 @@
       "source_path": "cases/positives/M_MODE_ENDIANNESS/source.txt",
       "source_sha256": "0bffbc99edaea81a8b9897e7f9201a9f56791d23a25102f250162b1daca1e543",
       "treatment_path": "prompts\\built\\P05_treatment.txt",
-      "treatment_prompt_sha256": "5f8edbc05f83ad800b7a89e0c61116e379c1dcf254fb067502da4884e72a0454"
+      "treatment_prompt_sha256": "e73a0e63fa8894279cb493ede5dc0b99e1cf0b8c43c79896b6da4ee7134e86a0"
     },
     {
       "baseline_path": "prompts\\built\\P06_baseline.txt",
-      "baseline_prompt_sha256": "4391571bdc563e31601d64a96348a1063720ff9dff14cd5a42931172b4af1d58",
+      "baseline_prompt_sha256": "dde4d9a0b85be7d651e47a5ea3c63e1e4fa548c7228430d30e65dfb0a9c1f5f4",
       "context_ids": [
         "mtvec"
       ],
@@ -94,11 +94,11 @@
       "source_path": "cases/positives/MTVEC_ACCESS/source.txt",
       "source_sha256": "8374a2b3ad4567ad2b81cb1a4380106f6035e006eff965e68f61d0afbad2b2e4",
       "treatment_path": "prompts\\built\\P06_treatment.txt",
-      "treatment_prompt_sha256": "d78ad87c495a1e2150687fe4b145a9814245a0ebaa411113f7e2ffac9a8cd4dc"
+      "treatment_prompt_sha256": "2d3222bae19732b4be47d45f762ea9876d5876f886fa349bacc35e651ff87a30"
     },
     {
       "baseline_path": "prompts\\built\\P07_baseline.txt",
-      "baseline_prompt_sha256": "f93491d6b41ef8b6ab4f140d228397b2bb80d67cd3290c405b51d971f6ea8655",
+      "baseline_prompt_sha256": "1f82344b490588ad63ea5a0402b619af4307d4f0814df112282593476051082b",
       "context_ids": [],
       "context_sha256": [],
       "id": "P07",
@@ -106,11 +106,11 @@
       "source_path": "cases/positives/TRAP_ON_ILLEGAL_WLRL/source.txt",
       "source_sha256": "af9f383aaaee4a47d612335d098b214b39b444abdda5c6c0b0eb219732c2da23",
       "treatment_path": "prompts\\built\\P07_treatment.txt",
-      "treatment_prompt_sha256": "f93491d6b41ef8b6ab4f140d228397b2bb80d67cd3290c405b51d971f6ea8655"
+      "treatment_prompt_sha256": "1f82344b490588ad63ea5a0402b619af4307d4f0814df112282593476051082b"
     },
     {
       "baseline_path": "prompts\\built\\P08_baseline.txt",
-      "baseline_prompt_sha256": "92c4fce866dcaffc1d2c34902203d354879750c5b33f1fed5431d93f48b6303b",
+      "baseline_prompt_sha256": "faaf8620ff4e655e667a75b5845b8076a3846d3b57d49953d493e67ade1749d4",
       "context_ids": [
         "pmpcfg0"
       ],
@@ -122,11 +122,11 @@
       "source_path": "cases/positives/NUM_USABLE_PMP_ENTRIES/source.txt",
       "source_sha256": "7e32b1ad3a7ed0625c7e7df9323c986b66fe0bed4c4848b926e5b41d3ee7c9ac",
       "treatment_path": "prompts\\built\\P08_treatment.txt",
-      "treatment_prompt_sha256": "3af5343ed598ba8c187e0741ad180912bb751ddb14b7d65b3f45c5ece91d209e"
+      "treatment_prompt_sha256": "c907fed5f668d0e39d0894f900228f793b5870c2e18cf3ce2c5e787cbf1b0fb5"
     },
     {
       "baseline_path": "prompts\\built\\P09_baseline.txt",
-      "baseline_prompt_sha256": "63a44f88025e797f5ec11c1ddc32f7aa152e25c31ee53fe0b0c5f1aab8c9e31b",
+      "baseline_prompt_sha256": "1a3f1076607640437d7a9f13cc2bdb79b5ae2fe4d211f554c68a4041d2fd3d87",
       "context_ids": [
         "vstart"
       ],
@@ -138,11 +138,11 @@
       "source_path": "cases/positives/SEW_MIN/source.txt",
       "source_sha256": "00dff20a691061a75f53c7822e1bd27f0e04fdcfa849eb16e8ea8429d1e3b547",
       "treatment_path": "prompts\\built\\P09_treatment.txt",
-      "treatment_prompt_sha256": "45ed83a2287ad296050971fc817c0b8532075e696ac03a29e7d2a6bd65634659"
+      "treatment_prompt_sha256": "be44b7919e31a582dae82d97340ed0719d5904189fbd92269fb8a2953a7eaae6"
     },
     {
       "baseline_path": "prompts\\built\\P10_baseline.txt",
-      "baseline_prompt_sha256": "64213794aab265b9be90a07f6327b48132802613f07e526732e5777a31746f0d",
+      "baseline_prompt_sha256": "7b4685be14611651316aa937ab8552722d034fd8988d9747cfac46a9795822e0",
       "context_ids": [
         "mcountinhibit"
       ],
@@ -154,11 +154,11 @@
       "source_path": "cases/positives/MCOUNTINHIBIT_IMPLEMENTED/source.txt",
       "source_sha256": "f2087852d6e2bc215d774f216df5e0201af2ae125f95f7a50724bb9161e28790",
       "treatment_path": "prompts\\built\\P10_treatment.txt",
-      "treatment_prompt_sha256": "fcd1ac93788174387d76d19238bb76cd024a5beec2dc787fc2d3ffa69c280b59"
+      "treatment_prompt_sha256": "913fb75f3ceecfb31fee21102d3c3c219d689b113928a0567868680d9aefad43"
     },
     {
       "baseline_path": "prompts\\built\\N01_baseline.txt",
-      "baseline_prompt_sha256": "9757259960f39e5782e3da36bc9a5aed72a8a267ebb643f8681042f39c81f27f",
+      "baseline_prompt_sha256": "3818bc2f272195ff7f88b233131e25fbc25803994031bcc857a0ab82c8ed6328",
       "context_ids": [],
       "context_sha256": [],
       "id": "N01",
@@ -166,11 +166,11 @@
       "source_path": "cases/negatives/FIXED_CSR_ENCODING/source.txt",
       "source_sha256": "0b4a27ea57dd8518dde549ddfb336ca3ebda0ae19cf1e12148dbcffa74a26a3d",
       "treatment_path": "prompts\\built\\N01_treatment.txt",
-      "treatment_prompt_sha256": "9757259960f39e5782e3da36bc9a5aed72a8a267ebb643f8681042f39c81f27f"
+      "treatment_prompt_sha256": "3818bc2f272195ff7f88b233131e25fbc25803994031bcc857a0ab82c8ed6328"
     },
     {
       "baseline_path": "prompts\\built\\N02_baseline.txt",
-      "baseline_prompt_sha256": "44a83903a34a45afd51b72edf2d22aedf33a9c1359bdf01cfab04b97e6558631",
+      "baseline_prompt_sha256": "f643d11101683cb0320790524068d2e784ea823ea5352079ea667fd3d03a03a2",
       "context_ids": [],
       "context_sha256": [],
       "id": "N02",
@@ -178,11 +178,11 @@
       "source_path": "cases/negatives/SHALL_ONLY_UNIFORM/source.txt",
       "source_sha256": "6261c3706d0797458fdce791310bea9273bbd78ee3704733fcb02c9ae891c5a1",
       "treatment_path": "prompts\\built\\N02_treatment.txt",
-      "treatment_prompt_sha256": "44a83903a34a45afd51b72edf2d22aedf33a9c1359bdf01cfab04b97e6558631"
+      "treatment_prompt_sha256": "f643d11101683cb0320790524068d2e784ea823ea5352079ea667fd3d03a03a2"
     },
     {
       "baseline_path": "prompts\\built\\N03_baseline.txt",
-      "baseline_prompt_sha256": "3efc785e5c04f492bc699c482de7b717b0ec9cf6dacb4dc6ad7e219327331774",
+      "baseline_prompt_sha256": "328482772235dd11c1386f969a41b615272076596778787f73707b5962e8a544",
       "context_ids": [],
       "context_sha256": [],
       "id": "N03",
@@ -190,9 +190,9 @@
       "source_path": "cases/negatives/SW_MAY_SHOULD_ADVICE/source.txt",
       "source_sha256": "f73512b7b8ae6ce8c8a6e894e43731cd0ae81d3e8a5a74b1bf4ea71daa9f4ef7",
       "treatment_path": "prompts\\built\\N03_treatment.txt",
-      "treatment_prompt_sha256": "3efc785e5c04f492bc699c482de7b717b0ec9cf6dacb4dc6ad7e219327331774"
+      "treatment_prompt_sha256": "328482772235dd11c1386f969a41b615272076596778787f73707b5962e8a544"
     }
   ],
-  "prompt_version": "holdout-v1",
-  "template_sha256": "df318ffd46953a400d25a71b5b7a4c0ed17b86012d77400588092fe88519776e"
+  "prompt_version": "holdout-v1.1",
+  "template_sha256": "a07f329525be1ae32b76a5155f1735efa10041d8e68b6f88a44e83e135087b0a"
 }
