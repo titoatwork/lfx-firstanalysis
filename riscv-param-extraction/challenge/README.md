@@ -36,7 +36,7 @@ Write prompts that extract architectural parameters from ISA Manual excerpts, wh
 | Modeling notes | `docs/modeling-notes.md` |
 | Scale/cost | `docs/scale_and_cost.md` |
 | Live multi-model how-to | `docs/LIVE_MULTI_MODEL.md` |
-| **Live multi-model results** | `results/live/` — **done 2026-07-26** (OpenAI mini + gpt-4o; see `MANIFEST.md`) |
+| **Live multi-model results** | `results/live/` — **OpenAI mini + gpt-4o + Gemini 3.6 Flash free** (see `MANIFEST.md`) |
 | Optional live extract | `scripts/extract.py` (no API unless `--live` + key) |
 
 ### How to run (local / CI)
@@ -72,15 +72,17 @@ CSR snippet: see `results/curated/csr_address_mapping.NO_PARAMETERS_FOUND.txt`.
 
 ### Live multi-model (2026-07-26)
 
-**OpenAI-only** (one provider key). Not Sonnet/Opus/GLM. Details: [`results/live/MANIFEST.md`](./results/live/MANIFEST.md).
+**OpenAI + Google free tier.** Not Sonnet/Opus/GLM. Details: [`results/live/MANIFEST.md`](./results/live/MANIFEST.md).
 
 | Model | CMO | CSR negative control |
 |-------|-----|----------------------|
-| `gpt-4o-mini-2024-07-18` | 1 param (`CACHE_BLOCK_SIZE` only — under-extract) | **FAIL** false positive `CSR_ACCESSIBILITY_ENCODING` |
-| `gpt-4o-2024-11-20` | 1 param (`CACHE_BLOCK_SIZE` only — under-extract) | **PASS** zero |
+| `gemini-3.6-flash` (free) | **3** (block + capacity + organization) | **PASS** zero |
+| `gpt-4o-mini-2024-07-18` | 1 (`CACHE_BLOCK_SIZE` only) | **FAIL** false positive |
+| `gpt-4o-2024-11-20` | 1 (`CACHE_BLOCK_SIZE` only) | **PASS** zero |
 | curated (CI gold, not live) | 3 | PASS |
 
 ```bash
+python challenge/scripts/validate.py --results challenge/results/live/gemini-3.6-flash
 python challenge/scripts/validate.py --results challenge/results/live/gpt-4o-2024-11-20
 python challenge/scripts/validate.py --results challenge/results/live/gpt-4o-mini-2024-07-18
 ```
