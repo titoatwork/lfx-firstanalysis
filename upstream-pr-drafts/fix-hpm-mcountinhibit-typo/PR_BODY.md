@@ -1,7 +1,7 @@
 # Draft PR — fix typo in HPM_COUNTER_EN description
 
 **Target:** `riscv/riscv-unified-db` · branch off `main`  
-**Status:** READY TO OPEN (user must open PR — agent will not push without `push` / explicit upstream go)  
+**Status:** SUPERSEDED for opening — prefer **`fix-hpm-events-dup-index`** (includes this typo + #2046).  
 **Author intent:** Ibteshamul Haque · `titoatwork`
 
 ## Summary

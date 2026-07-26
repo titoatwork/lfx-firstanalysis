@@ -25,7 +25,10 @@
 | High-conf proposed-new both models | **9** names | metrics §5.4 | Candidates needing review |
 | v3 prompt WARL ablation | **60/60**; adj **35.0%**; WARL **8.3%** (2/24); ~**$0.16** | metrics §6; stretch-c manifest | **Null / negative** for WARL |
 | Public repo | https://github.com/titoatwork/lfx-firstanalysis | git | Prework link |
+| Coding challenge pack | 2 snippets · fail-closed CI · curated + live multi-model under `challenge/` | monorepo | Path A |
+| Live multi-model (snippets) | Multiple providers; **best free legs** hit CMO=3 + CSR=0 (e.g. Nemotron Ultra free, Gemini free, Ling free); some models under-extract or CSR false-positive — report honestly | `challenge/results/live/MANIFEST.md` | Not corpus-scale; not Sonnet claim |
 | Open Spring PRs (context) | #1765–#1832 still the Part I surface | GitHub | “merge/export still open” |
+| UDB PRs (when open) | Prefer issue-linked data fixes (#2102 STVAL_WIDTH, #2046 HPM_EVENTS) | GitHub PR URLs | Only after open; never invent merges |
 
 ### The nine dual-model high-conf “new” candidates (not confirmed params)
 
@@ -46,6 +49,8 @@
 | “Schema-valid means architecturally correct” | Structural check only |
 | “Artifact C (CSR-field context) is done” | **Not run**; only prompt-v3 ablation done |
 | Fake merge counts or SIG attendance | Not true |
+| “Curated challenge results are live LLM scores” | Curated = CI gold; live = `results/live/` |
+| “We beat Anshul / guaranteed selection” | Strategy talk, not evidence |
 | Applicant counts / admission probability | Unknown; do not invent |
 
 ---

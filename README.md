@@ -19,7 +19,7 @@ Spring Part I (extract → analyze → spreadsheet) was built on open UDB PR bra
 | 3 | **[Live multi-model matrix](./riscv-param-extraction/challenge/results/live/MANIFEST.md)** — honest per-model CMO/CSR |
 | 4 | **[Export + drafts](./riscv-param-extraction/)** — `export/`, `drafts/param/`, `drafts/param-new/` |
 | 5 | **[Application packet](./application-packet/)** — essay, 9-week plan, claim ledger |
-| 6 | **[UDB typo PR draft](./upstream-pr-drafts/fix-hpm-mcountinhibit-typo/)** — small param-data fix (not bulk dump) |
+| 6 | **[Upstream PR drafts](./upstream-pr-drafts/)** — issue-linked param data fixes ready to open (STVAL_WIDTH #2102, HPM_EVENTS #2046; not bulk dump) |
 
 ### Path A vs Path B (do not collapse)
 
