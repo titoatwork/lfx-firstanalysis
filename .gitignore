@@ -1,11 +1,56 @@
-# Full UDB clone lives locally only (large nested git repo; clone upstream separately)
+# =============================================================================
+# Local only — never push (agent / personal / strategy / large clones)
+# =============================================================================
+
+# Full UDB clone (large nested git)
 riscv-unified-db/
 
-# Scratch / duplicate of PHASE1-IMMERSION measured bits
+# Scratch / duplicate immersion workspace
 immersion-workspace/
 
-# Personal / agent-only notes — NOT for mentors (do not push)
-PHASE1-IMMERSION/09-pointers/slack-notes.md
+# Agent / Grok / session law (local execution only)
+AGENTS.md
+AGENT-RULES.md
+HANDSOFF.md
+RECURRING_MISTAKES.md
+.grok/
+**/AGENTS.md
+
+# Session handoffs & agent prompts
+HANDOFF*.md
+NEXT-SESSION*.md
+LEFTOVER-WORK.md
+PROGRESS.md
+LEFT-TODO.md
+72H-CHECKLIST.md
+LIVE-VERIFY*.md
+
+# Competition / overmatch strategy (private)
+COMPETITION*.md
+FINAL-DRAFT*.md
+OVERMATCH*.md
+PLAN-*.md
+TIMELINE*.md
+APPLICATION-PLAN.md
+PHASE1-STATUS.md
+PHASE1-CLOSEOUT.md
+PHASE1-IMMERSION/
+PHASE2-PLAN.md
+Prompt.md
+PROJECTS.md
+RESUME-DRAFT.md
+GITHUB-PRESENTATION.md
+DEEP-STUDY*.md
+STUDY-AI*.md
+SARGANTANA*.md
+
+# Early / superseded prework (application-packet is canonical)
+lfx-riscv-param-extraction-prework/
+prework-draft/
+
+# Membership / personal forms
+SCHEDULE*.docx
+**/*Schedule*A*
 **/slack-notes.md
 **/private/
 **/PERSONAL*.md
@@ -16,6 +61,8 @@ PHASE1-IMMERSION/09-pointers/slack-notes.md
 .env.*
 *.pem
 **/secrets*
+**/*API*KEY*
+**/*api*key*.txt
 
 # OS / editor
 .DS_Store
@@ -28,3 +75,5 @@ __pycache__/
 *.py[cod]
 .venv/
 venv/
+*.egg-info/
+.pytest_cache/
