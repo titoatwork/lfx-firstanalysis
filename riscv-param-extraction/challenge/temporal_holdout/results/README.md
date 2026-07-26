@@ -5,7 +5,8 @@
 | Item | Status |
 |------|--------|
 | Preregistered manifest / gold / prompts | **Frozen** (before live outputs) |
-| Live baseline + treatment (`gpt-4o-mini-2024-07-18`) | **Pending** local `OPENAI_API_KEY` after pre-live gates |
+| Live baseline + treatment (`gpt-4o-mini-2024-07-18`) | **Locked primary** `20260726T164713Z_...` (26/26) — see `PRIMARY_RESULTS.md` |
+| Claim level | **Exploratory null / harness demo** — not clean temporal-holdout (v1.2 guidance leakage) |
 | Run tree | `runs/<run_id>/` (refuse overwrite) |
 | Primary pointer | `PRIMARY_RUN.json` locked once; second primary live run refused |
 | Scores | `score_holdout.py` requires validated `RUN_META.json` (not file count alone) |
