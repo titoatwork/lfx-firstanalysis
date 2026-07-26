@@ -23,7 +23,7 @@
 | 6 | Membership Schedule A / approval | You | In progress / waiting |
 | 7 | SIG/tech calendar | You | Open |
 | 8 | Challenge pack + CI | Agent | **DONE + pushed** `58f91de` |
-| 9 | Live multi-model on challenge snippets | Agent | **Partial DONE** OpenAI mini+gpt-4o under `challenge/results/live/` · optional Sonnet/GLM legs still open |
+| 9 | Live multi-model on challenge snippets | Agent | **DONE** OpenAI mini+gpt-4o + Gemini 3.6 Flash free · optional Sonnet/GLM still optional |
 | 10 | Open UDB PR (draft ready) | Agent/You | Draft ready · **blocked**: `gh auth login` on this machine · then `GO OPEN UDB PR` |
 | 11 | Optional: push local validate `--check-triggers` + doc sync | Agent | Local dirty until `push` |
 

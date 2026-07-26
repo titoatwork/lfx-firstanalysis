@@ -1,0 +1,7 @@
+{
+  "name": "CACHE_ORGANIZATION",
+  "snippet": "cmo_cache_block.txt",
+  "quote": "The capacity and organization of a cache and the size of a cache block are both implementation-specific",
+  "model": "gemini-3.6-flash",
+  "notes": "Live free-tier Gemini; definedBy normalized to schema-valid CMO gating (model emitted free-form Privileged ISA string)."
+}
