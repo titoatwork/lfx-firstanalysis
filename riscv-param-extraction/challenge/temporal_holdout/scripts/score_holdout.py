@@ -249,18 +249,114 @@ def load_case_result(results_dir: Path, condition: str, case_id: str) -> tuple[s
     return parsed.read_text(encoding="utf-8"), "ok"
 
 
-def resolve_results_dir(cli: Path | None) -> tuple[Path, dict[str, Any] | None]:
+def _run_dir_from_parsed(parsed: Path) -> Path | None:
+    """If parsed is .../runs/<id>/parsed, return run dir."""
+    if parsed.name == "parsed" and parsed.parent.parent.name == "runs":
+        return parsed.parent
+    if (parsed / "RUN_META.json").is_file():
+        return parsed
+    if (parsed.parent / "RUN_META.json").is_file():
+        return parsed.parent
+    return None
+
+
+def resolve_results_dir(cli: Path | None) -> tuple[Path, dict[str, Any] | None, Path | None]:
+    """
+    Returns (parsed_dir, run_meta_or_none, run_dir_or_none).
+
+    Primary scoring always requires adjacent RUN_META.json (never file-count alone).
+    """
     if cli is not None:
-        return cli, None
+        parsed = cli
+        run_dir = _run_dir_from_parsed(parsed.resolve())
+        meta = None
+        if run_dir and (run_dir / "RUN_META.json").is_file():
+            meta = json.loads((run_dir / "RUN_META.json").read_text(encoding="utf-8"))
+        elif (parsed / "RUN_META.json").is_file():
+            meta = json.loads((parsed / "RUN_META.json").read_text(encoding="utf-8"))
+            run_dir = parsed
+        return parsed, meta, run_dir
+
     if PRIMARY_POINTER.is_file():
         ptr = json.loads(PRIMARY_POINTER.read_text(encoding="utf-8"))
         run_dir = ROOT / ptr["run_dir"]
         meta_path = run_dir / "RUN_META.json"
-        meta = json.loads(meta_path.read_text(encoding="utf-8")) if meta_path.is_file() else ptr
-        return run_dir / "parsed", meta
-    # fall back to legacy path if present
+        if not meta_path.is_file():
+            return run_dir / "parsed", None, run_dir
+        meta = json.loads(meta_path.read_text(encoding="utf-8"))
+        return run_dir / "parsed", meta, run_dir
+
     legacy = ROOT / "results" / "parsed"
-    return legacy, None
+    return legacy, None, None
+
+
+def validate_primary_meta(
+    meta: dict[str, Any] | None,
+    manifest: dict[str, Any],
+    results_dir: Path,
+) -> list[str]:
+    """Hard requirements for primary comparison claims."""
+    errs: list[str] = []
+    if meta is None:
+        errs.append("RUN_META.json required for primary score (file presence alone is insufficient)")
+        return errs
+
+    pins = manifest.get("pins") or {}
+    pin_model = pins.get("model_id")
+    n_expected = (len(manifest["positives"]) + len(manifest["negatives"])) * 2
+    case_ids = [c["id"] for c in manifest["positives"] + manifest["negatives"]]
+
+    if meta.get("model") != pin_model:
+        errs.append(f"model {meta.get('model')!r} != pin {pin_model!r}")
+    if meta.get("pin_model") not in (None, pin_model) and meta.get("pin_model") != pin_model:
+        errs.append(f"pin_model field {meta.get('pin_model')!r} != pin {pin_model!r}")
+    if meta.get("failures", 0) != 0:
+        errs.append(f"failures={meta.get('failures')} (must be 0)")
+    if meta.get("successful_calls") != n_expected:
+        errs.append(
+            f"successful_calls={meta.get('successful_calls')} != expected {n_expected}"
+        )
+    if meta.get("expected_calls") != n_expected:
+        errs.append(f"expected_calls={meta.get('expected_calls')} != {n_expected}")
+    if not meta.get("complete"):
+        errs.append("complete != true")
+    if not meta.get("primary_comparison_eligible"):
+        errs.append("primary_comparison_eligible != true (debug or incomplete run)")
+    if meta.get("debug_run"):
+        errs.append("debug_run=true cannot be primary")
+
+    # Prompt pin
+    prompt_version = pins.get("prompt_version")
+    if meta.get("prompt_version") != prompt_version:
+        errs.append(
+            f"prompt_version {meta.get('prompt_version')!r} != pin {prompt_version!r}"
+        )
+    hashes_path = ROOT / "prompts" / "built" / "PROMPT_HASHES.json"
+    if hashes_path.is_file():
+        ph = json.loads(hashes_path.read_text(encoding="utf-8"))
+        if meta.get("template_sha256") and meta.get("template_sha256") != ph.get("template_sha256"):
+            errs.append("template_sha256 mismatch vs PROMPT_HASHES.json")
+        if ph.get("prompt_version") != prompt_version:
+            errs.append("PROMPT_HASHES.json prompt_version mismatch vs manifest pin")
+
+    # Exact call set: 26 unique successful (case, condition)
+    calls = meta.get("calls") or []
+    ok_pairs = {(c.get("id"), c.get("condition")) for c in calls if c.get("ok")}
+    expected_pairs = {(cid, cond) for cid in case_ids for cond in ("baseline", "treatment")}
+    if ok_pairs != expected_pairs:
+        missing = sorted(expected_pairs - ok_pairs)
+        extra = sorted(ok_pairs - expected_pairs)
+        errs.append(f"call set mismatch: missing={missing[:5]}… extra={extra[:5]}…")
+    if len(ok_pairs) != n_expected:
+        errs.append(f"unique successful pairs={len(ok_pairs)} != {n_expected}")
+
+    # Files must exist for every pair
+    for cid, cond in expected_pairs:
+        _raw, st = load_case_result(results_dir, cond, cid)
+        if st != "ok":
+            errs.append(f"parsed result not ok for {cid}/{cond}: {st}")
+
+    return errs
 
 
 def score_condition(
@@ -403,6 +499,9 @@ def score_condition(
             review.append({"id": cid, "reason": status})
             continue
         docs, eval_items = parse_model_output(raw)
+        # Schema totals include negative-case extractions (all extracted docs)
+        schema_docs += len(docs)
+        schema_ok_docs += sum(1 for d in docs if schema_valid(d))
         src = (ROOT / case["source_path"]).read_text(encoding="utf-8")
         for doc in docs:
             grounded_den += 1
@@ -432,6 +531,7 @@ def score_condition(
                 "scored": True,
                 "fp": fp,
                 "n_extracted": len(docs),
+                "schema_valid_docs": sum(1 for d in docs if schema_valid(d)),
             }
         )
 
@@ -460,7 +560,7 @@ def score_condition(
         "classification_note": "class from eval metadata JSON; den=all scored positives",
         "type_fidelity": f"{type_hits}/{type_den}" if type_den else "0/0",
         "schema_validity_docs": f"{schema_ok_docs}/{schema_docs}" if schema_docs else "0/0",
-        "schema_validity_note": "untouched docs; jsonschema param_schema.json; no field injection",
+        "schema_validity_note": "untouched docs; all extracted docs incl. negatives; no field injection",
         "quote_grounding": f"{grounded_ok}/{grounded_den}" if grounded_den else "0/0",
         "quote_grounding_note": "per extracted param; missing quote = fail",
         "negative_control_fp": f"{neg_fp}/{scored_neg}" if scored_neg else "0/0",
@@ -502,38 +602,31 @@ def main() -> int:
     manifest = yaml.safe_load(args.manifest.read_text(encoding="utf-8"))
     n_expected = (len(manifest["positives"]) + len(manifest["negatives"])) * 2
 
-    results_dir, meta = resolve_results_dir(args.results_dir)
+    results_dir, meta, run_dir = resolve_results_dir(args.results_dir)
     if not results_dir.is_dir():
         print(f"ERROR: results dir missing: {results_dir}", file=sys.stderr)
-        print("Run live first, or pass --results-dir.", file=sys.stderr)
+        print("Run live first, or pass --results-dir pointing at runs/<id>/parsed.", file=sys.stderr)
         return 2
 
-    primary_ok = True
-    if meta is not None:
-        if not meta.get("primary_comparison_eligible") and not meta.get("complete"):
-            primary_ok = False
-        if meta.get("successful_calls") is not None and meta.get("expected_calls") is not None:
-            if meta["successful_calls"] != meta["expected_calls"]:
-                primary_ok = False
-    else:
-        # No RUN_META: check both conditions have all cases present and no infra markers
-        for cond in ("baseline", "treatment"):
-            for case in list(manifest["positives"]) + list(manifest["negatives"]):
-                _raw, st = load_case_result(results_dir, cond, case["id"])
-                if st != "ok":
-                    primary_ok = False
+    primary_errs = validate_primary_meta(meta, manifest, results_dir)
+    primary_ok = len(primary_errs) == 0
 
     if not primary_ok and not args.allow_incomplete:
         print(
-            f"REFUSE primary score: incomplete run (need {n_expected}/{n_expected} successful calls). "
-            f"Use --allow-incomplete only for debug.",
+            f"REFUSE primary score: RUN_META validation failed "
+            f"(need complete 26/26 pinned run with eligible flag).",
             file=sys.stderr,
         )
-        if meta:
-            print(json.dumps({k: meta.get(k) for k in ("run_id", "successful_calls", "expected_calls", "complete")}, indent=2))
+        for e in primary_errs:
+            print(f"  - {e}", file=sys.stderr)
+        print("Use --allow-incomplete only for debug (not primary claims).", file=sys.stderr)
         return 2
 
-    # Same case set both conditions for primary
+    if args.allow_incomplete and not primary_ok:
+        print("WARNING: scoring with --allow-incomplete; not a primary comparison.", file=sys.stderr)
+        for e in primary_errs:
+            print(f"  - {e}", file=sys.stderr)
+
     summaries = [score_condition(manifest, cond, results_dir) for cond in ("baseline", "treatment")]
     if primary_ok:
         for s in summaries:
@@ -554,7 +647,9 @@ def main() -> int:
         "pins": manifest.get("pins"),
         "primary_comparison": primary_ok and not args.allow_incomplete,
         "allow_incomplete": args.allow_incomplete,
+        "primary_validation_errors": primary_errs,
         "run_meta": meta,
+        "run_dir": str(run_dir) if run_dir else None,
         "results_dir": str(results_dir),
         "conditions": summaries,
     }
@@ -568,6 +663,7 @@ def main() -> int:
     print(f"wrote {review_path}")
     print(f"primary_comparison={payload['primary_comparison']}")
     return 0
+
 
 
 if __name__ == "__main__":

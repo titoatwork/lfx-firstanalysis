@@ -7,12 +7,15 @@ Requires OPENAI_API_KEY and explicit --live.
 Integrity:
   - Fail closed if --model != preregistered pin (no calls).
   - Refuse to overwrite an existing run directory.
-  - Primary comparison requires 26/26 successful calls; failures retained
-    under the run tree but run is marked incomplete.
+  - Refuse a new *primary* live run if PRIMARY_RUN.json already exists
+    (prevents post-hoc selection of a preferred complete run).
+  - --debug-run: non-primary only; never writes PRIMARY_RUN.json.
+  - Primary comparison requires 26/26 successful calls.
 
 Usage:
   python run_live.py --estimate
   python run_live.py --live --model gpt-4o-mini-2024-07-18
+  python run_live.py --live --debug-run --model gpt-4o-mini-2024-07-18
 """
 
 from __future__ import annotations
@@ -29,6 +32,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "manifests" / "holdout_cases.yaml"
 BUILT = ROOT / "prompts" / "built"
+PROMPT_HASHES = BUILT / "PROMPT_HASHES.json"
 RUNS = ROOT / "results" / "runs"
 PRIMARY_POINTER = ROOT / "results" / "PRIMARY_RUN.json"
 
@@ -50,8 +54,8 @@ def estimate(manifest: dict) -> None:
     print(f"est tokens: ~{in_tok} in / ~{out_tok} out")
     print(f"est cost gpt-4o-mini: ~${cost:.3f} (order-of-magnitude)")
     print("Requires explicit --live + OPENAI_API_KEY. No retries.")
-    print("Dependency: openai (see requirements.txt).")
     print(f"Primary comparison requires {n}/{n} successful calls.")
+    print("If PRIMARY_RUN.json exists, only --debug-run is allowed.")
 
 
 def call_openai(model: str, prompt: str) -> str:
@@ -75,16 +79,23 @@ def write_status(path: Path, payload: dict) -> None:
     path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
+def load_prompt_pin() -> dict:
+    if not PROMPT_HASHES.is_file():
+        return {}
+    return json.loads(PROMPT_HASHES.read_text(encoding="utf-8"))
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--estimate", action="store_true")
     parser.add_argument("--live", action="store_true")
     parser.add_argument("--model", default="gpt-4o-mini-2024-07-18")
     parser.add_argument("--retries", type=int, default=0)
+    parser.add_argument("--run-id", default=None, help="Optional run id")
     parser.add_argument(
-        "--run-id",
-        default=None,
-        help="Optional run id; default UTC timestamp + model",
+        "--debug-run",
+        action="store_true",
+        help="Non-primary run: never writes PRIMARY_RUN.json; allowed even if primary already set",
     )
     args = parser.parse_args()
 
@@ -114,9 +125,21 @@ def main() -> int:
         )
         return 2
 
+    # Primary lock: prevent post-hoc selection of a preferred complete run
+    if PRIMARY_POINTER.is_file() and not args.debug_run:
+        print(
+            f"FAIL-CLOSED: PRIMARY_RUN.json already exists ({PRIMARY_POINTER}). "
+            f"A second primary live run is refused (post-hoc selection risk). "
+            f"Use --debug-run for a non-primary experimental run.",
+            file=sys.stderr,
+        )
+        return 2
+
     n_expected = expected_calls(manifest)
     stamp = time.strftime("%Y%m%dT%H%M%SZ", time.gmtime())
     run_id = args.run_id or f"{stamp}_{args.model}"
+    if args.debug_run and not args.run_id:
+        run_id = f"debug_{run_id}"
     run_dir = RUNS / run_id
     if run_dir.exists():
         print(
@@ -125,6 +148,7 @@ def main() -> int:
         )
         return 2
 
+    prompt_pin = load_prompt_pin()
     raw_dir = run_dir / "raw"
     parsed_dir = run_dir / "parsed"
     failed_dir = run_dir / "failed_attempts"
@@ -136,7 +160,11 @@ def main() -> int:
         "model": args.model,
         "pin_model": pin_model,
         "temperature": 0,
+        "debug_run": bool(args.debug_run),
         "expected_calls": n_expected,
+        "prompt_version": (manifest.get("pins") or {}).get("prompt_version"),
+        "template_sha256": prompt_pin.get("template_sha256"),
+        "prompt_hashes_file": "prompts/built/PROMPT_HASHES.json",
         "started": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "calls": [],
         "complete": False,
@@ -152,6 +180,14 @@ def main() -> int:
                 print(f"missing prompt {prompt_path}", file=sys.stderr)
                 return 2
             prompt = prompt_path.read_text(encoding="utf-8")
+            # record expected prompt hash for this call
+            expected_hash = None
+            for rec in prompt_pin.get("cases") or []:
+                if rec.get("id") == case["id"]:
+                    key = "baseline_prompt_sha256" if cond == "baseline" else "treatment_prompt_sha256"
+                    expected_hash = rec.get(key)
+                    break
+
             print(f"calling {case['id']} {cond} ...", flush=True)
             raw_path = raw_dir / f"{case['id']}__{cond}.txt"
             parsed_path = parsed_dir / cond / f"{case['id']}.txt"
@@ -166,6 +202,7 @@ def main() -> int:
                     "case": case["id"],
                     "condition": cond,
                     "chars": len(text),
+                    "prompt_sha256_expected": expected_hash,
                 }
                 write_status(raw_path.with_suffix(".txt.status.json"), status)
                 write_status(parsed_path.with_suffix(".txt.status.json"), status)
@@ -177,17 +214,16 @@ def main() -> int:
                 body = f"# INFRA_ERROR: {err}\n# case={case['id']} condition={cond}\n"
                 fail_path = failed_dir / f"{case['id']}__{cond}.txt"
                 fail_path.write_text(body, encoding="utf-8")
-                # Do NOT write success-shaped empty outputs into parsed/
                 status = {
                     "ok": False,
                     "status": "infra_error",
                     "error": err,
                     "case": case["id"],
                     "condition": cond,
-                    "failed_attempt": str(fail_path.relative_to(run_dir)),
+                    "failed_attempt": str(fail_path.relative_to(run_dir)).replace("\\", "/"),
+                    "prompt_sha256_expected": expected_hash,
                 }
                 write_status(fail_path.with_suffix(".txt.status.json"), status)
-                # marker in parsed so missing vs failed is explicit
                 marker = parsed_dir / cond / f"{case['id']}.INFRA_ERROR.txt"
                 marker.write_text(body, encoding="utf-8")
                 write_status(marker.with_suffix(".txt.status.json"), status)
@@ -200,7 +236,8 @@ def main() -> int:
                     "ok": err is None,
                     "status": "ok" if err is None else "infra_error",
                     "error": err,
-                    "raw": str(raw_path.relative_to(run_dir)) if err is None else None,
+                    "prompt_sha256_expected": expected_hash,
+                    "raw": str(raw_path.relative_to(run_dir)).replace("\\", "/") if err is None else None,
                 }
             )
 
@@ -208,22 +245,41 @@ def main() -> int:
     meta["successful_calls"] = successes
     meta["failures"] = failures
     meta["complete"] = successes == n_expected and failures == 0
-    meta["primary_comparison_eligible"] = meta["complete"]
+    # Primary only if complete AND not debug AND primary pointer free
+    meta["primary_comparison_eligible"] = (
+        meta["complete"] and not args.debug_run and not PRIMARY_POINTER.is_file()
+    )
     write_status(run_dir / "RUN_META.json", meta)
 
-    if meta["complete"]:
-        write_status(
-            PRIMARY_POINTER,
-            {
-                "run_id": run_id,
-                "run_dir": str(run_dir.relative_to(ROOT)),
-                "model": args.model,
-                "expected_calls": n_expected,
-                "successful_calls": successes,
-            },
-        )
-        print(f"PRIMARY comparison eligible: {run_dir}")
-        print(f"wrote {PRIMARY_POINTER}")
+    if meta["primary_comparison_eligible"]:
+        # Atomic-ish: re-check before write
+        if PRIMARY_POINTER.is_file():
+            print(
+                "WARNING: PRIMARY_RUN.json appeared during run; not claiming primary.",
+                file=sys.stderr,
+            )
+            meta["primary_comparison_eligible"] = False
+            write_status(run_dir / "RUN_META.json", meta)
+        else:
+            write_status(
+                PRIMARY_POINTER,
+                {
+                    "run_id": run_id,
+                    "run_dir": str(run_dir.relative_to(ROOT)).replace("\\", "/"),
+                    "model": args.model,
+                    "pin_model": pin_model,
+                    "prompt_version": meta["prompt_version"],
+                    "template_sha256": meta["template_sha256"],
+                    "expected_calls": n_expected,
+                    "successful_calls": successes,
+                    "locked": True,
+                    "note": "Immutable primary pointer; delete only with explicit human decision",
+                },
+            )
+            print(f"PRIMARY comparison locked: {run_dir}")
+            print(f"wrote {PRIMARY_POINTER}")
+    elif args.debug_run:
+        print(f"DEBUG run finished (not primary): {run_dir}")
     else:
         print(
             f"INCOMPLETE: {successes}/{n_expected} succeeded, {failures} failed. "
@@ -233,7 +289,7 @@ def main() -> int:
         print(f"Failed attempts retained under: {failed_dir}")
 
     print(f"wrote {run_dir / 'RUN_META.json'}")
-    print("Next: python score_holdout.py  # uses PRIMARY_RUN if complete")
+    print("Next: python score_holdout.py")
     return 0 if meta["complete"] else 1
 
 

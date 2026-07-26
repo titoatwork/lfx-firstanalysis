@@ -28,10 +28,18 @@ Emit zero or more YAML documents. Each document MUST use ONLY these fields
   long_name: short title
   description: |
     ...
-  definedBy:
-    extension:
-      name: Sm
+  definedBy:   # MUST match the case guidance below; do NOT default everything to Sm
+    ...
   schema: { type: integer|boolean|string|array|... }
+
+definedBy MUST be case-correct. Valid shapes include:
+  extension: { name: Sm }          # machine-mode
+  extension: { name: S }           # supervisor
+  extension: { name: Zvl32b }      # vector (e.g. SEW-related)
+  param: { name: NUM_PMP_ENTRIES, greaterThan: 0 }   # gated by another param
+
+CASE-SPECIFIC definedBy GUIDANCE (use this for parameters you emit from THIS source):
+Machine-mode endianness: definedBy extension name Sm.
 
 EVALUATION METADATA (separate from UDB docs — not validated as parameters):
 After all parameter YAML docs, emit ONE JSON object:

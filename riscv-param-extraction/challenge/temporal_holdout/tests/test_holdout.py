@@ -231,23 +231,80 @@ class TestRunLiveGates(unittest.TestCase):
         self.assertIn("No API calls", r.stderr)
 
     def test_refuse_overwrite_existing_run(self):
-        from run_live import RUNS  # noqa: WPS433
-
         with tempfile.TemporaryDirectory() as td:
-            # point RUNS at temp via patch
             fake_runs = Path(td) / "runs"
             run_id = "already_exists_model"
             (fake_runs / run_id).mkdir(parents=True)
             with mock.patch("run_live.RUNS", fake_runs):
                 with mock.patch("run_live.PRIMARY_POINTER", Path(td) / "PRIMARY_RUN.json"):
                     with mock.patch.dict("os.environ", {"OPENAI_API_KEY": "sk-test-fake"}):
-                        # import main fresh
                         import run_live as rl
 
                         argv = ["run_live.py", "--live", "--model", "gpt-4o-mini-2024-07-18", "--run-id", run_id]
                         with mock.patch.object(sys, "argv", argv):
                             code = rl.main()
             self.assertEqual(code, 2)
+
+    def test_refuse_second_primary_when_pointer_exists(self):
+        with tempfile.TemporaryDirectory() as td:
+            fake_runs = Path(td) / "runs"
+            fake_runs.mkdir()
+            primary = Path(td) / "PRIMARY_RUN.json"
+            primary.write_text(json.dumps({"run_id": "locked", "locked": True}) + "\n", encoding="utf-8")
+            with mock.patch("run_live.RUNS", fake_runs):
+                with mock.patch("run_live.PRIMARY_POINTER", primary):
+                    with mock.patch.dict("os.environ", {"OPENAI_API_KEY": "sk-test-fake"}):
+                        import run_live as rl
+
+                        argv = [
+                            "run_live.py",
+                            "--live",
+                            "--model",
+                            "gpt-4o-mini-2024-07-18",
+                            "--run-id",
+                            "second_primary",
+                        ]
+                        with mock.patch.object(sys, "argv", argv):
+                            code = rl.main()
+            self.assertEqual(code, 2)
+
+
+class TestPrimaryMetaGate(unittest.TestCase):
+    def test_results_dir_without_run_meta_not_primary(self):
+        from score_holdout import validate_primary_meta  # noqa: WPS433
+
+        manifest = yaml.safe_load((ROOT / "manifests" / "holdout_cases.yaml").read_text(encoding="utf-8"))
+        with tempfile.TemporaryDirectory() as td:
+            base = Path(td)
+            for cond in ("baseline", "treatment"):
+                d = base / cond
+                d.mkdir()
+                for case in manifest["positives"] + manifest["negatives"]:
+                    (d / f"{case['id']}.txt").write_text(
+                        json.dumps({"eval": True, "items": []}) + "\n", encoding="utf-8"
+                    )
+            errs = validate_primary_meta(None, manifest, base)
+            self.assertTrue(any("RUN_META" in e for e in errs))
+
+    def test_schema_totals_include_negative_extractions(self):
+        manifest = yaml.safe_load((ROOT / "manifests" / "holdout_cases.yaml").read_text(encoding="utf-8"))
+        param = _minimal_valid_param("FAKE_NEG", "boolean")
+        text = _model_text(param, [{"name": "FAKE_NEG", "class": "OTHER", "quote": "not in source really"}])
+        with tempfile.TemporaryDirectory() as td:
+            base = Path(td)
+            for cond in ("baseline", "treatment"):
+                d = base / cond
+                d.mkdir()
+                for case in manifest["positives"] + manifest["negatives"]:
+                    if case["id"] == "N01":
+                        (d / "N01.txt").write_text(text, encoding="utf-8")
+                    else:
+                        (d / f"{case['id']}.txt").write_text(
+                            json.dumps({"eval": True, "items": []}) + "\n", encoding="utf-8"
+                        )
+            s = score_condition(manifest, "baseline", base)
+            # one doc from N01 counted in schema totals
+            self.assertEqual(s["schema_validity_docs"], "1/1")
 
 
 class TestManifest(unittest.TestCase):
@@ -274,7 +331,10 @@ class TestManifest(unittest.TestCase):
 
     def test_prompt_version_bumped(self):
         m = yaml.safe_load((ROOT / "manifests" / "holdout_cases.yaml").read_text(encoding="utf-8"))
-        self.assertEqual(m["pins"]["prompt_version"], "holdout-v1.1")
+        self.assertEqual(m["pins"]["prompt_version"], "holdout-v1.2")
+        # SEW_MIN must not be guided as Sm-only
+        p09 = next(c for c in m["positives"] if c["id"] == "P09")
+        self.assertIn("Zvl32b", p09.get("definedby_guidance", ""))
 
 
 if __name__ == "__main__":
