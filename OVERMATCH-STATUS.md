@@ -14,7 +14,7 @@
 | Multi-strategy controls | weak | **score_strategies.py** | **Yes** | — |
 | Known-param bench | n=13 | **n=15** + caveats | **Yes** | — |
 | Scale/cost + measured corpus $ | estimate | estimate + **A/v3 measured** | **Yes** | — |
-| Live multi-model on 2 snippets | **Yes** (Sonnet/Opus/GLM) | **Yes** OpenAI mini+gpt-4o + **Gemini 3.6 Flash free** (CMO=3, CSR=0) | **Yes*** | *Different brand mix; not his exact 3 models |
+| Live multi-model on 2 snippets | **Yes** (Sonnet/Opus/GLM) | **Yes** OpenAI + Gemini free + **Groq Llama 70B free** (4 live models) | **Yes*** | *Different brands; honest CSR fails on mini+Llama |
 | Merged UDB PR | **#1967** | Draft only (gh not authed here) | **NO** | **`GO OPEN UDB PR`** + `gh auth login` |
 | Corpus GT / multi-model / export / null | weak/none | **Lead** | **Yes** | defend |
 | Single monorepo story | challenge-only | challenge+corpus+export | **Yes** | — |
