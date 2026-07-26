@@ -1,16 +1,10 @@
-# fix(param): correct 4095 typo in MTVEC_BASE_ALIGNMENT power-of-two enums
-
-**Local branch:** `fix/mtvec-base-alignment-4096` @ `616a0c98`  
-**Target:** `riscv/riscv-unified-db` `main`  
-**Files:** 2 param YAML + 1 minitest regression
-
 ## Summary
 
-`MTVEC_BASE_ALIGNMENT_DIRECT` and `MTVEC_BASE_ALIGNMENT_VECTORED` declare:
+`MTVEC_BASE_ALIGNMENT_DIRECT` and `MTVEC_BASE_ALIGNMENT_VECTORED` declare an unsigned **power of 2** ≥ 4, but both enums list **`4095`** (`0xfff` = 2¹²−1) instead of **`4096`** (`0x1000` = 2¹²).
 
-> An unsigned **power of 2** greater than or equal to 4 …
+That value is the only non–power-of-two entry in each enum (off-by-one / copy-paste). The analogous STVEC-side size uses **`0x1000`**.
 
-but both enums listed **`4095`** (`2^12 − 1`) instead of **`4096`** (`2^12`). That value is not a power of two and is the only non-power-of-two entry in each enum (copy-paste off-by-one).
+Also fixes `long_name` typo: `Minumum` → `Minimum`.
 
 ## Change
 
@@ -19,27 +13,27 @@ but both enums listed **`4095`** (`2^12 − 1`) instead of **`4096`** (`2^12`). 
 | enum entry | `4095` | `4096` |
 | `long_name` | `Minumum alignment…` | `Minimum alignment…` |
 
-## Why this is not modeling judgment
+**Files:**
+- `spec/std/isa/param/MTVEC_BASE_ALIGNMENT_DIRECT.yaml`
+- `spec/std/isa/param/MTVEC_BASE_ALIGNMENT_VECTORED.yaml`
+- `tools/ruby-gems/udb/test/test_mtvec_base_alignment_pow2.rb`
+- `tools/ruby-gems/udb/test/run.rb` (load test)
+- `tools/test/regress-tests.yaml` (CI matrix entry `mtvec_base_alignment_pow2`)
 
-- Schema `description` explicitly requires power-of-two.  
-- Every other enum value is `2^k` for k≥2.  
-- Deterministic and reproducible; no open issue/PR found for this typo.
+## Why this is deterministic
 
-## Regression test
+- `schema.description` requires a power of two.
+- Every other enum value is `2^k` for `k ≥ 2`.
+- `4095` cannot be a legal alignment power of two.
 
-`tools/ruby-gems/udb/test/test_mtvec_base_alignment_pow2.rb` asserts:
+## Related
 
-- every enum entry is a positive power of two  
-- `4096` present, `4095` absent  
+- Raised on maintainer PR #2090: MTVEC enums use `0xfff` while power-of-two is required.
+- This PR is a **minimal data + regression** fix only (no tvec unification / IDL rewrite). Happy to close or rework if #2090 already lands the same correction.
 
 ## Test plan
 
-- [ ] `ruby tools/ruby-gems/udb/test/test_mtvec_base_alignment_pow2.rb` (or suite equivalent)  
-- [ ] YAML still schema-valid  
-- [ ] No other files changed (except the two params + test)
-
-## Suggested title
-
-```
-fix(param): correct 4095 typo in MTVEC_BASE_ALIGNMENT power-of-two enums
-```
+- [ ] `./bin/ruby tools/ruby-gems/udb/test/test_mtvec_base_alignment_pow2.rb`
+- [ ] Confirm `4095` absent and `4096` present in both enums
+- [ ] Confirm all enum values are positive powers of two
+- [ ] CI matrix includes `mtvec_base_alignment_pow2` under `regress-udb-unit-test`
