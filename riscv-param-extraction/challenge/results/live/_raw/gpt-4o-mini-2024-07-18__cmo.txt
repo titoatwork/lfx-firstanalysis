@@ -1,0 +1,14 @@
+﻿```yaml
+$schema: param_schema.json#
+kind: parameter
+name: CACHE_BLOCK_SIZE
+long_name: Cache Block Size
+description: |
+  The size of a cache block is implementation-specific, and in the initial set of CMO extensions, it shall be uniform throughout the system.
+definedBy: Privileged ISA
+schema: { type: integer }
+```
+
+```json
+{ "name": "CACHE_BLOCK_SIZE", "snippet": "cmo_cache_block.txt", "quote": "the size of a cache block shall be uniform throughout the system." }
+```
