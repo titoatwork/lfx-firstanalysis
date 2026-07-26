@@ -151,9 +151,12 @@ Snippet work is demo-scale. Manual-scale estimates and measured corpus costs liv
 cd riscv-param-extraction
 pip install -r requirements.txt
 python challenge/scripts/ci_check.py
+
+# Offline strategies + live multi-model disagreement table
+python challenge/scripts/score.py
 ```
 
-That gate runs: curated validate · bad fixtures expect-fail · hard negatives · markup modes · strategy matrix · n=15 score · temporal holdout tests + leak_scan · export unit tests.
+That gate runs: curated validate · bad fixtures expect-fail · hard negatives · markup modes · strategy matrix · n=15 score · live matrix re-score · score.py · temporal holdout tests + leak_scan · export unit tests.
 
 Optional live extract (requires key; no API by default):
 

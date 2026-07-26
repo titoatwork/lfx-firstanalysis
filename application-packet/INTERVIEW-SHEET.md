@@ -1,13 +1,15 @@
 # Interview / walkthrough sheet — Part II
 
 **Date:** 2026-07-26  
-**Public walkthrough path:** root README → metrics → A manifest → B exporter → v3 null → nine-week plan  
+**Public path:** root README (badge) → challenge README → metrics → live matrix → holdout PRIMARY_RESULTS → essay/ledger  
+
+**Apply target:** 2026-08-02 (locked). This sheet is for technical walkthrough only.
 
 ---
 
 ## 60-second pitch
 
-Part II continues Spring LFX work on extracting architectural parameters from RISC-V specs with LLMs, scoring against gold lists including UDB YAML, and landing maintainable merges. I reproduced the public Spring pipeline—credit @ishaan-arora-1 and PRs #1765–#1832—and measured 72.9% adjusted recall on the pinned 185-parameter gold and 64.2% on the live 223-parameter set. I built a schema-valid draft UDB YAML exporter for 83 existing and 20 candidate parameters, ran a 60-chunk gpt-4o-mini comparison that scored only 32.2% versus Claude’s 72.9% with 3.8% name Jaccard, and published a negative prompt-only WARL result (3/24→2/24). That evidence says Part II needs grounded context, review gates, provenance, and small PRs—not bulk generation. Public prework is on github.com/titoatwork/lfx-firstanalysis.
+Part II continues Spring LFX parameter extraction: LLMs over RISC-V specs, gold evaluation including UDB YAML, maintainable merges. I reproduced public Spring work—credit @ishaan-arora-1 / #1765–#1832—and measured 72.9% adjusted recall on pinned GT185 and 64.2% on live GT223. I shipped a denser coding-challenge pack (4 fail-closed fixtures, 4 hard negatives, n=15 mechanics, 10-model live matrix with honest CSR fails, green CI), a schema-valid exporter (83+20), a 60-chunk mini vs Claude ablation (32.2% vs 72.9%, Jaccard 3.8%), a negative WARL prompt result, and a preregistered CSR-context holdout with a locked exploratory null (0/10 name recall both arms, limitations documented). Public home: github.com/titoatwork/lfx-firstanalysis.
 
 ---
 
@@ -15,11 +17,25 @@ Part II continues Spring LFX work on extracting architectural parameters from RI
 
 | Min | Open | Say |
 |-----|------|-----|
-| 0–1 | Root README | Problem + single public home + headline numbers |
-| 1–2 | metrics §1–2 | Reproduction: GT223, 72.9% / 64.2%, WARL 50% |
-| 2–3 | metrics §5 + A manifest | Multi-model: 32.2% vs 72.9%, Jaccard 3.8%, 9 dual-new candidates |
-| 3–4 | metrics §7 + drafts/ | Exporter: 83+20 schema-valid; structural only |
-| 4–5 | metrics §6 + nine-week plan | v3 null; Fall plan → 5 objectives; small PRs |
+| 0–1 | Root README + CI badge | One monorepo; denser challenge controls than a minimal kit; Path A/B/holdout |
+| 1–2 | `challenge/README.md` | Same 2-snippet exam; 4 bad / 4 hard-neg / 10 live / n=15; one `ci_check` |
+| 2–3 | metrics §1–2, §5 | Reproduction 72.9%/64.2%; mini 32.2% vs Claude; Jaccard 3.8% |
+| 3–4 | metrics §7 + drafts | Exporter 83+20 schema-valid only |
+| 4–5 | holdout PRIMARY_RESULTS + plan | Exploratory null under v1.2 limits; Fall needs leakage-audited context + small PRs |
+
+---
+
+## Challenge density (if they only open the kit)
+
+| Control | Number |
+|---------|--------|
+| Bad fixtures | 4 |
+| Hard negatives | 4 |
+| Live multi-model | 10 (4 full CMO+CSR pass offline re-score) |
+| Known-param mechanics | n=15 (15/15 existence; not blind corpus) |
+| Holdout | locked 26/26 exploratory null |
+
+Commands: `python challenge/scripts/ci_check.py` · `python challenge/scripts/score.py`
 
 ---
 
@@ -28,56 +44,57 @@ Part II continues Spring LFX work on extracting architectural parameters from RI
 | Term | Answer |
 |------|--------|
 | Architectural parameter | ISA-constrained implementer choice: name + value domain + definedBy |
-| Adjusted recall | Part I metric accounting for allowed alignments (not only exact string match) |
-| WARL parameter | The set of legal values of a Write-Any-Read-Legal CSR field is the parameter |
-| Schema-valid | Passes UDB JSON schema structure; **not** mentor architectural approval |
-| Cross-model agreement | Shared extracted names; low Jaccard → review protocol, not automatic truth |
+| Adjusted recall | Part I metric with allowed alignments |
+| WARL parameter | Legal value set of a WARL CSR field is the parameter |
+| Schema-valid | Passes param_schema structure; not architectural approval |
+| Cross-model agreement | Shared names; low Jaccard → review, not truth |
+| Exploratory null (holdout) | 0/10 name recall both arms under v1.2; not clean temporal proof |
 
 ---
 
 ## Survive these technical questions
 
 **Exact vs adjusted recall?**  
-Exact requires identical names; adjusted allows curated alignments / one-to-many groups from the Part I analyzer. Headline remeasure uses Part I’s adjusted definition.
+Exact = identical names; adjusted allows Part I alignments. Headline remeasure uses adjusted.
 
-**Why did recall fall on live gold?**  
-Gold grew 185→223; same LLM output covers a larger denominator → 72.9%→64.2%. Gold drift matters.
+**Why recall fell on live gold?**  
+Gold 185→223; same LLM output, larger denominator → 72.9%→64.2%.
 
-**Why is 3.8% Jaccard important?**  
-Same chunks and prompt; disagreement is model-driven. Single-model “discoveries” are mostly private; dual agreement is a review priority signal, not truth.
+**Why 3.8% Jaccard matters?**  
+Same chunks/prompt; disagreement is model-driven. Dual agreement prioritizes review.
 
-**Schema-valid proves / does not prove?**  
-Proves structural conformance to param_schema. Does not prove the parameter is real, correctly named, or merge-ready.
+**Schema-valid proves?**  
+Structure only — not reality or merge-readiness.
 
-**How did v3 get more WARL labels but fewer matches?**  
-Prompt encouraged WARL-class tagging; alignment to gold WARL names still failed → over-labeling without better identification.
+**v3 WARL more labels, fewer matches?**  
+Over-labeling without better identification → honest null.
 
-**Context grounding without leaking gold names?**  
-Auxiliary CSR-field text only; leakage audit strips exact/normalized gold names before API; hashes pre/post filter.
+**Holdout treatment didn’t help?**  
+On mini + v1.2, name/WARL stayed 0/10 and 0/5. Self-audited guidance leakage; neg FP not attributable to treatment (identical negative prompts). Harness still valuable as method.
+
+**Context without leaking gold names?**  
+CSR-field text; leak_scan fail-closed; no class on UDB YAML; eval metadata separate.
 
 **Why small PRs?**  
-Spring extraction work still sits on open PRs; bulk dumps are hard to review. Tooling and tiny reviewed data batches match maintainer load.
-
-**How are candidates human-reviewed?**  
-Rubric: accept / reject / defer; require excerpt + class + confidence + provenance; export only accepted rows.
+Review load; Spring extract still unmerged; bulk dumps fail review culture.
 
 ---
 
 ## Strong questions for mentors
 
-1. When Manual YAML, keyword spreadsheet, and UDB YAML disagree, which is authoritative?  
-2. What evidence is enough for a proposed new architectural parameter?  
-3. Is manual-side params.yaml the expected export path Part II should align with?  
-4. What PR size has the best chance of timely review?  
-5. First deliverable: workflow robustness or a small reviewed parameter set?  
-6. How should one-to-many conceptual alignments be represented?  
-7. What review fields must accompany every generated candidate?
+1. When Manual YAML, keyword spreadsheet, and UDB YAML disagree, which wins?  
+2. Evidence bar for a new architectural parameter?  
+3. Preferred export path into UDB for Part II?  
+4. Best PR size for timely review?  
+5. First Fall deliverable: workflow robustness or small reviewed set?  
+6. How to represent one-to-many conceptual alignments?  
+7. Required review fields on every generated candidate?
 
 ---
 
 ## Tone checks
 
 - Credit Spring; never claim authorship  
-- Honest about mini underperformance and v3 null  
-- No fake certainty / no applicant probability lectures  
-- No “I’ll merge 200 params in week 2”  
+- Never claim holdout “proved” CSR context success  
+- Never claim n=15 beats corpus recall  
+- Never claim we “beat” named competitors  

@@ -1,29 +1,42 @@
-# Scale and cost (challenge context)
+# Scale and cost
 
-## Full ISA manual (order-of-magnitude)
+## Point of the section
 
-Public challenge kits often cite full-manual scale for Anthropic frontier models.
-Anshul-class estimate (for comparison only; re-measure before quoting as ours):
+Snippet demos are cheap. Full-manual and full-corpus extract is where cost and
+quality trade off. This monorepo publishes **measured** corpus costs, not only
+order-of-magnitude estimates.
 
-| Quantity | Typical cited ballpark |
-|----------|------------------------|
-| Manual `.adoc` files | ~147 |
-| Words | ~2.8e5 |
-| Section-sized chunks | ~845 |
-| Dual frontier full pass | on the order of **$10–15** with caching |
+## Challenge snippets (this pack)
 
-**Takeaway shared with elite kits:** API spend is usually not the binding
-constraint — grounding, schema fidelity, markup robustness, and review are.
+| Call | Scope | Approx tokens | Approx USD |
+|------|--------|---------------|------------|
+| One snippet × gpt-4o-mini | v3 prompt + snippet | ~0.6–1k in + small out | **≪ $0.01** |
+| Prestige frontier × 2 snippets | Sonnet-class CMO+CSR | ~1.3k in + ~1–3k out | **~$0.02–0.10** |
+| Dual frontier (Sonnet+Opus) × 2 | brand-parity matrix | ~2× above | **~$0.15–0.50** |
 
-## Measured costs in *this* monorepo (corpus science)
+Full ISA dual-frontier one-pass estimates cited by public kits are often on the
+order of **$10–15** with caching — re-measure before quoting as ours.
 
-Authoritative tables: [`../docs/metrics.md`](../docs/metrics.md)
+**Takeaway:** API spend is not the binding constraint for the shared challenge.
+Grounding, schema fidelity, markup robustness, negatives, and review are.
+
+## Measured corpus costs (this monorepo)
+
+Authoritative tables: [`../../docs/metrics.md`](../../docs/metrics.md)
 
 | Run | Scope | ~USD |
 |-----|--------|-----:|
-| Pilot machine.adoc | model-split 2 chunks | ~0.05 |
-| Artifact A gpt-4o-mini | 60 param-bearing chunks | ~0.16 |
-| v3 WARL ablation mini | 60 chunks | ~0.16 |
+| Pilot `machine.adoc` | model-split 2 chunks | **~0.05** |
+| Artifact A gpt-4o-mini | **60** param-bearing chunks | **~0.16** |
+| v3 WARL ablation mini | **60** chunks | **~0.16** |
+| Temporal holdout primary | **26** calls mini | **≪ $0.05** |
 
-These are **measured corpus runs**, not challenge-snippet estimates. Use them
-when comparing cost/quality of full extract vs 2-snippet demos.
+These are **measured** full-corpus / pilot / holdout spends. Challenge-only kits
+usually only estimate full-manual frontier cost; they do not ship 60-chunk
+multi-model agreement tables.
+
+## Design implication
+
+Cost is low enough that Part II should optimize for **reliability and review**,
+not for squeezing another free model into the matrix. The expensive failure mode
+is unreviewed bulk YAML, not API invoices.

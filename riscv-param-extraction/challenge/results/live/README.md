@@ -16,5 +16,12 @@ Live LLM runs on the two challenge snippets (not curated CI gold).
 | `gemma-4-26b-a4b-it-free/` | OpenRouter free | CMO=1; CSR FP (useful text) |
 | `_raw/` | — | unmodified API text (+ usage meta, no keys) |
 | `MANIFEST.md` | — | run facts, matrix, honesty |
+| `DISAGREEMENT.md` | — | offline re-score table + routing summary |
+| `matrix_scores.json` | — | machine-readable scores |
+
+```bash
+python challenge/scripts/score_live_matrix.py
+python challenge/scripts/score.py   # strategies + matrix + DISAGREEMENT.md
+```
 
 **Read MANIFEST first.** Curated ≠ live. Keys never committed.

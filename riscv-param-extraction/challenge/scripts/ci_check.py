@@ -45,6 +45,8 @@ def main() -> int:
     # Offline re-score of committed live multi-model dirs (no API)
     if (ROOT / "results" / "live").is_dir():
         run([py, str(ROOT / "scripts" / "score_live_matrix.py")])
+        # Unified offline score surface (writes DISAGREEMENT.md)
+        run([py, str(ROOT / "scripts" / "score.py")])
 
     # Temporal holdout pilot (offline: unit tests + fail-closed leakage)
     holdout = ROOT / "temporal_holdout"
