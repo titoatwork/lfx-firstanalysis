@@ -1,14 +1,18 @@
-# Live multi-model matrix (requires your keys)
+# Live multi-model matrix
 
-Anshul’s remaining hard lead on the **challenge axis** is a published
-Sonnet / Opus / GLM matrix. Offline we already ship:
+## Status (2026-07-26)
 
-- curated grounded results + CSR=0
-- multi-**strategy** disagreement (`scripts/score_strategies.py`)
-- fail-closed CI denser than his fixture set
+**Live OpenAI dual-model run is committed** under `results/live/`:
 
-To take a **mile** on multi-model too, run live models and commit under
-`results/live/<model>/` with evidence JSON.
+| Model | CMO | CSR |
+|-------|-----|-----|
+| `gpt-4o-mini-2024-07-18` | 1 (under-extract) | false positive |
+| `gpt-4o-2024-11-20` | 1 (under-extract) | zero (correct) |
+
+See [`../results/live/MANIFEST.md`](../results/live/MANIFEST.md).  
+**Not yet:** Anthropic Sonnet/Opus or open-weight (GLM/Ollama) legs — Anshul still leads model-family breadth.
+
+Offline we also ship: curated gold + CSR=0, multi-strategy matrix, denser fail-closed CI.
 
 ## One-command dry-run (no spend)
 
@@ -25,13 +29,13 @@ set OPENAI_API_KEY=...   # user shell only; never commit
 python challenge/scripts/extract.py --snippet challenge/snippets/cmo_cache_block.txt --live --model gpt-4o-mini-2024-07-18 --retries 0
 ```
 
-Recommended matrix (match/beat his breadth):
+Recommended full matrix (match/beat Anshul breadth):
 
-| Leg | Model | Role |
-|-----|--------|------|
-| 1 | gpt-4o-mini or Sonnet | primary cheap/frontier |
-| 2 | second frontier if available | disagreement routing |
-| 3 | open-weight (GLM / local) | omission vs hallucination |
+| Leg | Model | Role | Status |
+|-----|--------|------|--------|
+| 1 | gpt-4o-mini | primary cheap | **Done** |
+| 2 | gpt-4o (or Sonnet) | stronger / disagreement | **gpt-4o done**; Sonnet needs `ANTHROPIC_API_KEY` |
+| 3 | open-weight (GLM / Groq / Ollama) | omission vs hallucination | **Not run** |
 
 After runs: place YAML + `*.evidence.json` under `results/live/<model>/`, then:
 
@@ -39,4 +43,4 @@ After runs: place YAML + `*.evidence.json` under `results/live/<model>/`, then:
 python challenge/scripts/validate.py --results challenge/results/live/<model>
 ```
 
-**Campaign rules:** key + spend cap + explicit go; `--retries 0`; rotate keys after chat paste.
+**Campaign rules:** key + spend cap + explicit go; `--retries 0`; never commit secrets.
