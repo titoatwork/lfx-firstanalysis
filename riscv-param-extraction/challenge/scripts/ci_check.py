@@ -43,6 +43,11 @@ def main() -> int:
     run([py, str(ROOT / "scripts" / "score_strategies.py")])
     run([py, str(ROOT / "benchmark" / "scripts" / "score_recall.py")])
 
+    # Temporal holdout pilot (offline: unit tests + fail-closed leakage)
+    holdout = ROOT / "temporal_holdout"
+    run([py, str(holdout / "tests" / "test_holdout.py"), "-v"])
+    run([py, str(holdout / "scripts" / "leak_scan.py")])
+
     # Export unit tests at package level
     run([py, "-m", "unittest", "discover", "-s", "tests", "-v"], cwd=PKG)
 
