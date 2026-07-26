@@ -1,0 +1,8 @@
+{
+  "case": "P04",
+  "chars": 1186,
+  "condition": "treatment",
+  "ok": true,
+  "prompt_sha256_expected": "9f93ae7deef19d754457106e056faba81602dddd0b1a3d5b3c8f5a27b4f52f0a",
+  "status": "ok"
+}

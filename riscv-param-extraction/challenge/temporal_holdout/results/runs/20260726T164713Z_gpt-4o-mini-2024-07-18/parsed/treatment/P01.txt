@@ -1,0 +1,43 @@
+```yaml
+- $schema: param_schema.json#
+  kind: parameter
+  name: MT_VEC_MODE
+  long_name: Trap Vector Mode
+  description: |
+    Vectoring mode for asynchronous interrupts.
+    
+    0 - Direct, 1 - Vectored
+    
+    When Direct, all synchronous exceptions and asynchronous interrupts jump to (`mtvec.BASE` << 2).
+    
+    When Vectored, asynchronous interrupts jump to (`mtvec.BASE` << 2 + `mcause.CAUSE`*4) while synchronous exceptions continue to jump to (`mtvec.BASE` << 2).
+  definedBy: extension: { name: Sm }
+  schema: { type: integer }
+
+- $schema: param_schema.json#
+  kind: parameter
+  name: MT_VEC_BASE_ALIGNMENT
+  long_name: Trap Vector Base Address Alignment
+  description: |
+    The value in the BASE field must always be aligned on a 4-byte boundary, and the MODE setting may impose additional alignment constraints on the value in the BASE field.
+  definedBy: extension: { name: Sm }
+  schema: { type: boolean }
+```
+
+```json
+{
+  "eval": true,
+  "items": [
+    {
+      "name": "MT_VEC_MODE",
+      "class": "NORM_CSR_WARL",
+      "quote": "Vectoring mode for asynchronous interrupts."
+    },
+    {
+      "name": "MT_VEC_BASE_ALIGNMENT",
+      "class": "NORM_CSR_WARL",
+      "quote": "The value in the BASE field must always be aligned on a 4-byte boundary."
+    }
+  ]
+}
+```

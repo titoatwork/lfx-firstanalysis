@@ -1,0 +1,253 @@
+{
+  "calls": [
+    {
+      "condition": "baseline",
+      "error": null,
+      "id": "P01",
+      "ok": true,
+      "prompt_sha256_expected": "f8893643112c9913e224e79afc6229b8ef1d7ce2b5a6f6fc084966d83e06312c",
+      "raw": "raw/P01__baseline.txt",
+      "status": "ok"
+    },
+    {
+      "condition": "treatment",
+      "error": null,
+      "id": "P01",
+      "ok": true,
+      "prompt_sha256_expected": "beabc398ac5920a8c5f8644ef191c12d719dd8d00deb11210f09a839546784ab",
+      "raw": "raw/P01__treatment.txt",
+      "status": "ok"
+    },
+    {
+      "condition": "baseline",
+      "error": null,
+      "id": "P02",
+      "ok": true,
+      "prompt_sha256_expected": "97fa14e3aab547465fa63545127021dcd86722f0942689329c89dda73f7b6b72",
+      "raw": "raw/P02__baseline.txt",
+      "status": "ok"
+    },
+    {
+      "condition": "treatment",
+      "error": null,
+      "id": "P02",
+      "ok": true,
+      "prompt_sha256_expected": "490a975ebe3434bace9512f5770ad1418668102fd42ac7be410da86aaa039ad5",
+      "raw": "raw/P02__treatment.txt",
+      "status": "ok"
+    },
+    {
+      "condition": "baseline",
+      "error": null,
+      "id": "P03",
+      "ok": true,
+      "prompt_sha256_expected": "11799a52ea3dcc95c37f81c2a28ff662398b2d1315527b019027347d08b8753f",
+      "raw": "raw/P03__baseline.txt",
+      "status": "ok"
+    },
+    {
+      "condition": "treatment",
+      "error": null,
+      "id": "P03",
+      "ok": true,
+      "prompt_sha256_expected": "336800b2ca573181811bdb64bdbd8cd290ffaed6aaff3b55e520a2046cdbb57d",
+      "raw": "raw/P03__treatment.txt",
+      "status": "ok"
+    },
+    {
+      "condition": "baseline",
+      "error": null,
+      "id": "P04",
+      "ok": true,
+      "prompt_sha256_expected": "ca0c7b262b45fc0443422b2551d77d0e546ea34318499458cda603b05f9b4fc8",
+      "raw": "raw/P04__baseline.txt",
+      "status": "ok"
+    },
+    {
+      "condition": "treatment",
+      "error": null,
+      "id": "P04",
+      "ok": true,
+      "prompt_sha256_expected": "9f93ae7deef19d754457106e056faba81602dddd0b1a3d5b3c8f5a27b4f52f0a",
+      "raw": "raw/P04__treatment.txt",
+      "status": "ok"
+    },
+    {
+      "condition": "baseline",
+      "error": null,
+      "id": "P05",
+      "ok": true,
+      "prompt_sha256_expected": "ac424c4a0061af8c4f2c499e2a489c53d4b8b8252705d10cc95f890084b1097f",
+      "raw": "raw/P05__baseline.txt",
+      "status": "ok"
+    },
+    {
+      "condition": "treatment",
+      "error": null,
+      "id": "P05",
+      "ok": true,
+      "prompt_sha256_expected": "e8165c3fa4649979b5400c345ad612661d5c036b17705a88116ee596f73b2e14",
+      "raw": "raw/P05__treatment.txt",
+      "status": "ok"
+    },
+    {
+      "condition": "baseline",
+      "error": null,
+      "id": "P06",
+      "ok": true,
+      "prompt_sha256_expected": "a443168e3eb9fa09c70ee1acf218971b50c8384b06e7669cdc219e0c17e7029d",
+      "raw": "raw/P06__baseline.txt",
+      "status": "ok"
+    },
+    {
+      "condition": "treatment",
+      "error": null,
+      "id": "P06",
+      "ok": true,
+      "prompt_sha256_expected": "0676acb39c0469fbbe1e601ee78836867dda4c0d3fe1d4165b441e598789e58b",
+      "raw": "raw/P06__treatment.txt",
+      "status": "ok"
+    },
+    {
+      "condition": "baseline",
+      "error": null,
+      "id": "P07",
+      "ok": true,
+      "prompt_sha256_expected": "e2da1f1fc51f6c6c70749734c773a418d32d850086a8184c70da43b1c6242474",
+      "raw": "raw/P07__baseline.txt",
+      "status": "ok"
+    },
+    {
+      "condition": "treatment",
+      "error": null,
+      "id": "P07",
+      "ok": true,
+      "prompt_sha256_expected": "e2da1f1fc51f6c6c70749734c773a418d32d850086a8184c70da43b1c6242474",
+      "raw": "raw/P07__treatment.txt",
+      "status": "ok"
+    },
+    {
+      "condition": "baseline",
+      "error": null,
+      "id": "P08",
+      "ok": true,
+      "prompt_sha256_expected": "8bba3b80434429902ba1de9db258ebb2e8f4afcad47e2d94c426cd59e2f17099",
+      "raw": "raw/P08__baseline.txt",
+      "status": "ok"
+    },
+    {
+      "condition": "treatment",
+      "error": null,
+      "id": "P08",
+      "ok": true,
+      "prompt_sha256_expected": "20cc95bd88511fea1e7c6b06150c6f9f0749c4c9d697f7f6c32238d41e5a63b5",
+      "raw": "raw/P08__treatment.txt",
+      "status": "ok"
+    },
+    {
+      "condition": "baseline",
+      "error": null,
+      "id": "P09",
+      "ok": true,
+      "prompt_sha256_expected": "d89d75f7637150b9001b749391b557497ca4a447a6418b1693a38abdae4a3e90",
+      "raw": "raw/P09__baseline.txt",
+      "status": "ok"
+    },
+    {
+      "condition": "treatment",
+      "error": null,
+      "id": "P09",
+      "ok": true,
+      "prompt_sha256_expected": "e2c215968078d74800a854a1c44ee5f2b70fe1df93d982bb24e48a5d8c0d54ec",
+      "raw": "raw/P09__treatment.txt",
+      "status": "ok"
+    },
+    {
+      "condition": "baseline",
+      "error": null,
+      "id": "P10",
+      "ok": true,
+      "prompt_sha256_expected": "9e4fcd583fcc230f4319b0c4f5ca88cef99ab91f1e581d4c2b5ad04e90bd6381",
+      "raw": "raw/P10__baseline.txt",
+      "status": "ok"
+    },
+    {
+      "condition": "treatment",
+      "error": null,
+      "id": "P10",
+      "ok": true,
+      "prompt_sha256_expected": "46df8934d1506d613ce7365d752a91a7a568ea00c65734a4b8b0aa7928c18240",
+      "raw": "raw/P10__treatment.txt",
+      "status": "ok"
+    },
+    {
+      "condition": "baseline",
+      "error": null,
+      "id": "N01",
+      "ok": true,
+      "prompt_sha256_expected": "f64da9b8998b31bed32e8e5d9dd5fefe54edb2895ff980272636f9ab1e7d02a5",
+      "raw": "raw/N01__baseline.txt",
+      "status": "ok"
+    },
+    {
+      "condition": "treatment",
+      "error": null,
+      "id": "N01",
+      "ok": true,
+      "prompt_sha256_expected": "f64da9b8998b31bed32e8e5d9dd5fefe54edb2895ff980272636f9ab1e7d02a5",
+      "raw": "raw/N01__treatment.txt",
+      "status": "ok"
+    },
+    {
+      "condition": "baseline",
+      "error": null,
+      "id": "N02",
+      "ok": true,
+      "prompt_sha256_expected": "ac79e208b2445fdb6f1e0a17c6ef7bbd7d9d84f7e7ad3340e028daaca332a7d2",
+      "raw": "raw/N02__baseline.txt",
+      "status": "ok"
+    },
+    {
+      "condition": "treatment",
+      "error": null,
+      "id": "N02",
+      "ok": true,
+      "prompt_sha256_expected": "ac79e208b2445fdb6f1e0a17c6ef7bbd7d9d84f7e7ad3340e028daaca332a7d2",
+      "raw": "raw/N02__treatment.txt",
+      "status": "ok"
+    },
+    {
+      "condition": "baseline",
+      "error": null,
+      "id": "N03",
+      "ok": true,
+      "prompt_sha256_expected": "8425cdb2f5998327b89f543a066bf465d9473cb0c7858608efe56edac1d4f954",
+      "raw": "raw/N03__baseline.txt",
+      "status": "ok"
+    },
+    {
+      "condition": "treatment",
+      "error": null,
+      "id": "N03",
+      "ok": true,
+      "prompt_sha256_expected": "8425cdb2f5998327b89f543a066bf465d9473cb0c7858608efe56edac1d4f954",
+      "raw": "raw/N03__treatment.txt",
+      "status": "ok"
+    }
+  ],
+  "complete": true,
+  "debug_run": false,
+  "expected_calls": 26,
+  "failures": 0,
+  "finished": "2026-07-26T16:49:23Z",
+  "model": "gpt-4o-mini-2024-07-18",
+  "pin_model": "gpt-4o-mini-2024-07-18",
+  "primary_comparison_eligible": true,
+  "prompt_hashes_file": "prompts/built/PROMPT_HASHES.json",
+  "prompt_version": "holdout-v1.2",
+  "run_id": "20260726T164713Z_gpt-4o-mini-2024-07-18",
+  "started": "2026-07-26T16:47:13Z",
+  "successful_calls": 26,
+  "temperature": 0,
+  "template_sha256": "bee7b9a3e86c771606f7049e3891e8604218191377479a3092000b45f739e408"
+}
