@@ -19,8 +19,8 @@
 | v3 WARL ablation | **Done — null** |
 | Application packet | **On main** |
 | Coding challenge + CI | **Done + pushed** (`58f91de`) |
-| Live multi-model on challenge snippets | **Not done** |
-| UDB PR opened/merged | **Draft only** (not opened) |
+| Live multi-model on challenge snippets | **Partial** — OpenAI mini+gpt-4o under `challenge/results/live/` (not Sonnet/GLM) |
+| UDB PR opened/merged | **Draft only** (not opened; `gh` unauthenticated on agent host) |
 | Apply Part II | **NOT submitted** — target **Jul 31** (hard stop Aug 2) |
 | Community (membership/lists) | In progress |
 | vs Anshul | Challenge/CI gap **mostly closed**; still behind live multi-model + merge; lead corpus/export/null |

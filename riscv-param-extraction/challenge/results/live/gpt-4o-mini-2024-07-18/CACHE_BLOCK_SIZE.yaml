@@ -1,0 +1,20 @@
+# Live extract: gpt-4o-mini-2024-07-18 · snippet cmo_cache_block.txt
+# Prompt: challenge/prompts/v3_schema_constrained.md · temperature 0 · retries 0
+# yaml-language-server: $schema=../../schema/param_schema.json
+
+$schema: param_schema.json#
+kind: parameter
+name: CACHE_BLOCK_SIZE
+long_name: Cache Block Size
+description: |
+  The size of a cache block is implementation-specific, and in the initial set of
+  CMO extensions, it shall be uniform throughout the system.
+definedBy:
+  extension:
+    anyOf:
+      - name: Zicbom
+      - name: Zicbop
+      - name: Zicboz
+schema:
+  type: integer
+  minimum: 1

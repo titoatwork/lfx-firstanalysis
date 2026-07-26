@@ -36,6 +36,7 @@ Write prompts that extract architectural parameters from ISA Manual excerpts, wh
 | Modeling notes | `docs/modeling-notes.md` |
 | Scale/cost | `docs/scale_and_cost.md` |
 | Live multi-model how-to | `docs/LIVE_MULTI_MODEL.md` |
+| **Live multi-model results** | `results/live/` — **done 2026-07-26** (OpenAI mini + gpt-4o; see `MANIFEST.md`) |
 | Optional live extract | `scripts/extract.py` (no API unless `--live` + key) |
 
 ### How to run (local / CI)
@@ -68,6 +69,21 @@ python challenge/scripts/ci_check.py
 | `CACHE_ORGANIZATION` | string | Opaque; SIG scoping candidate |
 
 CSR snippet: see `results/curated/csr_address_mapping.NO_PARAMETERS_FOUND.txt`.
+
+### Live multi-model (2026-07-26)
+
+**OpenAI-only** (one provider key). Not Sonnet/Opus/GLM. Details: [`results/live/MANIFEST.md`](./results/live/MANIFEST.md).
+
+| Model | CMO | CSR negative control |
+|-------|-----|----------------------|
+| `gpt-4o-mini-2024-07-18` | 1 param (`CACHE_BLOCK_SIZE` only — under-extract) | **FAIL** false positive `CSR_ACCESSIBILITY_ENCODING` |
+| `gpt-4o-2024-11-20` | 1 param (`CACHE_BLOCK_SIZE` only — under-extract) | **PASS** zero |
+| curated (CI gold, not live) | 3 | PASS |
+
+```bash
+python challenge/scripts/validate.py --results challenge/results/live/gpt-4o-2024-11-20
+python challenge/scripts/validate.py --results challenge/results/live/gpt-4o-mini-2024-07-18
+```
 
 ### Fail-closed fixtures
 
@@ -115,7 +131,7 @@ Treat the shared 2-snippet task as the field standard for this project. Confirm 
 Single public campaign home: `lfx-firstanalysis`. Challenge + corpus + export stay together.
 
 **Are curated results the same as multi-model API runs?**  
-No. Curated results are schema-valid, quote-grounded references for CI. Live multi-model runs can be added under `results/live/` with a manifest when a key and spend go are available.
+No. Curated results are schema-valid, quote-grounded references for CI. Live multi-model runs (2026-07-26 OpenAI mini + gpt-4o) live under `results/live/` with `MANIFEST.md` — see honest under-extract / mini CSR false-positive.
 
 ---
 
