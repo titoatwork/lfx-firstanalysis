@@ -58,7 +58,7 @@ upstream-pr-drafts/         small UDB fix draft (reviewable)
 .github/workflows/ci.yml    fail-closed challenge + export tests
 ```
 
-**Local only (gitignored):** full `riscv-unified-db/` clone, agent notes, handoffs, competition strategy, secrets.
+**Local only (gitignored):** full `riscv-unified-db/` clone, private notes, and secrets.
 
 ---
 
