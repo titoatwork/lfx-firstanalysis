@@ -1,0 +1,8 @@
+{
+  "case": "N01",
+  "chars": 61,
+  "condition": "treatment",
+  "ok": true,
+  "prompt_sha256_expected": "f64da9b8998b31bed32e8e5d9dd5fefe54edb2895ff980272636f9ab1e7d02a5",
+  "status": "ok"
+}

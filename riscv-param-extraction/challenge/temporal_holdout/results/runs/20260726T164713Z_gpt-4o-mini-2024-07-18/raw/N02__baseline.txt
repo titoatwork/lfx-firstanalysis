@@ -1,0 +1,10 @@
+```yaml
+# No parameters emitted as the source does not provide any implementation choice.
+```
+
+```json
+{
+  "eval": true,
+  "items": []
+}
+```

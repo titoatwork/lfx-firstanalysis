@@ -1,0 +1,69 @@
+```yaml
+- $schema: param_schema.json#
+  kind: parameter
+  name: SUM
+  long_name: Supervisor User Memory Access
+  description: |
+    When 0, an S-mode read or an M-mode read with mstatus.MPRV=1 and mstatus.MPP=01
+    to a 'U' (user) page will cause an ILLEGAL INSTRUCTION exception.
+  definedBy: extension: { name: Sm }
+  schema: { type: boolean }
+
+- $schema: param_schema.json#
+  kind: parameter
+  name: MBE
+  long_name: Machine Endianness Control
+  description: |
+    Controls the endianness of data M-mode (0 = little, 1 = big).
+    Instructions are always little endian, regardless of the data setting.
+  definedBy: extension: { name: Sm }
+  schema: { type: integer }
+
+- $schema: param_schema.json#
+  kind: parameter
+  name: SBE
+  long_name: Supervisor Endianness Control
+  description: |
+    Controls the endianness of S-mode (0 = little, 1 = big).
+    Instructions are always little endian, regardless of the data setting.
+  definedBy: extension: { name: S }
+  schema: { type: integer }
+
+- $schema: param_schema.json#
+  kind: parameter
+  name: UBE
+  long_name: User Endianness Control
+  description: |
+    Controls the endianness of U-mode (0 = little, 1 = big).
+    Instructions are always little endian, regardless of the data setting.
+  definedBy: extension: { name: S }
+  schema: { type: integer }
+```
+
+```json
+{
+  "eval": true,
+  "items": [
+    {
+      "name": "SUM",
+      "class": "NORM_CSR_RW",
+      "quote": "When 0, an S-mode read or an M-mode read with mstatus.MPRV=1 and mstatus.MPP=01 to a 'U' (user) page will cause an ILLEGAL INSTRUCTION exception."
+    },
+    {
+      "name": "MBE",
+      "class": "NORM_CSR_WARL",
+      "quote": "Controls the endianness of data M-mode (0 = little, 1 = big). Instructions are always little endian, regardless of the data setting."
+    },
+    {
+      "name": "SBE",
+      "class": "NORM_CSR_WARL",
+      "quote": "Controls the endianness of S-mode (0 = little, 1 = big). Instructions are always little endian, regardless of the data setting."
+    },
+    {
+      "name": "UBE",
+      "class": "NORM_CSR_WARL",
+      "quote": "Controls the endianness of U-mode (0 = little, 1 = big). Instructions are always little endian, regardless of the data setting."
+    }
+  ]
+}
+```

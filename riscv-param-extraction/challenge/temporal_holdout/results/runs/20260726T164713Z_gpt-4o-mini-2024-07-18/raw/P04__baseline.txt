@@ -1,0 +1,40 @@
+```yaml
+- $schema: param_schema.json#
+  kind: parameter
+  name: MTVC_BASE_ALIGNMENT
+  long_name: Base Address Alignment
+  description: |
+    The value in the BASE field must always be aligned on a 4-byte boundary, 
+    and the MODE setting may impose additional alignment constraints on the 
+    value in the BASE field.
+  definedBy: extension: { name: Sm }
+  schema: { type: integer }
+
+- $schema: param_schema.json#
+  kind: parameter
+  name: MTVC_WRITEABLE
+  long_name: Writable mtvec Register
+  description: |
+    If `mtvec` is writable, the set of values the register may hold can vary 
+    by implementation.
+  definedBy: extension: { name: Sm }
+  schema: { type: boolean }
+```
+
+```json
+{
+  "eval": true,
+  "items": [
+    {
+      "name": "MTVC_BASE_ALIGNMENT",
+      "class": "NORM_CSR_WARL",
+      "quote": "the value in the BASE field must always be aligned on a 4-byte boundary"
+    },
+    {
+      "name": "MTVC_WRITEABLE",
+      "class": "NORM_CSR_WARL",
+      "quote": "If `mtvec` is writable, the set of values the register may hold can vary by implementation."
+    }
+  ]
+}
+```
