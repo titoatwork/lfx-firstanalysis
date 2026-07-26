@@ -1,0 +1,5 @@
+kind: parameter
+name: MCOUNTINHIBIT_IMPLEMENTED
+class: NORM_DIRECT
+schema:
+  type: boolean
