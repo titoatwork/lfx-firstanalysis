@@ -13,7 +13,15 @@ Headline (do not invent beyond MANIFEST):
 | Open-weight fail CSR | Groq Llama 70B, Laguna S, Gemma-4-26B | CMO 3 or 1 · CSR **FAIL** FP |
 | OpenAI | gpt-4o, gpt-4o-mini | CMO **1** · gpt-4o CSR PASS · mini CSR FAIL |
 
-**Not run:** Anthropic Sonnet/Opus (no key). Direct DeepSeek (insufficient balance). Some free OR probes 429/empty (e.g. Gemma-4-31B).
+**Not run:** Anthropic Sonnet/Opus (**needs `ANTHROPIC_API_KEY`** — multi-provider `extract.py` ready). Direct DeepSeek (insufficient balance). Some free OR probes 429/empty.
+
+**Offline disagreement table** (no API; re-scores committed dirs):
+
+```bash
+python challenge/scripts/score_live_matrix.py
+```
+
+As of committed matrix: **4/10** full CMO=3 + CSR PASS; **5/10** under-extract CMO; **4/10** CSR FAIL — review-routing signal, not single-model trust.
 
 Offline we also ship: curated gold + CSR=0, multi-strategy matrix, denser fail-closed CI.
 
@@ -28,11 +36,19 @@ python challenge/scripts/extract.py --snippet challenge/snippets/csr_address_map
 ## Live (spend go required)
 
 ```bash
-set OPENAI_API_KEY=...   # user shell only; never commit
-python challenge/scripts/extract.py --snippet challenge/snippets/cmo_cache_block.txt --live --model gpt-4o-mini-2024-07-18 --retries 0
-```
+# OpenAI
+set OPENAI_API_KEY=...
+python challenge/scripts/extract.py --snippet challenge/snippets/cmo_cache_block.txt --live --provider openai --model gpt-4o-mini-2024-07-18 --retries 0
 
-OpenRouter / Groq / Gemini use their own keys and base URLs (see MANIFEST for models already shipped).
+# Anthropic (prestige / brand-parity leg — optional)
+set ANTHROPIC_API_KEY=...
+python challenge/scripts/extract.py --snippet challenge/snippets/cmo_cache_block.txt --live --provider anthropic --model claude-sonnet-4-20250514 --retries 0
+python challenge/scripts/extract.py --snippet challenge/snippets/csr_address_mapping.txt --live --provider anthropic --model claude-sonnet-4-20250514 --retries 0
+
+# OpenRouter / Groq
+set OPENROUTER_API_KEY=...
+python challenge/scripts/extract.py --snippet challenge/snippets/cmo_cache_block.txt --live --provider openrouter --model nvidia/nemotron-3-ultra-550b-a55b:free --retries 0
+```
 
 After runs: place YAML + `*.evidence.json` under `results/live/<model>/`, then:
 

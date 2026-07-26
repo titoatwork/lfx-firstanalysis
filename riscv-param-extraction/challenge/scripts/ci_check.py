@@ -42,6 +42,9 @@ def main() -> int:
     run([py, str(ROOT / "scripts" / "check_grounding_modes.py")])
     run([py, str(ROOT / "scripts" / "score_strategies.py")])
     run([py, str(ROOT / "benchmark" / "scripts" / "score_recall.py")])
+    # Offline re-score of committed live multi-model dirs (no API)
+    if (ROOT / "results" / "live").is_dir():
+        run([py, str(ROOT / "scripts" / "score_live_matrix.py")])
 
     # Temporal holdout pilot (offline: unit tests + fail-closed leakage)
     holdout = ROOT / "temporal_holdout"
