@@ -240,3 +240,40 @@ Reports: `results/export_b_named.json`, `results/export_b_new.json`.
 | NORM_CSR_RW | 4 |
 
 Schema fragments for enum/range/set still need human domain fill (CSV does not encode members/bounds).
+
+---
+
+## 8. Challenge pack controls (Path A)
+
+| Control | Value |
+|---------|------:|
+| Snippets | 2 (CMO + CSR zero) |
+| Fail-closed bad fixtures | **4** |
+| Hard negatives | **4** |
+| Markup robustness cases | **3** (naive vs tag-aware) |
+| Known-param bench | **n=15** |
+| Existence (committed extraction pairs) | **15/15** |
+| Type fidelity (same pairs) | **15/15** |
+| Live multi-model dirs | **10** |
+
+**Known-param note:** n=15 scores **mechanics** of paired ground_truth.yaml + extraction.yaml under the scorer. It is **not** a live multi-model re-derive table and **not** equal to Spring corpus adjusted recall. Pretraining leakage applies to any known-param public UDB set.
+
+Source: python challenge/benchmark/scripts/score_recall.py; live matrix challenge/results/live/MANIFEST.md.
+
+---
+
+## 9. Temporal holdout pilot (exploratory primary)
+
+**Status:** locked primary 20260726T164713Z_gpt-4o-mini-2024-07-18 · **26/26** calls  
+**Write-up:** [challenge/temporal_holdout/results/PRIMARY_RESULTS.md](../challenge/temporal_holdout/results/PRIMARY_RESULTS.md)  
+**PR:** https://github.com/titoatwork/lfx-firstanalysis/pull/1
+
+| Condition | Name recall | Detect | WARL | Schema docs | Ground | Neg FP |
+|-----------|------------:|-------:|-----:|------------:|-------:|-------:|
+| baseline | **0/10** | 0/10 | 0/5 | 11/11 | 10/11 | 1/3 |
+| treatment | **0/10** | 0/10 | 0/5 | 4/4 | 4/4 | 2/3 |
+
+**Claim level:** reproducible harness demonstration + **exploratory null** under prompt **v1.2**.  
+**Not:** clean temporal-holdout evidence (v1.2 had case-specific guidance / label-revealing negatives).  
+**Not:** treatment caused worse negative FPs (N01–N03 prompts byte-identical across arms).
+

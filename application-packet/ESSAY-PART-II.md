@@ -28,13 +28,16 @@ schema-valid draft UDB YAML exporter (83 existing named + 20 candidates); a
 controlled 60-chunk second-model run with gpt-4o-mini (PROMPT v2) that reached
 only 32.2% adjusted recall versus the public Claude baseline of 72.9% (name
 Jaccard 3.8%); a prompt-only WARL ablation that was negative for WARL
-(3/24 → 2/24); and a coding-challenge pack with fail-closed CI plus a live
-multi-model matrix on the shared two ISA snippets (honest under-extract and
-false-positive cases included—not only best-case runs).
+(3/24 → 2/24); a coding-challenge pack with denser fail-closed controls (4 bad
+fixtures, 4 hard negatives, n=15 known-param mechanics check, 10-model live
+matrix with honest CSR fails, green CI); and a preregistered temporal holdout
+harness with a locked exploratory null on gpt-4o-mini (0/10 name recall both
+arms)—documented limitations, not a claimed CSR-context win.
 
-These results motivate grounded CSR context, cross-model/human review gates,
-explicit provenance, and small reviewable UDB PRs—not bulk generation. I can
-commit ≥30 hours/week for the Fall term.
+These results motivate grounded CSR context under leakage audit, cross-model
+and human review gates, explicit provenance, and small reviewable UDB PRs—not
+bulk generation or single-model trust. I can commit ≥30 hours/week for the Fall
+term.
 ```
 
 ---
@@ -49,7 +52,7 @@ Understanding of the work. I treat Part II as continuation of Spring LFX and
 Parameter SIG work: extract architectural parameters from privileged and
 unprivileged ISA material with LLMs; evaluate against gold sources (Manual
 chapter YAML, keyword spreadsheets, and UDB param YAML); improve classification
-where evidence supports it; productize reproducible agent/workflows; export
+where evidence supports it; productize reproducible pipelines/workflows; export
 schema-valid UDB YAML; and land reviewed, maintainable PRs. The Spring pipeline
 is public on open PR branches (#1765–#1832, mentee @ishaan-arora-1). As of this
 application those PRs remain unmerged—so Fall success is not “extract more
@@ -73,17 +76,27 @@ shared names (Jaccard 3.8%), and nine high-confidence proposed-new names that
 appear in both models—still candidates requiring human review, not confirmed
 parameters. A prompt-only WARL guidance ablation (v3) slightly raised overall
 adjusted recall to 35.0% but reduced matched WARL recall from 3/24 to 2/24: more
-confident labeling is not more correct labeling. Separately, a coding-challenge
-pack (shared two-snippet task, quote grounding, fail-closed fixtures, CI) and a
-live multi-model matrix document which free and commercial models over-trigger
-or under-extract on the same prompts—supporting review gates rather than
-single-model trust.
+confident labeling is not more correct labeling.
+
+Challenge and method surface. On the shared two-snippet coding challenge I
+shipped a denser control pack than a minimal kit: four fail-closed bad fixtures,
+four hard negatives, markup robustness (naive vs tag-aware), n=15 known-param
+mechanics scoring with an explicit pretraining caveat, a ten-model live matrix
+that includes CSR false positives and under-extracts, and green CI that also
+gates export tests. Separately I built a temporal holdout harness (frozen model
+pin, leakage-audited CSR context, immutable run directory). The locked primary
+run (gpt-4o-mini, 26/26 calls) produced 0/10 exact/alias name recall in both
+baseline and treatment arms—an exploratory null under documented v1.2 prompt
+limitations, not a claim that context already fixes WARL. That self-audit is
+intentional: Fall work should treat CSR grounding as a hypothesis to test under
+clean separation, not as marketing.
 
 What Part II must do differently. Ground model output in CSR/spec context with a
-leakage audit; treat cross-model agreement as a review signal, not automatic
-truth; keep provenance (spec file, anchor, excerpt, class, confidence, run id);
-export only reviewed findings; open small issue-linked UDB PRs (schema/data
-correctness) instead of another enormous generated dump.
+leakage audit and preregistered evaluation; treat cross-model agreement as a
+review signal, not automatic truth; keep provenance (spec file, anchor, excerpt,
+class, confidence, run id); export only reviewed findings; open small
+issue-linked UDB PRs (schema/data correctness) instead of another enormous
+generated dump.
 
 Prior research credibility. I am a 4th-year CS undergraduate. I completed a
 faculty research attachment at Universiti Malaya under Prof. Por Lip Yee (on-site

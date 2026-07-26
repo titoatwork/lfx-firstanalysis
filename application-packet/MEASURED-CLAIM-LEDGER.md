@@ -27,8 +27,11 @@
 | Public repo | https://github.com/titoatwork/lfx-firstanalysis | git | Prework link |
 | Coding challenge pack | 2 snippets · fail-closed CI · curated + live multi-model under `challenge/` | monorepo | Path A |
 | Live multi-model (snippets) | Multiple providers; **best free legs** hit CMO=3 + CSR=0 (e.g. Nemotron Ultra free, Gemini free, Ling free); some models under-extract or CSR false-positive — report honestly | `challenge/results/live/MANIFEST.md` | Not corpus-scale; not Sonnet claim |
+| Challenge control density | **4** bad fixtures · **4** hard negatives · **n=15** known-param mechanics · green monorepo CI | `challenge/README.md`; `ci_check.py` | Not “weaker kit”; packaging differs from dedicated-repo kits |
+| Known-param n=15 | Existence **15/15**, type fidelity **15/15** on committed pairs | `benchmark/scripts/score_recall.py` | Mechanics only; not live multi-model re-derive; not corpus recall |
+| Temporal holdout primary | **26/26**; name **0/10** both arms; WARL **0/5**; exploratory null under v1.2 limits | `temporal_holdout/results/PRIMARY_RESULTS.md`; PR #1 | Not clean temporal proof; neg FP not attributable to treatment |
 | Open Spring PRs (context) | #1765–#1832 still the Part I surface | GitHub | “merge/export still open” |
-| UDB PRs (when open) | Prefer issue-linked data fixes (#2102 STVAL_WIDTH, #2046 HPM_EVENTS) | GitHub PR URLs | Only after open; never invent merges |
+| UDB PRs (when open) | Only original unclaimed fixes; STVAL/HPM already claimed by others | GitHub PR URLs | Never invent merges; comment ≠ PR |
 
 ### The nine dual-model high-conf “new” candidates (not confirmed params)
 
@@ -50,6 +53,8 @@
 | “Artifact C (CSR-field context) is done” | **Not run**; only prompt-v3 ablation done |
 | Fake merge counts or SIG attendance | Not true |
 | “Curated challenge results are live LLM scores” | Curated = CI gold; live = `results/live/` |
+| “Holdout proved CSR context fixes WARL / clean temporal holdout success” | Primary is exploratory null under v1.2 limitations |
+| “n=15 type fidelity equals live model re-derive” | Committed extraction pairs / mechanics scorer |
 | “We beat Anshul / guaranteed selection” | Strategy talk, not evidence |
 | Applicant counts / admission probability | Unknown; do not invent |
 

@@ -1,29 +1,23 @@
-# Modeling notes (challenge CMO snippet)
+# Modeling notes (challenge surface)
 
-## Independent axes
+Short notes so mentors see judgment, not only tooling.
 
-The source sentence makes capacity, organization, and block size
-**implementation-specific** together, but nothing in the text forces a shared
-value space. Prefer **three parameters** over one bundled parameter.
+## Independent parameters vs bundling
 
-This matches the review culture illustrated by upstream discussions such as
-riscv-unified-db PR #2009 (split over-broad parameter modeling) — cited as
-**public maintainer precedent**, not personal affiliation.
+When the manual lists independent implementation choices in one sentence (e.g. cache capacity, organization, and block size), prefer **separate parameters** unless the text forces a shared constraint. Shipping one bundled parameter overclaims structure the spec does not state. This matches UDB review culture that prefers split parameters when axes are independent.
 
-## CACHE_BLOCK_SIZE
+## Opaque strings vs invented enums
 
-- Exists upstream in UDB (`spec/std/isa/param/CACHE_BLOCK_SIZE.yaml`).
-- Type integer, minimum 1, gated on Zicbom/Zicbop/Zicboz aligns with common UDB shape.
-- This pack **omits maximum** when the snippet states no upper bound (more honest
-  than encoding “unbounded” as 2**64-1 without spec text).
+If the text gives no enumerable value space, prefer a minimal schema (e.g. opaque `string`) and flag SIG scoping — do not invent enums. That is a form of anti-hallucination at the **schema** layer, not only at the quote layer.
 
-## CACHE_ORGANIZATION
+## Empty results are valid
 
-- Opaque `string` schema: the excerpt does not enumerate organizations.
-- Reasonable alternate judgment: **decline to emit** (schema-shaped false positive risk).
-- Documented as SIG-scoping candidate.
+The CSR address-mapping snippet is a negative control: fixed convention language is not optionality. Returning **zero** parameters is correct. Prompts and validators must not punish emptiness.
 
-## CSR §2.1
+## Known-param bench vs corpus recall
 
-- Correct extract is **zero parameters**.
-- Fixed conventions are not implementation-defined parameters.
+`benchmark/` (n=15) checks mechanics on paired sources. It is **not** equal to Spring corpus adjusted recall and is **pretraining-leaky** by construction (public UDB params). Report existence/type fidelity with that caveat first.
+
+## Holdout vs challenge
+
+The temporal holdout pilot tests CSR-context under a frozen pin. The locked v1.2 primary is an **exploratory null** with documented guidance limitations — method evidence, not a marketing win on WARL.
