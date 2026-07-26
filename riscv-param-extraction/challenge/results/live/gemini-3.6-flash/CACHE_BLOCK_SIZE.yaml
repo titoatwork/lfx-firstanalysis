@@ -1,0 +1,21 @@
+# Live extract: gemini-3.6-flash (Google AI free tier)
+# Prompt: challenge/prompts/v3_schema_constrained.md · temperature 0
+# yaml-language-server: $schema=../../schema/param_schema.json
+
+$schema: param_schema.json#
+kind: parameter
+name: CACHE_BLOCK_SIZE
+long_name: Cache Block Size
+description: |
+  The size of a cache block in bytes, representing a contiguous, naturally
+  aligned power-of-two range of memory locations. Uniform throughout the system
+  in the initial set of CMO extensions.
+definedBy:
+  extension:
+    anyOf:
+      - name: Zicbom
+      - name: Zicbop
+      - name: Zicboz
+schema:
+  type: integer
+  minimum: 1

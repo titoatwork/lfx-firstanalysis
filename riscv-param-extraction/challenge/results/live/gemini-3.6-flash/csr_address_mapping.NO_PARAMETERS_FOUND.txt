@@ -1,0 +1,10 @@
+Snippet: csr_address_mapping.txt (Privileged Spec §2.1)
+Model: gemini-3.6-flash (Google AI free tier)
+Prompt: v3_schema_constrained · temperature 0
+
+Result: ZERO parameters.
+
+Live model reasoning (paraphrase of raw):
+- No optionality triggers (may/might/should/optional/implementation-*).
+- Text is fixed architectural address-mapping convention only.
+- Matches challenge negative-control expectation.
