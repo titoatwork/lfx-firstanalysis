@@ -1,0 +1,9 @@
+kind: parameter
+name: M_MODE_ENDIANNESS
+class: NORM_CSR_WARL
+schema:
+  type: string
+  enum:
+  - little
+  - big
+  - dynamic
