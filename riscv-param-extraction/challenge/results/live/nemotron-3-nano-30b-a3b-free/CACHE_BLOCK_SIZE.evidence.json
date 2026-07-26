@@ -1,0 +1,8 @@
+{
+  "name": "CACHE_BLOCK_SIZE",
+  "snippet": "cmo_cache_block.txt",
+  "quote": "the size of a cache block shall be uniform throughout the system.",
+  "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+  "provider": "openrouter",
+  "tier": "free"
+}

@@ -36,7 +36,7 @@ Write prompts that extract architectural parameters from ISA Manual excerpts, wh
 | Modeling notes | `docs/modeling-notes.md` |
 | Scale/cost | `docs/scale_and_cost.md` |
 | Live multi-model how-to | `docs/LIVE_MULTI_MODEL.md` |
-| **Live multi-model results** | `results/live/` — OpenAI + Gemini + Groq + OpenRouter Nemotron free (see `MANIFEST.md`) |
+| **Live multi-model results** | `results/live/` — **8 live models** (see `MANIFEST.md`) |
 | Optional live extract | `scripts/extract.py` (no API unless `--live` + key) |
 
 ### How to run (local / CI)
@@ -72,23 +72,23 @@ CSR snippet: see `results/curated/csr_address_mapping.NO_PARAMETERS_FOUND.txt`.
 
 ### Live multi-model (2026-07-26)
 
-**OpenAI + Google free + Groq free + OpenRouter free (Nemotron Ultra).** Not Sonnet/Opus/GLM. Details: [`results/live/MANIFEST.md`](./results/live/MANIFEST.md).
+**8 live models** (OpenAI×2 + Google free + Groq free + OpenRouter free×4). Not Sonnet/Opus/GLM. See [`results/live/MANIFEST.md`](./results/live/MANIFEST.md).
 
-| Model | CMO | CSR negative control |
-|-------|-----|----------------------|
-| `nemotron-3-ultra-550b-a55b:free` (OpenRouter) | **3** | **PASS** zero |
-| `gemini-3.6-flash` (free) | **3** | **PASS** zero |
-| `llama-3.3-70b-versatile` (Groq free) | **3** | **FAIL** 5 false positives |
-| `gpt-4o-mini-2024-07-18` | 1 | **FAIL** 1 false positive |
-| `gpt-4o-2024-11-20` | 1 | **PASS** zero |
-| curated (CI gold, not live) | 3 | PASS |
+| Model | CMO | CSR |
+|-------|-----|-----|
+| Nemotron Ultra free | **3** | PASS |
+| Nemotron Super free | **3** | PASS* |
+| Ling-3.0 Flash free | **3** | PASS |
+| Nemotron Nano free | 1 | PASS* |
+| Gemini 3.6 Flash free | **3** | PASS |
+| Llama 3.3 70B Groq free | **3** | FAIL 5 FP |
+| gpt-4o | 1 | PASS |
+| gpt-4o-mini | 1 | FAIL 1 FP |
+| curated (CI gold) | 3 | PASS |
 
 ```bash
-python challenge/scripts/validate.py --results challenge/results/live/nemotron-3-ultra-550b-a55b-free
-python challenge/scripts/validate.py --results challenge/results/live/gemini-3.6-flash
-python challenge/scripts/validate.py --results challenge/results/live/llama-3.3-70b-versatile
-python challenge/scripts/validate.py --results challenge/results/live/gpt-4o-2024-11-20
-python challenge/scripts/validate.py --results challenge/results/live/gpt-4o-mini-2024-07-18
+python challenge/scripts/ci_check.py   # curated/CI only
+# Live dirs: see MANIFEST validate commands
 ```
 
 ### Fail-closed fixtures

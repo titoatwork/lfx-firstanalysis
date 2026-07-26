@@ -14,7 +14,7 @@
 | Multi-strategy controls | weak | **score_strategies.py** | **Yes** | — |
 | Known-param bench | n=13 | **n=15** + caveats | **Yes** | — |
 | Scale/cost + measured corpus $ | estimate | estimate + **A/v3 measured** | **Yes** | — |
-| Live multi-model on 2 snippets | **Yes** (Sonnet/Opus/GLM) | **Yes** 5 live models incl. **Nemotron Ultra free** (CMO=3,CSR=0) | **Yes*** | *No Claude brand; UDB merge still open |
+| Live multi-model on 2 snippets | **Yes** (Sonnet/Opus/GLM) | **Yes** **8 live models** (4 free OR + Gemini + Groq + OpenAI) | **Yes*** | *No Claude brand; UDB merge still open |
 | Merged UDB PR | **#1967** | Draft only (gh not authed here) | **NO** | **`GO OPEN UDB PR`** + `gh auth login` |
 | Corpus GT / multi-model / export / null | weak/none | **Lead** | **Yes** | defend |
 | Single monorepo story | challenge-only | challenge+corpus+export | **Yes** | — |
