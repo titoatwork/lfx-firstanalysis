@@ -23,7 +23,7 @@
 | 6 | Membership Schedule A / approval | You | In progress / waiting |
 | 7 | SIG/tech calendar | You | Open |
 | 8 | Challenge pack + CI | Agent | **DONE + pushed** `58f91de` |
-| 9 | Live multi-model on challenge snippets | Agent | **DONE** OpenAI + Gemini free + Groq Llama 70B free · optional Sonnet/GLM still optional |
+| 9 | Live multi-model on challenge snippets | Agent | **DONE** 5 models (OpenAI×2 + Gemini + Groq + OpenRouter Nemotron free) · optional Sonnet still optional |
 | 10 | Open UDB PR (draft ready) | Agent/You | Draft ready · **blocked**: `gh auth login` on this machine · then `GO OPEN UDB PR` |
 | 11 | Optional: push local validate `--check-triggers` + doc sync | Agent | Local dirty until `push` |
 
