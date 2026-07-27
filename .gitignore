@@ -51,8 +51,12 @@ SARGANTANA*.md
 lfx-riscv-param-extraction-prework/
 prework-draft/
 
-# Membership / personal forms
+# Membership / personal forms, and screenshots of personal dashboards
 SCHEDULE*.docx
+dashboard-*.webp
+dashboard-*.png
+*-dashboard.png
+Screenshot*.png
 **/*Schedule*A*
 **/slack-notes.md
 **/private/
