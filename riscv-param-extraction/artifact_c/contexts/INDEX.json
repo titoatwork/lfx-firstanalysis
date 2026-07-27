@@ -1,0 +1,402 @@
+{
+  "udb_sha_note": "pin recorded by the runner",
+  "chunks_with_context": 38,
+  "chunks_total": 79,
+  "per_chunk": {
+    "chunk_001": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_002": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_003": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_004": {
+      "csrs": 1,
+      "scrubbed": 0,
+      "chars": 669
+    },
+    "chunk_005": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_006": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_007": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_008": {
+      "csrs": 5,
+      "scrubbed": 0,
+      "chars": 5671
+    },
+    "chunk_009": {
+      "csrs": 6,
+      "scrubbed": 24,
+      "chars": 14453
+    },
+    "chunk_010": {
+      "csrs": 1,
+      "scrubbed": 0,
+      "chars": 2444
+    },
+    "chunk_011": {
+      "csrs": 7,
+      "scrubbed": 2,
+      "chars": 2917
+    },
+    "chunk_012": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_013": {
+      "csrs": 3,
+      "scrubbed": 0,
+      "chars": 4232
+    },
+    "chunk_014": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_015": {
+      "csrs": 8,
+      "scrubbed": 40,
+      "chars": 25057
+    },
+    "chunk_016": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_017": {
+      "csrs": 8,
+      "scrubbed": 0,
+      "chars": 9813
+    },
+    "chunk_018": {
+      "csrs": 1,
+      "scrubbed": 9,
+      "chars": 2919
+    },
+    "chunk_019": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_020": {
+      "csrs": 8,
+      "scrubbed": 35,
+      "chars": 16811
+    },
+    "chunk_021": {
+      "csrs": 8,
+      "scrubbed": 84,
+      "chars": 27968
+    },
+    "chunk_022": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_023": {
+      "csrs": 1,
+      "scrubbed": 0,
+      "chars": 1345
+    },
+    "chunk_024": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_025": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_026": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_027": {
+      "csrs": 8,
+      "scrubbed": 26,
+      "chars": 22955
+    },
+    "chunk_028": {
+      "csrs": 8,
+      "scrubbed": 2,
+      "chars": 4660
+    },
+    "chunk_029": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_030": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_031": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_032": {
+      "csrs": 8,
+      "scrubbed": 27,
+      "chars": 21940
+    },
+    "chunk_033": {
+      "csrs": 3,
+      "scrubbed": 18,
+      "chars": 5908
+    },
+    "chunk_034": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_035": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_036": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_037": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_038": {
+      "csrs": 8,
+      "scrubbed": 35,
+      "chars": 13988
+    },
+    "chunk_039": {
+      "csrs": 8,
+      "scrubbed": 4,
+      "chars": 5180
+    },
+    "chunk_040": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_041": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_042": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_043": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_044": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_045": {
+      "csrs": 4,
+      "scrubbed": 1,
+      "chars": 1605
+    },
+    "chunk_046": {
+      "csrs": 8,
+      "scrubbed": 24,
+      "chars": 18834
+    },
+    "chunk_047": {
+      "csrs": 5,
+      "scrubbed": 20,
+      "chars": 6392
+    },
+    "chunk_048": {
+      "csrs": 8,
+      "scrubbed": 0,
+      "chars": 12065
+    },
+    "chunk_049": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_050": {
+      "csrs": 2,
+      "scrubbed": 0,
+      "chars": 1469
+    },
+    "chunk_051": {
+      "csrs": 8,
+      "scrubbed": 0,
+      "chars": 14441
+    },
+    "chunk_052": {
+      "csrs": 8,
+      "scrubbed": 25,
+      "chars": 29374
+    },
+    "chunk_053": {
+      "csrs": 4,
+      "scrubbed": 6,
+      "chars": 16946
+    },
+    "chunk_054": {
+      "csrs": 2,
+      "scrubbed": 0,
+      "chars": 9966
+    },
+    "chunk_055": {
+      "csrs": 8,
+      "scrubbed": 4,
+      "chars": 11633
+    },
+    "chunk_056": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_057": {
+      "csrs": 2,
+      "scrubbed": 2,
+      "chars": 5785
+    },
+    "chunk_058": {
+      "csrs": 8,
+      "scrubbed": 26,
+      "chars": 16285
+    },
+    "chunk_059": {
+      "csrs": 4,
+      "scrubbed": 9,
+      "chars": 7462
+    },
+    "chunk_060": {
+      "csrs": 2,
+      "scrubbed": 0,
+      "chars": 4100
+    },
+    "chunk_061": {
+      "csrs": 1,
+      "scrubbed": 0,
+      "chars": 943
+    },
+    "chunk_062": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_063": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_064": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_065": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_066": {
+      "csrs": 2,
+      "scrubbed": 28,
+      "chars": 9215
+    },
+    "chunk_067": {
+      "csrs": 2,
+      "scrubbed": 9,
+      "chars": 4250
+    },
+    "chunk_068": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_069": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_070": {
+      "csrs": 3,
+      "scrubbed": 27,
+      "chars": 9689
+    },
+    "chunk_071": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_072": {
+      "csrs": 7,
+      "scrubbed": 3,
+      "chars": 13939
+    },
+    "chunk_073": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_074": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_075": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_076": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_077": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    },
+    "chunk_078": {
+      "csrs": 6,
+      "scrubbed": 11,
+      "chars": 12594
+    },
+    "chunk_079": {
+      "csrs": 0,
+      "scrubbed": 0,
+      "chars": 0
+    }
+  }
+}

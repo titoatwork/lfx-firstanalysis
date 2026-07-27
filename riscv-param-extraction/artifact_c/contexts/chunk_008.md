@@ -1,0 +1,125 @@
+## CSR and field reference for this excerpt
+Definitions of CSRs named in the text above. Reference material only.
+
+### CSR `vstart`
+Vector Start Index | address 8 | privilege U
+
+Specifies the index of the first element to be executed by a vector instruction.
+
+Fields:
+- `VALUE` (bits 63-0), access RW-RH
+    Normally, vstart is only written by hardware on a trap on a vector instruction, with the vstart value
+    representing the element on which the trap was taken (either a synchronous exception or an
+    asynchronous interrupt), and at which execution should resume after a resumable trap is handled.
+    All vector instructions are defined to begin execution with the element number given in the vstart
+    CSR, leaving earlier elements in the destination vector undisturbed, and to reset the vstart CSR to
+    zero at the end of execution.
+    
+    [NOTE]
+    All vector instructions, including vset{i}vl{i}, reset the vstart CSR to ...
+
+### CSR `vtype`
+Vector Type | address 3105 | privilege U
+
+Provides the default type used to interpret the contents of the vector register file.
+
+Fields:
+- `VILL` (bits 63), access RO-H
+    The vill bit is used to encode that a previous vset{i}vl{i} instruction attempted to write an
+    unsupported value to vtype.
+    
+    [NOTE]
+    The vill bit is held in bit XLEN-1 of the CSR to support checking for illegal values with a
+    branch on the sign bit.
+    
+    If the vill bit is set, then any attempt to execute a vector instruction that depends upon vtype will
+    raise an illegal-instruction exception.
+    
+    When the vill bit is set, the other XLEN-1 bits in vtype shall be zero.
+    
+    It is recommended that at reset, vill is set.
+- `VMA` (bits 7), access RO-H
+    Vector mask agnostic bit. Modifies the behavior of destination inactive masked-off elements during the
+    execution of vector instructions.
+    
+    A value of 0 means inactive elements are undisturbed, meaning the corresponding set of destination elements
+    in a vector register group retain the value they previously held.
+    
+    A value of 1 means inactive elements are agnostic, meaning the corresponding set of destination elements
+    in any vector destination operand can either retain the value they previously held, or are overwritten with 1s.
+    Within a single vector instruction, each destination element can be ...
+- `VTA` (bits 6), access RO-H
+    Vector tail agnostic bit. Modifies the bahavior of destination tail elements during the execution of vector
+    instructions.
+    
+    A value of 0 means tail elements are undisturbed, meaning the corresponding set of destination elements
+    in a vector register group retain the value they previously held.
+    
+    A value of 1 means tail elements are agnostic, meaning the corresponding set of destination elements
+    in any vector destination operand can either retain the value they previously held, or are overwritten with 1s.
+    Within a single vector instruction, each destination element can be either left undisturbed ...
+- `VSEW` (bits 5-3), access RO-H
+    The value in vsew sets the dynamic selected element width (SEW).
+    
+    [separator="!"]
+    !===
+    ! vsew[2:0] ! SEW ! Elements per vector register
+    ! 000 ! 8 ! 16
+    ! 001 ! 16 ! 8
+    ! 010 ! 32 ! 4
+    ! 011 ! 64 ! 2
+    ! 1XX ! Reserved ! Reserved
+    !===
+    
+    It is recommended that at reset, vill is set, and the remaining bits in vtype are zero.
+- `VLMUL` (bits 2-0), access RO-H
+    Vector register group multiplier.
+    
+    Multiple vector registers can be grouped together, so that a single vector instruction can operate on
+    multiple vector registers. The term vector register group is used herein to refer to one or more vector
+    registers used as a single operand to a vector instruction. Vector register groups can be used to provide
+    greater execution efficiency for longer application vectors, but the main reason for their inclusion is to
+    allow double-width or larger elements to be operated on with the same vector length as single-width
+    elements. The vector length multiplier, LMUL, ...
+
+### CSR `vcsr`
+Vector Control and Status Register | address 15 | privilege U
+
+Contains aliases to vxrm and vxsat CSRs
+
+Fields:
+- `VXRM` (bits 2-1), access RW-RH
+    See vxrm.
+- `VXSAT`, access RW-RH
+    See vxsat.
+
+### CSR `vxrm`
+Vector Fixed-Point Rounding Mode | address 10 | privilege U
+
+Holds a 2-bit read-write rounding-mode field in the least-significant bits
+
+Fields:
+- `VALUE` (bits 63-0), access RW-H
+    The vector fixed-point rounding-mode register holds a two-bit read-write rounding-mode field in the
+    least-significant bits (vxrm[1:0]). The upper bits, vxrm[XLEN-1:2], should be written as zeros.
+    The vector fixed-point rounding-mode is given a separate CSR address to allow independent access,
+    but is also reflected as a field in vcsr.
+    
+    [NOTE]
+    A new rounding mode can be set while saving the original rounding mode using a single csrwi instruction.
+    
+    The fixed-point rounding algorithm is specified as follows. Suppose the pre-rounding result is v, and d
+    bits of that result are to be rounded off. ...
+
+### CSR `vxsat`
+Vector Fixed-Point Saturate Flag | address 9 | privilege U
+
+Indicates if a fixed-point instruction has had to saturate an output value to fit into a destination format
+
+Fields:
+- `VALUE` (bits 63-0), access RW-H
+    The vxsat CSR has a single read-write least-significant bit (vxsat[0]) that indicates if a fixed-point
+    instruction has had to saturate an output value to fit into a destination format. Bits vxsat[XLEN-1:1]
+    should be written as zeros.
+    
+    The vxsat bit is mirrored in vcsr.
