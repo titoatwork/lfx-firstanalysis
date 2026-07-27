@@ -2,6 +2,30 @@
 
 Tables only. Numbers are **user-measured** unless marked pending. Do not invent pilot/A results.
 
+---
+
+## Read this before citing any recall number
+
+**Every recall figure below was produced with the complete list of gold parameter names supplied in the prompt.**
+
+`extract.py` builds each prompt through `build_user_message()`, which unconditionally injects `format_param_names_section(load_udb_param_names())`. That list is read from `param_extraction/data/udb_param_names.txt`, which is **set-identical** to the 185 parameters in `ground_truth.json`:
+
+```
+injected list size : 185
+gold set size      : 185
+identical sets     : True
+```
+
+The instruction accompanying it reads: *"When a parameter you find matches one of these known names, use the exact name."*
+
+**What this means.** These numbers measure **grounding**, not discovery: given the catalogue of 185 names, locate which apply to a passage and cite evidence. For the Spring work that produced the parameter spreadsheet and tagged spec text, supplying the catalogue is the correct design, because mapping to a catalogue requires the catalogue.
+
+**What it does not mean.** None of these figures show whether a model can find architectural parameters *without* being given the answer key. That number is not measured anywhere in this repository or, as far as I can tell, anywhere public. Measuring it is the subject of [`artifact_c/PREREGISTRATION.md`](../artifact_c/PREREGISTRATION.md).
+
+Do not present any figure below as discovery recall. State the name-list condition whenever these numbers are cited.
+
+*Added 2026-07-27 on discovering the condition while building Artifact C. The figures themselves are unchanged and remain correctly measured for what they measure.*
+
 Credit: Part I pipeline and committed results — [@ishaan-arora-1](https://github.com/ishaan-arora-1) / [riscv/riscv-unified-db](https://github.com/riscv/riscv-unified-db) PRs #1765–#1832. Remeasure and pilot here are independent reproduction, **not** Part I authorship.
 
 ---
@@ -20,6 +44,8 @@ Source: local `export_udb_params` → `map_params_to_spec` → `generate_report`
 ---
 
 ## 2. Part I v2 remeasure (Claude Sonnet 4, committed GT 185)
+
+> **Condition: gold name list supplied.** All 185 gold names were in the prompt. This is grounding recall, not discovery recall. See the note at the top of this file.
 
 | Metric | Value |
 |--------|------:|
@@ -73,6 +99,8 @@ Do **not** claim 97 named params without re-counting the CSV in use.
 ---
 
 ## 5. Artifact A — multi-model (gpt-4o-mini vs Claude Part I)
+
+> **Condition: gold name list supplied to both models.** The cross-model comparison is therefore between two models doing the *same grounding task* with the same catalogue. The 3.8% name Jaccard is measured under that condition, which makes the disagreement more striking rather than less: both models had the identical list of 185 names available and still shared only 21.
 
 **Status:** `COMPLETE` (2026-07-24 → 2026-07-25)  
 **Manifest:** [manifests/artifact-a-gpt-4o-mini.md](../manifests/artifact-a-gpt-4o-mini.md)  
@@ -165,6 +193,8 @@ Low both-model overlap on “new” names → most proposed-new are model-privat
 ---
 
 ## 6. Stretch C ablation — prompt v3 WARL guidance (gpt-4o-mini)
+
+> **Condition: gold name list supplied in both arms.** The v3 WARL guidance was therefore added *on top of* an already-supplied catalogue of names. That the model labelled more items WARL without matching more gold WARL entries is a failure of identification, not of vocabulary, since it already had every correct name in front of it.
 
 **Status:** `COMPLETE` (2026-07-25) — **honest null / negative for WARL**  
 **Manifest:** [manifests/stretch-c-v3-warl.md](../manifests/stretch-c-v3-warl.md)  

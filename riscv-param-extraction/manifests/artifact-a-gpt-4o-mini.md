@@ -6,6 +6,8 @@
 **Repo:** [titoatwork/lfx-firstanalysis](https://github.com/titoatwork/lfx-firstanalysis) · `riscv-param-extraction/`  
 **No secrets.**
 
+> **Condition:** both models received the full 185-name gold catalogue in the prompt, so these are grounding scores. The cross-model disagreement (Jaccard 3.8%) is measured under that shared condition.
+
 ---
 
 ## Claim (honest)

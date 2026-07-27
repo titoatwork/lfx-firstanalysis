@@ -13,6 +13,14 @@ Definitions used throughout this repository, and direct answers to the questions
 | Cross-model agreement | Shared parameter names between two models. Low Jaccard is a signal to review, not evidence of truth |
 | Exploratory null | A result that did not reach its endpoint under known limitations, reported rather than discarded |
 
+## The condition attached to every recall number
+
+**Were the gold parameter names given to the model?**
+Yes. Every Part I prompt injects all 185 gold names, a set identical to the ground truth, with the instruction to reuse them exactly. So every published recall figure measures grounding, locating which catalogue entries apply to a passage and evidencing them, rather than discovery. For the Spring deliverables that is the right design. It does mean no published number shows whether a model can find parameters unaided, and that measurement is [preregistered](../riscv-param-extraction/artifact_c/PREREGISTRATION.md) but not yet run.
+
+**Does that invalidate the WARL finding?**
+It sharpens it. WARL recall is 12/24 with all 24 correct names already in the prompt, so the failure is identification rather than vocabulary. That also explains why prompt-only WARL guidance made results worse: more instruction does not help a model that was never missing the name.
+
 ## Questions the numbers raise
 
 **Why report exact and adjusted recall differently?**

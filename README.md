@@ -59,6 +59,8 @@ Spring Part I (extract → analyze → spreadsheet) was built on open UDB PR bra
 
 ## Snapshot numbers (measured only)
 
+> **All recall figures below are grounding scores, not discovery scores.** The Part I prompts inject the complete list of 185 gold parameter names, set-identical to the ground truth, instructing the model to reuse them exactly. That is the correct design for building a spreadsheet and tagging spec text, and it is how these numbers were produced. Recall *without* the name list is unmeasured and is the subject of a [preregistered experiment](./riscv-param-extraction/artifact_c/PREREGISTRATION.md). Full explanation in [`docs/metrics.md`](./riscv-param-extraction/docs/metrics.md).
+
 | Item | Value |
 |------|------:|
 | Part I v2 remeasure (GT 185) | adj **72.9%** · class **88.4%** · WARL **50%** |

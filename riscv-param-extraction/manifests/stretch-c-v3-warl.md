@@ -6,6 +6,8 @@
 **Repo:** [titoatwork/lfx-firstanalysis](https://github.com/titoatwork/lfx-firstanalysis) · `riscv-param-extraction/`  
 **No secrets.**
 
+> **Condition:** both arms received the full 185-name gold catalogue, including all 24 gold WARL names. The v3 guidance was added on top of that. The model was therefore never short of the correct name, which makes this a failure of identification rather than vocabulary and explains why extra guidance reduced WARL recall.
+
 ---
 
 ## Claim (honest)

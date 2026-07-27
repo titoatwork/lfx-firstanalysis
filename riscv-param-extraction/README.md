@@ -7,6 +7,8 @@ Public selection surface for [LFX Mentorship Part II — AI-assisted extraction 
 
 Part I already shipped extract → analyze → spreadsheet on open PR branches. This folder adds: **multi-model measurement** (Artifact A), **export of spreadsheet rows to draft UDB param YAML** (Artifact B), and **run manifests** (Obj 3).
 
+> **Every recall figure here is a grounding score.** The Part I prompts supply the complete list of 185 gold parameter names, set-identical to the ground truth. Recall without that catalogue is unmeasured; see [`artifact_c/PREREGISTRATION.md`](artifact_c/PREREGISTRATION.md) and the note at the top of [`docs/metrics.md`](docs/metrics.md).
+
 ---
 
 ## Measured numbers

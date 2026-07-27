@@ -16,15 +16,23 @@ Replace bracketed contact fields only if the form asks. Numbers below match the 
 I am applying to AI-assisted extraction of architectural parameters from RISC-V
 specifications – Part II (LFX Fall 2026).
 
-My prework measures where extraction fails rather than adding another extractor.
-Remeasuring the public Spring output against the pinned 185-parameter gold gives
-72.9% adjusted recall, 88.4% classification accuracy, and 50% WARL recall. WARL is
-the worst class by a wide margin. A prompt-only WARL ablation made it worse
-(12.5% to 8.3%) while raising overall recall, and two models on identical chunks
-agreed on only 3.8% of parameter names, with just 9 high-confidence "new" names
-proposed by both. Those are measured arguments for CSR-grounded context and
-cross-model review gates, not assertions. I also built a schema-valid UDB export
-path (83/83 named, 20/20 new candidates).
+While reproducing the Spring pipeline I found that its prompts inject the complete
+list of 185 gold parameter names, set-identical to the ground truth, instructing
+the model to use those exact names. Every published recall figure, including ones
+I had been citing myself, therefore measures grounding against a supplied
+catalogue rather than discovery. That is the right design for building a
+spreadsheet and tagging spec text, but it is not what the numbers are usually read
+to mean. I have corrected my own claims and documented the condition. Discovery
+recall appears unmeasured anywhere public, and I have preregistered the experiment
+that measures it.
+
+Under that condition the remeasure gives 72.9% adjusted recall on the pinned gold
+and 64.2% against live UDB, with WARL worst at 50%. A prompt-only WARL
+intervention made WARL worse, 12.5% to 8.3%, so the failure is identification
+rather than vocabulary: the model already had every correct name in front of it.
+Two models given that identical catalogue still shared only 3.8% of parameter
+names. I also built a schema-valid UDB export path (83/83 named, 20/20
+candidates).
 
 The Spring PRs (#1765–#1832, credit @ishaan-arora-1) are a superseded snapshot.
 The mentee has noted that the working pipeline is internal, so I present my
@@ -57,15 +65,26 @@ superseded snapshot rather than the baseline to build on. That shapes what succe
 means. Not more candidates against a stale reference, but evaluation that stays
 valid while the pipeline underneath it moves.
 
-What I measured. Regenerating ground truth on live UDB gives 223 parameters; the
-Part I freeze was 185. Re-scoring the committed Claude-sonnet-4 output: 72.9%
-adjusted recall and 88.4% classification accuracy on GT185, 64.2% on live GT223.
-WARL is the worst class at 50% (12/24). Running the same 60 chunks and v2 prompt
+What I measured, and a correction. Regenerating ground truth on live UDB gives 223
+parameters; the Part I freeze was 185. Re-scoring the committed Claude-sonnet-4
+output: 72.9% adjusted recall and 88.4% classification accuracy on GT185, 64.2% on
+live GT223, WARL worst at 50% (12/24). Running the same 60 chunks and v2 prompt
 through gpt-4o-mini (~$0.16) gave 32.2% adjusted recall, only 21 shared names
-(Jaccard 3.8%), and just nine high-confidence proposed-new names common to both
-models. Those nine are candidates for review, not confirmed parameters. A
-prompt-only WARL ablation raised overall recall to 35.0% while cutting WARL recall
-from 3/24 to 2/24: more confident labelling is not more correct labelling.
+(Jaccard 3.8%), and nine high-confidence proposed-new names common to both models,
+which are review candidates rather than confirmed parameters. A prompt-only WARL
+ablation raised overall recall to 35.0% while cutting WARL recall from 3/24 to
+2/24.
+
+The correction matters more than any of those numbers. Building the next
+experiment, I traced the prompt assembly and found that every run injects all 185
+gold parameter names, a set identical to the ground truth, with the instruction to
+reuse them exactly. So these are grounding scores against a supplied catalogue,
+not discovery scores. For the Spring deliverables, a spreadsheet and tagged spec
+text, that is the correct design. But it reframes the WARL result: the model was
+never short of the right name, so the failure is identification, and it explains
+why adding prompt guidance made things worse rather than better. I updated
+metrics.md, the claim ledger and this essay rather than leaving the ambiguity in
+place, and preregistered the measurement of discovery recall before running it.
 
 What I built. An exporter mapping parameters.csv to draft UDB param YAML,
 schema-valid at 83/83 named (87 rows / 83 unique) and 20/20 new candidates. That

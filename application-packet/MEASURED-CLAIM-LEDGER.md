@@ -6,6 +6,21 @@
 
 ---
 
+## Mandatory qualifier on every recall number
+
+**All published recall figures were produced with the full gold name list in the prompt.** `extract.py` → `build_user_message()` unconditionally injects all 185 names from `udb_param_names.txt`, which is set-identical to `ground_truth.json`. The accompanying instruction is *"When a parameter you find matches one of these known names, use the exact name."*
+
+Every citation of 72.9%, 64.2%, 32.2%, 35.0%, or any per-class recall **must** state this condition. Acceptable forms:
+
+- "72.9% adjusted recall, with the 185 gold parameter names supplied in the prompt"
+- "grounding recall of 72.9% (catalogue supplied); discovery recall is unmeasured"
+
+Never cite these as evidence a model can *find* parameters. They measure locating and evidencing names from a supplied catalogue. That is a legitimate task and the correct design for the spreadsheet and tagging work, but it is not discovery.
+
+Discovery recall is unmeasured and is the subject of `artifact_c/PREREGISTRATION.md`.
+
+---
+
 ## Safe claims (approved wording)
 
 | Claim | Exact numbers | Source | Allowed use |
@@ -48,6 +63,9 @@
 
 | Do **not** say | Why |
 |----------------|-----|
+| Any recall figure without the name-list condition | All published recall is **grounding** recall with the 185 gold names supplied. Omitting that overstates it as discovery |
+| “the model found / discovered N parameters” | It located them in a catalogue it was given |
+| “discovery recall is X” | **Unmeasured.** Nothing in this repo measures extraction without the name list |
 | “I built / authored Spring Part I” | Authorship is @ishaan-arora-1 / Spring PRs |
 | “97 named parameters” | Measured **87/83** |
 | “Pure gpt-4o full pilot / full multi-model matrix” | Pilot model-split; A is mini |
