@@ -70,10 +70,13 @@ parameters; the Part I freeze was 185. Re-scoring the committed Claude-sonnet-4
 output: 72.9% adjusted recall and 88.4% classification accuracy on GT185, 64.2% on
 live GT223, WARL worst at 50% (12/24). Running the same 60 chunks and v2 prompt
 through gpt-4o-mini (~$0.16) gave 32.2% adjusted recall, only 21 shared names
-(Jaccard 3.8%), and nine high-confidence proposed-new names common to both models,
-which are review candidates rather than confirmed parameters. A prompt-only WARL
-ablation raised overall recall to 35.0% while cutting WARL recall from 3/24 to
-2/24.
+(Jaccard 3.8%), and nine high-confidence proposed-new names common to both models.
+A contributor on the upstream scope thread has since predicted those nine will be
+the *easy* cases, since agreement should concentrate on well-known quantities and
+disagreement on genuinely underspecified ones. Four of the nine are textbook
+quantities, so he may be right. I registered his prediction as a hypothesis in the
+experiment below rather than defending the number. A prompt-only WARL ablation
+raised overall recall to 35.0% while cutting WARL recall from 3/24 to 2/24.
 
 The correction matters more than any of those numbers. Building the next
 experiment, I traced the prompt assembly and found that every run injects all 185

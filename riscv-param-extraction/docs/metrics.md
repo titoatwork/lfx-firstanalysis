@@ -168,6 +168,8 @@ Shared-name sample: `CACHE_BLOCK_SIZE`, `ELEN`, `VLEN`, `MTVEC_MODES`, `NUM_PMP_
 
 ### 5.4 Hallucination-overlap (high-conf proposed-new)
 
+> **Retention gap, recorded 2026-07-28.** The per-chunk gpt-4o-mini outputs behind this section were kept local rather than committed, and the working clone has since moved branches. The aggregate counts below stand, and the nine dual-model names are listed in the claim ledger. The **model-exclusive sets are no longer on disk**, so the 227 Claude-only and 209 mini-only candidates cannot be recomputed or audited. Treat the counts as reported-but-unauditable until the Artifact C run regenerates them. Retention is a hard gate on that run (`artifact_c/PREREGISTRATION.md` §6b).
+
 Proposed-new = name **not** in GT185 UDB set and no trusted `existing_udb_name` hit; **confidence=high** only.
 
 | Metric | Value |

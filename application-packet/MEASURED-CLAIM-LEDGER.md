@@ -36,7 +36,7 @@ Discovery recall is unmeasured and is the subject of `artifact_c/PREREGISTRATION
 | Artifact A vs GT185 | adj **32.2%**, WARL **12.5%** (3/24), ~**$0.16** | metrics §5 | Honest worse-than-Claude |
 | Claude Part I baseline (not re-billed) | adj **72.9%**, 346 deduped names | metrics §5 | Comparison baseline |
 | Name agreement A | shared **21**, Jaccard **3.8%** | metrics §5.3 | Review-gating story |
-| High-conf proposed-new both models | **9** names | metrics §5.4 | Candidates needing review |
+| High-conf proposed-new both models | **9** names | metrics §5.4 | Candidates needing review. **State the retention gap:** the model-exclusive sets (227 / 209) were not committed and cannot be recomputed. Do not present the 9 as a validated review queue; an open prediction (H5, credited to @RAJVEER42) is that dual-model agreement selects for *easy* candidates. Unresolved until Artifact C |
 | v3 prompt WARL ablation | **60/60**; adj **35.0%**; WARL **8.3%** (2/24); ~**$0.16** | metrics §6; stretch-c manifest | **Null / negative** for WARL |
 | Public repo | https://github.com/titoatwork/lfx-firstanalysis | git | Prework link |
 | Coding challenge pack | 2 snippets · fail-closed CI · curated + live multi-model under `challenge/` | monorepo | Path A |

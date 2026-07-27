@@ -90,6 +90,31 @@ unknown cause.
 **H4 is the question the amendment makes possible.** If context substitutes for the catalogue, then
 retrieval is doing real extraction work rather than decorating a lookup task.
 
+### H5, registered on 2026-07-28 before any run, from an external prediction
+
+**H5 (agreement selects for easy cases).** Where two models independently propose the same new
+candidate, that agreement concentrates on well-known quantities rather than on genuinely
+implementation-defined ones. Under this hypothesis a dual-model agreement gate filters *toward* the
+candidates a reviewer least needs help with, which would invert the value I claimed for it.
+
+**Falsified if** the agreed set does not differ systematically from the model-exclusive sets on
+difficulty proxies.
+
+**Prespecified proxies**, fixed now: share of agreed versus exclusive candidates that (a) name a
+quantity defined in the base ISA rather than an optional extension, (b) carry a gold class of
+`NORM_DIRECT` rather than `NORM_CSR_WARL` or `NORM_CSR_RW` where a gold class exists, (c) appear in
+chunks with no CSR mention. Reported as raw counts, no significance testing at this n.
+
+**Credit.** This prediction is [@RAJVEER42's](https://github.com/riscv/riscv-unified-db/issues/2053),
+raised in issue #2053 from an 18-run study over 2 snippets. It is registered here because it is a
+sharper objection to the dual-model gate than anything in my own analysis, and because testing it at
+60-chunk scale costs nothing on a run that was happening anyway.
+
+**Prior evidence, stated so it cannot be quietly dropped.** Of the nine dual-model candidates from
+Artifact A, four (`FLEN`, `IALIGN`, `ILEN`, `NUM_PRIVILEGE_MODES`) are textbook quantities. That is a
+qualitative read consistent with H5, not a measurement, and the per-chunk data needed to test it
+properly was not retained from the earlier run. See section 8.
+
 ## 4. Design
 
 **Arms.** Two binary factors, name list and CSR context, giving four cells. Temperature 0 throughout,
@@ -189,6 +214,26 @@ SW_RULE 2** (debug-spec prefixes excluded, matching `docs/metrics.md`).
   with the failure.
 - WARL n=24 is small. A one- or two-case difference is noise, and will be reported as such rather than
   as a lift.
+
+## 6b. Artefact retention, made a hard requirement
+
+The earlier Artifact A run kept per-chunk outputs local rather than committing them. The working clone
+has since moved branches and those files are gone. The aggregates survive (236 and 218 high-confidence
+proposed-new, 9 in both) but the **exclusive sets do not**, so the candidates each model proposed alone
+cannot be recomputed or audited. That is a reproducibility failure in the artifact I have leaned on
+most, and it is the direct reason H5 cannot be tested against existing data.
+
+The runner therefore treats retention as a gate rather than a convenience. It must write, and the run
+is void without them:
+
+- every per-chunk response for every arm and model, raw, before parsing
+- the parsed candidate list per chunk, with the arm and model recorded on each
+- the agreed and model-exclusive candidate sets, materialised as name lists rather than counts
+- token counts, cost, latency, refusals and parse failures per call
+- the resolved prompt for at least one chunk per arm, so the arms can be diffed after the fact
+
+Aggregate-only outputs are not acceptable. If a number appears in the write-up, the file it was
+computed from is in the repository.
 
 ## 7. Commitment
 
