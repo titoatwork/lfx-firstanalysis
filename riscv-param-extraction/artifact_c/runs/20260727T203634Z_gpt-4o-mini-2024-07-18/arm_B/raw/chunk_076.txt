@@ -1,0 +1,58 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "As the access size is 64-bit, accesses are only considered naturally aligned for effective addresses that are a multiple of 8.",
+      "line_number": 15,
+      "parameter_name": "NATURAL_ALIGNMENT",
+      "existing_udb_name": "NATURAL_ALIGNMENT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The alignment requirement for 64-bit accesses is a direct implementation choice, determining whether addresses must be multiples of 8."
+    },
+    {
+      "excerpt": "If the effective address is a multiple of 4, then each word access is required to be performed atomically.",
+      "line_number": 19,
+      "parameter_name": "ATOMIC_WORD_ACCESS",
+      "existing_udb_name": "ATOMIC_WORD_ACCESS",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The requirement for atomicity of word accesses based on address alignment is a design choice for the implementation."
+    },
+    {
+      "excerpt": "If using `x0` as `src` of SD or C.SDSP, the entire 64-bit operand is zero — i.e., register `x1` is not accessed.",
+      "line_number": 29,
+      "parameter_name": "X0_SRC_ZERO_OPERAND",
+      "existing_udb_name": "X0_SRC_ZERO_OPERAND",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The behavior of using `x0` as a source operand is an implementation choice that determines how the operand is treated."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "To ensure resumable trap handling is possible for the load instructions, the base register must have its original value if a trap is taken.",
+      "line_number": 25,
+      "reason": "This is a fixed requirement for trap handling and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "For the purposes of RVWMO and exception handling, LD and SD instructions are considered to be misaligned loads and stores.",
+      "line_number": 31,
+      "reason": "This describes the behavior of instructions under certain conditions, not an implementation-defined parameter."
+    },
+    {
+      "excerpt": "If an implementation performs a doubleword load access atomically and the register file implements write-back for even/odd register pairs, the mentioned atomicity requirements are inherently fulfilled.",
+      "line_number": 33,
+      "reason": "This is a conditional statement about implementation behavior, not a parameter that can be defined."
+    },
+    {
+      "excerpt": "Software should make no assumptions about the number or order of accesses these instructions might give rise to, beyond the 4-byte constraint mentioned above.",
+      "line_number": 37,
+      "reason": "This is a guideline for software behavior, not an architectural parameter."
+    }
+  ]
+}
+```

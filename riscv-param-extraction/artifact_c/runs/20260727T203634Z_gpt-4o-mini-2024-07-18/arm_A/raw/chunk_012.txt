@@ -1,0 +1,53 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "FLEN can be 32, 64, or 128 depending on which of the F, D, and Q extensions are supported.",
+      "line_number": 7,
+      "parameter_name": "FLEN",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "FLEN represents the width of the floating-point registers and is an implementation choice among the specified values (32, 64, or 128)."
+    },
+    {
+      "excerpt": "For RV64, FCVT.W[U].D sign-extends the 32-bit result.",
+      "line_number": 157,
+      "parameter_name": "RV64_FCVT_WU_D_SIGN_EXTEND",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to sign-extend the result of FCVT.WU.D for RV64, making it a direct implementation choice."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The double-precision value may be a NaN-boxed single-precision value.",
+      "line_number": 121,
+      "reason": "This is a fixed requirement about the nature of the double-precision value and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "FLD and FSD are only guaranteed to execute atomically if the effective address is naturally aligned and XLEN{ge}64.",
+      "line_number": 127,
+      "reason": "This describes a condition under which the instructions operate atomically, not an implementation choice."
+    },
+    {
+      "excerpt": "The double-precision floating-point computational instructions are defined analogously to their single-precision counterparts.",
+      "line_number": 145,
+      "reason": "This is a description of how the instructions are defined, not an architectural parameter."
+    },
+    {
+      "excerpt": "All floating-point to integer and integer to floating-point conversion instructions round according to the _rm_ field.",
+      "line_number": 179,
+      "reason": "This describes the behavior of the conversion instructions based on the rounding mode, not an implementation choice."
+    },
+    {
+      "excerpt": "The double-precision floating-point compare instructions are defined analogously to their single-precision counterparts.",
+      "line_number": 205,
+      "reason": "This is a description of the definition of the compare instructions, not an architectural parameter."
+    }
+  ]
+}
+```

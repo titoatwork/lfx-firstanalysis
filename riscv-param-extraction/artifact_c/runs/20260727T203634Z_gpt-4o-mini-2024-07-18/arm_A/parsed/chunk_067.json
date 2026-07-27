@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_067",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The jvt CSR requires a state enable if Smstateen is implemented.",
+      "line_number": 258,
+      "parameter_name": "HW_JVT_STATE_ENABLE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation must choose whether to enable the state for the jvt CSR based on the presence of Smstateen."
+    },
+    {
+      "excerpt": "If jvt.mode is a reserved value, then _cm.jt_ is also reserved.",
+      "line_number": 258,
+      "parameter_name": "JVT_MODE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The jvt.mode field is WARL, and the set of supported modes can vary by implementation."
+    },
+    {
+      "excerpt": "The total stack adjustment represents the total size of the stack frame, which is _stack_adj_base_ added to _spimm_ scaled by 16.",
+      "line_number": 258,
+      "parameter_name": "STACK_ADJUSTMENT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The stack adjustment is a direct implementation choice based on the number of registers and additional space required."
+    },
+    {
+      "excerpt": "The jvt register is an XLEN-bit WARL read/write register that holds the jump table configuration, consisting of the jump table base address (BASE) and the jump table mode (MODE).",
+      "line_number": 258,
+      "parameter_name": "JVT_BASE_ADDRESS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The BASE field in the jvt CSR is WARL, and its legal values can vary by implementation."
+    }
+  ]
+}

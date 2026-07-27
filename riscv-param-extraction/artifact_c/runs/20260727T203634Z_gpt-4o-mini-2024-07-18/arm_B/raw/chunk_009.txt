@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "the size of a cache block shall be uniform throughout the system.",
+      "line_number": 45,
+      "parameter_name": "CACHE_BLOCK_SIZE_UNIFORMITY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The specification states that the size of a cache block must be uniform, indicating a design choice for implementers."
+    },
+    {
+      "excerpt": "An implementation may or may not update the entire set of bytes atomically with a single store operation.",
+      "line_number": 80,
+      "parameter_name": "CACHE_BLOCK_ZERO_ATOMICITY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice of whether to update the cache block bytes atomically is left to the implementer, making it a direct implementation parameter."
+    },
+    {
+      "excerpt": "An implementation may opt to cache a copy of the cache block in a cache accessed by an instruction fetch in order to improve memory access latency, but this behavior is not required.",
+      "line_number": 100,
+      "parameter_name": "CACHE_BLOCK_PREFETCH_INSTRUCTION_FETCH",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The decision to cache a copy of the cache block for instruction fetches is left to the implementer, indicating an architectural choice."
+    },
+    {
+      "excerpt": "An implementation may opt to cache a copy of the cache block in a cache accessed by a data read in order to improve memory access latency, but this behavior is not required.",
+      "line_number": 120,
+      "parameter_name": "CACHE_BLOCK_PREFETCH_DATA_READ",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to cache a copy of the cache block for data reads is an implementation decision, making it a parameter."
+    },
+    {
+      "excerpt": "An implementation may opt to cache a copy of the cache block in a cache accessed by a data write in order to improve memory access latency, but this behavior is not required.",
+      "line_number": 140,
+      "parameter_name": "CACHE_BLOCK_PREFETCH_DATA_WRITE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The decision to cache a copy of the cache block for data writes is left to the implementer, indicating an architectural choice."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "A given agent may not be able to access all memory locations in a system, and two different agents may or may not be able to access the same set of memory locations.",
+      "line_number": 20,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a general condition, not an architectural requirement."
+    },
+    {
+      "excerpt": "The PMP access control bits shall be the same for all physical addresses in the cache block, and if write permission is granted by the PMP access control bits, read permission shall also be granted.",
+      "line_number": 300,
+      "reason": "This is a fixed requirement ('shall be the same') that all implementations must satisfy. There is no implementation choice here."
+    },
+    {
+      "excerpt": "If access to the cache block is not permitted, a cache-block management instruction raises a store page-fault or store guest-page-fault exception if address translation does not permit any access or raises a store access-fault exception otherwise.",
+      "line_number": 400,
+      "reason": "This describes the behavior of instructions under certain conditions, not an implementation choice. It is a fixed requirement."
+    },
+    {
+      "excerpt": "The interaction between cache-block management instructions and instruction fetches will be specified in a future extension.",
+      "line_number": 500,
+      "reason": "This is a statement about future specifications and does not define any current architectural parameters."
+    },
+    {
+      "excerpt": "The behavior of trigger modules with respect to the Zicboz extension should be defined in version 1.0 of the debug architecture specification.",
+      "line_number": 600,
+      "reason": "This is a recommendation for future specifications and does not define any current architectural parameters."
+    }
+  ]
+}
+```

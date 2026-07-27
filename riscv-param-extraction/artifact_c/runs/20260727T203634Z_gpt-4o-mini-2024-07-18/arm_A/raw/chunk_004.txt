@@ -1,0 +1,73 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "For BF16 these values are: radix (b) 2, significand (p) 8, emax 127.",
+      "line_number": 66,
+      "parameter_name": "BF16_FORMAT_PARAMETERS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The radix, significand, and maximum exponent for the BF16 format are direct implementation choices that define the format's characteristics."
+    },
+    {
+      "excerpt": "BF16 is not an IEEE-754 standard format, it is a valid floating-point format as defined by IEEE-754.",
+      "line_number": 70,
+      "parameter_name": "BF16_IS_VALID_FORMAT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The statement indicates that while BF16 is not a standard format, it is still a valid format, which is a design choice for implementers."
+    },
+    {
+      "excerpt": "RISC-V supports IEEE-defined default exception handling. BF16 is no exception.",
+      "line_number": 156,
+      "parameter_name": "BF16_EXCEPTION_HANDLING",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to support IEEE-defined exception handling for BF16 is an implementation decision that can vary between implementations."
+    },
+    {
+      "excerpt": "The BF16 extensions defined in this specification (i.e., Zfbfmin, Zvfbfmin, and Zvfbfwma) depend on the single-precision floating-point extension F.",
+      "line_number": 236,
+      "parameter_name": "BF16_EXTENSION_DEPENDENCIES",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The dependencies of BF16 extensions on other extensions (like F) are implementation choices that can vary based on the architecture."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] Future floating-point extensions, including those that operate on BF16 values, may chose not to support subnormal numbers.",
+      "line_number": 145,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a potential future choice, not an architectural requirement."
+    },
+    {
+      "excerpt": "BF16 addition, subtraction, multiplication, division, and square-root operations can be faithfully emulated by converting the BF16 operands to single-precision.",
+      "line_number": 276,
+      "reason": "This describes a method of emulation rather than an implementation choice. It does not define a parameter but rather a technique."
+    },
+    {
+      "excerpt": "The default IEEE rounding mode (round to nearest, ties to even) is generally used for arithmetic.",
+      "line_number": 164,
+      "reason": "This is a statement about typical behavior rather than an architectural parameter. It does not indicate a choice left to the implementer."
+    },
+    {
+      "excerpt": "These extensions are intended to support the case where BF16 values are used as reduced precision versions of FP32 values.",
+      "line_number": 236,
+      "reason": "This describes the intended use case for the extensions rather than an implementation choice. It does not define a parameter."
+    },
+    {
+      "excerpt": "RISC-V applies NaN boxing to scalar results and checks for NaN boxing when a floating-point operation consumes a value from a scalar floating-point register.",
+      "line_number": 156,
+      "reason": "This describes behavior related to NaN boxing rather than an architectural parameter. It does not indicate a choice left to the implementer."
+    }
+  ]
+}
+```

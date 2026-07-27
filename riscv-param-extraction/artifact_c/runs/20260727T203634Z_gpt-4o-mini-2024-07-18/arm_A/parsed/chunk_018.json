@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_018",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "Each base integer instruction set is characterized by the width of the integer registers and the corresponding size of the address space and by the number of integer registers.",
+      "line_number": 123,
+      "parameter_name": "XLEN",
+      "existing_udb_name": "XLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "XLEN represents the width of the integer registers, which can be either 32 or 64 bits, and is a direct implementation choice."
+    },
+    {
+      "excerpt": "The base RISC-V ISA has fixed-length 32-bit instructions that must be naturally aligned on 32-bit boundaries.",
+      "line_number": 370,
+      "parameter_name": "IALIGN",
+      "existing_udb_name": "IALIGN",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "IALIGN defines the instruction-address alignment constraint, which can be either 16 or 32 bits, and is determined by the implementation."
+    },
+    {
+      "excerpt": "We use the term ILEN (measured in bits) to refer to the maximum instruction length supported by an implementation, and which is always a multiple of IALIGN.",
+      "line_number": 375,
+      "parameter_name": "ILEN",
+      "existing_udb_name": "ILEN",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "ILEN specifies the maximum instruction length, which is a direct implementation choice and can vary based on the supported instruction set."
+    },
+    {
+      "excerpt": "RISC-V base ISAs have either little-endian or big-endian memory systems, with the privileged architecture further defining bi-endian operation.",
+      "line_number": 610,
+      "parameter_name": "ENDIANNESS",
+      "existing_udb_name": "ENDIANNESS",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The choice of endianness (little-endian, big-endian, or bi-endian) is an implementation-defined parameter that affects how data is stored and accessed in memory."
+    }
+  ]
+}

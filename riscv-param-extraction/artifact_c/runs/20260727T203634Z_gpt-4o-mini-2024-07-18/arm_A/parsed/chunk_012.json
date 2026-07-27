@@ -1,0 +1,27 @@
+{
+  "chunk_id": "chunk_012",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "FLEN can be 32, 64, or 128 depending on which of the F, D, and Q extensions are supported.",
+      "line_number": 7,
+      "parameter_name": "FLEN",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "FLEN represents the width of the floating-point registers and is an implementation choice among the specified values (32, 64, or 128)."
+    },
+    {
+      "excerpt": "For RV64, FCVT.W[U].D sign-extends the 32-bit result.",
+      "line_number": 157,
+      "parameter_name": "RV64_FCVT_WU_D_SIGN_EXTEND",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to sign-extend the result of FCVT.WU.D for RV64, making it a direct implementation choice."
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The `mtvec` register is an MXLEN-bit *WARL* read/write register that holds trap vector configuration, consisting of a vector base address (BASE) and a vector mode (MODE).",
+      "line_number": 1217,
+      "parameter_name": "MTVEC_MODES",
+      "existing_udb_name": "MTVEC_MODES",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The mtvec register is WARL, and the set of values it may hold for the MODE field can vary by implementation, indicating the legal values for the trap vector mode."
+    },
+    {
+      "excerpt": "The MBE, SBE, and UBE bits in `mstatus` and `mstatush` are *WARL* fields that control the endianness of memory accesses other than instruction fetches.",
+      "line_number": 679,
+      "parameter_name": "M_MODE_ENDIANNESS",
+      "existing_udb_name": "M_MODE_ENDIANNESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The MBE, SBE, and UBE fields are WARL, allowing implementations to choose their values for endianness control, thus defining the legal values for endianness."
+    },
+    {
+      "excerpt": "The `mstatus` fields MIE and MPRV are reset to 0.",
+      "line_number": 3359,
+      "parameter_name": "HW_MSTATUS_MIE_MPRV_RESET",
+      "existing_udb_name": "HW_MSTATUS_MIE_MPRV_RESET",
+      "class": "SW_RULE",
+      "value_type": "binary",
+      "confidence": "medium",
+      "reasoning": "The reset values of MIE and MPRV are implementation-defined, but the behavior is deterministic if software follows the reset rules."
+    },
+    {
+      "excerpt": "An implementation may make SXL be a read-only field whose value always ensures that SXLEN=MXLEN.",
+      "line_number": 679,
+      "parameter_name": "SXL_ACCESS",
+      "existing_udb_name": "SXL_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation has the choice to make the SXL field read-only or writable, which defines the access characteristics of the field."
+    },
+    {
+      "excerpt": "If S-mode is supported, an implementation may make SBE be a read-only copy of MBE.",
+      "line_number": 679,
+      "parameter_name": "SBE_ACCESS",
+      "existing_udb_name": "SBE_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to make SBE a read-only copy of MBE is an implementation decision, indicating the access characteristics of the field."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The `misa` register must be readable in any implementation.",
+      "line_number": 334,
+      "reason": "This is a fixed requirement ('must be readable') that all implementations must satisfy. There is no implementation choice here — it is not a parameter."
+    },
+    {
+      "excerpt": "The `mvendorid` CSR is a 32-bit read-only register providing the JEDEC manufacturer ID of the provider of the core.",
+      "line_number": 334,
+      "reason": "This is a fixed requirement that does not leave room for implementation choice; it is not a parameter."
+    },
+    {
+      "excerpt": "The `mimpid` CSR provides a unique encoding of the version of the processor implementation.",
+      "line_number": 334,
+      "reason": "This is a fixed requirement that does not leave room for implementation choice; it is not a parameter."
+    },
+    {
+      "excerpt": "The `mhartid` CSR is an MXLEN-bit read-only register containing the integer ID of the hardware thread running the code.",
+      "line_number": 334,
+      "reason": "This is a fixed requirement that does not leave room for implementation choice; it is not a parameter."
+    },
+    {
+      "excerpt": "The `mstatus` register is an MXLEN-bit read/write register formatted as shown in <<mstatusreg-rv32>> for RV32 and <<mstatusreg>> for RV64.",
+      "line_number": 334,
+      "reason": "This is a fixed requirement that does not leave room for implementation choice; it is not a parameter."
+    }
+  ]
+}
+```

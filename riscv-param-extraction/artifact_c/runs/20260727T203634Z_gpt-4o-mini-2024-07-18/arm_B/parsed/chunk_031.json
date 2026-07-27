@@ -1,0 +1,27 @@
+{
+  "chunk_id": "chunk_031",
+  "arm": "B",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "Implementations might provide anywhere from 1 to 3 privilege modes trading off reduced isolation for lower implementation cost.",
+      "line_number": 157,
+      "parameter_name": "NUM_PRIVILEGE_MODES",
+      "existing_udb_name": "NUM_PRIVILEGE_MODES",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of privilege modes (1 to 3) is a direct implementation choice that affects system design and isolation."
+    },
+    {
+      "excerpt": "Implementations may also include a debug mode to support off-chip debugging and/or manufacturing test.",
+      "line_number": 197,
+      "parameter_name": "DEBUG_MODE_SUPPORT",
+      "existing_udb_name": "DEBUG_MODE_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to include a debug mode is an implementation decision, allowing for either support or lack thereof."
+    }
+  ]
+}

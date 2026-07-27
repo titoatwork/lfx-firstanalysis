@@ -1,0 +1,63 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "BF16 parameters",
+      "line_number": 56,
+      "parameter_name": "BF16_FORMAT_PARAMETERS",
+      "existing_udb_name": "BF16_FORMAT_PARAMETERS",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The BF16 parameters (radix, significand, emax) are direct implementation choices that define the format of BF16. They are not controlled by any CSR field."
+    },
+    {
+      "excerpt": "The BF16 instructions support all 5 RISC-V Floating-point rounding modes.",
+      "line_number": 197,
+      "parameter_name": "BF16_ROUNDING_MODES",
+      "existing_udb_name": "BF16_ROUNDING_MODES",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The support for all 5 rounding modes is an implementation choice for BF16 instructions, allowing flexibility in how rounding is handled."
+    },
+    {
+      "excerpt": "The BF16 extensions defined in this specification (i.e., Zfbfmin, Zvfbfmin, and Zvfbfwma) depend on the single-precision floating-point extension F.",
+      "line_number": 370,
+      "parameter_name": "BF16_EXTENSION_DEPENDENCIES",
+      "existing_udb_name": "BF16_EXTENSION_DEPENDENCIES",
+      "class": "NON_ISA",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The dependencies of BF16 extensions on other extensions (like F) are implementation choices that can vary between different hardware implementations."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] Future floating-point extensions, including those that operate on BF16 values, may chose not to support subnormal numbers.",
+      "line_number": 198,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a potential future choice, not an architectural requirement."
+    },
+    {
+      "excerpt": "BF16 addition, subtraction, multiplication, division, and square-root operations can be faithfully emulated by converting the BF16 operands to single-precision.",
+      "line_number": 370,
+      "reason": "This describes a method of emulation rather than an implementation choice. It does not define a parameter but rather a technique."
+    },
+    {
+      "excerpt": "As is the case with other floating-point instructions, the BF16 instructions support all 5 RISC-V Floating-point rounding modes.",
+      "line_number": 197,
+      "reason": "This describes behavior rather than a parameter. The parameter would be which rounding modes are supported, not the fact that they are supported."
+    },
+    {
+      "excerpt": "The implementation chooses whether mtvec is read-only or read-write.",
+      "line_number": 1217,
+      "reason": "This is a fixed requirement about the mutability of the register, not an architectural parameter."
+    },
+    {
+      "excerpt": "The implementation may make SBE be a read-only copy of MBE.",
+      "line_number": 679,
+      "reason": "This describes a potential implementation choice but does not define a parameter as it is not a deterministic outcome."
+    }
+  ]
+}
+```

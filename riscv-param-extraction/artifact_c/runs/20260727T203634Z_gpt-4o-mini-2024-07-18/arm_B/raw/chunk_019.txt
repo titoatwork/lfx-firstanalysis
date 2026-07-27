@@ -1,0 +1,32 @@
+```json
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE]\n====\nWe separate integer multiply and divide out from the base to simplify low-end implementations, or for applications where integer multiply and divide operations are either infrequent or better handled in attached accelerators.\n====",
+      "line_number": 5,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nMULHSU is used in multi-word signed multiplication to multiply the most-significant word of the multiplicand (which contains the sign bit) with the less-significant words of the multiplier (which are unsigned).\n====",
+      "line_number": 20,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It provides additional information about the use of MULHSU, not an implementation choice."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nFor both signed and unsigned division, except in the case of overflow, it holds that dividend = divisor {times} quotient + remainder.\n====",
+      "line_number": 40,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a mathematical property rather than an implementation choice."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nWe considered raising exceptions on integer divide by zero, with these exceptions causing a trap in most execution environments. However, this would be the only arithmetic trap in the standard ISA (floating-point exceptions set flags and write default values, but do not cause traps) and would require language implementers to interact with the execution environment's trap handlers for this case. Further, where language standards mandate that a divide-by-zero exception must cause an immediate control flow change, only a single branch instruction needs to be added to each divide operation, and this branch instruction can be inserted after the divide and should normally be very predictably not taken, adding little runtime overhead.\n====",
+      "line_number": 80,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It discusses considerations for exception handling rather than defining an architectural parameter."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nThe `Zmmul` extension enables low-cost implementations that require multiplication operations but not division. For many microcontroller applications, division operations are too infrequent to justify the cost of divider hardware. By contrast, multiplication operations are more frequent, making the cost of multiplier hardware more justifiable. Simple FPGA soft cores particularly benefit from eliminating division but retaining multiplication, since many FPGAs provide hardwired multipliers but require dividers be implemented in soft logic.\n====",
+      "line_number": 140,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes the rationale behind the `Zmmul` extension rather than an implementation choice."
+    }
+  ]
+}
+```

@@ -1,0 +1,77 @@
+{
+  "chunk_id": "chunk_058",
+  "arm": "B",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The maximum size in bits of a vector element that any operation can produce or consume, _ELEN_ >= 8, which must be a power of 2.",
+      "line_number": 12,
+      "parameter_name": "ELEN",
+      "existing_udb_name": "ELEN",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "ELEN is a direct implementation parameter that specifies the maximum size of a vector element. It has constraints (>= 8, power of 2) but the specific value is chosen by the implementer."
+    },
+    {
+      "excerpt": "The number of bits in a single vector register, _VLEN_ >= ELEN, which must be a power of 2, and must be no greater than 2^16.",
+      "line_number": 12,
+      "parameter_name": "VLEN",
+      "existing_udb_name": "VLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "VLEN is a direct implementation parameter that specifies the number of bits in a vector register. It has constraints (>= ELEN, power of 2, <= 2^16) but the specific value is chosen by the implementer."
+    },
+    {
+      "excerpt": "Implementations may have a writable `misa.V` field.",
+      "line_number": 90,
+      "parameter_name": "HW_MISA_V_FIELD",
+      "existing_udb_name": "HW_MISA_V_FIELD",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice of whether the `misa.V` field is writable is left to the implementer, making it a direct implementation choice."
+    },
+    {
+      "excerpt": "The `vtype` register has five fields, `vill`, `vma`, `vta`, `vsew[2:0]`, and `vlmul[2:0]`.",
+      "line_number": 90,
+      "parameter_name": "VTYPE_FIELDS",
+      "existing_udb_name": "VTYPE_FIELDS",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The fields in the `vtype` register are WARL, meaning the set of values they can take is implementation-defined."
+    },
+    {
+      "excerpt": "Implementations must support LMUL integer values of 1, 2, 4, and 8.",
+      "line_number": 90,
+      "parameter_name": "LMUL_VALUES",
+      "existing_udb_name": "LMUL_VALUES",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The specific integer values for LMUL that must be supported are defined, but the implementation can choose how to handle them."
+    },
+    {
+      "excerpt": "Implementations must provide fractional LMUL settings that allow the narrowest supported type to occupy a fraction of a vector register corresponding to the ratio of the narrowest supported type's width to that of the largest supported type's width.",
+      "line_number": 90,
+      "parameter_name": "FRACTIONAL_LMUL",
+      "existing_udb_name": "FRACTIONAL_LMUL",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The requirement for fractional LMUL settings is defined, but the specific implementation of these settings is left to the implementer."
+    },
+    {
+      "excerpt": "The `vstart` CSR is defined to have only enough writable bits to hold the largest element index (one less than the maximum VLMAX).",
+      "line_number": 90,
+      "parameter_name": "VSTART_BITS",
+      "existing_udb_name": "VSTART_BITS",
+      "class": "NORM_CSR_RW",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of bits in the `vstart` CSR is determined by the maximum VLMAX, which is an implementation choice."
+    }
+  ]
+}

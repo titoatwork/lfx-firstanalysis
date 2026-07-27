@@ -1,0 +1,57 @@
+{
+  "chunk_id": "chunk_048",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The number of records that can be held in the buffer depends upon both the implementation (the maximum supported depth) and the CTR configuration (the software selected depth).",
+      "line_number": 12,
+      "parameter_name": "CTR_DEPTH",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The maximum depth of the CTR buffer is an implementation choice that can vary based on the specific hardware configuration."
+    },
+    {
+      "excerpt": "WARL field that selects the depth of the CTR buffer.",
+      "line_number": 204,
+      "parameter_name": "SCTR_DEPTH_VALUES",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The depth of the CTR buffer is a WARL field with specific encodings that can vary by implementation, indicating the legal values for this field."
+    },
+    {
+      "excerpt": "The `sctrstatus` register grants access to CTR status information and is updated by the hardware whenever CTR is active.",
+      "line_number": 370,
+      "parameter_name": "SCTR_STATUS_FIELDS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The fields within the `sctrstatus` register can vary by implementation, indicating which fields are writable and which are read-only."
+    },
+    {
+      "excerpt": "The `ctrdata` register may optionally include a count of CPU cycles elapsed since the prior CTR record.",
+      "line_number": 646,
+      "parameter_name": "CTR_DATA_CYCLE_COUNT_OPTIONAL",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to include cycle counting in the `ctrdata` register, making it an optional feature."
+    },
+    {
+      "excerpt": "When the optional `__x__ctrctl`.RASEMU bit is implemented and set to 1, transfer recording behavior is altered to emulate the behavior of a return-address stack (RAS).",
+      "line_number": 688,
+      "parameter_name": "CTR_RAS_EMULATION",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to support RAS emulation by setting the RASEMU bit, which alters the behavior of transfer recording."
+    }
+  ]
+}

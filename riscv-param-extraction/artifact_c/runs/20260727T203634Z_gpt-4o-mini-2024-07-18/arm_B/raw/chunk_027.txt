@@ -1,0 +1,73 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "When S-mode is implemented, it is determined as follows: ... |  M           | `mseccfg.MLPE` |  S or HS     | `menvcfg.LPE` |  VS          | `henvcfg.LPE` |  U or VU     | `senvcfg.LPE` |",
+      "line_number": 20,
+      "parameter_name": "LPE_DETERMINATION_S_MODE",
+      "existing_udb_name": "LPE_DETERMINATION_S_MODE",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The determination of the xLPE state based on privilege mode is a direct implementation choice, as it specifies which CSR fields are used for each privilege level."
+    },
+    {
+      "excerpt": "When S-mode is not implemented, it is determined as follows: ... |  M           | `mseccfg.MLPE` |  U           | `menvcfg.LPE` |",
+      "line_number": 27,
+      "parameter_name": "LPE_DETERMINATION_NO_S_MODE",
+      "existing_udb_name": "LPE_DETERMINATION_NO_S_MODE",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The determination of the xLPE state when S-mode is not implemented is also a direct implementation choice, specifying which CSR fields are used for M and U privilege modes."
+    },
+    {
+      "excerpt": "When S-mode is implemented, it is determined as follows: ... |  M           | `0` |  S or HS     | `menvcfg.SSE` |  VS          | `henvcfg.SSE` |  U or VU     | `senvcfg.SSE` |",
+      "line_number": 66,
+      "parameter_name": "SSE_DETERMINATION_S_MODE",
+      "existing_udb_name": "SSE_DETERMINATION_S_MODE",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The determination of the xSSE state based on privilege mode is a direct implementation choice, specifying which CSR fields are used for each privilege level."
+    },
+    {
+      "excerpt": "When S-mode is not implemented, then `xSSE` is 0 at both M and U privilege modes.",
+      "line_number": 73,
+      "parameter_name": "SSE_DETERMINATION_NO_S_MODE",
+      "existing_udb_name": "SSE_DETERMINATION_NO_S_MODE",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The xSSE state when S-mode is not implemented is a direct implementation choice, indicating that it is always 0 for M and U privilege modes."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The Zicfilp must be explicitly enabled for use at each privilege mode.",
+      "line_number": 10,
+      "reason": "This is a fixed requirement that all implementations must satisfy, not an implementation choice."
+    },
+    {
+      "excerpt": "The trap handler in privilege mode `x` must save the `__x__PELP` bit and the `x7` register before performing an indirect call/jump if `xLPE=1`.",
+      "line_number": 118,
+      "reason": "This describes a requirement for trap handler behavior, not an implementation-defined parameter."
+    },
+    {
+      "excerpt": "Activating Zicfiss in M-mode is currently not supported.",
+      "line_number": 164,
+      "reason": "This is a fixed requirement stating what is not supported, not an implementation choice."
+    },
+    {
+      "excerpt": "When Zicfiss is enabled in S-mode it is benign to use an operating system that is not compiled with Zicfiss instructions.",
+      "line_number": 157,
+      "reason": "This describes behavior under certain conditions, not an implementation choice."
+    },
+    {
+      "excerpt": "The `U` and `SUM` bit enforcement is performed normally for shadow stack instruction initiated memory accesses.",
+      "line_number": 319,
+      "reason": "This describes how enforcement is handled, not an implementation choice."
+    }
+  ]
+}
+```

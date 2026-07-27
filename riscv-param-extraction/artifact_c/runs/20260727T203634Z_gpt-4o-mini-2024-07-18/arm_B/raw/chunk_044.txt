@@ -1,0 +1,63 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The entropy source extension defines the `seed` CSR at address `0x015`. This CSR provides up to 16 physical `entropy` bits that can be used to seed cryptographic random bit generators.",
+      "line_number": 345,
+      "parameter_name": "ENTROPY_SEED_CSR",
+      "existing_udb_name": "ENTROPY_SEED_CSR",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The address of the `seed` CSR is a direct implementation choice, allowing implementers to define how they provide entropy bits."
+    },
+    {
+      "excerpt": "This instruction exists on RV32 and RV64 base architectures.",
+      "line_number": 1234,
+      "parameter_name": "SUPPORTED_ARCHITECTURES",
+      "existing_udb_name": "SUPPORTED_ARCHITECTURES",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The choice of supporting both RV32 and RV64 architectures for certain instructions is left to the implementer."
+    },
+    {
+      "excerpt": "This instruction must _always_ be implemented such that its execution latency does not depend on the data being operated on.",
+      "line_number": 678,
+      "parameter_name": "HW_EXECUTION_LATENCY",
+      "existing_udb_name": "HW_EXECUTION_LATENCY",
+      "class": "SW_RULE",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "While the requirement is normative, it indicates that the implementation must ensure a specific behavior regarding execution latency, which can vary based on design choices."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] The following code snippet shows the final round of the AES block decryption.",
+      "line_number": 1010,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a software suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "This instruction must _always_ be implemented such that its execution latency does not depend on the data being operated on.",
+      "line_number": 1234,
+      "reason": "This is a fixed requirement ('must always be implemented') that all implementations must satisfy. There is no implementation choice here — it is not a parameter."
+    },
+    {
+      "excerpt": "The NIST and ShangMi algorithms suites are separated because their usefulness is heavily dependent on the countries a device is expected to operate in.",
+      "line_number": 456,
+      "reason": "This describes a rationale for design choices rather than an architectural parameter. It does not specify a choice left to the implementer."
+    },
+    {
+      "excerpt": "Software may determine the PMP granularity by writing zero to `pmp0cfg`, then writing all ones to `pmpaddr0`, then reading back `pmpaddr0`.",
+      "line_number": 789,
+      "reason": "Here 'may' means 'is allowed to' (permission), not 'might or might not' (optionality). This describes a software technique, not an implementation-defined parameter."
+    },
+    {
+      "excerpt": "The implementation chooses whether mtvec is read-only or read-write.",
+      "line_number": 1012,
+      "reason": "This is a fixed requirement about the mutability of the register, not an architectural parameter."
+    }
+  ]
+}
+```

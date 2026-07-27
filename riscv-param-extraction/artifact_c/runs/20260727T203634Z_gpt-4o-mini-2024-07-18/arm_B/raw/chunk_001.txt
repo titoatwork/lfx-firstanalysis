@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "To provide more efficient support for release consistency, each atomic instruction has two bits, _aq_ and _rl_, used to specify additional memory ordering constraints as viewed by other RISC-V harts.",
+      "line_number": 20,
+      "parameter_name": "AQ_RL_BITS",
+      "existing_udb_name": "AQ_RL_BITS",
+      "class": "NORM_DIRECT",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The _aq_ and _rl_ bits are implementation choices that determine the memory ordering constraints for atomic instructions. The implementer decides how to utilize these bits."
+    },
+    {
+      "excerpt": "The Zalrsc extension requires that the address held in _rs1_ be naturally aligned to the size of the operand (i.e., eight-byte aligned for _doublewords_ and four-byte aligned for _words_).",
+      "line_number": 295,
+      "parameter_name": "LR_SC_ALIGNMENT",
+      "existing_udb_name": "LR_SC_ALIGNMENT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The alignment requirement for LR and SC instructions is a design choice that can vary by implementation, allowing for different handling of address alignment."
+    },
+    {
+      "excerpt": "The misaligned atomicity granule PMA, defined in Volume II of this manual, optionally relaxes this alignment requirement.",
+      "line_number": 353,
+      "parameter_name": "MISALIGNED_ATOMICITY_GRANULE",
+      "existing_udb_name": "MISALIGNED_ATOMICITY_GRANULE",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The presence of a misaligned atomicity granule is an optional implementation choice that can affect how misaligned accesses are handled."
+    },
+    {
+      "excerpt": "If the _aq_ bit is set, then no later memory operations in this RISC-V hart can be observed to take place before the AMO.",
+      "line_number": 426,
+      "parameter_name": "AMO_AQ_SEMANTICS",
+      "existing_udb_name": "AMO_AQ_SEMANTICS",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The decision to set the _aq_ bit for AMO operations is an implementation choice that affects memory operation visibility."
+    },
+    {
+      "excerpt": "If the _rl_ bit is set, then other RISC-V harts will not observe the AMO before memory accesses preceding the AMO in this RISC-V hart.",
+      "line_number": 426,
+      "parameter_name": "AMO_RL_SEMANTICS",
+      "existing_udb_name": "AMO_RL_SEMANTICS",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to set the _rl_ bit for AMO operations is an implementation decision that influences the ordering of memory operations."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] After much debate, the language community and architecture community appear to have finally settled on release consistency as the standard memory consistency model and so the RISC-V atomic support is built around this model.",
+      "line_number": 8,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a consensus rather than an architectural requirement."
+    },
+    {
+      "excerpt": "The failure code with value 1 encodes an unspecified failure. Other failure codes are reserved at this time.",
+      "line_number": 353,
+      "reason": "This describes a fixed requirement about failure codes, not an implementation choice."
+    },
+    {
+      "excerpt": "The SC must fail if the address is not within the reservation set of the most recent LR in program order.",
+      "line_number": 426,
+      "reason": "This describes behavior that is determined by the CSR field value at runtime, not an implementation choice."
+    },
+    {
+      "excerpt": "The platform should provide a means to determine the size and shape of the reservation set.",
+      "line_number": 426,
+      "reason": "This is a suggestion for platform design rather than a parameter that defines implementation choices."
+    },
+    {
+      "excerpt": "The atomic memory operation (AMO) instructions perform read-modify-write operations for multiprocessor synchronization and are encoded with an R-type instruction format.",
+      "line_number": 426,
+      "reason": "This is a description of the functionality of AMO instructions, not an architectural parameter."
+    }
+  ]
+}
+```

@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_069",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "New 16-bit variants of LOAD-FP and STORE-FP instructions are added, encoded with a new value for the funct3 width field.",
+      "line_number": 10,
+      "parameter_name": "LOAD_STORE_FP_FUNCT3_WIDTH",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The funct3 width field for LOAD-FP and STORE-FP instructions is a direct implementation choice for the new 16-bit variants."
+    },
+    {
+      "excerpt": "A new supported format is added to the format field of most instructions.",
+      "line_number": 20,
+      "parameter_name": "SUPPORTED_FORMATS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The addition of a new supported format to the format field is an implementation choice that defines which formats are supported."
+    },
+    {
+      "excerpt": "If the D extension is present, FCVT.D.H or FCVT.H.D converts a half-precision floating-point number to a double-precision floating-point number, or vice-versa, respectively.",
+      "line_number": 70,
+      "parameter_name": "D_EXTENSION_SUPPORT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The presence of the D extension is an implementation choice that affects the availability of certain conversion instructions."
+    },
+    {
+      "excerpt": "If the Q extension is present, the FCVT.Q.H and FCVT.H.Q instructions are additionally included.",
+      "line_number": 80,
+      "parameter_name": "Q_EXTENSION_SUPPORT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The presence of the Q extension is an implementation choice that determines the inclusion of specific conversion instructions."
+    }
+  ]
+}

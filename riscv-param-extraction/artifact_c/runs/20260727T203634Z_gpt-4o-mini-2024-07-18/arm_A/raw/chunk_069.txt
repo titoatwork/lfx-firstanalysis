@@ -1,0 +1,68 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "New 16-bit variants of LOAD-FP and STORE-FP instructions are added, encoded with a new value for the funct3 width field.",
+      "line_number": 10,
+      "parameter_name": "LOAD_STORE_FP_FUNCT3_WIDTH",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The funct3 width field for LOAD-FP and STORE-FP instructions is a direct implementation choice for the new 16-bit variants."
+    },
+    {
+      "excerpt": "A new supported format is added to the format field of most instructions.",
+      "line_number": 20,
+      "parameter_name": "SUPPORTED_FORMATS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The addition of a new supported format to the format field is an implementation choice that defines which formats are supported."
+    },
+    {
+      "excerpt": "If the D extension is present, FCVT.D.H or FCVT.H.D converts a half-precision floating-point number to a double-precision floating-point number, or vice-versa, respectively.",
+      "line_number": 70,
+      "parameter_name": "D_EXTENSION_SUPPORT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The presence of the D extension is an implementation choice that affects the availability of certain conversion instructions."
+    },
+    {
+      "excerpt": "If the Q extension is present, the FCVT.Q.H and FCVT.H.Q instructions are additionally included.",
+      "line_number": 80,
+      "parameter_name": "Q_EXTENSION_SUPPORT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The presence of the Q extension is an implementation choice that determines the inclusion of specific conversion instructions."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "This extension primarily provides instructions that consume half-precision operands and produce half-precision results.",
+      "line_number": 5,
+      "reason": "This is a descriptive statement about the purpose of the extension, not an implementation choice."
+    },
+    {
+      "excerpt": "FLH and FSH are only guaranteed to execute atomically if the effective address is naturally aligned.",
+      "line_number": 15,
+      "reason": "This describes a condition under which certain instructions execute atomically, not an implementation choice."
+    },
+    {
+      "excerpt": "The half-precision floating-point computational instructions are defined analogously to their single-precision counterparts.",
+      "line_number": 30,
+      "reason": "This is a description of how the instructions are defined, not a parameter that can be chosen by the implementer."
+    },
+    {
+      "excerpt": "Half-precision addition, subtraction, multiplication, division, and square-root operations can be faithfully emulated by converting the half-precision operands to single-precision.",
+      "line_number": 150,
+      "reason": "This describes a method for emulating operations, not an architectural parameter."
+    }
+  ]
+}
+```

@@ -1,0 +1,37 @@
+{
+  "chunk_id": "chunk_052",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The OF bit is set when the corresponding hpmcounter overflows, and remains set until written by software.",
+      "line_number": 49,
+      "parameter_name": "HW_MHPMEVENT_OF_BIT",
+      "existing_udb_name": "HW_MHPMEVENT_OF_BIT",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether the OF bit is read-only or read-write, which directly affects how overflow status is managed."
+    },
+    {
+      "excerpt": "If the associated privilege mode is not implemented, the bit is read-only zero.",
+      "line_number": 45,
+      "parameter_name": "HW_MHPMEVENT_INH_BITS",
+      "existing_udb_name": "HW_MHPMEVENT_INH_BITS",
+      "class": "NORM_CSR_RW",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The implementation defines which privilege modes are supported, affecting the read-only nature of the corresponding INH bits."
+    },
+    {
+      "excerpt": "This extension adds the `scountovf` CSR, a 32-bit read-only register that contains shadow copies of the OF bits in the 29 mhpmevent CSRs.",
+      "line_number": 109,
+      "parameter_name": "SCOUNTOFV_ACCESS",
+      "existing_udb_name": "SCOUNTOFV_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The `scountovf` register is read-only, but its access can vary based on the privilege mode, making it an implementation choice."
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The `miselect` register may be read-only zero if there are no extensions implemented that utilize it.",
+      "line_number": 34,
+      "parameter_name": "MISELECT_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether the `miselect` register is read-only zero or writable, which is a binary choice about the mutability of the register."
+    },
+    {
+      "excerpt": "The `siselect` register will support the value range 0..0xFFF at a minimum.",
+      "line_number": 174,
+      "parameter_name": "SSELECT_VALUE_RANGE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The `siselect` register's minimum value range is an implementation choice, allowing for future extensions to define larger ranges."
+    },
+    {
+      "excerpt": "The `vsiselect` register will support the value range 0..0xFFF at a minimum.",
+      "line_number": 292,
+      "parameter_name": "VSELECT_VALUE_RANGE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The `vsiselect` register's minimum value range is an implementation choice, allowing for future extensions to define larger ranges."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The behavior upon accessing `mireg*` from M-mode, while `miselect` holds a value that is not implemented, is UNSPECIFIED.",
+      "line_number": 42,
+      "reason": "This describes behavior under specific conditions and does not define an implementation choice."
+    },
+    {
+      "excerpt": "An implementation is not required to support any custom values for `miselect`.",
+      "line_number": 50,
+      "reason": "This is a statement about implementation requirements, not an architectural parameter."
+    },
+    {
+      "excerpt": "It is recommended that implementations raise an illegal-instruction exception for such accesses.",
+      "line_number": 66,
+      "reason": "This is a recommendation and not a requirement or parameter that can be chosen by the implementer."
+    },
+    {
+      "excerpt": "The behavior upon accessing `sireg*` from M-mode or S-mode, while `siselect` holds a value that is not implemented at supervisor level, is UNSPECIFIED.",
+      "line_number": 174,
+      "reason": "This describes behavior under specific conditions and does not define an implementation choice."
+    },
+    {
+      "excerpt": "An extension is considered not to be implemented at supervisor level if machine level has disabled the extension for S-mode.",
+      "line_number": 206,
+      "reason": "This is a condition for implementation and does not define a parameter that can be chosen."
+    }
+  ]
+}
+```

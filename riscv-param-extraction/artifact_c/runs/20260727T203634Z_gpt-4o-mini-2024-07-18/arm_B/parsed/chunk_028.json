@@ -1,0 +1,57 @@
+{
+  "chunk_id": "chunk_028",
+  "arm": "B",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "Implementations may contain additional CSRs, accessible by some subset of the privilege levels using the CSR instructions described in Volume I.",
+      "line_number": 8,
+      "parameter_name": "NUM_ADDITIONAL_CSRS",
+      "existing_udb_name": "NUM_ADDITIONAL_CSRS",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of additional CSRs is an implementation choice, as it is not fixed and can vary based on the design."
+    },
+    {
+      "excerpt": "The top two bits (csr[11:10]) indicate whether the register is read/write (`00`,`01`, or `10`) or read-only (`11`).",
+      "line_number": 20,
+      "parameter_name": "CSR_ACCESSIBILITY",
+      "existing_udb_name": "CSR_ACCESSIBILITY",
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The accessibility of CSRs is determined by the implementation, allowing for read/write or read-only configurations."
+    },
+    {
+      "excerpt": "Implementations will not raise an exception on writes of unsupported values to a *WARL* field.",
+      "line_number": 127,
+      "parameter_name": "WARL_BEHAVIOR",
+      "existing_udb_name": "WARL_BEHAVIOR",
+      "class": "NORM_CSR_WARL",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The behavior of WARL fields regarding unsupported writes is defined by the implementation, making it a parameter."
+    },
+    {
+      "excerpt": "Some read/write CSR fields specify behavior for only a subset of possible bit encodings, with other bit encodings reserved.",
+      "line_number": 113,
+      "parameter_name": "WLRL_BEHAVIOR",
+      "existing_udb_name": "WLRL_BEHAVIOR",
+      "class": "NORM_CSR_WARL",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The behavior of WLRL fields regarding legal values is determined by the implementation, indicating a parameter."
+    },
+    {
+      "excerpt": "Some read/write CSR fields are only defined for a subset of bit encodings, but allow any value to be written while guaranteeing to return a legal value whenever read.",
+      "line_number": 118,
+      "parameter_name": "WARL_FIELD_VALUES",
+      "existing_udb_name": "WARL_FIELD_VALUES",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The set of values that can be written to WARL fields is implementation-defined, making it a parameter."
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The NTL.P1 instruction indicates that the target instruction does not exhibit temporal locality within the capacity of the innermost level of private cache in the memory hierarchy.",
+      "line_number": 8,
+      "parameter_name": "NTL_P1_CACHE_LEVEL",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The NTL.P1 instruction is a direct implementation choice indicating the behavior of the target instruction with respect to the innermost level of private cache."
+    },
+    {
+      "excerpt": "The NTL.PALL instruction indicates that the target instruction does not exhibit temporal locality within the capacity of any level of private cache in the memory hierarchy.",
+      "line_number": 12,
+      "parameter_name": "NTL_PALL_CACHE_LEVEL",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The NTL.PALL instruction is a direct implementation choice indicating the behavior of the target instruction with respect to all levels of private cache."
+    },
+    {
+      "excerpt": "The NTL.S1 instruction indicates that the target instruction does not exhibit temporal locality within the capacity of the innermost level of shared cache in the memory hierarchy.",
+      "line_number": 16,
+      "parameter_name": "NTL_S1_CACHE_LEVEL",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The NTL.S1 instruction is a direct implementation choice indicating the behavior of the target instruction with respect to the innermost level of shared cache."
+    },
+    {
+      "excerpt": "The NTL.ALL instruction indicates that the target instruction does not exhibit temporal locality within the capacity of any level of cache in the memory hierarchy.",
+      "line_number": 20,
+      "parameter_name": "NTL_ALL_CACHE_LEVEL",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The NTL.ALL instruction is a direct implementation choice indicating the behavior of the target instruction with respect to all levels of cache."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The NTL instructions can be used to avoid cache pollution when streaming data or traversing large data structures, or to reduce latency in producer-consumer interactions.",
+      "line_number": 27,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a potential use case, not an architectural requirement."
+    },
+    {
+      "excerpt": "The working-set sizes listed in <<ntl-portable>> are not meant to constrain implementers' cache-sizing decisions.",
+      "line_number": 66,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It provides guidance rather than a parameter."
+    },
+    {
+      "excerpt": "Software is discouraged from following an NTL instruction with an instruction that does not explicitly access memory.",
+      "line_number": 164,
+      "reason": "This is a recommendation rather than a parameter. It does not define an implementation choice."
+    },
+    {
+      "excerpt": "In the event that a trap is taken on the target instruction, implementations are discouraged from applying the NTL to the first instruction in the trap handler.",
+      "line_number": 157,
+      "reason": "This is a recommendation rather than a parameter. It does not define an implementation choice."
+    },
+    {
+      "excerpt": "Since the NTL instructions are encoded as ADDs, they can be used within LR/SC loops without voiding the forward-progress guarantee.",
+      "line_number": 171,
+      "reason": "This describes a behavior of the NTL instructions rather than an architectural parameter."
+    }
+  ]
+}
+```

@@ -1,0 +1,17 @@
+{
+  "chunk_id": "chunk_079",
+  "arm": "B",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "if the Ztso extension is implemented, then vector memory instructions in the V extension and Zve family of extensions follow RVTSO at the instruction level.",
+      "line_number": 31,
+      "parameter_name": "ZTSO_VECTOR_MEMORY_INSTRUCTIONS",
+      "existing_udb_name": "ZTSO_VECTOR_MEMORY_INSTRUCTIONS",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation choice of whether to support vector memory instructions following RVTSO is directly determined by the presence of the Ztso extension."
+    }
+  ]
+}

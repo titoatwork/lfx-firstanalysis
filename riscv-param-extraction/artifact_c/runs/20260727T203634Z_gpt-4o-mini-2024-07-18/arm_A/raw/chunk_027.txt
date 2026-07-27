@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "When S-mode is implemented, it is determined as follows: ... |  S or HS     | `menvcfg.LPE`",
+      "line_number": 12,
+      "parameter_name": "LPE_STATE_S_MODE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The LPE state in S-mode is determined by the `menvcfg.LPE` CSR field, which can be either enabled or disabled, making it a binary choice."
+    },
+    {
+      "excerpt": "When S-mode is not implemented, it is determined as follows: ... |  U           | `menvcfg.LPE`",
+      "line_number": 20,
+      "parameter_name": "LPE_STATE_U_MODE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The LPE state in U-mode is determined by the `menvcfg.LPE` CSR field, which can be either enabled or disabled, making it a binary choice."
+    },
+    {
+      "excerpt": "When S-mode is implemented, it is determined as follows: ... |  S or HS     | `menvcfg.SSE`",
+      "line_number": 36,
+      "parameter_name": "SSE_STATE_S_MODE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The SSE state in S-mode is determined by the `menvcfg.SSE` CSR field, which can be either enabled or disabled, making it a binary choice."
+    },
+    {
+      "excerpt": "When S-mode is not implemented, then `xSSE` is 0 at both M and U privilege modes.",
+      "line_number": 43,
+      "parameter_name": "SSE_STATE_U_MODE_NO_S_MODE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "In the absence of S-mode, the SSE state is fixed to 0 for U-mode, indicating that it is a direct implementation choice."
+    },
+    {
+      "excerpt": "The `SSPUSH`/`C.SSPUSH`/`SSPOPCHK`/`C.SSPOPCHK` instructions cause a store/AMO access-fault exception.",
+      "line_number": 66,
+      "parameter_name": "SSPUSH_ACCESS_FAULT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The behavior of the `SSPUSH` and related instructions causing an access-fault is a direct implementation choice, indicating how the system should respond to these instructions."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The Zicfilp must be explicitly enabled for use at each privilege mode.",
+      "line_number": 8,
+      "reason": "This is a fixed requirement that all implementations must satisfy, not an implementation choice."
+    },
+    {
+      "excerpt": "When S-mode is not implemented, activation in U-mode is also not supported.",
+      "line_number": 56,
+      "reason": "This describes a limitation of the implementation rather than an architectural parameter that can vary."
+    },
+    {
+      "excerpt": "The trap handler in privilege mode `x` must save the `__x__PELP` bit and the `x7` register before performing an indirect call/jump if `xLPE=1`.",
+      "line_number": 78,
+      "reason": "This is a fixed requirement for trap handler behavior, not an implementation choice."
+    },
+    {
+      "excerpt": "Activating Zicfiss in U-mode must be done explicitly per process.",
+      "line_number": 90,
+      "reason": "This is a requirement for activation rather than a parameter that can vary by implementation."
+    },
+    {
+      "excerpt": "The `U` and `SUM` bit enforcement is performed normally for shadow stack instruction initiated memory accesses.",
+      "line_number": 150,
+      "reason": "This describes standard behavior for memory accesses rather than an implementation choice."
+    }
+  ]
+}
+```

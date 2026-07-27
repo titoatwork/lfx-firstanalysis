@@ -1,0 +1,103 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "A landing pad may be optionally associated with a 20-bit label.",
+      "line_number": 56,
+      "parameter_name": "LPAD_LABELING",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to associate a landing pad with a label, making it an implementation-defined choice."
+    },
+    {
+      "excerpt": "The `ELP` state can be one of: * 0 - `NO_LP_EXPECTED` * 1 - `LP_EXPECTED`.",
+      "line_number": 78,
+      "parameter_name": "ELP_STATE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The `ELP` state has two defined values that the implementation can choose between, indicating the expected landing pad state."
+    },
+    {
+      "excerpt": "The Zicfilp extensions may be activated for use individually and independently for each privilege mode.",
+      "line_number": 104,
+      "parameter_name": "ZICFILP_ACTIVATION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to activate the Zicfilp extension for each privilege mode independently, making it a design-time decision."
+    },
+    {
+      "excerpt": "The `ssp` CSR is an unprivileged read-write (URW) CSR that reads and writes `XLEN` low order bits of the shadow stack pointer (`ssp`).",
+      "line_number": 646,
+      "parameter_name": "SSP_ACCESS",
+      "existing_udb_name": "SSP_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The `ssp` CSR can be read and written, indicating a read-write access choice for the CSR."
+    },
+    {
+      "excerpt": "The `SSPUSH` instruction and its compressed form `C.SSPUSH` can be used to push a link register on the shadow stack.",
+      "line_number": 724,
+      "parameter_name": "SSPUSH_LINK_REG",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The implementation can choose which link registers (`x1` or `x5`) to use with the `SSPUSH` instruction, making it an implementation-defined choice."
+    },
+    {
+      "excerpt": "The `SSPOPCHK` instruction, and its compressed form `C.SSPOPCHK`, can be used to pop the shadow return address value from the shadow stack and check that the value matches the contents of the link register.",
+      "line_number": 786,
+      "parameter_name": "SSPOPCHK_LINK_REG",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The implementation can choose which link registers (`x1` or `x5`) to use with the `SSPOPCHK` instruction, making it an implementation-defined choice."
+    },
+    {
+      "excerpt": "Just as for AMOs in the A extension, `SSAMOSWAP.W/D` requires that the address held in `rs1` be naturally aligned to the size of the operand.",
+      "line_number": 844,
+      "parameter_name": "SSAMOSWAP_ALIGNMENT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to enforce alignment requirements for the `SSAMOSWAP` instructions, making it a design-time decision."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "When Zicfilp is not active at a privilege level or when the extension is not implemented, the landing pad instruction executes as a no-op.",
+      "line_number": 66,
+      "reason": "This describes behavior when the extension is not active, which is not an implementation choice but rather a fixed requirement."
+    },
+    {
+      "excerpt": "The `LPAD` instruction requires a 4-byte alignment to address the concatenation of two instructions.",
+      "line_number": 90,
+      "reason": "This is a fixed requirement for the instruction alignment and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "Compilers should provide an attribute flag to indicate if the program has been compiled with the Zicfilp extension.",
+      "line_number": 108,
+      "reason": "This is a recommendation for compiler behavior, not an architectural parameter."
+    },
+    {
+      "excerpt": "The shadow stack is architecturally protected from inadvertent corruptions and modifications, as detailed in the Privileged specification.",
+      "line_number": 134,
+      "reason": "This describes a protection mechanism rather than an implementation choice."
+    },
+    {
+      "excerpt": "The `SSPUSH` and `C.SSPUSH` instructions perform a store identically to the existing store instructions.",
+      "line_number": 724,
+      "reason": "This describes the behavior of the instructions rather than an implementation choice."
+    }
+  ]
+}
+```

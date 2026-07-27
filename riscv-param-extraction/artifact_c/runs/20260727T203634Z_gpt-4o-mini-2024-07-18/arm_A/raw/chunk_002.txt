@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The bitmanip extensions are defined for RV32 and RV64.",
+      "line_number": 12,
+      "parameter_name": "BITMANIP_ARCHITECTURES",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The choice of whether to implement the bitmanip extensions for RV32, RV64, or both is left to the implementer."
+    },
+    {
+      "excerpt": "The shift and add instructions do a left shift of 1, 2, or 3 because these are commonly found in real-world code.",
+      "line_number": 20,
+      "parameter_name": "MAX_LEFT_SHIFT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The maximum left shift value for the shift and add instructions is a design choice for the implementer."
+    },
+    {
+      "excerpt": "The slli.uw -- added in this extension -- can be used when the index is to be interpreted as an unsigned word.",
+      "line_number": 30,
+      "parameter_name": "SLLI_UW_FUNCTIONALITY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementer decides whether to support the slli.uw instruction for unsigned word operations."
+    },
+    {
+      "excerpt": "The `pack` instruction packs the XLEN/2-bit lower halves of _rs1_ and _rs2_ into _rd_, with _rs1_ in the lower half and _rs2_ in the upper half.",
+      "line_number": 200,
+      "parameter_name": "PACK_INSTRUCTION_FUNCTIONALITY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementer can choose to include the pack instruction and its specific behavior."
+    },
+    {
+      "excerpt": "The xperm8 instruction operates on bytes.",
+      "line_number": 300,
+      "parameter_name": "XPERM8_FUNCTIONALITY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementer decides whether to support the xperm8 instruction and its specific behavior."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE, caption=\"Imp\" ]\n===============================================================\nThe Logical with Negate instructions can be implemented by inverting the _rs2_ inputs to the base-required AND, OR, and XOR logic instructions.\nIn some implementations, the inverter on rs2 used for subtraction can be reused for this purpose.\n===============================================================\n",
+      "line_number": 100,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "This instruction counts the number of 0's before the first 1, starting at the most-significant bit (i.e., XLEN-1) and progressing to bit 0.",
+      "line_number": 150,
+      "reason": "This describes the behavior of the clz instruction, which is determined by the CSR field value at runtime, not by an implementation choice."
+    },
+    {
+      "excerpt": "This instruction performs an XLEN-wide addition of two addends.",
+      "line_number": 250,
+      "reason": "This is a fixed requirement ('performs an XLEN-wide addition') that all implementations must satisfy. There is no implementation choice here — it is not a parameter."
+    },
+    {
+      "excerpt": "[NOTE, caption=\"A\" ]\n===============================================================\nThe *clmulr* instruction is used to accelerate CRC calculations.\nThe *r* in the instruction's mnemonic stands for _reversed_, as the instruction is equivalent to bit-reversing the inputs, performing a *clmul*, then bit-reversing the output.\n===============================================================\n",
+      "line_number": 350,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "This instruction is useful for implementing the SHA3 cryptographic hash function on a 32-bit architecture.",
+      "line_number": 450,
+      "reason": "This is a suggestion for software implementation, not an architectural parameter."
+    }
+  ]
+}
+```

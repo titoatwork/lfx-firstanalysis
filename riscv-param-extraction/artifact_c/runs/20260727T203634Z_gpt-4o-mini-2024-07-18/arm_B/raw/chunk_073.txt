@@ -1,0 +1,32 @@
+```json
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The FENCE.I instruction was designed to support a wide variety of implementations.",
+      "line_number": 10,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes implementation considerations, not architectural requirements."
+    },
+    {
+      "excerpt": "FENCE.I will be expensive to implement and alternate mechanisms are being discussed.",
+      "line_number": 20,
+      "reason": "This is a discussion about potential implementation challenges and future considerations, not a parameter."
+    },
+    {
+      "excerpt": "The FENCE.I only synchronizes the local hart, and the OS can reschedule the user hart to a different physical hart after the FENCE.I.",
+      "line_number": 30,
+      "reason": "This describes the behavior of FENCE.I in a specific context, not an implementation choice."
+    },
+    {
+      "excerpt": "Future approaches to instruction-fetch coherence under discussion include providing more restricted versions of FENCE.I.",
+      "line_number": 40,
+      "reason": "This is speculative text about future developments, not a current architectural parameter."
+    },
+    {
+      "excerpt": "An instruction fetch is always ordered before any explicit memory accesses that instruction gives rise to.",
+      "line_number": 60,
+      "reason": "This describes a fixed behavior of instruction fetches and memory accesses, not an implementation choice."
+    }
+  ]
+}
+```

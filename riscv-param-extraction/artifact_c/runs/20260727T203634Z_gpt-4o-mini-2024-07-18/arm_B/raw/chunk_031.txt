@@ -1,0 +1,53 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "Implementations might provide anywhere from 1 to 3 privilege modes trading off reduced isolation for lower implementation cost.",
+      "line_number": 157,
+      "parameter_name": "NUM_PRIVILEGE_MODES",
+      "existing_udb_name": "NUM_PRIVILEGE_MODES",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of privilege modes (1 to 3) is a direct implementation choice that affects system design and isolation."
+    },
+    {
+      "excerpt": "Implementations may also include a debug mode to support off-chip debugging and/or manufacturing test.",
+      "line_number": 197,
+      "parameter_name": "DEBUG_MODE_SUPPORT",
+      "existing_udb_name": "DEBUG_MODE_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to include a debug mode is an implementation decision, allowing for either support or lack thereof."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The machine level has the highest privileges and is the only mandatory privilege level for a RISC-V hardware platform.",
+      "line_number": 145,
+      "reason": "This is a fixed requirement that all implementations must satisfy, not an implementation choice."
+    },
+    {
+      "excerpt": "All hardware implementations must provide M-mode, as this is the only mode that has unfettered access to the whole machine.",
+      "line_number": 151,
+      "reason": "This is a mandatory requirement for all implementations, not a parameter."
+    },
+    {
+      "excerpt": "The lock feature of the optional PMP facility can provide some limited protection even with only M-mode implemented.",
+      "line_number": 153,
+      "reason": "This describes a feature of the PMP facility, not an implementation choice."
+    },
+    {
+      "excerpt": "A hart normally runs application code in U-mode until some trap (e.g., a supervisor call or a timer interrupt) forces a switch to a trap handler.",
+      "line_number": 165,
+      "reason": "This describes expected behavior of the hart, not an implementation-defined parameter."
+    },
+    {
+      "excerpt": "Horizontal traps can be implemented as vertical traps that return control to a horizontal trap handler in the less-privileged mode.",
+      "line_number": 173,
+      "reason": "This describes a potential implementation technique, not a parameter that is left to the implementer."
+    }
+  ]
+}
+```

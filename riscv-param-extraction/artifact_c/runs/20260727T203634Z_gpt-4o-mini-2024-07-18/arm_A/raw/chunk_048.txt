@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The number of records that can be held in the buffer depends upon both the implementation (the maximum supported depth) and the CTR configuration (the software selected depth).",
+      "line_number": 12,
+      "parameter_name": "CTR_DEPTH",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The maximum depth of the CTR buffer is an implementation choice that can vary based on the specific hardware configuration."
+    },
+    {
+      "excerpt": "WARL field that selects the depth of the CTR buffer.",
+      "line_number": 204,
+      "parameter_name": "SCTR_DEPTH_VALUES",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The depth of the CTR buffer is a WARL field with specific encodings that can vary by implementation, indicating the legal values for this field."
+    },
+    {
+      "excerpt": "The `sctrstatus` register grants access to CTR status information and is updated by the hardware whenever CTR is active.",
+      "line_number": 370,
+      "parameter_name": "SCTR_STATUS_FIELDS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The fields within the `sctrstatus` register can vary by implementation, indicating which fields are writable and which are read-only."
+    },
+    {
+      "excerpt": "The `ctrdata` register may optionally include a count of CPU cycles elapsed since the prior CTR record.",
+      "line_number": 646,
+      "parameter_name": "CTR_DATA_CYCLE_COUNT_OPTIONAL",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to include cycle counting in the `ctrdata` register, making it an optional feature."
+    },
+    {
+      "excerpt": "When the optional `__x__ctrctl`.RASEMU bit is implemented and set to 1, transfer recording behavior is altered to emulate the behavior of a return-address stack (RAS).",
+      "line_number": 688,
+      "parameter_name": "CTR_RAS_EMULATION",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to support RAS emulation by setting the RASEMU bit, which alters the behavior of transfer recording."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The `mctrctl` register is a 64-bit read/write register that enables and configures the CTR capability.",
+      "line_number": 90,
+      "reason": "This is a fixed requirement about the `mctrctl` register and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "The `sctrctl` register provides supervisor mode access to a subset of `mctrctl`.",
+      "line_number": 130,
+      "reason": "This describes the relationship between `sctrctl` and `mctrctl`, not an implementation choice."
+    },
+    {
+      "excerpt": "The `ctrdata` register contains metadata for the recorded transfer.",
+      "line_number": 610,
+      "reason": "This is a description of the `ctrdata` register's purpose, not an architectural parameter."
+    },
+    {
+      "excerpt": "The `sctrstatus` register is updated by hardware whenever CTR is active.",
+      "line_number": 370,
+      "reason": "This describes the behavior of the `sctrstatus` register, not an implementation choice."
+    },
+    {
+      "excerpt": "The CTR buffer will contain only partial stacks in cases where the call stack depth was greater than the CTR depth.",
+      "line_number": 720,
+      "reason": "This describes a limitation of the CTR buffer behavior, not an implementation choice."
+    }
+  ]
+}
+```

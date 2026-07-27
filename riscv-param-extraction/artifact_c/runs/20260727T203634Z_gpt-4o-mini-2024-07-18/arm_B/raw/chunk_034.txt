@@ -1,0 +1,32 @@
+```json
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The floating-point registers are now extended to hold either a single, double, or quad-precision floating point value (FLEN=128).",
+      "line_number": 6,
+      "reason": "This is a fixed requirement specifying the floating-point register size and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "FLQ and FSQ are only guaranteed to execute atomically if the effective address is naturally aligned and XLEN=128.",
+      "line_number": 15,
+      "reason": "This describes a condition under which certain instructions execute atomically, not an implementation-defined parameter."
+    },
+    {
+      "excerpt": "The quad-precision floating-point computational instructions are defined analogously to their double-precision counterparts, but operate on quad-precision operands and produce quad-precision results.",
+      "line_number": 30,
+      "reason": "This is a description of how quad-precision instructions relate to double-precision, not an implementation choice."
+    },
+    {
+      "excerpt": "FCVT.Q.W or FCVT.Q.L converts a 32-bit or 64-bit signed integer, respectively, into a quad-precision floating-point number.",
+      "line_number": 45,
+      "reason": "This describes the behavior of specific conversion instructions, not an architectural parameter."
+    },
+    {
+      "excerpt": "FMV.X.Q and FMV.Q.X instructions are not provided in RV32 or RV64, so quad-precision bit patterns must be moved to the integer registers via memory.",
+      "line_number": 66,
+      "reason": "This states the absence of certain instructions in specific architectures, which is a fixed requirement rather than an implementation choice."
+    }
+  ]
+}
+```

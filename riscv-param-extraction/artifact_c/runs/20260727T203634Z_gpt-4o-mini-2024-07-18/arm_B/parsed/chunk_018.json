@@ -1,0 +1,57 @@
+{
+  "chunk_id": "chunk_018",
+  "arm": "B",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "Each base integer instruction set is characterized by the width of the integer registers and the corresponding size of the address space and by the number of integer registers.",
+      "line_number": 80,
+      "parameter_name": "XLEN",
+      "existing_udb_name": "XLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "XLEN represents the width of the integer registers, which can be either 32 or 64 bits, and is a direct implementation choice."
+    },
+    {
+      "excerpt": "The base integer ISAs are very similar to that of the early RISC processors except with no branch delay slots and with support for optional variable-length instruction encodings.",
+      "line_number": 90,
+      "parameter_name": "VAR_LENGTH_INSTRUCTIONS",
+      "existing_udb_name": "VAR_LENGTH_INSTRUCTIONS",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to support variable-length instructions or not, making this a binary choice."
+    },
+    {
+      "excerpt": "The RISC-V privileged architecture provides fields in `misa` to control the unprivileged ISA at each level to support emulating different base ISAs on the same hardware.",
+      "line_number": 150,
+      "parameter_name": "MISA_CONTROL",
+      "existing_udb_name": "MISA_CONTROL",
+      "class": "NORM_CSR_RW",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The fields in `misa` allow for implementation-defined control over which base ISAs are supported, making it a set of choices."
+    },
+    {
+      "excerpt": "RISC-V base ISAs have either little-endian or big-endian memory systems, with the privileged architecture further defining bi-endian operation.",
+      "line_number": 600,
+      "parameter_name": "MEMORY_ENDIANNESS",
+      "existing_udb_name": "MEMORY_ENDIANNESS",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The choice of memory endianness (little-endian, big-endian, or bi-endian) is left to the implementer, making it an implementation choice."
+    },
+    {
+      "excerpt": "The execution environment determines the mapping of hardware resources into a hart's address space.",
+      "line_number": 500,
+      "parameter_name": "ADDRESS_SPACE_MAPPING",
+      "existing_udb_name": "ADDRESS_SPACE_MAPPING",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The mapping of hardware resources into a hart's address space is determined by the execution environment, which is an implementation choice."
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "FLEN=32 for the F single-precision floating-point extension.",
+      "line_number": 10,
+      "parameter_name": "FLEN",
+      "existing_udb_name": "FLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "FLEN describes the width of the floating-point registers, which is a direct implementation choice for the F extension."
+    },
+    {
+      "excerpt": "The floating-point control and status register, `fcsr`, is a 32-bit read/write register that selects the dynamic rounding mode for floating-point arithmetic operations.",
+      "line_number": 20,
+      "parameter_name": "FCSR_ACCESS",
+      "existing_udb_name": "FCSR_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The `fcsr` register can be either read-only or read-write, which is a binary choice for the implementation."
+    },
+    {
+      "excerpt": "Rounding modes are encoded as shown in <<norm:dyn_round_enc>>.",
+      "line_number": 40,
+      "parameter_name": "ROUNDING_MODES",
+      "existing_udb_name": "ROUNDING_MODES",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The rounding modes are WARL, and the set of legal values can vary by implementation, making it an implementation-defined parameter."
+    },
+    {
+      "excerpt": "Floating-point operations use either a static rounding mode encoded in the instruction, or a dynamic rounding mode held in `frm`.",
+      "line_number": 60,
+      "parameter_name": "DYNAMIC_ROUNDING_MODE",
+      "existing_udb_name": "DYNAMIC_ROUNDING_MODE",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to use a dynamic rounding mode, which is a binary choice about the behavior of floating-point operations."
+    },
+    {
+      "excerpt": "If the rounded result is not representable in the destination format, it is clipped to the nearest value and the invalid flag is set.",
+      "line_number": 100,
+      "parameter_name": "FCVT_CLIPPING_BEHAVIOR",
+      "existing_udb_name": "FCVT_CLIPPING_BEHAVIOR",
+      "class": "SW_RULE",
+      "value_type": "enum",
+      "confidence": "medium",
+      "reasoning": "The behavior of clipping during conversion is implementation-defined, but the outcome is deterministic if software follows the rules."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] The F extension provides a {le} comparison, whereas the base ISAs provide a {ge} branch comparison.",
+      "line_number": 200,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a design choice, not an architectural requirement."
+    },
+    {
+      "excerpt": "The base floating-point ISA was defined so as to allow implementations to employ an internal recoding of the floating-point format in registers.",
+      "line_number": 300,
+      "reason": "This is a fixed requirement about how the ISA was defined, not an implementation choice."
+    },
+    {
+      "excerpt": "Floating-point loads and stores use the same base+offset addressing mode as the integer base ISAs.",
+      "line_number": 400,
+      "reason": "This describes the addressing mode used for floating-point operations, which is a fixed requirement, not an implementation choice."
+    },
+    {
+      "excerpt": "The F extension depends on the 'Zicsr' extension for control and status register access.",
+      "line_number": 5,
+      "reason": "This is a dependency statement, not an architectural parameter."
+    },
+    {
+      "excerpt": "The floating-point control and status register, `fcsr`, is a 32-bit read/write register.",
+      "line_number": 20,
+      "reason": "This is a fixed requirement about the `fcsr` register's size and access type, not an implementation choice."
+    }
+  ]
+}
+```

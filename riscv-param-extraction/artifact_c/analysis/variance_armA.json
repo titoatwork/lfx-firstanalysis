@@ -1,0 +1,47 @@
+{
+  "arm": "A",
+  "run_a": "20260727T201408Z_gpt-4o-mini-2024-07-18",
+  "run_b": "20260727T203634Z_gpt-4o-mini-2024-07-18",
+  "gold_hits_a": [
+    "CACHE_BLOCK_SIZE",
+    "ELEN",
+    "MTVEC_ACCESS",
+    "MTVEC_MODES",
+    "M_MODE_ENDIANNESS",
+    "NUM_PMP_ENTRIES",
+    "PMA_GRANULARITY",
+    "PMLEN",
+    "PMP_GRANULARITY",
+    "VLEN"
+  ],
+  "gold_hits_b": [
+    "CACHE_BLOCK_SIZE",
+    "ELEN",
+    "MTVEC_MODES",
+    "M_MODE_ENDIANNESS",
+    "NUM_PMP_ENTRIES",
+    "PMA_GRANULARITY",
+    "PMLEN",
+    "PMP_GRANULARITY",
+    "VLEN",
+    "VSXLEN"
+  ],
+  "both": [
+    "CACHE_BLOCK_SIZE",
+    "ELEN",
+    "MTVEC_MODES",
+    "M_MODE_ENDIANNESS",
+    "NUM_PMP_ENTRIES",
+    "PMA_GRANULARITY",
+    "PMLEN",
+    "PMP_GRANULARITY",
+    "VLEN"
+  ],
+  "only_a": [
+    "MTVEC_ACCESS"
+  ],
+  "only_b": [
+    "VSXLEN"
+  ],
+  "stability_pct": 81.8
+}

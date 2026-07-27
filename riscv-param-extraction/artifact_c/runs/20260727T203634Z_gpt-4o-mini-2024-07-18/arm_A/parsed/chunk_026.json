@@ -1,0 +1,87 @@
+{
+  "chunk_id": "chunk_026",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "RISC-V ISA strings begin with either RV32I, RV32E, RV64I, or RV64E, indicating the supported address space size in bits for the base integer ISA.",
+      "line_number": 12,
+      "parameter_name": "BASE_INTEGER_ISA",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The base integer ISA is an implementation choice that specifies the supported address space size, with clear options provided."
+    },
+    {
+      "excerpt": "Standard ISA extensions are given a name consisting of a single letter.",
+      "line_number": 20,
+      "parameter_name": "STANDARD_ISA_EXTENSIONS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The naming of standard ISA extensions is a direct implementation choice, allowing for a set of defined single-letter extensions."
+    },
+    {
+      "excerpt": "Standard unprivileged extensions can also be named by using a single 'Z' followed by an alphanumeric name.",
+      "line_number": 43,
+      "parameter_name": "UNPRIVILEGED_EXTENSION_NAMING",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The naming convention for unprivileged extensions is an implementation choice that allows for a variety of alphanumeric names following a specific format."
+    },
+    {
+      "excerpt": "Standard extensions that extend the supervisor-level virtual-memory architecture are prefixed with the letters 'Sv', followed by an alphanumeric name.",
+      "line_number": 66,
+      "parameter_name": "SUPERVISOR_LEVEL_EXTENSION_NAMING",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The naming convention for supervisor-level extensions is an implementation choice that allows for a specific prefix and format."
+    },
+    {
+      "excerpt": "Standard extensions that extend the hypervisor-level architecture are prefixed with the letters 'Sh', followed by an alphanumeric name.",
+      "line_number": 83,
+      "parameter_name": "HYPERVISOR_LEVEL_EXTENSION_NAMING",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The naming convention for hypervisor-level extensions is an implementation choice that allows for a specific prefix and format."
+    },
+    {
+      "excerpt": "Standard machine-level instruction-set extensions are prefixed with the letters 'Sm', followed by an alphanumeric name.",
+      "line_number": 100,
+      "parameter_name": "MACHINE_LEVEL_EXTENSION_NAMING",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The naming convention for machine-level extensions is an implementation choice that allows for a specific prefix and format."
+    },
+    {
+      "excerpt": "Non-standard extensions are named by using a single 'X' followed by the alphanumeric name.",
+      "line_number": 117,
+      "parameter_name": "NON_STANDARD_EXTENSION_NAMING",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The naming convention for non-standard extensions is an implementation choice that allows for a specific prefix and format."
+    },
+    {
+      "excerpt": "Version numbers are divided into major and minor version numbers, separated by a 'p'.",
+      "line_number": 164,
+      "parameter_name": "VERSION_NUMBERING_SCHEME",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The version numbering scheme is an implementation choice that specifies how versions are formatted and interpreted."
+    }
+  ]
+}

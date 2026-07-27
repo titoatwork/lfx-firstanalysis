@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The number of element groups to be processed is `vl`/`EGS`.",
+      "line_number": 101,
+      "parameter_name": "EGS",
+      "existing_udb_name": "EGS",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "EGS is a direct implementation choice that defines how many elements are processed in each group, which is determined by the implementer's design."
+    },
+    {
+      "excerpt": "For element-group instructions, `LMUL`*`VLEN` must always be at least as large as `EGW`.",
+      "line_number": 102,
+      "parameter_name": "LMUL_EGW_CONSTRAINT",
+      "existing_udb_name": "LMUL_EGW_CONSTRAINT",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "This defines a constraint on the implementation's choice of LMUL and VLEN, which must be satisfied for the instruction to function correctly."
+    },
+    {
+      "excerpt": "The `vstart` must be a multiple of `EGS`.",
+      "line_number": 103,
+      "parameter_name": "VSTART_EGS_CONSTRAINT",
+      "existing_udb_name": "VSTART_EGS_CONSTRAINT",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "This is a design choice that affects how the starting point for processing elements is determined, which is left to the implementer."
+    },
+    {
+      "excerpt": "The `SEW` differentiates between SHA-256 (`SEW`=32) and SHA-512 (`SEW`=64).",
+      "line_number": 104,
+      "parameter_name": "SEW",
+      "existing_udb_name": "SEW",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "SEW is a direct implementation choice that defines the width of the elements being processed, which can vary based on the specific implementation."
+    },
+    {
+      "excerpt": "The `vd` register group must not overlap with either `vs1` or `vs2`.",
+      "line_number": 105,
+      "parameter_name": "VD_VS1_VS2_NO_OVERLAP",
+      "existing_udb_name": "VD_VS1_VS2_NO_OVERLAP",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "This is a design choice that affects how registers are allocated and used in the implementation, ensuring that there is no overlap."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] The required `SEW` for each cryptographic instruction was chosen to match what is typically needed for other instructions when implementing the targeted algorithm.",
+      "line_number": 106,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a suggestion rather than an architectural requirement."
+    },
+    {
+      "excerpt": "This instruction must always be implemented such that its execution latency does not depend on the data being operated upon.",
+      "line_number": 107,
+      "reason": "This is a fixed requirement ('must always be implemented') that applies to all implementations and does not indicate a choice for the implementer."
+    },
+    {
+      "excerpt": "The NIST specification orders the coefficients from left to right x~0~x~1~x~2~...x~127~ for a polynomial.",
+      "line_number": 108,
+      "reason": "This describes a specific implementation detail and does not represent an architectural choice left to the implementer."
+    },
+    {
+      "excerpt": "This instruction is needed to avoid the need to 'splat' a 128-bit vector register group when the round key is the same for all 128-bit 'lanes'.",
+      "line_number": 109,
+      "reason": "This is a descriptive statement about the purpose of the instruction rather than an architectural parameter."
+    },
+    {
+      "excerpt": "This instruction must always be implemented such that its execution latency does not depend on the data being operated upon.",
+      "line_number": 110,
+      "reason": "This is a fixed requirement that applies to all implementations and does not indicate a choice for the implementer."
+    }
+  ]
+}
+```

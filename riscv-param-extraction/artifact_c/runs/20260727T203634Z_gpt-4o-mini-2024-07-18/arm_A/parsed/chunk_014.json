@@ -1,0 +1,27 @@
+{
+  "chunk_id": "chunk_014",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "vsetvli s1, zero, e8,mf2,ta,mu // LMUL=1/2 !",
+      "line_number": 75,
+      "parameter_name": "FRACTIONAL_LMUL_8BIT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to use a fractional LMUL of 1/2 for 8-bit computations, which is a direct design choice."
+    },
+    {
+      "excerpt": "vsetvli s1, zero, e64,m4,ta,mu // LMUL=4",
+      "line_number": 80,
+      "parameter_name": "FRACTIONAL_LMUL_64BIT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to use a fractional LMUL of 4 for 64-bit computations, which is a direct design choice."
+    }
+  ]
+}

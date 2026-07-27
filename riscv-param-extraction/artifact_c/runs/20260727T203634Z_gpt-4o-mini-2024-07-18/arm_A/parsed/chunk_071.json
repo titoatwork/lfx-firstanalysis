@@ -1,0 +1,37 @@
+{
+  "chunk_id": "chunk_071",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The Zicond extension defines two R-type instructions that support branchless conditional operations.",
+      "line_number": 1,
+      "parameter_name": "ZICOND_INSTRUCTIONS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The Zicond extension introduces specific instructions (czero.eqz and czero.nez) that are implementation choices, defining the operations supported by the architecture."
+    },
+    {
+      "excerpt": "If _rs2_ contains the value zero, this instruction writes the value zero to _rd_. Otherwise, this instruction copies the contents of _rs1_ to _rd_.",
+      "line_number": 12,
+      "parameter_name": "CZERO_EQZ_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The behavior of the czero.eqz instruction is defined by the values of _rs2_ and _rs1_, which are implementation choices for how the instruction operates."
+    },
+    {
+      "excerpt": "If _rs2_ contains a nonzero value, this instruction writes the value zero to _rd_. Otherwise, this instruction copies the contents of _rs1_ to _rd_.",
+      "line_number": 56,
+      "parameter_name": "CZERO_NEZ_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The behavior of the czero.nez instruction is defined by the values of _rs2_ and _rs1_, which are implementation choices for how the instruction operates."
+    }
+  ]
+}

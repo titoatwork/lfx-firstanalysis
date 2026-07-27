@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_019",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "MUL performs an XLEN-bit\u00d7XLEN-bit multiplication of `rs1` by `rs2` and places the lower XLEN bits in the destination register.",
+      "line_number": 10,
+      "parameter_name": "XLEN",
+      "existing_udb_name": "XLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "XLEN is a direct implementation choice that defines the bit-width for multiplication operations. The specific value of XLEN is chosen by the implementer."
+    },
+    {
+      "excerpt": "DIV and DIVU perform an XLEN bits by XLEN bits signed and unsigned integer division of `rs1` by `rs2`, rounding towards zero.",
+      "line_number": 30,
+      "parameter_name": "XLEN",
+      "existing_udb_name": "XLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "XLEN is a direct implementation choice that defines the bit-width for division operations. The specific value of XLEN is chosen by the implementer."
+    },
+    {
+      "excerpt": "MULW is an RV64 instruction that multiplies the lower 32 bits of the source registers, placing the sign extension of the lower 32 bits of the result into the destination register.",
+      "line_number": 50,
+      "parameter_name": "RV64",
+      "existing_udb_name": "RV64",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation choice to support RV64 is binary: either the implementation supports RV64 or it does not."
+    },
+    {
+      "excerpt": "DIVW and DIVUW are RV64 instructions that divide the lower 32 bits of `rs1` by the lower 32 bits of `rs2`, treating them as signed and unsigned integers, placing the 32-bit quotient in `rd`, sign-extended to 64 bits.",
+      "line_number": 70,
+      "parameter_name": "RV64",
+      "existing_udb_name": "RV64",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation choice to support RV64 is binary: either the implementation supports RV64 or it does not."
+    }
+  ]
+}

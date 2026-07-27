@@ -1,0 +1,53 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "RISC-V ISAs provide a set of up to thirty-two 64-bit performance counters and timers",
+      "line_number": 5,
+      "parameter_name": "NUM_PERFORMANCE_COUNTERS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of performance counters is an implementation choice, with a maximum of thirty-two counters available."
+    },
+    {
+      "excerpt": "The implemented number and width of these additional counters, and the set of events they count, are platform-specific.",
+      "line_number": 224,
+      "parameter_name": "HPM_COUNTERS_IMPLEMENTATION_SPECIFIC",
+      "existing_udb_name": null,
+      "class": "NON_ISA",
+      "value_type": "UNKNOWN",
+      "confidence": "medium",
+      "reasoning": "The number and width of additional performance counters are left to the implementer, making it a platform-specific choice."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "Some execution environments might prohibit access to counters, for example, to impede timing side-channel attacks.",
+      "line_number": 10,
+      "reason": "This is a suggestion about potential implementation choices, not a parameter that defines architectural behavior."
+    },
+    {
+      "excerpt": "The execution environment should provide a means to determine the current rate (cycles/second) at which the cycle counter is incrementing.",
+      "line_number": 66,
+      "reason": "This describes expected behavior of the execution environment rather than an architectural parameter."
+    },
+    {
+      "excerpt": "The execution environment should provide a means of determining the period of a counter tick (seconds/tick).",
+      "line_number": 118,
+      "reason": "This is a requirement for the execution environment, not an implementation choice."
+    },
+    {
+      "excerpt": "In some applications, it is important to be able to read multiple counters at the same instant in time.",
+      "line_number": 224,
+      "reason": "This describes a potential application behavior rather than an architectural parameter."
+    },
+    {
+      "excerpt": "Accessing an unimplemented counter may cause an illegal-instruction exception or may return a constant value.",
+      "line_number": 224,
+      "reason": "This describes behavior related to unimplemented counters, not a parameter that defines implementation choices."
+    }
+  ]
+}
+```

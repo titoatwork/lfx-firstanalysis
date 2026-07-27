@@ -1,0 +1,73 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "the size of a cache block shall be uniform throughout the system.",
+      "line_number": 45,
+      "parameter_name": "CACHE_BLOCK_SIZE",
+      "existing_udb_name": "CACHE_BLOCK_SIZE",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The size of a cache block is an implementation choice that must be uniform across the system, making it a direct architectural parameter."
+    },
+    {
+      "excerpt": "An implementation may or may not update the entire set of bytes atomically with a single store operation.",
+      "line_number": 90,
+      "parameter_name": "ATOMIC_CACHE_BLOCK_ZERO",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice of whether the cache-block zero instruction updates bytes atomically is left to the implementer, making it a direct parameter."
+    },
+    {
+      "excerpt": "An implementation may opt to cache a copy of the cache block in a cache accessed by an instruction fetch in order to improve memory access latency, but this behavior is not required.",
+      "line_number": 103,
+      "parameter_name": "CACHE_BLOCK_PREFETCH_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The decision to cache a copy of the cache block during instruction fetches is an implementation choice, indicating it is a parameter."
+    },
+    {
+      "excerpt": "The Zicboz extension introduces an additional supported access type PMA for cache-block zero instructions.",
+      "line_number": 103,
+      "parameter_name": "CACHE_BLOCK_ZERO_ACCESS_TYPE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The introduction of a new access type for cache-block zero instructions is an implementation-defined choice, making it a parameter."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "A given agent may not be able to access all memory locations in a system, and two different agents may or may not be able to access the same set of memory locations.",
+      "line_number": 20,
+      "reason": "This text describes potential access limitations for agents, but does not define an architectural parameter."
+    },
+    {
+      "excerpt": "The capacity and organization of a cache and the size of a cache block are both implementation-specific.",
+      "line_number": 45,
+      "reason": "While it mentions implementation-specific choices, it does not specify a parameter that is left to the implementer."
+    },
+    {
+      "excerpt": "The coherent agents within such a set shall access a given memory location with the same physical address and the same physical memory attributes.",
+      "line_number": 70,
+      "reason": "This is a fixed requirement for coherent agents and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "The PMP access control bits shall be the same for all physical addresses in the cache block.",
+      "line_number": 90,
+      "reason": "This is a fixed requirement and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "Execution of certain CMO instructions may result in traps due to CSR state, described in the csr_state section.",
+      "line_number": 100,
+      "reason": "This describes potential behavior of instructions but does not define an architectural parameter."
+    }
+  ]
+}
+```

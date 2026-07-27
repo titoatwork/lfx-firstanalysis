@@ -1,19 +1,19 @@
 {
   "total_udb_params": 185,
   "debug_spec_params": 8,
-  "total_llm_params_deduped": 217,
-  "raw_recall": 0.3243,
-  "adjusted_recall": 0.339,
-  "adjusted_recall_pct": "33.9%",
-  "matched_udb_count": 60,
-  "matched_non_debug_count": 60,
+  "total_llm_params_deduped": 211,
+  "raw_recall": 0.3081,
+  "adjusted_recall": 0.322,
+  "adjusted_recall_pct": "32.2%",
+  "matched_udb_count": 57,
+  "matched_non_debug_count": 57,
   "classification_accuracy": 1.0,
   "classification_accuracy_pct": "100.0%",
-  "exact_matches_evaluated": 9,
-  "class_correct": 9,
+  "exact_matches_evaluated": 7,
+  "class_correct": 7,
   "confusion_matrix": {
     "NORM_DIRECT": {
-      "NORM_DIRECT": 6
+      "NORM_DIRECT": 4
     },
     "NORM_CSR_RW": {
       "NORM_CSR_RW": 2
@@ -23,17 +23,17 @@
     }
   },
   "per_class_recall": {
+    "NORM_CSR_RW": {
+      "found": 6,
+      "total": 51
+    },
     "NORM_DIRECT": {
-      "found": 45,
+      "found": 42,
       "total": 100
     },
     "NORM_CSR_WARL": {
       "found": 9,
       "total": 24
-    },
-    "NORM_CSR_RW": {
-      "found": 6,
-      "total": 51
     },
     "SW_RULE": {
       "found": 0,
@@ -41,15 +41,15 @@
     }
   },
   "confidence_distribution": {
-    "high": 211,
+    "high": 205,
     "medium": 6
   },
   "new_params_by_class": {
-    "NORM_DIRECT": 130,
-    "NORM_CSR_WARL": 19,
+    "NORM_DIRECT": 133,
+    "NORM_CSR_RW": 34,
+    "NON_ISA": 3,
     "SW_RULE": 6,
-    "NORM_CSR_RW": 44,
-    "NON_ISA": 1
+    "NORM_CSR_WARL": 16
   },
-  "new_params_total": 200
+  "new_params_total": 192
 }

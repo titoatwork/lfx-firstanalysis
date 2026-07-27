@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The RNMI interrupt trap handler address is implementation-defined.",
+      "line_number": 42,
+      "parameter_name": "RNMI_TRAP_HANDLER_ADDRESS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The RNMI interrupt trap handler address is a direct implementation choice, allowing different implementations to define their own handler addresses."
+    },
+    {
+      "excerpt": "RNMI also has an associated exception trap handler address, which is implementation defined.",
+      "line_number": 46,
+      "parameter_name": "RNMI_EXCEPTION_TRAP_HANDLER_ADDRESS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The associated exception trap handler address for RNMI is also an implementation-defined choice, allowing flexibility in how it is set."
+    },
+    {
+      "excerpt": "`mnepc` is a WARL register that must be able to hold all valid virtual addresses.",
+      "line_number": 78,
+      "parameter_name": "MNEPC_VALID_ADDRESS_RANGE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The `mnepc` register is WARL, and the set of valid virtual addresses it can hold is implementation-defined, making it a parameter."
+    },
+    {
+      "excerpt": "`mnstatus` CSR holds a two-bit field, MNPP, which on entry to the RNMI trap handler holds the privilege mode of the interrupted context.",
+      "line_number": 118,
+      "parameter_name": "MNPP_PRIVILEGE_MODE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The MNPP field in `mnstatus` is WARL, and the specific privilege modes it can represent are implementation-defined."
+    },
+    {
+      "excerpt": "`mnstatus` also holds the NMIE bit. When NMIE=1, non-maskable interrupts are enabled.",
+      "line_number": 132,
+      "parameter_name": "NMIE_ENABLE_STATE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The NMIE bit in `mnstatus` can be set or cleared, representing a binary choice for enabling or disabling non-maskable interrupts."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "RNMIs are masked out of reset to give software the opportunity to initialize data structures and devices for subsequent RNMI handling.",
+      "line_number": 156,
+      "reason": "This describes a behavior during reset and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "Software can set NMIE to 1, but attempts to clear NMIE have no effect.",
+      "line_number": 154,
+      "reason": "This describes software behavior regarding the NMIE bit, not an architectural parameter."
+    },
+    {
+      "excerpt": "The `mnstatus` CSR holds a one-bit field, MNPV, which on entry to the RNMI trap handler holds the virtualization mode of the interrupted context.",
+      "line_number": 118,
+      "reason": "While MNPV is part of `mnstatus`, the specific values it can take are not defined as implementation choices."
+    },
+    {
+      "excerpt": "The low bit of `mnepc` (`mnepc[0]`) is always zero.",
+      "line_number": 80,
+      "reason": "This is a fixed requirement about the register's behavior, not an implementation choice."
+    },
+    {
+      "excerpt": "When NMIE=0, all interrupts are disabled.",
+      "line_number": 134,
+      "reason": "This describes the behavior of the NMIE bit rather than an implementation-defined parameter."
+    }
+  ]
+}
+```

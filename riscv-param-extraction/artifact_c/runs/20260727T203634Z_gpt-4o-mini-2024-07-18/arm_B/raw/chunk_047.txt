@@ -1,0 +1,93 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "mcyclecfg and minstretcfg are 64-bit registers that configure privilege mode filtering for the cycle and instret counters, respectively.",
+      "line_number": 8,
+      "parameter_name": "COUNTER_CONFIG_REGISTERS",
+      "existing_udb_name": "COUNTER_CONFIG_REGISTERS",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The mcyclecfg and minstretcfg registers are direct implementation choices that configure the behavior of the cycle and instret counters regarding privilege mode filtering."
+    },
+    {
+      "excerpt": "If set, then counting of events in M-mode is inhibited.",
+      "line_number": 15,
+      "parameter_name": "M_MODE_INHIBIT",
+      "existing_udb_name": "M_MODE_INHIBIT",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The MINH field in mcyclecfg and minstretcfg controls whether counting is inhibited in M-mode, representing a read-write choice for the implementer."
+    },
+    {
+      "excerpt": "If set, then counting of events in S/HS-mode is inhibited.",
+      "line_number": 16,
+      "parameter_name": "S_MODE_INHIBIT",
+      "existing_udb_name": "S_MODE_INHIBIT",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The SINH field in mcyclecfg and minstretcfg controls whether counting is inhibited in S/HS-mode, representing a read-write choice for the implementer."
+    },
+    {
+      "excerpt": "If set, then counting of events in U-mode is inhibited.",
+      "line_number": 17,
+      "parameter_name": "U_MODE_INHIBIT",
+      "existing_udb_name": "U_MODE_INHIBIT",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The UINH field in mcyclecfg and minstretcfg controls whether counting is inhibited in U-mode, representing a read-write choice for the implementer."
+    },
+    {
+      "excerpt": "If set, then counting of events in VS-mode is inhibited.",
+      "line_number": 18,
+      "parameter_name": "VS_MODE_INHIBIT",
+      "existing_udb_name": "VS_MODE_INHIBIT",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The VSINH field in mcyclecfg and minstretcfg controls whether counting is inhibited in VS-mode, representing a read-write choice for the implementer."
+    },
+    {
+      "excerpt": "If set, then counting of events in VU-mode is inhibited.",
+      "line_number": 19,
+      "parameter_name": "VU_MODE_INHIBIT",
+      "existing_udb_name": "VU_MODE_INHIBIT",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The VUINH field in mcyclecfg and minstretcfg controls whether counting is inhibited in VU-mode, representing a read-write choice for the implementer."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "When all __x__INH bits are zero, event counting is enabled in all modes.",
+      "line_number": 10,
+      "reason": "This describes a condition for counting behavior rather than an implementation choice, thus it is not a parameter."
+    },
+    {
+      "excerpt": "For each bit in 61:58, if the associated privilege mode is not implemented, the bit is read-only zero.",
+      "line_number": 11,
+      "reason": "This is a fixed requirement about the behavior of unimplemented bits, not an architectural choice."
+    },
+    {
+      "excerpt": "The fundamental behavior of cycle and instret is modified in that counting does not occur while executing in an inhibited privilege mode.",
+      "line_number": 30,
+      "reason": "This describes the behavior of the counters under certain conditions, not a parameter that can be chosen by the implementer."
+    },
+    {
+      "excerpt": "The instret definition above is intended to ensure that the counter increments in a predictable fashion.",
+      "line_number": 50,
+      "reason": "This is a description of intended behavior rather than an implementation-defined parameter."
+    },
+    {
+      "excerpt": "In cases where an instruction is emulated by software running in a privilege mode that is inhibited in minstretcfg, the emulation routine must emulate the instret increment.",
+      "line_number": 60,
+      "reason": "This describes a software behavior requirement rather than an architectural parameter."
+    }
+  ]
+}
+```

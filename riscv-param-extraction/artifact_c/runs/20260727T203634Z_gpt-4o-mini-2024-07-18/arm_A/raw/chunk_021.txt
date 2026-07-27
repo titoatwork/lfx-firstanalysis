@@ -1,0 +1,63 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "Implementations may implement zero, 16, or 64 PMP entries; the lowest-numbered PMP entries must be implemented first.",
+      "line_number": 3340,
+      "parameter_name": "NUM_PMP_ENTRIES",
+      "existing_udb_name": "NUM_PMP_ENTRIES",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of PMP entries is a direct implementation choice (0, 16, or 64). It is not controlled by any CSR field."
+    },
+    {
+      "excerpt": "The granularity of PMP access control settings are platform-specific, but the standard PMP encoding supports regions as small as four bytes.",
+      "line_number": 3330,
+      "parameter_name": "PMP_GRANULARITY",
+      "existing_udb_name": "PMA_GRANULARITY",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The granularity of PMP access control is a platform-specific choice, indicating the smallest region size that can be controlled."
+    },
+    {
+      "excerpt": "Not all physical address bits may be implemented, and so the `pmpaddr` registers are WARL.",
+      "line_number": 3350,
+      "parameter_name": "PMP_ADDR_BITS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The `pmpaddr` registers are WARL, meaning the specific bits implemented can vary by implementation, defining a set of legal values."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] Platforms vary widely in demands for physical memory protection, and some platforms may provide other PMP structures in addition to or instead of the scheme described in this section.",
+      "line_number": 3331,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "PMP checks are applied to all accesses whose effective privilege mode is S or U, including instruction fetches and data accesses in S and U mode, and data accesses in M-mode when the MPRV bit in `mstatus` is set and the MPP field in `mstatus` contains S or U.",
+      "line_number": 3335,
+      "reason": "This describes the behavior of PMP checks under specific conditions, which is not an implementation choice but rather a fixed requirement."
+    },
+    {
+      "excerpt": "The matching PMP entry must match all bytes of a memory operation, or the operation fails, irrespective of the L, R, W, and X bits.",
+      "line_number": 3360,
+      "reason": "This describes a requirement for memory operations and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "When paging is enabled, instructions that access virtual memory may result in multiple physical-memory accesses, including implicit references to the page tables.",
+      "line_number": 3640,
+      "reason": "This describes behavior under specific conditions related to paging, not an implementation-defined parameter."
+    },
+    {
+      "excerpt": "If no PMP entry matches an S-mode or U-mode memory operation, but at least one PMP entry is implemented, the operation fails.",
+      "line_number": 3645,
+      "reason": "This describes the outcome of a memory operation based on PMP entries, which is a behavioral description, not a parameter."
+    }
+  ]
+}
+```

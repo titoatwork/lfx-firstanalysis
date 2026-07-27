@@ -1,0 +1,53 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The implemented number and width of these additional counters, and the set of events they count, are platform-specific.",
+      "line_number": 197,
+      "parameter_name": "NUM_HPM_COUNTERS",
+      "existing_udb_name": "NUM_HPM_COUNTERS",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number and width of the additional hardware performance counters are implementation choices, making this a direct architectural parameter."
+    },
+    {
+      "excerpt": "The execution environment should provide a means to determine the number and width of the implemented counters, and an interface to configure the events to be counted by each counter.",
+      "line_number": 199,
+      "parameter_name": "HPM_EVENT_CONFIG",
+      "existing_udb_name": "HPM_EVENT_CONFIG",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The ability to configure the events counted by each performance counter is an implementation choice, thus qualifying as a direct architectural parameter."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "Some execution environments might prohibit access to counters, for example, to impede timing side-channel attacks.",
+      "line_number": 10,
+      "reason": "This is a suggestion about potential implementation choices, not a defined architectural parameter."
+    },
+    {
+      "excerpt": "The underlying 64-bit counter should never overflow in practice.",
+      "line_number": 83,
+      "reason": "This is a statement about expected behavior rather than an implementation choice, thus not a parameter."
+    },
+    {
+      "excerpt": "The maximum error bound should be set based on the requirements of the platform.",
+      "line_number": 199,
+      "reason": "This describes a guideline for implementation rather than a specific architectural parameter."
+    },
+    {
+      "excerpt": "In some applications, it is important to be able to read multiple counters at the same instant in time.",
+      "line_number": 205,
+      "reason": "This is a contextual note about application behavior, not a parameter that defines implementation choices."
+    },
+    {
+      "excerpt": "Accessing an unimplemented counter may cause an illegal-instruction exception or may return a constant value.",
+      "line_number": 201,
+      "reason": "This describes potential behavior rather than an implementation choice, thus not a parameter."
+    }
+  ]
+}
+```

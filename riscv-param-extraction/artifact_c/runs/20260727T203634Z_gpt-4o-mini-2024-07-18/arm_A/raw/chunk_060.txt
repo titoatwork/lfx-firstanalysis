@@ -1,0 +1,63 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The number of element groups to be processed is `vl`/`EGS`.",
+      "line_number": 3340,
+      "parameter_name": "EGS",
+      "existing_udb_name": "EGS",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "EGS is a direct implementation choice that defines how many element groups are processed based on the vector length `vl`. This is not controlled by any CSR field."
+    },
+    {
+      "excerpt": "For element-group instructions, `LMUL`*`VLEN` must always be at least as large as `EGW`.",
+      "line_number": 3340,
+      "parameter_name": "EGW",
+      "existing_udb_name": "EGW",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "EGW is a direct implementation choice that specifies the element group width, which must be supported by the product of `LMUL` and `VLEN`."
+    },
+    {
+      "excerpt": "The required `SEW` for each cryptographic instruction was chosen to match what is typically needed for other instructions when implementing the targeted algorithm.",
+      "line_number": 3340,
+      "parameter_name": "SEW",
+      "existing_udb_name": "SEW",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "SEW is a direct implementation choice that defines the effective element width for cryptographic instructions, which can vary based on the algorithm."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] Where variables are concatenated, the order shown is how they would appear in a vector register from left to right.",
+      "line_number": 3340,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a formatting detail, not an architectural requirement."
+    },
+    {
+      "excerpt": "[NOTE] The required `SEW` for each cryptographic instruction was chosen to match what is typically needed for other instructions when implementing the targeted algorithm.",
+      "line_number": 3340,
+      "reason": "This is a suggestion and not a parameter. It does not define an implementation choice."
+    },
+    {
+      "excerpt": "[NOTE] This instruction must always be implemented such that its execution latency does not depend on the data being operated upon.",
+      "line_number": 3340,
+      "reason": "This is a fixed requirement that applies to all implementations and does not indicate an architectural choice."
+    },
+    {
+      "excerpt": "[NOTE] This instruction is needed to avoid the need to 'splat' a 128-bit vector register group when the round key is the same for all 128-bit 'lanes'.",
+      "line_number": 3340,
+      "reason": "This is a suggestion for implementation efficiency, not a parameter that defines an architectural choice."
+    },
+    {
+      "excerpt": "[NOTE] The NIST standard requires the final hash to be in big-endian byte ordering within SEW-sized words.",
+      "line_number": 3340,
+      "reason": "This is a requirement based on external standards, not an architectural parameter."
+    }
+  ]
+}
+```

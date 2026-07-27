@@ -1,0 +1,57 @@
+{
+  "chunk_id": "chunk_002",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The bitmanip extensions are defined for RV32 and RV64.",
+      "line_number": 12,
+      "parameter_name": "BITMANIP_ARCHITECTURES",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The choice of whether to implement the bitmanip extensions for RV32, RV64, or both is left to the implementer."
+    },
+    {
+      "excerpt": "The shift and add instructions do a left shift of 1, 2, or 3 because these are commonly found in real-world code.",
+      "line_number": 20,
+      "parameter_name": "MAX_LEFT_SHIFT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The maximum left shift value for the shift and add instructions is a design choice for the implementer."
+    },
+    {
+      "excerpt": "The slli.uw -- added in this extension -- can be used when the index is to be interpreted as an unsigned word.",
+      "line_number": 30,
+      "parameter_name": "SLLI_UW_FUNCTIONALITY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementer decides whether to support the slli.uw instruction for unsigned word operations."
+    },
+    {
+      "excerpt": "The `pack` instruction packs the XLEN/2-bit lower halves of _rs1_ and _rs2_ into _rd_, with _rs1_ in the lower half and _rs2_ in the upper half.",
+      "line_number": 200,
+      "parameter_name": "PACK_INSTRUCTION_FUNCTIONALITY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementer can choose to include the pack instruction and its specific behavior."
+    },
+    {
+      "excerpt": "The xperm8 instruction operates on bytes.",
+      "line_number": 300,
+      "parameter_name": "XPERM8_FUNCTIONALITY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementer decides whether to support the xperm8 instruction and its specific behavior."
+    }
+  ]
+}

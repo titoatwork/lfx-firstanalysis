@@ -1,0 +1,93 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The number of records that can be held in the buffer depends upon both the implementation (the maximum supported depth) and the CTR configuration (the software selected depth).",
+      "line_number": 12,
+      "parameter_name": "CTR_DEPTH",
+      "existing_udb_name": "CTR_DEPTH",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The maximum depth of the CTR buffer is an implementation choice that can vary based on the hardware capabilities and software configuration."
+    },
+    {
+      "excerpt": "The `mctrctl` register is a 64-bit read/write register that enables and configures the CTR capability.",
+      "line_number": 42,
+      "parameter_name": "MCTRCTL_ACCESS",
+      "existing_udb_name": "MCTRCTL_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The `mctrctl` register can be configured to enable or disable the CTR capability, which is a binary choice for the implementer."
+    },
+    {
+      "excerpt": "The `sctrdepth` register specifies the depth of the CTR buffer.",
+      "line_number": 118,
+      "parameter_name": "SCTR_DEPTH",
+      "existing_udb_name": "SCTR_DEPTH",
+      "class": "NORM_CSR_RW",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The depth of the CTR buffer is a configurable parameter that can vary by implementation, allowing for different buffer sizes."
+    },
+    {
+      "excerpt": "WARL field that selects the depth of the CTR buffer.",
+      "line_number": 134,
+      "parameter_name": "SCTR_DEPTH_VALUES",
+      "existing_udb_name": "SCTR_DEPTH_VALUES",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The `DEPTH` field in `sctrdepth` is WARL, and the specific values that can be selected are implementation-defined."
+    },
+    {
+      "excerpt": "The `ctrdata` register may optionally include a count of CPU cycles elapsed since the prior CTR record.",
+      "line_number": 482,
+      "parameter_name": "CTRDATA_CYCLE_COUNT_OPTIONAL",
+      "existing_udb_name": "CTRDATA_CYCLE_COUNT_OPTIONAL",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The inclusion of cycle counting in the `ctrdata` register is an optional feature that can be implemented or omitted by the hardware."
+    },
+    {
+      "excerpt": "When the optional `__x__ctrctl`.RASEMU bit is implemented and set to 1, transfer recording behavior is altered to emulate the behavior of a return-address stack (RAS).",
+      "line_number": 550,
+      "parameter_name": "RASEMU_SUPPORT",
+      "existing_udb_name": "RASEMU_SUPPORT",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to support RAS emulation by setting the RASEMU bit, which is a binary decision."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The CTR buffer is accessible through an indirect CSR interface, such that software can specify which logical entry in the buffer it wishes to read or write.",
+      "line_number": 20,
+      "reason": "This describes how the CTR buffer is accessed but does not define an implementation choice or parameter."
+    },
+    {
+      "excerpt": "The `sctrstatus` register grants access to CTR status information and is updated by the hardware whenever CTR is active.",
+      "line_number": 150,
+      "reason": "This is a description of the behavior of the `sctrstatus` register and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "The `ctrdata` register contains metadata for the recorded transfer.",
+      "line_number": 470,
+      "reason": "This describes the purpose of the `ctrdata` register but does not specify an implementation choice or parameter."
+    },
+    {
+      "excerpt": "When `sctrstatus`.FROZEN=1, transfer recording is inhibited.",
+      "line_number": 600,
+      "reason": "This describes the behavior of the `sctrstatus` register under certain conditions, not an implementation choice."
+    },
+    {
+      "excerpt": "The `ctrsource` register contains the source program counter, which is the `pc` of the recorded control transfer instruction.",
+      "line_number": 420,
+      "reason": "This describes the function of the `ctrsource` register but does not indicate an implementation choice."
+    }
+  ]
+}
+```

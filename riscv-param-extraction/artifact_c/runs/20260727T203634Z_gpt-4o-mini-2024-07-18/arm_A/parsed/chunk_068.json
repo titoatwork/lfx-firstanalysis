@@ -1,0 +1,57 @@
+{
+  "chunk_id": "chunk_068",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The correspondence of _rs1_ field values and single-precision floating-point values is shown in <<tab:flis>>.",
+      "line_number": 8,
+      "parameter_name": "FLI_S_CONSTANTS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The values that can be loaded by the FLI.S instruction are defined by the _rs1_ field, which is WARL, allowing for implementation-defined values."
+    },
+    {
+      "excerpt": "If the D extension is implemented, FLI.D performs the analogous operation, but loads a double-precision value into floating-point register _rd_.",
+      "line_number": 15,
+      "parameter_name": "FLI_D_CONSTANTS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The values that can be loaded by the FLI.D instruction are defined by the _rs1_ field, which is WARL, allowing for implementation-defined values."
+    },
+    {
+      "excerpt": "If the Q extension is implemented, FLI.Q performs the analogous operation, but loads a quad-precision value into floating-point register _rd_.",
+      "line_number": 20,
+      "parameter_name": "FLI_Q_CONSTANTS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The values that can be loaded by the FLI.Q instruction are defined by the _rs1_ field, which is WARL, allowing for implementation-defined values."
+    },
+    {
+      "excerpt": "If the Zfh or Zvfh extension is implemented, FLI.H performs the analogous operation, but loads a half-precision floating-point value into register _rd_.",
+      "line_number": 25,
+      "parameter_name": "FLI_H_CONSTANTS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The values that can be loaded by the FLI.H instruction are defined by the _rs1_ field, which is WARL, allowing for implementation-defined values."
+    },
+    {
+      "excerpt": "The FCVTMOD.W.D instruction is defined similarly to the FCVT.W.D instruction, with the following differences.",
+      "line_number": 90,
+      "parameter_name": "FCVTMOD_W_D_ROUNDING_MODE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The FCVTMOD.W.D instruction specifies that the RTZ rounding mode must be used, which is a choice for the implementation."
+    }
+  ]
+}

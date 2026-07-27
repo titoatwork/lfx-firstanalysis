@@ -1,0 +1,68 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The bitmanip extensions are defined for RV32 and RV64.",
+      "line_number": 12,
+      "parameter_name": "BITMANIP_ARCHITECTURES",
+      "existing_udb_name": "BITMANIP_ARCHITECTURES",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The choice of supporting either RV32 or RV64 for the bitmanip extensions is left to the implementer."
+    },
+    {
+      "excerpt": "The shift and add instructions do a left shift of 1, 2, or 3 because these are commonly found in real-world code.",
+      "line_number": 20,
+      "parameter_name": "MAX_LEFT_SHIFT",
+      "existing_udb_name": "MAX_LEFT_SHIFT",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The maximum left shift value (1, 2, or 3) is an implementation choice that can vary."
+    },
+    {
+      "excerpt": "The implementation chooses whether mtvec is read-only or read-write.",
+      "line_number": 1217,
+      "parameter_name": "MTVEC_ACCESS",
+      "existing_udb_name": "MTVEC_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The access type of the mtvec register (read-only or read-write) is a choice made by the implementer."
+    },
+    {
+      "excerpt": "The implementation may choose to implement the clmul instruction.",
+      "line_number": 200,
+      "parameter_name": "HW_CLMUL_SUPPORT",
+      "existing_udb_name": "HW_CLMUL_SUPPORT",
+      "class": "SW_RULE",
+      "value_type": "binary",
+      "confidence": "medium",
+      "reasoning": "Whether the clmul instruction is supported is implementation-defined, but software can handle it deterministically."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE, caption=\"Imp\" ]\n===============================================================\nThe Logical with Negate instructions can be implemented by inverting the _rs2_ inputs to the base-required AND, OR, and XOR logic instructions.\n===============================================================\n",
+      "line_number": 100,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "This instruction counts the number of 0's before the first 1, starting at the most-significant bit (i.e., XLEN-1) and progressing to bit 0.",
+      "line_number": 150,
+      "reason": "This describes the behavior of the clz instruction, which is determined by the instruction's implementation, not an architectural choice."
+    },
+    {
+      "excerpt": "This instruction is useful for implementing the SHA3 cryptographic hash function on a 32-bit architecture.",
+      "line_number": 300,
+      "reason": "This is a suggestion for software implementation, not an architectural parameter."
+    },
+    {
+      "excerpt": "The `mtvec` register must always be implemented, but can contain a read-only value.",
+      "line_number": 1217,
+      "reason": "This is a fixed requirement ('must always be implemented') that all implementations must satisfy. There is no implementation choice here."
+    }
+  ]
+}
+```

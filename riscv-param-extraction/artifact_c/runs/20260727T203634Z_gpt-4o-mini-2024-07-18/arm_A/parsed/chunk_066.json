@@ -1,0 +1,17 @@
+{
+  "chunk_id": "chunk_066",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "To support such use cases a second instruction `WRS.STO` (WRS-with-short-timeout) is provided that works like `WRS.NTO` but bounds the stall duration to an implementation-define short timeout such that the stall is terminated on the timeout if no other conditions have occurred to terminate the stall.",
+      "line_number": 30,
+      "parameter_name": "WRS_STO_TIMEOUT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The implementation defines the short timeout duration for the `WRS.STO` instruction, making it a direct implementation choice."
+    }
+  ]
+}

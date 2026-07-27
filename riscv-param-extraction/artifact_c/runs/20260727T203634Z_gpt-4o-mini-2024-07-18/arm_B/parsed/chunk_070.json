@@ -1,0 +1,27 @@
+{
+  "chunk_id": "chunk_070",
+  "arm": "B",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "Double-precision operands in RV32Zdinx are held in aligned `x`-register pairs, i.e., register numbers must be even.",
+      "line_number": 113,
+      "parameter_name": "ZDINX_REG_PAIR_ALIGNMENT",
+      "existing_udb_name": "ZDINX_REG_PAIR_ALIGNMENT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The alignment of double-precision operands in RV32Zdinx is a direct implementation choice regarding register usage (even-numbered pairs)."
+    },
+    {
+      "excerpt": "The Zhinxmin extension provides minimal support for 16-bit half-precision floating-point instructions that operate on the `x` registers.",
+      "line_number": 145,
+      "parameter_name": "ZHINXMIN_SUPPORT",
+      "existing_udb_name": "ZHINXMIN_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The Zhinxmin extension's support for 16-bit half-precision instructions is an implementation choice, indicating whether this extension is included."
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The maximum size in bits of a vector element that any operation can produce or consume, _ELEN_ >= 8, which must be a power of 2.",
+      "line_number": 3394,
+      "parameter_name": "ELEN",
+      "existing_udb_name": "ELEN",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "ELEN is a direct implementation parameter: the maximum element size. It has constraints (>= 8, power of 2) but the specific value is chosen by the implementer."
+    },
+    {
+      "excerpt": "The number of bits in a single vector register, _VLEN_ >= ELEN, which must be a power of 2, and must be no greater than 2^16.",
+      "line_number": 3394,
+      "parameter_name": "VLEN",
+      "existing_udb_name": "VLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "VLEN is a direct implementation parameter: the size of a vector register. It has constraints (>= ELEN, power of 2, <= 2^16) but the specific value is chosen by the implementer."
+    },
+    {
+      "excerpt": "The implementation must produce a result equivalent to a reduction tree composed of binary operator nodes, with the inputs being elements from the source vector register group (`vs2`) and the source scalar value (`vs1[0]`).",
+      "line_number": 540,
+      "parameter_name": "HW_VREDUSUM",
+      "existing_udb_name": "HW_VREDUSUM",
+      "class": "SW_RULE",
+      "value_type": "enum",
+      "confidence": "medium",
+      "reasoning": "The behavior of the reduction operation is implementation-defined, but the outcome is deterministic if software follows the specified reduction tree structure."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The `vcpop.m` instruction counts the number of mask elements of the active elements of the vector source mask register that have the value 1 and writes the result to a scalar `x` register.",
+      "line_number": 540,
+      "reason": "This describes the behavior of the instruction rather than an implementation choice. The parameter would be the specific behavior of the instruction, not a choice left to the implementer."
+    },
+    {
+      "excerpt": "The `vfirst` instruction finds the lowest-numbered active element of the source mask vector that has the value 1 and writes that element's index to a GPR.",
+      "line_number": 540,
+      "reason": "This describes the behavior of the instruction rather than an implementation choice. The parameter would be the specific behavior of the instruction, not a choice left to the implementer."
+    },
+    {
+      "excerpt": "The `vslideup` instruction places the `x` register argument at location 0 of the destination vector register group, provided that element 0 is active, otherwise the destination element update follows the current mask agnostic/undisturbed policy.",
+      "line_number": 540,
+      "reason": "This describes the behavior of the instruction rather than an implementation choice. The parameter would be the specific behavior of the instruction, not a choice left to the implementer."
+    },
+    {
+      "excerpt": "The `vmv.x.s` instruction copies a single SEW-wide element from index 0 of the source vector register to a destination integer register.",
+      "line_number": 540,
+      "reason": "This describes the behavior of the instruction rather than an implementation choice. The parameter would be the specific behavior of the instruction, not a choice left to the implementer."
+    },
+    {
+      "excerpt": "The `vmv.s.x` instruction copies the scalar integer register to element 0 of the destination vector register.",
+      "line_number": 540,
+      "reason": "This describes the behavior of the instruction rather than an implementation choice. The parameter would be the specific behavior of the instruction, not a choice left to the implementer."
+    }
+  ]
+}
+```

@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_064",
+  "arm": "B",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The instruction requires the first register in the pair to be even numbered; encodings with odd numbered registers specified in `rs2` and `rd` are reserved.",
+      "line_number": 56,
+      "parameter_name": "AMOCAS_D_FIRST_REG_EVEN",
+      "existing_udb_name": "AMOCAS_D_FIRST_REG_EVEN",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The requirement for the first register in the pair to be even numbered is a design choice for the instruction encoding, making it a direct implementation parameter."
+    },
+    {
+      "excerpt": "The memory operation performed by an `AMOCAS.W/D/Q`, when successful, has acquire semantics if `aq` bit is 1 and has release semantics if `rl` bit is 1.",
+      "line_number": 145,
+      "parameter_name": "AMOCAS_AQ_RL_SEMANTICS",
+      "existing_udb_name": "AMOCAS_AQ_RL_SEMANTICS",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to use the `aq` and `rl` bits to define the memory operation's semantics, making this a direct implementation choice."
+    },
+    {
+      "excerpt": "Just as for AMOs in the A extension, `AMOCAS.W/D/Q` optionally provide release consistency semantics, using the `aq` and `rl` bits, to help implement multiprocessor synchronization.",
+      "line_number": 147,
+      "parameter_name": "AMOCAS_USE_AQ_RL",
+      "existing_udb_name": "AMOCAS_USE_AQ_RL",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to implement release consistency semantics using the `aq` and `rl` bits is left to the implementer, making it a direct implementation parameter."
+    },
+    {
+      "excerpt": "The operation performed by `AMOCAS.Q` requires the first register in the pair to be even numbered; encodings with odd numbered registers specified in `rs2` and `rd` are reserved.",
+      "line_number": 185,
+      "parameter_name": "AMOCAS_Q_FIRST_REG_EVEN",
+      "existing_udb_name": "AMOCAS_Q_FIRST_REG_EVEN",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "Similar to `AMOCAS.D`, the requirement for the first register in the pair to be even numbered is a design choice for the instruction encoding, making it a direct implementation parameter."
+    }
+  ]
+}

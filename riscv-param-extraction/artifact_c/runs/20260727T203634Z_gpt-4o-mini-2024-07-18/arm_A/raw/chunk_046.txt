@@ -1,0 +1,73 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "When the Smcdeleg/Ssccfg extensions are enabled (`menvcfg`.CDE=1), it further allows M-mode to delegate select counters to S-mode.",
+      "line_number": 19,
+      "parameter_name": "CDE_DELEGATION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to enable counter delegation to S-mode based on the CDE bit in the menvcfg register."
+    },
+    {
+      "excerpt": "For counters delegated to S-mode, the associated `mcountinhibit` bits can be accessed via `scountinhibit`.",
+      "line_number": 97,
+      "parameter_name": "SCOUNTINHIBIT_DELEGATION_RW",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether the bits in scountinhibit are read-write or read-only based on whether the corresponding counters are delegated to S-mode."
+    },
+    {
+      "excerpt": "For implementations that support Smcdeleg/Ssccfg, Sscofpmf, and the H extension, when `menvcfg`.CDE=1, attempts to read `scountovf` from VS-mode or VU-mode raise a virtual-instruction exception.",
+      "line_number": 113,
+      "parameter_name": "SCOVF_VIRTUALIZATION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to raise a virtual-instruction exception for scountovf reads from VS-mode or VU-mode based on the CDE setting."
+    },
+    {
+      "excerpt": "For implementations that support Smcdeleg, Sscofpmf, and Smaia, the local-counter-overflow interrupt (LCOFI) bit (bit 13) in each of CSRs `mvip` and `mvien` is implemented and writable.",
+      "line_number": 125,
+      "parameter_name": "LCOFI_IMPLEMENTATION_RW",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether the LCOFI bit in mvip and mvien is writable based on the support for specific extensions."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "For a RISC-V hardware platform, Smcdeleg and Ssccfg must always be implemented in tandem.",
+      "line_number": 9,
+      "reason": "This is a fixed requirement that applies to all implementations and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "The `hvip` register is defined by the hypervisor (H) extension, while the `mvip`, `mvien` and `hvien` registers are defined by the Smaia/Ssaia extensions.",
+      "line_number": 135,
+      "reason": "This text describes definitions of registers and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "When `menvcfg`.CDE=0, attempts to access `scountinhibit` raise an illegal-instruction exception.",
+      "line_number": 99,
+      "reason": "This describes behavior based on the value of a CSR field rather than an implementation choice."
+    },
+    {
+      "excerpt": "If any extension upon which the underlying state depends is not implemented, an attempt from M or S mode to access the given state through `sireg*` raises an illegal-instruction exception.",
+      "line_number": 111,
+      "reason": "This describes a consequence of not implementing certain extensions, not an implementation choice."
+    },
+    {
+      "excerpt": "By virtue of implementing `hvip`.LCOFI, it is implicit that the LCOFI bit (bit 13) in each of `vsie` and `vsip` is also implemented.",
+      "line_number": 137,
+      "reason": "This is a statement about implicit requirements rather than an architectural parameter."
+    }
+  ]
+}
+```

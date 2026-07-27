@@ -1,0 +1,37 @@
+{
+  "chunk_id": "chunk_017",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The `miselect` register may be read-only zero if there are no extensions implemented that utilize it.",
+      "line_number": 34,
+      "parameter_name": "MISELECT_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether the `miselect` register is read-only zero or writable, which is a binary choice about the mutability of the register."
+    },
+    {
+      "excerpt": "The `siselect` register will support the value range 0..0xFFF at a minimum.",
+      "line_number": 174,
+      "parameter_name": "SSELECT_VALUE_RANGE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The `siselect` register's minimum value range is an implementation choice, allowing for future extensions to define larger ranges."
+    },
+    {
+      "excerpt": "The `vsiselect` register will support the value range 0..0xFFF at a minimum.",
+      "line_number": 292,
+      "parameter_name": "VSELECT_VALUE_RANGE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The `vsiselect` register's minimum value range is an implementation choice, allowing for future extensions to define larger ranges."
+    }
+  ]
+}

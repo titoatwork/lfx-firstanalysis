@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The `seed` CSR provides an interface to a NIST SP 800-90B compliant physical Entropy Source (ES).",
+      "line_number": 3456,
+      "parameter_name": "SEED_CSR_ADDRESS",
+      "existing_udb_name": "NULL",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The address of the `seed` CSR is a direct implementation choice, as it is specified to be at address `0x015`."
+    },
+    {
+      "excerpt": "The status bits `seed[31:30]` = `OPST` may be `ES16` (10), indicating successful polling, or one of three entropy polling failure statuses `BIST` (00), `WAIT` (01), or `DEAD` (11).",
+      "line_number": 3485,
+      "parameter_name": "SEED_OPST_VALUES",
+      "existing_udb_name": "NULL",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The `OPST` field in the `seed` CSR is WARL, and the set of values it can take (BIST, WAIT, ES16, DEAD) varies by implementation."
+    },
+    {
+      "excerpt": "An implementation may safely set reserved and custom bits to zeros.",
+      "line_number": 3505,
+      "parameter_name": "SEED_CUSTOM_BITS",
+      "existing_udb_name": "NULL",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation has the choice to set reserved and custom bits to zero, which is a design-time decision."
+    },
+    {
+      "excerpt": "The `seed` CSR is also access controlled by execution mode, and attempted read or write access will raise an illegal-instruction exception outside M mode unless access is explicitly granted.",
+      "line_number": 3510,
+      "parameter_name": "SEED_ACCESS_CONTROL",
+      "existing_udb_name": "NULL",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The access control to the `seed` CSR based on execution mode is a design choice that can vary by implementation."
+    },
+    {
+      "excerpt": "An implementation of the entropy source should meet at least one of the following requirements sets in order to be considered a secure and safe design.",
+      "line_number": 3530,
+      "parameter_name": "ENTROPY_SOURCE_REQUIREMENTS",
+      "existing_udb_name": "NULL",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The implementation can choose which set of requirements (NIST SP 800-90B, BSI AIS-31, or virtual sources) to meet, indicating a design choice."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] A virtual source is not an ISA compliance requirement.",
+      "line_number": 3535,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative."
+    },
+    {
+      "excerpt": "The output `entropy` (`seed[15:0]` in ES16 state) is not necessarily fully conditioned randomness due to hardware and energy limitations.",
+      "line_number": 3540,
+      "reason": "This describes a characteristic of the output rather than an implementation choice."
+    },
+    {
+      "excerpt": "All implementations must signal initialization, test mode, and health alarms as required by respective standards.",
+      "line_number": 3545,
+      "reason": "This is a fixed requirement that applies to all implementations, not an architectural parameter."
+    },
+    {
+      "excerpt": "The `seed` CSR must not return anything via `ES16` when `NOISE_TEST = 1`.",
+      "line_number": 3580,
+      "reason": "This describes behavior under a specific condition rather than an implementation choice."
+    },
+    {
+      "excerpt": "The interface guarantees that secret `entropy` words are not made available multiple times.",
+      "line_number": 3500,
+      "reason": "This is a fixed requirement regarding the behavior of the `seed` CSR, not an architectural parameter."
+    }
+  ]
+}
+```

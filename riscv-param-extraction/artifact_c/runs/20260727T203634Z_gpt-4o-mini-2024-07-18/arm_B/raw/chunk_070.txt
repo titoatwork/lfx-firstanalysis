@@ -1,0 +1,53 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "Double-precision operands in RV32Zdinx are held in aligned `x`-register pairs, i.e., register numbers must be even.",
+      "line_number": 113,
+      "parameter_name": "ZDINX_REG_PAIR_ALIGNMENT",
+      "existing_udb_name": "ZDINX_REG_PAIR_ALIGNMENT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The alignment of double-precision operands in RV32Zdinx is a direct implementation choice regarding register usage (even-numbered pairs)."
+    },
+    {
+      "excerpt": "The Zhinxmin extension provides minimal support for 16-bit half-precision floating-point instructions that operate on the `x` registers.",
+      "line_number": 145,
+      "parameter_name": "ZHINXMIN_SUPPORT",
+      "existing_udb_name": "ZHINXMIN_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The Zhinxmin extension's support for 16-bit half-precision instructions is an implementation choice, indicating whether this extension is included."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The Zfinx extension depends on the 'Zicsr' extension for control and status register access.",
+      "line_number": 27,
+      "reason": "This describes a dependency on another extension, not an implementation choice or parameter."
+    },
+    {
+      "excerpt": "Floating-point operands of width _w_ < XLEN bits occupy bits _w_-1:0 of an `x` register.",
+      "line_number": 61,
+      "reason": "This describes how operands are stored, not an implementation choice regarding the architecture."
+    },
+    {
+      "excerpt": "The `misa` bits F, D, and Q are hardwired to 0 when the Zfinx extension is implemented.",
+      "line_number": 151,
+      "reason": "This is a fixed requirement for the `misa` bits when Zfinx is implemented, not an architectural parameter."
+    },
+    {
+      "excerpt": "The Zhinx extension provides analogous half-precision floating-point instructions.",
+      "line_number": 135,
+      "reason": "This describes the functionality of the Zhinx extension, not an implementation choice."
+    },
+    {
+      "excerpt": "The Zdinx extension provides analogous double-precision floating-point instructions.",
+      "line_number": 113,
+      "reason": "This describes the functionality of the Zdinx extension, not an implementation choice."
+    }
+  ]
+}
+```

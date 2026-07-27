@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_028",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "Implementations may contain additional CSRs, accessible by some subset of the privilege levels using the CSR instructions described in Volume I.",
+      "line_number": 8,
+      "parameter_name": "ADDITIONAL_CSRS_ACCESSIBILITY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The implementation has the choice to include additional CSRs and determine which privilege levels can access them."
+    },
+    {
+      "excerpt": "The top two bits (csr[11:10]) indicate whether the register is read/write (`00`,`01`, or `10`) or read-only (`11`).",
+      "line_number": 20,
+      "parameter_name": "CSR_ACCESSIBILITY",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The accessibility of CSRs is determined by the upper bits of the CSR address, which is an implementation choice."
+    },
+    {
+      "excerpt": "Implementations should raise illegal-instruction exceptions on machine-mode access to the latter set of registers.",
+      "line_number": 36,
+      "parameter_name": "ILLEGAL_INSTRUCTION_ON_MACHINE_MODE_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to raise illegal-instruction exceptions on specific CSR accesses is left to the implementation."
+    },
+    {
+      "excerpt": "Implementations will not raise an exception on writes of unsupported values to a *WARL* field.",
+      "line_number": 127,
+      "parameter_name": "WARL_WRITE_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The behavior of WARL fields regarding unsupported writes is implementation-defined, making it a parameter."
+    }
+  ]
+}

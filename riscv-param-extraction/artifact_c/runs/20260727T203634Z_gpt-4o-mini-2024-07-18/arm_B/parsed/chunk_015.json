@@ -1,0 +1,87 @@
+{
+  "chunk_id": "chunk_015",
+  "arm": "B",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "CSR `mtval` must not be read-only zero",
+      "line_number": 12,
+      "parameter_name": "MTVAL_ACCESS",
+      "existing_udb_name": "MTVAL_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether mtval is read-only or read-write, as it must not be read-only zero."
+    },
+    {
+      "excerpt": "standard page-based address translation must be supported, either Sv32 for RV32, or a minimum of Sv39 for RV64",
+      "line_number": 12,
+      "parameter_name": "PAGE_BASED_TRANSLATION",
+      "existing_udb_name": "PAGE_BASED_TRANSLATION",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The implementation can choose between supporting Sv32 or Sv39 for address translation based on the architecture (RV32 or RV64)."
+    },
+    {
+      "excerpt": "The VSXL field controls the effective XLEN for VS-mode (known as VSXLEN), which may differ from the XLEN for HS-mode (HSXLEN).",
+      "line_number": 120,
+      "parameter_name": "VSXLEN_CONTROL",
+      "existing_udb_name": "VSXLEN_CONTROL",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The VSXL field is WARL, and its implementation can vary, allowing different values for VSXLEN based on the implementation."
+    },
+    {
+      "excerpt": "The VGEIN (Virtual Guest External Interrupt Number) field selects a guest external interrupt source for VS-level external interrupts.",
+      "line_number": 120,
+      "parameter_name": "VGEIN_SOURCE",
+      "existing_udb_name": "VGEIN_SOURCE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "VGEIN is a WARL field that must hold values between zero and the maximum guest external interrupt number (GEILEN), which is implementation-defined."
+    },
+    {
+      "excerpt": "The PBMTE bit controls whether the Svpbmt extension is available for use in VS-stage address translation.",
+      "line_number": 120,
+      "parameter_name": "PBMTE_CONTROL",
+      "existing_udb_name": "PBMTE_CONTROL",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to enable or disable the Svpbmt extension for VS-stage address translation based on the PBMTE bit."
+    },
+    {
+      "excerpt": "The number of bits implemented in `hgeip` and `hgeie` for guest external interrupts is UNSPECIFIED and may be zero.",
+      "line_number": 120,
+      "parameter_name": "GEILEN",
+      "existing_udb_name": "GEILEN",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The implementation can choose the number of bits for guest external interrupts, which is unspecified and may be zero."
+    },
+    {
+      "excerpt": "The number of VMID bits is UNSPECIFIED and may be zero.",
+      "line_number": 120,
+      "parameter_name": "VMIDLEN",
+      "existing_udb_name": "VMIDLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The implementation can choose the number of bits for VMID, which is unspecified and may be zero."
+    },
+    {
+      "excerpt": "The `hgatp` register is an HSXLEN-bit read/write register, formatted as shown in <<rv32hgatp>> for HSXLEN=32 and <<rv64hgatp>> for HSXLEN=64.",
+      "line_number": 120,
+      "parameter_name": "HGATP_SIZE",
+      "existing_udb_name": "HGATP_SIZE",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose the size of the `hgatp` register based on whether HSXLEN is 32 or 64."
+    }
+  ]
+}

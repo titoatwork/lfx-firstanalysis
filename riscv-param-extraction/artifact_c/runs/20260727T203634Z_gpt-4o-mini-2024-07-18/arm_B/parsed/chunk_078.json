@@ -1,0 +1,37 @@
+{
+  "chunk_id": "chunk_078",
+  "arm": "B",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "Pointer masking is controlled separately for different privilege modes.",
+      "line_number": 197,
+      "parameter_name": "PM_PRIVILEGE_MODE_CONTROL",
+      "existing_udb_name": "PM_PRIVILEGE_MODE_CONTROL",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The implementation can choose how pointer masking is applied across different privilege modes, making it a direct implementation choice."
+    },
+    {
+      "excerpt": "The current standard only supports PMLEN=XLEN-48 (i.e., PMLEN=16 in RV64) and PMLEN=XLEN-57 (i.e., PMLEN=7 in RV64).",
+      "line_number": 165,
+      "parameter_name": "PMLEN_SUPPORTED_VALUES",
+      "existing_udb_name": "PMLEN_SUPPORTED_VALUES",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The set of legal values for PMLEN is defined as a WARL field, allowing implementations to support these specific values."
+    },
+    {
+      "excerpt": "Different privilege modes may have different pointer masking settings active simultaneously and the hardware will automatically apply the pointer masking settings of the currently active privilege mode.",
+      "line_number": 197,
+      "parameter_name": "PM_ACTIVE_MODE_SETTINGS",
+      "existing_udb_name": "PM_ACTIVE_MODE_SETTINGS",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to have different pointer masking settings for different privilege modes, which is a design-time decision."
+    }
+  ]
+}

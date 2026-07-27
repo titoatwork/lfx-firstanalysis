@@ -1,0 +1,27 @@
+```json
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE]\n====\nWe considered but did not include a \"store instruction word\" instruction as in cite:[majc]. JIT compilers may generate a large trace of instructions before a single FENCE.I, and amortize any instruction cache snooping/invalidation overhead by writing translated instructions to memory regions that are known not to reside in the I-cache.\n====",
+      "line_number": 6,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a consideration, not an architectural requirement."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nThe FENCE.I instruction was designed to support a wide variety of implementations. A simple implementation can flush the local instruction cache and the instruction pipeline when the FENCE.I is executed. A more complex implementation might snoop the instruction (data) cache on every data (instruction) cache miss, or use an inclusive unified private L2 cache to invalidate lines from the primary instruction cache when they are being written by a local store instruction. If instruction and data caches are kept coherent in this way, or if the memory system consists of only uncached RAMs, then just the fetch pipeline needs to be flushed at a FENCE.I.\n====",
+      "line_number": 12,
+      "reason": "This text is also inside a [NOTE] block and is non-normative. It describes implementation strategies rather than architectural parameters."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nIn the following litmus test, for example, the outcome `a0`=1, `a1`=0 on the consumer hart is forbidden, assuming little-endian RV32IC harts:\n====",
+      "line_number": 54,
+      "reason": "This is a non-normative example inside a [NOTE] block, which does not define an architectural parameter."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nBecause FENCE.I only orders stores with a hart's own instruction fetches, application code should only rely upon FENCE.I if the application thread will not be migrated to a different hart. The EEI can provide mechanisms for efficient multiprocessor instruction-stream synchronization.\n====",
+      "line_number": 118,
+      "reason": "This text is also inside a [NOTE] block and is non-normative. It provides guidance rather than defining a parameter."
+    }
+  ]
+}
+```

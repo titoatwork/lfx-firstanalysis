@@ -1,0 +1,63 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The maximum size in bits of a vector element that any operation can produce or consume, _ELEN_ >= 8, which must be a power of 2.",
+      "line_number": 3394,
+      "parameter_name": "ELEN",
+      "existing_udb_name": "ELEN",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "ELEN is a direct implementation parameter: the maximum element size. It has constraints (>= 8, power of 2) but the specific value is chosen by the implementer."
+    },
+    {
+      "excerpt": "The number of bits in a single vector register, _VLEN_ >= ELEN, which must be a power of 2, and must be no greater than 2^16.",
+      "line_number": 3394,
+      "parameter_name": "VLEN",
+      "existing_udb_name": "VLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "VLEN is a direct implementation parameter: the size of a vector register. It has constraints (>= ELEN, power of 2, <= 2^16) but the specific value is chosen by the implementer."
+    },
+    {
+      "excerpt": "The implementation must produce a result equivalent to a reduction tree composed of binary operator nodes, with the inputs being elements from the source vector register group (`vs2`) and the source scalar value (`vs1[0]`).",
+      "line_number": 5390,
+      "parameter_name": "HW_VREDUSUM_REDUCTION_TREE",
+      "existing_udb_name": "HW_VREDUSUM_REDUCTION_TREE",
+      "class": "SW_RULE",
+      "value_type": "enum",
+      "confidence": "medium",
+      "reasoning": "The behavior of the reduction operation is implementation-defined, but the outcome is deterministic if software follows the specified reduction tree structure."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[#norm:vfwmul_op]",
+      "line_number": 3386,
+      "reason": "This text is inside a normative block and does not define an architectural parameter."
+    },
+    {
+      "excerpt": "NOTE: While we considered using the two unused rounding modes in the scalar FP FMA encoding to provide a few non-destructive FMAs, these would complicate microarchitectures by being the only maskable operation with three inputs and separate output.",
+      "line_number": 3390,
+      "reason": "This text is a note and does not define an architectural parameter."
+    },
+    {
+      "excerpt": "The `vcompress` instruction is encoded as an unmasked instruction (`vm=1`).",
+      "line_number": 5390,
+      "reason": "This is a fixed requirement about the encoding of the instruction, not an implementation choice."
+    },
+    {
+      "excerpt": "The `vfirst` instruction finds the lowest-numbered active element of the source mask vector that has the value 1 and writes that element's index to a GPR.",
+      "line_number": 5390,
+      "reason": "This describes the behavior of the instruction rather than an implementation choice."
+    },
+    {
+      "excerpt": "The `vmv<nr>r.v` instructions copy whole vector registers (i.e., all VLEN bits) and can copy whole vector register groups.",
+      "line_number": 5390,
+      "reason": "This is a description of the instruction's functionality, not an architectural parameter."
+    }
+  ]
+}
+```

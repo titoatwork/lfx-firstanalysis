@@ -1,0 +1,37 @@
+{
+  "chunk_id": "chunk_067",
+  "arm": "B",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "If jvt.mode is a reserved value, then _cm.jt_ is also reserved. In the future other defined values of jvt.mode may change the behaviour of _cm.jt_.",
+      "line_number": 258,
+      "parameter_name": "JVT_MODE",
+      "existing_udb_name": "JVT_MODE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The jvt.mode field is WARL, meaning the set of legal values can vary by implementation. The parameter is the set of modes that can be programmed."
+    },
+    {
+      "excerpt": "The jvt register is an XLEN-bit *WARL* read/write register that holds the jump table configuration, consisting of the jump table base address (BASE) and the jump table mode (MODE).",
+      "line_number": 258,
+      "parameter_name": "JVT_BASE",
+      "existing_udb_name": "JVT_BASE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The BASE field in the jvt register is WARL, indicating that the specific values it can hold are implementation-defined."
+    },
+    {
+      "excerpt": "The total stack adjustment represents the total size of the stack frame, which is _stack_adj_base_ added to _spimm_ scaled by 16, as defined above.",
+      "line_number": 258,
+      "parameter_name": "HW_STACK_ADJ",
+      "existing_udb_name": "HW_STACK_ADJ",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The stack adjustment is a direct implementation choice based on the number of registers being pushed or popped, and the specific value is determined by the implementer."
+    }
+  ]
+}

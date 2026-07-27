@@ -1,0 +1,57 @@
+{
+  "chunk_id": "chunk_057",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "A landing pad may be optionally associated with a 20-bit label.",
+      "line_number": 56,
+      "parameter_name": "LPAD_LABEL_WIDTH",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The width of the label associated with the LPAD instruction is a direct implementation choice, specified as 20 bits."
+    },
+    {
+      "excerpt": "The `ELP` state can be one of: * 0 - `NO_LP_EXPECTED` * 1 - `LP_EXPECTED`",
+      "line_number": 104,
+      "parameter_name": "ELP_STATE_VALUES",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The ELP state is a WARL field with specific legal values defined for its operation, indicating the expected landing pad state."
+    },
+    {
+      "excerpt": "The `ssp` CSR is an unprivileged read-write (URW) CSR that reads and writes `XLEN` low order bits of the shadow stack pointer (`ssp`).",
+      "line_number": 678,
+      "parameter_name": "SSP_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The `ssp` CSR's access type (read-write) is a direct implementation choice, indicating whether it can be modified or not."
+    },
+    {
+      "excerpt": "The `SSPUSH` instruction and its compressed form `C.SSPUSH` can be used to push a link register on the shadow stack.",
+      "line_number": 748,
+      "parameter_name": "SSPUSH_REGISTER_OPTIONS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The `SSPUSH` instruction allows specific registers (`x1` and `x5`) to be used, which is an implementation-defined choice."
+    },
+    {
+      "excerpt": "The `SSPOPCHK` instruction, and its compressed form `C.SSPOPCHK`, can be used to pop the shadow return address value from the shadow stack and check that the value matches the contents of the link register.",
+      "line_number": 823,
+      "parameter_name": "SSPOPCHK_REGISTER_OPTIONS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The `SSPOPCHK` instruction specifies which registers can be used for popping the shadow return address, indicating an implementation-defined choice."
+    }
+  ]
+}

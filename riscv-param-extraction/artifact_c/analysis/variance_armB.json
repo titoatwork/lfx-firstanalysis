@@ -1,0 +1,34 @@
+{
+  "arm": "B",
+  "run_a": "20260727T201408Z_gpt-4o-mini-2024-07-18",
+  "run_b": "20260727T203634Z_gpt-4o-mini-2024-07-18",
+  "gold_hits_a": [
+    "ELEN",
+    "MTVEC_ACCESS",
+    "NUM_PMP_ENTRIES",
+    "PMP_GRANULARITY",
+    "VLEN"
+  ],
+  "gold_hits_b": [
+    "ELEN",
+    "MTVEC_ACCESS",
+    "MTVEC_MODES",
+    "M_MODE_ENDIANNESS",
+    "NUM_PMP_ENTRIES",
+    "PMP_GRANULARITY",
+    "VLEN"
+  ],
+  "both": [
+    "ELEN",
+    "MTVEC_ACCESS",
+    "NUM_PMP_ENTRIES",
+    "PMP_GRANULARITY",
+    "VLEN"
+  ],
+  "only_a": [],
+  "only_b": [
+    "MTVEC_MODES",
+    "M_MODE_ENDIANNESS"
+  ],
+  "stability_pct": 71.4
+}

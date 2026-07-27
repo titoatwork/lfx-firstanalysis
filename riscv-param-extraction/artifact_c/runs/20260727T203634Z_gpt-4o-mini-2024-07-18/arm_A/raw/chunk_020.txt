@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The `mtvec` register is an MXLEN-bit *WARL* read/write register that holds trap vector configuration, consisting of a vector base address (BASE) and a vector mode (MODE).",
+      "line_number": 1219,
+      "parameter_name": "MTVEC_MODES",
+      "existing_udb_name": "MTVEC_MODES",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The mtvec register is a WARL field, and the set of values it may hold for the MODE field can vary by implementation."
+    },
+    {
+      "excerpt": "The MBE, SBE, and UBE bits in `mstatus` and `mstatush` are *WARL* fields that control the endianness of memory accesses other than instruction fetches.",
+      "line_number": 679,
+      "parameter_name": "M_MODE_ENDIANNESS",
+      "existing_udb_name": "M_MODE_ENDIANNESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether MBE, SBE, and UBE are read-only or read-write, which controls the endianness of memory accesses."
+    },
+    {
+      "excerpt": "For RV64, if S-mode is not supported, then SXL is read-only zero. Otherwise, it is a *WARL* field that encodes the current value of SXLEN.",
+      "line_number": 1234,
+      "parameter_name": "SXL_ACCESS",
+      "existing_udb_name": "SXL_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether SXL is read-only or writable, which directly affects the access to SXLEN."
+    },
+    {
+      "excerpt": "When MPRV=1, load and store memory addresses are translated and protected, and endianness is applied, as though the current privilege mode were set to MPP.",
+      "line_number": 1235,
+      "parameter_name": "HW_MSTATUS_MPRV",
+      "existing_udb_name": "HW_MSTATUS_MPRV",
+      "class": "SW_RULE",
+      "value_type": "binary",
+      "confidence": "medium",
+      "reasoning": "The behavior of memory accesses under MPRV is implementation-defined, but the outcome is deterministic if software follows the spec rules."
+    },
+    {
+      "excerpt": "The `mstatus` fields MIE and MPRV are reset to 0.",
+      "line_number": 3340,
+      "parameter_name": "HW_MSTATUS_RESET_VALUES",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The reset values for MIE and MPRV are implementation choices that can vary, making them architectural parameters."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] The base width can be quickly ascertained using branches on the sign of the returned `misa` value, and possibly a shift left by one and a second branch on the sign.",
+      "line_number": 22,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "The `misa` CSR is a *WARL* read-write register reporting the ISA supported by the hart.",
+      "line_number": 3340,
+      "reason": "This is a fixed requirement ('must') that applies to all implementations and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "The `mstatus` register keeps track of and controls the hart’s current operating state.",
+      "line_number": 679,
+      "reason": "This describes the function of the `mstatus` register, not an implementation choice or parameter."
+    },
+    {
+      "excerpt": "The `mepc` register is an MXLEN-bit read/write register formatted as shown in <<norm:mepc_enc_img>>.",
+      "line_number": 3340,
+      "reason": "This is a fixed requirement that applies to all implementations and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "The `mtime` register has a 64-bit precision on all RV32 and RV64 systems.",
+      "line_number": 3340,
+      "reason": "This is a fixed requirement that applies to all implementations and does not represent an implementation choice."
+    }
+  ]
+}
+```

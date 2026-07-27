@@ -1,0 +1,87 @@
+{
+  "chunk_id": "chunk_055",
+  "arm": "B",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "When SXLEN=64, it is a WARL field that encodes the current value of UXLEN.",
+      "line_number": 69,
+      "parameter_name": "UXL",
+      "existing_udb_name": "UXL",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The UXL field is a WARL field, meaning its legal values can vary by implementation, making it an architectural parameter."
+    },
+    {
+      "excerpt": "An implementation may make UXL be a read-only field whose value always ensures that UXLEN=SXLEN.",
+      "line_number": 69,
+      "parameter_name": "UXL_ACCESS",
+      "existing_udb_name": "UXL_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether UXL is read-only or read-write, which is a binary choice about the mutability of the field."
+    },
+    {
+      "excerpt": "The UBE bit is a WARL field that controls the endianness of explicit memory accesses made from U-mode.",
+      "line_number": 118,
+      "parameter_name": "UBE",
+      "existing_udb_name": "UBE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The UBE field is a WARL field, meaning its legal values can vary by implementation, making it an architectural parameter."
+    },
+    {
+      "excerpt": "The S-mode-disable-trap (`SDT`) bit is a WARL field introduced by the Ssdbltrp extension to address double trap.",
+      "line_number": 179,
+      "parameter_name": "SDT",
+      "existing_udb_name": "SDT",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The SDT field is a WARL field, meaning its legal values can vary by implementation, making it an architectural parameter."
+    },
+    {
+      "excerpt": "The `stvec` register is an SXLEN-bit read/write register that holds trap vector configuration, consisting of a vector base address (BASE) and a vector mode (MODE).",
+      "line_number": 220,
+      "parameter_name": "STVEC_MODE",
+      "existing_udb_name": "STVEC_MODE",
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The MODE field in the `stvec` register can vary by implementation, indicating the architectural choice of how traps are handled."
+    },
+    {
+      "excerpt": "The `satp` CSR is an SXLEN-bit read/write register, formatted as shown in <<rv32satp>> for SXLEN=32 and <<rv64satp>> for SXLEN=64, which controls supervisor-mode address translation and protection.",
+      "line_number": 1000,
+      "parameter_name": "SATP_MODE",
+      "existing_udb_name": "SATP_MODE",
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The MODE field in the `satp` register can vary by implementation, indicating the architectural choice of address translation schemes."
+    },
+    {
+      "excerpt": "The `srmcfg` register is an SXLEN-bit read/write register used to configure a Resource Control ID (`RCID`) and a Monitoring Counter ID (`MCID`).",
+      "line_number": 2600,
+      "parameter_name": "RCID",
+      "existing_udb_name": "RCID",
+      "class": "NORM_CSR_RW",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The RCID field is a configurable parameter that can vary by implementation, making it an architectural parameter."
+    },
+    {
+      "excerpt": "The `MCID` is used to identify a counter to monitor resource usage.",
+      "line_number": 2600,
+      "parameter_name": "MCID",
+      "existing_udb_name": "MCID",
+      "class": "NORM_CSR_RW",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The MCID field is a configurable parameter that can vary by implementation, making it an architectural parameter."
+    }
+  ]
+}

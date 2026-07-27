@@ -1,0 +1,37 @@
+{
+  "chunk_id": "chunk_060",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The number of element groups to be processed is `vl`/`EGS`.",
+      "line_number": 3340,
+      "parameter_name": "EGS",
+      "existing_udb_name": "EGS",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "EGS is a direct implementation choice that defines how many element groups are processed based on the vector length `vl`. This is not controlled by any CSR field."
+    },
+    {
+      "excerpt": "For element-group instructions, `LMUL`*`VLEN` must always be at least as large as `EGW`.",
+      "line_number": 3340,
+      "parameter_name": "EGW",
+      "existing_udb_name": "EGW",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "EGW is a direct implementation choice that specifies the element group width, which must be supported by the product of `LMUL` and `VLEN`."
+    },
+    {
+      "excerpt": "The required `SEW` for each cryptographic instruction was chosen to match what is typically needed for other instructions when implementing the targeted algorithm.",
+      "line_number": 3340,
+      "parameter_name": "SEW",
+      "existing_udb_name": "SEW",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "SEW is a direct implementation choice that defines the effective element width for cryptographic instructions, which can vary based on the algorithm."
+    }
+  ]
+}

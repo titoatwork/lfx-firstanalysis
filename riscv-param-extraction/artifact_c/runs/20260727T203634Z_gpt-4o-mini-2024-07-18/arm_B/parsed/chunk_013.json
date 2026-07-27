@@ -1,0 +1,57 @@
+{
+  "chunk_id": "chunk_013",
+  "arm": "B",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The F extension adds 32 floating-point registers, `f0-f31`, each 32 bits wide.",
+      "line_number": 8,
+      "parameter_name": "NUM_FLOATING_POINT_REGISTERS",
+      "existing_udb_name": "NUM_FLOATING_POINT_REGISTERS",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The number of floating-point registers is a direct implementation choice, specified as 32, and is not controlled by any CSR field."
+    },
+    {
+      "excerpt": "The floating-point control and status register, `fcsr`, is a 32-bit read/write register that selects the dynamic rounding mode for floating-point arithmetic operations.",
+      "line_number": 15,
+      "parameter_name": "FCSR_ACCESS",
+      "existing_udb_name": "FCSR_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether the fcsr register is read-only or read-write. This is a binary choice about the mutability of the register."
+    },
+    {
+      "excerpt": "Rounding modes are encoded as shown in <<norm:dyn_round_enc>>.",
+      "line_number": 30,
+      "parameter_name": "ROUNDING_MODES",
+      "existing_udb_name": "ROUNDING_MODES",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The rounding modes are WARL, and the set of supported rounding modes can vary by implementation. The parameter is the set of legal rounding mode values."
+    },
+    {
+      "excerpt": "Floating-point operations use either a static rounding mode encoded in the instruction, or a dynamic rounding mode held in `frm`.",
+      "line_number": 30,
+      "parameter_name": "DYNAMIC_ROUNDING_MODE",
+      "existing_udb_name": "DYNAMIC_ROUNDING_MODE",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether to use a dynamic rounding mode or a static rounding mode. This is a binary choice about the rounding mode behavior."
+    },
+    {
+      "excerpt": "If the rounded result is not representable in the destination format, it is clipped to the nearest value and the invalid flag is set.",
+      "line_number": 45,
+      "parameter_name": "FCVT_INVALID_FLAG_BEHAVIOR",
+      "existing_udb_name": "FCVT_INVALID_FLAG_BEHAVIOR",
+      "class": "SW_RULE",
+      "value_type": "enum",
+      "confidence": "medium",
+      "reasoning": "The behavior of the FCVT instructions regarding invalid flags is implementation-defined, but the outcome is deterministic if software follows the spec rules."
+    }
+  ]
+}

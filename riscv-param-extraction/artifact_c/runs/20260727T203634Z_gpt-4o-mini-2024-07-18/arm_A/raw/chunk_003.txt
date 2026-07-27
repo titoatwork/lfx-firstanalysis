@@ -1,0 +1,22 @@
+```json
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The *zext.h* mnemonic corresponds to different instruction encodings in RV32 and RV64.",
+      "line_number": 3400,
+      "reason": "This is a descriptive note about the mnemonic and its encodings, not an architectural parameter."
+    },
+    {
+      "excerpt": "This instruction is available only on RV32.",
+      "line_number": 3435,
+      "reason": "This is a fixed requirement about the availability of the instruction, not an implementation choice."
+    },
+    {
+      "excerpt": "This instruction is useful for implementing the SHA3 cryptographic hash function on a 32-bit architecture, as it implements the bit-interleaving operation used to speed up the 64-bit rotations directly.",
+      "line_number": 3440,
+      "reason": "This is a software hint and does not define an architectural parameter."
+    }
+  ]
+}
+```

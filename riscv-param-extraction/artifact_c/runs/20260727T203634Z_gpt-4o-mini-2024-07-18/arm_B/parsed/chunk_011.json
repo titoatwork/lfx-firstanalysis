@@ -1,0 +1,27 @@
+{
+  "chunk_id": "chunk_011",
+  "arm": "B",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The implemented number and width of these additional counters, and the set of events they count, are platform-specific.",
+      "line_number": 197,
+      "parameter_name": "NUM_HPM_COUNTERS",
+      "existing_udb_name": "NUM_HPM_COUNTERS",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number and width of the additional hardware performance counters are implementation choices, making this a direct architectural parameter."
+    },
+    {
+      "excerpt": "The execution environment should provide a means to determine the number and width of the implemented counters, and an interface to configure the events to be counted by each counter.",
+      "line_number": 199,
+      "parameter_name": "HPM_EVENT_CONFIG",
+      "existing_udb_name": "HPM_EVENT_CONFIG",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The ability to configure the events counted by each performance counter is an implementation choice, thus qualifying as a direct architectural parameter."
+    }
+  ]
+}

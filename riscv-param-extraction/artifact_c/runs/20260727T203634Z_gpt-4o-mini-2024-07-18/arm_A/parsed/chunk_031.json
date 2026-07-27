@@ -1,0 +1,37 @@
+{
+  "chunk_id": "chunk_031",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "Implementations might provide anywhere from 1 to 3 privilege modes trading off reduced isolation for lower implementation cost.",
+      "line_number": 157,
+      "parameter_name": "NUM_PRIVILEGE_MODES",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of privilege modes (1 to 3) is a direct implementation choice that affects system design and isolation."
+    },
+    {
+      "excerpt": "The machine level has the highest privileges and is the only mandatory privilege level for a RISC-V hardware platform.",
+      "line_number": 145,
+      "parameter_name": "M_MODE_MANDATORY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The requirement that M-mode must be implemented is a design choice that affects all implementations, making it a binary parameter."
+    },
+    {
+      "excerpt": "Each privilege level has a core set of privileged ISA extensions with optional extensions and variants.",
+      "line_number": 149,
+      "parameter_name": "PRIVILEGE_LEVEL_EXTENSIONS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "medium",
+      "reasoning": "The presence of optional extensions and variants for each privilege level indicates implementation choices that can vary across different designs."
+    }
+  ]
+}

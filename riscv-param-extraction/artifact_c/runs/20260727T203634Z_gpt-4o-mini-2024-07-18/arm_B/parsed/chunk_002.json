@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_002",
+  "arm": "B",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The bitmanip extensions are defined for RV32 and RV64.",
+      "line_number": 12,
+      "parameter_name": "BITMANIP_ARCHITECTURES",
+      "existing_udb_name": "BITMANIP_ARCHITECTURES",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The choice of supporting either RV32 or RV64 for the bitmanip extensions is left to the implementer."
+    },
+    {
+      "excerpt": "The shift and add instructions do a left shift of 1, 2, or 3 because these are commonly found in real-world code.",
+      "line_number": 20,
+      "parameter_name": "MAX_LEFT_SHIFT",
+      "existing_udb_name": "MAX_LEFT_SHIFT",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The maximum left shift value (1, 2, or 3) is an implementation choice that can vary."
+    },
+    {
+      "excerpt": "The implementation chooses whether mtvec is read-only or read-write.",
+      "line_number": 1217,
+      "parameter_name": "MTVEC_ACCESS",
+      "existing_udb_name": "MTVEC_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The access type of the mtvec register (read-only or read-write) is a choice made by the implementer."
+    },
+    {
+      "excerpt": "The implementation may choose to implement the clmul instruction.",
+      "line_number": 200,
+      "parameter_name": "HW_CLMUL_SUPPORT",
+      "existing_udb_name": "HW_CLMUL_SUPPORT",
+      "class": "SW_RULE",
+      "value_type": "binary",
+      "confidence": "medium",
+      "reasoning": "Whether the clmul instruction is supported is implementation-defined, but software can handle it deterministically."
+    }
+  ]
+}

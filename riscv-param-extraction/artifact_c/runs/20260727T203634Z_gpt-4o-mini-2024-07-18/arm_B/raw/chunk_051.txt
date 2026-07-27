@@ -1,0 +1,153 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "For RV64 harts, this extension adds four new 64-bit CSRs at machine level: `mstateen0` (Machine State Enable 0), `mstateen1`, `mstateen2`, and `mstateen3`.",
+      "line_number": 38,
+      "parameter_name": "NUM_MSTATEEN_CSRS",
+      "existing_udb_name": "NUM_MSTATEEN_CSRS",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The number of machine-level state enable CSRs is a direct implementation choice, and the specific number is defined as four."
+    },
+    {
+      "excerpt": "If supervisor mode is implemented, another four CSRs are defined at supervisor level: `sstateen0`, `sstateen1`, `sstateen2`, and `sstateen3`.",
+      "line_number": 42,
+      "parameter_name": "NUM_SSTATEEN_CSRS",
+      "existing_udb_name": "NUM_SSTATEEN_CSRS",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The number of supervisor-level state enable CSRs is a direct implementation choice, and the specific number is defined as four."
+    },
+    {
+      "excerpt": "And if the hypervisor extension is implemented, another set of CSRs is added: `hstateen0`, `hstateen1`, `hstateen2`, and `hstateen3`.",
+      "line_number": 46,
+      "parameter_name": "NUM_HSTATEEN_CSRS",
+      "existing_udb_name": "NUM_HSTATEEN_CSRS",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The number of hypervisor-level state enable CSRs is a direct implementation choice, and the specific number is defined as four."
+    },
+    {
+      "excerpt": "Each bit of a `stateen` CSR controls less-privileged access to an extension's state.",
+      "line_number": 66,
+      "parameter_name": "STATEEN_CSR_BITS",
+      "existing_udb_name": "STATEEN_CSR_BITS",
+      "class": "NORM_CSR_WARL",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The bits in the `stateen` CSRs are WARL, allowing for implementation-defined access control to various states."
+    },
+    {
+      "excerpt": "The C bit controls access to any and all custom state.",
+      "line_number": 134,
+      "parameter_name": "C_BIT_ACCESS",
+      "existing_udb_name": "C_BIT_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether the C bit is read-only or read-write, controlling access to custom state."
+    },
+    {
+      "excerpt": "The FCSR bit controls access to `fcsr` for the case when floating-point instructions operate on `x` registers instead of `f` registers.",
+      "line_number": 138,
+      "parameter_name": "FCSR_BIT_ACCESS",
+      "existing_udb_name": "FCSR_BIT_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether the FCSR bit is read-only or read-write, controlling access to the `fcsr`."
+    },
+    {
+      "excerpt": "The JVT bit controls access to the `jvt` CSR provided by the Zcmt extension.",
+      "line_number": 142,
+      "parameter_name": "JVT_BIT_ACCESS",
+      "existing_udb_name": "JVT_BIT_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether the JVT bit is read-only or read-write, controlling access to the `jvt` CSR."
+    },
+    {
+      "excerpt": "The SE0 bit in `mstateen0` controls access to the `hstateen0`, `hstateen0h`, and the `sstateen0` CSRs.",
+      "line_number": 146,
+      "parameter_name": "SE0_BIT_ACCESS",
+      "existing_udb_name": "SE0_BIT_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether the SE0 bit is read-only or read-write, controlling access to multiple state enable CSRs."
+    },
+    {
+      "excerpt": "The ENVCFG bit in `mstateen0` controls access to the `henvcfg`, `henvcfgh`, and the `senvcfg` CSRs.",
+      "line_number": 150,
+      "parameter_name": "ENVCFG_BIT_ACCESS",
+      "existing_udb_name": "ENVCFG_BIT_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether the ENVCFG bit is read-only or read-write, controlling access to the environment configuration CSRs."
+    },
+    {
+      "excerpt": "The IMSIC bit in `mstateen0` controls access to the IMSIC state, including CSRs `stopei` and `vstopei`, provided by the Ssaia extension.",
+      "line_number": 154,
+      "parameter_name": "IMSIC_BIT_ACCESS",
+      "existing_udb_name": "IMSIC_BIT_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether the IMSIC bit is read-only or read-write, controlling access to the IMSIC state."
+    },
+    {
+      "excerpt": "The AIA bit in `mstateen0` controls access to all state introduced by the Ssaia extension and not controlled by either the CSRIND or the IMSIC bits.",
+      "line_number": 158,
+      "parameter_name": "AIA_BIT_ACCESS",
+      "existing_udb_name": "AIA_BIT_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether the AIA bit is read-only or read-write, controlling access to the AIA state."
+    },
+    {
+      "excerpt": "The CONTEXT bit in `mstateen0` controls access to the `scontext` and `hcontext` CSRs provided by the Sdtrig extension.",
+      "line_number": 162,
+      "parameter_name": "CONTEXT_BIT_ACCESS",
+      "existing_udb_name": "CONTEXT_BIT_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether the CONTEXT bit is read-only or read-write, controlling access to the context CSRs."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The implementation of optional RISC-V extensions has the potential to open covert channels between separate user threads, or between separate guest OSes running under a hypervisor.",
+      "line_number": 1,
+      "reason": "This is a general statement about the implications of implementing optional extensions, not an architectural parameter."
+    },
+    {
+      "excerpt": "When this extension is not implemented, all state added by an extension is accessible as defined by that extension.",
+      "line_number": 66,
+      "reason": "This describes behavior when the extension is not implemented, not an implementation choice."
+    },
+    {
+      "excerpt": "Software should ensure that all writable bits of `sstateen` CSRs are initialized to zeros when an OS at supervisor level is first entered.",
+      "line_number": 290,
+      "reason": "This is a recommendation for software behavior, not an architectural parameter."
+    },
+    {
+      "excerpt": "If machine level sets any writable `mstateen` bits to nonzero, it must initialize the matching `hstateen` CSRs, if they exist, by writing zeros to them.",
+      "line_number": 284,
+      "reason": "This describes a requirement for software behavior, not an implementation choice."
+    },
+    {
+      "excerpt": "The exact number four is an attempted compromise between providing too few bits on the one hand and going overboard with CSRs that will never be used on the other.",
+      "line_number": 66,
+      "reason": "This is a subjective statement about the design decision, not a parameter."
+    }
+  ]
+}
+```

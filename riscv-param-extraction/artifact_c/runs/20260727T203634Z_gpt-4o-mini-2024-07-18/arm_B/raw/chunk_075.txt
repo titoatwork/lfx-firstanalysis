@@ -1,0 +1,38 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The duration of a PAUSE instruction's effect may vary significantly within and among implementations.",
+      "line_number": 10,
+      "parameter_name": "PAUSE_DURATION",
+      "existing_udb_name": "PAUSE_DURATION",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The duration of the PAUSE instruction's effect is an implementation choice that can vary, making it a direct parameter of the implementation."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "Software can use the PAUSE instruction to reduce energy consumption while executing spin-wait code sequences.",
+      "line_number": 5,
+      "reason": "This text describes a software technique and its benefits, not an implementation choice."
+    },
+    {
+      "excerpt": "In spin-wait loops in portable code, however, only one PAUSE instruction should be used before re-evaluating loop conditions.",
+      "line_number": 15,
+      "reason": "This is a recommendation for software behavior, not an architectural parameter."
+    },
+    {
+      "excerpt": "PAUSE is encoded as a FENCE instruction with _pred_=`W`, _succ_=`0`, _fm_=`0`, _rd_=`x0`, and _rs1_=`x0`.",
+      "line_number": 20,
+      "reason": "This describes the encoding of the PAUSE instruction, which is a fixed requirement, not an implementation choice."
+    },
+    {
+      "excerpt": "The choice of a predecessor set of W is arbitrary, since the successor set is null.",
+      "line_number": 30,
+      "reason": "This indicates that the predecessor set is arbitrary but does not define a parameter since it does not imply a choice for implementations."
+    }
+  ]
+}
+```

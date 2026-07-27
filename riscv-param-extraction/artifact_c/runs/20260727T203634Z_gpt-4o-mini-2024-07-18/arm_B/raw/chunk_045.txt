@@ -1,0 +1,113 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The `seed` CSR provides an interface to a NIST SP 800-90B compliant physical Entropy Source (ES).",
+      "line_number": 3453,
+      "parameter_name": "SEED_CSR_INTERFACE",
+      "existing_udb_name": "SEED_CSR_INTERFACE",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The `seed` CSR is a direct implementation choice that provides an interface to an entropy source, which is not controlled by any CSR field."
+    },
+    {
+      "excerpt": "An implementation may safely set reserved and custom bits to zeros.",
+      "line_number": 3485,
+      "parameter_name": "CUSTOM_BITS_SETTING",
+      "existing_udb_name": "CUSTOM_BITS_SETTING",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation has the choice to set reserved and custom bits to zero, which is a design decision."
+    },
+    {
+      "excerpt": "The status bits returned in `seed[31:30]` = `OPST` may be `ES16` (10), indicating successful polling, or one of three entropy polling failure statuses `BIST` (00), `WAIT` (01), or `DEAD` (11).",
+      "line_number": 3490,
+      "parameter_name": "OPST_STATUS_BITS",
+      "existing_udb_name": "OPST_STATUS_BITS",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The `OPST` field is WARL, and the set of values it can take (BIST, WAIT, ES16, DEAD) varies by implementation."
+    },
+    {
+      "excerpt": "The `seed` CSR is also access controlled by execution mode, and attempted read or write access will raise an illegal-instruction exception outside M mode unless access is explicitly granted.",
+      "line_number": 3488,
+      "parameter_name": "SEED_CSR_ACCESS_CONTROL",
+      "existing_udb_name": "SEED_CSR_ACCESS_CONTROL",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The access control to the `seed` CSR based on execution mode is a design choice left to the implementer."
+    },
+    {
+      "excerpt": "An implementation of the entropy source should meet at least one of the following requirements sets in order to be considered a secure and safe design.",
+      "line_number": 3510,
+      "parameter_name": "ENTROPY_SOURCE_REQUIREMENTS",
+      "existing_udb_name": "ENTROPY_SOURCE_REQUIREMENTS",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The choice of which set of requirements to meet for the entropy source is left to the implementer."
+    },
+    {
+      "excerpt": "Implementations may implement `mseccfg` such that `[s,u]seed` is a read-only constant value `0`.",
+      "line_number": 3540,
+      "parameter_name": "MSECCFG_SEED_ACCESS",
+      "existing_udb_name": "MSECCFG_SEED_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice of whether the `[s,u]seed` fields are read-only or not is an implementation-defined decision."
+    },
+    {
+      "excerpt": "A virtual source is intended especially for guest operating systems, sandboxes, emulators, and similar use cases.",
+      "line_number": 3560,
+      "parameter_name": "VIRTUAL_SOURCE_USE_CASES",
+      "existing_udb_name": "VIRTUAL_SOURCE_USE_CASES",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The intended use cases for a virtual source are left to the implementer's discretion."
+    },
+    {
+      "excerpt": "The entropy source must be able to support current and future security standards and applications.",
+      "line_number": 3580,
+      "parameter_name": "ENTROPY_SOURCE_SECURITY_SUPPORT",
+      "existing_udb_name": "ENTROPY_SOURCE_SECURITY_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The requirement for the entropy source to support various security standards is a design choice for the implementer."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE, caption=\"SH\"] Failure to prevent leakage of sensitive parameters via the direct timing channel is considered a serious security vulnerability and will typically result in a CERT CVE security advisory.",
+      "line_number": 3423,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "Software normally uses the instruction `csrrw rd, seed, x0` to read the `seed` CSR.",
+      "line_number": 3480,
+      "reason": "This describes a software technique, not an implementation-defined parameter."
+    },
+    {
+      "excerpt": "The `seed` CSR is an unprivileged CSR located at address `0x015`.",
+      "line_number": 3460,
+      "reason": "This is a fixed requirement about the CSR's location, not an implementation choice."
+    },
+    {
+      "excerpt": "The output `entropy` (`seed[15:0]` in ES16 state) is not necessarily fully conditioned randomness due to hardware and energy limitations of smaller, low-powered implementations.",
+      "line_number": 3515,
+      "reason": "This describes a limitation of implementations rather than an architectural parameter."
+    },
+    {
+      "excerpt": "The implementation requirements of `entropy` bits are defined in <<crypto_scalar_es_req>>.",
+      "line_number": 3495,
+      "reason": "This refers to requirements that must be met, not choices left to the implementer."
+    }
+  ]
+}
+```

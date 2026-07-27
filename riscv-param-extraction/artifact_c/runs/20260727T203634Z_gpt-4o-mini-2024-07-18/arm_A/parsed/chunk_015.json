@@ -1,0 +1,67 @@
+{
+  "chunk_id": "chunk_015",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The number of bits implemented in `hgeip` and `hgeie` for guest external interrupts is UNSPECIFIED and may be zero.",
+      "line_number": 1950,
+      "parameter_name": "GEILEN",
+      "existing_udb_name": "GEILEN",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "GEILEN is an implementation-defined parameter that specifies the number of bits for guest external interrupts, which can vary by implementation."
+    },
+    {
+      "excerpt": "The `henvcfg` CSR is a 64-bit read/write register, formatted as shown in <<henvcfg>>, that controls certain characteristics of the execution environment when virtualization mode V=1.",
+      "line_number": 2050,
+      "parameter_name": "HENVCFG_ACCESS",
+      "existing_udb_name": "HENVCFG_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The `henvcfg` register is read/write, allowing the implementer to choose its mutability."
+    },
+    {
+      "excerpt": "The VSXL field controls the effective XLEN for VS-mode (known as VSXLEN), which may differ from the XLEN for HS-mode (HSXLEN).",
+      "line_number": 1219,
+      "parameter_name": "VSXLEN",
+      "existing_udb_name": "VSXLEN",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The VSXL field is WARL, and its values can vary by implementation, indicating the effective XLEN for VS-mode."
+    },
+    {
+      "excerpt": "The `hgatp` register is an HSXLEN-bit read/write register, formatted as shown in <<rv32hgatp>> for HSXLEN=32 and <<rv64hgatp>> for HSXLEN=64, which controls G-stage address translation and protection.",
+      "line_number": 2200,
+      "parameter_name": "HGATP_ACCESS",
+      "existing_udb_name": "HGATP_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The `hgatp` register is read/write, allowing the implementer to choose its mutability."
+    },
+    {
+      "excerpt": "The `htval` register is an HSXLEN-bit read/write register formatted as shown in <<htvalreg>>.",
+      "line_number": 2300,
+      "parameter_name": "HTVAL_ACCESS",
+      "existing_udb_name": "HTVAL_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The `htval` register is read/write, allowing the implementer to choose its mutability."
+    },
+    {
+      "excerpt": "The `mtval2` register is a *WARL* register that must be able to hold zero and may be capable of holding only an arbitrary subset of other 2-bit-shifted guest physical addresses, if any.",
+      "line_number": 2700,
+      "parameter_name": "MTVAL2_LEGAL_VALUES",
+      "existing_udb_name": "MTVAL2_LEGAL_VALUES",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The `mtval2` register is WARL, and its legal values can vary by implementation, indicating the set of values it can hold."
+    }
+  ]
+}

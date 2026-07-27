@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "For RV32I, the 32 `x` registers are each 32 bits wide, i.e., `XLEN=32`.",
+      "line_number": 8,
+      "parameter_name": "XLEN",
+      "existing_udb_name": "XLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "XLEN is a direct implementation choice that defines the width of the registers. The specific value is chosen by the implementer."
+    },
+    {
+      "excerpt": "For resource-constrained embedded applications, we have defined the RV32E subset, which only has 16 registers.",
+      "line_number": 36,
+      "parameter_name": "NUM_REGISTERS",
+      "existing_udb_name": "NUM_REGISTERS",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice between implementing 32 registers (RV32I) or 16 registers (RV32E) is a direct implementation decision."
+    },
+    {
+      "excerpt": "The EEI will define whether the memory system is little-endian or big-endian.",
+      "line_number": 103,
+      "parameter_name": "ENDIANNESS",
+      "existing_udb_name": "ENDIANNESS_LITTLE_OR_BIG",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The endianness of the memory system is an implementation-defined choice that can be either little-endian or big-endian."
+    },
+    {
+      "excerpt": "The effective address is obtained by adding register _rs1_ to the sign-extended 12-bit offset.",
+      "line_number": 103,
+      "parameter_name": "LOAD_STORE_ADDRESSING_MODE",
+      "existing_udb_name": "LOAD_STORE_ADDRESSING_MODE",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The method of calculating effective addresses for load and store instructions is a design choice for the implementation."
+    },
+    {
+      "excerpt": "The FENCE mode field _fm_ defines the semantics of the FENCE instruction.",
+      "line_number": 103,
+      "parameter_name": "FENCE_MODE",
+      "existing_udb_name": "FENCE_MODE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The FENCE mode field is WARL, and the specific semantics can vary by implementation, defining the legal values for the field."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE]\n====\nRV32I was designed to be sufficient to form a compiler target and to support modern operating system environments.",
+      "line_number": 2,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes design goals, not architectural parameters."
+    },
+    {
+      "excerpt": "The behavior upon decoding a reserved instruction is UNSPECIFIED.",
+      "line_number": 103,
+      "reason": "This describes behavior related to reserved instructions, not an implementation choice or parameter."
+    },
+    {
+      "excerpt": "The alignment constraint for base ISA instructions is relaxed to a two-byte boundary when instruction extensions with 16-bit lengths or other odd multiples of 16-bit lengths are added.",
+      "line_number": 103,
+      "reason": "This describes a behavior related to instruction alignment, not an architectural parameter."
+    },
+    {
+      "excerpt": "The current PC can be obtained by setting the U-immediate to 0.",
+      "line_number": 103,
+      "reason": "This describes a method of obtaining the current PC, not an implementation choice."
+    },
+    {
+      "excerpt": "The JAL and JALR instructions will generate an instruction-address-misaligned exception if the target address is not aligned to a four-byte boundary.",
+      "line_number": 103,
+      "reason": "This describes behavior related to instruction execution, not an architectural parameter."
+    }
+  ]
+}
+```

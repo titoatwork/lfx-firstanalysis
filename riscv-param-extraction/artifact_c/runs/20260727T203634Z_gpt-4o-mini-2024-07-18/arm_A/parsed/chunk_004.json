@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_004",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "For BF16 these values are: radix (b) 2, significand (p) 8, emax 127.",
+      "line_number": 66,
+      "parameter_name": "BF16_FORMAT_PARAMETERS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The radix, significand, and maximum exponent for the BF16 format are direct implementation choices that define the format's characteristics."
+    },
+    {
+      "excerpt": "BF16 is not an IEEE-754 standard format, it is a valid floating-point format as defined by IEEE-754.",
+      "line_number": 70,
+      "parameter_name": "BF16_IS_VALID_FORMAT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The statement indicates that while BF16 is not a standard format, it is still a valid format, which is a design choice for implementers."
+    },
+    {
+      "excerpt": "RISC-V supports IEEE-defined default exception handling. BF16 is no exception.",
+      "line_number": 156,
+      "parameter_name": "BF16_EXCEPTION_HANDLING",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to support IEEE-defined exception handling for BF16 is an implementation decision that can vary between implementations."
+    },
+    {
+      "excerpt": "The BF16 extensions defined in this specification (i.e., Zfbfmin, Zvfbfmin, and Zvfbfwma) depend on the single-precision floating-point extension F.",
+      "line_number": 236,
+      "parameter_name": "BF16_EXTENSION_DEPENDENCIES",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The dependencies of BF16 extensions on other extensions (like F) are implementation choices that can vary based on the architecture."
+    }
+  ]
+}
