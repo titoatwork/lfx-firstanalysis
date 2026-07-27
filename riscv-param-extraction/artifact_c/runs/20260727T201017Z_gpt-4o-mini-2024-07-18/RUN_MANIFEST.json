@@ -1,0 +1,43 @@
+{
+  "run_id": "20260727T201017Z_gpt-4o-mini-2024-07-18",
+  "started_utc": "20260727T201017Z",
+  "mode": "live",
+  "model": "gpt-4o-mini-2024-07-18",
+  "provider": "openai",
+  "temperature": 0,
+  "arms": {
+    "A": {
+      "names": true,
+      "context": false,
+      "label": "names, no context (control)"
+    }
+  },
+  "corpus_chunks": 1,
+  "udb_root": "C:\\Users\\Ibteshamul Haque\\Desktop\\LFX-Mentorship\\.udb-corpus",
+  "system_prompt_sha": "5272529f926d81b1",
+  "preregistration": "../PREREGISTRATION.md",
+  "calls": [
+    {
+      "chunk_id": "chunk_053",
+      "arm": "A",
+      "model": "gpt-4o-mini-2024-07-18",
+      "ok": true,
+      "error": "",
+      "input_tokens": 4587,
+      "output_tokens": 344,
+      "latency_ms": 8790,
+      "n_parsed": 0,
+      "parse_failed": false,
+      "refused": false
+    }
+  ],
+  "totals": {
+    "calls": 1,
+    "ok": 1,
+    "failed": 0,
+    "parse_failures": 0,
+    "refusals": 0,
+    "input_tokens": 4587,
+    "output_tokens": 344
+  }
+}

@@ -166,6 +166,10 @@ def main() -> int:
     ap.add_argument("--arms", nargs="+", default=list(ARMS), choices=list(ARMS))
     ap.add_argument("--model", default="gpt-4o-mini-2024-07-18")
     ap.add_argument("--limit", type=int, default=0, help="first N chunks only (smoke test)")
+    ap.add_argument("--chunks", nargs="+", default=None,
+                    help="explicit chunk ids, e.g. --chunks chunk_003 chunk_011")
+    ap.add_argument("--smallest", type=int, default=0,
+                    help="N smallest chunks by content tokens (cheap smoke test)")
     g = ap.add_mutually_exclusive_group(required=True)
     g.add_argument("--dry-run", action="store_true")
     g.add_argument("--live", action="store_true")
@@ -178,7 +182,18 @@ def main() -> int:
 
     inv = json.loads((ROOT.parent / "results" / "artifact_a_chunk_inventory.json")
                      .read_text(encoding="utf-8"))
-    scored = [c["chunk_id"] for c in inv["chunks"]]
+    if args.smallest:
+        ordered = sorted(inv["chunks"], key=lambda c: c.get("est_content_tokens", 0))
+        scored = [c["chunk_id"] for c in ordered[: args.smallest]]
+    else:
+        scored = [c["chunk_id"] for c in inv["chunks"]]
+    if args.chunks:
+        want = set(args.chunks)
+        scored = [c for c in scored if c in want]
+        missing = want - set(scored)
+        if missing:
+            print(f"not in the scored corpus: {sorted(missing)}", file=sys.stderr)
+            return 2
     if args.limit:
         scored = scored[: args.limit]
 
