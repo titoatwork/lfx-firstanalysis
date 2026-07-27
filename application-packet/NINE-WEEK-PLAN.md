@@ -14,9 +14,11 @@
 4. Export → UDB YAML  
 5. Reviewed PR + merge follow-up  
 
-**Metric targets (goals, not already measured):** adjusted recall 72.9% → **85%+** on mentor-pinned gold; WARL 50% → **75%+**; N small schema-valid reviewed param files in mentor-approved PRs. Pre-apply baselines already measured (see claim ledger).
+**On the baseline these targets move from.** The published 72.9% and 50% WARL are **grounding** scores: the Part I prompts supply all 185 gold parameter names and instruct the model to reuse them. Discovery recall, without that catalogue, is measured pre-apply in [`artifact_c/`](../riscv-param-extraction/artifact_c/PREREGISTRATION.md). Which number the term should optimise is a Week 0 decision with the mentors, because they are different tasks and only one of them is what "extraction" usually means.
 
-**Non-goals:** unsolicited bulk PRs; claiming Spring authorship; treating schema-valid as architecturally correct.
+**Targets, stated as commitments I control.** Improve recall against the mentor-pinned gold **under a stated condition**, with the condition named every time the number is; close the WARL gap or report why it does not close; ship N small schema-valid reviewed param files in mentor-approved PRs. I am not promising a specific percentage before knowing which task is being scored, and a target hit by quietly changing the condition is not a result.
+
+**Non-goals:** unsolicited bulk PRs; claiming Spring authorship; treating schema-valid as architecturally correct; reporting a recall figure without the condition attached.
 
 ---
 
@@ -61,12 +63,13 @@
 
 | Work | Obj | Deliverable |
 |------|-----|-------------|
-| CSR/field context retrieval + **leakage audit** (no gold names) | 1,2 | Leakage report |
-| Compare v2 baseline vs prompt-only v3 (already negative) vs grounded context | 1 | Controlled ablation |
-| Manual WARL case study | 1,2 | Recommendation adopt/reject |
+| Extend the pre-apply four-arm result to the mentor-pinned gold | 1,2 | Replication or divergence report |
+| Whichever of the four arms the pre-apply run says is worth pursuing | 1 | Follow-on ablation |
+| Manual WARL case study on the cases the harness gets wrong | 1,2 | Recommendation adopt/reject |
 
-**Exit:** Context intervention adopted with evidence **or** rejected with honest null.  
-**Note:** Pre-apply prompt-only v3 already failed (WARL 3/24→2/24); do not re-run prompt-only as “C.”
+**Exit:** Context intervention adopted with evidence **or** rejected with a second honest null.
+
+**This week is narrower than it was, because the experiment now runs pre-apply.** The leakage-audited context builder, the fail-closed gold-name scan, the four arms and the preregistration are already built and public. Prompt-only v3 failed (WARL 3/24 → 2/24) and is not re-run. What is left for the term is extending the result to the mentors' own gold and acting on whichever arm wins, not building the apparatus.
 
 ---
 
@@ -75,11 +78,13 @@
 | Work | Obj | Deliverable |
 |------|-----|-------------|
 | Attack dominant error classes from Weeks 2–3 | 1,2 | Candidate config |
-| Cross-model gating only if it improves review efficiency | 1,3 | Gate design note |
+| Cross-model gating **only if** it survives the pre-apply failure, see note | 1,3 | Gate design note |
 | Taxonomy extension **only** with multiple reviewed cases + mentor OK | 2 | Proposal or “no change” |
 | Freeze before held-out eval | 1 | Held-out plan |
 
 **Exit:** No taxonomy change from LLM invention alone.
+
+**Note on cross-model gating.** I proposed dual-model agreement as a review gate pre-apply. It does not work as claimed: of nine candidates both models proposed at high confidence, `IALIGN` is derived by `function ialign` in `globals.isa` and `FLEN` follows from which FP extension is implemented. The gate passed at least two non-parameters. It is carried into this week as a hypothesis to be re-tested at scale, not as a technique to be applied.
 
 ---
 
@@ -161,7 +166,10 @@
 | Risk | Mitigation |
 |------|------------|
 | Gold (a)(b) delayed | Start on UDB + public adoc; expand when Drive access arrives |
-| Context leakage in WARL experiment | Leakage audit hard gate before any API |
+| Context leakage in WARL experiment | Fail-closed gold-name scan before any API call. Built and passing pre-apply |
+| **Recall is measured against an incomplete gold** | A parameter that should exist but is absent cannot be scored as a miss. `Smpmpmt` carries implementation-defined language and declares no parameters ([@RAJVEER42](https://github.com/riscv/riscv-unified-db/issues/2053)). Recall is a regression signal, not a coverage measure, and Week 2 metric definitions must say so |
+| **Reporting grounding recall as discovery recall** | State the name-list condition on every figure. This already went wrong pre-apply and was corrected publicly |
+| **Losing the evidence behind a number** | Artifact A's per-chunk outputs were kept local and are gone, so its exclusive sets cannot be audited. Retention is a hard gate from Week 1: if a number is reported, the file it came from is committed |
 | PR too large | Split tooling vs data; tiny reviewed batches |
 | Over-focus on “new” params | Cap discovery; prioritize gold recall + precision |
 | API cost | Cache; retries 0; mentor-approved spend only |
