@@ -136,6 +136,39 @@ The gold is used only for scoring, never for building context or selecting chunk
 
 Replication across independent providers is what separates a real effect from one model's quirk.
 
+## 4b. Power and coverage, measured before running
+
+Context is only attached to chunks that name a CSR, so treatment and baseline are byte-identical for
+chunks with no CSR mention. That dilution has to be quantified before the run, not discovered after.
+
+Of the 60 scored chunks, **32 receive context** and 28 do not. Taken alone that looks like heavy
+dilution. But the gold parameters are not spread evenly across chunks. Mapping each gold parameter to
+its best spec location and then to its chunk:
+
+| Class | Gold (non-debug) | Located to a chunk | In a context-receiving chunk | Share |
+|-------|-----------------:|-------------------:|-----------------------------:|------:|
+| `NORM_CSR_RW` | 51 | 49 | 49 | **100%** |
+| `NORM_CSR_WARL` | 24 | 23 | 21 | **91.3%** |
+| `NORM_DIRECT` | 100 | 100 | 87 | 87.0% |
+| `SW_RULE` | 2 | 2 | 2 | 100% |
+
+So 21 of 24 gold WARL parameters sit in chunks the treatment can actually affect. The primary metric is
+not crippled by dilution.
+
+Two things are worth stating plainly because they cut against a clean reading:
+
+1. **Three parameters could not be resolved to a chunk**, one of them WARL
+   (`MTVEC_BASE_ALIGNMENT_VECTORED`). They are scored as normal; they simply cannot be attributed to a
+   covered or uncovered chunk. No parameter is excluded from any denominator.
+2. **Coverage itself follows the same ordering as CSR-reference density** (CSR_RW ≥ WARL > DIRECT).
+   That is expected, since CSR-referencing parameters are described in CSR-mentioning passages, but it
+   means coverage and the H2 gradient are not fully independent. H2 is therefore evidence about
+   mechanism only in combination with the *magnitude* ordering, not from direction alone.
+
+**Prespecified secondary analysis:** all per-class metrics are additionally reported restricted to the
+32 context-receiving chunks. The full-corpus numbers remain primary. The restricted numbers are
+reported whether or not they are more favourable.
+
 ## 5. Scoring, fixed in advance
 
 Scoring uses the existing `param_extraction/scripts/analyze.py` with no modification. Denominators are
