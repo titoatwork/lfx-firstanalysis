@@ -4,6 +4,8 @@
 
 # Full UDB clone (large nested git)
 riscv-unified-db/
+# Worktree of the lfx-1832 corpus branch (chunks, gold, Part I results)
+.udb-corpus/
 
 # Scratch / duplicate immersion workspace
 immersion-workspace/
