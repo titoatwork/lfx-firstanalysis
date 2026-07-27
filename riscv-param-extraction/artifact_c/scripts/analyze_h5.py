@@ -101,14 +101,24 @@ def proposed_new(recs: dict[str, dict], gold: set[str], existing: set[str]) -> s
 
 
 def label_signals(name: str, existing: set[str], globals_src: str) -> dict:
-    """Mechanical signals only. No judgement, no arm, no model."""
+    """Mechanical signals only. No judgement, no arm, no model.
+
+    Evidence type is recorded alongside the category because two category-2
+    labels are not equally strong. A derivation function is executable and can be
+    found automatically across the repository; prose stating a derivation cannot.
+    Collapsing them would hide that difference. (@RAJVEER42)
+    """
     fn = re.search(r"function\s+" + re.escape(name.lower()) + r"\s*\{", globals_src)
-    return {
-        "has_param_file": name in existing,
-        "derived_by_function_in_globals_isa": bool(fn),
-        "name_looks_extension_tied": bool(re.match(r"^(SM|SS|ZI|ZK|ZV|SV|H)", name)),
-        "auto_category": 2 if fn else ("" if not (name in existing) else "not-a-candidate"),
-    }
+    if name in existing:
+        return {"has_param_file": True, "derived_by_function_in_globals_isa": bool(fn),
+                "auto_category": "not-a-candidate", "evidence_type": "n/a"}
+    if fn:
+        return {"has_param_file": False, "derived_by_function_in_globals_isa": True,
+                "auto_category": 2, "evidence_type": "executable"}
+    # Prose-level derivation cannot be detected mechanically; a human decides,
+    # and records evidence_type as documented or absent when they do.
+    return {"has_param_file": False, "derived_by_function_in_globals_isa": False,
+            "auto_category": "", "evidence_type": "TODO-human"}
 
 
 def main() -> int:

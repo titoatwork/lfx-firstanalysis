@@ -111,6 +111,18 @@ exclusive, is labelled against UDB as exactly one of:
 | **2** | Absent because UDB **derives** it from other choices rather than treating it as a parameter | a function in `globals.isa`, or determined by which extension is implemented |
 | **3** | Absent because it is **out of scope**: microarchitectural, or execution-environment | not ISA-visible |
 
+**Every label also records its evidence type**, because two labels of the same category are not equally strong. `IALIGN` has an executable definition, so its derivation is a fact about the model and is machine-checkable across the whole repository. `FLEN` has prose in `F.yaml` saying the width follows from `F`/`D`/`Q`, which is a fact about the documentation and is not. Both are category 2; only one can be found automatically.
+
+| Evidence type | Meaning |
+|---------------|---------|
+| `executable` | a derivation function exists, e.g. `function ialign` in `globals.isa` |
+| `documented` | prose in a UDB file states the derivation, but nothing executes it |
+| `absent` | neither; the label rests on the labeller's reading |
+
+Counts are reported per category **and** per evidence type. A category-2 finding resting entirely on `documented` evidence is a weaker result than one resting on `executable`, and collapsing them would hide that. Distinction raised by @RAJVEER42.
+
+**Labels of `unresolved` are permitted and are reported.** A rubric that never returns "unresolved" on a real case is not being applied honestly; `ILEN` is currently unresolved between 2 and 3 and stays that way.
+
 All three are decided by inspecting the repository, with no reference to which arm or model produced
 the candidate, so labelling is blind to the thing being tested. **Only category 1 counts as a genuine
 missed parameter.** The claim under test is whether the agreed set is enriched for categories 2 and 3
@@ -251,6 +263,39 @@ SW_RULE 2** (debug-spec prefixes excluded, matching `docs/metrics.md`).
   with the failure.
 - WARL n=24 is small. A one- or two-case difference is noise, and will be reported as such rather than
   as a lift.
+
+## 5b. Registered 2026-07-28: baiting-clause stratification, and how to read a null
+
+**Temperature 0 is not determinism, and that is measured here rather than assumed.** @RAJVEER42 reports
+N=3 runs per model per snippet at `temperature=0` that were not identical in every case. Independently,
+arm A of this experiment reproduces the published condition byte-for-byte and returns WARL 9/24 against
+a published 3/24. Both arms are therefore run twice and diffed at the level of individual gold
+parameters (`scripts/compare_runs.py`), and **no per-class claim is made from a single run**. Run-to-run
+stability is reported as a first-class number alongside every metric.
+
+**Baiting-clause stratification (registered as a stratification of the existing arms, not a fifth arm).**
+The capacity failure @RAJVEER42 observed has two candidate causes with different fixes: a prompt gap, if
+the wrong reading only appears when the passage places a discovery or enumeration clause next to the
+implementation-defined clause, or a model prior, if it appears regardless.
+
+Testing that properly wants paired passages differing only in the adjacent clause, which is a corpus
+that does not exist. Rather than block on building one, the registered analysis is the cheapest tier
+that uses data already in hand:
+
+1. Label each of the 60 chunks for whether a discovery or enumeration clause sits adjacent to an
+   implementation-defined clause. Labelling is done on chunk text alone, before results are examined.
+2. Compare over-extraction rates across the two strata.
+
+This is **observational and confounded**: chunks differ in more than the adjacent clause. It is
+registered as a stratification with that limitation stated in the design rather than discovered in a
+discussion section. Minimal-edit pairs, ten to twenty passages with only the adjacent clause deleted,
+are the registered follow-up if and only if the stratification shows a difference worth pinning down.
+Tiering proposed by @RAJVEER42.
+
+**How a null must be read.** The four arms were chosen for H0. H5 and the capacity work ride on a design
+built for a different question. A null on either is therefore reported as **"not detected under a design
+built for something else"**, never as evidence of absence. Written here in advance so it cannot be
+argued about afterwards.
 
 ## 6b. Artefact retention, made a hard requirement
 
