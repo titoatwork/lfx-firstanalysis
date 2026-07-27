@@ -36,7 +36,7 @@ Discovery recall is unmeasured and is the subject of `artifact_c/PREREGISTRATION
 | Artifact A vs GT185 | adj **32.2%**, WARL **12.5%** (3/24), ~**$0.16** | metrics §5 | Honest worse-than-Claude |
 | Claude Part I baseline (not re-billed) | adj **72.9%**, 346 deduped names | metrics §5 | Comparison baseline |
 | Name agreement A | shared **21**, Jaccard **3.8%** | metrics §5.3 | Review-gating story |
-| High-conf proposed-new both models | **9** names | metrics §5.4 | Candidates needing review. **State the retention gap:** the model-exclusive sets (227 / 209) were not committed and cannot be recomputed. Do not present the 9 as a validated review queue; an open prediction (H5, credited to @RAJVEER42) is that dual-model agreement selects for *easy* candidates. Unresolved until Artifact C |
+| High-conf proposed-new both models | **9** names, of which **at least 2 are not parameters** | metrics §5.4 | **Never call these a validated review queue.** `IALIGN` is derived (`function ialign` in `globals.isa`), `FLEN` follows from which FP extension is implemented, `ILEN` unresolved. Dual-model agreement failed to filter them. Also state the retention gap: the exclusive sets (227 / 209) were not committed and cannot be recomputed. Credit @RAJVEER42 for the IALIGN finding |
 | v3 prompt WARL ablation | **60/60**; adj **35.0%**; WARL **8.3%** (2/24); ~**$0.16** | metrics §6; stretch-c manifest | **Null / negative** for WARL |
 | Public repo | https://github.com/titoatwork/lfx-firstanalysis | git | Prework link |
 | Coding challenge pack | 2 snippets · fail-closed CI · curated + live multi-model under `challenge/` | monorepo | Path A |
@@ -71,7 +71,8 @@ Discovery recall is unmeasured and is the subject of `artifact_c/PREREGISTRATION
 | “Pure gpt-4o full pilot / full multi-model matrix” | Pilot model-split; A is mini |
 | “Mini matched or beat Claude” | 32.2% vs 72.9% |
 | “v3 improved WARL” | WARL fell 3/24 → 2/24 |
-| “9 overlapping names are real parameters” | Candidates only |
+| “9 overlapping names are real parameters” | **At least 2 verifiably are not.** `IALIGN` and `FLEN` are derived quantities |
+| “dual-model agreement is a validated review gate” | It passed at least two non-parameters at high confidence |
 | “Schema-valid means architecturally correct” | Structural check only |
 | “Artifact C (CSR-field context) is done” | **Not run**; only prompt-v3 ablation done |
 | Fake merge counts or SIG attendance | Not true |

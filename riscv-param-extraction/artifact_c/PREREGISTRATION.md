@@ -97,13 +97,50 @@ candidate, that agreement concentrates on well-known quantities rather than on g
 implementation-defined ones. Under this hypothesis a dual-model agreement gate filters *toward* the
 candidates a reviewer least needs help with, which would invert the value I claimed for it.
 
-**Falsified if** the agreed set does not differ systematically from the model-exclusive sets on
-difficulty proxies.
+**Falsified if** the agreed set does not differ systematically from the model-exclusive sets on the
+rubric below.
 
-**Prespecified proxies**, fixed now: share of agreed versus exclusive candidates that (a) name a
-quantity defined in the base ISA rather than an optional extension, (b) carry a gold class of
-`NORM_DIRECT` rather than `NORM_CSR_WARL` or `NORM_CSR_RW` where a gold class exists, (c) appear in
-chunks with no CSR mention. Reported as raw counts, no significance testing at this n.
+**Amended 2026-07-28, before any run.** My first wording said agreement selects "easier" cases and left
+"easier" undefined until the names were visible. That is decided after seeing the list, which makes it
+not a hypothesis. @RAJVEER42 identified this and proposed the fix used here. Every candidate, agreed or
+exclusive, is labelled against UDB as exactly one of:
+
+| Cat | Meaning | Checkable by |
+|-----|---------|--------------|
+| **1** | Absent from UDB and arguably should exist. A real gap, the `Smpmpmt` class | no param file, no derivation, normative implementation choice in the text |
+| **2** | Absent because UDB **derives** it from other choices rather than treating it as a parameter | a function in `globals.isa`, or determined by which extension is implemented |
+| **3** | Absent because it is **out of scope**: microarchitectural, or execution-environment | not ISA-visible |
+
+All three are decided by inspecting the repository, with no reference to which arm or model produced
+the candidate, so labelling is blind to the thing being tested. **Only category 1 counts as a genuine
+missed parameter.** The claim under test is whether the agreed set is enriched for categories 2 and 3
+relative to the exclusive sets.
+
+Reported as counts per category per set. No significance testing at this n.
+
+**Already-known result, recorded before the run so it cannot be presented as a discovery afterwards.**
+Applying the rubric to the existing nine:
+
+- `IALIGN` is **category 2, verified**. `spec/std/isa/isa/globals.isa` defines `function ialign`
+  returning 16 or 32 depending on `C` and `misa.C`. No parameter file exists. Two models proposed it as
+  a new parameter at high confidence and it is not one. Found by @RAJVEER42.
+- `FLEN` is **category 2**, less cleanly. No parameter file and no derivation function, but the width
+  follows from which of `F`/`D`/`Q` is implemented and UDB states this in extension prose.
+- `ILEN` is **unresolved between 2 and 3**. No parameter file, no function, and its only whole-word
+  appearance under `spec/std/isa` is inside a prose constraint in `Ziccif.yaml`.
+
+So at least two of the nine dual-model candidates are not missed parameters, with a third unclear.
+Dual-model agreement at high confidence did not filter them. That is a stronger and more damaging
+result than the "skews easy" version, and it is checkable rather than inferred.
+
+**Agreement must be computed within-arm, then pooled with the arm recorded per row.** Arms A and C
+supply the gold catalogue to both models, so agreement in those arms is partly agreement on a list both
+were handed. Merging the arms before computing agreement would let H0 leak into H5 and would quietly
+invalidate the result. Raised by @RAJVEER42; I had not accounted for it and the analysis would have
+been wrong without it.
+
+Nine candidates cannot support a distributional claim. The four arms across five models should raise
+the count, but the comparison is reported as counts per rubric category per set, never as a mean.
 
 **Credit.** This prediction is [@RAJVEER42's](https://github.com/riscv/riscv-unified-db/issues/2053),
 raised in issue #2053 from an 18-run study over 2 snippets. It is registered here because it is a

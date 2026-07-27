@@ -71,12 +71,14 @@ output: 72.9% adjusted recall and 88.4% classification accuracy on GT185, 64.2% 
 live GT223, WARL worst at 50% (12/24). Running the same 60 chunks and v2 prompt
 through gpt-4o-mini (~$0.16) gave 32.2% adjusted recall, only 21 shared names
 (Jaccard 3.8%), and nine high-confidence proposed-new names common to both models.
-A contributor on the upstream scope thread has since predicted those nine will be
-the *easy* cases, since agreement should concentrate on well-known quantities and
-disagreement on genuinely underspecified ones. Four of the nine are textbook
-quantities, so he may be right. I registered his prediction as a hypothesis in the
-experiment below rather than defending the number. A prompt-only WARL ablation
-raised overall recall to 35.0% while cutting WARL recall from 3/24 to 2/24.
+I had described those nine as a prioritised review queue. A contributor on the
+upstream scope thread then checked one: IALIGN is not a parameter at all, since
+UDB derives it in globals.isa from whether C is implemented. I verified that, and
+found FLEN is derived too. So dual-model agreement at high confidence passed at
+least two non-parameters, and the gate I proposed does not do what I claimed. I
+registered his objection as a hypothesis with a rubric fixed in advance rather
+than defending the number. A prompt-only WARL ablation raised overall recall to
+35.0% while cutting WARL recall from 3/24 to 2/24.
 
 The correction matters more than any of those numbers. Building the next
 experiment, I traced the prompt assembly and found that every run injects all 185
