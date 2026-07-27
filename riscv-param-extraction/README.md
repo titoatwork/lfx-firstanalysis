@@ -3,7 +3,7 @@
 Public selection surface for [LFX Mentorship Part II — AI-assisted extraction of architectural parameters](https://mentorship.lfx.linuxfoundation.org/project/22296947-cecb-4a8f-8bcb-4f34710e9f66).
 
 **Home:** [titoatwork/lfx-firstanalysis](https://github.com/titoatwork/lfx-firstanalysis) · path `riscv-param-extraction/`  
-**Not a second product repo.** Credit Part I to [@ishaan-arora-1](https://github.com/ishaan-arora-1) / [riscv/riscv-unified-db](https://github.com/riscv/riscv-unified-db) PRs #1765–#1832 — this work **reproduces and extends**, it does not claim Spring authorship.
+**Not a second product repo.** Credit Part I to [@ishaan-arora-1](https://github.com/ishaan-arora-1) / [riscv/riscv-unified-db](https://github.com/riscv/riscv-unified-db) PRs #1765–#1832, this work **reproduces and extends**, it does not claim Spring authorship.
 
 Part I already shipped extract → analyze → spreadsheet on open PR branches. This folder adds: **multi-model measurement** (Artifact A), **export of spreadsheet rows to draft UDB param YAML** (Artifact B), and **run manifests** (Obj 3).
 
@@ -16,8 +16,8 @@ Part I already shipped extract → analyze → spreadsheet on open PR branches. 
 | Phase 1 GT (live UDB) | **223** params; 100% any / **91%** strong match |
 | Part I v2 remeasure (GT 185) | adj recall **72.9%**, class acc **88.4%**, WARL **50%** |
 | Same LLM output vs live GT 223 | adj recall **64.2%**, class acc **88.6%**, WARL **50%** |
-| Pilot machine.adoc | **COMPLETE_WITH_MODEL_SPLIT** — 021 **gpt-4o** (6 params), 020 **gpt-4o-mini** (9 params); total ~**$0.05** |
-| **Artifact A** (gpt-4o-mini, 60 chunks, GT185) | Primary finding: under an **identical** v2 prompt, name Jaccard vs Claude is only **3.8%** (21 shared); high-conf “new” overlap **9** of ~220 each — see [docs/metrics.md §5.0](docs/metrics.md). Also: adj recall **32.2%** vs Claude **72.9%** (mini **worse**, honest); WARL **12.5%**; ~**$0.16** |
+| Pilot machine.adoc | **COMPLETE_WITH_MODEL_SPLIT**. 021 **gpt-4o** (6 params), 020 **gpt-4o-mini** (9 params); total ~**$0.05** |
+| **Artifact A** (gpt-4o-mini, 60 chunks, GT185) | Primary finding: under an **identical** v2 prompt, name Jaccard vs Claude is only **3.8%** (21 shared); high-conf “new” overlap **9** of ~220 each, see [docs/metrics.md §5.0](docs/metrics.md). Also: adj recall **32.2%** vs Claude **72.9%** (mini **worse**, honest); WARL **12.5%**; ~**$0.16** |
 | `parameters.csv` named=yes | **87** rows / **83** unique (not 97) |
 | Artifact B named export | **83/83** schema-valid |
 | Artifact B new (limit 20) | **20/20** schema-valid |
@@ -38,7 +38,7 @@ gpt-4o org TPM **30 000** blocked the large chunk (~**44 373** input); mini 
 
 ### Artifact A — what the run establishes (see metrics §5.0)
 
-Under the **same** v2 prompt and chunk set, two models disagree almost completely on parameter *names* (Jaccard **3.8%**) and almost completely on high-confidence “new” proposals (**9** shared). That motivates cross-model gating and human review. Mini is also **substantially worse** on adjusted recall (**32.2%** vs Claude **72.9%**) — full tables in [docs/metrics.md](docs/metrics.md) §5.
+Under the **same** v2 prompt and chunk set, two models disagree almost completely on parameter *names* (Jaccard **3.8%**) and almost completely on high-confidence “new” proposals (**9** shared). That motivates cross-model gating and human review. Mini is also **substantially worse** on adjusted recall (**32.2%** vs Claude **72.9%**), full tables in [docs/metrics.md](docs/metrics.md) §5.
 
 | Metric | Claude-sonnet-4 | gpt-4o-mini |
 |--------|----------------:|------------:|
@@ -65,7 +65,7 @@ python -m unittest discover -s tests -v
 - Reports: `results/export_b_*.json`  
 - Schema: `export/schemas/param_schema.json`
 
-Pilot extraction needs a local `riscv-unified-db` on `lfx-1832` and **your own** API key — see [manifests/pilot-machine-adoc.md](manifests/pilot-machine-adoc.md). This repo does not ship keys or full chunk JSON dumps.
+Pilot extraction needs a local `riscv-unified-db` on `lfx-1832` and **your own** API key, see [manifests/pilot-machine-adoc.md](manifests/pilot-machine-adoc.md). This repo does not ship keys or full chunk JSON dumps.
 
 ---
 
@@ -74,7 +74,7 @@ Pilot extraction needs a local `riscv-unified-db` on `lfx-1832` and **your own**
 - Named params already exist in UDB; B is a **draft export + validation** path, not 83 new architecture parameters.  
 - Pilot used **two OpenAI models** for machine.adoc because of TPM limits.  
 - Artifact A second model is **gpt-4o-mini** (budget/TPM), **not** full gpt-4o; mini **underperforms** Claude on recall (32.2% vs 72.9%).  
-- Prompt **v3** WARL ablation: overall adj **35.0%** but WARL **worse** (8.3% vs 12.5%) — honest null; see metrics §6.  
+- Prompt **v3** WARL ablation: overall adj **35.0%** but WARL **worse** (8.3% vs 12.5%), honest null; see metrics §6.  
 - Per-chunk extraction JSON stays in the local UDB clone; public surface ships aggregates + manifests.  
 - Do not merge draft YAML upstream without SIG / mentor review.  
 - No unsolicited bulk PR into `riscv/riscv-unified-db`.

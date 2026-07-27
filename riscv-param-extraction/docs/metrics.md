@@ -53,7 +53,7 @@ Against **live GT 223** (same LLM output): adjusted recall **64.2%**, class acc 
 | Limitation | Detail |
 |------------|--------|
 | Why not pure gpt-4o | Org TPM **30 000** for gpt-4o; chunk_020 needed ~**44 373** input tokens |
-| Artifact A | **Done** — full gpt-4o-mini corpus (see §5); not pure gpt-4o |
+| Artifact A | **Done**. Full gpt-4o-mini corpus (see §5); not pure gpt-4o |
 | Full corpus extract (mini) | **Done** 2026-07-24/25 |
 
 ---
@@ -183,7 +183,7 @@ Same model (**gpt-4o-mini**), same 60 param-bearing chunks, **PROMPT_VERSION=v3*
 | Deduped LLM params | 230 | 204 | −26 |
 | Class acc (exact only) | 100% (11/11) | 80% (8/10) | small n |
 
-**Honest claim:** Adding WARL-focused prompt text **did not improve** gold WARL recall; it **worsened** it. Overall adjusted recall ticked up slightly (mostly DIRECT). Raw extraction tagged more rows as WARL (**59** raw class labels vs **~36** on v2), but those did **not** translate into more GT WARL hits — over-labeling without better name/alignment quality.
+**Honest claim:** Adding WARL-focused prompt text **did not improve** gold WARL recall; it **worsened** it. Overall adjusted recall ticked up slightly (mostly DIRECT). Raw extraction tagged more rows as WARL (**59** raw class labels vs **~36** on v2), but those did **not** translate into more GT WARL hits, over-labeling without better name/alignment quality.
 
 **Do not** present v3 as a successful Stretch C WARL attack. Treat as a measured **prompt ablation null result** (useful for the Fall plan: need CSR-field aux context or different strategy, not prompt-only WARL essay).
 

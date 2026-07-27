@@ -36,7 +36,7 @@ Do **not** claim a pure gpt-4o full machine.adoc pilot. Pipeline + OpenAI path v
 ```powershell
 cd <path-to>/riscv-unified-db
 $env:PROMPT_VERSION = "v2"
-$env:OPENAI_API_KEY = "<your key — not committed>"
+$env:OPENAI_API_KEY = "<your key, not committed>"
 
 # chunk_021 (gpt-4o) — historical command form
 python param_extraction\scripts\extract.py pilot --model gpt4o --retries 0 -v

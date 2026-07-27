@@ -68,4 +68,4 @@ python challenge/scripts/validate.py --results challenge/results/live/gemma-4-26
 
 - OpenAI: cents. Free providers: rate limits only.
 - **Shipped free OpenRouter legs** (real dual-snippet text): Nemotron Ultra/Super/Nano, Ling-3.0 Flash, **Laguna S 2.1**, **Gemma-4-26B**.
-- **Not run** (429 or empty probe on later hunt): e.g. `google/gemma-4-31b-it:free` (429), Laguna XS/M, gpt-oss-20b, north-mini-code, Nemotron nano-omni (empty CSR) — see “Useful-output filter” above.
+- **Not run** (429 or empty probe on later hunt): e.g. `google/gemma-4-31b-it:free` (429), Laguna XS/M, gpt-oss-20b, north-mini-code, Nemotron nano-omni (empty CSR), see “Useful-output filter” above.

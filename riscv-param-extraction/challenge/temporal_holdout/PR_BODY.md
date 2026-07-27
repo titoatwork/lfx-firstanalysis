@@ -5,8 +5,8 @@
 | Item | State |
 |------|--------|
 | Harness, tests, leak_scan, CI | Green |
-| Locked live run | Done — `20260726T164713Z_gpt-4o-mini-2024-07-18` · **26/26** |
-| Claim level | **Exploratory null / harness demo** — not clean temporal-holdout evidence |
+| Locked live run | Done, `20260726T164713Z_gpt-4o-mini-2024-07-18` · **26/26** |
+| Claim level | **Exploratory null / harness demo**, not clean temporal-holdout evidence |
 | PR | Ready for review (self-audited limitations documented) |
 
 ## Hypothesis (tested exploratorily)
@@ -38,7 +38,7 @@ Leakage-audited CSR/field context improves WARL-related extraction vs source-onl
 
 The locked v1.2 run completed 26/26 calls and produced **0/10** exact/alias recall and **0/5** WARL recall in both arms. **No improvement was observed.** Because v1.2 contained case-specific guidance and label-revealing negatives, treat this as a **reproducible harness demonstration and exploratory null** — **not** clean temporal-holdout evidence. The negative FP arm difference (**1/3 vs 2/3**) is **not attributable to treatment** because those prompts were **byte-identical** across arms (model nondeterminism). P07 was also identical across arms.
 
-Full write-up: [`riscv-param-extraction/challenge/temporal_holdout/results/PRIMARY_RESULTS.md`](./riscv-param-extraction/challenge/temporal_holdout/results/PRIMARY_RESULTS.md)
+Full write-up: [`results/PRIMARY_RESULTS.md`](./results/PRIMARY_RESULTS.md)
 
 ## Design (harness)
 

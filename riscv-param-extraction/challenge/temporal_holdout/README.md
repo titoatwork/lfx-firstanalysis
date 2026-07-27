@@ -3,7 +3,7 @@
 **Pilot id:** `temporal-holdout-artifact-c-v1`  
 **Hypothesis:** Under temporal separation from a fixed model snapshot, leakage-audited CSR/field context improves WARL-related extraction vs source-only baseline.
 
-This is a **vertical 4.5% slice** (10 of 223 public UDB parameters) plus **3 hard negatives** — not “5% of the mentors’ internal pipeline” (see [UDB #2053](https://github.com/riscv/riscv-unified-db/issues/2053) scope clarification).
+This is a **vertical 4.5% slice** (10 of 223 public UDB parameters) plus **3 hard negatives**, not “5% of the mentors’ internal pipeline” (see [UDB #2053](https://github.com/riscv/riscv-unified-db/issues/2053) scope clarification).
 
 ## What is frozen (preregistered)
 
@@ -30,8 +30,8 @@ spec source → CSR/field context (scrubbed) → leakage gate → extract
 
 Conditions (same model, same cases):
 
-1. **baseline** — source only  
-2. **treatment** — source + leakage-audited CSR context  
+1. **baseline**. Source only  
+2. **treatment**. Source + leakage-audited CSR context  
 
 ## Reproduce (no API)
 
@@ -69,7 +69,7 @@ python challenge/temporal_holdout/scripts/score_holdout.py
 
 Est. cost: on the order of **~$0.02–0.05** for 13×2 calls on gpt-4o-mini (see `--estimate`).
 
-Raw responses: `results/raw/`. Scores: `results/scored/`. Failures are preserved — no hand-repair.
+Raw responses: `results/raw/`. Scores: `results/scored/`. Failures are preserved, no hand-repair.
 
 ## Leakage gate
 

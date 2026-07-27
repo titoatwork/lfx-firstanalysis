@@ -26,7 +26,7 @@ ANTI-HALLUCINATION
 3. Prefer independent parameters when the text lists independent choices
    (do not bundle unrelated axes into one parameter).
 4. If the value space is not specified, use a minimal schema and say so in
-   description — do not invent enums.
+   description, do not invent enums.
 
 OUTPUT FORMAT
 Emit zero or more UDB-shaped YAML documents. Each document:
@@ -42,7 +42,7 @@ Emit zero or more UDB-shaped YAML documents. Each document:
 Also emit a sibling evidence object (JSON) per parameter:
   { "name": "...", "snippet": "cmo_cache_block.txt", "quote": "..." }
 
-FEW-SHOT SHAPE (structure only — do not copy blindly if evidence differs):
+FEW-SHOT SHAPE (structure only, do not copy blindly if evidence differs):
 Existing merged UDB parameter CACHE_BLOCK_SIZE is type integer, minimum 1,
 gated by Zicbom/Zicbop/Zicboz. Modeling independent cache capacity/organization
 as separate parameters when the text treats them as independent is preferred

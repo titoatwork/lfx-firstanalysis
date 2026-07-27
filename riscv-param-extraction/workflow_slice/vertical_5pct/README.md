@@ -19,8 +19,8 @@ spec evidence → candidate → duplicate decision → human-review record
 
 ## Layout per candidate
 
-- `source.txt` — exact excerpt context + source pin
-- `review_envelope.yaml` — evidence, classification, duplicate decision, reviewer
+- `source.txt`, exact excerpt context + source pin
+- `review_envelope.yaml`, evidence, classification, duplicate decision, reviewer
 - `param.yaml` — **only** if `approve_export`; UDB-schema-valid; no review keys
 
 ## Reproduce

@@ -90,3 +90,13 @@ upstream-pr-drafts/**/COMMENT.md
 _tmp_*
 **/_scratch*
 
+# Personal-data drafts and self-prep. Kept local, not part of the mentor surface.
+# RESUME-CONTENT holds unfilled contact placeholders; INTERVIEW-SHEET is prep
+# material whose useful content now lives in application-packet/TECHNICAL-FAQ.md.
+application-packet/RESUME-CONTENT.md
+application-packet/INTERVIEW-SHEET.md
+
+# Daily work journals. Written as internal notes; the run records they describe
+# are published properly under manifests/ and docs/metrics.md.
+riscv-param-extraction/docs/WORKLOG-*.md
+

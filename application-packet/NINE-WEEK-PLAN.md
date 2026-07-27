@@ -141,7 +141,7 @@
 | Final pinned metrics; accepted/rejected approaches | 1,3 | Final report |
 | Backlog + reproducibility package | 3,5 | Handoff |
 
-**Success definition:** reproducible measurements + small mergeable artifacts — not maximum generated YAML count.
+**Success definition:** reproducible measurements + small mergeable artifacts, not maximum generated YAML count.
 
 ---
 

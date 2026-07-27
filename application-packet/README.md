@@ -1,34 +1,22 @@
-# Application packet (local) — Part II
+# Application packet — LFX Fall 2026 Part II
 
-**Branch:** `application/packet-2026-07-26` (local until you say **push**)  
-**Prepared:** 2026-07-26  
-**Rules this session:** no paid API · no push · no external messages · defer original Artifact C (CSR-field context)
+Written material for [AI-assisted extraction of architectural parameters from RISC-V specifications, Part II](https://mentorship.lfx.linuxfoundation.org/project/22296947-cecb-4a8f-8bcb-4f34710e9f66).
 
-## Contents
+Every number in these documents traces to a row in the claim ledger, and every ledger row traces to [`riscv-param-extraction/docs/metrics.md`](../riscv-param-extraction/docs/metrics.md) or a run manifest.
 
-| File | Use |
-|------|-----|
-| [MEASURED-CLAIM-LEDGER.md](./MEASURED-CLAIM-LEDGER.md) | Every number + forbidden claims |
-| [ESSAY-PART-II.md](./ESSAY-PART-II.md) | Short/long answers + form modules |
-| [NINE-WEEK-PLAN.md](./NINE-WEEK-PLAN.md) | Term plan ↔ 5 objectives |
-| [RESUME-CONTENT.md](./RESUME-CONTENT.md) | Resume bullets; fill personal fields |
-| [INTERVIEW-SHEET.md](./INTERVIEW-SHEET.md) | Pitch + walkthrough + Q&A |
+| File | Contents |
+|------|----------|
+| [MEASURED-CLAIM-LEDGER.md](./MEASURED-CLAIM-LEDGER.md) | Every claim mapped to its source, plus the claims that are explicitly forbidden and why |
+| [ESSAY-PART-II.md](./ESSAY-PART-II.md) | Application answers |
+| [NINE-WEEK-PLAN.md](./NINE-WEEK-PLAN.md) | Term plan mapped to the five official objectives |
+| [TECHNICAL-FAQ.md](./TECHNICAL-FAQ.md) | Definitions and the questions this work invites, answered directly |
 
-## Your actions before submit
+## Start here
 
-1. **Rotate** OpenAI API key (was pasted in chat).  
-2. Recheck LFX dashboard: still Accepting? Deadline still Aug 5?  
-3. Fill resume personal fields → 1-page PDF → upload.  
-4. Paste essay modules into LFX form (adapt to character limits).  
-5. Submit **Jul 31** if ready (internal hard stop **Aug 2**).  
-6. Say **push** only if you want documentation cleanup on `main`.
+- [`docs/metrics.md`](../riscv-param-extraction/docs/metrics.md) for the measured tables
+- Run manifests: [pilot](../riscv-param-extraction/manifests/pilot-machine-adoc.md), [Artifact A](../riscv-param-extraction/manifests/artifact-a-gpt-4o-mini.md), [v3 WARL ablation](../riscv-param-extraction/manifests/stretch-c-v3-warl.md)
+- Upstream contributions: [`upstream-pr-drafts/README.md`](../upstream-pr-drafts/README.md)
 
-## Public links to cite
+## Scope
 
-- https://github.com/titoatwork/lfx-firstanalysis  
-- `riscv-param-extraction/docs/metrics.md`  
-- Manifests: pilot, artifact-a-gpt-4o-mini, stretch-c-v3-warl  
-
-## Primary only
-
-Default: **Part II only**. CFI/DFI only with a separate full packet if you truly want RTL.
+The claim ledger is the binding document. Where a claim here and a number in `metrics.md` disagree, `metrics.md` wins and the claim is wrong.

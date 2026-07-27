@@ -76,7 +76,7 @@ A `class` property on a param doc must **fail** schema validity.
 - Look up matching eval item by `name` and require a non-empty `quote`.
 - Quote must be a whitespace-normalized substring of source (baseline) or
   source∪context (treatment).
-- **Missing quote = not grounded (failure)** — included in denominator.
+- **Missing quote = not grounded (failure)**. Included in denominator.
 
 ### 7. Type fidelity
 

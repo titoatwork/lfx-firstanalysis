@@ -15,7 +15,7 @@ order-of-magnitude estimates.
 | Dual frontier (Sonnet+Opus) × 2 | brand-parity matrix | ~2× above | **~$0.15–0.50** |
 
 Full ISA dual-frontier one-pass estimates cited by public kits are often on the
-order of **$10–15** with caching — re-measure before quoting as ours.
+order of **$10–15** with caching, re-measure before quoting as ours.
 
 **Takeaway:** API spend is not the binding constraint for the shared challenge.
 Grounding, schema fidelity, markup robustness, negatives, and review are.

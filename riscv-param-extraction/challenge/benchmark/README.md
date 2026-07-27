@@ -4,9 +4,9 @@
 
 Fifteen parameters that already exist in public UDB, each paired with source prose and a committed `extraction.yaml`. The scorer checks:
 
-1. **Existence** — extraction claims a parameter  
-2. **Type fidelity** — `schema.type` matches ground truth when present  
-3. **Name match** — stricter optional check  
+1. **Existence**. Extraction claims a parameter  
+2. **Type fidelity**, `schema.type` matches ground truth when present  
+3. **Name match**. Stricter optional check  
 
 ```bash
 cd riscv-param-extraction

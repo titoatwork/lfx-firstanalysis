@@ -38,7 +38,7 @@ The locked v1.2 run completed 26/26 calls and produced **0/10** exact/alias reca
 ## What the numbers still support
 
 - Harness completed a locked 26/26 run with pinned model and reproducible scoring.  
-- On this exploratory setup, **name/WARL recall stayed at zero** under both arms — no support for “context fixes WARL naming on mini” as a positive claim.  
+- On this exploratory setup, **name/WARL recall stayed at zero** under both arms, no support for “context fixes WARL naming on mini” as a positive claim.  
 - Schema-valid extractions with **wrong names** appear in the review queue (naming failure mode, not infrastructure failure).
 
 ## What they do **not** support

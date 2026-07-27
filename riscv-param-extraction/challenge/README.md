@@ -4,9 +4,9 @@
 
 **Monorepo:** [titoatwork/lfx-firstanalysis](https://github.com/titoatwork/lfx-firstanalysis) · package `riscv-param-extraction/`  
 **Author:** Ibteshamul Haque · `titoatwork`  
-**Project:** LFX Fall 2026 — AI-assisted extraction of architectural parameters (Parameter SIG / [riscv/riscv-unified-db](https://github.com/riscv/riscv-unified-db))
+**Project:** LFX Fall 2026. AI-assisted extraction of architectural parameters (Parameter SIG / [riscv/riscv-unified-db](https://github.com/riscv/riscv-unified-db))
 
-This directory is the **shared coding-challenge surface** (two ISA snippets, optionality language, anti-hallucination, schema-shaped YAML). It lives **inside** the monorepo next to full-corpus science — one public home, not a second product repo.
+This directory is the **shared coding-challenge surface** (two ISA snippets, optionality language, anti-hallucination, schema-shaped YAML). It lives **inside** the monorepo next to full-corpus science, one public home, not a second product repo.
 
 **Spring credit:** Part I pipeline and committed results — [@ishaan-arora-1](https://github.com/ishaan-arora-1) / UDB PRs #1765–#1832. This work **reproduces and extends**; it does **not** claim Spring authorship.
 
@@ -48,7 +48,7 @@ Three versions in `prompts/`, each fixing a concrete failure class:
 
 | Version | Intent |
 |---------|--------|
-| **v1 naive** | Direct extract — over-triggers on “sounds technical” |
+| **v1 naive** | Direct extract, over-triggers on “sounds technical” |
 | **v2 keyword-anchored** | Optionality phrases + **verbatim quote** required |
 | **v3 schema-constrained** | UDB `param_schema` shape, empty list allowed, few-shot discipline |
 
@@ -81,7 +81,7 @@ Capacity / organization / block size are modeled as **independent** parameters w
 
 ### CSR address mapping (Priv 2.1)
 
-**Zero** parameters — fixed encoding convention, not optionality.  
+**Zero** parameters, fixed encoding convention, not optionality.  
 See `results/curated/csr_address_mapping.NO_PARAMETERS_FOUND.txt`.
 
 ---
@@ -96,7 +96,7 @@ See `results/curated/csr_address_mapping.NO_PARAMETERS_FOUND.txt`.
 | Under-extract CMO | gpt-4o, gpt-4o-mini, several free mid models |
 | CSR false positives | Llama 70B free, mini, Laguna, Gemma free |
 
-**Design implication:** model choice is largely a **recall** decision; disagreement and over-triggering argue for **human/SIG review gates**, not single-model trust. Curated `results/curated/` remains CI gold — live dirs are comparative evidence only.
+**Design implication:** model choice is largely a **recall** decision; disagreement and over-triggering argue for **human/SIG review gates**, not single-model trust. Curated `results/curated/` remains CI gold, live dirs are comparative evidence only.
 
 ---
 
@@ -108,15 +108,15 @@ See `results/curated/csr_address_mapping.NO_PARAMETERS_FOUND.txt`.
 python challenge/benchmark/scripts/score_recall.py
 ```
 
-**Read carefully — not a blind benchmark.** Cases are public UDB params a frontier model may have seen. This scores **pipeline mechanics** (does extract recognize a parameter is warranted; does type match), not generalization equal to Spring corpus adjusted recall (72.9% / 36.8%-class numbers). Pretraining leakage is stated first in the scorer output.
+**Read carefully, not a blind benchmark.** Cases are public UDB params a frontier model may have seen. This scores **pipeline mechanics** (does extract recognize a parameter is warranted; does type match), not generalization equal to Spring corpus adjusted recall (72.9% / 36.8%-class numbers). Pretraining leakage is stated first in the scorer output.
 
 ---
 
 ## 5. Hard negatives and markup robustness
 
-**Hard negatives (4):** optionality-ish words (`should`/`may`) that are **software advice** or **non-configurable** normative text — must extract **zero** parameters.
+**Hard negatives (4):** optionality-ish words (`should`/`may`) that are **software advice** or **non-configurable** normative text, must extract **zero** parameters.
 
-**Markup robustness (3):** raw AsciiDoc where **naive** quote match fails and **tag-aware** strip recovers — same failure class discussed around Spring markup handling (e.g. PR #1832 discussion).
+**Markup robustness (3):** raw AsciiDoc where **naive** quote match fails and **tag-aware** strip recovers, same failure class discussed around Spring markup handling (e.g. PR #1832 discussion).
 
 ---
 
@@ -128,7 +128,7 @@ Beyond the shared 2-snippet challenge: a **preregistered** vertical pilot with l
 |------|--------|
 | Primary run | `20260726T164713Z_gpt-4o-mini-2024-07-18` · **26/26** |
 | Name / WARL recall | **0/10** and **0/5** both arms |
-| Claim level | **Exploratory null / harness demo** — v1.2 had guidance limitations (see write-up) |
+| Claim level | **Exploratory null / harness demo**. V1.2 had guidance limitations (see write-up) |
 
 Details: [`temporal_holdout/results/PRIMARY_RESULTS.md`](./temporal_holdout/results/PRIMARY_RESULTS.md) · PR: [titoatwork/lfx-firstanalysis#1](https://github.com/titoatwork/lfx-firstanalysis/pull/1).
 
@@ -206,6 +206,6 @@ challenge/
 
 - Curated ≠ live API scores  
 - Known-param bench ≠ blind corpus recall  
-- Live matrix has real CSR failures — reported  
+- Live matrix has real CSR failures, reported  
 - Holdout v1.2 = exploratory null with documented prompt limitations  
 - Spring authorship = @ishaan-arora-1 / #1765–#1832  

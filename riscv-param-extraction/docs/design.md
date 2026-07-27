@@ -15,17 +15,17 @@ Part I (Spring LFX, PR branches `lfx-1765`…`lfx-1832`, mentee @ishaan-arora-1)
 
 | Gap | Artifact | Status |
 |-----|----------|--------|
-| Multi-model matrix unfinished | **A** | **Done** — gpt-4o-mini v2 vs Claude; honest worse recall; metrics §5 |
-| Spreadsheet → UDB YAML path | **B** | **Done** — 83+20 schema-valid drafts; metrics §7 |
+| Multi-model matrix unfinished | **A** | **Done**. Gpt-4o-mini v2 vs Claude; honest worse recall; metrics §5 |
+| Spreadsheet → UDB YAML path | **B** | **Done**. 83+20 schema-valid drafts; metrics §7 |
 | Reproducible run records | **manifests/** | Pilot + A + v3 |
-| WARL quality scar | prompt **v3** ablation | **Done null** — WARL worse; metrics §6 |
-| CSR-field grounded WARL | Original **C** | **Not run** — deferred post-apply with leakage audit |
+| WARL quality scar | prompt **v3** ablation | **Done null**. WARL worse; metrics §6 |
+| CSR-field grounded WARL | Original **C** | **Not run**. Deferred post-apply with leakage audit |
 
 Part I code remains upstream; this repo does not re-host the full UDB tree.
 
 ## Artifact B decisions
 
-1. **Input** is Part I `parameters.csv`, not raw LLM JSON — same surface mentors already review in the spreadsheet phase.  
+1. **Input** is Part I `parameters.csv`, not raw LLM JSON, same surface mentors already review in the spreadsheet phase.  
 2. **`named=yes` first** — **87** rows / **83** unique names; **all 83 already exist** under `spec/std/isa/param/`. Export is a *schema-valid draft generator + provenance packing* path, not “invent 83 new params.”  
 3. **New drafts** (`--mode new --limit 20`) target high-confidence `named=no` names **absent** from UDB.  
 4. **`definedBy`:** copy from existing UDB YAML when `--udb-root` is set; otherwise conservative adoc→extension map.  

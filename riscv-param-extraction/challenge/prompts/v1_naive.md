@@ -1,6 +1,6 @@
 # Prompt v1 — naive (baseline failure mode)
 
-**Status:** documentation of first attempt — do **not** use for production extract.  
+**Status:** documentation of first attempt, do **not** use for production extract.  
 **Observed failure:** over-triggers on technical convention text (CSR address mapping) as if it were implementation-defined parameters.
 
 ---

@@ -2,7 +2,7 @@
 
 ## Status (2026-07-26)
 
-**10 live model dirs** under [`results/live/`](../results/live/) — full table in [`MANIFEST.md`](../results/live/MANIFEST.md).
+**10 live model dirs** under [`results/live/`](../results/live/), full table in [`MANIFEST.md`](../results/live/MANIFEST.md).
 
 Headline (do not invent beyond MANIFEST):
 
@@ -13,7 +13,7 @@ Headline (do not invent beyond MANIFEST):
 | Open-weight fail CSR | Groq Llama 70B, Laguna S, Gemma-4-26B | CMO 3 or 1 · CSR **FAIL** FP |
 | OpenAI | gpt-4o, gpt-4o-mini | CMO **1** · gpt-4o CSR PASS · mini CSR FAIL |
 
-**Not run:** Anthropic Sonnet/Opus (**needs `ANTHROPIC_API_KEY`** — multi-provider `extract.py` ready). Direct DeepSeek (insufficient balance). Some free OR probes 429/empty.
+**Not run:** Anthropic Sonnet/Opus (**needs `ANTHROPIC_API_KEY`**. Multi-provider `extract.py` ready). Direct DeepSeek (insufficient balance). Some free OR probes 429/empty.
 
 **Offline disagreement table** (no API; re-scores committed dirs):
 
@@ -21,7 +21,7 @@ Headline (do not invent beyond MANIFEST):
 python challenge/scripts/score_live_matrix.py
 ```
 
-As of committed matrix: **4/10** full CMO=3 + CSR PASS; **5/10** under-extract CMO; **4/10** CSR FAIL — review-routing signal, not single-model trust.
+As of committed matrix: **4/10** full CMO=3 + CSR PASS; **5/10** under-extract CMO; **4/10** CSR FAIL, review-routing signal, not single-model trust.
 
 Offline we also ship: curated gold + CSR=0, multi-strategy matrix, denser fail-closed CI.
 

@@ -33,7 +33,7 @@ Honest numbers if mini is worse than Claude. **Not** a pure gpt-4o multi-model m
 | GT live working tree | **223** (dirty remeasure) — **do not** use for headline A vs Part I |
 | GT at `HEAD` on lfx-1832 | **185** (restore before analyze) |
 | Pilot mini | `v2/gpt-4o-mini/chunk_020.json` only (will be **skipped** without `--force`) |
-| Pilot gpt-4o | chunk_021 OK; chunk_020 error (TPM) — irrelevant to mini A path |
+| Pilot gpt-4o | chunk_021 OK; chunk_020 error (TPM), irrelevant to mini A path |
 
 ### Token inventory (content estimate ≈ chars/3.8)
 
@@ -52,17 +52,17 @@ Full list: `results/artifact_a_chunk_inventory.json`.
 ## Cost estimate (pre-run; not a claim of spend)
 
 Using Claude-scale token totals as the best available proxy and **list** gpt-4o-mini rates  
-(~**$0.15 / 1M input**, ~**$0.60 / 1M output** — verify at run time):
+(~**$0.15 / 1M input**, ~**$0.60 / 1M output**. Verify at run time):
 
 | Item | Estimate |
 |------|----------|
 | Input ~1.03M | ~$0.15 |
 | Output ~83k | ~$0.05 |
 | **Full-ish mini total** | **~$0.20–0.35** (buffer for prompt drift / retries-off) |
-| Already paid (chunk_020 pilot) | ~$0.008 — skipped on re-run |
-| Cap to request | **$4.50** hard stop (leave buffer under ~$5 campaign budget) |
+| Already paid (chunk_020 pilot) | ~$0.008, skipped on re-run |
+| Spend cap | **$4.50**, set well under the total budget available for this work |
 
-If burn rate after first **5** new chunks implies total **>$4.50**, **STOP and ask**.
+If the burn rate after the first **5** new chunks projects a total above **$4.50**, the run stops rather than continuing.
 
 ---
 
@@ -116,7 +116,7 @@ Note: after `analyze.py`, deduped/metrics land under `param_extraction/results/`
 | Auth error | Stop; re-check key load (never print key) |
 | TPM / limit on mini | Skip chunk; record in manifest; do **not** switch to gpt-4o without new gate |
 | Parse failure | Diagnose offline; **no** auto re-spend |
-| Projected total > cap | Stop and ask |
+| Projected total > cap | Halt the run |
 | Urge to re-pilot / re-Claude | **Forbidden** |
 
 ---
@@ -148,4 +148,4 @@ Note: after `analyze.py`, deduped/metrics land under `param_extraction/results/`
 | Requested cap | **$4.50** |
 | Command | `extract.py run --model gpt4o-mini --retries 0 -v` |
 
-**Next:** STEP 3 — need user API key + explicit spend approval (see session ask block).
+**Next:** STEP 3, need user API key + explicit spend approval (see session ask block).

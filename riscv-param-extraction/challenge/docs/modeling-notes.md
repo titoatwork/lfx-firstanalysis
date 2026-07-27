@@ -8,7 +8,7 @@ When the manual lists independent implementation choices in one sentence (e.g. c
 
 ## Opaque strings vs invented enums
 
-If the text gives no enumerable value space, prefer a minimal schema (e.g. opaque `string`) and flag SIG scoping — do not invent enums. That is a form of anti-hallucination at the **schema** layer, not only at the quote layer.
+If the text gives no enumerable value space, prefer a minimal schema (e.g. opaque `string`) and flag SIG scoping, do not invent enums. That is a form of anti-hallucination at the **schema** layer, not only at the quote layer.
 
 ## Empty results are valid
 
@@ -20,4 +20,4 @@ The CSR address-mapping snippet is a negative control: fixed convention language
 
 ## Holdout vs challenge
 
-The temporal holdout pilot tests CSR-context under a frozen pin. The locked v1.2 primary is an **exploratory null** with documented guidance limitations — method evidence, not a marketing win on WARL.
+The temporal holdout pilot tests CSR-context under a frozen pin. The locked v1.2 primary is an **exploratory null** with documented guidance limitations, method evidence, not a marketing win on WARL.

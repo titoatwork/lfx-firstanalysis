@@ -12,7 +12,7 @@
 
 Second-model extraction with **gpt-4o-mini-2024-07-18** and **PROMPT_VERSION=v2** over all **60** Part I param-bearing chunks; metrics vs **GT185**; agreement + hallucination-overlap vs committed Claude v2.  
 
-**gpt-4o-mini adjusted recall 32.2% vs Claude 72.9%** — worse on all per-class recall rows. Not a pure gpt-4o multi-model matrix.
+**gpt-4o-mini adjusted recall 32.2% vs Claude 72.9%**. Worse on all per-class recall rows. Not a pure gpt-4o multi-model matrix.
 
 ---
 
@@ -110,5 +110,5 @@ python -m pipeline.compare_models `
 
 - Second model is **gpt-4o-mini**, not full gpt-4o.  
 - Substantially lower recall than Claude-sonnet-4 under the same v2 pipeline.  
-- Class accuracy 100% is on a tiny exact-match set — not a global quality win.  
+- Class accuracy 100% is on a tiny exact-match set, not a global quality win.  
 - Full chunk JSON not published in monorepo (size + noise); manifests + aggregate metrics are public.  

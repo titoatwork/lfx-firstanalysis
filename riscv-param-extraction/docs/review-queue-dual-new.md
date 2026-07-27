@@ -8,7 +8,7 @@ High-confidence proposed-new names appearing in **both** models (n=9):
 
 | Name | Status |
 |------|--------|
-| FLEN | candidate — needs human/SIG review + spec locus |
+| FLEN | candidate, needs human/SIG review + spec locus |
 | IALIGN | candidate |
 | ILEN | candidate |
 | MISELECT_ACCESS | candidate |

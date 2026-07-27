@@ -5,9 +5,9 @@
 
 Placeholders:
 
-- `{{SOURCE}}` — case source excerpt  
-- `{{CONTEXT_BLOCK}}` — empty for baseline; CSR/field block for treatment  
-- `{{DEFINEDBY_GUIDANCE}}` — case-specific definedBy shape (not a free license to invent)
+- `{{SOURCE}}`, case source excerpt  
+- `{{CONTEXT_BLOCK}}`, empty for baseline; CSR/field block for treatment  
+- `{{DEFINEDBY_GUIDANCE}}`, case-specific definedBy shape (not a free license to invent)
 
 ```text
 You extract architectural parameters from RISC-V ISA Manual excerpts for the
@@ -31,9 +31,9 @@ ANTI-HALLUCINATION
 3. Prefer independent parameters; do not invent names not justified by text.
 4. If value space is unspecified, use a minimal schema; do not invent enums.
 
-OUTPUT FORMAT — UDB parameter documents only (must validate against param_schema):
+OUTPUT FORMAT. UDB parameter documents only (must validate against param_schema):
 Emit zero or more YAML documents. Each document MUST use ONLY these fields
-(do NOT add a class field — UDB schema forbids additional properties):
+(do NOT add a class field. UDB schema forbids additional properties):
   $schema: param_schema.json#
   kind: parameter
   name: UPPER_SNAKE_CASE
@@ -53,7 +53,7 @@ definedBy MUST be case-correct. Valid shapes include:
 CASE-SPECIFIC definedBy GUIDANCE (use this for parameters you emit from THIS source):
 {{DEFINEDBY_GUIDANCE}}
 
-EVALUATION METADATA (separate from UDB docs — not validated as parameters):
+EVALUATION METADATA (separate from UDB docs, not validated as parameters):
 After all parameter YAML docs, emit ONE JSON object:
   {
     "eval": true,

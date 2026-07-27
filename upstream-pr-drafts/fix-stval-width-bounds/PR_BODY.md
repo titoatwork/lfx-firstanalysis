@@ -8,7 +8,7 @@
 ## Summary
 
 `STVAL_WIDTH` is the number of implemented bits in `stval` (a bit-width), but
-its schema used `maximum: 2^64-1` with **no minimum** — the byte-size idiom
+its schema used `maximum: 2^64-1` with **no minimum**. The byte-size idiom
 used for parameters like `CACHE_BLOCK_SIZE`, not for CSR widths.
 
 Bring it to parity with the M-mode twin `MTVAL_WIDTH`:

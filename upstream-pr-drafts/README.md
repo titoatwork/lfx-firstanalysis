@@ -1,14 +1,27 @@
-# Upstream PR drafts (status)
+# Upstream defect candidates: what was checked, and what happened
 
-Small, issue-linked param data fixes prepared during prework. **Do not open** if another contributor already owns the fix.
+Every candidate defect found during prework is recorded here with its outcome, including the ones that never became a PR. Four of the six did not, because someone else already owned the fix or a maintainer landed it first. That check is the point of this directory.
 
-| Draft | Issue | Status (2026-07-26) |
-|-------|-------|---------------------|
-| `fix-stval-width-bounds/` | #2102 | **Do not open** — covered by others (#2103) |
-| `fix-hpm-events-dup-index/` | #2046 | **Do not open** — covered by others (#2047) |
-| `fix-hpm-mcountinhibit-typo/` | typo | Superseded by HPM_EVENTS draft |
-| `fix-mtvec-base-alignment-4096/` | power-of-two enum | **Do not open competing PR** while maintainer PR #2090 edits same files; raised as review comment instead |
+**Rule:** a candidate is only filed after it reproduces on current `origin/main`, no open PR touches it, no issue comment claims it, and the fix is small enough to review.
 
-Public upstream contribution so far: comment on [riscv-unified-db#2090](https://github.com/riscv/riscv-unified-db/pull/2090) (MTVEC enum `0xfff` vs power-of-two / `0x1000`).
+## Filed
 
-Open a new draft only after a fresh audit finds an **original, unclaimed, deterministic** defect with a regression test.
+| Candidate | Issue | PR | State |
+|-----------|-------|----|-------|
+| `4095` in both `unsigned_pow2` schema enums, with a regression test in the Ruby runner | [#2137](https://github.com/riscv/riscv-unified-db/issues/2137) | [#2138](https://github.com/riscv/riscv-unified-db/pull/2138) | Open |
+| `UXLEN` description named `SXLEN` as what `mstatus.UXL` changes; `SXLEN` option list used scalars against its own array schema | [#2145](https://github.com/riscv/riscv-unified-db/issues/2145) | [#2146](https://github.com/riscv/riscv-unified-db/pull/2146) | Open |
+
+## Not filed, and why
+
+| Candidate | Outcome |
+|-----------|---------|
+| `fix-mtvec-base-alignment-4096/` | **Resolved by review instead.** A comment on [#2090](https://github.com/riscv/riscv-unified-db/pull/2090) flagged `0xfff` in both MTVEC alignment enums against a schema requiring a power of two. The maintainer agreed and corrected it, and #2090 merged carrying the fix. Opening a competing PR against files under active maintainer edit would have been a race for credit on a one-token change. See [`OPEN-DECISION.md`](./fix-mtvec-base-alignment-4096/OPEN-DECISION.md). |
+| `fix-stval-width-bounds/` | Already owned. [#2103](https://github.com/riscv/riscv-unified-db/pull/2103) covers [#2102](https://github.com/riscv/riscv-unified-db/issues/2102). |
+| `fix-hpm-events-dup-index/` | Already owned. [#2047](https://github.com/riscv/riscv-unified-db/pull/2047) and [#1991](https://github.com/riscv/riscv-unified-db/pull/1991) both address the duplicate `HPM_COUNTER_EN` index in [#2046](https://github.com/riscv/riscv-unified-db/issues/2046), and the issue was claimed in-thread. |
+| `fix-hpm-mcountinhibit-typo/` | Subsumed by the HPM_EVENTS candidate above, which covers the same file. Filing it separately would have been noise. |
+
+The draft YAML and PR bodies are kept as-is so the reasoning stays auditable. They are **not** pending work.
+
+## Related
+
+A machine sweep over all 227 files in `spec/std/isa/param` plus the JSON schemas runs from [`workflow_slice/scripts/sweep_invariants.py`](../riscv-param-extraction/workflow_slice/scripts/sweep_invariants.py). It reports known and already-reviewed findings without presenting them as new work. One finding it flags, the `MXLEN` scalar against its `SXLEN`/`UXLEN`/`VSXLEN` array siblings, was reviewed and is **not** a defect; the reasoning is recorded in [#2145](https://github.com/riscv/riscv-unified-db/issues/2145) and encoded in the checker.

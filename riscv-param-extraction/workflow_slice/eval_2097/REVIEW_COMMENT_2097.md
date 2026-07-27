@@ -7,11 +7,11 @@
 
 ## Comment body (paste into #2097)
 
-Thanks for landing a parameter analogue of the instruction-extraction skill — the signal families, NOTE-skipping, and mandatory verbatim excerpt are the right anti-hallucination core for Part II-style work.
+Thanks for landing a parameter analogue of the instruction-extraction skill, the signal families, NOTE-skipping, and mandatory verbatim excerpt are the right anti-hallucination core for Part II-style work.
 
 I reproduced the skill *rules* (not a paid re-run of the agent) against a small frozen adversarial pack built from existing open corpus/challenge fixtures in https://github.com/titoatwork/lfx-firstanalysis (`riscv-param-extraction/workflow_slice/eval_2097/`). Cases:
 
-**Positives (5)** — DIRECT / CSR_RW / WARL  
+**Positives (5)**. DIRECT / CSR_RW / WARL  
 - `CACHE_BLOCK_SIZE` (implementation-specific cache block)  
 - `NUM_PMP_ENTRIES` (implementation-defined count)  
 - `MTVEC_ACCESS` (RO vs RW choice)  
@@ -46,9 +46,9 @@ I reproduced the skill *rules* (not a paid re-run of the agent) against a small 
 Separate the products of the skill:
 
 1. **Review envelope** (what the skill should emit first): evidence excerpt, anchor, classification, confidence/uncertainty, existing/new/possible-duplicate, proposed name, proposed `definedBy`, open questions.  
-2. **Clean UDB parameter YAML** (param_schema-valid only): emitted **after** human approval — no review-only keys, no `parameters:` wrapper.
+2. **Clean UDB parameter YAML** (param_schema-valid only): emitted **after** human approval, no review-only keys, no `parameters:` wrapper.
 
-Happy to contribute the frozen fixtures + a small validator (`workflow_slice/eval_2097/`) in whatever form is preferred (subtree under the skill, separate test path, or follow-up PR). No need to take any of this as blocking if you already planned a review-envelope split — flagging so Part II WARL and schema-validity expectations stay aligned.
+Happy to contribute the frozen fixtures + a small validator (`workflow_slice/eval_2097/`) in whatever form is preferred (subtree under the skill, separate test path, or follow-up PR). No need to take any of this as blocking if you already planned a review-envelope split, flagging so Part II WARL and schema-validity expectations stay aligned.
 
 Reproduction (no API):
 

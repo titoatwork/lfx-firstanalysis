@@ -2,7 +2,7 @@
 
 **Status:** `COMPLETE` (honest **null / negative** for WARL recall)  
 **Date:** 2026-07-25 (IST)  
-**Artifact:** Stretch C-adjacent — prompt-only WARL guidance (not CSR-field aux context)  
+**Artifact:** Stretch C-adjacent, prompt-only WARL guidance (not CSR-field aux context)  
 **Repo:** [titoatwork/lfx-firstanalysis](https://github.com/titoatwork/lfx-firstanalysis) · `riscv-param-extraction/`  
 **No secrets.**
 
@@ -17,7 +17,7 @@ Compared to Artifact A mini under **v2**:
 | Metric | v2 (A) | v3 | Note |
 |--------|-------:|---:|------|
 | Adj recall GT185 | 32.2% | **35.0%** | slight overall lift |
-| WARL recall | **12.5%** (3/24) | **8.3%** (2/24) | **worse** — null Stretch C |
+| WARL recall | **12.5%** (3/24) | **8.3%** (2/24) | **worse**. Null Stretch C |
 
 **Not** a successful WARL recall attack. **Not** full gpt-4o. **Not** CSR-field YAML aux context (that path remains untested).
 
@@ -83,5 +83,5 @@ python param_extraction\scripts\analyze.py --model gpt-4o-mini all
 ## Limitations
 
 - Prompt-only WARL essay is **insufficient** for Stretch C on this model.  
-- Next WARL work should try CSR-field aux context or stronger model — only with user spend OK.  
+- Next WARL work should try CSR-field aux context or stronger model, only with user spend OK.  
 - Class accuracy denominators remain small (exact name matches).  
