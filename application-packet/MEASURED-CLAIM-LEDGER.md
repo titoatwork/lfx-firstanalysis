@@ -32,6 +32,12 @@
 | Temporal holdout primary | **26/26**; name **0/10** both arms; WARL **0/5**; exploratory null under v1.2 limits | `temporal_holdout/results/PRIMARY_RESULTS.md`; PR #1 | Not clean temporal proof; neg FP not attributable to treatment |
 | Open Spring PRs (context) | #1765–#1832 still the Part I surface | GitHub | “merge/export still open” |
 | UDB PRs (when open) | Only original unclaimed fixes; STVAL/HPM already claimed by others | GitHub PR URLs | Never invent merges; comment ≠ PR |
+| **Spring PRs are a superseded snapshot** | @ishaan-arora-1 in issue #2053: those PRs were “the first version of the pipeline”; current work “is internal and not uploaded on this repository yet” | [issue #2053](https://github.com/riscv/riscv-unified-db/issues/2053) | State this **before** citing any Part I remeasure; never present #1765–#1832 as current state |
+| **Own upstream PR** | [#2138](https://github.com/riscv/riscv-unified-db/pull/2138) **OPEN** — `schema_defs.json` `4095`→`4096` in both `unsigned_pow2` enums + regression test in `run.rb`; filed with issue [#2137](https://github.com/riscv/riscv-unified-db/issues/2137) | GitHub | “**Opened**” only. Awaiting first-time-contributor workflow approval — **not merged** |
+| **Own upstream PR (2)** | [#2146](https://github.com/riscv/riscv-unified-db/pull/2146) **OPEN** + issue [#2145](https://github.com/riscv/riscv-unified-db/issues/2145) — `UXLEN` description named `SXLEN` as what `mstatus.UXL` changes; `SXLEN` option list used scalars against its array schema. Docs-only, +3/−3 | GitHub | “**Opened**” only — **not merged**. Docs correction; do not inflate to a schema fix |
+| **Sweep false positive (verified)** | `MXLEN` scalar vs `SXLEN`/`UXLEN`/`VSXLEN` array is **correct**: M-mode XLEN is fixed per hart; the others are runtime-switchable sets (`mstatus.SXL`/`UXL`, `hstatus.VSXL`). Flagged by invariant sweep, rejected on domain review, documented in #2145 | `workflow_slice/findings/` | Use as evidence of triage discipline — a machine flag that a human correctly refused to file |
+| **Review-adopted upstream fix** | Comment on [#2090](https://github.com/riscv/riscv-unified-db/pull/2090) identified `0xfff` (4095) in both MTVEC alignment enums; maintainer jordancarlin: “I agree that it should be 4096. Updated accordingly.” #2090 merged with the correction | [PR #2090](https://github.com/riscv/riscv-unified-db/pull/2090) | “Review comment identified … maintainer adopted the correction.” **#2090 is jordancarlin’s PR, not ours** |
+| **Adversarial review of skill PR** | 5-point review on [#2097](https://github.com/riscv/riscv-unified-db/pull/2097) + frozen eval pack (5 positives / 4 negatives) at `workflow_slice/eval_2097/` | monorepo; GitHub | Review + fixtures only; the skill is @uditjainstjis’s work |
 
 ### The nine dual-model high-conf “new” candidates (not confirmed params)
 
@@ -55,7 +61,7 @@
 | “Curated challenge results are live LLM scores” | Curated = CI gold; live = `results/live/` |
 | “Holdout proved CSR context fixes WARL / clean temporal holdout success” | Primary is exploratory null under v1.2 limitations |
 | “n=15 type fidelity equals live model re-derive” | Committed extraction pairs / mechanics scorer |
-| “We beat Anshul / guaranteed selection” | Strategy talk, not evidence |
+| Comparisons against other applicants / “guaranteed selection” | Strategy talk, not evidence. Never name another applicant in public text |
 | Applicant counts / admission probability | Unknown; do not invent |
 
 ---

@@ -16,28 +16,26 @@ Replace bracketed contact fields only if the form asks. Numbers below match the 
 I am applying to AI-assisted extraction of architectural parameters from RISC-V
 specifications – Part II (LFX Fall 2026).
 
-I studied and reproduced the public Spring Part I work on riscv-unified-db
-(credit: @ishaan-arora-1 / PRs #1765–#1832) rather than treating it as a black
-box. Against the pinned 185-parameter gold I remeasured 72.9% adjusted recall,
-88.4% classification accuracy, and 50% WARL recall; against the live 223-
-parameter set, adjusted recall falls to 64.2%, which shows why pinned and
-evolving golds both matter.
+My prework measures where extraction fails rather than adding another extractor.
+Remeasuring the public Spring output against the pinned 185-parameter gold gives
+72.9% adjusted recall, 88.4% classification accuracy, and 50% WARL recall. WARL is
+the worst class by a wide margin. A prompt-only WARL ablation made it worse
+(12.5% to 8.3%) while raising overall recall, and two models on identical chunks
+agreed on only 3.8% of parameter names, with just 9 high-confidence "new" names
+proposed by both. Those are measured arguments for CSR-grounded context and
+cross-model review gates, not assertions. I also built a schema-valid UDB export
+path (83/83 named, 20/20 new candidates).
 
-I then shipped pre-apply work in github.com/titoatwork/lfx-firstanalysis: a
-schema-valid draft UDB YAML exporter (83 existing named + 20 candidates); a
-controlled 60-chunk second-model run with gpt-4o-mini (PROMPT v2) that reached
-only 32.2% adjusted recall versus the public Claude baseline of 72.9% (name
-Jaccard 3.8%); a prompt-only WARL ablation that was negative for WARL
-(3/24 → 2/24); a coding-challenge pack with denser fail-closed controls (4 bad
-fixtures, 4 hard negatives, n=15 known-param mechanics check, 10-model live
-matrix with honest CSR fails, green CI); and a preregistered temporal holdout
-harness with a locked exploratory null on gpt-4o-mini (0/10 name recall both
-arms)—documented limitations, not a claimed CSR-context win.
+The Spring PRs (#1765–#1832, credit @ishaan-arora-1) are a superseded snapshot.
+The mentee has noted that the working pipeline is internal, so I present my
+remeasure as a public baseline rather than as current state.
 
-These results motivate grounded CSR context under leakage audit, cross-model
-and human review gates, explicit provenance, and small reviewable UDB PRs—not
-bulk generation or single-model trust. I can commit ≥30 hours/week for the Fall
-term.
+Upstream, I opened riscv-unified-db #2138: a non-power-of-two value in the
+unsigned_pow2 schema enums, with a regression test. A review comment of mine on
+#2090 identified the same defect in the MTVEC alignment enums, and the maintainer
+adopted the correction before that PR merged.
+
+I can commit ≥30 hours/week for the Fall term.
 ```
 
 ---
@@ -48,66 +46,63 @@ term.
 I am applying to the Fall 2026 mentorship “AI-assisted extraction of
 architectural parameters from RISC-V specifications – Part II.”
 
-Understanding of the work. I treat Part II as continuation of Spring LFX and
-Parameter SIG work: extract architectural parameters from privileged and
-unprivileged ISA material with LLMs; evaluate against gold sources (Manual
-chapter YAML, keyword spreadsheets, and UDB param YAML); improve classification
-where evidence supports it; productize reproducible pipelines/workflows; export
-schema-valid UDB YAML; and land reviewed, maintainable PRs. The Spring pipeline
-is public on open PR branches (#1765–#1832, mentee @ishaan-arora-1). As of this
-application those PRs remain unmerged—so Fall success is not “extract more
-candidates,” but reliability, reviewable artifacts, and mergeable work.
+Understanding of the work. Part II continues Spring LFX and Parameter SIG work:
+extract parameters from privileged and unprivileged ISA material with LLMs;
+evaluate against gold sources (Manual chapter YAML, keyword spreadsheets, UDB
+param YAML); extend classification; productize reproducible workflows; export
+schema-valid UDB YAML; and land reviewed PRs. The public Spring surface is PRs
+#1765–#1832 (@ishaan-arora-1), but the Spring mentee has noted the working
+pipeline is internal and those PRs were its first version. I treat them as a
+superseded snapshot rather than the baseline to build on. That shapes what success
+means. Not more candidates against a stale reference, but evaluation that stays
+valid while the pipeline underneath it moves.
 
-What I reproduced and measured. I cloned UDB on the fullest Part I branch,
-regenerated ground truth (223 live parameters; 100% any / 91% strong keyword
-match), and remeasured the committed Claude-sonnet-4 v2 results: 72.9% adjusted
-recall and 88.4% classification accuracy on the pinned 185-parameter freeze;
-64.2% adjusted recall on live 223. WARL-class recall remains 50% (12/24). I
-completed a machine.adoc pilot with an honest model split (gpt-4o + gpt-4o-mini)
-because org TPM blocked a pure gpt-4o path on the large chunk.
+What I measured. Regenerating ground truth on live UDB gives 223 parameters; the
+Part I freeze was 185. Re-scoring the committed Claude-sonnet-4 output: 72.9%
+adjusted recall and 88.4% classification accuracy on GT185, 64.2% on live GT223.
+WARL is the worst class at 50% (12/24). Running the same 60 chunks and v2 prompt
+through gpt-4o-mini (~$0.16) gave 32.2% adjusted recall, only 21 shared names
+(Jaccard 3.8%), and just nine high-confidence proposed-new names common to both
+models. Those nine are candidates for review, not confirmed parameters. A
+prompt-only WARL ablation raised overall recall to 35.0% while cutting WARL recall
+from 3/24 to 2/24: more confident labelling is not more correct labelling.
 
-What I built. Artifact B maps parameters.csv rows to draft UDB param YAML and
-validates against the UDB param schema: 83/83 named parameters (87 rows / 83
-unique; all already present in UDB) and 20/20 new candidates are schema-valid.
-“Schema-valid” means structural conformance, not architectural approval or
-mentor acceptance. Artifact A ran the same 60 param-bearing chunks and v2 prompt
-with gpt-4o-mini (~$0.16): 32.2% adjusted recall versus Claude’s 72.9%, only 21
-shared names (Jaccard 3.8%), and nine high-confidence proposed-new names that
-appear in both models—still candidates requiring human review, not confirmed
-parameters. A prompt-only WARL guidance ablation (v3) slightly raised overall
-adjusted recall to 35.0% but reduced matched WARL recall from 3/24 to 2/24: more
-confident labeling is not more correct labeling.
+What I built. An exporter mapping parameters.csv to draft UDB param YAML,
+schema-valid at 83/83 named (87 rows / 83 unique) and 20/20 new candidates. That
+is structural conformance only, not architectural approval. A challenge control
+pack (four fail-closed fixtures, four hard negatives, n=15 known-param mechanics
+under a pretraining caveat, a ten-model live matrix including honest CSR false
+positives, green CI). A temporal holdout harness whose locked primary run returned
+0/10 name recall in both arms, an exploratory null under documented v1.2
+limitations rather than evidence that context fixes WARL.
 
-Challenge and method surface. On the shared two-snippet coding challenge I
-shipped a denser control pack than a minimal kit: four fail-closed bad fixtures,
-four hard negatives, markup robustness (naive vs tag-aware), n=15 known-param
-mechanics scoring with an explicit pretraining caveat, a ten-model live matrix
-that includes CSR false positives and under-extracts, and green CI that also
-gates export tests. Separately I built a temporal holdout harness (frozen model
-pin, leakage-audited CSR context, immutable run directory). The locked primary
-run (gpt-4o-mini, 26/26 calls) produced 0/10 exact/alias name recall in both
-baseline and treatment arms—an exploratory null under documented v1.2 prompt
-limitations, not a claim that context already fixes WARL. That self-audit is
-intentional: Fall work should treat CSR grounding as a hypothesis to test under
-clean separation, not as marketing.
+Upstream. I opened riscv-unified-db #2138 with linked issue #2137: both
+unsigned_pow2 schema enums list 4095, not a power of two, fixed with a regression
+test wired into the Ruby test runner rather than a bare data edit. A review
+comment of mine on #2090 identified the same defect in the MTVEC alignment enums,
+and the maintainer agreed and corrected it before merge. That PR is his, and I
+claim only the review. I also published an adversarial eval pack (five positives,
+four negatives) against the extraction-skill PR #2097, including the sharpest
+case: WARL vocabulary whose legal value set is ISA-fixed, leaving no
+implementation choice. A second pair, #2145/#2146, corrects two parameter
+descriptions found while triaging an automated invariant sweep over all 227 param
+files. The sweep's other flag, an MXLEN/SXLEN type asymmetry, turned out to be
+architecturally correct, so I documented why instead of filing it. My aim upstream
+is small, testable, issue-linked work and useful review, not volume.
 
-What Part II must do differently. Ground model output in CSR/spec context with a
-leakage audit and preregistered evaluation; treat cross-model agreement as a
-review signal, not automatic truth; keep provenance (spec file, anchor, excerpt,
-class, confidence, run id); export only reviewed findings; open small
-issue-linked UDB PRs (schema/data correctness) instead of another enormous
-generated dump.
+What Part II must do differently. Ground output in CSR/spec context under leakage
+audit and preregistered evaluation; treat cross-model agreement as a review
+signal, not truth; keep provenance (file, anchor, excerpt, class, confidence, run
+id); export only reviewed findings; open small issue-linked PRs, not generated
+dumps.
 
-Prior research credibility. I am a 4th-year CS undergraduate. I completed a
-faculty research attachment at Universiti Malaya under Prof. Por Lip Yee (on-site
-June 2026), owning an end-to-end IoT IDS pipeline with measured evaluation and
-manuscript preparation (FGCS target). That habit—baseline, measure, document
-limits, ship reviewable artifacts—is what I will bring here.
+Prior credibility. Fourth-year CS undergraduate; research attachment at Universiti
+Malaya under Prof. Por Lip Yee (on-site June 2026), owning an end-to-end IoT IDS
+pipeline with measured evaluation and a manuscript in preparation. Baseline,
+measure, document limits, ship reviewable artifacts.
 
 Logistics. ≥30 hours/week for ~15 Sep–15 Nov 2026; India (IST), flexible for
-US-Pacific meetings. Public prework and numbers:
-https://github.com/titoatwork/lfx-firstanalysis
-(path riscv-param-extraction/; metrics and manifests under docs/ and manifests/).
+US-Pacific meetings. Prework: https://github.com/titoatwork/lfx-firstanalysis
 
 Thank you for your consideration.
 ```
@@ -129,9 +124,14 @@ path rather than a generic “I like AI and RISC-V” essay.
 ## 4. Relevant experience
 
 ```text
-- Reproduced and measured the public Spring parameter-extraction pipeline
+- Reproduced and measured the public Spring parameter-extraction snapshot
   (credit @ishaan-arora-1 / PRs #1765–#1832): 72.9% adjusted recall on GT185;
   64.2% on live GT223; WARL 50%.
+- Upstream riscv-unified-db: opened #2138 (+ issue #2137) fixing a non-power-of-
+  two value in the unsigned_pow2 schema enums, with a regression test; a review
+  comment on #2090 identified the same defect in the MTVEC alignment enums and
+  the maintainer adopted the correction before merge; published an adversarial
+  eval pack and five-point review against the extraction-skill PR #2097.
 - Built a CSV→draft UDB YAML exporter with schema validation (83 named + 20
   candidate drafts).
 - Ran a controlled 60-chunk gpt-4o-mini vs Claude comparison (32.2% vs 72.9% adj
@@ -148,11 +148,18 @@ path rather than a generic “I like AI and RISC-V” essay.
 ## 5. Technical approach (term)
 
 ```text
-Week 0: mentor kickoff contract—repos, golds, metrics, first PR shape.
-Weeks 1–2: pin SHAs; reproduce baselines; reconcile Manual YAML / spreadsheet /
-UDB golds; human-review protocol and error taxonomy.
-Week 3: leakage-audited CSR-field context experiment for WARL (only if mentors
-want it); publish positive or negative result equally.
+Week 0: mentor kickoff contract. Establish which pipeline is actually live (the
+internal one, not the Spring PR snapshot), plus repos, golds, metrics, and the
+shape of the first PR.
+Weeks 1–2: build the evaluation harness before touching extraction. Pin SHAs;
+reconcile Manual YAML / spreadsheet / UDB golds into one versioned reference;
+per-class recall, negative controls, cross-model agreement, human-review protocol
+and error taxonomy. Recall that cannot be measured cannot be improved, and a
+harness keeps its value while the pipeline underneath it changes, which, given the
+Spring history, it will.
+Week 3: leakage-audited CSR-field context experiment for WARL, the worst class at
+50% and the one prompt-only guidance already failed to fix; publish a positive or
+negative result equally.
 Weeks 4–5: fix dominant error classes; optional cross-model gating for review
 efficiency; package reproducible workflows with manifests and tests (Obj 3).
 Week 6: export only reviewed findings to UDB YAML with provenance; schema tests.
@@ -171,7 +178,7 @@ generated YAML count.
 Ability to land machine-readable ISA parameter artifacts maintainers trust;
 deeper RISC-V spec literacy (especially WARL and classification boundaries);
 experience shipping under RVI mentorship standards with provenance and metrics
-that both mentors can audit—Baum-style reviewability and Dingankar-style
+that both mentors can audit: Baum-style reviewability and Dingankar-style
 baselines/ablations.
 ```
 
@@ -193,6 +200,14 @@ project only.
 ```text
 https://github.com/titoatwork/lfx-firstanalysis
 
+Upstream (riscv/riscv-unified-db):
+- PR #2138 + issue #2137: unsigned_pow2 schema enums, with regression test
+- PR #2146 + issue #2145: SXLEN/UXLEN description corrections
+- PR #2090: review comment identified the MTVEC alignment defect; the maintainer
+  adopted the correction before merge (that PR is the maintainer's, not mine)
+- PR #2097: five-point review + adversarial eval pack for the extraction skill
+- Issue #2053: measured WARL/cross-model findings contributed to scope discussion
+
 Start with:
 - riscv-param-extraction/docs/metrics.md
 - riscv-param-extraction/manifests/artifact-a-gpt-4o-mini.md
@@ -206,7 +221,8 @@ Start with:
 ## One-sentence summary (form field if present)
 
 ```text
-I reproduced the Spring pipeline, measured multi-model and WARL failure modes,
-built a schema-valid UDB export path, and plan small human-reviewed upstream
-contributions—not bulk generation.
+I measured where parameter extraction actually fails (WARL worst at 50%, 3.8%
+cross-model name agreement, a failed prompt-only WARL fix), built a schema-valid
+UDB export path, and have started contributing small issue-linked fixes and
+review upstream rather than bulk generation.
 ```

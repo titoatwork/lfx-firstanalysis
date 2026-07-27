@@ -8,7 +8,7 @@
 
 Public prework for LFX Fall 2026 Part II: **coding-challenge pack**, **measured corpus science**, **schema-valid export drafts**, **live multi-model results**, and a **temporal holdout harness** (exploratory null, self-audited).
 
-Spring Part I (extract → analyze → spreadsheet) was built on open UDB PR branches **#1765–#1832** by [@ishaan-arora-1](https://github.com/ishaan-arora-1). This repo **reproduces**, **remeasures**, and **extends** — it does **not** claim Part I authorship.
+Spring Part I (extract → analyze → spreadsheet) was built on open UDB PR branches **#1765–#1832** by [@ishaan-arora-1](https://github.com/ishaan-arora-1). This repo **reproduces**, **remeasures**, and **extends**. It does **not** claim Part I authorship.
 
 ---
 
@@ -22,6 +22,17 @@ Spring Part I (extract → analyze → spreadsheet) was built on open UDB PR bra
 | 4 | **[Temporal holdout](./riscv-param-extraction/challenge/temporal_holdout/)** · [PR #1](https://github.com/titoatwork/lfx-firstanalysis/pull/1) | Preregistered CSR-context pilot; locked **exploratory null** (v1.2 limitations documented) |
 | 5 | **[Export + drafts](./riscv-param-extraction/)** | `export/`, `drafts/param/`, `drafts/param-new/` |
 | 6 | **[Application packet](./application-packet/)** | Essay, 9-week plan, **claim ledger** |
+| 7 | **Upstream work** (below) | Issue-linked fix + adopted review + adversarial eval, not bulk PRs |
+
+### Upstream (riscv/riscv-unified-db)
+
+| Item | State |
+|------|-------|
+| [PR #2138](https://github.com/riscv/riscv-unified-db/pull/2138) + [issue #2137](https://github.com/riscv/riscv-unified-db/issues/2137) | **Open.** `4095` is not a power of two but appears in both `unsigned_pow2` schema enums; fixed with a regression test wired into the Ruby test runner |
+| [PR #2146](https://github.com/riscv/riscv-unified-db/pull/2146) + [issue #2145](https://github.com/riscv/riscv-unified-db/issues/2145) | **Open.** `UXLEN`'s description named `SXLEN` as the parameter `mstatus.UXL` changes; `SXLEN`'s option list used scalars against its own array schema. Found while triaging a sweep that flagged the `MXLEN`/`SXLEN` type asymmetry, which was verified **correct** and deliberately left alone |
+| [PR #2090](https://github.com/riscv/riscv-unified-db/pull/2090) | **Merged.** A [review comment](https://github.com/riscv/riscv-unified-db/pull/2090#issuecomment-5084258197) here identified the same defect in the MTVEC alignment enums and the maintainer adopted the correction. **This is the maintainer's PR, not ours; the contribution is the review** |
+| [PR #2097](https://github.com/riscv/riscv-unified-db/pull/2097) | Five-point review + frozen adversarial eval pack ([`workflow_slice/eval_2097/`](./riscv-param-extraction/workflow_slice/eval_2097/)) for the proposed parameter-extraction skill |
+| [Issue #2053](https://github.com/riscv/riscv-unified-db/issues/2053) | Measured WARL and cross-model findings contributed to the Part II scope discussion |
 
 ### Path A vs Path B (do not collapse)
 
@@ -94,11 +105,11 @@ python challenge/scripts/ci_check.py
 
 - Artifact A second model is **gpt-4o-mini** (not full gpt-4o); mini **underperforms** Claude on corpus recall.  
 - Pilot used a **model split** (org TPM limits), not pure gpt-4o.  
-- Artifact B drafts are **DRAFT** — not unsolicited bulk UDB merges.  
+- Artifact B drafts are **DRAFT**, not unsolicited bulk UDB merges.  
 - Challenge curated results are CI gold; live multi-model is under `challenge/results/live/` with per-model honesty.  
-- Holdout v1.2 is an **exploratory null** with documented prompt-guidance limitations — not clean temporal-holdout proof.  
+- Holdout v1.2 is an **exploratory null** with documented prompt-guidance limitations, not clean temporal-holdout proof.  
 - Do **not** claim challenge n=2 scores beat Spring corpus recall on equal footing.  
-- Upstream STVAL/HPM-style fixes may already be claimed by others — open UDB PRs only when original and unclaimed.
+- Upstream STVAL/HPM-style fixes may already be claimed by others. Open UDB PRs only when original and unclaimed.
 
 ---
 
