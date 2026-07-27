@@ -11,6 +11,7 @@ immersion-workspace/
 # Private working notes and tool config
 AGENTS.md
 AGENT-RULES.md
+AGENT-LANES.md
 HANDSOFF.md
 RECURRING_MISTAKES.md
 .grok/
@@ -80,4 +81,12 @@ venv/
 
 # Local runbooks
 TOMORROW*.md
+
+# Agent-process artifacts: internal triage, draft comment text, strategy notes.
+# The sweep SCRIPT is public (it backs an essay claim); its OUTPUT is not,
+# because generated findings carry local temp paths and triage-vs-competitor notes.
+riscv-param-extraction/workflow_slice/findings/
+upstream-pr-drafts/**/COMMENT.md
+_tmp_*
+**/_scratch*
 
