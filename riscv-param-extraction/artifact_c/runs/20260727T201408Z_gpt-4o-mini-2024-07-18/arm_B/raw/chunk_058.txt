@@ -1,0 +1,113 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The maximum size in bits of a vector element that any operation can produce or consume, _ELEN_ >= 8, which must be a power of 2.",
+      "line_number": 12,
+      "parameter_name": "ELEN",
+      "existing_udb_name": "ELEN",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "ELEN is a direct implementation parameter that specifies the maximum size of a vector element. It has constraints (>= 8, power of 2) but the specific value is chosen by the implementer."
+    },
+    {
+      "excerpt": "The number of bits in a single vector register, _VLEN_ >= ELEN, which must be a power of 2, and must be no greater than 2^16.",
+      "line_number": 13,
+      "parameter_name": "VLEN",
+      "existing_udb_name": "VLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "VLEN is a direct implementation parameter that specifies the number of bits in a vector register. It has constraints (>= ELEN, power of 2, <= 2^16) but the specific value is chosen by the implementer."
+    },
+    {
+      "excerpt": "Implementations may have a writable `misa.V` field.",
+      "line_number": 30,
+      "parameter_name": "HW_MISA_V_FIELD",
+      "existing_udb_name": "HW_MISA_V_FIELD",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice of whether the `misa.V` field is writable is left to the implementer, making it a direct implementation choice."
+    },
+    {
+      "excerpt": "The `vtype` register has five fields, `vill`, `vma`, `vta`, `vsew[2:0]`, and `vlmul[2:0]`.",
+      "line_number": 50,
+      "parameter_name": "VTYPE_FIELDS",
+      "existing_udb_name": "VTYPE_FIELDS",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The fields in the `vtype` register are WARL, meaning the set of legal values for these fields can vary by implementation."
+    },
+    {
+      "excerpt": "Implementations must support LMUL integer values of 1, 2, 4, and 8.",
+      "line_number": 90,
+      "parameter_name": "LMUL_VALUES",
+      "existing_udb_name": "LMUL_VALUES",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The specific integer values for LMUL that must be supported are defined, making this a direct implementation choice."
+    },
+    {
+      "excerpt": "Implementations must provide fractional LMUL settings that allow the narrowest supported type to occupy a fraction of a vector register corresponding to the ratio of the narrowest supported type's width to that of the largest supported type's width.",
+      "line_number": 100,
+      "parameter_name": "FRACTIONAL_LMUL",
+      "existing_udb_name": "FRACTIONAL_LMUL",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The requirement for supporting fractional LMUL settings is a direct implementation choice."
+    },
+    {
+      "excerpt": "The `vstart` CSR is defined to have only enough writable bits to hold the largest element index (one less than the maximum VLMAX).",
+      "line_number": 200,
+      "parameter_name": "VSTART_BITS",
+      "existing_udb_name": "VSTART_BITS",
+      "class": "NORM_CSR_RW",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of writable bits in the `vstart` CSR is determined by the implementation's maximum vector length, making it a read-write parameter."
+    },
+    {
+      "excerpt": "The `vlenb` register holds the value VLEN/8, i.e., the vector register length in bytes.",
+      "line_number": 220,
+      "parameter_name": "VLENB",
+      "existing_udb_name": "VLENB",
+      "class": "NORM_CSR_RW",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The `vlenb` register is a read-only CSR that holds a value derived from VLEN, which is determined by the implementation."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "When `mstatus.VS` is Dirty, `mstatus.SD` is 1; otherwise, `mstatus.SD` is set in accordance with existing specifications.",
+      "line_number": 150,
+      "reason": "This describes behavior based on the state of `mstatus.VS`, which is not an implementation choice but rather a fixed requirement."
+    },
+    {
+      "excerpt": "The `vill` bit is used to encode that a previous `vset{i}vl{i}` instruction attempted to write an unsupported value to `vtype`.",
+      "line_number": 180,
+      "reason": "This describes the function of the `vill` bit rather than an implementation choice, as it is a fixed requirement."
+    },
+    {
+      "excerpt": "The `vstart` CSR is writable by unprivileged code, but non-zero `vstart` values may cause vector instructions to run substantially slower on some implementations.",
+      "line_number": 210,
+      "reason": "This describes potential performance implications of using `vstart`, which is not an implementation choice."
+    },
+    {
+      "excerpt": "The vector extension must have a consistent state at reset.",
+      "line_number": 300,
+      "reason": "This is a fixed requirement for all implementations and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "The `vill` bit is held in bit XLEN-1 of the CSR to support checking for illegal values with a branch on the sign bit.",
+      "line_number": 320,
+      "reason": "This describes the implementation of the `vill` bit rather than an implementation choice."
+    }
+  ]
+}
+```

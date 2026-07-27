@@ -1,0 +1,73 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "For BF16 these values are: radix (b) 2, significand (p) 8, emax 127.",
+      "line_number": 56,
+      "parameter_name": "BF16_FORMAT_PARAMETERS",
+      "existing_udb_name": "BF16_FORMAT_PARAMETERS",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The radix, significand, and maximum exponent for BF16 are direct implementation choices that define the format."
+    },
+    {
+      "excerpt": "RISC-V supports IEEE-defined default exception handling. BF16 is no exception.",
+      "line_number": 204,
+      "parameter_name": "HW_BF16_EXCEPTION_HANDLING",
+      "existing_udb_name": "HW_BF16_EXCEPTION_HANDLING",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to support or not support IEEE-defined exception handling for BF16, making it a direct implementation choice."
+    },
+    {
+      "excerpt": "The BF16 extensions defined in this specification (i.e., Zfbfmin, Zvfbfmin, and Zvfbfwma) depend on the single-precision floating-point extension F.",
+      "line_number": 370,
+      "parameter_name": "BF16_EXTENSION_DEPENDENCIES",
+      "existing_udb_name": "BF16_EXTENSION_DEPENDENCIES",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The dependencies of BF16 extensions on other extensions (like F) are implementation choices that can vary."
+    },
+    {
+      "excerpt": "As with other scalar floating-point instructions, the rounding mode field rm can also take on the DYN encoding, which indicates that the instruction uses the rounding mode specified in the frm CSR.",
+      "line_number": 232,
+      "parameter_name": "BF16_ROUNDING_MODE",
+      "existing_udb_name": "BF16_ROUNDING_MODE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The rounding mode for BF16 instructions can vary by implementation, and the set of legal values for the rm field is implementation-defined."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE]\n====\nFuture floating-point extensions, including those that operate on BF16 values, may chose not to support subnormal numbers.\n====",
+      "line_number": 197,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a potential future choice, not an architectural requirement."
+    },
+    {
+      "excerpt": "These are by no means the only people concerned with the specification, but they are the ones we considered most while writing it.",
+      "line_number": 36,
+      "reason": "This is a descriptive statement about the intended audience and does not define an architectural parameter."
+    },
+    {
+      "excerpt": "The implementation can choose to support or not support IEEE-defined exception handling for BF16, making it a direct implementation choice.",
+      "line_number": 204,
+      "reason": "This is a fixed requirement ('must') that all implementations must satisfy. There is no implementation choice here — it is not a parameter."
+    },
+    {
+      "excerpt": "BF16 addition, subtraction, multiplication, division, and square-root operations can be faithfully emulated by converting the BF16 operands to single-precision, performing the operation using single-precision arithmetic, and then converting back to BF16.",
+      "line_number": 370,
+      "reason": "This describes a method of emulation rather than an architectural choice. It does not define a parameter."
+    },
+    {
+      "excerpt": "The final computations were then typically converted back into the more compact FP16 encoding.",
+      "line_number": 20,
+      "reason": "This describes a common practice in computation rather than an architectural parameter."
+    }
+  ]
+}
+```

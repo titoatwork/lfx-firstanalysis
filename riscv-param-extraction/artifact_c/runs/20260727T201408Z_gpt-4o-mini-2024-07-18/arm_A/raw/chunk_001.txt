@@ -1,0 +1,93 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The bits order accesses to one of the two address domains, memory or I/O, depending on which address domain the atomic instruction is accessing.",
+      "line_number": 12,
+      "parameter_name": "AQ_RL_BITS_DOMAIN",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The implementation chooses how to use the _aq_ and _rl_ bits to order accesses to memory or I/O domains, which is a direct design decision."
+    },
+    {
+      "excerpt": "If both bits are clear, no additional ordering constraints are imposed on the atomic memory operation.",
+      "line_number": 16,
+      "parameter_name": "AQ_RL_DEFAULT_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation decides whether to impose additional ordering constraints based on the state of the _aq_ and _rl_ bits, which is a design choice."
+    },
+    {
+      "excerpt": "An implementation can register an arbitrarily large reservation set on each LR, provided the reservation set includes all bytes of the addressed data word or doubleword.",
+      "line_number": 36,
+      "parameter_name": "LR_RESERVATION_SET_SIZE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The size of the reservation set for LR instructions is an implementation choice, allowing for flexibility in how many bytes can be reserved."
+    },
+    {
+      "excerpt": "The misaligned atomicity granule PMA specifies the size of a misaligned atomicity granule, a power-of-two number of bytes.",
+      "line_number": 66,
+      "parameter_name": "MISALIGNED_ATOMICITY_GRANULE_SIZE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The size of the misaligned atomicity granule is an implementation-defined parameter that can vary, allowing for different designs."
+    },
+    {
+      "excerpt": "If the _aq_ bit is set, then no later memory operations in this RISC-V hart can be observed to take place before the AMO.",
+      "line_number": 90,
+      "parameter_name": "AMO_AQ_SEMANTICS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation decides whether to enforce acquire semantics based on the _aq_ bit, which is a design choice."
+    },
+    {
+      "excerpt": "If the _rl_ bit is set, then other RISC-V harts will not observe the AMO before memory accesses preceding the AMO in this RISC-V hart.",
+      "line_number": 90,
+      "parameter_name": "AMO_RL_SEMANTICS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation decides whether to enforce release semantics based on the _rl_ bit, which is a design choice."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE]\n====\nAfter much debate, the language community and architecture community appear to have finally settled on release consistency as the standard memory consistency model and so the RISC-V atomic support is built around this model.\n====",
+      "line_number": 6,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a community consensus, not an architectural requirement."
+    },
+    {
+      "excerpt": "The SC must fail if a store to the reservation set from another hart can be observed to occur between the LR and SC.",
+      "line_number": 42,
+      "reason": "This describes behavior that occurs under specific conditions rather than an implementation choice. The parameter would be the conditions under which SC can succeed."
+    },
+    {
+      "excerpt": "The precise statement of the atomicity requirements for successful LR/SC sequences is defined by the Atomicity Axiom in <<rvwmo>>.",
+      "line_number": 48,
+      "reason": "This is a reference to a definition rather than a parameter. It does not specify an implementation choice."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nWe provided fetch-and-op style atomic primitives as they scale to highly parallel systems better than LR/SC or CAS.\n====",
+      "line_number": 78,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a design choice rationale, not an architectural requirement."
+    },
+    {
+      "excerpt": "The main disadvantage of LR/SC over CAS is livelock, which we avoid, under certain circumstances, with an architected guarantee of eventual forward progress as described below.",
+      "line_number": 84,
+      "reason": "This describes a disadvantage of a design choice rather than an implementation parameter. It does not specify an implementation choice."
+    }
+  ]
+}
+```

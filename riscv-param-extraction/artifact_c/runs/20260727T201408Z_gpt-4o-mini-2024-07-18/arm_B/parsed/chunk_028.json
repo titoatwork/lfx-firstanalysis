@@ -1,0 +1,57 @@
+{
+  "chunk_id": "chunk_028",
+  "arm": "B",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "Implementations may contain additional CSRs, accessible by some subset of the privilege levels using the CSR instructions described in Volume I.",
+      "line_number": 8,
+      "parameter_name": "NUM_ADDITIONAL_CSRS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of additional CSRs is an implementation choice, as it is not fixed and can vary based on the design."
+    },
+    {
+      "excerpt": "The top two bits (csr[11:10]) indicate whether the register is read/write (`00`,`01`, or `10`) or read-only (`11`).",
+      "line_number": 20,
+      "parameter_name": "CSR_ACCESSIBILITY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The accessibility of CSRs is determined by the implementer, who can choose between read/write and read-only configurations."
+    },
+    {
+      "excerpt": "Implementations should raise illegal-instruction exceptions on machine-mode access to the latter set of registers.",
+      "line_number": 34,
+      "parameter_name": "HW_DEBUG_MODE_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to raise exceptions on access to certain debug registers is left to the implementer, making it a design decision."
+    },
+    {
+      "excerpt": "Implementations are permitted but not required to raise an illegal-instruction exception if an instruction attempts to write a non-supported value to a *WLRL* field.",
+      "line_number": 102,
+      "parameter_name": "HW_WLRL_EXCEPTION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The decision to raise exceptions for unsupported writes to WLRL fields is left to the implementer, indicating a design choice."
+    },
+    {
+      "excerpt": "Some read/write CSR fields are only defined for a subset of bit encodings, but allow any value to be written while guaranteeing to return a legal value whenever read.",
+      "line_number": 118,
+      "parameter_name": "WARL_FIELDS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The WARL fields allow for implementation-defined legal values, which can vary by implementation."
+    }
+  ]
+}

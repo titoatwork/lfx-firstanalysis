@@ -1,0 +1,63 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "Implementations might provide anywhere from 1 to 3 privilege modes trading off reduced isolation for lower implementation cost.",
+      "line_number": 157,
+      "parameter_name": "NUM_PRIVILEGE_MODES",
+      "existing_udb_name": "NUM_PRIVILEGE_MODES",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of privilege modes (1 to 3) is a direct implementation choice that can vary by design, allowing for trade-offs in isolation and cost."
+    },
+    {
+      "excerpt": "Each privilege level has a core set of privileged ISA extensions with optional extensions and variants.",
+      "line_number": 165,
+      "parameter_name": "OPTIONAL_PRIVILEGED_ISA_EXTENSIONS",
+      "existing_udb_name": "OPTIONAL_PRIVILEGED_ISA_EXTENSIONS",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The choice of which optional privileged ISA extensions to implement is left to the hardware implementer, making it a parameter."
+    },
+    {
+      "excerpt": "Implementations may also include a debug mode to support off-chip debugging and/or manufacturing test.",
+      "line_number": 203,
+      "parameter_name": "DEBUG_MODE_SUPPORT",
+      "existing_udb_name": "DEBUG_MODE_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The decision to include a debug mode is an implementation choice, allowing for a binary option of supporting or not supporting debug mode."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The machine level has the highest privileges and is the only mandatory privilege level for a RISC-V hardware platform.",
+      "line_number": 171,
+      "reason": "This is a fixed requirement that all implementations must satisfy, not an implementation choice."
+    },
+    {
+      "excerpt": "At any time, a RISC-V hardware thread (_hart_) is running at some privilege level encoded as a mode in one or more CSRs.",
+      "line_number": 145,
+      "reason": "This describes the operational behavior of a hart rather than an implementation choice, thus not a parameter."
+    },
+    {
+      "excerpt": "The simplest RISC-V implementations may provide only M-mode, though this will provide no protection against incorrect or malicious application code.",
+      "line_number": 179,
+      "reason": "This is a suggestion about implementation simplicity and does not define a parameter for choice."
+    },
+    {
+      "excerpt": "Horizontal traps can be implemented as vertical traps that return control to a horizontal trap handler in the less-privileged mode.",
+      "line_number": 197,
+      "reason": "This describes a potential implementation technique rather than an architectural parameter."
+    },
+    {
+      "excerpt": "The lock feature of the optional PMP facility can provide some limited protection even with only M-mode implemented.",
+      "line_number": 175,
+      "reason": "This is a suggestion about the use of a feature and does not define an implementation choice."
+    }
+  ]
+}
+```

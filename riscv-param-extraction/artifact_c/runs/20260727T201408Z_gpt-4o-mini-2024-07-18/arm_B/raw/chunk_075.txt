@@ -1,0 +1,43 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The duration of a PAUSE instruction's effect may vary significantly within and among implementations.",
+      "line_number": 10,
+      "parameter_name": "PAUSE_DURATION",
+      "existing_udb_name": "PAUSE_DURATION",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The duration of the PAUSE instruction's effect is an implementation choice that can vary, making it a direct parameter of the implementation."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "Software can use the PAUSE instruction to reduce energy consumption while executing spin-wait code sequences.",
+      "line_number": 5,
+      "reason": "This text describes a software usage scenario and does not define an architectural parameter."
+    },
+    {
+      "excerpt": "In typical implementations this duration should be much less than the time to perform a context switch, probably more on the rough order of an on-chip cache miss latency or a cacheless access to main memory.",
+      "line_number": 12,
+      "reason": "This is a normative statement about expected behavior, not an implementation choice."
+    },
+    {
+      "excerpt": "A series of PAUSE instructions can be used to create a cumulative delay loosely proportional to the number of PAUSE instructions.",
+      "line_number": 15,
+      "reason": "This describes the behavior of PAUSE instructions in a loop, not an architectural parameter."
+    },
+    {
+      "excerpt": "The choice of a predecessor set of W is arbitrary, since the successor set is null.",
+      "line_number": 30,
+      "reason": "This indicates a design choice but does not specify an implementation-defined parameter."
+    },
+    {
+      "excerpt": "PAUSE cannot be used within LR/SC sequences without voiding the forward-progress guarantee.",
+      "line_number": 28,
+      "reason": "This describes a restriction on usage rather than an implementation choice."
+    }
+  ]
+}
+```

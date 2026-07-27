@@ -157,7 +157,50 @@ def call_openai(model: str, system: str, user: str) -> dict:
     }
 
 
-DISPATCH = {"openai": call_openai}
+def call_openrouter(model: str, system: str, user: str) -> dict:
+    """OpenRouter speaks the OpenAI chat protocol at a different base URL."""
+    from openai import OpenAI
+    client = OpenAI(base_url="https://openrouter.ai/api/v1",
+                    api_key=os.environ["OPENROUTER_API_KEY"])
+    t0 = time.time()
+    r = client.chat.completions.create(
+        model=model,
+        temperature=0,
+        messages=[{"role": "system", "content": system}, {"role": "user", "content": user}],
+    )
+    u = getattr(r, "usage", None)
+    return {
+        "text": (r.choices[0].message.content or "") if r.choices else "",
+        "in": getattr(u, "prompt_tokens", 0) or 0,
+        "out": getattr(u, "completion_tokens", 0) or 0,
+        "ms": int((time.time() - t0) * 1000),
+    }
+
+
+def call_google(model: str, system: str, user: str) -> dict:
+    from google import genai
+    from google.genai import types
+    client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
+    t0 = time.time()
+    r = client.models.generate_content(
+        model=model,
+        contents=user,
+        config=types.GenerateContentConfig(system_instruction=system, temperature=0),
+    )
+    um = getattr(r, "usage_metadata", None)
+    return {
+        "text": r.text or "",
+        "in": getattr(um, "prompt_token_count", 0) or 0,
+        "out": getattr(um, "candidates_token_count", 0) or 0,
+        "ms": int((time.time() - t0) * 1000),
+    }
+
+
+DISPATCH = {
+    "openai": call_openai,
+    "openrouter": call_openrouter,
+    "google": call_google,
+}
 
 
 def main() -> int:
@@ -269,11 +312,25 @@ def main() -> int:
                                           input_tokens=len(user) // 4))
                 continue
 
-            try:
-                res = DISPATCH[spec["provider"]](args.model, system, user)
-            except Exception as e:  # retention before anything else
-                (arm_dir / "raw" / f"{cid}.ERROR.txt").write_text(str(e), encoding="utf-8")
-                records.append(CallRecord(cid, arm, args.model, False, str(e)[:300]))
+            res = None
+            for attempt in range(4):
+                try:
+                    res = DISPATCH[spec["provider"]](args.model, system, user)
+                    break
+                except Exception as e:
+                    msg = str(e)
+                    transient = any(t in msg.lower() for t in
+                                    ("429", "rate limit", "timeout", "overloaded",
+                                     "503", "502", "temporarily"))
+                    if transient and attempt < 3:
+                        wait = 5 * (2 ** attempt)
+                        print(f"    {cid}: {msg[:70]}, retry in {wait}s")
+                        time.sleep(wait)
+                        continue
+                    (arm_dir / "raw" / f"{cid}.ERROR.txt").write_text(msg, encoding="utf-8")
+                    records.append(CallRecord(cid, arm, args.model, False, msg[:300]))
+                    break
+            if res is None:
                 continue
 
             (arm_dir / "raw" / f"{cid}.txt").write_text(res["text"], encoding="utf-8")

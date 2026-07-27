@@ -1,0 +1,68 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "FLEN=32 for the F single-precision floating-point extension.",
+      "line_number": 10,
+      "parameter_name": "FLEN",
+      "existing_udb_name": "FLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "FLEN describes the width of the floating-point registers, which is a direct implementation choice for the F extension."
+    },
+    {
+      "excerpt": "The floating-point control and status register, `fcsr`, is a 32-bit read/write register that selects the dynamic rounding mode for floating-point arithmetic operations.",
+      "line_number": 20,
+      "parameter_name": "FCSR_DYNAMIC_ROUNDING_MODE",
+      "existing_udb_name": "FCSR_DYNAMIC_ROUNDING_MODE",
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The `fcsr` register allows for a choice of dynamic rounding modes, which is a read/write characteristic of the CSR."
+    },
+    {
+      "excerpt": "Rounding modes are encoded as shown in <<norm:dyn_round_enc>>.",
+      "line_number": 40,
+      "parameter_name": "ROUNDING_MODES",
+      "existing_udb_name": "ROUNDING_MODES",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The rounding modes are WARL fields in the `fcsr`, and the set of legal values can vary by implementation."
+    },
+    {
+      "excerpt": "Floating-point conversion instructions round according to the _rm_ field.",
+      "line_number": 100,
+      "parameter_name": "FCVT_ROUNDING_MODE",
+      "existing_udb_name": "FCVT_ROUNDING_MODE",
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The rounding mode for floating-point conversion instructions is determined by the _rm_ field, which is a read/write characteristic."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] The F extension provides a {le} comparison, whereas the base ISAs provide a {ge} branch comparison.",
+      "line_number": 200,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a design choice, not an architectural requirement."
+    },
+    {
+      "excerpt": "The base RISC-V ISA does not support generating a trap on the setting of a floating-point exception flag.",
+      "line_number": 150,
+      "reason": "This is a fixed requirement that applies to all implementations and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "The FMV.W.X and FMV.X.W instructions were previously called FMV.S.X and FMV.X.S.",
+      "line_number": 300,
+      "reason": "This is historical context and does not define an architectural parameter."
+    },
+    {
+      "excerpt": "Floating-point operations use either a static rounding mode encoded in the instruction, or a dynamic rounding mode held in `frm`.",
+      "line_number": 60,
+      "reason": "This describes behavior based on the instruction encoding rather than an implementation choice."
+    }
+  ]
+}
+```

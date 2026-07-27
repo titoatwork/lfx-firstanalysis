@@ -1,0 +1,37 @@
+{
+  "chunk_id": "chunk_031",
+  "arm": "B",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "Implementations might provide anywhere from 1 to 3 privilege modes trading off reduced isolation for lower implementation cost.",
+      "line_number": 157,
+      "parameter_name": "NUM_PRIVILEGE_MODES",
+      "existing_udb_name": "NUM_PRIVILEGE_MODES",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of privilege modes (1 to 3) is a direct implementation choice that can vary by design, allowing for trade-offs in isolation and cost."
+    },
+    {
+      "excerpt": "Each privilege level has a core set of privileged ISA extensions with optional extensions and variants.",
+      "line_number": 165,
+      "parameter_name": "OPTIONAL_PRIVILEGED_ISA_EXTENSIONS",
+      "existing_udb_name": "OPTIONAL_PRIVILEGED_ISA_EXTENSIONS",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The choice of which optional privileged ISA extensions to implement is left to the hardware implementer, making it a parameter."
+    },
+    {
+      "excerpt": "Implementations may also include a debug mode to support off-chip debugging and/or manufacturing test.",
+      "line_number": 203,
+      "parameter_name": "DEBUG_MODE_SUPPORT",
+      "existing_udb_name": "DEBUG_MODE_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The decision to include a debug mode is an implementation choice, allowing for a binary option of supporting or not supporting debug mode."
+    }
+  ]
+}

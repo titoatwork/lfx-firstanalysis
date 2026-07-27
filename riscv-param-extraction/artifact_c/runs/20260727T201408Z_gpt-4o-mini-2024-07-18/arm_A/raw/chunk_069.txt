@@ -1,0 +1,58 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "A new supported format is added to the format field of most instructions, as shown in <<tab:fpextfmth>>.",
+      "line_number": 20,
+      "parameter_name": "FLOAT_FORMATS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The format field supports multiple formats (S, D, H, Q) for floating-point operations, which is a direct implementation choice."
+    },
+    {
+      "excerpt": "If the D extension is present, FCVT.D.H or FCVT.H.D converts a half-precision floating-point number to a double-precision floating-point number, or vice-versa, respectively.",
+      "line_number": 92,
+      "parameter_name": "D_EXTENSION_SUPPORT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The presence of the D extension is an implementation choice that affects the availability of certain conversion instructions."
+    },
+    {
+      "excerpt": "If the Q extension is present, the FCVT.Q.H and FCVT.H.Q instructions are additionally included.",
+      "line_number": 96,
+      "parameter_name": "Q_EXTENSION_SUPPORT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The presence of the Q extension is an implementation choice that determines the availability of additional conversion instructions."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "This extension primarily provides instructions that consume half-precision operands and produce half-precision results.",
+      "line_number": 5,
+      "reason": "This is a descriptive statement about the purpose of the extension, not an implementation choice."
+    },
+    {
+      "excerpt": "FLH and FSH are only guaranteed to execute atomically if the effective address is naturally aligned.",
+      "line_number": 30,
+      "reason": "This describes a condition for atomic execution, not an architectural parameter."
+    },
+    {
+      "excerpt": "Half-precision addition, subtraction, multiplication, division, and square-root operations can be faithfully emulated by converting the half-precision operands to single-precision.",
+      "line_number": 138,
+      "reason": "This describes a method of emulation rather than an implementation choice or parameter."
+    },
+    {
+      "excerpt": "Zfhmin does not include the FSGNJ.H instruction, because it suffices to instead use the FSGNJ.S instruction to move half-precision values between floating-point registers.",
+      "line_number": 164,
+      "reason": "This is a statement about the contents of the Zfhmin extension, not an architectural parameter."
+    }
+  ]
+}
+```

@@ -1,0 +1,27 @@
+{
+  "chunk_id": "chunk_011",
+  "arm": "B",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The implemented number and width of these additional counters, and the set of events they count, are platform-specific.",
+      "line_number": 197,
+      "parameter_name": "HPM_COUNTERS_IMPLEMENTATION",
+      "existing_udb_name": "HPM_COUNTERS_IMPLEMENTATION",
+      "class": "NON_ISA",
+      "value_type": "UNKNOWN",
+      "confidence": "high",
+      "reasoning": "The number and width of additional performance counters, as well as the events they count, are left to the implementer's discretion, making it a platform-specific choice."
+    },
+    {
+      "excerpt": "The execution environment should provide a means to determine the number and width of the implemented counters, and an interface to configure the events to be counted by each counter.",
+      "line_number": 197,
+      "parameter_name": "HPM_COUNTER_CONFIG_INTERFACE",
+      "existing_udb_name": "HPM_COUNTER_CONFIG_INTERFACE",
+      "class": "NON_ISA",
+      "value_type": "UNKNOWN",
+      "confidence": "high",
+      "reasoning": "The specification indicates that the execution environment must provide a means to determine and configure the performance counters, which is an implementation-defined choice."
+    }
+  ]
+}

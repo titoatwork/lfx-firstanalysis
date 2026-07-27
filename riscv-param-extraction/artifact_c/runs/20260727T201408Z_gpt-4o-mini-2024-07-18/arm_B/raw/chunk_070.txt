@@ -1,0 +1,68 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "Floating-point operands of width _w_ < XLEN bits occupy bits _w_-1:0 of an `x` register.",
+      "line_number": 34,
+      "parameter_name": "NARROW_OPERAND_WIDTH",
+      "existing_udb_name": "NARROW_OPERAND_WIDTH",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The width of floating-point operands is a direct implementation choice, constrained to be less than XLEN. The specific width is chosen by the implementer."
+    },
+    {
+      "excerpt": "Floating-point operations that produce _w_ < XLEN-bit results fill bits XLEN-1: _w_ with copies of bit _w_-1 (the sign bit).",
+      "line_number": 42,
+      "parameter_name": "NARROW_RESULT_WIDTH",
+      "existing_udb_name": "NARROW_RESULT_WIDTH",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The width of results from floating-point operations is a direct implementation choice, constrained to be less than XLEN. The specific width is determined by the implementer."
+    },
+    {
+      "excerpt": "Double-precision operands in RV32Zdinx are held in aligned `x`-register pairs, i.e., register numbers must be even.",
+      "line_number": 92,
+      "parameter_name": "DOUBLE_PRECISION_REGISTER_ALIGNMENT",
+      "existing_udb_name": "DOUBLE_PRECISION_REGISTER_ALIGNMENT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The alignment of double-precision operands in register pairs is a direct implementation choice, specifically requiring even-numbered registers."
+    },
+    {
+      "excerpt": "The `misa` bits F, D, and Q are hardwired to 0 when the Zfinx extension is implemented.",
+      "line_number": 146,
+      "parameter_name": "MISA_FDQ_HARDWIRED",
+      "existing_udb_name": "MISA_FDQ_HARDWIRED",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The hardwiring of the `misa` bits F, D, and Q to 0 is a direct implementation choice when the Zfinx extension is present."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE]\n====\nThe F extension uses separate `f` registers for floating-point computation, to reduce register pressure and simplify the provision of register-file ports for wide superscalars. However, the additional architectural state increases the minimal implementation cost. By eliminating the `f` registers, the Zfinx extension substantially reduces the cost of simple RISC-V implementations with floating-point instruction-set support. Zfinx also reduces context-switch cost.\n====",
+      "line_number": 6,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes the benefits of the Zfinx extension but does not define an architectural parameter."
+    },
+    {
+      "excerpt": "In general, software that assumes the presence of the F extension is incompatible with software that assumes the presence of the Zfinx extension, and vice versa.",
+      "line_number": 12,
+      "reason": "This statement describes compatibility issues between software but does not define an architectural parameter."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nThe NaN-boxing scheme employed in the `f` registers was designed to efficiently support recoded floating-point formats. Recoding is less practical for Zfinx, though, since the same registers hold both floating-point and integer operands. Hence, the need for NaN boxing is diminished.\n====",
+      "line_number": 46,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It discusses the NaN-boxing scheme but does not define an architectural parameter."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nLoad-pair and store-pair instructions are contained in a separate extension (see Section <<sec:zilsd,Extensions for Load/Store pair for RV32>>). In case this is not available, transferring double-precision operands in RV32Zdinx from or to memory requires two loads or stores. Register moves need only a single FSGNJ.D instruction, however.\n====",
+      "line_number": 118,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes implementation details about load/store instructions but does not define an architectural parameter."
+    }
+  ]
+}
+```

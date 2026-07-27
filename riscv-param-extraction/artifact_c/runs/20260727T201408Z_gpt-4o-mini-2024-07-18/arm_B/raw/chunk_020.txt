@@ -1,0 +1,93 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The Extensions field is a *WARL* field that can contain writable bits where the implementation allows the supported ISA to be modified.",
+      "line_number": 334,
+      "parameter_name": "ISA_EXTENSIONS",
+      "existing_udb_name": "ISA_EXTENSIONS",
+      "class": "NORM_CSR_WARL",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The Extensions field in the misa register is a WARL field, allowing implementations to define which ISA extensions are supported."
+    },
+    {
+      "excerpt": "The MBE, SBE, and UBE bits in `mstatus` and `mstatush` are *WARL* fields that control the endianness of memory accesses other than instruction fetches.",
+      "line_number": 679,
+      "parameter_name": "ENDIANNESS_CONTROL",
+      "existing_udb_name": "ENDIANNESS_CONTROL",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The MBE, SBE, and UBE fields are WARL fields that allow implementations to control the endianness of memory accesses."
+    },
+    {
+      "excerpt": "The `mtvec` register is an MXLEN-bit *WARL* read/write register that holds trap vector configuration, consisting of a vector base address (BASE) and a vector mode (MODE).",
+      "line_number": 1219,
+      "parameter_name": "MTVEC_MODE",
+      "existing_udb_name": "MTVEC_MODE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The mtvec register is a WARL field, and the set of values for the MODE field can vary by implementation."
+    },
+    {
+      "excerpt": "An implementation may make SXL be a read-only field whose value always ensures that SXLEN=MXLEN.",
+      "line_number": 1000,
+      "parameter_name": "SXL_ACCESS",
+      "existing_udb_name": "SXL_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation has the choice to make the SXL field read-only or writable, which affects how SXLEN is determined."
+    },
+    {
+      "excerpt": "When MPRV=1, load and store memory addresses are translated and protected, and endianness is applied, as though the current privilege mode were set to MPP.",
+      "line_number": 1000,
+      "parameter_name": "HW_MSTATUS_MPRV",
+      "existing_udb_name": "HW_MSTATUS_MPRV",
+      "class": "SW_RULE",
+      "value_type": "binary",
+      "confidence": "medium",
+      "reasoning": "The behavior of memory accesses under MPRV is implementation-defined, but software can manage it deterministically."
+    },
+    {
+      "excerpt": "If S-mode is supported, an implementation may make SBE be a read-only copy of MBE.",
+      "line_number": 679,
+      "parameter_name": "SBE_ACCESS",
+      "existing_udb_name": "SBE_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation has the option to make SBE a read-only copy of MBE, which is a design choice."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] Some platforms may choose to disallow speculatively writing FS to close a potential side channel.",
+      "line_number": 1005,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "When MODE=Direct, all traps into machine mode cause the `pc` to be set to the address in the BASE field.",
+      "line_number": 1254,
+      "reason": "This describes what happens when mtvec.MODE has a specific value. The behavior is determined by the CSR field value at runtime, not by an implementation choice."
+    },
+    {
+      "excerpt": "This register must be readable in any implementation.",
+      "line_number": 22,
+      "reason": "This is a fixed requirement ('must be readable') that all implementations must satisfy. There is no implementation choice here — it is not a parameter."
+    },
+    {
+      "excerpt": "Software may determine the PMP granularity by writing zero to `pmp0cfg`, then writing all ones to `pmpaddr0`, then reading back `pmpaddr0`.",
+      "line_number": 3530,
+      "reason": "Here 'may' means 'is allowed to' (permission), not 'might or might not' (optionality). This describes a software technique, not an implementation-defined parameter."
+    },
+    {
+      "excerpt": "The `mstatus` fields MIE and MPRV are reset to 0.",
+      "line_number": 1000,
+      "reason": "This is a fixed requirement regarding the reset state of the MIE and MPRV fields, not an implementation choice."
+    }
+  ]
+}
+```

@@ -1,0 +1,17 @@
+{
+  "chunk_id": "chunk_003",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "This instruction is available only on RV32.",
+      "line_number": 3439,
+      "parameter_name": "RV32_ONLY_INSTRUCTION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The availability of the instruction is a direct implementation choice, indicating that it is only supported in RV32 architecture."
+    }
+  ]
+}

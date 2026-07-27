@@ -1,0 +1,37 @@
+{
+  "chunk_id": "chunk_021",
+  "arm": "B",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "Implementations may implement zero, 16, or 64 PMP entries; the lowest-numbered PMP entries must be implemented first.",
+      "line_number": 3340,
+      "parameter_name": "NUM_PMP_ENTRIES",
+      "existing_udb_name": "NUM_PMP_ENTRIES",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of PMP entries is a direct implementation choice (0, 16, or 64). It is not controlled by any CSR field."
+    },
+    {
+      "excerpt": "The granularity of PMP access control settings are platform-specific, but the standard PMP encoding supports regions as small as four bytes.",
+      "line_number": 3330,
+      "parameter_name": "PMP_GRANULARITY",
+      "existing_udb_name": "PMP_GRANULARITY",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The granularity of PMP access control is a platform-specific choice, allowing implementations to define their own granularity while adhering to a minimum of four bytes."
+    },
+    {
+      "excerpt": "When G {ge} 1, the NA4 mode is not selectable.",
+      "line_number": 3650,
+      "parameter_name": "PMP_NA4_MODE_SELECTION",
+      "existing_udb_name": "PMP_NA4_MODE_SELECTION",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice of whether the NA4 mode can be selected is dependent on the implementation-defined granularity G, making it a direct implementation choice."
+    }
+  ]
+}

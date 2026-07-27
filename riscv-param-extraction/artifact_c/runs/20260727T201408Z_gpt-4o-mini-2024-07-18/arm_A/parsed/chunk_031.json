@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_031",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "Implementations might provide anywhere from 1 to 3 privilege modes trading off reduced isolation for lower implementation cost.",
+      "line_number": 139,
+      "parameter_name": "NUM_PRIVILEGE_MODES",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of privilege modes (1 to 3) is a direct implementation choice that affects system design and isolation."
+    },
+    {
+      "excerpt": "The machine level has the highest privileges and is the only mandatory privilege level for a RISC-V hardware platform.",
+      "line_number": 145,
+      "parameter_name": "M_MODE_MANDATORY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The requirement that M-mode must be implemented is a design choice that all implementations must adhere to, indicating a binary choice about the necessity of this mode."
+    },
+    {
+      "excerpt": "Many RISC-V implementations will also support at least user mode (U-mode) to protect the rest of the system from application code.",
+      "line_number": 153,
+      "parameter_name": "U_MODE_SUPPORT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to support U-mode is left to the implementer, indicating a binary decision about whether to include this mode."
+    },
+    {
+      "excerpt": "Supervisor mode (S-mode) can be added to provide isolation between a supervisor-level operating system and the SEE.",
+      "line_number": 157,
+      "parameter_name": "S_MODE_OPTIONAL",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to include S-mode, making it an optional feature that affects system architecture."
+    }
+  ]
+}

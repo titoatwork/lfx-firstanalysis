@@ -1,0 +1,103 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The hypervisor extension depends on an \"I\" base integer ISA with 32 `x` registers (RV32I or RV64I), not RV32E or RV64E, which have only 16 `x` registers.",
+      "line_number": 10,
+      "parameter_name": "NUM_X_REGISTERS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The number of `x` registers (32 or 16) is a direct implementation choice based on the ISA version. It is not controlled by any CSR field."
+    },
+    {
+      "excerpt": "The `hstatus` register is an HSXLEN-bit read/write register formatted as shown in <<hstatusreg-rv32>> when HSXLEN=32 and <<hstatusreg>> when HSXLEN=64.",
+      "line_number": 150,
+      "parameter_name": "HSXLEN",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "HSXLEN is a direct implementation choice that determines the width of the `hstatus` register (32 or 64 bits)."
+    },
+    {
+      "excerpt": "The VGEIN (Virtual Guest External Interrupt Number) field selects a guest external interrupt source for VS-level external interrupts.",
+      "line_number": 679,
+      "parameter_name": "VGEIN_SOURCE_SELECTION",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "VGEIN is a WARL field that must hold values between zero and the maximum guest external interrupt number (GEILEN). The parameter is the range of legal values for VGEIN."
+    },
+    {
+      "excerpt": "The PBMTE bit controls whether the Svpbmt extension is available for use in VS-stage address translation.",
+      "line_number": 1200,
+      "parameter_name": "PBMTE_ENABLE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether the Svpbmt extension is available for VS-stage address translation, making PBMTE a binary choice."
+    },
+    {
+      "excerpt": "The `henvcfg` CSR is a 64-bit read/write register, formatted as shown in <<henvcfg>>, that controls certain characteristics of the execution environment when virtualization mode V=1.",
+      "line_number": 1300,
+      "parameter_name": "HENVCFG_CONTROL",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The `henvcfg` register controls various execution environment characteristics, and its fields can be read/write, indicating implementation-defined behavior."
+    },
+    {
+      "excerpt": "The `hgatp` register is an HSXLEN-bit read/write register, formatted as shown in <<rv32hgatp>> for HSXLEN=32 and <<rv64hgatp>> for HSXLEN=64, which controls G-stage address translation and protection.",
+      "line_number": 1500,
+      "parameter_name": "HGATP_MODE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The MODE field in `hgatp` is WARL, allowing implementations to define which address translation schemes are supported."
+    },
+    {
+      "excerpt": "The `mtval2` register is a *WARL* register that must be able to hold zero and may be capable of holding only an arbitrary subset of other 2-bit-shifted guest physical addresses, if any.",
+      "line_number": 2500,
+      "parameter_name": "MTVAL2_LEGAL_VALUES",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The `mtval2` register is defined as WARL, indicating that its legal values can vary by implementation."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] The hypervisor extension has been designed to be efficiently emulable on platforms that do not implement the extension, by running the hypervisor in S-mode and trapping into M-mode for hypervisor CSR accesses and to maintain shadow page tables.",
+      "line_number": 20,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a design consideration, not an architectural requirement."
+    },
+    {
+      "excerpt": "When V=1, the VS CSRs substitute for the corresponding supervisor CSRs, taking over all functions of the usual supervisor CSRs except as specified otherwise.",
+      "line_number": 100,
+      "reason": "This describes behavior when V has a specific value. The parameter would be which VS CSRs are supported, not this behavioral description."
+    },
+    {
+      "excerpt": "The `hstatus` fields VTSR, VTW, and VTVM are defined analogously to the `mstatus` fields TSR, TW, and TVM, but affect execution only in VS-mode.",
+      "line_number": 200,
+      "reason": "This is a fixed requirement about the behavior of the `hstatus` fields, not an implementation choice."
+    },
+    {
+      "excerpt": "The `henvcfg` CSR is a 64-bit read/write register, formatted as shown in <<henvcfg>>, that controls certain characteristics of the execution environment when virtualization mode V=1.",
+      "line_number": 1300,
+      "reason": "This is a fixed requirement about the `henvcfg` CSR, not an implementation choice."
+    },
+    {
+      "excerpt": "The `hgatp` register is an HSXLEN-bit read/write register, formatted as shown in <<rv32hgatp>> for HSXLEN=32 and <<rv64hgatp>> for HSXLEN=64.",
+      "line_number": 1500,
+      "reason": "This is a fixed requirement about the `hgatp` register, not an implementation choice."
+    }
+  ]
+}
+```

@@ -1,0 +1,63 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The entropy source extension defines the `seed` CSR at address `0x015`. This CSR provides up to 16 physical `entropy` bits that can be used to seed cryptographic random bit generators.",
+      "line_number": 345,
+      "parameter_name": "ENTROPY_SOURCE_SEED_CSR",
+      "existing_udb_name": "ENTROPY_SOURCE_SEED_CSR",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The address of the `seed` CSR is a direct implementation choice, allowing implementers to define how many bits of entropy are provided."
+    },
+    {
+      "excerpt": "This instruction exists on RV32 and RV64 base architectures.",
+      "line_number": 1234,
+      "parameter_name": "SUPPORTED_ARCHITECTURES",
+      "existing_udb_name": "SUPPORTED_ARCHITECTURES",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The choice of supporting both RV32 and RV64 architectures is a design decision left to the implementer."
+    },
+    {
+      "excerpt": "Note that `rnum` must be in the range `0x0..0xA`. The values `0xB..0xF` are reserved.",
+      "line_number": 678,
+      "parameter_name": "AES_KEY_SCHEDULE_RNUM_RANGE",
+      "existing_udb_name": "AES_KEY_SCHEDULE_RNUM_RANGE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The valid range for `rnum` in the AES key schedule instruction is a WARL field, indicating implementation-defined legal values."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] Some platforms may choose to disallow speculatively writing FS to close a potential side channel.",
+      "line_number": 1005,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "This instruction must _always_ be implemented such that its execution latency does not depend on the data being operated on.",
+      "line_number": 1012,
+      "reason": "This is a fixed requirement ('must always be implemented') that all implementations must satisfy. There is no implementation choice here."
+    },
+    {
+      "excerpt": "The entire Sigma0 transform for SHA2-512 may be computed on RV32 using the following instruction sequence: sha512sig0l t0, a0, a1 sha512sig0h t1, a1, a0",
+      "line_number": 1234,
+      "reason": "This describes a software technique, not an implementation-defined parameter."
+    },
+    {
+      "excerpt": "This instruction is based on work done in cite:[MJS:LWSHA:20].",
+      "line_number": 678,
+      "reason": "This is a reference to external work and does not define an architectural parameter."
+    },
+    {
+      "excerpt": "This instruction is supported for both RV32 and RV64 base architectures.",
+      "line_number": 1234,
+      "reason": "This describes the supported architectures but does not define a parameter; it is a fixed requirement."
+    }
+  ]
+}
+```

@@ -1,0 +1,32 @@
+```json
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "This extension serves to provide supervisor mode with its own CSR-based timer interrupt facility that it can directly manage to provide its own timer service (in the form of having its own `stimecmp` register) - thus eliminating the large overheads for emulating S/HS-mode timers and timer interrupt generation up in M-mode.",
+      "line_number": 7,
+      "reason": "This describes the purpose of the extension and does not define any implementation choices or parameters."
+    },
+    {
+      "excerpt": "Further, this extension adds a similar facility to the Hypervisor extension for VS-mode.",
+      "line_number": 11,
+      "reason": "This is a statement about the extension's capabilities and does not indicate any architectural parameters."
+    },
+    {
+      "excerpt": "The extension name is 'Sstc' ('Ss' for Privileged arch and Supervisor-level extensions, and 'tc' for timecmp).",
+      "line_number": 15,
+      "reason": "This is a definition of the extension name and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "This extension adds the S-level `stimecmp` CSR.",
+      "line_number": 17,
+      "reason": "This is a fixed requirement about the existence of the CSR and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "This extension adds the `STCE` bit to the `menvcfg` and `henvcfg` CSRs.",
+      "line_number": 21,
+      "reason": "This describes the addition of a specific bit to existing CSRs, which is a fixed requirement, not an architectural parameter."
+    }
+  ]
+}
+```

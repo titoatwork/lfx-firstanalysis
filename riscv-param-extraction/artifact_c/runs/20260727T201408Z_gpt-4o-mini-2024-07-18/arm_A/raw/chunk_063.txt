@@ -1,0 +1,63 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The Zabha extension addresses these limitations by adding support for _byte_ and _halfword_ atomic memory operations to the RISC-V Unprivileged ISA.",
+      "line_number": 15,
+      "parameter_name": "SUPPORT_BYTE_HALFWORD_AMO",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to support byte and halfword atomic memory operations, which is a direct design decision."
+    },
+    {
+      "excerpt": "If Zacas extension is also implemented, Zabha further provides the `AMOCAS.[B|H]` instructions.",
+      "line_number": 25,
+      "parameter_name": "SUPPORT_AMOCAS_BH",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to support the `AMOCAS.[B|H]` instructions if the Zacas extension is present, indicating a design choice."
+    },
+    {
+      "excerpt": "The same exception options as specified in the A extension are applicable in cases where the address is not naturally aligned.",
+      "line_number": 45,
+      "parameter_name": "ADDRESS_ALIGNMENT_EXCEPTIONS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to apply the same exception options for address alignment as in the A extension, which is a design decision."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "In systems with large-scale or Non-Uniform Memory Access (NUMA) configurations, emulation based on `LR`/`SC` introduces issues related to scalability and fairness, particularly under conditions of high contention.",
+      "line_number": 9,
+      "reason": "This describes a limitation of the emulation approach rather than an implementation choice, thus it is not a parameter."
+    },
+    {
+      "excerpt": "Emulation of narrower AMOs through wider AMO* instructions on non-idempotent IO memory regions may result in unintended side effects.",
+      "line_number": 13,
+      "reason": "This is a consequence of the emulation strategy, not a choice left to the implementer, so it is not a parameter."
+    },
+    {
+      "excerpt": "Utilizing wider AMO* instructions for emulating narrower AMOs risks activating extraneous breakpoints or watchpoints.",
+      "line_number": 17,
+      "reason": "This describes a potential issue with the implementation rather than an architectural parameter, hence it is not extracted."
+    },
+    {
+      "excerpt": "In the absence of native support for subword atomics, compilers often resort to inlining code sequences to provide the required emulation.",
+      "line_number": 21,
+      "reason": "This describes a software behavior rather than an implementation choice, so it is not a parameter."
+    },
+    {
+      "excerpt": "Byte and halfword AMOs always sign-extend the value placed in `rd`, and ignore the stem:[XLEN-1:2^{(width + 3)}] bits of the original value in `rs2`.",
+      "line_number": 49,
+      "reason": "This describes a fixed behavior of the instructions rather than an implementation choice, thus it is not a parameter."
+    }
+  ]
+}
+```

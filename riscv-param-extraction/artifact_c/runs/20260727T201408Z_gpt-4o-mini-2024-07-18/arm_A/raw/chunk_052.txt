@@ -1,0 +1,53 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The OF bit is set when the corresponding hpmcounter overflows, and remains set until written by software.",
+      "line_number": 118,
+      "parameter_name": "HW_MHPMEVENT_OF_BIT_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "SW_RULE",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The behavior of the OF bit in response to hpmcounter overflow is implementation-defined, but the outcome is deterministic if software follows the spec rules regarding writing to the OF bit."
+    },
+    {
+      "excerpt": "If supervisor mode is implemented, the 32-bit scountovf register contains read-only shadow copies of the OF bits in all 29 mhpmevent registers.",
+      "line_number": 118,
+      "parameter_name": "SCOUNTOFV_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether the scountovf register is read-only or not, depending on whether supervisor mode is implemented."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "Note that the new count overflow interrupt will be treated as a standard local interrupt that is assigned to bit 13 in the mip/mie/sip/sie registers.",
+      "line_number": 15,
+      "reason": "This is a fixed requirement about how the count overflow interrupt is treated, not an implementation choice."
+    },
+    {
+      "excerpt": "Count overflow never results from writes to the mhpmcounter__n__ or mhpmevent__n__ registers, only from hardware increments of counter registers.",
+      "line_number": 118,
+      "reason": "This describes behavior regarding how count overflow occurs, not an implementation-defined parameter."
+    },
+    {
+      "excerpt": "If an hpmcounter overflows while the associated OF bit is zero, then a 'count overflow interrupt request' is generated.",
+      "line_number": 118,
+      "reason": "This describes the behavior of the system when certain conditions are met, not an implementation choice."
+    },
+    {
+      "excerpt": "This extension adds the scountovf CSR, a 32-bit read-only register that contains shadow copies of the OF bits in the 29 mhpmevent CSRs.",
+      "line_number": 118,
+      "reason": "This is a fixed requirement about the existence and behavior of the scountovf CSR, not an implementation choice."
+    },
+    {
+      "excerpt": "For each ``x``INH bit, if the associated privilege mode is not implemented, the bit is read-only zero.",
+      "line_number": 118,
+      "reason": "This describes a fixed behavior regarding the read-only nature of the INH bits, not an implementation choice."
+    }
+  ]
+}
+```

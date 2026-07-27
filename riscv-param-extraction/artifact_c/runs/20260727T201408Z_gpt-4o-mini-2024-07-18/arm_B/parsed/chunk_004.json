@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_004",
+  "arm": "B",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "For BF16 these values are: radix (b) 2, significand (p) 8, emax 127.",
+      "line_number": 56,
+      "parameter_name": "BF16_FORMAT_PARAMETERS",
+      "existing_udb_name": "BF16_FORMAT_PARAMETERS",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The radix, significand, and maximum exponent for BF16 are direct implementation choices that define the format."
+    },
+    {
+      "excerpt": "RISC-V supports IEEE-defined default exception handling. BF16 is no exception.",
+      "line_number": 204,
+      "parameter_name": "HW_BF16_EXCEPTION_HANDLING",
+      "existing_udb_name": "HW_BF16_EXCEPTION_HANDLING",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to support or not support IEEE-defined exception handling for BF16, making it a direct implementation choice."
+    },
+    {
+      "excerpt": "The BF16 extensions defined in this specification (i.e., Zfbfmin, Zvfbfmin, and Zvfbfwma) depend on the single-precision floating-point extension F.",
+      "line_number": 370,
+      "parameter_name": "BF16_EXTENSION_DEPENDENCIES",
+      "existing_udb_name": "BF16_EXTENSION_DEPENDENCIES",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The dependencies of BF16 extensions on other extensions (like F) are implementation choices that can vary."
+    },
+    {
+      "excerpt": "As with other scalar floating-point instructions, the rounding mode field rm can also take on the DYN encoding, which indicates that the instruction uses the rounding mode specified in the frm CSR.",
+      "line_number": 232,
+      "parameter_name": "BF16_ROUNDING_MODE",
+      "existing_udb_name": "BF16_ROUNDING_MODE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The rounding mode for BF16 instructions can vary by implementation, and the set of legal values for the rm field is implementation-defined."
+    }
+  ]
+}

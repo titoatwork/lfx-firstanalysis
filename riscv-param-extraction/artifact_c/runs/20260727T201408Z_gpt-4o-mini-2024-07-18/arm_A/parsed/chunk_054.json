@@ -1,0 +1,37 @@
+{
+  "chunk_id": "chunk_054",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "This extension adds the S-level `stimecmp` CSR",
+      "line_number": 10,
+      "parameter_name": "S_TIMECMP_CSR",
+      "existing_udb_name": "S_TIMECMP_CSR",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The addition of the S-level `stimecmp` CSR is a direct implementation choice for the supervisor mode timer interrupt facility."
+    },
+    {
+      "excerpt": "This extension adds the VS-level `vstimecmp` CSR",
+      "line_number": 12,
+      "parameter_name": "VS_TIMECMP_CSR",
+      "existing_udb_name": "VS_TIMECMP_CSR",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The addition of the VS-level `vstimecmp` CSR is a direct implementation choice for the hypervisor mode timer interrupt facility."
+    },
+    {
+      "excerpt": "This extension adds the `STCE` bit to the `menvcfg` and `henvcfg` CSRs.",
+      "line_number": 14,
+      "parameter_name": "STCE_BIT",
+      "existing_udb_name": "STCE_BIT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The `STCE` bit's addition to the `menvcfg` and `henvcfg` CSRs is a direct implementation choice regarding the configuration of the environment."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+```json
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE]\n====\n[#norm:rvwmo_only_mainmem]#This chapter defines the memory model for regular main memory\noperations. The interaction of the memory model with I/O memory,\ninstruction fetches, FENCE.I, page-table walks, and SFENCE.VMA is not\nyet formalized.# Some or all of the above may be formalized in a future\nrevision of this specification. Future ISA\nextensions such as the V vector and J JIT extensions will need\nto be incorporated into a future revision as well.\n====",
+      "line_number": 1,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It discusses future possibilities rather than current architectural parameters."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nThe decomposition of misaligned memory operations down to byte\ngranularity facilitates emulation on implementations that do not\nnatively support misaligned accesses. Such implementations might, for\nexample, simply iterate over the bytes of a misaligned access one by\none.\n====",
+      "line_number": 1,
+      "reason": "This text is also inside a [NOTE] block and provides implementation guidance rather than defining an architectural parameter."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nIn the memory model literature, the term \"RCpc\" stands for release\nconsistency with processor-consistent synchronization operations, and\nthe term \"RCsc\" stands for release consistency with sequentially\nconsistent synchronization operations.\n====",
+      "line_number": 1,
+      "reason": "This is a non-normative note explaining terminology, not an architectural parameter."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nGenerally speaking, non-AMO load instructions do not have data source\nregisters, and unconditional non-AMO store instructions do not have\ndestination registers. However, a successful SC instruction is\nconsidered to have the register specified in _rd_ as a destination\nregister, and hence it is possible for an instruction to have a\nsyntactic dependency on a successful SC instruction that precedes it in\nprogram order.\n====",
+      "line_number": 1,
+      "reason": "This note describes general behavior of instructions and dependencies, not an implementation choice."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nThe <<ax-atom, Atomicity Axiom>> theoretically supports LR/SC pairs of different widths and to\nmismatched addresses, since implementations are permitted to allow SC\noperations to succeed in such cases. However, in practice, we expect\nsuch patterns to be rare, and their use is discouraged.\n====",
+      "line_number": 1,
+      "reason": "This note discusses theoretical support and practical recommendations, not a specific architectural parameter."
+    }
+  ]
+}
+```

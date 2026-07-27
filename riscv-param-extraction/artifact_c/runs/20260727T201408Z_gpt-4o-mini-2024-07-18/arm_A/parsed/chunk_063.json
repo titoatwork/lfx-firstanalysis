@@ -1,0 +1,37 @@
+{
+  "chunk_id": "chunk_063",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The Zabha extension addresses these limitations by adding support for _byte_ and _halfword_ atomic memory operations to the RISC-V Unprivileged ISA.",
+      "line_number": 15,
+      "parameter_name": "SUPPORT_BYTE_HALFWORD_AMO",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to support byte and halfword atomic memory operations, which is a direct design decision."
+    },
+    {
+      "excerpt": "If Zacas extension is also implemented, Zabha further provides the `AMOCAS.[B|H]` instructions.",
+      "line_number": 25,
+      "parameter_name": "SUPPORT_AMOCAS_BH",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to support the `AMOCAS.[B|H]` instructions if the Zacas extension is present, indicating a design choice."
+    },
+    {
+      "excerpt": "The same exception options as specified in the A extension are applicable in cases where the address is not naturally aligned.",
+      "line_number": 45,
+      "parameter_name": "ADDRESS_ALIGNMENT_EXCEPTIONS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to apply the same exception options for address alignment as in the A extension, which is a design decision."
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "this extension introduces the `RLB`, `MMWP`, and `MML` fields in the `mseccfg` CSR and their associated rules.",
+      "line_number": 40,
+      "parameter_name": "MSECCFG_FIELDS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The introduction of the RLB, MMWP, and MML fields in the mseccfg CSR represents a direct implementation choice regarding the fields available for physical memory protection."
+    },
+    {
+      "excerpt": "Locked rules cannot be removed or modified until a PMP reset, unless `mseccfg.RLB` is set.",
+      "line_number": 66,
+      "parameter_name": "MSECCFG_RLB_LOCKING",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether the RLB field allows locked rules to be modified or not, which is a binary choice about the mutability of the locking behavior."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] Terms: *PMP Entry*: A pair of `pmpcfg[i]` / `pmpaddr[i]` registers.",
+      "line_number": 8,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes terms rather than architectural parameters."
+    },
+    {
+      "excerpt": "Without the Smepmp extension, it is not possible for a PMP rule to be *enforced* only on non-Machine modes and *denied* on Machine mode.",
+      "line_number": 50,
+      "reason": "This describes a limitation of the existing architecture rather than an implementation choice. It does not define a parameter."
+    },
+    {
+      "excerpt": "It is only possible to have a *locked* rule that will be *enforced* on all modes, or a rule that will be *enforced* on non-Machine modes and be *ignored* by Machine mode.",
+      "line_number": 52,
+      "reason": "This describes behavior of PMP rules rather than an implementation choice. It does not define a parameter."
+    },
+    {
+      "excerpt": "Without being able to protect less-privileged modes from Machine mode, it is not possible to prevent the mentioned attack vector.",
+      "line_number": 54,
+      "reason": "This describes a security concern rather than an architectural parameter. It does not define a choice for implementers."
+    },
+    {
+      "excerpt": "The physical memory protection rules when `mseccfg.MML` is set to 1 are summarized in the truth table below.",
+      "line_number": 60,
+      "reason": "This refers to a specific condition of the MML field rather than an implementation choice. It does not define a parameter."
+    }
+  ]
+}
+```

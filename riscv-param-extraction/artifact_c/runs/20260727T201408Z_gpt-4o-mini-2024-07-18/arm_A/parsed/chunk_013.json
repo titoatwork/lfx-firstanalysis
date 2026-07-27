@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_013",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "FLEN=32 for the F single-precision floating-point extension.",
+      "line_number": 10,
+      "parameter_name": "FLEN",
+      "existing_udb_name": "FLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "FLEN describes the width of the floating-point registers, which is a direct implementation choice for the F extension."
+    },
+    {
+      "excerpt": "The floating-point control and status register, `fcsr`, is a 32-bit read/write register that selects the dynamic rounding mode for floating-point arithmetic operations.",
+      "line_number": 20,
+      "parameter_name": "FCSR_DYNAMIC_ROUNDING_MODE",
+      "existing_udb_name": "FCSR_DYNAMIC_ROUNDING_MODE",
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The `fcsr` register allows for a choice of dynamic rounding modes, which is a read/write characteristic of the CSR."
+    },
+    {
+      "excerpt": "Rounding modes are encoded as shown in <<norm:dyn_round_enc>>.",
+      "line_number": 40,
+      "parameter_name": "ROUNDING_MODES",
+      "existing_udb_name": "ROUNDING_MODES",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The rounding modes are WARL fields in the `fcsr`, and the set of legal values can vary by implementation."
+    },
+    {
+      "excerpt": "Floating-point conversion instructions round according to the _rm_ field.",
+      "line_number": 100,
+      "parameter_name": "FCVT_ROUNDING_MODE",
+      "existing_udb_name": "FCVT_ROUNDING_MODE",
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The rounding mode for floating-point conversion instructions is determined by the _rm_ field, which is a read/write characteristic."
+    }
+  ]
+}

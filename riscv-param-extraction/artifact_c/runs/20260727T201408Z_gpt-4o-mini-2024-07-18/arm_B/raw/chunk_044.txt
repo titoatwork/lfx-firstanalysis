@@ -1,0 +1,63 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The entropy source extension defines the `seed` CSR at address `0x015`. This CSR provides up to 16 physical `entropy` bits that can be used to seed cryptographic random bit generators.",
+      "line_number": 345,
+      "parameter_name": "ENTROPY_SEED_CSR",
+      "existing_udb_name": "ENTROPY_SEED_CSR",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The address of the `seed` CSR and the number of bits it provides are implementation choices, making it a direct parameter."
+    },
+    {
+      "excerpt": "This instruction exists on RV32 and RV64 base architectures.",
+      "line_number": 1234,
+      "parameter_name": "SUPPORTED_ARCHITECTURES",
+      "existing_udb_name": "SUPPORTED_ARCHITECTURES",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The choice of supporting RV32 and RV64 architectures for the instruction is an implementation decision."
+    },
+    {
+      "excerpt": "This instruction must _always_ be implemented such that its execution latency does not depend on the data being operated on.",
+      "line_number": 678,
+      "parameter_name": "DATA_INDEPENDENT_LATENCY",
+      "existing_udb_name": "DATA_INDEPENDENT_LATENCY",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The requirement for execution latency to be independent of data is a design choice for implementers."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] The following code snippet shows the final round of the AES block decryption.",
+      "line_number": 123,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative."
+    },
+    {
+      "excerpt": "This instruction is supported for both RV32 and RV64 base architectures.",
+      "line_number": 456,
+      "reason": "This is a fixed requirement that applies to all implementations, not an implementation choice."
+    },
+    {
+      "excerpt": "The instruction applies the inverse MixColumns transformation to two columns of the state array.",
+      "line_number": 789,
+      "reason": "This describes the behavior of the instruction rather than an implementation choice."
+    },
+    {
+      "excerpt": "Software may determine the PMP granularity by writing zero to `pmp0cfg`.",
+      "line_number": 1010,
+      "reason": "Here 'may' means 'is allowed to' (permission), not 'might or might not' (optionality)."
+    },
+    {
+      "excerpt": "The entire Sigma0 transform for SHA2-512 may be computed on RV32 using the following instruction sequence.",
+      "line_number": 1111,
+      "reason": "This is a suggestion for software developers, not an architectural parameter."
+    }
+  ]
+}
+```

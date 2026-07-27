@@ -1,0 +1,27 @@
+{
+  "chunk_id": "chunk_075",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The duration of a PAUSE instruction's effect may vary significantly within and among implementations.",
+      "line_number": 10,
+      "parameter_name": "PAUSE_DURATION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The duration of the PAUSE instruction's effect is an implementation choice that can vary, making it a direct parameter."
+    },
+    {
+      "excerpt": "A series of PAUSE instructions can be used to create a cumulative delay loosely proportional to the number of PAUSE instructions.",
+      "line_number": 14,
+      "parameter_name": "PAUSE_CUMULATIVE_DELAY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The cumulative delay created by multiple PAUSE instructions is an implementation choice, indicating how the PAUSE instruction can be utilized."
+    }
+  ]
+}

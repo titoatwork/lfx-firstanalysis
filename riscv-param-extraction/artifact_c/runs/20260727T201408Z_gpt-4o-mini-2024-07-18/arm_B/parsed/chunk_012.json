@@ -1,0 +1,37 @@
+{
+  "chunk_id": "chunk_012",
+  "arm": "B",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The D extension widens the 32 floating-point registers, `f0-f31`, to 64 bits (FLEN=64 in <<fprs>>#.",
+      "line_number": 6,
+      "parameter_name": "FLEN",
+      "existing_udb_name": "FLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "FLEN is a direct implementation choice that can be 32, 64, or 128 bits depending on the supported floating-point extensions. The specific value is chosen by the implementer."
+    },
+    {
+      "excerpt": "A narrower _n_-bit transfer, _n_<FLEN, into the `f` registers will create a valid NaN-boxed value.",
+      "line_number": 66,
+      "parameter_name": "NAN_BOXING",
+      "existing_udb_name": "NAN_BOXING",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to support NaN-boxing for narrower transfers into the floating-point registers, which is a design decision."
+    },
+    {
+      "excerpt": "For XLEN{ge}64 only, instructions are provided to move bit patterns between the floating-point and integer registers.",
+      "line_number": 157,
+      "parameter_name": "XLEN_SUPPORT",
+      "existing_udb_name": "XLEN_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to support the movement of bit patterns between floating-point and integer registers based on the XLEN value, which is a design choice."
+    }
+  ]
+}

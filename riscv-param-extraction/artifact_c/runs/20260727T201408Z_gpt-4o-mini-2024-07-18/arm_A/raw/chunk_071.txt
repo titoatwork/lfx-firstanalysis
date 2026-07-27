@@ -1,0 +1,43 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "Furthermore, if the Zkt extension is implemented, this instruction's timing is independent of the data values in _rs1_ and _rs2_.",
+      "line_number": 36,
+      "parameter_name": "HW_ZKT_EXTENSION_TIMING_INDEPENDENCE",
+      "existing_udb_name": "HW_ZKT_EXTENSION_TIMING_INDEPENDENCE",
+      "class": "SW_RULE",
+      "value_type": "binary",
+      "confidence": "medium",
+      "reasoning": "The behavior of the instruction's timing being independent of data values is implementation-defined based on whether the Zkt extension is supported, but the outcome is deterministic if software adheres to the specification."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "If _rs2_ contains the value zero, this instruction writes the value zero to _rd_.  Otherwise, this instruction copies the contents of _rs1_ to _rd_.",
+      "line_number": 20,
+      "reason": "This describes the behavior of the instruction based on the values of _rs1_ and _rs2_, which is not an implementation choice but rather a defined behavior."
+    },
+    {
+      "excerpt": "If _rs2_ contains a nonzero value, this instruction writes the value zero to _rd_.  Otherwise, this instruction copies the contents of _rs1_ to _rd_.",
+      "line_number": 66,
+      "reason": "Similar to the previous example, this describes the behavior of the instruction based on the values of _rs1_ and _rs2_, not an implementation choice."
+    },
+    {
+      "excerpt": "The instructions from this extension can be used to construct sequences that perform conditional-arithmetic, conditional-bitwise-logical, and conditional-select operations.",
+      "line_number": 88,
+      "reason": "This is a general statement about the usage of the instructions and does not define an architectural parameter."
+    },
+    {
+      "excerpt": "This instruction carries a syntactic dependency from both _rs1_ and _rs2_ to _rd_.",
+      "line_number": 20,
+      "reason": "This describes a syntactic dependency rather than an implementation choice, thus not qualifying as a parameter."
+    },
+    {
+      "excerpt": "Furthermore, if the Zkt extension is implemented, this instruction's timing is independent of the data values in _rs1_ and _rs2_.",
+      "line_number": 66,
+      "reason": "This is a repeat of a previous excerpt and does not provide new information for parameter extraction."
+    }
+  ]
+}
+```

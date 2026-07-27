@@ -1,0 +1,63 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The floating-point registers are now extended to hold either a single, double, or quad-precision floating-point value (FLEN=128).",
+      "line_number": 6,
+      "parameter_name": "FLEN",
+      "existing_udb_name": "FLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "FLEN is a direct implementation choice that specifies the floating-point register length. The value is set to 128, which is a design decision."
+    },
+    {
+      "excerpt": "FLQ and FSQ are only guaranteed to execute atomically if the effective address is naturally aligned and XLEN=128.",
+      "line_number": 15,
+      "parameter_name": "XLEN",
+      "existing_udb_name": "XLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "XLEN is a direct implementation choice that specifies the width of the registers. The specification indicates that it must be 128 for certain operations to be atomic."
+    },
+    {
+      "excerpt": "FCVT.L[U].Q and FCVT.Q.L[U] are RV64-only instructions.",
+      "line_number": 45,
+      "parameter_name": "RV64_ONLY_INSTRUCTIONS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The specification indicates that certain instructions are only available in RV64, which is an implementation choice regarding instruction availability."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The quad-precision floating-point computational instructions are defined analogously to their double-precision counterparts, but operate on quad-precision operands.",
+      "line_number": 36,
+      "reason": "This describes the behavior of quad-precision instructions in relation to double-precision instructions, not an implementation choice."
+    },
+    {
+      "excerpt": "New floating-point-to-integer and integer-to-floating-point conversion instructions are added.",
+      "line_number": 50,
+      "reason": "This is a description of new instructions being added, not a parameter that indicates an implementation choice."
+    },
+    {
+      "excerpt": "FMV.X.Q and FMV.Q.X instructions are not provided in RV32 or RV64, so quad-precision bit patterns must be moved to the integer registers via memory.",
+      "line_number": 70,
+      "reason": "This describes the absence of certain instructions in specific architectures, not an implementation choice."
+    },
+    {
+      "excerpt": "The quad-precision floating-point compare instructions are defined analogously to their double-precision counterparts, but operate on quad-precision operands.",
+      "line_number": 90,
+      "reason": "This describes the relationship between quad-precision and double-precision compare instructions, not an implementation choice."
+    },
+    {
+      "excerpt": "The quad-precision floating-point classify instruction, FCLASS.Q, is defined analogously to its double-precision counterpart, but operates on quad-precision operands.",
+      "line_number": 110,
+      "reason": "This describes the definition of a specific instruction in relation to another, not an implementation choice."
+    }
+  ]
+}
+```

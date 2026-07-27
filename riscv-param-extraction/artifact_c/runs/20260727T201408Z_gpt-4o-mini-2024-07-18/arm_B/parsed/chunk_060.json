@@ -1,0 +1,57 @@
+{
+  "chunk_id": "chunk_060",
+  "arm": "B",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The number of element groups to be processed is `vl`/`EGS`.",
+      "line_number": 101,
+      "parameter_name": "EGS",
+      "existing_udb_name": "EGS",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "EGS is a direct implementation choice that defines how many element groups are processed based on the vector length `vl`."
+    },
+    {
+      "excerpt": "For element-group instructions, `LMUL`*`VLEN` must always be at least as large as `EGW`, otherwise an illegal-instruction exception is raised.",
+      "line_number": 102,
+      "parameter_name": "EGW",
+      "existing_udb_name": "EGW",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "EGW is a direct implementation choice that specifies the total number of bits in an element group, which must be supported by the product of `LMUL` and `VLEN`."
+    },
+    {
+      "excerpt": "The required `SEW` for each cryptographic instruction was chosen to match what is typically needed for other instructions when implementing the targeted algorithm.",
+      "line_number": 103,
+      "parameter_name": "SEW",
+      "existing_udb_name": "SEW",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "SEW is a direct implementation choice that defines the number of bits in each element, which is crucial for the implementation of cryptographic instructions."
+    },
+    {
+      "excerpt": "The `vstart` must be a multiple of `EGS`.",
+      "line_number": 104,
+      "parameter_name": "VSTART_MULTIPLE",
+      "existing_udb_name": "VSTART_MULTIPLE",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "This specifies a requirement for the implementation regarding the alignment of `vstart` with `EGS`, which is a design-time choice."
+    },
+    {
+      "excerpt": "The `vstart` must be a multiple of `EGS`.",
+      "line_number": 105,
+      "parameter_name": "VSTART",
+      "existing_udb_name": "VSTART",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "This indicates that the starting point for processing must align with the element group size, which is a design-time choice."
+    }
+  ]
+}

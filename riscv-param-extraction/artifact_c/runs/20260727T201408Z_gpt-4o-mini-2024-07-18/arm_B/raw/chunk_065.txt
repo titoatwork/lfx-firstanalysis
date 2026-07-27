@@ -1,0 +1,58 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The misaligned atomicity granule PMA, defined in Volume II of this manual, optionally relaxes this alignment requirement.",
+      "line_number": 37,
+      "parameter_name": "MISALIGNED_ATOMICITY_GRANULE",
+      "existing_udb_name": "MISALIGNED_ATOMICITY_GRANULE",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to relax the alignment requirement for misaligned atomicity granules, making it a direct implementation choice."
+    },
+    {
+      "excerpt": "This load must have the ordering annotation _aq_ and may have ordering annotation _rl_ encoded in the instruction.",
+      "line_number": 66,
+      "parameter_name": "LOAD_AQ_RL_OPTIONAL",
+      "existing_udb_name": "LOAD_AQ_RL_OPTIONAL",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation must include the _aq_ annotation, but the _rl_ annotation is optional, indicating a choice in the instruction encoding."
+    },
+    {
+      "excerpt": "This store must have ordering annotation _rl_ and may have ordering annotation _aq_ encoded in the instruction.",
+      "line_number": 109,
+      "parameter_name": "STORE_RL_AQ_OPTIONAL",
+      "existing_udb_name": "STORE_RL_AQ_OPTIONAL",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation must include the _rl_ annotation, but the _aq_ annotation is optional, indicating a choice in the instruction encoding."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "If the address is not naturally aligned, an address-misaligned exception or an access-fault exception will be generated.",
+      "line_number": 34,
+      "reason": "This describes the behavior when an address is misaligned, which is a fixed requirement and not an implementation choice."
+    },
+    {
+      "excerpt": "The versions without the _aq_ bit set are RESERVED.",
+      "line_number": 66,
+      "reason": "This is a fixed requirement about the instruction encodings and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "LD.{AQ, AQRL} is RV64-only.",
+      "line_number": 66,
+      "reason": "This is a fixed requirement that applies to all implementations of the instruction, not an architectural parameter."
+    },
+    {
+      "excerpt": "The instruction always has an 'acquire-RCsc' annotation, and if the bit _rl_ is set the instruction has a 'release-RCsc' annotation.",
+      "line_number": 66,
+      "reason": "This describes the behavior of the instruction rather than an implementation choice, thus not a parameter."
+    }
+  ]
+}
+```

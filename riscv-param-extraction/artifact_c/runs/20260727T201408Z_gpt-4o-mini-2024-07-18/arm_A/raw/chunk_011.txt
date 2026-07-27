@@ -1,0 +1,73 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "RISC-V ISAs provide a set of up to thirty-two 64-bit performance counters and timers that are accessible via unprivileged XLEN-bit read-only CSR registers `0xC00`–`0xC1F`.",
+      "line_number": 5,
+      "parameter_name": "NUM_PERFORMANCE_COUNTERS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of performance counters is a direct implementation choice, with a maximum of thirty-two counters specified."
+    },
+    {
+      "excerpt": "The execution environment should provide a means to determine the current rate (cycles/second) at which the cycle counter is incrementing.",
+      "line_number": 75,
+      "parameter_name": "CYCLE_COUNTER_RATE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The rate at which the cycle counter increments is an implementation choice that can vary, and the environment must provide a means to determine it."
+    },
+    {
+      "excerpt": "The execution environment should provide a means of determining the period of a counter tick (seconds/tick).",
+      "line_number": 139,
+      "parameter_name": "COUNTER_TICK_PERIOD",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The period of the counter tick is an implementation-defined parameter that the environment must provide means to determine."
+    },
+    {
+      "excerpt": "The implemented number and width of these additional counters, and the set of events they count, are platform-specific.",
+      "line_number": 197,
+      "parameter_name": "HPM_COUNTERS_IMPLEMENTATION_SPECIFIC",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The number and width of additional performance counters, as well as the events they count, are implementation-defined choices."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] Some execution environments might prohibit access to counters, for example, to impede timing side-channel attacks.",
+      "line_number": 9,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "[NOTE] The counter pseudoinstructions are mapped to the read-only `csrrs rd, counter, x0` canonical form, but the other read-only CSR instruction forms (based on CSRRC/CSRRSI/CSRRCI) are also legal ways to read these CSRs.",
+      "line_number": 43,
+      "reason": "This is a non-normative note providing additional information about pseudoinstructions, not an architectural parameter."
+    },
+    {
+      "excerpt": "[NOTE] On some simple platforms, cycle count might represent a valid implementation of RDTIME, in which case RDTIME and RDCYCLE may return the same result.",
+      "line_number": 145,
+      "reason": "This is a non-normative note discussing potential implementation behavior, not a parameter."
+    },
+    {
+      "excerpt": "[NOTE] In some applications, it is important to be able to read multiple counters at the same instant in time.",
+      "line_number": 197,
+      "reason": "This is a non-normative note discussing application behavior and considerations, not an architectural parameter."
+    },
+    {
+      "excerpt": "[NOTE] It would be useful to eventually standardize event settings to count ISA-level metrics, such as the number of floating-point instructions executed for example.",
+      "line_number": 227,
+      "reason": "This is a non-normative note suggesting future standardization, not an architectural parameter."
+    }
+  ]
+}
+```

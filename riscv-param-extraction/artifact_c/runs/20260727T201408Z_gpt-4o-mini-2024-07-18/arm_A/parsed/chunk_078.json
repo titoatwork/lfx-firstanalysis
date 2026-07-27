@@ -1,0 +1,37 @@
+{
+  "chunk_id": "chunk_078",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "Masked bits: The upper PMLEN bits of an address, where PMLEN is a configurable parameter.",
+      "line_number": 15,
+      "parameter_name": "PMLEN",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "PMLEN is a configurable parameter that determines how many upper bits of an address are masked. The specific value is chosen by the implementer."
+    },
+    {
+      "excerpt": "The current standard only supports PMLEN=XLEN-48 (i.e., PMLEN=16 in RV64) and PMLEN=XLEN-57 (i.e., PMLEN=7 in RV64).",
+      "line_number": 157,
+      "parameter_name": "PMLEN_SUPPORTED_VALUES",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The set of legal values for PMLEN is defined as XLEN-48 and XLEN-57, which are implementation-defined legal values for the WARL CSR field."
+    },
+    {
+      "excerpt": "Pointer masking is controlled separately for different privilege modes.",
+      "line_number": 185,
+      "parameter_name": "PM_PRIVILEGE_MODE_CONTROL",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The implementation can choose how pointer masking is applied based on the active privilege mode, indicating a design-time decision."
+    }
+  ]
+}

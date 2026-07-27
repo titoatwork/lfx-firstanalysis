@@ -1,0 +1,77 @@
+{
+  "chunk_id": "chunk_027",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "When S-mode is implemented, it is determined as follows: ... |  S or HS     | `menvcfg.LPE`",
+      "line_number": 12,
+      "parameter_name": "LPE_STATE_S_MODE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The LPE state is determined by the `menvcfg.LPE` CSR field in S-mode, which can be either enabled or disabled."
+    },
+    {
+      "excerpt": "When S-mode is not implemented, it is determined as follows: ... |  U           | `menvcfg.LPE`",
+      "line_number": 20,
+      "parameter_name": "LPE_STATE_U_MODE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The LPE state in U-mode is determined by the `menvcfg.LPE` CSR field, which can be either enabled or disabled."
+    },
+    {
+      "excerpt": "When S-mode is implemented, it is determined as follows: ... |  S or HS     | `menvcfg.SSE`",
+      "line_number": 45,
+      "parameter_name": "SSE_STATE_S_MODE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The SSE state is determined by the `menvcfg.SSE` CSR field in S-mode, which can be either enabled or disabled."
+    },
+    {
+      "excerpt": "When S-mode is not implemented, then `xSSE` is 0 at both M and U privilege modes.",
+      "line_number": 53,
+      "parameter_name": "SSE_STATE_U_MODE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The SSE state in U-mode is determined by the `senvcfg.SSE` CSR field, which can be either enabled or disabled."
+    },
+    {
+      "excerpt": "To store the previous `ELP` state on trap delivery to M-mode, an `MPELP` bit is provided in the `mstatus` CSR.",
+      "line_number": 78,
+      "parameter_name": "MPELP_BIT",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The `MPELP` bit in the `mstatus` CSR is a read-write field that indicates whether the previous ELP state is stored."
+    },
+    {
+      "excerpt": "To store the previous `ELP` state on trap delivery to S/HS-mode, an `SPELP` bit is provided in the `mstatus` CSR.",
+      "line_number": 82,
+      "parameter_name": "SPELP_BIT",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The `SPELP` bit in the `mstatus` CSR is a read-write field that indicates whether the previous ELP state is stored."
+    },
+    {
+      "excerpt": "To store the previous `ELP` state on traps to VS-mode, a `SPELP` bit is defined in the `vsstatus` (VS-modes version of `sstatus`).",
+      "line_number": 86,
+      "parameter_name": "VSPELP_BIT",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The `VSPELP` bit in the `vsstatus` CSR is a read-write field that indicates whether the previous ELP state is stored."
+    }
+  ]
+}

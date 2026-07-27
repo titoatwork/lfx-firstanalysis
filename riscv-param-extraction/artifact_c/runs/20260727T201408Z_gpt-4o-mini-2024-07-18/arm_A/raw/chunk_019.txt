@@ -1,0 +1,58 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "MUL performs an XLEN-bit×XLEN-bit multiplication of `rs1` by `rs2` and places the lower XLEN bits in the destination register.",
+      "line_number": 10,
+      "parameter_name": "XLEN",
+      "existing_udb_name": "XLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "XLEN is a direct implementation choice that defines the bit-width for multiplication operations. The specific value of XLEN is chosen by the implementer."
+    },
+    {
+      "excerpt": "DIV and DIVU perform an XLEN bits by XLEN bits signed and unsigned integer division of `rs1` by `rs2`, rounding towards zero.",
+      "line_number": 30,
+      "parameter_name": "XLEN",
+      "existing_udb_name": "XLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "XLEN is a direct implementation choice that defines the bit-width for division operations. The specific value of XLEN is chosen by the implementer."
+    },
+    {
+      "excerpt": "DIVW and DIVUW are RV64 instructions that divide the lower 32 bits of `rs1` by the lower 32 bits of `rs2`, treating them as signed and unsigned integers, placing the 32-bit quotient in `rd`, sign-extended to 64 bits.",
+      "line_number": 50,
+      "parameter_name": "RV64",
+      "existing_udb_name": "RV64",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to support RV64 instructions, which is a binary decision affecting the availability of certain operations."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "We separate integer multiply and divide out from the base to simplify low-end implementations, or for applications where integer multiply and divide operations are either infrequent or better handled in attached accelerators.",
+      "line_number": 5,
+      "reason": "This text is a suggestion for implementation strategy, not a parameter that defines an architectural choice."
+    },
+    {
+      "excerpt": "If both the quotient and remainder are required from the same division, the recommended code sequence is: `DIV[U] rdq, rs1, rs2; REM[U] rdr,` `rs1, rs2`.",
+      "line_number": 40,
+      "reason": "This describes a recommended coding practice rather than an implementation choice or parameter."
+    },
+    {
+      "excerpt": "The value of all bits set is returned for both unsigned and signed divide by zero to simplify the divider circuitry.",
+      "line_number": 80,
+      "reason": "This describes behavior in the case of division by zero, not an architectural parameter that can be chosen by the implementer."
+    },
+    {
+      "excerpt": "The `Zmmul` extension enables low-cost implementations that require multiplication operations but not division.",
+      "line_number": 130,
+      "reason": "This is a note about the benefits of the `Zmmul` extension, not a parameter that defines an architectural choice."
+    }
+  ]
+}
+```

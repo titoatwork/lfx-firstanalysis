@@ -1,0 +1,58 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "As the access size is 64-bit, accesses are only considered naturally aligned for effective addresses that are a multiple of 8.",
+      "line_number": 15,
+      "parameter_name": "NATURAL_ALIGNMENT_64BIT",
+      "existing_udb_name": "NATURAL_ALIGNMENT_64BIT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The alignment requirement for 64-bit accesses is a direct implementation choice, determining whether addresses must be multiples of 8."
+    },
+    {
+      "excerpt": "If the effective address is a multiple of 4, then each word access is required to be performed atomically.",
+      "line_number": 19,
+      "parameter_name": "ATOMIC_WORD_ACCESS",
+      "existing_udb_name": "ATOMIC_WORD_ACCESS",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The requirement for atomicity of word accesses at specific alignments is a design choice that can vary by implementation."
+    },
+    {
+      "excerpt": "LD and SD instructions are considered to be misaligned loads and stores, with one additional constraint: an LD or SD instruction whose effective address is a multiple of 4 gives rise to two 4-byte memory operations.",
+      "line_number": 25,
+      "parameter_name": "MISALIGNED_LOAD_STORE_BEHAVIOR",
+      "existing_udb_name": "MISALIGNED_LOAD_STORE_BEHAVIOR",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The behavior of LD and SD instructions regarding misalignment is an implementation choice that can affect how these instructions are handled."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "If an implementation performs a doubleword load access atomically and the register file implements write-back for even/odd register pairs, the mentioned atomicity requirements are inherently fulfilled.",
+      "line_number": 11,
+      "reason": "This text describes a condition under which atomicity is fulfilled but does not define an architectural parameter; it is more of an implementation note."
+    },
+    {
+      "excerpt": "Software should make no assumptions about the number or order of accesses these instructions might give rise to, beyond the 4-byte constraint mentioned above.",
+      "line_number": 29,
+      "reason": "This is a guideline for software behavior rather than an architectural parameter; it does not define an implementation choice."
+    },
+    {
+      "excerpt": "C.LDSP is only valid when _rd_{ne}x0; the code points with _rd_=x0 are reserved.",
+      "line_number": 43,
+      "reason": "This describes a restriction on instruction usage rather than an architectural parameter; it does not indicate a choice for implementers."
+    },
+    {
+      "excerpt": "LD instructions with destination `x0` are processed as any other load, but the result is discarded entirely and x1 is not written.",
+      "line_number": 37,
+      "reason": "This describes behavior for a specific case rather than an implementation choice; it does not define a parameter."
+    }
+  ]
+}
+```

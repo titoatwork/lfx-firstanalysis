@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_067",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "If jvt.mode is a reserved value, then _cm.jt_ is also reserved.",
+      "line_number": 258,
+      "parameter_name": "JVT_MODE",
+      "existing_udb_name": "JVT_MODE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The jvt.mode field is WARL, meaning the set of legal values can vary by implementation, and the implementation must define which modes are available."
+    },
+    {
+      "excerpt": "The table must be a minimum of 64-byte aligned.",
+      "line_number": 258,
+      "parameter_name": "JVT_BASE_ALIGNMENT",
+      "existing_udb_name": "JVT_BASE_ALIGNMENT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The alignment requirement for the jump vector table is a direct implementation choice, indicating whether the table must be aligned to 64 bytes."
+    },
+    {
+      "excerpt": "The jvt CSR requires a state enable if Smstateen is implemented.",
+      "line_number": 258,
+      "parameter_name": "JVT_STATE_ENABLE",
+      "existing_udb_name": "JVT_STATE_ENABLE",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The requirement for state enable is a design choice that depends on whether Smstateen is implemented, making it an architectural parameter."
+    },
+    {
+      "excerpt": "The total stack adjustment represents the total size of the stack frame, which is _stack_adj_base_ added to _spimm_ scaled by 16.",
+      "line_number": 258,
+      "parameter_name": "STACK_ADJUSTMENT",
+      "existing_udb_name": "STACK_ADJUSTMENT",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The stack adjustment calculation is a direct implementation choice that can vary based on the number of registers being pushed or popped."
+    }
+  ]
+}

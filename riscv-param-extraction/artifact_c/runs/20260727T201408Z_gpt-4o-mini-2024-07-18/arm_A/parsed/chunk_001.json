@@ -1,0 +1,67 @@
+{
+  "chunk_id": "chunk_001",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The bits order accesses to one of the two address domains, memory or I/O, depending on which address domain the atomic instruction is accessing.",
+      "line_number": 12,
+      "parameter_name": "AQ_RL_BITS_DOMAIN",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The implementation chooses how to use the _aq_ and _rl_ bits to order accesses to memory or I/O domains, which is a direct design decision."
+    },
+    {
+      "excerpt": "If both bits are clear, no additional ordering constraints are imposed on the atomic memory operation.",
+      "line_number": 16,
+      "parameter_name": "AQ_RL_DEFAULT_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation decides whether to impose additional ordering constraints based on the state of the _aq_ and _rl_ bits, which is a design choice."
+    },
+    {
+      "excerpt": "An implementation can register an arbitrarily large reservation set on each LR, provided the reservation set includes all bytes of the addressed data word or doubleword.",
+      "line_number": 36,
+      "parameter_name": "LR_RESERVATION_SET_SIZE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The size of the reservation set for LR instructions is an implementation choice, allowing for flexibility in how many bytes can be reserved."
+    },
+    {
+      "excerpt": "The misaligned atomicity granule PMA specifies the size of a misaligned atomicity granule, a power-of-two number of bytes.",
+      "line_number": 66,
+      "parameter_name": "MISALIGNED_ATOMICITY_GRANULE_SIZE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The size of the misaligned atomicity granule is an implementation-defined parameter that can vary, allowing for different designs."
+    },
+    {
+      "excerpt": "If the _aq_ bit is set, then no later memory operations in this RISC-V hart can be observed to take place before the AMO.",
+      "line_number": 90,
+      "parameter_name": "AMO_AQ_SEMANTICS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation decides whether to enforce acquire semantics based on the _aq_ bit, which is a design choice."
+    },
+    {
+      "excerpt": "If the _rl_ bit is set, then other RISC-V harts will not observe the AMO before memory accesses preceding the AMO in this RISC-V hart.",
+      "line_number": 90,
+      "parameter_name": "AMO_RL_SEMANTICS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation decides whether to enforce release semantics based on the _rl_ bit, which is a design choice."
+    }
+  ]
+}

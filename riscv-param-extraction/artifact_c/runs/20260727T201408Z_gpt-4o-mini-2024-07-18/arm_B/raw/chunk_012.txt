@@ -1,0 +1,63 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The D extension widens the 32 floating-point registers, `f0-f31`, to 64 bits (FLEN=64 in <<fprs>>#.",
+      "line_number": 6,
+      "parameter_name": "FLEN",
+      "existing_udb_name": "FLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "FLEN is a direct implementation choice that can be 32, 64, or 128 bits depending on the supported floating-point extensions. The specific value is chosen by the implementer."
+    },
+    {
+      "excerpt": "A narrower _n_-bit transfer, _n_<FLEN, into the `f` registers will create a valid NaN-boxed value.",
+      "line_number": 66,
+      "parameter_name": "NAN_BOXING",
+      "existing_udb_name": "NAN_BOXING",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to support NaN-boxing for narrower transfers into the floating-point registers, which is a design decision."
+    },
+    {
+      "excerpt": "For XLEN{ge}64 only, instructions are provided to move bit patterns between the floating-point and integer registers.",
+      "line_number": 157,
+      "parameter_name": "XLEN_SUPPORT",
+      "existing_udb_name": "XLEN_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to support the movement of bit patterns between floating-point and integer registers based on the XLEN value, which is a design choice."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The double-precision value may be a NaN-boxed single-precision value.",
+      "line_number": 134,
+      "reason": "This is a fixed requirement about the nature of the double-precision value and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "All floating-point to integer and integer to floating-point conversion instructions round according to the _rm_ field.",
+      "line_number": 174,
+      "reason": "This describes the behavior of conversion instructions and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "The double-precision floating-point computational instructions are defined analogously to their single-precision counterparts.",
+      "line_number": 145,
+      "reason": "This is a description of how the instructions are defined and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "The double-precision floating-point compare instructions are defined analogously to their single-precision counterparts.",
+      "line_number": 205,
+      "reason": "This is a description of how the compare instructions are defined and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "The double-precision floating-point classify instruction, FCLASS.D, is defined analogously to its single-precision counterpart.",
+      "line_number": 225,
+      "reason": "This is a description of how the classify instruction is defined and does not indicate an implementation choice."
+    }
+  ]
+}
+```

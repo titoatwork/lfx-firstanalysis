@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_070",
+  "arm": "B",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "Floating-point operands of width _w_ < XLEN bits occupy bits _w_-1:0 of an `x` register.",
+      "line_number": 34,
+      "parameter_name": "NARROW_OPERAND_WIDTH",
+      "existing_udb_name": "NARROW_OPERAND_WIDTH",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The width of floating-point operands is a direct implementation choice, constrained to be less than XLEN. The specific width is chosen by the implementer."
+    },
+    {
+      "excerpt": "Floating-point operations that produce _w_ < XLEN-bit results fill bits XLEN-1: _w_ with copies of bit _w_-1 (the sign bit).",
+      "line_number": 42,
+      "parameter_name": "NARROW_RESULT_WIDTH",
+      "existing_udb_name": "NARROW_RESULT_WIDTH",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The width of results from floating-point operations is a direct implementation choice, constrained to be less than XLEN. The specific width is determined by the implementer."
+    },
+    {
+      "excerpt": "Double-precision operands in RV32Zdinx are held in aligned `x`-register pairs, i.e., register numbers must be even.",
+      "line_number": 92,
+      "parameter_name": "DOUBLE_PRECISION_REGISTER_ALIGNMENT",
+      "existing_udb_name": "DOUBLE_PRECISION_REGISTER_ALIGNMENT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The alignment of double-precision operands in register pairs is a direct implementation choice, specifically requiring even-numbered registers."
+    },
+    {
+      "excerpt": "The `misa` bits F, D, and Q are hardwired to 0 when the Zfinx extension is implemented.",
+      "line_number": 146,
+      "parameter_name": "MISA_FDQ_HARDWIRED",
+      "existing_udb_name": "MISA_FDQ_HARDWIRED",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The hardwiring of the `misa` bits F, D, and Q to 0 is a direct implementation choice when the Zfinx extension is present."
+    }
+  ]
+}

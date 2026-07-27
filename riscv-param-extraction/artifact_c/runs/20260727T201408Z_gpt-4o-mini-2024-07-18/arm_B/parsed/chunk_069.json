@@ -1,0 +1,37 @@
+{
+  "chunk_id": "chunk_069",
+  "arm": "B",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "New supported format is added to the format field of most instructions, as shown in <<tab:fpextfmth>>.",
+      "line_number": 20,
+      "parameter_name": "FLOATING_POINT_FORMATS",
+      "existing_udb_name": "FLOATING_POINT_FORMATS",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to support different floating-point formats (S, D, H, Q) as specified in the format field. This is a direct implementation choice."
+    },
+    {
+      "excerpt": "If the D extension is present, the FCVT.D.H and FCVT.H.D instructions are also included.",
+      "line_number": 118,
+      "parameter_name": "D_EXTENSION_SUPPORT",
+      "existing_udb_name": "D_EXTENSION_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The presence of the D extension is an implementation choice that determines whether certain conversion instructions are available."
+    },
+    {
+      "excerpt": "If the Q extension is present, the FCVT.Q.H and FCVT.H.Q instructions are additionally included.",
+      "line_number": 120,
+      "parameter_name": "Q_EXTENSION_SUPPORT",
+      "existing_udb_name": "Q_EXTENSION_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The presence of the Q extension is an implementation choice that determines whether certain conversion instructions are available."
+    }
+  ]
+}

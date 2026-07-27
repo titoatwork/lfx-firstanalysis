@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_067",
+  "arm": "B",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "If jvt.mode is a reserved value, then _cm.jt_ is also reserved.",
+      "line_number": 258,
+      "parameter_name": "JVT_MODE",
+      "existing_udb_name": "JVT_MODE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The jvt.mode field is WARL, meaning the set of legal values can vary by implementation, and implementations must support at least one mode."
+    },
+    {
+      "excerpt": "If the same function is called with and without linking then it must have two entries in the table.",
+      "line_number": 258,
+      "parameter_name": "TABLE_JUMP_ENTRIES",
+      "existing_udb_name": "TABLE_JUMP_ENTRIES",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of entries in the jump table is an implementation choice, as it can vary based on how functions are called."
+    },
+    {
+      "excerpt": "The table must be a minimum of 64-byte aligned.",
+      "line_number": 258,
+      "parameter_name": "TABLE_ALIGNMENT",
+      "existing_udb_name": "TABLE_ALIGNMENT",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The alignment requirement for the jump table is a design choice that must be adhered to by implementations."
+    },
+    {
+      "excerpt": "The jvt CSR requires a state enable if Smstateen is implemented.",
+      "line_number": 258,
+      "parameter_name": "JVT_STATE_ENABLE",
+      "existing_udb_name": "JVT_STATE_ENABLE",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The requirement for state enable is an implementation choice that can vary based on whether Smstateen is supported."
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "To provide more efficient support for release consistency, each atomic instruction has two bits, _aq_ and _rl_, used to specify additional memory ordering constraints as viewed by other RISC-V harts.",
+      "line_number": 20,
+      "parameter_name": "AQ_RL_BITS",
+      "existing_udb_name": "AQ_RL_BITS",
+      "class": "NORM_DIRECT",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The _aq_ and _rl_ bits are direct implementation choices that specify memory ordering constraints for atomic instructions. The implementer decides how to utilize these bits."
+    },
+    {
+      "excerpt": "The Zalrsc extension requires that the address held in _rs1_ be naturally aligned to the size of the operand (i.e., eight-byte aligned for _doublewords_ and four-byte aligned for _words_).",
+      "line_number": 295,
+      "parameter_name": "LR_SC_ALIGNMENT",
+      "existing_udb_name": "LR_SC_ALIGNMENT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The alignment requirement for LR and SC instructions is a design choice that can vary by implementation, making it a parameter."
+    },
+    {
+      "excerpt": "The misaligned atomicity granule PMA, defined in Volume II of this manual, optionally relaxes this alignment requirement.",
+      "line_number": 353,
+      "parameter_name": "MISALIGNED_ATOMICITY_GRANULE",
+      "existing_udb_name": "MISALIGNED_ATOMICITY_GRANULE",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The presence of a misaligned atomicity granule is an implementation choice that can vary, allowing for different handling of alignment requirements."
+    },
+    {
+      "excerpt": "If the _aq_ bit is set, then no later memory operations in this RISC-V hart can be observed to take place before the AMO.",
+      "line_number": 426,
+      "parameter_name": "AMO_AQ_SEMANTICS",
+      "existing_udb_name": "AMO_AQ_SEMANTICS",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The decision to implement the _aq_ bit for AMOs is a design choice that affects memory operation visibility, making it a parameter."
+    },
+    {
+      "excerpt": "If the _rl_ bit is set, then other RISC-V harts will not observe the AMO before memory accesses preceding the AMO in this RISC-V hart.",
+      "line_number": 426,
+      "parameter_name": "AMO_RL_SEMANTICS",
+      "existing_udb_name": "AMO_RL_SEMANTICS",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation of the _rl_ bit for AMOs is a design choice that affects memory operation visibility, making it a parameter."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The atomic-instruction extension, named 'A', contains instructions that atomically read-modify-write memory to support synchronization between multiple RISC-V harts running in the same memory space.",
+      "line_number": 5,
+      "reason": "This is a descriptive statement about the purpose of the extension and does not define an implementation choice."
+    },
+    {
+      "excerpt": "The base RISC-V ISA has a relaxed memory model, with the FENCE instruction used to impose additional ordering constraints.",
+      "line_number": 10,
+      "reason": "This describes the behavior of the base ISA and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "The failure code with value 1 encodes an unspecified failure.",
+      "line_number": 370,
+      "reason": "This is a fixed requirement about the failure code and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "The SC must fail if the address is not within the reservation set of the most recent LR in program order.",
+      "line_number": 420,
+      "reason": "This describes a requirement for SC behavior and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "The platform should provide a means to determine the size and shape of the reservation set.",
+      "line_number": 460,
+      "reason": "This is a suggestion for platform behavior and does not define an implementation choice."
+    }
+  ]
+}
+```

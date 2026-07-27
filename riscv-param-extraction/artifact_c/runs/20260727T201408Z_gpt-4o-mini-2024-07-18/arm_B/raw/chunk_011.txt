@@ -1,0 +1,53 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The implemented number and width of these additional counters, and the set of events they count, are platform-specific.",
+      "line_number": 197,
+      "parameter_name": "HPM_COUNTERS_IMPLEMENTATION",
+      "existing_udb_name": "HPM_COUNTERS_IMPLEMENTATION",
+      "class": "NON_ISA",
+      "value_type": "UNKNOWN",
+      "confidence": "high",
+      "reasoning": "The number and width of additional performance counters, as well as the events they count, are left to the implementer's discretion, making it a platform-specific choice."
+    },
+    {
+      "excerpt": "The execution environment should provide a means to determine the number and width of the implemented counters, and an interface to configure the events to be counted by each counter.",
+      "line_number": 197,
+      "parameter_name": "HPM_COUNTER_CONFIG_INTERFACE",
+      "existing_udb_name": "HPM_COUNTER_CONFIG_INTERFACE",
+      "class": "NON_ISA",
+      "value_type": "UNKNOWN",
+      "confidence": "high",
+      "reasoning": "The specification indicates that the execution environment must provide a means to determine and configure the performance counters, which is an implementation-defined choice."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "We recommend provision of these basic counters in implementations as they are essential for basic performance analysis, adaptive and dynamic optimization, and to allow an application to work with real-time streams.",
+      "line_number": 8,
+      "reason": "This text is a recommendation and not a requirement, thus it does not define an architectural parameter."
+    },
+    {
+      "excerpt": "The underlying 64-bit counter should never overflow in practice.",
+      "line_number": 83,
+      "reason": "This is a fixed requirement about the behavior of the counter, not an implementation choice."
+    },
+    {
+      "excerpt": "The rate at which the cycle counter advances will depend on the implementation and operating environment.",
+      "line_number": 83,
+      "reason": "This describes a behavior that is dependent on the implementation rather than a specific architectural parameter."
+    },
+    {
+      "excerpt": "On some simple platforms, cycle count might represent a valid implementation of RDTIME, in which case RDTIME and RDCYCLE may return the same result.",
+      "line_number": 139,
+      "reason": "This describes a potential behavior of the counters under certain conditions, not an implementation choice."
+    },
+    {
+      "excerpt": "In some applications, it is important to be able to read multiple counters at the same instant in time.",
+      "line_number": 197,
+      "reason": "This is a contextual statement about application needs, not a parameter defining implementation choices."
+    }
+  ]
+}
+```

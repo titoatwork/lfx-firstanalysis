@@ -1,0 +1,67 @@
+{
+  "chunk_id": "chunk_057",
+  "arm": "B",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The Zicfilp extensions may be activated for use individually and independently for each privilege mode.",
+      "line_number": 89,
+      "parameter_name": "ZICFILP_ACTIVATION",
+      "existing_udb_name": "ZICFILP_ACTIVATION",
+      "class": "NORM_DIRECT",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The activation of the Zicfilp extension can be chosen independently for each privilege mode, making it a direct implementation choice."
+    },
+    {
+      "excerpt": "The `ELP` state can be one of: 0 - `NO_LP_EXPECTED`, 1 - `LP_EXPECTED`.",
+      "line_number": 157,
+      "parameter_name": "ELP_STATE",
+      "existing_udb_name": "ELP_STATE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The `ELP` state is a WARL field with specific legal values that can vary by implementation, indicating the expected landing pad state."
+    },
+    {
+      "excerpt": "The landing pad may be optionally associated with a 20-bit label.",
+      "line_number": 103,
+      "parameter_name": "LPAD_LABELING",
+      "existing_udb_name": "LPAD_LABELING",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to associate a landing pad with a label is an implementation decision, making it a direct parameter."
+    },
+    {
+      "excerpt": "The `ssp` CSR is an unprivileged read-write (URW) CSR that reads and writes `XLEN` low order bits of the shadow stack pointer (`ssp`).",
+      "line_number": 646,
+      "parameter_name": "SSP_ACCESS",
+      "existing_udb_name": "SSP_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The `ssp` CSR's read-write nature is a choice for the implementation, indicating whether it can be accessed in a read-write manner."
+    },
+    {
+      "excerpt": "The `SSPUSH` instruction and its compressed form `C.SSPUSH` can be used to push a link register on the shadow stack.",
+      "line_number": 703,
+      "parameter_name": "SSPUSH_INSTRUCTION",
+      "existing_udb_name": "SSPUSH_INSTRUCTION",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to use `SSPUSH` or `C.SSPUSH` for pushing a link register is an implementation decision, making it a direct parameter."
+    },
+    {
+      "excerpt": "The `SSPOPCHK` instruction, and its compressed form `C.SSPOPCHK`, can be used to pop the shadow return address value from the shadow stack and check that the value matches the contents of the link register.",
+      "line_number": 757,
+      "parameter_name": "SSPOPCHK_INSTRUCTION",
+      "existing_udb_name": "SSPOPCHK_INSTRUCTION",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to use `SSPOPCHK` or `C.SSPOPCHK` for popping and checking the shadow return address is an implementation decision, making it a direct parameter."
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "chunk_id": "chunk_015",
+  "arm": "B",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "CSR `mtval` must not be read-only zero",
+      "line_number": 10,
+      "parameter_name": "MTVAL_ACCESS",
+      "existing_udb_name": "MTVAL_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether mtval can be read-only or read-write. This is a binary choice about the mutability of the register."
+    },
+    {
+      "excerpt": "standard page-based address translation must be supported, either Sv32 for RV32, or a minimum of Sv39 for RV64",
+      "line_number": 10,
+      "parameter_name": "PAGE_BASED_TRANSLATION",
+      "existing_udb_name": "PAGE_BASED_TRANSLATION",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The implementation must choose between supporting Sv32 or Sv39 for address translation, which is a direct implementation choice."
+    },
+    {
+      "excerpt": "The VSXL field controls the effective XLEN for VS-mode (known as VSXLEN), which may differ from the XLEN for HS-mode (HSXLEN).",
+      "line_number": 120,
+      "parameter_name": "VSXLEN_CONTROL",
+      "existing_udb_name": "VSXLEN_CONTROL",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The VSXL field is WARL, and its implementation can vary, allowing for different effective XLEN values in VS-mode."
+    },
+    {
+      "excerpt": "The VGEIN (Virtual Guest External Interrupt Number) field selects a guest external interrupt source for VS-level external interrupts.",
+      "line_number": 120,
+      "parameter_name": "VGEIN_SOURCE",
+      "existing_udb_name": "VGEIN_SOURCE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The VGEIN field is a WARL field that must hold values between zero and the maximum guest external interrupt number (GEILEN), which is implementation-defined."
+    },
+    {
+      "excerpt": "The PBMTE bit controls whether the Svpbmt extension is available for use in VS-stage address translation.",
+      "line_number": 120,
+      "parameter_name": "PBMTE_CONTROL",
+      "existing_udb_name": "PBMTE_CONTROL",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether the Svpbmt extension is available for use in VS-stage address translation, which is a binary choice."
+    },
+    {
+      "excerpt": "The number of bits implemented in `hgeip` and `hgeie` for guest external interrupts is UNSPECIFIED and may be zero.",
+      "line_number": 120,
+      "parameter_name": "GEILEN",
+      "existing_udb_name": "GEILEN",
+      "class": "NORM_CSR_WARL",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The GEILEN parameter is WARL, indicating that the number of bits for guest external interrupts is unspecified and can vary by implementation."
+    }
+  ]
+}

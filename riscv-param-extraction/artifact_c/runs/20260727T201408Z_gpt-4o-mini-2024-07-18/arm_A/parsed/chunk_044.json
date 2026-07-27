@@ -1,0 +1,37 @@
+{
+  "chunk_id": "chunk_044",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The entropy source extension defines the `seed` CSR at address `0x015`. This CSR provides up to 16 physical `entropy` bits that can be used to seed cryptographic random bit generators.",
+      "line_number": 345,
+      "parameter_name": "ENTROPY_SOURCE_SEED_CSR",
+      "existing_udb_name": "ENTROPY_SOURCE_SEED_CSR",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The address of the `seed` CSR is a direct implementation choice, allowing implementers to define how many bits of entropy are provided."
+    },
+    {
+      "excerpt": "This instruction exists on RV32 and RV64 base architectures.",
+      "line_number": 1234,
+      "parameter_name": "SUPPORTED_ARCHITECTURES",
+      "existing_udb_name": "SUPPORTED_ARCHITECTURES",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The choice of supporting both RV32 and RV64 architectures is a design decision left to the implementer."
+    },
+    {
+      "excerpt": "Note that `rnum` must be in the range `0x0..0xA`. The values `0xB..0xF` are reserved.",
+      "line_number": 678,
+      "parameter_name": "AES_KEY_SCHEDULE_RNUM_RANGE",
+      "existing_udb_name": "AES_KEY_SCHEDULE_RNUM_RANGE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The valid range for `rnum` in the AES key schedule instruction is a WARL field, indicating implementation-defined legal values."
+    }
+  ]
+}

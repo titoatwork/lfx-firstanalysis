@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "A landing pad may be optionally associated with a 20-bit label.",
+      "line_number": 66,
+      "parameter_name": "LPAD_LABEL_WIDTH",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The width of the label associated with the landing pad is a direct implementation choice, specified as 20 bits."
+    },
+    {
+      "excerpt": "The `ELP` state can be one of: * 0 - `NO_LP_EXPECTED` * 1 - `LP_EXPECTED`",
+      "line_number": 104,
+      "parameter_name": "ELP_STATE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The `ELP` state has a finite set of values (0 or 1) that can be chosen by the implementation."
+    },
+    {
+      "excerpt": "The `ssp` CSR is an unprivileged read-write (URW) CSR that reads and writes `XLEN` low order bits of the shadow stack pointer (`ssp`).",
+      "line_number": 370,
+      "parameter_name": "SSP_WIDTH",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The width of the `ssp` CSR is determined by `XLEN`, which is an implementation-defined parameter."
+    },
+    {
+      "excerpt": "The `SSPUSH` instruction and its compressed form `C.SSPUSH` can be used to push a link register on the shadow stack.",
+      "line_number": 546,
+      "parameter_name": "SSPUSH_LINK_REGS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The implementation can choose which registers (specifically `x1` and `x5`) can be used with the `SSPUSH` instruction."
+    },
+    {
+      "excerpt": "The `SSPOPCHK` instruction, and its compressed form `C.SSPOPCHK`, can be used to pop the shadow return address value from the shadow stack and check that the value matches the contents of the link register.",
+      "line_number": 682,
+      "parameter_name": "SSPOPCHK_LINK_REGS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The implementation can choose which registers (specifically `x1` and `x5`) can be used with the `SSPOPCHK` instruction."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "When Zicfilp is not active at a privilege level or when the extension is not implemented, the landing pad instruction executes as a no-op.",
+      "line_number": 90,
+      "reason": "This describes behavior when the extension is not active, which is not an implementation choice."
+    },
+    {
+      "excerpt": "Compilers should provide an attribute flag to indicate if the program has been compiled with the Zicfilp extension.",
+      "line_number": 134,
+      "reason": "This is a recommendation for software behavior, not an architectural parameter."
+    },
+    {
+      "excerpt": "The Zicfiss extension may be activated for use individually and independently for each privilege mode.",
+      "line_number": 370,
+      "reason": "This describes a capability of the extension rather than a parameter that can be chosen by the implementer."
+    },
+    {
+      "excerpt": "The `LPAD` requires a 4-byte alignment to address the concatenation of two instructions.",
+      "line_number": 90,
+      "reason": "This is a fixed requirement for alignment, not an implementation choice."
+    },
+    {
+      "excerpt": "When the register source is a link register and the register destination is `x0`, then it's a return from a procedure and does not require a landing pad at the target.",
+      "line_number": 104,
+      "reason": "This describes a specific case of behavior rather than an implementation choice."
+    }
+  ]
+}
+```

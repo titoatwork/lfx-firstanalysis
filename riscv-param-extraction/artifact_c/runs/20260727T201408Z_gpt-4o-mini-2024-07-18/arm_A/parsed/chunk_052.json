@@ -1,0 +1,27 @@
+{
+  "chunk_id": "chunk_052",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The OF bit is set when the corresponding hpmcounter overflows, and remains set until written by software.",
+      "line_number": 118,
+      "parameter_name": "HW_MHPMEVENT_OF_BIT_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "SW_RULE",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The behavior of the OF bit in response to hpmcounter overflow is implementation-defined, but the outcome is deterministic if software follows the spec rules regarding writing to the OF bit."
+    },
+    {
+      "excerpt": "If supervisor mode is implemented, the 32-bit scountovf register contains read-only shadow copies of the OF bits in all 29 mhpmevent registers.",
+      "line_number": 118,
+      "parameter_name": "SCOUNTOFV_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether the scountovf register is read-only or not, depending on whether supervisor mode is implemented."
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The number of element groups to be processed is `vl`/`EGS`.",
+      "line_number": 101,
+      "parameter_name": "EGS",
+      "existing_udb_name": "EGS",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "EGS is a direct implementation choice that defines how many element groups are processed based on the vector length `vl`."
+    },
+    {
+      "excerpt": "For element-group instructions, `LMUL`*`VLEN` must always be at least as large as `EGW`, otherwise an illegal-instruction exception is raised.",
+      "line_number": 102,
+      "parameter_name": "EGW",
+      "existing_udb_name": "EGW",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "EGW is a direct implementation choice that specifies the total number of bits in an element group, which must be supported by the product of `LMUL` and `VLEN`."
+    },
+    {
+      "excerpt": "The required `SEW` for each cryptographic instruction was chosen to match what is typically needed for other instructions when implementing the targeted algorithm.",
+      "line_number": 103,
+      "parameter_name": "SEW",
+      "existing_udb_name": "SEW",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "SEW is a direct implementation choice that defines the number of bits in each element, which is crucial for the implementation of cryptographic instructions."
+    },
+    {
+      "excerpt": "The `vstart` must be a multiple of `EGS`.",
+      "line_number": 104,
+      "parameter_name": "VSTART_MULTIPLE",
+      "existing_udb_name": "VSTART_MULTIPLE",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "This specifies a requirement for the implementation regarding the alignment of `vstart` with `EGS`, which is a design-time choice."
+    },
+    {
+      "excerpt": "The `vstart` must be a multiple of `EGS`.",
+      "line_number": 105,
+      "parameter_name": "VSTART",
+      "existing_udb_name": "VSTART",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "This indicates that the starting point for processing must align with the element group size, which is a design-time choice."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] Where variables are concatenated, the order shown is how they would appear in a vector register from left to right.",
+      "line_number": 1,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a formatting detail, not an architectural requirement."
+    },
+    {
+      "excerpt": "This instruction must always be implemented such that its execution latency does not depend on the data being operated upon.",
+      "line_number": 2,
+      "reason": "This is a fixed requirement that applies to all implementations and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "The implementation chooses whether mtvec is read-only or read-write.",
+      "line_number": 3,
+      "reason": "This describes a choice about the mutability of the register, but it is not a parameter as it does not specify a range or set of values."
+    },
+    {
+      "excerpt": "The maximum size in bits of a vector element that any operation can produce or consume, _ELEN_ >= 8, which must be a power of 2.",
+      "line_number": 4,
+      "reason": "This is a fixed requirement that applies to all implementations and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "The number of bits in a single vector register, _VLEN_ >= ELEN, which must be a power of 2, and must be no greater than 2^16.",
+      "line_number": 5,
+      "reason": "This is a fixed requirement that applies to all implementations and does not represent an implementation choice."
+    }
+  ]
+}
+```

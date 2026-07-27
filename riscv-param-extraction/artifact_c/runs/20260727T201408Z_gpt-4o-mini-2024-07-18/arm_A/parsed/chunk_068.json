@@ -1,0 +1,97 @@
+{
+  "chunk_id": "chunk_068",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The correspondence of _rs1_ field values and single-precision floating-point values is shown in <<tab:flis>>.",
+      "line_number": 10,
+      "parameter_name": "FLI_S_VALUES",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The values that can be loaded by the FLI.S instruction are defined by the _rs1_ field, which is WARL. The specific values are implementation-defined."
+    },
+    {
+      "excerpt": "If the D extension is implemented, FLI.D performs the analogous operation, but loads a double-precision value into floating-point register _rd_.",
+      "line_number": 20,
+      "parameter_name": "FLI_D_VALUES",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The values that can be loaded by the FLI.D instruction depend on the implementation of the D extension, making it a WARL parameter."
+    },
+    {
+      "excerpt": "If the Q extension is implemented, FLI.Q performs the analogous operation, but loads a quad-precision value into floating-point register _rd_.",
+      "line_number": 30,
+      "parameter_name": "FLI_Q_VALUES",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The values that can be loaded by the FLI.Q instruction depend on the implementation of the Q extension, making it a WARL parameter."
+    },
+    {
+      "excerpt": "If the Zfh or Zvfh extension is implemented, FLI.H performs the analogous operation, but loads a half-precision floating-point value into register _rd_.",
+      "line_number": 40,
+      "parameter_name": "FLI_H_VALUES",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The values that can be loaded by the FLI.H instruction depend on the implementation of the Zfh or Zvfh extensions, making it a WARL parameter."
+    },
+    {
+      "excerpt": "The FMINM.S and FMAXM.S instructions are defined like the FMIN.S and FMAX.S instructions, except that if either input is NaN, the result is the canonical NaN.",
+      "line_number": 60,
+      "parameter_name": "FMINM_S_NAN_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The behavior of FMINM.S and FMAXM.S regarding NaN inputs is a direct implementation choice, indicating how these instructions handle NaN values."
+    },
+    {
+      "excerpt": "If the D extension is implemented, FMINM.D and FMAXM.D instructions are analogously defined to operate on double-precision numbers.",
+      "line_number": 70,
+      "parameter_name": "FMINM_D_NAN_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The behavior of FMINM.D and FMAXM.D regarding NaN inputs is a direct implementation choice, indicating how these instructions handle NaN values."
+    },
+    {
+      "excerpt": "If the Zfh extension is implemented, FMINM.H and FMAXM.H instructions are analogously defined to operate on half-precision numbers.",
+      "line_number": 80,
+      "parameter_name": "FMINM_H_NAN_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The behavior of FMINM.H and FMAXM.H regarding NaN inputs is a direct implementation choice, indicating how these instructions handle NaN values."
+    },
+    {
+      "excerpt": "If the Q extension is implemented, FMINM.Q and FMAXM.Q instructions are analogously defined to operate on quad-precision numbers.",
+      "line_number": 90,
+      "parameter_name": "FMINM_Q_NAN_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The behavior of FMINM.Q and FMAXM.Q regarding NaN inputs is a direct implementation choice, indicating how these instructions handle NaN values."
+    },
+    {
+      "excerpt": "The FCVTMOD.W.D instruction is defined similarly to the FCVT.W.D instruction, with the following differences. FCVTMOD.W.D always rounds towards zero.",
+      "line_number": 100,
+      "parameter_name": "FCVTMOD_W_D_ROUNDING_MODE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The rounding behavior of FCVTMOD.W.D is a direct implementation choice, indicating how this instruction handles rounding."
+    }
+  ]
+}

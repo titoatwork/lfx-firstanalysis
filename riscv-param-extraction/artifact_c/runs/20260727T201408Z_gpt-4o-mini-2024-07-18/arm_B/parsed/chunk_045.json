@@ -1,0 +1,67 @@
+{
+  "chunk_id": "chunk_045",
+  "arm": "B",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The status bits `seed[31:30]` = `OPST` may be `ES16` (10), indicating successful polling, or one of three entropy polling failure statuses `BIST` (00), `WAIT` (01), or `DEAD` (11), discussed below.",
+      "line_number": 3465,
+      "parameter_name": "SEED_OPST_VALUES",
+      "existing_udb_name": "SEED_OPST_VALUES",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The OPST field in the seed CSR is WARL, and the set of values it can take (BIST, WAIT, ES16, DEAD) varies by implementation."
+    },
+    {
+      "excerpt": "An implementation may safely set reserved and custom bits to zeros.",
+      "line_number": 3485,
+      "parameter_name": "SEED_CUSTOM_BITS",
+      "existing_udb_name": "SEED_CUSTOM_BITS",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation has the choice to set reserved and custom bits to zero, which is a direct design decision."
+    },
+    {
+      "excerpt": "An implementation of the entropy source should meet at least one of the following requirements sets in order to be considered a secure and safe design.",
+      "line_number": 3505,
+      "parameter_name": "ENTROPY_SOURCE_REQUIREMENTS",
+      "existing_udb_name": "ENTROPY_SOURCE_REQUIREMENTS",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The implementation can choose which set of requirements (NIST SP 800-90B, BSI AIS-31, or virtual sources) to meet for the entropy source."
+    },
+    {
+      "excerpt": "The `seed` CSR is also access controlled by execution mode, and attempted read or write access will raise an illegal-instruction exception outside M mode unless access is explicitly granted.",
+      "line_number": 3535,
+      "parameter_name": "SEED_ACCESS_CONTROL",
+      "existing_udb_name": "SEED_ACCESS_CONTROL",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to control access to the seed CSR based on execution mode, which is a design decision."
+    },
+    {
+      "excerpt": "Implementations may implement `mseccfg` such that `[s,u]seed` is a read-only constant value `0`.",
+      "line_number": 3545,
+      "parameter_name": "MSECCFG_SEED_ACCESS",
+      "existing_udb_name": "MSECCFG_SEED_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation has the choice to make the `[s,u]seed` fields read-only or not, which affects the access control of the seed CSR."
+    },
+    {
+      "excerpt": "The `seed` CSR provides an interface to a NIST SP 800-90B compliant physical Entropy Source (ES).",
+      "line_number": 3460,
+      "parameter_name": "SEED_ENTROPY_SOURCE_TYPE",
+      "existing_udb_name": "SEED_ENTROPY_SOURCE_TYPE",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The implementation can choose the type of entropy source (physical or virtual) to use with the seed CSR."
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "the size of a cache block shall be uniform throughout the system.",
+      "line_number": 55,
+      "parameter_name": "CACHE_BLOCK_SIZE_UNIFORMITY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The specification states that the size of a cache block is uniform throughout the system, indicating a design choice for implementers."
+    },
+    {
+      "excerpt": "An implementation may or may not update the entire set of bytes atomically with a single store operation.",
+      "line_number": 103,
+      "parameter_name": "CACHE_BLOCK_ZERO_ATOMICITY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation has the choice to update the cache block bytes atomically or not, which is a direct design decision."
+    },
+    {
+      "excerpt": "An implementation may opt to cache a copy of the cache block in a cache accessed by an instruction fetch in order to improve memory access latency, but this behavior is not required.",
+      "line_number": 118,
+      "parameter_name": "CACHE_BLOCK_PREFETCH_CACHING",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to cache a copy of the cache block for instruction fetches is left to the implementer, indicating an architectural parameter."
+    },
+    {
+      "excerpt": "An implementation may opt to cache a copy of the cache block in a cache accessed by a data read in order to improve memory access latency, but this behavior is not required.",
+      "line_number": 134,
+      "parameter_name": "CACHE_BLOCK_READ_PREFETCH_CACHING",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The specification allows implementations to choose whether to cache a copy of the cache block for data reads, indicating a design choice."
+    },
+    {
+      "excerpt": "An implementation may opt to cache a copy of the cache block in a cache accessed by a data write in order to improve memory access latency, but this behavior is not required.",
+      "line_number": 150,
+      "parameter_name": "CACHE_BLOCK_WRITE_PREFETCH_CACHING",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to cache a copy of the cache block for data writes is left to the implementer, indicating an architectural parameter."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The PMP access control bits shall be the same for all physical addresses in the cache block, and if write permission is granted by the PMP access control bits, read permission shall also be granted.",
+      "line_number": 100,
+      "reason": "This is a fixed requirement that applies to all implementations and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "The PMAs shall be the same for all physical addresses in the cache block, and if write permission is granted by the supported access type PMAs, read permission shall also be granted.",
+      "line_number": 101,
+      "reason": "This is a fixed requirement that applies to all implementations and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "A cache-block management instruction is permitted to access the specified cache block whenever a load instruction or store instruction is permitted to access the corresponding physical addresses.",
+      "line_number": 102,
+      "reason": "This describes a condition that must be met for all implementations, not an implementation-defined parameter."
+    },
+    {
+      "excerpt": "If access to the cache block is not permitted, a cache-block management instruction raises a store page-fault or store guest-page-fault exception if address translation does not permit any access or raises a store access-fault exception otherwise.",
+      "line_number": 103,
+      "reason": "This describes the behavior of the instruction under certain conditions, which is not an implementation choice."
+    },
+    {
+      "excerpt": "The interaction between cache-block management instructions and instruction fetches will be specified in a future extension.",
+      "line_number": 104,
+      "reason": "This is a statement about future specifications and does not define a current architectural parameter."
+    }
+  ]
+}
+```

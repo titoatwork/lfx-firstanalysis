@@ -1,0 +1,57 @@
+{
+  "chunk_id": "chunk_038",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The RNMI interrupt trap handler address is implementation-defined.",
+      "line_number": 66,
+      "parameter_name": "RNMI_TRAP_HANDLER_ADDRESS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The RNMI interrupt trap handler address is a direct implementation choice, allowing different implementations to define their own handler addresses."
+    },
+    {
+      "excerpt": "RNMI also has an associated exception trap handler address, which is implementation defined.",
+      "line_number": 70,
+      "parameter_name": "RNMI_EXCEPTION_TRAP_HANDLER_ADDRESS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The associated exception trap handler address for RNMI is also an implementation-defined choice, allowing flexibility in how it is set."
+    },
+    {
+      "excerpt": "`mnepc` is a WARL register that must be able to hold all valid virtual addresses.",
+      "line_number": 114,
+      "parameter_name": "MNEPC_VALID_ADDRESS_RANGE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The `mnepc` register is defined as WARL, meaning the set of valid addresses it can hold is implementation-defined, making it a parameter."
+    },
+    {
+      "excerpt": "`mnstatus` holds a two-bit field, MNPP, which on entry to the RNMI trap handler holds the privilege mode of the interrupted context.",
+      "line_number": 144,
+      "parameter_name": "MNPP_PRIVILEGE_MODE_ENCODING",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The encoding of the privilege mode in the MNPP field of `mnstatus` is WARL, allowing implementations to define the specific encoding used."
+    },
+    {
+      "excerpt": "When NMIE=1, non-maskable interrupts are enabled.",
+      "line_number": 152,
+      "parameter_name": "NMIE_ENABLE_STATE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The NMIE bit in `mnstatus` can be set or cleared, determining whether non-maskable interrupts are enabled or disabled, which is a binary choice."
+    }
+  ]
+}

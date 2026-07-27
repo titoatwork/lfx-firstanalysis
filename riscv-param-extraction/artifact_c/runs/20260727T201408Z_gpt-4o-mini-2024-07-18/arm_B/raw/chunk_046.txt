@@ -1,0 +1,103 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "For a RISC-V hardware platform, Smcdeleg and Ssccfg must always be implemented in tandem.",
+      "line_number": 12,
+      "parameter_name": "SMCDELEG_SCCFG_TANDEM",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation choice is whether to implement Smcdeleg and Ssccfg together, which is a direct design decision."
+    },
+    {
+      "excerpt": "When the Smcdeleg/Ssccfg extensions are enabled (`menvcfg`.CDE=1), it further allows M-mode to delegate select counters to S-mode.",
+      "line_number": 16,
+      "parameter_name": "CDE_DELEGATION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to enable or disable delegation of counters from M-mode to S-mode is a direct implementation decision."
+    },
+    {
+      "excerpt": "The `siselect` (and `vsiselect`) index range 0x40-0x5F is reserved for delegated counter access.",
+      "line_number": 20,
+      "parameter_name": "SSELECT_INDEX_RANGE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The range of indices for `siselect` and `vsiselect` is defined, and the specific implementation can choose how to utilize this range."
+    },
+    {
+      "excerpt": "For counters delegated to S-mode, the associated `mcountinhibit` bits can be accessed via `scountinhibit`.",
+      "line_number": 66,
+      "parameter_name": "SCOUNTINHIBIT_DELEGATED_RW",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether the `scountinhibit` register is read-write for delegated counters, which is a decision about the mutability of the register."
+    },
+    {
+      "excerpt": "When `menvcfg`.CDE=0, attempts to access `scountinhibit` raise an illegal-instruction exception.",
+      "line_number": 70,
+      "parameter_name": "CDE_ACCESS_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "SW_RULE",
+      "value_type": "binary",
+      "confidence": "medium",
+      "reasoning": "The behavior of accessing `scountinhibit` when CDE is disabled is implementation-defined, but the outcome is predictable if software follows the rules."
+    },
+    {
+      "excerpt": "For implementations that support Smcdeleg/Ssccfg, Sscofpmf, and the H extension, when `menvcfg`.CDE=1, attempts to read `scountovf` from VS-mode or VU-mode raise a virtual-instruction exception.",
+      "line_number": 74,
+      "parameter_name": "SCOVF_VIRTUAL_INSTRUCTION_EXCEPTION",
+      "existing_udb_name": null,
+      "class": "SW_RULE",
+      "value_type": "binary",
+      "confidence": "medium",
+      "reasoning": "The behavior of reading `scountovf` in certain modes is implementation-defined, but software can handle this deterministically based on the CDE setting."
+    },
+    {
+      "excerpt": "For implementations that support Smcdeleg, Sscofpmf, and Smaia, the local-counter-overflow interrupt (LCOFI) bit (bit 13) in each of CSRs `mvip` and `mvien` is implemented and writable.",
+      "line_number": 78,
+      "parameter_name": "LCOFI_MVIP_MVIEN_WRITEABLE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether the LCOFI bit in `mvip` and `mvien` is writable, which is a decision about the mutability of these bits."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The memory-mapped `mtime` register is not a performance monitoring counter to be managed by supervisor software, hence the special treatment of `siselect` value 0x41 described above.",
+      "line_number": 64,
+      "reason": "This text describes a specific behavior regarding the `mtime` register and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "If any extension upon which the underlying state depends is not implemented, an attempt from M or S mode to access the given state through `sireg*` raises an illegal-instruction exception.",
+      "line_number": 58,
+      "reason": "This describes a behavior that occurs under certain conditions rather than an implementation choice."
+    },
+    {
+      "excerpt": "When Supervisor Counter Delegation is enabled, attempts to access `scountinhibit` from VS-mode or VU-mode raise a virtual-instruction exception.",
+      "line_number": 72,
+      "reason": "This describes behavior under specific conditions rather than an implementation choice."
+    },
+    {
+      "excerpt": "While the privilege mode is M or S and `siselect` holds a value in the range 0x40-0x5F, illegal-instruction exceptions are raised for the following cases:",
+      "line_number": 50,
+      "reason": "This text outlines conditions that lead to exceptions, which are not implementation choices."
+    },
+    {
+      "excerpt": "By virtue of implementing `hvip`.LCOFI, it is implicit that the LCOFI bit (bit 13) in each of `vsie` and `vsip` is also implemented.",
+      "line_number": 84,
+      "reason": "This is a fixed requirement that does not leave room for implementation choice."
+    }
+  ]
+}
+```

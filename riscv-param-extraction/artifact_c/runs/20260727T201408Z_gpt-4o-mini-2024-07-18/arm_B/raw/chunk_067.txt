@@ -1,0 +1,73 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "If jvt.mode is a reserved value, then _cm.jt_ is also reserved.",
+      "line_number": 258,
+      "parameter_name": "JVT_MODE",
+      "existing_udb_name": "JVT_MODE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The jvt.mode field is WARL, meaning the set of legal values can vary by implementation, and implementations must support at least one mode."
+    },
+    {
+      "excerpt": "If the same function is called with and without linking then it must have two entries in the table.",
+      "line_number": 258,
+      "parameter_name": "TABLE_JUMP_ENTRIES",
+      "existing_udb_name": "TABLE_JUMP_ENTRIES",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of entries in the jump table is an implementation choice, as it can vary based on how functions are called."
+    },
+    {
+      "excerpt": "The table must be a minimum of 64-byte aligned.",
+      "line_number": 258,
+      "parameter_name": "TABLE_ALIGNMENT",
+      "existing_udb_name": "TABLE_ALIGNMENT",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The alignment requirement for the jump table is a design choice that must be adhered to by implementations."
+    },
+    {
+      "excerpt": "The jvt CSR requires a state enable if Smstateen is implemented.",
+      "line_number": 258,
+      "parameter_name": "JVT_STATE_ENABLE",
+      "existing_udb_name": "JVT_STATE_ENABLE",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The requirement for state enable is an implementation choice that can vary based on whether Smstateen is supported."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The jvt register is an XLEN-bit *WARL* read/write register that holds the jump table configuration.",
+      "line_number": 258,
+      "reason": "This describes the nature of the jvt register but does not specify an implementation choice."
+    },
+    {
+      "excerpt": "The memory pointed to by _jvt.base_ is treated as instruction memory for the purpose of executing table jump instructions.",
+      "line_number": 258,
+      "reason": "This is a description of how the memory is treated, not an implementation choice."
+    },
+    {
+      "excerpt": "The _jvt_ CSR adds architectural state to the system software context.",
+      "line_number": 258,
+      "reason": "This is a fixed requirement about the CSR's role in the architecture, not a parameter."
+    },
+    {
+      "excerpt": "The encoding uses _sreg_ number specifiers instead of _xreg_ number specifiers to save encoding space.",
+      "line_number": 258,
+      "reason": "This describes a design choice in encoding but does not specify an implementation parameter."
+    },
+    {
+      "excerpt": "The _jvt.mode_ is a *WARL* field, so can only be programmed to modes which are implemented.",
+      "line_number": 258,
+      "reason": "This describes the nature of the field but does not specify an implementation choice."
+    }
+  ]
+}
+```

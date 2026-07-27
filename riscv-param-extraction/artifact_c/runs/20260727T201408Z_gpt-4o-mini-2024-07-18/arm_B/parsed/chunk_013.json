@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_013",
+  "arm": "B",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The F extension adds 32 floating-point registers, `f0-f31`, each 32 bits wide.",
+      "line_number": 8,
+      "parameter_name": "NUM_FLOATING_POINT_REGISTERS",
+      "existing_udb_name": "NUM_FLOATING_POINT_REGISTERS",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The number of floating-point registers is a direct implementation choice, specified as 32, and is not controlled by any CSR field."
+    },
+    {
+      "excerpt": "The floating-point control and status register, `fcsr`, is a 32-bit read/write register that selects the dynamic rounding mode for floating-point arithmetic operations.",
+      "line_number": 20,
+      "parameter_name": "FCSR_ACCESS",
+      "existing_udb_name": "FCSR_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether the fcsr register is read-only or read-write. This is a binary choice about the mutability of the register."
+    },
+    {
+      "excerpt": "Rounding modes are encoded as shown in <<norm:dyn_round_enc>>.",
+      "line_number": 40,
+      "parameter_name": "ROUNDING_MODES",
+      "existing_udb_name": "ROUNDING_MODES",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The rounding modes are WARL, and the set of supported values (RNE, RTZ, RDN, RUP, RMM, DYN) can vary by implementation."
+    },
+    {
+      "excerpt": "Floating-point conversion instructions round according to the _rm_ field.",
+      "line_number": 100,
+      "parameter_name": "FCVT_ROUNDING_MODE",
+      "existing_udb_name": "FCVT_ROUNDING_MODE",
+      "class": "NORM_CSR_RW",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The implementation can choose how the rounding mode is applied during floating-point conversions, which is determined by the _rm_ field."
+    }
+  ]
+}

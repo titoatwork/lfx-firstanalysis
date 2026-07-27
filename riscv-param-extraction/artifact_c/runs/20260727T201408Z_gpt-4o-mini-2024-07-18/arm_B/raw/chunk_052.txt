@@ -1,0 +1,78 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "If set, then counting of events in M-mode is inhibited.",
+      "line_number": 20,
+      "parameter_name": "M_MODE_INHIBIT",
+      "existing_udb_name": "M_MODE_INHIBIT",
+      "class": "NORM_CSR_WARL",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The MINH bit is a WARL field that can be set or cleared, indicating whether counting of events in M-mode is inhibited. The parameter is the legal values for this bit."
+    },
+    {
+      "excerpt": "If set, then counting of events in S/HS-mode is inhibited.",
+      "line_number": 20,
+      "parameter_name": "S_MODE_INHIBIT",
+      "existing_udb_name": "S_MODE_INHIBIT",
+      "class": "NORM_CSR_WARL",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The SINH bit is a WARL field that can be set or cleared, indicating whether counting of events in S/HS-mode is inhibited. The parameter is the legal values for this bit."
+    },
+    {
+      "excerpt": "If set, then counting of events in U-mode is inhibited.",
+      "line_number": 20,
+      "parameter_name": "U_MODE_INHIBIT",
+      "existing_udb_name": "U_MODE_INHIBIT",
+      "class": "NORM_CSR_WARL",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The UINH bit is a WARL field that can be set or cleared, indicating whether counting of events in U-mode is inhibited. The parameter is the legal values for this bit."
+    },
+    {
+      "excerpt": "If set, then counting of events in VS-mode is inhibited.",
+      "line_number": 20,
+      "parameter_name": "VS_MODE_INHIBIT",
+      "existing_udb_name": "VS_MODE_INHIBIT",
+      "class": "NORM_CSR_WARL",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The VSINH bit is a WARL field that can be set or cleared, indicating whether counting of events in VS-mode is inhibited. The parameter is the legal values for this bit."
+    },
+    {
+      "excerpt": "If set, then counting of events in VU-mode is inhibited.",
+      "line_number": 20,
+      "parameter_name": "VU_MODE_INHIBIT",
+      "existing_udb_name": "VU_MODE_INHIBIT",
+      "class": "NORM_CSR_WARL",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The VUINH bit is a WARL field that can be set or cleared, indicating whether counting of events in VU-mode is inhibited. The parameter is the legal values for this bit."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The OF bit is set when the corresponding hpmcounter overflows, and remains set until written by software.",
+      "line_number": 40,
+      "reason": "This describes the behavior of the OF bit when a counter overflows, which is determined by the CSR field value at runtime, not an implementation choice."
+    },
+    {
+      "excerpt": "Count overflow never results from writes to the mhpmcounter__n__ or mhpmevent__n__ registers, only from hardware increments of counter registers.",
+      "line_number": 60,
+      "reason": "This is a fixed requirement about how count overflow is generated, not an implementation choice."
+    },
+    {
+      "excerpt": "This register enables supervisor-level overflow interrupt handler software to quickly and easily determine which counter(s) have overflowed.",
+      "line_number": 100,
+      "reason": "This describes the purpose of the scountovf register, not an implementation choice regarding its behavior or configuration."
+    },
+    {
+      "excerpt": "Read access to bit _X_ is subject to the same mcounteren (or mcounteren and hcounteren) CSRs that mediate access to the hpmcounter CSRs by S-mode (or VS-mode).",
+      "line_number": 110,
+      "reason": "This describes access control for the scountovf register, which is a fixed requirement rather than an implementation choice."
+    }
+  ]
+}
+```

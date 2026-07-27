@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "Implementations may contain additional CSRs, accessible by some subset of the privilege levels using the CSR instructions described in Volume I.",
+      "line_number": 8,
+      "parameter_name": "NUM_ADDITIONAL_CSRS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of additional CSRs is an implementation choice, as it is not fixed and can vary based on the design."
+    },
+    {
+      "excerpt": "The top two bits (csr[11:10]) indicate whether the register is read/write (`00`,`01`, or `10`) or read-only (`11`).",
+      "line_number": 20,
+      "parameter_name": "CSR_ACCESSIBILITY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The accessibility of CSRs is determined by the implementer, who can choose between read/write and read-only configurations."
+    },
+    {
+      "excerpt": "Implementations should raise illegal-instruction exceptions on machine-mode access to the latter set of registers.",
+      "line_number": 34,
+      "parameter_name": "HW_DEBUG_MODE_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to raise exceptions on access to certain debug registers is left to the implementer, making it a design decision."
+    },
+    {
+      "excerpt": "Implementations are permitted but not required to raise an illegal-instruction exception if an instruction attempts to write a non-supported value to a *WLRL* field.",
+      "line_number": 102,
+      "parameter_name": "HW_WLRL_EXCEPTION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The decision to raise exceptions for unsupported writes to WLRL fields is left to the implementer, indicating a design choice."
+    },
+    {
+      "excerpt": "Some read/write CSR fields are only defined for a subset of bit encodings, but allow any value to be written while guaranteeing to return a legal value whenever read.",
+      "line_number": 118,
+      "parameter_name": "WARL_FIELDS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The WARL fields allow for implementation-defined legal values, which can vary by implementation."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] The CSR address convention uses the upper bits of the CSR address to encode default access privileges.",
+      "line_number": 16,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a convention, not an architectural requirement."
+    },
+    {
+      "excerpt": "Software should ignore the values read from these fields, and should preserve the values held in these fields when writing values to other fields of the same register.",
+      "line_number": 90,
+      "reason": "This describes software behavior and is not an implementation choice, thus it is not a parameter."
+    },
+    {
+      "excerpt": "The value of the previous-width CSR is copied to a temporary register of the same width.",
+      "line_number": 134,
+      "reason": "This describes a behavior related to CSR width modulation, not an implementation choice, hence it is not a parameter."
+    },
+    {
+      "excerpt": "If a write to one CSR changes the set of legal values allowed for a field of a second CSR, then unless specified otherwise, the second CSR's field immediately gets an `UNSPECIFIED` value from among its new legal values.",
+      "line_number": 126,
+      "reason": "This describes behavior resulting from CSR interactions, not an implementation choice, so it is not a parameter."
+    },
+    {
+      "excerpt": "Some standard CSRs, such as the counter CSRs of extension Zicntr, are always 64 bits, even when XLEN=32.",
+      "line_number": 144,
+      "reason": "This is a fixed requirement about the size of certain CSRs, not an implementation choice, thus it is not a parameter."
+    }
+  ]
+}
+```

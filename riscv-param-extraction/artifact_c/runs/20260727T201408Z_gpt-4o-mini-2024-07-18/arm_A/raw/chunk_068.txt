@@ -1,0 +1,123 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The correspondence of _rs1_ field values and single-precision floating-point values is shown in <<tab:flis>>.",
+      "line_number": 10,
+      "parameter_name": "FLI_S_VALUES",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The values that can be loaded by the FLI.S instruction are defined by the _rs1_ field, which is WARL. The specific values are implementation-defined."
+    },
+    {
+      "excerpt": "If the D extension is implemented, FLI.D performs the analogous operation, but loads a double-precision value into floating-point register _rd_.",
+      "line_number": 20,
+      "parameter_name": "FLI_D_VALUES",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The values that can be loaded by the FLI.D instruction depend on the implementation of the D extension, making it a WARL parameter."
+    },
+    {
+      "excerpt": "If the Q extension is implemented, FLI.Q performs the analogous operation, but loads a quad-precision value into floating-point register _rd_.",
+      "line_number": 30,
+      "parameter_name": "FLI_Q_VALUES",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The values that can be loaded by the FLI.Q instruction depend on the implementation of the Q extension, making it a WARL parameter."
+    },
+    {
+      "excerpt": "If the Zfh or Zvfh extension is implemented, FLI.H performs the analogous operation, but loads a half-precision floating-point value into register _rd_.",
+      "line_number": 40,
+      "parameter_name": "FLI_H_VALUES",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The values that can be loaded by the FLI.H instruction depend on the implementation of the Zfh or Zvfh extensions, making it a WARL parameter."
+    },
+    {
+      "excerpt": "The FMINM.S and FMAXM.S instructions are defined like the FMIN.S and FMAX.S instructions, except that if either input is NaN, the result is the canonical NaN.",
+      "line_number": 60,
+      "parameter_name": "FMINM_S_NAN_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The behavior of FMINM.S and FMAXM.S regarding NaN inputs is a direct implementation choice, indicating how these instructions handle NaN values."
+    },
+    {
+      "excerpt": "If the D extension is implemented, FMINM.D and FMAXM.D instructions are analogously defined to operate on double-precision numbers.",
+      "line_number": 70,
+      "parameter_name": "FMINM_D_NAN_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The behavior of FMINM.D and FMAXM.D regarding NaN inputs is a direct implementation choice, indicating how these instructions handle NaN values."
+    },
+    {
+      "excerpt": "If the Zfh extension is implemented, FMINM.H and FMAXM.H instructions are analogously defined to operate on half-precision numbers.",
+      "line_number": 80,
+      "parameter_name": "FMINM_H_NAN_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The behavior of FMINM.H and FMAXM.H regarding NaN inputs is a direct implementation choice, indicating how these instructions handle NaN values."
+    },
+    {
+      "excerpt": "If the Q extension is implemented, FMINM.Q and FMAXM.Q instructions are analogously defined to operate on quad-precision numbers.",
+      "line_number": 90,
+      "parameter_name": "FMINM_Q_NAN_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The behavior of FMINM.Q and FMAXM.Q regarding NaN inputs is a direct implementation choice, indicating how these instructions handle NaN values."
+    },
+    {
+      "excerpt": "The FCVTMOD.W.D instruction is defined similarly to the FCVT.W.D instruction, with the following differences. FCVTMOD.W.D always rounds towards zero.",
+      "line_number": 100,
+      "parameter_name": "FCVTMOD_W_D_ROUNDING_MODE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The rounding behavior of FCVTMOD.W.D is a direct implementation choice, indicating how this instruction handles rounding."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE]\n====\nThe preferred assembly syntax for entries 1, 30, and 31 is `min`, `inf`, and `nan`, respectively. For entries 0 through 29 (including entry 1), the assembler will accept decimal constants in C-like syntax.\n====",
+      "line_number": 12,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a preferred syntax, not an architectural requirement."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nThe set of 32 constants was chosen by examining floating-point libraries, including the C standard math library, and to optimize fixed-point to floating-point conversion.\n====",
+      "line_number": 14,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes the rationale behind the choice of constants, not an architectural requirement."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nAdditionally, since 2^−16^ and 2^−15^ are subnormal in half-precision, entry 1 is numerically greater than entries 2 and 3 for FLI.H.\n====",
+      "line_number": 44,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a specific behavior of half-precision values, not an architectural requirement."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nThe FROUNDNX._fmt_ instructions implement the IEEE 754-2019 roundToIntegralExact operation, and the FROUND._fmt_ instructions implement the other operations in the roundToIntegral family.\n====",
+      "line_number": 90,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes the implementation of rounding operations, not an architectural requirement."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nFMVH.X.D is used in conjunction with the existing FMV.X.W instruction to move a double-precision floating-point number to a pair of x-registers.\n====",
+      "line_number": 120,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes usage context, not an architectural requirement."
+    }
+  ]
+}
+```

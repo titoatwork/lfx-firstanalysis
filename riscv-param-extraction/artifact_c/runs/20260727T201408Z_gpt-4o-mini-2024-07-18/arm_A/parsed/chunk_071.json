@@ -1,0 +1,17 @@
+{
+  "chunk_id": "chunk_071",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "Furthermore, if the Zkt extension is implemented, this instruction's timing is independent of the data values in _rs1_ and _rs2_.",
+      "line_number": 36,
+      "parameter_name": "HW_ZKT_EXTENSION_TIMING_INDEPENDENCE",
+      "existing_udb_name": "HW_ZKT_EXTENSION_TIMING_INDEPENDENCE",
+      "class": "SW_RULE",
+      "value_type": "binary",
+      "confidence": "medium",
+      "reasoning": "The behavior of the instruction's timing being independent of data values is implementation-defined based on whether the Zkt extension is supported, but the outcome is deterministic if software adheres to the specification."
+    }
+  ]
+}

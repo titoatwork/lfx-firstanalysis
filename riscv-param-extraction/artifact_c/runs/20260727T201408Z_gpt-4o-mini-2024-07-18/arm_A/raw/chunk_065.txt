@@ -1,0 +1,73 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The instructions in the Zalasr extension require that the address held in _rs1_ be naturally aligned to the size in bytes (2^width^) of the operand.",
+      "line_number": 37,
+      "parameter_name": "NATURAL_ALIGNMENT_REQUIREMENT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The requirement for the address in _rs1_ to be naturally aligned is a direct implementation choice that affects how the instructions operate."
+    },
+    {
+      "excerpt": "The misaligned atomicity granule PMA, defined in Volume II of this manual, optionally relaxes this alignment requirement.",
+      "line_number": 49,
+      "parameter_name": "MISALIGNED_ATOMICITY_GRANULE_RELAXATION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The option to relax the alignment requirement for the misaligned atomicity granule is a design choice left to the implementer."
+    },
+    {
+      "excerpt": "This load must have the ordering annotation _aq_ and may have ordering annotation _rl_ encoded in the instruction.",
+      "line_number": 83,
+      "parameter_name": "LOAD_ACQUIRE_ORDERING_ANNOTATIONS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The requirement for the load to have the _aq_ annotation and the optional _rl_ annotation indicates a choice in how the instruction is implemented regarding ordering."
+    },
+    {
+      "excerpt": "This store must have ordering annotation _rl_ and may have ordering annotation _aq_ encoded in the instruction.",
+      "line_number": 113,
+      "parameter_name": "STORE_RELEASE_ORDERING_ANNOTATIONS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The requirement for the store to have the _rl_ annotation and the optional _aq_ annotation indicates a choice in how the instruction is implemented regarding ordering."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "If the address is not naturally aligned, an address-misaligned exception or an access-fault exception will be generated.",
+      "line_number": 41,
+      "reason": "This describes the behavior when the address is misaligned, not an implementation choice."
+    },
+    {
+      "excerpt": "The versions without the _aq_ bit set are RESERVED.",
+      "line_number": 87,
+      "reason": "This is a fixed requirement about the instruction encodings, not an implementation choice."
+    },
+    {
+      "excerpt": "The versions without the _rl_ bit set are RESERVED.",
+      "line_number": 117,
+      "reason": "This is a fixed requirement about the instruction encodings, not an implementation choice."
+    },
+    {
+      "excerpt": "The _aq_ bit is mandatory because the two encodings that would be produced are not seen as useful at this time.",
+      "line_number": 81,
+      "reason": "This is a fixed requirement about the necessity of the _aq_ bit, not an implementation choice."
+    },
+    {
+      "excerpt": "The _rl_ bit is mandatory because the two encodings that would be produced are not seen as useful at this time.",
+      "line_number": 111,
+      "reason": "This is a fixed requirement about the necessity of the _rl_ bit, not an implementation choice."
+    }
+  ]
+}
+```

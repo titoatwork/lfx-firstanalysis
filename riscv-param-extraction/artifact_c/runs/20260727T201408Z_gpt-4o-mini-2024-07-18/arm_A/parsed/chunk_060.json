@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_060",
+  "arm": "A",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "Each vector crypto instruction that operates on element groups explicitly specifies their three defining parameters: EGW, EGS, and EEW.",
+      "line_number": 3340,
+      "parameter_name": "EGW_EGS_EEW",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "EGW, EGS, and EEW are implementation-defined parameters for each vector crypto instruction, specifying the element group width, size, and effective element width respectively."
+    },
+    {
+      "excerpt": "If Zve32x is supported then Zvkb or Zvbb provide support for EEW of 8, 16, and 32. If Zve64x is supported then Zvkb or Zvbb also add support for EEW 64.",
+      "line_number": 3340,
+      "parameter_name": "EEW_SUPPORT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The support for different EEW values based on the Zve32x and Zve64x extensions is an implementation choice, indicating which effective element widths are available."
+    },
+    {
+      "excerpt": "The number of element groups to be processed is `vl`/`EGS`.",
+      "line_number": 3340,
+      "parameter_name": "ELEMENT_GROUPS_PROCESSING",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The calculation of the number of element groups based on `vl` and `EGS` is a direct implementation choice that affects how instructions are executed."
+    },
+    {
+      "excerpt": "The number of element groups to be processed is `vl`/`EGS`. Likewise the starting element group is `vstart`/`EGS`.",
+      "line_number": 3340,
+      "parameter_name": "VSTART_GROUPS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The starting element group calculation based on `vstart` and `EGS` is an implementation choice that determines how instructions are executed."
+    }
+  ]
+}

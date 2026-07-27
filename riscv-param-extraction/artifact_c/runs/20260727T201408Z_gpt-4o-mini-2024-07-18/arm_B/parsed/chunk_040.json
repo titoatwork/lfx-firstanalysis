@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_040",
+  "arm": "B",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "For resource-constrained embedded applications, we have defined the RV32E subset, which only has 16 registers.",
+      "line_number": 110,
+      "parameter_name": "NUM_REGISTERS_RV32E",
+      "existing_udb_name": "NUM_REGISTERS_RV32E",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The RV32E subset is an implementation choice that allows for only 16 registers, contrasting with the standard 32 registers in RV32I."
+    },
+    {
+      "excerpt": "The EEI will define what I/O operations are possible, and in particular, which memory addresses when accessed by load and store instructions will be treated and ordered as device input and device output operations respectively rather than memory reads and writes.",
+      "line_number": 1005,
+      "parameter_name": "EEI_IO_OPERATIONS",
+      "existing_udb_name": "EEI_IO_OPERATIONS",
+      "class": "NON_ISA",
+      "value_type": "UNKNOWN",
+      "confidence": "medium",
+      "reasoning": "The specific I/O operations and their ordering are left to the EEI, making it an implementation-defined choice."
+    },
+    {
+      "excerpt": "The EEI will define whether the memory system is little-endian or big-endian.",
+      "line_number": 1006,
+      "parameter_name": "MEMORY_ENDIANNESS",
+      "existing_udb_name": "MEMORY_ENDIANNESS",
+      "class": "NON_ISA",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The choice of endianness is left to the EEI, indicating an architectural parameter."
+    },
+    {
+      "excerpt": "The effective address is obtained by adding register _rs1_ to the sign-extended 12-bit offset.",
+      "line_number": 1007,
+      "parameter_name": "LOAD_STORE_ADDRESSING_MODE",
+      "existing_udb_name": "LOAD_STORE_ADDRESSING_MODE",
+      "class": "NORM_DIRECT",
+      "value_type": "NORM_DIRECT",
+      "confidence": "high",
+      "reasoning": "The method of calculating effective addresses for load/store instructions is a design choice for implementers."
+    }
+  ]
+}
