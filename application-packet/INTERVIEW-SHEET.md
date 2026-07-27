@@ -97,4 +97,4 @@ Review load; Spring extract still unmerged; bulk dumps fail review culture.
 - Credit Spring; never claim authorship  
 - Never claim holdout “proved” CSR context success  
 - Never claim n=15 beats corpus recall  
-- Never claim we “beat” named competitors  
+- Compare against measured baselines, never against other applicants  

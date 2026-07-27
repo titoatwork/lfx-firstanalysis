@@ -37,16 +37,16 @@
 Re-probed remaining free models; **accepted only if both snippets returned real text** (rejected empty `(No output)`).  
 Accepted: Laguna S, Gemma-4-26B. Rejected empty CSR: Nemotron nano-omni reasoning. 429/empty probe: several others.
 
-## Comparison to Anshul (challenge axis)
+## What this matrix does and does not show
 
-| Axis | Anshul | Us now |
-|------|--------|--------|
-| Live multi-model dirs | Sonnet / Opus / GLM (3) | **10 live models** across 4 providers |
-| Free strong legs | GLM playground | **Nemotron Ultra + Gemini + Ling** (CMO=3, CSR pass) |
-| CSR all models pass | Yes | **No** — mini + Llama + Laguna + Gemma fail (honest) |
-| Merged UDB PR | #1967 | Still draft only |
+| Property | This run |
+|----------|----------|
+| Live model coverage | **10 models** across 4 providers, on the same 2 snippets |
+| Strongest legs | Nemotron Ultra, Gemini, Ling (CMO=3 with the CSR negative passing) |
+| Do all models pass the CSR negative? | **No.** gpt-4o-mini, Llama, Laguna and Gemma produce false positives. Reported rather than filtered out |
+| Scope | 2 snippets. This is not corpus-scale recall and should not be read as such |
 
-Corpus GT / export / WARL null: monorepo Path B (`docs/metrics.md`).
+Corpus GT, export, and the WARL null live on Path B (`docs/metrics.md`).
 
 ## Validate
 
