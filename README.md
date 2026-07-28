@@ -85,7 +85,7 @@ Reproduce with `python artifact_c/scripts/decompose_matches.py`, deterministic a
 | 1 | [`verify.sh`](./verify.sh) | every published number re-derives from a committed artifact |
 | 2 | [Artifact C results](./riscv-param-extraction/artifact_c/results/PRIMARY_RESULTS.md) | the variance finding, the match decomposition, and the withdrawn one |
 | 3 | [`docs/metrics.md`](./riscv-param-extraction/docs/metrics.md) | all measured tables, each with its condition stated |
-| 4 | [Upstream work](#upstream-riscvriscv-unified-db) | 3 PRs, 4 issues, one adopted review |
+| 4 | [Upstream work](#upstream-riscvriscv-unified-db) | 4 PRs with one merged, 6 issues, reviews on four other contributors' PRs |
 | 5 | [Challenge pack](./riscv-param-extraction/challenge/) | 4 fail-closed fixtures, 4 hard negatives, 10-model live matrix with its failures reported |
 | 6 | [Claim ledger](./application-packet/MEASURED-CLAIM-LEDGER.md) | every claim mapped to a source, plus the claims that are forbidden and why |
 
@@ -95,14 +95,17 @@ Reproduce with `python artifact_c/scripts/decompose_matches.py`, deterministic a
 
 | Item | State |
 |------|-------|
-| [#2137](https://github.com/riscv/riscv-unified-db/issues/2137) → [PR #2138](https://github.com/riscv/riscv-unified-db/pull/2138) | **Approved.** `4095` is not a power of two but sits in both `unsigned_pow2` schema enums. Fixed with a regression test wired into the Ruby runner |
-| [#2145](https://github.com/riscv/riscv-unified-db/issues/2145) → [PR #2146](https://github.com/riscv/riscv-unified-db/pull/2146) | **Approved.** `UXLEN`'s description named `SXLEN` as what `mstatus.UXL` changes. Found while triaging a sweep whose other flag was verified **correct** and deliberately not filed |
-| [PR #2164](https://github.com/riscv/riscv-unified-db/pull/2164) | Parameter-extraction evaluation fixtures, invited by the author of #2097 |
+| [#2145](https://github.com/riscv/riscv-unified-db/issues/2145) → [PR #2146](https://github.com/riscv/riscv-unified-db/pull/2146) | **Merged** 2026-07-28 as `278d1edc`. `UXLEN`'s description named `SXLEN` as what `mstatus.UXL` changes. Found while triaging a sweep whose other flag was verified **correct** and deliberately not filed |
+| [#2137](https://github.com/riscv/riscv-unified-db/issues/2137) → [PR #2138](https://github.com/riscv/riscv-unified-db/pull/2138) | Open, 70 checks green, awaiting re-review. `4095` is not a power of two but sits in both `unsigned_pow2` schema enums. Two rounds of review changes applied: a schema `$id` bump, and reverting a generated v0.1 doc page |
+| [#2188](https://github.com/riscv/riscv-unified-db/issues/2188) → [PR #2189](https://github.com/riscv/riscv-unified-db/pull/2189) | Open, 70 checks green, awaiting re-review. `CACHE_BLOCK_SIZE` admitted any integer to 2^64-1 although the CMO spec defines a cache block as a naturally aligned power of two |
+| [PR #2164](https://github.com/riscv/riscv-unified-db/pull/2164) | Parameter-extraction evaluation fixtures, invited by the author of #2097. Awaiting a reviewer |
 | [PR #2090](https://github.com/riscv/riscv-unified-db/pull/2090) | **Merged.** A [review comment](https://github.com/riscv/riscv-unified-db/pull/2090#issuecomment-5084258197) here identified the MTVEC alignment defect and the maintainer adopted it. **That PR is the maintainer's; the contribution is the review** |
 | [PR #2097](https://github.com/riscv/riscv-unified-db/pull/2097) | Five-point review, all five adopted by the author |
-| [#2163](https://github.com/riscv/riscv-unified-db/issues/2163) · [#2158](https://github.com/riscv/riscv-unified-db/issues/2158) · [#2053](https://github.com/riscv/riscv-unified-db/issues/2053) | Run-to-run variance · fixture placement · scope discussion |
+| [PR #2155](https://github.com/riscv/riscv-unified-db/pull/2155) · [PR #2109](https://github.com/riscv/riscv-unified-db/pull/2109) | Reviews of other contributors' work. The first found the same four edits duplicated in a second open PR; the second verified two removed branches were provably unreachable and flagged the same gaps surviving in a sibling field |
+| [#2199](https://github.com/riscv/riscv-unified-db/issues/2199) | The `unsigned_pow2` schema defs cannot be referenced by any parameter: the Z3 constraint path resolves them, the IDL type resolver does not. Found by hitting it in #2189 |
+| [#2163](https://github.com/riscv/riscv-unified-db/issues/2163) · [#2158](https://github.com/riscv/riscv-unified-db/issues/2158) · [#1748](https://github.com/riscv/riscv-unified-db/issues/1748) · [#2053](https://github.com/riscv/riscv-unified-db/issues/2053) | Run-to-run variance · fixture placement · a parameter-taxonomy answer · scope discussion |
 
-**No PR of mine has merged yet.** All three are held at the first-time-contributor workflow gate.
+**One PR merged, three open with checks green, two awaiting re-review.** The first merge also cleared the first-time-contributor workflow gate, so later commits run CI without a maintainer approving each one.
 
 ---
 
