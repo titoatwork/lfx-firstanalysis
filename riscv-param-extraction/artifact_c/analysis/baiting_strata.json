@@ -1,0 +1,371 @@
+{
+  "note": "Labelled from chunk text only, before any arm C/D result was examined. Observational and confounded: chunks differ in more than the adjacent clause.",
+  "registered": "../PREREGISTRATION.md section 5b, tier 1",
+  "counts": {
+    "baited": 7,
+    "unbaited": 17,
+    "no_impl_clause": 36
+  },
+  "per_chunk": {
+    "chunk_020": {
+      "impl_clauses": 46,
+      "baited_same_sentence": 3,
+      "baited_adjacent_sentence": 2,
+      "stratum": "baited"
+    },
+    "chunk_058": {
+      "impl_clauses": 10,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "unbaited"
+    },
+    "chunk_015": {
+      "impl_clauses": 21,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "unbaited"
+    },
+    "chunk_055": {
+      "impl_clauses": 28,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 2,
+      "stratum": "baited"
+    },
+    "chunk_045": {
+      "impl_clauses": 2,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 1,
+      "stratum": "baited"
+    },
+    "chunk_060": {
+      "impl_clauses": 1,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "unbaited"
+    },
+    "chunk_059": {
+      "impl_clauses": 1,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "unbaited"
+    },
+    "chunk_044": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_002": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_067": {
+      "impl_clauses": 6,
+      "baited_same_sentence": 1,
+      "baited_adjacent_sentence": 0,
+      "stratum": "baited"
+    },
+    "chunk_061": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_040": {
+      "impl_clauses": 1,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "unbaited"
+    },
+    "chunk_048": {
+      "impl_clauses": 13,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "unbaited"
+    },
+    "chunk_009": {
+      "impl_clauses": 13,
+      "baited_same_sentence": 2,
+      "baited_adjacent_sentence": 0,
+      "stratum": "baited"
+    },
+    "chunk_057": {
+      "impl_clauses": 1,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "unbaited"
+    },
+    "chunk_007": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_018": {
+      "impl_clauses": 1,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 1,
+      "stratum": "baited"
+    },
+    "chunk_028": {
+      "impl_clauses": 4,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "unbaited"
+    },
+    "chunk_004": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_043": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_001": {
+      "impl_clauses": 1,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "unbaited"
+    },
+    "chunk_013": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_078": {
+      "impl_clauses": 5,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 1,
+      "stratum": "baited"
+    },
+    "chunk_051": {
+      "impl_clauses": 1,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "unbaited"
+    },
+    "chunk_027": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_017": {
+      "impl_clauses": 1,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "unbaited"
+    },
+    "chunk_021": {
+      "impl_clauses": 3,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "unbaited"
+    },
+    "chunk_072": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_011": {
+      "impl_clauses": 1,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "unbaited"
+    },
+    "chunk_012": {
+      "impl_clauses": 1,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "unbaited"
+    },
+    "chunk_068": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_064": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_076": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_042": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_031": {
+      "impl_clauses": 2,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "unbaited"
+    },
+    "chunk_026": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_074": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_069": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_046": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_038": {
+      "impl_clauses": 3,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "unbaited"
+    },
+    "chunk_065": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_019": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_070": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_052": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_050": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_073": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_014": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_047": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_034": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_066": {
+      "impl_clauses": 2,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "unbaited"
+    },
+    "chunk_077": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_071": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_063": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_075": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_079": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_041": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_003": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_054": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_049": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    },
+    "chunk_053": {
+      "impl_clauses": 0,
+      "baited_same_sentence": 0,
+      "baited_adjacent_sentence": 0,
+      "stratum": "no_impl_clause"
+    }
+  }
+}
