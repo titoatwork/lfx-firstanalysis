@@ -1,11 +1,34 @@
-# Draft review for riscv/riscv-unified-db#2097
+# Review for riscv/riscv-unified-db#2097
 
-**Status:** ready to post (one comment; no pings)  
+**Status:** posted 2026-07-26, [comment link](https://github.com/riscv/riscv-unified-db/pull/2097#issuecomment-5084907776).
+All five points were adopted by the author in `9d88fa4`.
+
+**Point 1 has since been revised and the body below is kept as posted, not
+corrected.** On 2026-07-28 the author revised the WARL rule in `72d18f7`, and he
+was right to. Point 1 asked the skill to *require* proof that the legal set was
+implementation-chosen before accepting a candidate. That is a rejection gate,
+and it contradicted point 2 in this same comment: the two-artifact design filters
+at human review, so the extractor should classify rather than drop. Point 1 also
+tested only whether the WARL signal fires too loosely and never whether it fires
+often enough. Measured afterwards against `ext/riscv-isa-manual`, 63
+conditional-writability sentences carry no `WARL`/`WLRL` token against 5 that do.
+
+What survives from point 1 is the observation, not the remedy: a WARL field is
+not automatically a legal-value parameter, which `taxonomy.md` confirms by
+classifying `mstatus`'s MBE/SBE/UBE as `NORM_CSR_RW`.
+
+Follow-up with the measurements and the residual class-boundary defect:
+[#2097 comment](https://github.com/riscv/riscv-unified-db/pull/2097#issuecomment-5109644710).
+The taxonomy ambiguity underneath both readings is filed as
+[#2200](https://github.com/riscv/riscv-unified-db/issues/2200).
+The fixture that encoded the rejection gate is now
+`cases/candidates/CAND_WARL_FIXED_LEGAL_SET/`; see `MANIFEST.yaml` for the v2 changes.
+
 **Tone:** constructive, evidence-based, collaborative
 
 ---
 
-## Comment body (paste into #2097)
+## Comment body, as posted 2026-07-26 (archival, not amended)
 
 Thanks for landing a parameter analogue of the instruction-extraction skill, the signal families, NOTE-skipping, and mandatory verbatim excerpt are the right anti-hallucination core for Part II-style work.
 
