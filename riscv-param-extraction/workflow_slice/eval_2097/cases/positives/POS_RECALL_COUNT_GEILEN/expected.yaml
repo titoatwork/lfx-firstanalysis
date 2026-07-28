@@ -1,0 +1,19 @@
+id: POS_RECALL_COUNT_GEILEN
+class: NORM_DIRECT
+gold_name: NUM_EXTERNAL_GUEST_INTERRUPTS
+expect_extract: true
+expect_status: existing
+expect_udb_file: spec/std/isa/param/NUM_EXTERNAL_GUEST_INTERRUPTS.yaml
+must_have_excerpt: true
+skill_signal: implementation-chosen count reached through conditional writability
+warl_true_parameter: false
+# Recall-direction positive, added 2026-07-29.
+# Contains no WARL or WLRL token anywhere, so a token-gated signal list misses
+# it entirely. This is the under-firing failure mode identified upstream in
+# 72d18f7, which the pack did not previously test.
+notes: >
+  The writability of hstatus.VGEIN follows the value of an implementation-chosen
+  count, not a set of legal values and not a plain mutability predicate. The
+  parameter to surface is the count itself, which UnifiedDB already models as
+  NUM_EXTERNAL_GUEST_INTERRUPTS with schema {type: integer, minimum: 1,
+  maximum: 63}, definedBy extension H. Verified 2026-07-29.

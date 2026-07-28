@@ -1,0 +1,22 @@
+id: CAND_WARL_FIXED_LEGAL_SET
+kind: warl_word_but_isa_fixed
+# Reclassified 2026-07-29. Was a negative asserting expect_extract: false.
+# That encoded a rejection gate, which is the wrong instrument: the skill's
+# two-artifact design filters at human review, so the extractor should
+# surface the candidate and classify it rather than drop it silently.
+# See PR #2097 and upstream commit 72d18f7.
+expect_extract: true
+expect_params: 0
+expect_classification_records_isa_fixed: true
+skill_risk: >
+  A WARL field whose legal set is fixed by the ISA for every implementation
+  must be surfaced and then classified out, not dropped at extraction. The
+  envelope has no axis that can carry "the ISA fixes the set": classification
+  is named + config_dependent, so this case emits identically to a genuine
+  free-standing parameter and the reviewer at the approval gate has nothing
+  to separate them by.
+grounding: >
+  No parameter under spec/std/isa/param/ admits exactly one value (0 of 227,
+  checked 2026-07-29), so a set the ISA fixes completely has no encoding in
+  UnifiedDB. expect_params: 0 holds regardless of how the extraction
+  question resolves.

@@ -99,10 +99,33 @@ def main() -> int:
         if exp_doc.get("expect_extract") or exp_doc.get("expect_params", 0) != 0:
             errors.append(f"{case['id']}: negative must expect zero params")
         text = src.read_text(encoding="utf-8")
-        if case["id"] == "NEG_WARL_FIXED_LEGAL_SET" and "WARL" not in text:
-            errors.append("NEG_WARL_FIXED_LEGAL_SET must contain WARL keyword")
         if case["id"] == "NEG_SOFTWARE_ADVICE" and not re.search(r"\bshould\b|\bmay\b", text, re.I):
             errors.append("NEG_SOFTWARE_ADVICE must contain should/may")
+        if case["id"] == "NEG_EXT_GATED_PBMTE":
+            # recall control: must carry the phrasing but NOT the token, otherwise
+            # it is not testing the under-firing case it claims to test
+            if not re.search(r"read-only zero", text, re.I):
+                errors.append("NEG_EXT_GATED_PBMTE must contain conditional-writability phrasing")
+            if re.search(r"\bWARL\b|\bWLRL\b", text):
+                errors.append("NEG_EXT_GATED_PBMTE must NOT contain a WARL/WLRL token")
+
+    # candidates: surfaced by the extractor, then classified out. Neither a
+    # positive (which yields a parameter) nor a negative (which is never seen).
+    for case in man.get("candidates") or []:
+        cdir = ROOT / case["path"]
+        src = cdir / "source.txt"
+        exp = cdir / "expected.yaml"
+        if not src.is_file() or not exp.is_file():
+            errors.append(f"{case['id']}: missing files")
+            continue
+        exp_doc = yaml.safe_load(exp.read_text(encoding="utf-8"))
+        if not exp_doc.get("expect_extract"):
+            errors.append(f"{case['id']}: candidate must expect_extract")
+        if exp_doc.get("expect_params", None) != 0:
+            errors.append(f"{case['id']}: candidate must yield zero UDB parameters")
+        text = src.read_text(encoding="utf-8")
+        if case["id"] == "CAND_WARL_FIXED_LEGAL_SET" and "WARL" not in text:
+            errors.append("CAND_WARL_FIXED_LEGAL_SET must contain WARL keyword")
 
     # skill wrapper is NOT a valid UDB param file
     wrapper = {
@@ -127,10 +150,18 @@ def main() -> int:
         errors.append("skill candidate fields alone must not pass full param_schema without kind/description/long_name")
 
     # counts
-    if len(man.get("positives") or []) != 5:
-        errors.append(f"expected 5 positives, got {len(man.get('positives') or [])}")
-    if len(man.get("negatives") or []) < 3:
-        errors.append("expected >=3 negatives")
+    if len(man.get("positives") or []) != 6:
+        errors.append(f"expected 6 positives, got {len(man.get('positives') or [])}")
+    if len(man.get("negatives") or []) < 4:
+        errors.append("expected >=4 negatives")
+    if len(man.get("candidates") or []) < 1:
+        errors.append("expected >=1 candidate (extracted then classified out)")
+
+    # the pack must test both directions, not just over-firing
+    all_cases = (man.get("positives") or []) + (man.get("negatives") or [])
+    recall = [c for c in all_cases if "RECALL" in c["id"] or "EXT_GATED" in c["id"]]
+    if len(recall) < 2:
+        errors.append("expected >=2 recall-direction cases (no WARL/WLRL token in source)")
 
     if errors:
         print("eval_2097 pack FAILED:")
@@ -139,7 +170,9 @@ def main() -> int:
         return 1
     print("eval_2097 pack OK")
     print(f"  positives: {len(man['positives'])}")
+    print(f"  candidates: {len(man.get('candidates') or [])}")
     print(f"  negatives: {len(man['negatives'])}")
+    print(f"  recall-direction cases: {len(recall)}")
     print(f"  structural critiques: {len(critiques)}")
     print("  skill parameters: wrapper is not UDB-valid (as required)")
     return 0

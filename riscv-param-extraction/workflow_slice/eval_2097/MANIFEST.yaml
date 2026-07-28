@@ -5,20 +5,34 @@
 # Skill under review: uditjainstjis/riscv-unified-db @ feat/extract-parameters-skill
 # Skill file: .agents/skills/extract-parameters-from-subsection/SKILL.md
 
-pack_id: eval-2097-v1
+pack_id: eval-2097-v2
 target_pr: https://github.com/riscv/riscv-unified-db/pull/2097
 target_issue: https://github.com/riscv/riscv-unified-db/issues/2096
 evaluation_mode: rule_adversarial
 paid_model_required: false
+
+# v2 (2026-07-29). Three changes, all traceable to upstream commit 72d18f7 and
+# the discussion on #2097:
+#   1. Third case category `candidates`: text that should be extracted and then
+#      classified out. v1 had only positives and negatives, so a candidate of
+#      that shape had nowhere to sit and the validator would report a failure
+#      that was not one.
+#   2. NEG_WARL_FIXED_LEGAL_SET moved to candidates as CAND_WARL_FIXED_LEGAL_SET.
+#      Its expect_params: 0 was right; its expect_extract: false encoded a
+#      rejection gate that the skill's own two-artifact design argues against.
+#   3. Recall-direction cases added. v1 tested over-firing only, while the
+#      measured gap is under-firing: 63 conditional-writability sentences in
+#      the manual carry no WARL/WLRL token against 5 that do.
 
 checks:
   - evidence_excerpt_present
   - source_anchor_optional_but_recorded
   - duplicate_status_existing_or_new
   - definedBy_shape
-  - schema_validity_udb_param  # clean param only — NOT the skill's parameters: wrapper
+  - schema_validity_udb_param  # clean param only, NOT the skill's parameters: wrapper
   - false_positive_on_negatives
-  - warl_not_always_parameter
+  - warl_class_boundary_legal_values_vs_rw_vs_extension_gating
+  - recall_on_conditional_writability_without_warl_token
   - review_envelope_vs_udb_yaml_separation
 
 positives:
@@ -50,10 +64,14 @@ positives:
     expect_status: existing
     path: cases/positives/POS_WARL_MTVEC_MODES/
     notes: >
-      True WARL parameter: legal MODE set is implementation-chosen.
-      Skill correctly flags WARL as signal — but must not treat EVERY WARL
-      mention as a new free-standing parameter without checking if the
-      legal set is already fixed by the ISA.
+      True WARL parameter: the legal MODE set is implementation-chosen, and
+      UnifiedDB models it as MTVEC_MODES with schema {type: array, items:
+      {enum: [0, 1]}, minItems: 1, maxItems: 2}. The set may collapse to one
+      element because an implementation narrowed it, which is not the same as
+      a value the ISA fixes; no parameter in spec/std/isa/param/ admits exactly
+      one value. Note revised 2026-07-29: the earlier wording here asked the
+      skill to check whether the legal set was ISA-fixed before emitting, which
+      was a rejection gate. See CAND_WARL_FIXED_LEGAL_SET.
 
   - id: POS_WARL_ASID_WIDTH
     class: NORM_CSR_WARL
@@ -61,6 +79,33 @@ positives:
     expect_signal: UNSPECIFIED / ASIDLEN
     expect_status: existing
     path: cases/positives/POS_WARL_ASID_WIDTH/
+
+  - id: POS_RECALL_COUNT_GEILEN
+    class: NORM_DIRECT
+    gold_name: NUM_EXTERNAL_GUEST_INTERRUPTS
+    expect_signal: implementation-chosen count reached through conditional writability
+    expect_status: existing
+    path: cases/positives/POS_RECALL_COUNT_GEILEN/
+    notes: >
+      Recall control. Contains no WARL or WLRL token, so a token-gated signal
+      list misses it. The writability of hstatus.VGEIN follows the value of a
+      count, not a legal-value set and not a plain mutability predicate, so the
+      parameter to surface is the count itself.
+
+candidates:
+  # Text that must be surfaced and then classified out. Distinct from negatives,
+  # which must not be surfaced at all.
+  - id: CAND_WARL_FIXED_LEGAL_SET
+    kind: warl_word_but_isa_fixed
+    expect_extract: true
+    expect_params: 0
+    path: cases/candidates/CAND_WARL_FIXED_LEGAL_SET/
+    skill_risk: >
+      A WARL field whose legal set is fixed by the ISA for every implementation
+      yields no UnifiedDB parameter, but dropping it at extraction hides it from
+      the human gate the skill relies on. The envelope has no axis that records
+      "the ISA fixes the set": classification is named + config_dependent, so
+      this emits identically to a genuine free-standing parameter.
 
 negatives:
   - id: NEG_FIXED_ENCODING
@@ -87,16 +132,17 @@ negatives:
       Pure shall/must constraints without implementation-defined choice
       are not parameters.
 
-  - id: NEG_WARL_FIXED_LEGAL_SET
-    kind: warl_word_but_isa_fixed
+  - id: NEG_EXT_GATED_PBMTE
+    kind: conditional_writability_but_extension_gated
     expect_params: 0
-    path: cases/negatives/NEG_WARL_FIXED_LEGAL_SET/
+    path: cases/negatives/NEG_EXT_GATED_PBMTE/
     skill_risk: >
-      Skill lists WARL under "almost always name a parameter." If WARL is
-      only used to describe a field whose legal values are fully fixed by
-      the ISA text (no implementation choice of the set), emitting a
-      parameter is a false positive / misclassification risk — central
-      Part II WARL problem.
+      "is read-only zero" phrasing carries no WARL token, so a token-gated
+      signal list misses it, but a rule that admits all such phrasing as a
+      legal-value parameter over-fires on extension gating. In UnifiedDB,
+      menvcfg.PBMTE carries definedBy {extension: {name: Svpbmt}} and no
+      type() at all, and no PBMTE parameter exists. At least 19 of the 63
+      conditional-writability sentences in the manual are of this shape.
 
 skill_structural_critiques:
   - id: WRAPPER_NOT_UDB_FILE
@@ -107,12 +153,35 @@ skill_structural_critiques:
       validates as param_schema.json (no kind/$schema/long_name/description
       required fields; wrapper key is an additionalProperty).
 
-  - id: WARL_ALWAYS_POSITIVE
+  - id: WARL_CLASS_BOUNDARY
+    severity: high
+    superseded: WARL_ALWAYS_POSITIVE
+    detail: >
+      Revised 2026-07-29 after upstream 72d18f7. The original critique asked the
+      skill to require that the legal value set be implementation-chosen before
+      accepting a WARL candidate. That was the wrong instrument: it is a
+      rejection gate, and the skill's two-artifact design filters at human
+      review instead. The residual defect is a class boundary, not a gate.
+      Conditional writability resolves three ways and the skill assigns one:
+      an extension being absent is not a parameter (definedBy); a condition on
+      a legal-value set's cardinality is NORM_CSR_WARL, as vsstatus.UXL shows
+      with type() = $array_size(VUXLEN) > 1 ? RW : RO; a plain predicate is
+      NORM_CSR_RW, as the *_MODE_ENDIANNESS and HPM_COUNTER_EN parameters show.
+      The envelope has no key that can record which of the three applies.
+
+  - id: TAXONOMY_SELF_INCONSISTENT
     severity: high
     detail: >
-      Skill ranks WARL as a strong almost-always-positive signal without
-      requiring that the *legal value set* be implementation-chosen.
-      WARL misclassification is a known Spring/Part II failure mode.
+      Upstream of both the skill and this pack. taxonomy.md (PR #1766) defines
+      NORM_CSR_WARL as "the spec describes a CSR field as WARL and the legal
+      values are implementation-defined", while its decision tree at step 4 asks
+      only whether the text describes a WARL field's legal values, and its
+      NORM_CSR_RW section lists "MBE, SBE, and UBE bits in mstatus are WARL
+      fields" as a read-write case. The same excerpt classifies differently
+      depending on which half a reader uses. The skill also never names the
+      taxonomy or any of its eight classes, so its instruction to use "one of
+      the classifications used by the UnifiedDB schema" and the escape hatch
+      is not resolvable from the skill document alone.
 
   - id: COMPARE_BY_NAME_AND_MEANING
     severity: medium

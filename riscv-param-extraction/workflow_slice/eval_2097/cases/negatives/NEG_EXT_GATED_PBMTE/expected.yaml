@@ -1,0 +1,21 @@
+id: NEG_EXT_GATED_PBMTE
+kind: conditional_writability_but_extension_gated
+expect_extract: false
+expect_params: 0
+# Recall-direction control, added 2026-07-29.
+# The skill's revised WARL rule (upstream 72d18f7) treats conditional-writability
+# phrasing as a legal-value parameter even with no WARL token present. That is
+# right for some cases and wrong here: the condition is an extension being
+# absent, which UnifiedDB expresses through definedBy rather than a parameter.
+skill_risk: >
+  "is read-only zero" phrasing carries no WARL token, so a token-gated signal
+  list misses it, but a rule that admits all such phrasing as a legal-value
+  parameter over-fires on extension gating. This fixture guards the second
+  failure mode.
+grounding: >
+  In UnifiedDB, menvcfg.PBMTE carries definedBy {extension: {name: Svpbmt}}
+  and has no type() at all. No parameter named PBMTE exists, nor one for
+  STCE, CBZE, CBCFE or ADUE, which share the same phrasing. Verified against
+  spec/std/isa/csr/menvcfg.yaml and spec/std/isa/param/ on 2026-07-29.
+  At least 19 of the 63 conditional-writability sentences in the manual are
+  of this shape.
