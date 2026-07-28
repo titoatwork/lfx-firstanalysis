@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -133,10 +134,11 @@ def call_outcome(arm: str, kind: str):
     def classify(err: str) -> str:
         if not err:
             return "ok"
-        # "refused" is the provider saying no, whether that is a daily quota
-        # (Gemini: RESOURCE_EXHAUSTED) or a throughput cap (OpenRouter: Rate
-        # limit exceeded). Both are the vendor's decision. Everything else is
-        # this machine failing, and must never be reported as a vendor limit.
+        # Both providers refuse with a daily request quota, they just word it
+        # differently: Gemini RESOURCE_EXHAUSTED, OpenRouter "Rate limit
+        # exceeded: free-models-per-day". The wording initially read as a
+        # throughput cap, which was wrong. Everything else is this machine
+        # failing, and must never be reported as a vendor limit.
         if "RESOURCE_EXHAUSTED" in err or "Rate limit" in err:
             return "quota"
         if "getaddrinfo" in err or "unreachable" in err:
@@ -396,6 +398,22 @@ CLAIMS: list[Claim] = [
     Claim("nemotron.armA_is_fragment", True, "PRIMARY_RESULTS.md limitations",
           AC_RUNS / NEMOTRON_RUN / "RUN_MANIFEST.json",
           lambda d: call_outcome("A", "ok")(d) < 60, tags=["nemotron"]),
+    # OpenRouter states its daily cap in the 429 body. The run returned exactly
+    # that many successes before the first refusal, so unlike Gemini's the limit
+    # here is measured rather than cited. Both halves are gated: the stated
+    # number, and the fact that it equals the observed ceiling.
+    Claim("nemotron.stated_daily_limit", 50, "PRIMARY_RESULTS.md limitations",
+          AC_RUNS / NEMOTRON_RUN / "RUN_MANIFEST.json",
+          lambda d: next(iter({
+              int(m) for c in d["calls"]
+              for m in re.findall(r"'X-RateLimit-Limit': '(\d+)'", c.get("error") or "")
+          }), None), tags=["nemotron"]),
+    Claim("nemotron.limit_equals_observed", True, "PRIMARY_RESULTS.md limitations",
+          AC_RUNS / NEMOTRON_RUN / "RUN_MANIFEST.json",
+          lambda d: sum(1 for c in d["calls"] if c.get("ok")) == next(iter({
+              int(m) for c in d["calls"]
+              for m in re.findall(r"'X-RateLimit-Limit': '(\d+)'", c.get("error") or "")
+          }), -1), tags=["nemotron"]),
 ]
 
 # Claims that are true but cannot be re-derived from anything committed.

@@ -125,7 +125,7 @@ Reported upstream as [#2163](https://github.com/riscv/riscv-unified-db/issues/21
 
 - **n=2 per arm.** Enough to show the design is underpowered, not enough to characterise the distribution. A spread from two samples is not a confidence interval.
 - **The decomposition was not preregistered.** It came out of diagnosing the variance. It is a measurement of committed artifacts rather than a test of a hypothesis, and it is reported as exploratory. It is fully reproducible without an API key, since scoring is deterministic.
-- **Cross-provider replication did not complete. Three attempts, three different failure modes, none of them the model's fault.**
+- **Cross-provider replication did not complete. Both providers impose a daily request quota, and one of them is measurable.**
 
   | Provider | Arm | Returned | Refused by provider | Local network |
   |---|---|---:|---|---:|
@@ -134,11 +134,13 @@ Reported upstream as [#2163](https://github.com/riscv/riscv-unified-db/issues/21
   | `nemotron-3-ultra-550b-a55b:free` | A | 50/60 | 9 × `429 Rate limit exceeded` (+1 timeout) | 0 |
   | `nemotron-3-ultra-550b-a55b:free` | B | 0/60 | 60 × `429 Rate limit exceeded` | 0 |
 
-  The Gemini arm B failures are evidence about this machine's connectivity, not about Google's limits, and are not cited as a quota result. The daily allowance is likewise not recoverable from the artifact, because the 429 body is truncated before the quota identifier: the widely quoted 20 requests per day is vendor documentation rather than something measured here.
+  The Gemini arm B failures are evidence about this machine's connectivity, not about Google's limits, and are not cited as a quota result.
 
-  A single arm needs 60 responses. No provider delivered two same-model runs, so no cross-provider variance estimate exists, and **H5 remains untested** because it requires two models within one arm. All three partial runs are committed and excluded from every table by the 60-chunk gate, which prints what it dropped.
+  **The two quotas differ in whether they can be measured, and only one can.** Gemini's 429 body is truncated before the quota identifier, so the artifact records the refusal but never the allowance; the widely quoted 20 requests per day is vendor documentation rather than something observed here. OpenRouter states its limit in the response: every one of the 69 rate-limit errors carries `'X-RateLimit-Limit': '50'`, and the run returned **exactly 50** successful calls before the first refusal. Stated limit and observed ceiling agree exactly, which makes 50 requests per day a measurement rather than a citation.
 
-  The generalisable point is not that one vendor was stingy. It is that **free inference tiers are rate-shaped in three different ways and none of them fit a 120-call experiment**, which is a concrete planning constraint for [#1750](https://github.com/riscv/riscv-unified-db/issues/1750), whose deliverable is comparing two or more LLMs.
+  A single arm needs 60 responses, so **50 per day cannot produce even one complete arm**, let alone the two same-model runs a variance estimate requires. No cross-provider variance estimate exists, and **H5 remains untested** because it requires two models within one arm. All partial runs are committed and excluded from every table by the 60-chunk gate, which prints what it dropped.
+
+  The generalisable point is not that one vendor was stingy. It is that **the free tiers of two independent providers cap daily requests below the size of a single arm**, which is a concrete planning constraint for [#1750](https://github.com/riscv/riscv-unified-db/issues/1750), whose deliverable is comparing two or more LLMs. Paid inference is not a convenience here; it is the difference between the experiment being possible and not.
 - The registered rule applies: these nulls mean **not detected under this design**, not evidence of absence.
 - Context reaches only 32 of 60 chunks, so arms C and D are identical to A and B on the other 28. Registered in advance in section 4b.
 
