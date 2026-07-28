@@ -171,17 +171,24 @@ skill_structural_critiques:
 
   - id: TAXONOMY_SELF_INCONSISTENT
     severity: high
+    filed_upstream: https://github.com/riscv/riscv-unified-db/issues/2200
     detail: >
       Upstream of both the skill and this pack. taxonomy.md (PR #1766) defines
       NORM_CSR_WARL as "the spec describes a CSR field as WARL and the legal
       values are implementation-defined", while its decision tree at step 4 asks
-      only whether the text describes a WARL field's legal values, and its
-      NORM_CSR_RW section lists "MBE, SBE, and UBE bits in mstatus are WARL
-      fields" as a read-write case. The same excerpt classifies differently
-      depending on which half a reader uses. The skill also never names the
-      taxonomy or any of its eight classes, so its instruction to use "one of
-      the classifications used by the UnifiedDB schema" and the escape hatch
-      is not resolvable from the skill document alone.
+      only whether the text describes a WARL field's legal values, and step 4 is
+      evaluated before step 5, the NORM_CSR_RW test. The NORM_CSR_RW class
+      definition names "MBE, SBE, and UBE bits in mstatus are WARL fields" as
+      its own example, so the same excerpt classifies differently depending on
+      which half a reader uses, and the document states no precedence between
+      them while requiring exactly one class per parameter.
+      UnifiedDB settles this case against the decision tree: mstatus.MBE has
+      type() = M_MODE_ENDIANNESS == "dynamic" ? RW : RO with no sw_write at all,
+      and M_MODE_ENDIANNESS is {type: string, enum: [little, big, dynamic]},
+      which is the taxonomy's value type `enum` rather than `set`.
+      The skill also never names the taxonomy or any of its eight classes, so
+      its instruction to use "one of the classifications used by the UnifiedDB
+      schema" and the escape hatch is not resolvable from the skill alone.
 
   - id: COMPARE_BY_NAME_AND_MEANING
     severity: medium
