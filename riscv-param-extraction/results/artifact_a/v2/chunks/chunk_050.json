@@ -1,0 +1,64 @@
+{
+  "chunk_id": "chunk_050",
+  "source_file": "smepmp.adoc",
+  "start_line": 1,
+  "end_line": 76,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "this extension introduces the `RLB`, `MMWP`, and `MML` fields in the `mseccfg` CSR and their associated rules.",
+      "line_number": 30,
+      "parameter_name": "MSECCFG_FIELDS",
+      "existing_udb_name": "MSECCFG_FIELDS",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The fields RLB, MMWP, and MML in the mseccfg CSR are WARL, and their specific implementation and behavior can vary, making this a parameter."
+    },
+    {
+      "excerpt": "Locked rules cannot be removed or modified until a PMP reset, unless `mseccfg.RLB` is set.",
+      "line_number": 66,
+      "parameter_name": "MSECCFG_RLB_LOCKING",
+      "existing_udb_name": "MSECCFG_RLB_LOCKING",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether the RLB field allows locked rules to be modified or not, making this a read-write parameter."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "Without the Smepmp extension, it is not possible for a PMP rule to be enforced only on non-Machine modes and denied on Machine mode.",
+      "line_number": 10,
+      "reason": "This describes a limitation of the system without the extension, not an implementation choice."
+    },
+    {
+      "excerpt": "It is only possible to have a locked rule that will be enforced on all modes, or a rule that will be enforced on non-Machine modes and be ignored by Machine mode.",
+      "line_number": 12,
+      "reason": "This describes behavior under certain conditions, not an implementation-defined parameter."
+    },
+    {
+      "excerpt": "Without being able to protect less-privileged modes from Machine mode, it is not possible to prevent the mentioned attack vector.",
+      "line_number": 14,
+      "reason": "This is a statement about security implications, not an architectural parameter."
+    },
+    {
+      "excerpt": "This becomes even more important for RISC-V than on other architectures, since implementations are allowed where a hart only has Machine and User modes available.",
+      "line_number": 16,
+      "reason": "This describes a scenario rather than an implementation choice."
+    },
+    {
+      "excerpt": "To address the threat model outlined in Section <<smepmp_threat>>, this extension introduces the `RLB`, `MMWP`, and `MML` fields in the `mseccfg` CSR and their associated rules.",
+      "line_number": 30,
+      "reason": "This is a repeat of a previously extracted parameter."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"this extension introduces the `RLB`, `MMWP`, and `MML` fields in the `mseccfg` CSR and their associated rules.\",\n      \"line_number\": 30,\n      \"parameter_name\": \"MSECCFG_FIELDS\",\n      \"existing_udb_name\": \"MSECCFG_FIELDS\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The fields RLB, MMWP, and MML in the mseccfg CSR are WARL, and their specific implementation and behavior can vary, making this a parameter.\"\n    },\n    {\n      \"excerpt\": \"Locked rules cannot be removed or modified until a PMP reset, unless `mseccfg.RLB` is set.\",\n      \"line_number\": 66,\n      \"parameter_name\": \"MSECCFG_RLB_LOCKING\",\n      \"existing_udb_name\": \"MSECCFG_RLB_LOCKING\",\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation chooses whether the RLB field allows locked rules to be modified or not, making this a read-write parameter.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"Without the Smepmp extension, it is not possible for a PMP rule to be enforced only on non-Machine modes and denied on Machine mode.\",\n      \"line_number\": 10,\n      \"reason\": \"This describes a limitation of the system without the extension, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"It is only possible to have a locked rule that will be enforced on all modes, or a rule that will be enforced on non-Machine modes and be ignored by Machine mode.\",\n      \"line_number\": 12,\n      \"reason\": \"This describes behavior under certain conditions, not an implementation-defined parameter.\"\n    },\n    {\n      \"excerpt\": \"Without being able to protect less-privileged modes from Machine mode, it is not possible to prevent the mentioned attack vector.\",\n      \"line_number\": 14,\n      \"reason\": \"This is a statement about security implications, not an architectural parameter.\"\n    },\n    {\n      \"excerpt\": \"This becomes even more important for RISC-V than on other architectures, since implementations are allowed where a hart only has Machine and User modes available.\",\n      \"line_number\": 16,\n      \"reason\": \"This describes a scenario rather than an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"To address the threat model outlined in Section <<smepmp_threat>>, this extension introduces the `RLB`, `MMWP`, and `MML` fields in the `mseccfg` CSR and their associated rules.\",\n      \"line_number\": 30,\n      \"reason\": \"This is a repeat of a previously extracted parameter.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 7819,
+  "output_tokens": 636,
+  "latency_ms": 6832,
+  "timestamp": "2026-07-24T18:27:02.256451+00:00",
+  "error": null,
+  "retry_count": 0
+}

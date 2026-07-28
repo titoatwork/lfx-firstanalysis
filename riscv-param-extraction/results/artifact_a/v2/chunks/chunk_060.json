@@ -1,0 +1,84 @@
+{
+  "chunk_id": "chunk_060",
+  "source_file": "vector-crypto.adoc",
+  "start_line": 1,
+  "end_line": 3340,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "The number of element groups to be processed is `vl`/`EGS`.",
+      "line_number": 3340,
+      "parameter_name": "EGS",
+      "existing_udb_name": "EGS",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "EGS is a direct implementation choice that determines how many element groups are processed based on the vector length `vl`. The specific value is chosen by the implementer."
+    },
+    {
+      "excerpt": "For element-group instructions, `LMUL`*`VLEN` must always be at least as large as `EGW`.",
+      "line_number": 3340,
+      "parameter_name": "EGW",
+      "existing_udb_name": "EGW",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "EGW is a direct implementation choice that specifies the total number of bits in an element group. The specific value is determined by the implementer."
+    },
+    {
+      "excerpt": "The required `SEW` for each cryptographic instruction was chosen to match what is typically needed for other instructions when implementing the targeted algorithm.",
+      "line_number": 3340,
+      "parameter_name": "SEW",
+      "existing_udb_name": "SEW",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "SEW is a direct implementation choice that specifies the number of bits in each element. The specific value is determined by the implementer."
+    },
+    {
+      "excerpt": "The `vd` register group must not overlap the `vs2` register group.",
+      "line_number": 3340,
+      "parameter_name": "VD_VS2_NO_OVERLAP",
+      "existing_udb_name": "VD_VS2_NO_OVERLAP",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "This is a design-time decision that specifies a constraint on register allocation, indicating that the implementer must ensure that these two register groups do not overlap."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] Where variables are concatenated, the order shown is how they would appear in a vector register from left to right.",
+      "line_number": 1,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a formatting guideline, not an architectural requirement."
+    },
+    {
+      "excerpt": "This instruction must always be implemented such that its execution latency does not depend on the data being operated upon.",
+      "line_number": 3340,
+      "reason": "This is a fixed requirement that applies to all implementations and does not represent a choice left to the implementer."
+    },
+    {
+      "excerpt": "The implementation chooses whether MBE is read-only-0 (always little-endian), read-only-1 (always big-endian), or read-write (dynamic endianness).",
+      "line_number": 3340,
+      "reason": "This describes a behavior based on the implementation's choice but does not specify a parameter that is left to the implementer."
+    },
+    {
+      "excerpt": "The number of element groups operated upon is then `vl`/`EGS`.",
+      "line_number": 3340,
+      "reason": "This describes a calculation based on existing parameters rather than a choice left to the implementer."
+    },
+    {
+      "excerpt": "The `vd` register group must not overlap the `vs1` register group.",
+      "line_number": 3340,
+      "reason": "This is a fixed requirement that applies to all implementations and does not represent a choice left to the implementer."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"The number of element groups to be processed is `vl`/`EGS`.\",\n      \"line_number\": 3340,\n      \"parameter_name\": \"EGS\",\n      \"existing_udb_name\": \"EGS\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"range\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"EGS is a direct implementation choice that determines how many element groups are processed based on the vector length `vl`. The specific value is chosen by the implementer.\"\n    },\n    {\n      \"excerpt\": \"For element-group instructions, `LMUL`*`VLEN` must always be at least as large as `EGW`.\",\n      \"line_number\": 3340,\n      \"parameter_name\": \"EGW\",\n      \"existing_udb_name\": \"EGW\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"range\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"EGW is a direct implementation choice that specifies the total number of bits in an element group. The specific value is determined by the implementer.\"\n    },\n    {\n      \"excerpt\": \"The required `SEW` for each cryptographic instruction was chosen to match what is typically needed for other instructions when implementing the targeted algorithm.\",\n      \"line_number\": 3340,\n      \"parameter_name\": \"SEW\",\n      \"existing_udb_name\": \"SEW\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"range\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"SEW is a direct implementation choice that specifies the number of bits in each element. The specific value is determined by the implementer.\"\n    },\n    {\n      \"excerpt\": \"The `vd` register group must not overlap the `vs2` register group.\",\n      \"line_number\": 3340,\n      \"parameter_name\": \"VD_VS2_NO_OVERLAP\",\n      \"existing_udb_name\": \"VD_VS2_NO_OVERLAP\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"This is a design-time decision that specifies a constraint on register allocation, indicating that the implementer must ensure that these two register groups do not overlap.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"[NOTE] Where variables are concatenated, the order shown is how they would appear in a vector register from left to right.\",\n      \"line_number\": 1,\n      \"reason\": \"This text is inside a [NOTE] block and is therefore non-normative. It describes a formatting guideline, not an architectural requirement.\"\n    },\n    {\n      \"excerpt\": \"This instruction must always be implemented such that its execution latency does not depend on the data being operated upon.\",\n      \"line_number\": 3340,\n      \"reason\": \"This is a fixed requirement that applies to all implementations and does not represent a choice left to the implementer.\"\n    },\n    {\n      \"excerpt\": \"The implementation chooses whether MBE is read-only-0 (always little-endian), read-only-1 (always big-endian), or read-write (dynamic endianness).\",\n      \"line_number\": 3340,\n      \"reason\": \"This describes a behavior based on the implementation's choice but does not specify a parameter that is left to the implementer.\"\n    },\n    {\n      \"excerpt\": \"The number of element groups operated upon is then `vl`/`EGS`.\",\n      \"line_number\": 3340,\n      \"reason\": \"This describes a calculation based on existing parameters rather than a choice left to the implementer.\"\n    },\n    {\n      \"excerpt\": \"The `vd` register group must not overlap the `vs1` register group.\",\n      \"line_number\": 3340,\n      \"reason\": \"This is a fixed requirement that applies to all implementations and does not represent a choice left to the implementer.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 34633,
+  "output_tokens": 862,
+  "latency_ms": 9831,
+  "timestamp": "2026-07-24T18:35:54.030011+00:00",
+  "error": null,
+  "retry_count": 0
+}

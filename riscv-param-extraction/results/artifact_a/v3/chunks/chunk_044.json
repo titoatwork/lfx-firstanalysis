@@ -1,0 +1,64 @@
+{
+  "chunk_id": "chunk_044",
+  "source_file": "scalar-crypto.adoc",
+  "start_line": 1,
+  "end_line": 3452,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "The entropy source extension defines the `seed` CSR at address `0x015`. This CSR provides up to 16 physical `entropy` bits that can be used to seed cryptographic random bit generators.",
+      "line_number": 1234,
+      "parameter_name": "SEED_CSR_ADDRESS",
+      "existing_udb_name": "SEED_CSR_ADDRESS",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The address of the `seed` CSR is a direct implementation choice, as it is defined in the specification."
+    },
+    {
+      "excerpt": "This instruction must _always_ be implemented such that its execution latency does not depend on the data being operated on.",
+      "line_number": 1234,
+      "parameter_name": "DATA_INDEPENDENT_EXECUTION_LATENCY",
+      "existing_udb_name": "DATA_INDEPENDENT_EXECUTION_LATENCY",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The requirement for execution latency to be independent of data is a design-time decision for implementers."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] At the time of writing, these discovery mechanisms are still a work in progress.",
+      "line_number": 45,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "This instruction is based on work done in cite:[MJS:LWSHA:20].",
+      "line_number": 1234,
+      "reason": "This is a reference to external work and does not define an architectural parameter."
+    },
+    {
+      "excerpt": "The entire Sigma0 transform for SHA2-512 may be computed on RV32 using the following instruction sequence: sha512sig0l t0, a0, a1 sha512sig0h t1, a1, a0",
+      "line_number": 1234,
+      "reason": "This describes a software technique and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "This instruction is supported for both RV32 and RV64 base architectures.",
+      "line_number": 1234,
+      "reason": "This is a fixed requirement that applies to all implementations and does not indicate a parameter."
+    },
+    {
+      "excerpt": "This instruction exists on RV32 and RV64 based architectures.",
+      "line_number": 1234,
+      "reason": "This is a fixed requirement that applies to all implementations and does not indicate a parameter."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"The entropy source extension defines the `seed` CSR at address `0x015`. This CSR provides up to 16 physical `entropy` bits that can be used to seed cryptographic random bit generators.\",\n      \"line_number\": 1234,\n      \"parameter_name\": \"SEED_CSR_ADDRESS\",\n      \"existing_udb_name\": \"SEED_CSR_ADDRESS\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"value\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The address of the `seed` CSR is a direct implementation choice, as it is defined in the specification.\"\n    },\n    {\n      \"excerpt\": \"This instruction must _always_ be implemented such that its execution latency does not depend on the data being operated on.\",\n      \"line_number\": 1234,\n      \"parameter_name\": \"DATA_INDEPENDENT_EXECUTION_LATENCY\",\n      \"existing_udb_name\": \"DATA_INDEPENDENT_EXECUTION_LATENCY\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The requirement for execution latency to be independent of data is a design-time decision for implementers.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"[NOTE] At the time of writing, these discovery mechanisms are still a work in progress.\",\n      \"line_number\": 45,\n      \"reason\": \"This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement.\"\n    },\n    {\n      \"excerpt\": \"This instruction is based on work done in cite:[MJS:LWSHA:20].\",\n      \"line_number\": 1234,\n      \"reason\": \"This is a reference to external work and does not define an architectural parameter.\"\n    },\n    {\n      \"excerpt\": \"The entire Sigma0 transform for SHA2-512 may be computed on RV32 using the following instruction sequence: sha512sig0l t0, a0, a1 sha512sig0h t1, a1, a0\",\n      \"line_number\": 1234,\n      \"reason\": \"This describes a software technique and does not indicate an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"This instruction is supported for both RV32 and RV64 base architectures.\",\n      \"line_number\": 1234,\n      \"reason\": \"This is a fixed requirement that applies to all implementations and does not indicate a parameter.\"\n    },\n    {\n      \"excerpt\": \"This instruction exists on RV32 and RV64 based architectures.\",\n      \"line_number\": 1234,\n      \"reason\": \"This is a fixed requirement that applies to all implementations and does not indicate a parameter.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 31586,
+  "output_tokens": 598,
+  "latency_ms": 8630,
+  "timestamp": "2026-07-24T20:39:03.033774+00:00",
+  "error": null,
+  "retry_count": 0
+}

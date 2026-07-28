@@ -1,0 +1,54 @@
+{
+  "chunk_id": "chunk_041",
+  "source_file": "rv32e.adoc",
+  "start_line": 1,
+  "end_line": 47,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "RV32E and RV64E reduce the integer register count to 16 general-purpose registers, (`x0-x15`), where `x0` is a dedicated zero register.",
+      "line_number": 15,
+      "parameter_name": "NUM_GENERAL_PURPOSE_REGISTERS",
+      "existing_udb_name": "NUM_GENERAL_PURPOSE_REGISTERS",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The number of general-purpose registers in RV32E and RV64E is a direct implementation choice, specifically set to 16. This is not controlled by any CSR field."
+    },
+    {
+      "excerpt": "All encodings specifying the other registers `x16-x31` are reserved.",
+      "line_number": 23,
+      "parameter_name": "RESERVED_REGISTER_ENCODINGS",
+      "existing_udb_name": "RESERVED_REGISTER_ENCODINGS",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The encodings for registers `x16-x31` are reserved, indicating an implementation choice on how these encodings may be utilized in the future. This is a design-time decision."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "RV32E was designed to provide an even smaller base core for embedded microcontrollers.",
+      "line_number": 5,
+      "reason": "This is a descriptive statement about the design intent of RV32E, not an architectural parameter."
+    },
+    {
+      "excerpt": "We have found that in the small RV32I core implementations, the upper 16 registers consume around one quarter of the total area of the core excluding memories.",
+      "line_number": 11,
+      "reason": "This is an observation about implementation impact, not a parameter that defines an implementation choice."
+    },
+    {
+      "excerpt": "The previous draft of this chapter made all encodings using the `x16-x31` registers available as custom.",
+      "line_number": 21,
+      "reason": "This describes a change in the specification approach rather than defining a parameter for implementation."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"RV32E and RV64E reduce the integer register count to 16 general-purpose registers, (`x0-x15`), where `x0` is a dedicated zero register.\",\n      \"line_number\": 15,\n      \"parameter_name\": \"NUM_GENERAL_PURPOSE_REGISTERS\",\n      \"existing_udb_name\": \"NUM_GENERAL_PURPOSE_REGISTERS\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"value\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The number of general-purpose registers in RV32E and RV64E is a direct implementation choice, specifically set to 16. This is not controlled by any CSR field.\"\n    },\n    {\n      \"excerpt\": \"All encodings specifying the other registers `x16-x31` are reserved.\",\n      \"line_number\": 23,\n      \"parameter_name\": \"RESERVED_REGISTER_ENCODINGS\",\n      \"existing_udb_name\": \"RESERVED_REGISTER_ENCODINGS\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The encodings for registers `x16-x31` are reserved, indicating an implementation choice on how these encodings may be utilized in the future. This is a design-time decision.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"RV32E was designed to provide an even smaller base core for embedded microcontrollers.\",\n      \"line_number\": 5,\n      \"reason\": \"This is a descriptive statement about the design intent of RV32E, not an architectural parameter.\"\n    },\n    {\n      \"excerpt\": \"We have found that in the small RV32I core implementations, the upper 16 registers consume around one quarter of the total area of the core excluding memories.\",\n      \"line_number\": 11,\n      \"reason\": \"This is an observation about implementation impact, not a parameter that defines an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The previous draft of this chapter made all encodings using the `x16-x31` registers available as custom.\",\n      \"line_number\": 21,\n      \"reason\": \"This describes a change in the specification approach rather than defining a parameter for implementation.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 6668,
+  "output_tokens": 488,
+  "latency_ms": 7444,
+  "timestamp": "2026-07-24T18:19:25.341076+00:00",
+  "error": null,
+  "retry_count": 0
+}

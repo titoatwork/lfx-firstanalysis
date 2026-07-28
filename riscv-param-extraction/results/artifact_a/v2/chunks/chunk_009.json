@@ -1,0 +1,84 @@
+{
+  "chunk_id": "chunk_009",
+  "source_file": "cmo.adoc",
+  "start_line": 1,
+  "end_line": 1094,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "the capacity and organization of a cache and the size of a cache block are both implementation-specific",
+      "line_number": 45,
+      "parameter_name": "CACHE_BLOCK_SIZE",
+      "existing_udb_name": "CACHE_BLOCK_SIZE",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The size of a cache block is an implementation-specific choice, meaning the implementer decides the specific size."
+    },
+    {
+      "excerpt": "An implementation may or may not update the entire set of bytes atomically with a single store operation.",
+      "line_number": 90,
+      "parameter_name": "ATOMIC_UPDATE_ON_CBO_ZERO",
+      "existing_udb_name": "ATOMIC_UPDATE_ON_CBO_ZERO",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "Whether the cache-block zero instruction updates bytes atomically is an implementation choice, making it a direct parameter."
+    },
+    {
+      "excerpt": "A cache-block management instruction is permitted to access the specified cache block whenever a load instruction or store instruction is permitted to access the corresponding physical addresses.",
+      "line_number": 103,
+      "parameter_name": "CACHE_BLOCK_MANAGEMENT_ACCESS",
+      "existing_udb_name": "CACHE_BLOCK_MANAGEMENT_ACCESS",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The access permissions for cache-block management instructions are implementation-specific, indicating a choice for the implementer."
+    },
+    {
+      "excerpt": "The Zicboz extension introduces an additional supported access type PMA for cache-block zero instructions.",
+      "line_number": 103,
+      "parameter_name": "CACHE_BLOCK_ZERO_ACCESS_TYPE",
+      "existing_udb_name": "CACHE_BLOCK_ZERO_ACCESS_TYPE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The access type for cache-block zero instructions is WARL, meaning the legal values can vary by implementation."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The PMP access control bits shall be the same for all physical addresses in the cache block, and if write permission is granted by the PMP access control bits, read permission shall also be granted.",
+      "line_number": 100,
+      "reason": "This is a fixed requirement that applies to all implementations and does not leave any choice to the implementer."
+    },
+    {
+      "excerpt": "The PMAs shall be the same for all physical addresses in the cache block, and if write permission is granted by the supported access type PMAs, read permission shall also be granted.",
+      "line_number": 100,
+      "reason": "This is a fixed requirement that applies to all implementations and does not leave any choice to the implementer."
+    },
+    {
+      "excerpt": "The behavior of trigger modules with respect to CMO instructions is UNSPECIFIED.",
+      "line_number": 100,
+      "reason": "This describes unspecified behavior rather than an implementation choice, thus it is not a parameter."
+    },
+    {
+      "excerpt": "The interaction between cache-block management instructions and instruction fetches will be specified in a future extension.",
+      "line_number": 100,
+      "reason": "This is a statement about future specifications and does not define a current architectural parameter."
+    },
+    {
+      "excerpt": "The access size for CMO instructions is equal to the size of the cache block.",
+      "line_number": 100,
+      "reason": "This is a fixed requirement that applies to all implementations and does not leave any choice to the implementer."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"the capacity and organization of a cache and the size of a cache block are both implementation-specific\",\n      \"line_number\": 45,\n      \"parameter_name\": \"CACHE_BLOCK_SIZE\",\n      \"existing_udb_name\": \"CACHE_BLOCK_SIZE\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"value\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The size of a cache block is an implementation-specific choice, meaning the implementer decides the specific size.\"\n    },\n    {\n      \"excerpt\": \"An implementation may or may not update the entire set of bytes atomically with a single store operation.\",\n      \"line_number\": 90,\n      \"parameter_name\": \"ATOMIC_UPDATE_ON_CBO_ZERO\",\n      \"existing_udb_name\": \"ATOMIC_UPDATE_ON_CBO_ZERO\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"Whether the cache-block zero instruction updates bytes atomically is an implementation choice, making it a direct parameter.\"\n    },\n    {\n      \"excerpt\": \"A cache-block management instruction is permitted to access the specified cache block whenever a load instruction or store instruction is permitted to access the corresponding physical addresses.\",\n      \"line_number\": 103,\n      \"parameter_name\": \"CACHE_BLOCK_MANAGEMENT_ACCESS\",\n      \"existing_udb_name\": \"CACHE_BLOCK_MANAGEMENT_ACCESS\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The access permissions for cache-block management instructions are implementation-specific, indicating a choice for the implementer.\"\n    },\n    {\n      \"excerpt\": \"The Zicboz extension introduces an additional supported access type PMA for cache-block zero instructions.\",\n      \"line_number\": 103,\n      \"parameter_name\": \"CACHE_BLOCK_ZERO_ACCESS_TYPE\",\n      \"existing_udb_name\": \"CACHE_BLOCK_ZERO_ACCESS_TYPE\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"enum\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The access type for cache-block zero instructions is WARL, meaning the legal values can vary by implementation.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"The PMP access control bits shall be the same for all physical addresses in the cache block, and if write permission is granted by the PMP access control bits, read permission shall also be granted.\",\n      \"line_number\": 100,\n      \"reason\": \"This is a fixed requirement that applies to all implementations and does not leave any choice to the implementer.\"\n    },\n    {\n      \"excerpt\": \"The PMAs shall be the same for all physical addresses in the cache block, and if write permission is granted by the supported access type PMAs, read permission shall also be granted.\",\n      \"line_number\": 100,\n      \"reason\": \"This is a fixed requirement that applies to all implementations and does not leave any choice to the implementer.\"\n    },\n    {\n      \"excerpt\": \"The behavior of trigger modules with respect to CMO instructions is UNSPECIFIED.\",\n      \"line_number\": 100,\n      \"reason\": \"This describes unspecified behavior rather than an implementation choice, thus it is not a parameter.\"\n    },\n    {\n      \"excerpt\": \"The interaction between cache-block management instructions and instruction fetches will be specified in a future extension.\",\n      \"line_number\": 100,\n      \"reason\": \"This is a statement about future specifications and does not define a current architectural parameter.\"\n    },\n    {\n      \"excerpt\": \"The access size for CMO instructions is equal to the size of the cache block.\",\n      \"line_number\": 100,\n      \"reason\": \"This is a fixed requirement that applies to all implementations and does not leave any choice to the implementer.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 16230,
+  "output_tokens": 823,
+  "latency_ms": 13727,
+  "timestamp": "2026-07-24T18:03:42.565627+00:00",
+  "error": null,
+  "retry_count": 0
+}

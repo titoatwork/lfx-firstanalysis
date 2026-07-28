@@ -1,0 +1,104 @@
+{
+  "chunk_id": "chunk_026",
+  "source_file": "naming.adoc",
+  "start_line": 1,
+  "end_line": 222,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "RISC-V ISA strings begin with either RV32I, RV32E, RV64I, or RV64E, indicating the supported address space size in bits for the base integer ISA.",
+      "line_number": 10,
+      "parameter_name": "BASE_INTEGER_ISA",
+      "existing_udb_name": "BASE_INTEGER_ISA",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The choice of base integer ISA (RV32I, RV32E, RV64I, RV64E) is a direct implementation decision, allowing for different address space sizes."
+    },
+    {
+      "excerpt": "Standard extensions that extend the supervisor-level virtual-memory architecture are prefixed with the letters 'Sv', followed by an alphanumeric name.",
+      "line_number": 56,
+      "parameter_name": "SUPERVISOR_LEVEL_EXTENSION_NAMES",
+      "existing_udb_name": "SUPERVISOR_LEVEL_EXTENSION_NAMES",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The naming convention for supervisor-level extensions is an implementation choice, allowing for various alphanumeric names prefixed with 'Sv'."
+    },
+    {
+      "excerpt": "Standard extensions that extend the hypervisor-level architecture are prefixed with the letters 'Sh', followed by an alphanumeric name.",
+      "line_number": 78,
+      "parameter_name": "HYPERVISOR_LEVEL_EXTENSION_NAMES",
+      "existing_udb_name": "HYPERVISOR_LEVEL_EXTENSION_NAMES",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The naming convention for hypervisor-level extensions is an implementation choice, allowing for various alphanumeric names prefixed with 'Sh'."
+    },
+    {
+      "excerpt": "Standard machine-level instruction-set extensions are prefixed with the letters 'Sm'.",
+      "line_number": 97,
+      "parameter_name": "MACHINE_LEVEL_EXTENSION_NAMES",
+      "existing_udb_name": "MACHINE_LEVEL_EXTENSION_NAMES",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The naming convention for machine-level extensions is an implementation choice, allowing for various alphanumeric names prefixed with 'Sm'."
+    },
+    {
+      "excerpt": "Non-standard extensions are named by using a single 'X' followed by the alphanumeric name.",
+      "line_number": 116,
+      "parameter_name": "NON_STANDARD_EXTENSION_NAMES",
+      "existing_udb_name": "NON_STANDARD_EXTENSION_NAMES",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The naming convention for non-standard extensions is an implementation choice, allowing for various alphanumeric names prefixed with 'X'."
+    },
+    {
+      "excerpt": "Recognizing that instruction sets may expand or alter over time, we encode extension version numbers following the extension name.",
+      "line_number": 145,
+      "parameter_name": "EXTENSION_VERSION_NUMBERS",
+      "existing_udb_name": "EXTENSION_VERSION_NUMBERS",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The encoding of extension version numbers is an implementation choice, allowing for major and minor versioning of extensions."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The RISC-V ISA is designed to support a wide variety of implementations with various experimental instruction-set extensions.",
+      "line_number": 5,
+      "reason": "This is a general statement about the design of the ISA and does not specify an implementation choice."
+    },
+    {
+      "excerpt": "The name must end with an alphabetical character.",
+      "line_number": 113,
+      "reason": "This is a fixed requirement for naming conventions, not an implementation choice."
+    },
+    {
+      "excerpt": "If multiple non-standard extensions are listed, they should be ordered alphabetically.",
+      "line_number": 120,
+      "reason": "This describes a guideline for ordering extensions, not an architectural parameter."
+    },
+    {
+      "excerpt": "Changes in major version numbers imply a loss of backwards compatibility, whereas changes in only the minor version number must be backwards-compatible.",
+      "line_number": 150,
+      "reason": "This describes the implications of version changes, not an implementation choice."
+    },
+    {
+      "excerpt": "The first letter following the 'Z' conventionally indicates the most closely related alphabetical extension category.",
+      "line_number": 104,
+      "reason": "This is a guideline for naming conventions, not an architectural parameter."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"RISC-V ISA strings begin with either RV32I, RV32E, RV64I, or RV64E, indicating the supported address space size in bits for the base integer ISA.\",\n      \"line_number\": 10,\n      \"parameter_name\": \"BASE_INTEGER_ISA\",\n      \"existing_udb_name\": \"BASE_INTEGER_ISA\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"enum\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The choice of base integer ISA (RV32I, RV32E, RV64I, RV64E) is a direct implementation decision, allowing for different address space sizes.\"\n    },\n    {\n      \"excerpt\": \"Standard extensions that extend the supervisor-level virtual-memory architecture are prefixed with the letters 'Sv', followed by an alphanumeric name.\",\n      \"line_number\": 56,\n      \"parameter_name\": \"SUPERVISOR_LEVEL_EXTENSION_NAMES\",\n      \"existing_udb_name\": \"SUPERVISOR_LEVEL_EXTENSION_NAMES\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The naming convention for supervisor-level extensions is an implementation choice, allowing for various alphanumeric names prefixed with 'Sv'.\"\n    },\n    {\n      \"excerpt\": \"Standard extensions that extend the hypervisor-level architecture are prefixed with the letters 'Sh', followed by an alphanumeric name.\",\n      \"line_number\": 78,\n      \"parameter_name\": \"HYPERVISOR_LEVEL_EXTENSION_NAMES\",\n      \"existing_udb_name\": \"HYPERVISOR_LEVEL_EXTENSION_NAMES\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The naming convention for hypervisor-level extensions is an implementation choice, allowing for various alphanumeric names prefixed with 'Sh'.\"\n    },\n    {\n      \"excerpt\": \"Standard machine-level instruction-set extensions are prefixed with the letters 'Sm'.\",\n      \"line_number\": 97,\n      \"parameter_name\": \"MACHINE_LEVEL_EXTENSION_NAMES\",\n      \"existing_udb_name\": \"MACHINE_LEVEL_EXTENSION_NAMES\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The naming convention for machine-level extensions is an implementation choice, allowing for various alphanumeric names prefixed with 'Sm'.\"\n    },\n    {\n      \"excerpt\": \"Non-standard extensions are named by using a single 'X' followed by the alphanumeric name.\",\n      \"line_number\": 116,\n      \"parameter_name\": \"NON_STANDARD_EXTENSION_NAMES\",\n      \"existing_udb_name\": \"NON_STANDARD_EXTENSION_NAMES\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The naming convention for non-standard extensions is an implementation choice, allowing for various alphanumeric names prefixed with 'X'.\"\n    },\n    {\n      \"excerpt\": \"Recognizing that instruction sets may expand or alter over time, we encode extension version numbers following the extension name.\",\n      \"line_number\": 145,\n      \"parameter_name\": \"EXTENSION_VERSION_NUMBERS\",\n      \"existing_udb_name\": \"EXTENSION_VERSION_NUMBERS\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The encoding of extension version numbers is an implementation choice, allowing for major and minor versioning of extensions.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"The RISC-V ISA is designed to support a wide variety of implementations with various experimental instruction-set extensions.\",\n      \"line_number\": 5,\n      \"reason\": \"This is a general statement about the design of the ISA and does not specify an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The name must end with an alphabetical character.\",\n      \"line_number\": 113,\n      \"reason\": \"This is a fixed requirement for naming conventions, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"If multiple non-standard extensions are listed, they should be ordered alphabetically.\",\n      \"line_number\": 120,\n      \"reason\": \"This describes a guideline for ordering extensions, not an architectural parameter.\"\n    },\n    {\n      \"excerpt\": \"Changes in major version numbers imply a loss of backwards compatibility, whereas changes in only the minor version number must be backwards-compatible.\",\n      \"line_number\": 150,\n      \"reason\": \"This describes the implications of version changes, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The first letter following the 'Z' conventionally indicates the most closely related alphabetical extension category.\",\n      \"line_number\": 104,\n      \"reason\": \"This is a guideline for naming conventions, not an architectural parameter.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 8685,
+  "output_tokens": 1043,
+  "latency_ms": 11163,
+  "timestamp": "2026-07-24T20:29:40.967263+00:00",
+  "error": null,
+  "retry_count": 0
+}

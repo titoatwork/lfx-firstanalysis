@@ -1,0 +1,104 @@
+{
+  "chunk_id": "chunk_002",
+  "source_file": "b-st-ext.adoc",
+  "start_line": 1,
+  "end_line": 3426,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "The bitmanip extensions are defined for RV32 and RV64.",
+      "line_number": 8,
+      "parameter_name": "BITMANIP_ARCHITECTURES",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The architectures (RV32 and RV64) for which the bitmanip extensions are defined are implementation choices."
+    },
+    {
+      "excerpt": "The shift and add instructions do a left shift of 1, 2, or 3 because these are commonly found in real-world code and because they can be implemented with a minimal amount of additional hardware beyond that of the simple adder.",
+      "line_number": 20,
+      "parameter_name": "SHIFT_ADD_MAX_LEFT_SHIFT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The maximum left shift amount (1, 2, or 3) is a design-time decision for the implementer."
+    },
+    {
+      "excerpt": "The following instructions comprise the Zba extension:",
+      "line_number": 36,
+      "parameter_name": "ZBA_INSTRUCTIONS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The specific instructions included in the Zba extension are implementation-defined choices."
+    },
+    {
+      "excerpt": "The B standard extension comprises instructions provided by the Zba, Zbb, and Zbs extensions.",
+      "line_number": 50,
+      "parameter_name": "B_EXTENSION_INSTRUCTIONS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The specific instructions that comprise the B extension are implementation choices."
+    },
+    {
+      "excerpt": "The xperm8 instruction operates on bytes.",
+      "line_number": 295,
+      "parameter_name": "XPERM8_OPERATES_ON_BYTES",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The operation of the xperm8 instruction on bytes is a design-time decision."
+    },
+    {
+      "excerpt": "The xperm4 instruction operates on nibbles.",
+      "line_number": 315,
+      "parameter_name": "XPERM4_OPERATES_ON_NIBBLES",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The operation of the xperm4 instruction on nibbles is a design-time decision."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE, caption=\"Imp\" ]\n===============================================================\nThe Logical with Negate instructions can be implemented by inverting the _rs2_ inputs to the base-required AND, OR, and XOR logic instructions.\nIn some implementations, the inverter on rs2 used for subtraction can be reused for this purpose.\n===============================================================\n",
+      "line_number": 118,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "This instruction counts the number of 0's before the first 1, starting at the most-significant bit (i.e., XLEN-1) and progressing to bit 0.",
+      "line_number": 200,
+      "reason": "This describes the behavior of the instruction rather than an implementation choice."
+    },
+    {
+      "excerpt": "This instruction performs an XLEN-wide addition of two addends.",
+      "line_number": 400,
+      "reason": "This describes the behavior of the instruction rather than an implementation choice."
+    },
+    {
+      "excerpt": "This instruction is useful for implementing the SHA3 cryptographic hash function on a 32-bit architecture, as it implements the bit-interleaving operation used to speed up the 64-bit rotations directly.",
+      "line_number": 500,
+      "reason": "This is a suggestion for software implementation, not an architectural parameter."
+    },
+    {
+      "excerpt": "The *zext.h* mnemonic corresponds to different instruction encodings in RV32 and RV64.",
+      "line_number": 600,
+      "reason": "This describes the behavior of the instruction rather than an implementation choice."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"The bitmanip extensions are defined for RV32 and RV64.\",\n      \"line_number\": 8,\n      \"parameter_name\": \"BITMANIP_ARCHITECTURES\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The architectures (RV32 and RV64) for which the bitmanip extensions are defined are implementation choices.\"\n    },\n    {\n      \"excerpt\": \"The shift and add instructions do a left shift of 1, 2, or 3 because these are commonly found in real-world code and because they can be implemented with a minimal amount of additional hardware beyond that of the simple adder.\",\n      \"line_number\": 20,\n      \"parameter_name\": \"SHIFT_ADD_MAX_LEFT_SHIFT\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"range\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The maximum left shift amount (1, 2, or 3) is a design-time decision for the implementer.\"\n    },\n    {\n      \"excerpt\": \"The following instructions comprise the Zba extension:\",\n      \"line_number\": 36,\n      \"parameter_name\": \"ZBA_INSTRUCTIONS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The specific instructions included in the Zba extension are implementation-defined choices.\"\n    },\n    {\n      \"excerpt\": \"The B standard extension comprises instructions provided by the Zba, Zbb, and Zbs extensions.\",\n      \"line_number\": 50,\n      \"parameter_name\": \"B_EXTENSION_INSTRUCTIONS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The specific instructions that comprise the B extension are implementation choices.\"\n    },\n    {\n      \"excerpt\": \"The xperm8 instruction operates on bytes.\",\n      \"line_number\": 295,\n      \"parameter_name\": \"XPERM8_OPERATES_ON_BYTES\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The operation of the xperm8 instruction on bytes is a design-time decision.\"\n    },\n    {\n      \"excerpt\": \"The xperm4 instruction operates on nibbles.\",\n      \"line_number\": 315,\n      \"parameter_name\": \"XPERM4_OPERATES_ON_NIBBLES\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The operation of the xperm4 instruction on nibbles is a design-time decision.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"[NOTE, caption=\\\"Imp\\\" ]\\n===============================================================\\nThe Logical with Negate instructions can be implemented by inverting the _rs2_ inputs to the base-required AND, OR, and XOR logic instructions.\\nIn some implementations, the inverter on rs2 used for subtraction can be reused for this purpose.\\n===============================================================\\n\",\n      \"line_number\": 118,\n      \"reason\": \"This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement.\"\n    },\n    {\n      \"excerpt\": \"This instruction counts the number of 0's before the first 1, starting at the most-significant bit (i.e., XLEN-1) and progressing to bit 0.\",\n      \"line_number\": 200,\n      \"reason\": \"This describes the behavior of the instruction rather than an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"This instruction performs an XLEN-wide addition of two addends.\",\n      \"line_number\": 400,\n      \"reason\": \"This describes the behavior of the instruction rather than an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"This instruction is useful for implementing the SHA3 cryptographic hash function on a 32-bit architecture, as it implements the bit-interleaving operation used to speed up the 64-bit rotations directly.\",\n      \"line_number\": 500,\n      \"reason\": \"This is a suggestion for software implementation, not an architectural parameter.\"\n    },\n    {\n      \"excerpt\": \"The *zext.h* mnemonic corresponds to different instruction encodings in RV32 and RV64.\",\n      \"line_number\": 600,\n      \"reason\": \"This describes the behavior of the instruction rather than an implementation choice.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 31598,
+  "output_tokens": 1030,
+  "latency_ms": 33026,
+  "timestamp": "2026-07-24T20:16:08.759595+00:00",
+  "error": null,
+  "retry_count": 0
+}

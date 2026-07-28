@@ -1,0 +1,59 @@
+{
+  "chunk_id": "chunk_069",
+  "source_file": "zfh.adoc",
+  "start_line": 1,
+  "end_line": 186,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "If the D extension is present, the FCVT.D.H and FCVT.H.D instructions are also included.",
+      "line_number": 157,
+      "parameter_name": "D_EXTENSION_SUPPORT_FOR_FCVT",
+      "existing_udb_name": "D_EXTENSION_SUPPORT_FOR_FCVT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The presence of the D extension is an implementation choice that determines whether FCVT.D.H and FCVT.H.D instructions are included. This is a direct implementation decision."
+    },
+    {
+      "excerpt": "If the Q extension is present, the FCVT.Q.H and FCVT.H.Q instructions are additionally included.",
+      "line_number": 159,
+      "parameter_name": "Q_EXTENSION_SUPPORT_FOR_FCVT",
+      "existing_udb_name": "Q_EXTENSION_SUPPORT_FOR_FCVT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The presence of the Q extension is an implementation choice that determines whether FCVT.Q.H and FCVT.H.Q instructions are included. This is a direct implementation decision."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "This extension primarily provides instructions that consume half-precision operands and produce half-precision results.",
+      "line_number": 6,
+      "reason": "This is a descriptive statement about the purpose of the extension, not an implementation choice."
+    },
+    {
+      "excerpt": "FLH and FSH are only guaranteed to execute atomically if the effective address is naturally aligned.",
+      "line_number": 12,
+      "reason": "This describes a condition under which certain instructions operate, not an implementation-defined parameter."
+    },
+    {
+      "excerpt": "Half-precision addition, subtraction, multiplication, division, and square-root operations can be faithfully emulated by converting the half-precision operands to single-precision.",
+      "line_number": 174,
+      "reason": "This describes a method of emulation rather than an implementation choice or parameter."
+    },
+    {
+      "excerpt": "Zfhmin does not include the FSGNJ.H instruction, because it suffices to instead use the FSGNJ.S instruction to move half-precision values between floating-point registers.",
+      "line_number": 182,
+      "reason": "This is a statement about the design of the Zfhmin extension, not an implementation choice."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"If the D extension is present, the FCVT.D.H and FCVT.H.D instructions are also included.\",\n      \"line_number\": 157,\n      \"parameter_name\": \"D_EXTENSION_SUPPORT_FOR_FCVT\",\n      \"existing_udb_name\": \"D_EXTENSION_SUPPORT_FOR_FCVT\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The presence of the D extension is an implementation choice that determines whether FCVT.D.H and FCVT.H.D instructions are included. This is a direct implementation decision.\"\n    },\n    {\n      \"excerpt\": \"If the Q extension is present, the FCVT.Q.H and FCVT.H.Q instructions are additionally included.\",\n      \"line_number\": 159,\n      \"parameter_name\": \"Q_EXTENSION_SUPPORT_FOR_FCVT\",\n      \"existing_udb_name\": \"Q_EXTENSION_SUPPORT_FOR_FCVT\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The presence of the Q extension is an implementation choice that determines whether FCVT.Q.H and FCVT.H.Q instructions are included. This is a direct implementation decision.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"This extension primarily provides instructions that consume half-precision operands and produce half-precision results.\",\n      \"line_number\": 6,\n      \"reason\": \"This is a descriptive statement about the purpose of the extension, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"FLH and FSH are only guaranteed to execute atomically if the effective address is naturally aligned.\",\n      \"line_number\": 12,\n      \"reason\": \"This describes a condition under which certain instructions operate, not an implementation-defined parameter.\"\n    },\n    {\n      \"excerpt\": \"Half-precision addition, subtraction, multiplication, division, and square-root operations can be faithfully emulated by converting the half-precision operands to single-precision.\",\n      \"line_number\": 174,\n      \"reason\": \"This describes a method of emulation rather than an implementation choice or parameter.\"\n    },\n    {\n      \"excerpt\": \"Zfhmin does not include the FSGNJ.H instruction, because it suffices to instead use the FSGNJ.S instruction to move half-precision values between floating-point registers.\",\n      \"line_number\": 182,\n      \"reason\": \"This is a statement about the design of the Zfhmin extension, not an implementation choice.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 8236,
+  "output_tokens": 549,
+  "latency_ms": 5476,
+  "timestamp": "2026-07-24T18:42:24.114943+00:00",
+  "error": null,
+  "retry_count": 0
+}

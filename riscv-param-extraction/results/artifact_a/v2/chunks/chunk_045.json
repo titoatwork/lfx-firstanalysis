@@ -1,0 +1,94 @@
+{
+  "chunk_id": "chunk_045",
+  "source_file": "scalar-crypto.adoc",
+  "start_line": 3423,
+  "end_line": 5594,
+  "content_start_line": 3453,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "The `seed` CSR provides an interface to a NIST SP 800-90B compliant physical Entropy Source (ES).",
+      "line_number": 3445,
+      "parameter_name": "SEED_CSR_ENTROPY_SOURCE",
+      "existing_udb_name": "SEED_CSR_ENTROPY_SOURCE",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to provide an entropy source compliant with NIST SP 800-90B. This is a design-time decision, not controlled by a CSR field."
+    },
+    {
+      "excerpt": "The status bits `seed[31:30]` = `OPST` may be `ES16` (10), indicating successful polling, or one of three entropy polling failure statuses `BIST` (00), `WAIT` (01), or `DEAD` (11).",
+      "line_number": 3460,
+      "parameter_name": "SEED_CSR_OPST_VALUES",
+      "existing_udb_name": "SEED_CSR_OPST_VALUES",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The OPST field in the seed CSR is a WARL field, and the legal values it can take vary by implementation. This defines the set of possible values for the status bits."
+    },
+    {
+      "excerpt": "An implementation may safely set reserved and custom bits to zeros.",
+      "line_number": 3475,
+      "parameter_name": "SEED_CSR_RESERVED_BITS",
+      "existing_udb_name": "SEED_CSR_RESERVED_BITS",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to set reserved and custom bits to zero is left to the implementer, making it a design-time decision."
+    },
+    {
+      "excerpt": "The `seed` CSR is also access controlled by execution mode, and attempted read or write access will raise an illegal-instruction exception outside M mode unless access is explicitly granted.",
+      "line_number": 3480,
+      "parameter_name": "SEED_CSR_ACCESS_CONTROL",
+      "existing_udb_name": "SEED_CSR_ACCESS_CONTROL",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation decides how to control access to the seed CSR based on execution mode, which is a design-time choice."
+    },
+    {
+      "excerpt": "The `seed` CSR must not return anything via `ES16`; it should be in `BIST` state unless the source is `DEAD`.",
+      "line_number": 3490,
+      "parameter_name": "SEED_CSR_NOISE_TEST_BEHAVIOR",
+      "existing_udb_name": "SEED_CSR_NOISE_TEST_BEHAVIOR",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The behavior of the seed CSR in noise test mode is implementation-defined, allowing the implementer to choose how it behaves."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "This instruction is useful for implementing the SHA3 cryptographic hash function on a 32-bit architecture, as it implements the bit-interleaving operation used to speed up the 64-bit rotations directly.",
+      "line_number": 3440,
+      "reason": "This is a suggestion in a NOTE block and does not define an architectural parameter."
+    },
+    {
+      "excerpt": "The `seed` CSR provides an interface to a NIST SP 800-90B compliant physical Entropy Source (ES).",
+      "line_number": 3445,
+      "reason": "This is a description of the CSR's purpose, not a parameter defining implementation choices."
+    },
+    {
+      "excerpt": "The implementation requirements of `entropy` bits are defined in <<crypto_scalar_es_req>>.",
+      "line_number": 3465,
+      "reason": "This refers to requirements defined elsewhere and does not specify an implementation choice."
+    },
+    {
+      "excerpt": "The `seed` CSR is also access controlled by execution mode, and attempted read or write access will raise an illegal-instruction exception outside M mode unless access is explicitly granted.",
+      "line_number": 3480,
+      "reason": "This describes behavior based on CSR access control, not an implementation choice."
+    },
+    {
+      "excerpt": "The `seed` CSR must not return anything via `ES16`; it should be in `BIST` state unless the source is `DEAD`.",
+      "line_number": 3490,
+      "reason": "This describes expected behavior of the CSR under certain conditions, not an implementation choice."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"The `seed` CSR provides an interface to a NIST SP 800-90B compliant physical Entropy Source (ES).\",\n      \"line_number\": 3445,\n      \"parameter_name\": \"SEED_CSR_ENTROPY_SOURCE\",\n      \"existing_udb_name\": \"SEED_CSR_ENTROPY_SOURCE\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation can choose to provide an entropy source compliant with NIST SP 800-90B. This is a design-time decision, not controlled by a CSR field.\"\n    },\n    {\n      \"excerpt\": \"The status bits `seed[31:30]` = `OPST` may be `ES16` (10), indicating successful polling, or one of three entropy polling failure statuses `BIST` (00), `WAIT` (01), or `DEAD` (11).\",\n      \"line_number\": 3460,\n      \"parameter_name\": \"SEED_CSR_OPST_VALUES\",\n      \"existing_udb_name\": \"SEED_CSR_OPST_VALUES\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"enum\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The OPST field in the seed CSR is a WARL field, and the legal values it can take vary by implementation. This defines the set of possible values for the status bits.\"\n    },\n    {\n      \"excerpt\": \"An implementation may safely set reserved and custom bits to zeros.\",\n      \"line_number\": 3475,\n      \"parameter_name\": \"SEED_CSR_RESERVED_BITS\",\n      \"existing_udb_name\": \"SEED_CSR_RESERVED_BITS\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The choice to set reserved and custom bits to zero is left to the implementer, making it a design-time decision.\"\n    },\n    {\n      \"excerpt\": \"The `seed` CSR is also access controlled by execution mode, and attempted read or write access will raise an illegal-instruction exception outside M mode unless access is explicitly granted.\",\n      \"line_number\": 3480,\n      \"parameter_name\": \"SEED_CSR_ACCESS_CONTROL\",\n      \"existing_udb_name\": \"SEED_CSR_ACCESS_CONTROL\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation decides how to control access to the seed CSR based on execution mode, which is a design-time choice.\"\n    },\n    {\n      \"excerpt\": \"The `seed` CSR must not return anything via `ES16`; it should be in `BIST` state unless the source is `DEAD`.\",\n      \"line_number\": 3490,\n      \"parameter_name\": \"SEED_CSR_NOISE_TEST_BEHAVIOR\",\n      \"existing_udb_name\": \"SEED_CSR_NOISE_TEST_BEHAVIOR\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The behavior of the seed CSR in noise test mode is implementation-defined, allowing the implementer to choose how it behaves.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"This instruction is useful for implementing the SHA3 cryptographic hash function on a 32-bit architecture, as it implements the bit-interleaving operation used to speed up the 64-bit rotations directly.\",\n      \"line_number\": 3440,\n      \"reason\": \"This is a suggestion in a NOTE block and does not define an architectural parameter.\"\n    },\n    {\n      \"excerpt\": \"The `seed` CSR provides an interface to a NIST SP 800-90B compliant physical Entropy Source (ES).\",\n      \"line_number\": 3445,\n      \"reason\": \"This is a description of the CSR's purpose, not a parameter defining implementation choices.\"\n    },\n    {\n      \"excerpt\": \"The implementation requirements of `entropy` bits are defined in <<crypto_scalar_es_req>>.\",\n      \"line_number\": 3465,\n      \"reason\": \"This refers to requirements defined elsewhere and does not specify an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The `seed` CSR is also access controlled by execution mode, and attempted read or write access will raise an illegal-instruction exception outside M mode unless access is explicitly granted.\",\n      \"line_number\": 3480,\n      \"reason\": \"This describes behavior based on CSR access control, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The `seed` CSR must not return anything via `ES16`; it should be in `BIST` state unless the source is `DEAD`.\",\n      \"line_number\": 3490,\n      \"reason\": \"This describes expected behavior of the CSR under certain conditions, not an implementation choice.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 33241,
+  "output_tokens": 1072,
+  "latency_ms": 12866,
+  "timestamp": "2026-07-24T18:22:59.462719+00:00",
+  "error": null,
+  "retry_count": 0
+}

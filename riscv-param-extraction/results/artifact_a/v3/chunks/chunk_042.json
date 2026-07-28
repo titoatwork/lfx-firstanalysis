@@ -1,0 +1,64 @@
+{
+  "chunk_id": "chunk_042",
+  "source_file": "rv64.adoc",
+  "start_line": 1,
+  "end_line": 260,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "RV64I widens the integer registers and supported user address space to 64 bits (XLEN=64 in <<gprs>>).",
+      "line_number": 6,
+      "parameter_name": "XLEN",
+      "existing_udb_name": "XLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "XLEN is a direct implementation choice that specifies the width of the integer registers and address space. The value is set to 64 bits for RV64I."
+    },
+    {
+      "excerpt": "The execution environment will define what portions of the address space are legal to access.",
+      "line_number": 90,
+      "parameter_name": "LEGAL_ADDRESS_SPACE_ACCESS",
+      "existing_udb_name": "LEGAL_ADDRESS_SPACE_ACCESS",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The specification states that the execution environment defines the legal portions of the address space, indicating an implementation choice."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "These \"*W\" instructions ignore the upper 32 bits of their inputs and always produce 32-bit signed values, sign-extending them to 64 bits, i.e. bits XLEN-1 through 31 are equal.",
+      "line_number": 12,
+      "reason": "This describes the behavior of specific instructions rather than an implementation choice. The parameter would be the specific instruction set behavior, not a parameter."
+    },
+    {
+      "excerpt": "Overflows are ignored and the result is the low 32 bits of the result sign-extended to 64 bits.",
+      "line_number": 20,
+      "reason": "This is a behavioral description of the ADDIW instruction, not an implementation choice. The parameter would be the behavior of the instruction, not a parameter."
+    },
+    {
+      "excerpt": "SLLIW, SRLIW, and SRAIW encodings with _imm[5] {ne} 0_ are reserved.",
+      "line_number": 38,
+      "reason": "This indicates reserved encodings for specific instructions, which does not imply an implementation choice but rather a fixed specification."
+    },
+    {
+      "excerpt": "The LD instruction loads a 64-bit value from memory into register _rd_ for RV64I.",
+      "line_number": 92,
+      "reason": "This describes the behavior of the LD instruction rather than an implementation choice. The parameter would be the instruction's behavior, not a parameter."
+    },
+    {
+      "excerpt": "Note that the set of address offsets that can be formed by pairing LUI with LD, AUIPC with JALR, etc. in RV64I is [\u22122^31^\u22122^11^, 2^31^\u22122^11^\u22121].",
+      "line_number": 104,
+      "reason": "This provides a fixed range of address offsets rather than an implementation choice. It does not indicate a parameter that can vary by implementation."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"RV64I widens the integer registers and supported user address space to 64 bits (XLEN=64 in <<gprs>>).\",\n      \"line_number\": 6,\n      \"parameter_name\": \"XLEN\",\n      \"existing_udb_name\": \"XLEN\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"value\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"XLEN is a direct implementation choice that specifies the width of the integer registers and address space. The value is set to 64 bits for RV64I.\"\n    },\n    {\n      \"excerpt\": \"The execution environment will define what portions of the address space are legal to access.\",\n      \"line_number\": 90,\n      \"parameter_name\": \"LEGAL_ADDRESS_SPACE_ACCESS\",\n      \"existing_udb_name\": \"LEGAL_ADDRESS_SPACE_ACCESS\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The specification states that the execution environment defines the legal portions of the address space, indicating an implementation choice.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"These \\\"*W\\\" instructions ignore the upper 32 bits of their inputs and always produce 32-bit signed values, sign-extending them to 64 bits, i.e. bits XLEN-1 through 31 are equal.\",\n      \"line_number\": 12,\n      \"reason\": \"This describes the behavior of specific instructions rather than an implementation choice. The parameter would be the specific instruction set behavior, not a parameter.\"\n    },\n    {\n      \"excerpt\": \"Overflows are ignored and the result is the low 32 bits of the result sign-extended to 64 bits.\",\n      \"line_number\": 20,\n      \"reason\": \"This is a behavioral description of the ADDIW instruction, not an implementation choice. The parameter would be the behavior of the instruction, not a parameter.\"\n    },\n    {\n      \"excerpt\": \"SLLIW, SRLIW, and SRAIW encodings with _imm[5] {ne} 0_ are reserved.\",\n      \"line_number\": 38,\n      \"reason\": \"This indicates reserved encodings for specific instructions, which does not imply an implementation choice but rather a fixed specification.\"\n    },\n    {\n      \"excerpt\": \"The LD instruction loads a 64-bit value from memory into register _rd_ for RV64I.\",\n      \"line_number\": 92,\n      \"reason\": \"This describes the behavior of the LD instruction rather than an implementation choice. The parameter would be the instruction's behavior, not a parameter.\"\n    },\n    {\n      \"excerpt\": \"Note that the set of address offsets that can be formed by pairing LUI with LD, AUIPC with JALR, etc. in RV64I is [\u22122^31^\u22122^11^, 2^31^\u22122^11^\u22121].\",\n      \"line_number\": 104,\n      \"reason\": \"This provides a fixed range of address offsets rather than an implementation choice. It does not indicate a parameter that can vary by implementation.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 9830,
+  "output_tokens": 680,
+  "latency_ms": 6460,
+  "timestamp": "2026-07-24T20:36:44.893538+00:00",
+  "error": null,
+  "retry_count": 0
+}

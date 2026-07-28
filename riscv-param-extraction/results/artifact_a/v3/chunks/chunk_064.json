@@ -1,0 +1,74 @@
+{
+  "chunk_id": "chunk_064",
+  "source_file": "zacas.adoc",
+  "start_line": 1,
+  "end_line": 225,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "The instruction requires the first register in the pair to be even numbered; encodings with odd numbered registers specified in rs2 and rd are reserved.",
+      "line_number": 45,
+      "parameter_name": "AMOCAS_D_FIRST_REG_EVEN",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The requirement for the first register in the pair to be even numbered is a design-time decision made by the implementer."
+    },
+    {
+      "excerpt": "Just as for AMOs in the A extension, AMOCAS.W/D/Q requires that the address held in rs1 be naturally aligned to the size of the operand (i.e., 16-byte aligned for quadwords, eight-byte aligned for doublewords, and four-byte aligned for words).",
+      "line_number": 195,
+      "parameter_name": "AMOCAS_ADDRESS_ALIGNMENT",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The alignment requirements for the address in rs1 vary by implementation and are determined by the operand size, making it a WARL parameter."
+    },
+    {
+      "excerpt": "The memory operation performed by an AMOCAS.W/D/Q, when successful, has acquire semantics if aq bit is 1 and has release semantics if rl bit is 1.",
+      "line_number": 195,
+      "parameter_name": "AMOCAS_AQ_RL_SEMANTICS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to support acquire and release semantics based on the aq and rl bits, making this a WARL parameter."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "An AMOCAS.W/D/Q instruction always requires write permissions.",
+      "line_number": 195,
+      "reason": "This is a fixed requirement that applies to all implementations and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "An unsuccessful AMOCAS.W/D/Q may either not perform a memory write or may write back the old value loaded from memory.",
+      "line_number": 195,
+      "reason": "This describes behavior in case of failure, which is determined by the implementation and not an architectural parameter."
+    },
+    {
+      "excerpt": "Some algorithms may load the previous data value of a memory location into the register used as the compare data value source by a Zacas instruction.",
+      "line_number": 195,
+      "reason": "This is a suggestion for software implementation and does not define an architectural parameter."
+    },
+    {
+      "excerpt": "A FENCE instruction may be used to order the memory read access and, if produced, the memory write access by an AMOCAS.W/D/Q instruction.",
+      "line_number": 195,
+      "reason": "This describes a potential software behavior and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "The following example code sequence illustrates the use of AMOCAS.D in a RV32 implementation to atomically increment a 64-bit counter.",
+      "line_number": 195,
+      "reason": "This is an example of software usage and does not define an architectural parameter."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"The instruction requires the first register in the pair to be even numbered; encodings with odd numbered registers specified in rs2 and rd are reserved.\",\n      \"line_number\": 45,\n      \"parameter_name\": \"AMOCAS_D_FIRST_REG_EVEN\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The requirement for the first register in the pair to be even numbered is a design-time decision made by the implementer.\"\n    },\n    {\n      \"excerpt\": \"Just as for AMOs in the A extension, AMOCAS.W/D/Q requires that the address held in rs1 be naturally aligned to the size of the operand (i.e., 16-byte aligned for quadwords, eight-byte aligned for doublewords, and four-byte aligned for words).\",\n      \"line_number\": 195,\n      \"parameter_name\": \"AMOCAS_ADDRESS_ALIGNMENT\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"enum\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The alignment requirements for the address in rs1 vary by implementation and are determined by the operand size, making it a WARL parameter.\"\n    },\n    {\n      \"excerpt\": \"The memory operation performed by an AMOCAS.W/D/Q, when successful, has acquire semantics if aq bit is 1 and has release semantics if rl bit is 1.\",\n      \"line_number\": 195,\n      \"parameter_name\": \"AMOCAS_AQ_RL_SEMANTICS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation can choose whether to support acquire and release semantics based on the aq and rl bits, making this a WARL parameter.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"An AMOCAS.W/D/Q instruction always requires write permissions.\",\n      \"line_number\": 195,\n      \"reason\": \"This is a fixed requirement that applies to all implementations and does not represent an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"An unsuccessful AMOCAS.W/D/Q may either not perform a memory write or may write back the old value loaded from memory.\",\n      \"line_number\": 195,\n      \"reason\": \"This describes behavior in case of failure, which is determined by the implementation and not an architectural parameter.\"\n    },\n    {\n      \"excerpt\": \"Some algorithms may load the previous data value of a memory location into the register used as the compare data value source by a Zacas instruction.\",\n      \"line_number\": 195,\n      \"reason\": \"This is a suggestion for software implementation and does not define an architectural parameter.\"\n    },\n    {\n      \"excerpt\": \"A FENCE instruction may be used to order the memory read access and, if produced, the memory write access by an AMOCAS.W/D/Q instruction.\",\n      \"line_number\": 195,\n      \"reason\": \"This describes a potential software behavior and does not indicate an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The following example code sequence illustrates the use of AMOCAS.D in a RV32 implementation to atomically increment a 64-bit counter.\",\n      \"line_number\": 195,\n      \"reason\": \"This is an example of software usage and does not define an architectural parameter.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 9882,
+  "output_tokens": 765,
+  "latency_ms": 8687,
+  "timestamp": "2026-07-25T18:08:19.609385+00:00",
+  "error": null,
+  "retry_count": 0
+}

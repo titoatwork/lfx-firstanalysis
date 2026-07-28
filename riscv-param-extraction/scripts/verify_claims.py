@@ -186,6 +186,25 @@ CLAIMS: list[Claim] = [
           RESULTS / "metrics_gpt-4o-mini.json",
           lambda m: m.get("total_llm_params_deduped"), tags=["artifactA"]),
 
+    # ---- the cross-check that was impossible until 2026-07-28 ----
+    # `exact_matches_evaluated` is a lower bound (analyze.py:510 filters by
+    # class_match is not None). Until the alignment files were recovered from a
+    # git stash, nothing could confirm it for these two runs. Now both do.
+    Claim("artifactA.alignment_exact", 11, "metrics.md §5, PRIMARY_RESULTS.md",
+          RESULTS / "artifact_a" / "v2" / "alignment_gpt-4o-mini.json",
+          lambda d: sum(1 for r in (d if isinstance(d, list) else d.get("alignments", []))
+                        if r.get("match_type") == "exact"),
+          tags=["artifactA", "recovered"]),
+    Claim("v3.alignment_exact", 10, "metrics.md §6, PRIMARY_RESULTS.md",
+          RESULTS / "artifact_a" / "v3" / "alignment_gpt-4o-mini.json",
+          lambda d: sum(1 for r in (d if isinstance(d, list) else d.get("alignments", []))
+                        if r.get("match_type") == "exact"),
+          tags=["artifactA", "recovered"]),
+    # The deduped list is what makes the model-exclusive sets recomputable.
+    Claim("artifactA.recovered_deduped", 230, "metrics.md §5.3",
+          RESULTS / "artifact_a" / "v2" / "deduped_gpt-4o-mini.json",
+          lambda d: d.get("total_unique_parameters"), tags=["artifactA", "recovered"]),
+
     # ---- metrics.md section 5.3 and 5.4, cross-model agreement ----
     Claim("agreement.jaccard", 3.8, "metrics.md §5.3",
           RESULTS / "artifact_a_agreement.json",
@@ -316,21 +335,18 @@ CLAIMS: list[Claim] = [
           RESULTS / "metrics_claude-sonnet-4.part1-committed.json",
           lambda m: round(100 * (m["matched_udb_count"] - m["exact_matches_evaluated"])
                           / m["matched_udb_count"], 1), tol=0.05, tags=["decomp"]),
-    # Artifact A and the v3 ablation predate the retention rule. Their alignment
-    # files were never kept, so these three can be re-derived but never audited.
+    # Recovered 2026-07-28 from a git stash on the UDB clone. Both alignment
+    # files are committed under results/artifact_a/, so these cross-check.
     Claim("decomp.mini_exact", 11, "PRIMARY_RESULTS.md",
           RESULTS / "metrics_gpt-4o-mini.json",
-          lambda m: m["exact_matches_evaluated"], tags=["decomp"],
-          audit_level="aggregate_only"),
+          lambda m: m["exact_matches_evaluated"], tags=["decomp"]),
     Claim("decomp.mini_share", 80.7, "PRIMARY_RESULTS.md",
           RESULTS / "metrics_gpt-4o-mini.json",
           lambda m: round(100 * (m["matched_udb_count"] - m["exact_matches_evaluated"])
-                          / m["matched_udb_count"], 1), tol=0.05, tags=["decomp"],
-          audit_level="aggregate_only"),
+                          / m["matched_udb_count"], 1), tol=0.05, tags=["decomp"]),
     Claim("decomp.v3_exact", 10, "PRIMARY_RESULTS.md",
           RESULTS / "metrics_gpt-4o-mini.v3.json",
-          lambda m: m["exact_matches_evaluated"], tags=["decomp"],
-          audit_level="aggregate_only"),
+          lambda m: m["exact_matches_evaluated"], tags=["decomp"]),
 
     # ---- the reproducible cross-model comparison that replaced 7.8x ----
     # Both complete arm A runs land on 9 exact matches. 86/9 = 9.6x, and the
@@ -423,8 +439,10 @@ UNVERIFIABLE = [
      "regenerated from a local UDB checkout; ground_truth.json is not committed"),
     ("part1.vs_gt223", "64.2% adjusted recall against live GT223",
      "scored against the uncommitted live gold"),
-    ("artifactA.exclusive_sets", "227 Claude-only / 209 mini-only candidates",
-     "per-chunk outputs were not retained; only the aggregate counts survive"),
+    # artifactA.exclusive_sets was listed here from 2026-07-25 to 2026-07-28.
+    # It is now checkable: the deduped lists were recovered from a git stash on
+    # the UDB clone, and `pipeline/agreement.py` reproduces the committed counts
+    # exactly (236 / 218 / 9 / 227 / 209). Gated as agreement.* instead.
     ("pilot.cost", "pilot ~$0.05 model split",
      "provider billing, not reproducible from artifacts"),
     ("gemini.daily_limit", "20 free-tier requests per day for gemini-3.6-flash",

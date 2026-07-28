@@ -1,0 +1,64 @@
+{
+  "chunk_id": "chunk_012",
+  "source_file": "d-st-ext.adoc",
+  "start_line": 1,
+  "end_line": 239,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "FLEN can be 32, 64, or 128 depending on which of the F, D, and Q extensions are supported.",
+      "line_number": 8,
+      "parameter_name": "FLEN",
+      "existing_udb_name": "FLEN",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The FLEN field is WARL, and the set of supported values (32, 64, 128) varies by implementation based on the extensions supported."
+    },
+    {
+      "excerpt": "FLD and FSD are only guaranteed to execute atomically if the effective address is naturally aligned and XLEN{ge}64.",
+      "line_number": 66,
+      "parameter_name": "DOUBLE_PRECISION_LOAD_STORE_ALIGNMENT",
+      "existing_udb_name": "DOUBLE_PRECISION_LOAD_STORE_ALIGNMENT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether to guarantee atomic execution based on alignment and XLEN. This is a design-time decision."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The double-precision value may be a NaN-boxed single-precision value.",
+      "line_number": 63,
+      "reason": "This describes a behavior of the double-precision value and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "A narrower _n_-bit transfer out of the floating-point registers will transfer the lower _n_ bits of the register ignoring the upper FLEN-_n_ bits.",
+      "line_number": 45,
+      "reason": "This describes the behavior of transfers and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "All floating-point operations on narrower __n__-bit operations, _n_<FLEN, check if the input operands are correctly NaN-boxed.",
+      "line_number": 49,
+      "reason": "This describes the behavior of operations and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "The double-precision floating-point computational instructions are defined analogously to their single-precision counterparts, but operate on double-precision operands.",
+      "line_number": 72,
+      "reason": "This is a description of how instructions are defined and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "The range of valid inputs for FCVT._int_.D and the behavior for invalid inputs are the same as for FCVT._int_.S.",
+      "line_number": 102,
+      "reason": "This describes the behavior of conversion instructions and does not indicate an implementation choice."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"FLEN can be 32, 64, or 128 depending on which of the F, D, and Q extensions are supported.\",\n      \"line_number\": 8,\n      \"parameter_name\": \"FLEN\",\n      \"existing_udb_name\": \"FLEN\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The FLEN field is WARL, and the set of supported values (32, 64, 128) varies by implementation based on the extensions supported.\"\n    },\n    {\n      \"excerpt\": \"FLD and FSD are only guaranteed to execute atomically if the effective address is naturally aligned and XLEN{ge}64.\",\n      \"line_number\": 66,\n      \"parameter_name\": \"DOUBLE_PRECISION_LOAD_STORE_ALIGNMENT\",\n      \"existing_udb_name\": \"DOUBLE_PRECISION_LOAD_STORE_ALIGNMENT\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation chooses whether to guarantee atomic execution based on alignment and XLEN. This is a design-time decision.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"The double-precision value may be a NaN-boxed single-precision value.\",\n      \"line_number\": 63,\n      \"reason\": \"This describes a behavior of the double-precision value and does not indicate an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"A narrower _n_-bit transfer out of the floating-point registers will transfer the lower _n_ bits of the register ignoring the upper FLEN-_n_ bits.\",\n      \"line_number\": 45,\n      \"reason\": \"This describes the behavior of transfers and does not indicate an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"All floating-point operations on narrower __n__-bit operations, _n_<FLEN, check if the input operands are correctly NaN-boxed.\",\n      \"line_number\": 49,\n      \"reason\": \"This describes the behavior of operations and does not indicate an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The double-precision floating-point computational instructions are defined analogously to their single-precision counterparts, but operate on double-precision operands.\",\n      \"line_number\": 72,\n      \"reason\": \"This is a description of how instructions are defined and does not indicate an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The range of valid inputs for FCVT._int_.D and the behavior for invalid inputs are the same as for FCVT._int_.S.\",\n      \"line_number\": 102,\n      \"reason\": \"This describes the behavior of conversion instructions and does not indicate an implementation choice.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 9468,
+  "output_tokens": 605,
+  "latency_ms": 6658,
+  "timestamp": "2026-07-24T20:21:06.287371+00:00",
+  "error": null,
+  "retry_count": 0
+}

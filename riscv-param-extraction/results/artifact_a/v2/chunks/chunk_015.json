@@ -1,0 +1,144 @@
+{
+  "chunk_id": "chunk_015",
+  "source_file": "hypervisor.adoc",
+  "start_line": 1,
+  "end_line": 2932,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "standard page-based address translation must be supported, either Sv32 for RV32, or a minimum of Sv39 for RV64.",
+      "line_number": 15,
+      "parameter_name": "SUPPORTED_VIRTUAL_MEMORY_MODES",
+      "existing_udb_name": "SUPPORTED_VIRTUAL_MEMORY_MODES",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The implementation must support specific virtual memory modes (Sv32 for RV32, Sv39 for RV64), which are implementation-defined legal values for the CSR field."
+    },
+    {
+      "excerpt": "The VSXL field controls the effective XLEN for VS-mode (known as VSXLEN), which may differ from the XLEN for HS-mode (HSXLEN).",
+      "line_number": 1230,
+      "parameter_name": "VSXLEN_CONTROL",
+      "existing_udb_name": "VSXLEN_CONTROL",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The VSXL field is a WARL field that may have different legal values depending on the implementation, affecting the effective XLEN for VS-mode."
+    },
+    {
+      "excerpt": "The VGEIN (Virtual Guest External Interrupt Number) field selects a guest external interrupt source for VS-level external interrupts.",
+      "line_number": 1280,
+      "parameter_name": "VGEIN_SOURCE_SELECTION",
+      "existing_udb_name": "VGEIN_SOURCE_SELECTION",
+      "class": "NORM_CSR_WARL",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The VGEIN field is a WLRL field that must hold values between zero and the maximum guest external interrupt number (GEILEN), which is implementation-defined."
+    },
+    {
+      "excerpt": "Field HU (Hypervisor in U-mode) controls whether the virtual-machine load/store instructions, HLV, HLVX, and HSV, can be used also in U-mode.",
+      "line_number": 1300,
+      "parameter_name": "HU_CONTROL",
+      "existing_udb_name": "HU_CONTROL",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether the HU field is set to allow hypervisor instructions in U-mode, making this a read-write parameter."
+    },
+    {
+      "excerpt": "The PBMTE bit controls whether the Svpbmt extension is available for use in VS-stage address translation.",
+      "line_number": 1450,
+      "parameter_name": "PBMTE_CONTROL",
+      "existing_udb_name": "PBMTE_CONTROL",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation decides whether the Svpbmt extension is available for VS-stage address translation, making this a read-write parameter."
+    },
+    {
+      "excerpt": "The ADUE bit controls whether hardware updating of PTE A/D bits is enabled for VS-stage address translation.",
+      "line_number": 1460,
+      "parameter_name": "ADUE_CONTROL",
+      "existing_udb_name": "ADUE_CONTROL",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether hardware updating of PTE A/D bits is enabled, making this a read-write parameter."
+    },
+    {
+      "excerpt": "The `hgatp` register is an HSXLEN-bit read/write register, formatted as shown in <<rv32hgatp>> for HSXLEN=32 and <<rv64hgatp>> for HSXLEN=64, which controls G-stage address translation and protection.",
+      "line_number": 1620,
+      "parameter_name": "HGATP_REGISTER_FORMAT",
+      "existing_udb_name": "HGATP_REGISTER_FORMAT",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The `hgatp` register's format is determined by the implementation, making this a read-write parameter."
+    },
+    {
+      "excerpt": "The number of VMID bits is UNSPECIFIED and may be zero.",
+      "line_number": 1680,
+      "parameter_name": "VMIDLEN",
+      "existing_udb_name": "VMIDLEN",
+      "class": "NORM_CSR_WARL",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of VMID bits is implementation-defined, making this a WARL parameter."
+    },
+    {
+      "excerpt": "The `mtval2` register is a *WARL* register that must be able to hold zero and may be capable of holding only an arbitrary subset of other 2-bit-shifted guest physical addresses, if any.",
+      "line_number": 1850,
+      "parameter_name": "MTVAL2_REGISTER_CAPACITY",
+      "existing_udb_name": "MTVAL2_REGISTER_CAPACITY",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The `mtval2` register's capacity is implementation-defined, making this a WARL parameter."
+    },
+    {
+      "excerpt": "The `mtinst` register is a *WARL* register that need only be able to hold the values that the implementation may automatically write to it on a trap.",
+      "line_number": 1880,
+      "parameter_name": "MTINST_REGISTER_CAPACITY",
+      "existing_udb_name": "MTINST_REGISTER_CAPACITY",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The `mtinst` register's capacity is implementation-defined, making this a WARL parameter."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The hypervisor extension is enabled by setting bit 7 in the `misa` CSR.",
+      "line_number": 20,
+      "reason": "This is a fixed requirement that applies to all implementations and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "The `hstatus` register is an HSXLEN-bit read/write register formatted as shown in <<hstatusreg>>.",
+      "line_number": 1230,
+      "reason": "This describes the format of the `hstatus` register, which is a fixed requirement and not an implementation choice."
+    },
+    {
+      "excerpt": "The `hcounteren` register must be implemented.",
+      "line_number": 1500,
+      "reason": "This is a fixed requirement that applies to all implementations and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "The `htimedelta` CSR is a 64-bit read/write register that contains the delta between the value of the `time` CSR and the value returned in VS-mode or VU-mode.",
+      "line_number": 1550,
+      "reason": "This describes the behavior of the `htimedelta` register, which is a fixed requirement and not an implementation choice."
+    },
+    {
+      "excerpt": "The `vsatp` register is a VSXLEN-bit read/write register that is VS-mode\u2019s version of supervisor register `satp`.",
+      "line_number": 1950,
+      "reason": "This describes the behavior of the `vsatp` register, which is a fixed requirement and not an implementation choice."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"standard page-based address translation must be supported, either Sv32 for RV32, or a minimum of Sv39 for RV64.\",\n      \"line_number\": 15,\n      \"parameter_name\": \"SUPPORTED_VIRTUAL_MEMORY_MODES\",\n      \"existing_udb_name\": \"SUPPORTED_VIRTUAL_MEMORY_MODES\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation must support specific virtual memory modes (Sv32 for RV32, Sv39 for RV64), which are implementation-defined legal values for the CSR field.\"\n    },\n    {\n      \"excerpt\": \"The VSXL field controls the effective XLEN for VS-mode (known as VSXLEN), which may differ from the XLEN for HS-mode (HSXLEN).\",\n      \"line_number\": 1230,\n      \"parameter_name\": \"VSXLEN_CONTROL\",\n      \"existing_udb_name\": \"VSXLEN_CONTROL\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"enum\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The VSXL field is a WARL field that may have different legal values depending on the implementation, affecting the effective XLEN for VS-mode.\"\n    },\n    {\n      \"excerpt\": \"The VGEIN (Virtual Guest External Interrupt Number) field selects a guest external interrupt source for VS-level external interrupts.\",\n      \"line_number\": 1280,\n      \"parameter_name\": \"VGEIN_SOURCE_SELECTION\",\n      \"existing_udb_name\": \"VGEIN_SOURCE_SELECTION\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"range\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The VGEIN field is a WLRL field that must hold values between zero and the maximum guest external interrupt number (GEILEN), which is implementation-defined.\"\n    },\n    {\n      \"excerpt\": \"Field HU (Hypervisor in U-mode) controls whether the virtual-machine load/store instructions, HLV, HLVX, and HSV, can be used also in U-mode.\",\n      \"line_number\": 1300,\n      \"parameter_name\": \"HU_CONTROL\",\n      \"existing_udb_name\": \"HU_CONTROL\",\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation chooses whether the HU field is set to allow hypervisor instructions in U-mode, making this a read-write parameter.\"\n    },\n    {\n      \"excerpt\": \"The PBMTE bit controls whether the Svpbmt extension is available for use in VS-stage address translation.\",\n      \"line_number\": 1450,\n      \"parameter_name\": \"PBMTE_CONTROL\",\n      \"existing_udb_name\": \"PBMTE_CONTROL\",\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation decides whether the Svpbmt extension is available for VS-stage address translation, making this a read-write parameter.\"\n    },\n    {\n      \"excerpt\": \"The ADUE bit controls whether hardware updating of PTE A/D bits is enabled for VS-stage address translation.\",\n      \"line_number\": 1460,\n      \"parameter_name\": \"ADUE_CONTROL\",\n      \"existing_udb_name\": \"ADUE_CONTROL\",\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation chooses whether hardware updating of PTE A/D bits is enabled, making this a read-write parameter.\"\n    },\n    {\n      \"excerpt\": \"The `hgatp` register is an HSXLEN-bit read/write register, formatted as shown in <<rv32hgatp>> for HSXLEN=32 and <<rv64hgatp>> for HSXLEN=64, which controls G-stage address translation and protection.\",\n      \"line_number\": 1620,\n      \"parameter_name\": \"HGATP_REGISTER_FORMAT\",\n      \"existing_udb_name\": \"HGATP_REGISTER_FORMAT\",\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The `hgatp` register's format is determined by the implementation, making this a read-write parameter.\"\n    },\n    {\n      \"excerpt\": \"The number of VMID bits is UNSPECIFIED and may be zero.\",\n      \"line_number\": 1680,\n      \"parameter_name\": \"VMIDLEN\",\n      \"existing_udb_name\": \"VMIDLEN\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"range\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The number of VMID bits is implementation-defined, making this a WARL parameter.\"\n    },\n    {\n      \"excerpt\": \"The `mtval2` register is a *WARL* register that must be able to hold zero and may be capable of holding only an arbitrary subset of other 2-bit-shifted guest physical addresses, if any.\",\n      \"line_number\": 1850,\n      \"parameter_name\": \"MTVAL2_REGISTER_CAPACITY\",\n      \"existing_udb_name\": \"MTVAL2_REGISTER_CAPACITY\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The `mtval2` register's capacity is implementation-defined, making this a WARL parameter.\"\n    },\n    {\n      \"excerpt\": \"The `mtinst` register is a *WARL* register that need only be able to hold the values that the implementation may automatically write to it on a trap.\",\n      \"line_number\": 1880,\n      \"parameter_name\": \"MTINST_REGISTER_CAPACITY\",\n      \"existing_udb_name\": \"MTINST_REGISTER_CAPACITY\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The `mtinst` register's capacity is implementation-defined, making this a WARL parameter.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"The hypervisor extension is enabled by setting bit 7 in the `misa` CSR.\",\n      \"line_number\": 20,\n      \"reason\": \"This is a fixed requirement that applies to all implementations and does not represent an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The `hstatus` register is an HSXLEN-bit read/write register formatted as shown in <<hstatusreg>>.\",\n      \"line_number\": 1230,\n      \"reason\": \"This describes the format of the `hstatus` register, which is a fixed requirement and not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The `hcounteren` register must be implemented.\",\n      \"line_number\": 1500,\n      \"reason\": \"This is a fixed requirement that applies to all implementations and does not represent an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The `htimedelta` CSR is a 64-bit read/write register that contains the delta between the value of the `time` CSR and the value returned in VS-mode or VU-mode.\",\n      \"line_number\": 1550,\n      \"reason\": \"This describes the behavior of the `htimedelta` register, which is a fixed requirement and not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The `vsatp` register is a VSXLEN-bit read/write register that is VS-mode\u2019s version of supervisor register `satp`.\",\n      \"line_number\": 1950,\n      \"reason\": \"This describes the behavior of the `vsatp` register, which is a fixed requirement and not an implementation choice.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 37844,
+  "output_tokens": 1684,
+  "latency_ms": 77037,
+  "timestamp": "2026-07-24T18:08:39.746613+00:00",
+  "error": null,
+  "retry_count": 0
+}

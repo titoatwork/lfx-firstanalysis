@@ -1,0 +1,94 @@
+{
+  "chunk_id": "chunk_055",
+  "source_file": "supervisor.adoc",
+  "start_line": 1,
+  "end_line": 2697,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "When SXLEN=64, it is a *WARL* field that encodes the current value of UXLEN. In particular, an implementation may make UXL be a read-only field whose value always ensures that UXLEN=SXLEN.",
+      "line_number": 90,
+      "parameter_name": "UXL_FIELD",
+      "existing_udb_name": "UXL_FIELD",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The UXL field is a WARL field, and its implementation may vary, allowing it to be read-only or writable, thus making it a parameter."
+    },
+    {
+      "excerpt": "The UBE bit is a *WARL* field that controls the endianness of explicit memory accesses made from U-mode, which may differ from the endianness of memory accesses in S-mode.",
+      "line_number": 150,
+      "parameter_name": "UBE_FIELD",
+      "existing_udb_name": "UBE_FIELD",
+      "class": "NORM_CSR_WARL",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The UBE field is a WARL field that can be implemented in different ways, allowing for variations in endianness control."
+    },
+    {
+      "excerpt": "The `satp` CSR is an SXLEN-bit read/write register, formatted as shown in <<rv32satp>> for SXLEN=32 and <<rv64satp>> for SXLEN=64, which controls supervisor-mode address translation and protection.",
+      "line_number": 1000,
+      "parameter_name": "SATP_MODE",
+      "existing_udb_name": "SATP_MODE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The MODE field in the `satp` register is a WARL field, and its supported values can vary by implementation."
+    },
+    {
+      "excerpt": "The `scounteren` CSR is a 32-bit register that controls the availability of the hardware performance monitoring counters to U-mode.",
+      "line_number": 1700,
+      "parameter_name": "COUNTER_ENABLE_BITS",
+      "existing_udb_name": "COUNTER_ENABLE_BITS",
+      "class": "NORM_CSR_RW",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The bits in the `scounteren` register can be read-only zero, indicating which counters are available to U-mode, making this a writable parameter."
+    },
+    {
+      "excerpt": "The `srmcfg` register is an SXLEN-bit read/write register used to configure a Resource Control ID (`RCID`) and a Monitoring Counter ID (`MCID`). Both `RCID` and `MCID` are WARL fields.",
+      "line_number": 2500,
+      "parameter_name": "RCID_MCID_FIELDS",
+      "existing_udb_name": "RCID_MCID_FIELDS",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The `RCID` and `MCID` fields in the `srmcfg` register are WARL fields, allowing for implementation-defined values."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The implementation must provide a facility for scheduling timer interrupts in terms of the real-time counter, `time`.",
+      "line_number": 1500,
+      "reason": "This is a fixed requirement that all implementations must satisfy, not an implementation choice."
+    },
+    {
+      "excerpt": "The `scause` CSR is an SXLEN-bit read-write register formatted as shown in <<scausereg>>.",
+      "line_number": 2000,
+      "reason": "This describes the format of the `scause` register, which is a fixed requirement, not a parameter."
+    },
+    {
+      "excerpt": "The `stval` CSR is an SXLEN-bit read-write register formatted as shown in <<stvalreg>>.",
+      "line_number": 2100,
+      "reason": "This is a description of the `stval` register's format, which is a fixed requirement, not a parameter."
+    },
+    {
+      "excerpt": "The `sscratch` CSR is an SXLEN-bit read/write register, dedicated for use by the supervisor.",
+      "line_number": 2200,
+      "reason": "This describes the purpose of the `sscratch` register, which is a fixed requirement, not a parameter."
+    },
+    {
+      "excerpt": "The `sepc` is an SXLEN-bit read/write CSR formatted as shown in <<epcreg>>.",
+      "line_number": 2300,
+      "reason": "This is a fixed requirement regarding the `sepc` register's format, not an implementation choice."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"When SXLEN=64, it is a *WARL* field that encodes the current value of UXLEN. In particular, an implementation may make UXL be a read-only field whose value always ensures that UXLEN=SXLEN.\",\n      \"line_number\": 90,\n      \"parameter_name\": \"UXL_FIELD\",\n      \"existing_udb_name\": \"UXL_FIELD\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"enum\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The UXL field is a WARL field, and its implementation may vary, allowing it to be read-only or writable, thus making it a parameter.\"\n    },\n    {\n      \"excerpt\": \"The UBE bit is a *WARL* field that controls the endianness of explicit memory accesses made from U-mode, which may differ from the endianness of memory accesses in S-mode.\",\n      \"line_number\": 150,\n      \"parameter_name\": \"UBE_FIELD\",\n      \"existing_udb_name\": \"UBE_FIELD\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The UBE field is a WARL field that can be implemented in different ways, allowing for variations in endianness control.\"\n    },\n    {\n      \"excerpt\": \"The `satp` CSR is an SXLEN-bit read/write register, formatted as shown in <<rv32satp>> for SXLEN=32 and <<rv64satp>> for SXLEN=64, which controls supervisor-mode address translation and protection.\",\n      \"line_number\": 1000,\n      \"parameter_name\": \"SATP_MODE\",\n      \"existing_udb_name\": \"SATP_MODE\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"enum\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The MODE field in the `satp` register is a WARL field, and its supported values can vary by implementation.\"\n    },\n    {\n      \"excerpt\": \"The `scounteren` CSR is a 32-bit register that controls the availability of the hardware performance monitoring counters to U-mode.\",\n      \"line_number\": 1700,\n      \"parameter_name\": \"COUNTER_ENABLE_BITS\",\n      \"existing_udb_name\": \"COUNTER_ENABLE_BITS\",\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"bitmask\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The bits in the `scounteren` register can be read-only zero, indicating which counters are available to U-mode, making this a writable parameter.\"\n    },\n    {\n      \"excerpt\": \"The `srmcfg` register is an SXLEN-bit read/write register used to configure a Resource Control ID (`RCID`) and a Monitoring Counter ID (`MCID`). Both `RCID` and `MCID` are WARL fields.\",\n      \"line_number\": 2500,\n      \"parameter_name\": \"RCID_MCID_FIELDS\",\n      \"existing_udb_name\": \"RCID_MCID_FIELDS\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"enum\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The `RCID` and `MCID` fields in the `srmcfg` register are WARL fields, allowing for implementation-defined values.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"The implementation must provide a facility for scheduling timer interrupts in terms of the real-time counter, `time`.\",\n      \"line_number\": 1500,\n      \"reason\": \"This is a fixed requirement that all implementations must satisfy, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The `scause` CSR is an SXLEN-bit read-write register formatted as shown in <<scausereg>>.\",\n      \"line_number\": 2000,\n      \"reason\": \"This describes the format of the `scause` register, which is a fixed requirement, not a parameter.\"\n    },\n    {\n      \"excerpt\": \"The `stval` CSR is an SXLEN-bit read-write register formatted as shown in <<stvalreg>>.\",\n      \"line_number\": 2100,\n      \"reason\": \"This is a description of the `stval` register's format, which is a fixed requirement, not a parameter.\"\n    },\n    {\n      \"excerpt\": \"The `sscratch` CSR is an SXLEN-bit read/write register, dedicated for use by the supervisor.\",\n      \"line_number\": 2200,\n      \"reason\": \"This describes the purpose of the `sscratch` register, which is a fixed requirement, not a parameter.\"\n    },\n    {\n      \"excerpt\": \"The `sepc` is an SXLEN-bit read/write CSR formatted as shown in <<epcreg>>.\",\n      \"line_number\": 2300,\n      \"reason\": \"This is a fixed requirement regarding the `sepc` register's format, not an implementation choice.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 35597,
+  "output_tokens": 1101,
+  "latency_ms": 22586,
+  "timestamp": "2026-07-24T18:31:00.804147+00:00",
+  "error": null,
+  "retry_count": 0
+}

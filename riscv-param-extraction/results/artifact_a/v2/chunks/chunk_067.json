@@ -1,0 +1,94 @@
+{
+  "chunk_id": "chunk_067",
+  "source_file": "zc.adoc",
+  "start_line": 1,
+  "end_line": 2582,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "If jvt.mode is a reserved value, then _cm.jt_ is also reserved.",
+      "line_number": 1234,
+      "parameter_name": "JVT_MODE",
+      "existing_udb_name": "JVT_MODE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The jvt.mode field is WARL, meaning the set of legal values can vary by implementation. The parameter is the set of supported modes."
+    },
+    {
+      "excerpt": "The table must be a minimum of 64-byte aligned.",
+      "line_number": 1234,
+      "parameter_name": "TABLE_ALIGNMENT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The alignment requirement for the jump table is a direct implementation choice, not controlled by any CSR field."
+    },
+    {
+      "excerpt": "The jvt CSR requires a state enable if Smstateen is implemented.",
+      "line_number": 1234,
+      "parameter_name": "JVT_STATE_ENABLE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "Whether the jvt CSR requires a state enable is an implementation choice, depending on whether Smstateen is implemented."
+    },
+    {
+      "excerpt": "If the core implementation does not support PUSH/POP to non-idempotent memories, the core may use an idempotency PMA to detect it.",
+      "line_number": 1234,
+      "parameter_name": "SUPPORT_PUSHPOP_NON_IDEMPOTENT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "Whether the core supports PUSH/POP to non-idempotent memories is an implementation-defined choice."
+    },
+    {
+      "excerpt": "The total stack adjustment represents the total size of the stack frame, which is _stack_adj_base_ added to _spimm_ scaled by 16.",
+      "line_number": 1234,
+      "parameter_name": "STACK_ADJUSTMENT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The calculation of stack adjustment is a design-time decision, allowing for different implementations to choose their stack frame sizes."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "the C extension only includes F/D instructions when D and F are also specified",
+      "line_number": 1234,
+      "reason": "This describes a requirement for the C extension and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "If a trap occurs during the sequence then _xEPC_ is updated with the PC of the instruction.",
+      "line_number": 1234,
+      "reason": "This describes behavior during execution and is not an implementation choice."
+    },
+    {
+      "excerpt": "The _jvt_ register is an XLEN-bit *WARL* read/write register that holds the jump table configuration.",
+      "line_number": 1234,
+      "reason": "This describes the nature of the jvt register but does not specify an implementation choice."
+    },
+    {
+      "excerpt": "The encoding uses _sreg_ number specifiers instead of _xreg_ number specifiers to save encoding space.",
+      "line_number": 1234,
+      "reason": "This describes a design decision about encoding and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "The _li a0, 0_ *could* be executed more than once, but is included in the atomic section for convenience.",
+      "line_number": 1234,
+      "reason": "This describes potential behavior during execution and is not an implementation choice."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"If jvt.mode is a reserved value, then _cm.jt_ is also reserved.\",\n      \"line_number\": 1234,\n      \"parameter_name\": \"JVT_MODE\",\n      \"existing_udb_name\": \"JVT_MODE\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"enum\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The jvt.mode field is WARL, meaning the set of legal values can vary by implementation. The parameter is the set of supported modes.\"\n    },\n    {\n      \"excerpt\": \"The table must be a minimum of 64-byte aligned.\",\n      \"line_number\": 1234,\n      \"parameter_name\": \"TABLE_ALIGNMENT\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"value\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The alignment requirement for the jump table is a direct implementation choice, not controlled by any CSR field.\"\n    },\n    {\n      \"excerpt\": \"The jvt CSR requires a state enable if Smstateen is implemented.\",\n      \"line_number\": 1234,\n      \"parameter_name\": \"JVT_STATE_ENABLE\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"Whether the jvt CSR requires a state enable is an implementation choice, depending on whether Smstateen is implemented.\"\n    },\n    {\n      \"excerpt\": \"If the core implementation does not support PUSH/POP to non-idempotent memories, the core may use an idempotency PMA to detect it.\",\n      \"line_number\": 1234,\n      \"parameter_name\": \"SUPPORT_PUSHPOP_NON_IDEMPOTENT\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"Whether the core supports PUSH/POP to non-idempotent memories is an implementation-defined choice.\"\n    },\n    {\n      \"excerpt\": \"The total stack adjustment represents the total size of the stack frame, which is _stack_adj_base_ added to _spimm_ scaled by 16.\",\n      \"line_number\": 1234,\n      \"parameter_name\": \"STACK_ADJUSTMENT\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"range\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The calculation of stack adjustment is a design-time decision, allowing for different implementations to choose their stack frame sizes.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"the C extension only includes F/D instructions when D and F are also specified\",\n      \"line_number\": 1234,\n      \"reason\": \"This describes a requirement for the C extension and does not indicate an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"If a trap occurs during the sequence then _xEPC_ is updated with the PC of the instruction.\",\n      \"line_number\": 1234,\n      \"reason\": \"This describes behavior during execution and is not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The _jvt_ register is an XLEN-bit *WARL* read/write register that holds the jump table configuration.\",\n      \"line_number\": 1234,\n      \"reason\": \"This describes the nature of the jvt register but does not specify an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The encoding uses _sreg_ number specifiers instead of _xreg_ number specifiers to save encoding space.\",\n      \"line_number\": 1234,\n      \"reason\": \"This describes a design decision about encoding and does not indicate an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The _li a0, 0_ *could* be executed more than once, but is included in the atomic section for convenience.\",\n      \"line_number\": 1234,\n      \"reason\": \"This describes potential behavior during execution and is not an implementation choice.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 27818,
+  "output_tokens": 896,
+  "latency_ms": 12293,
+  "timestamp": "2026-07-24T18:40:52.263738+00:00",
+  "error": null,
+  "retry_count": 0
+}

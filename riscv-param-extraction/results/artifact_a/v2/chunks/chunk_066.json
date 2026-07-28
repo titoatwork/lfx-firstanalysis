@@ -1,0 +1,64 @@
+{
+  "chunk_id": "chunk_066",
+  "source_file": "zawrs.adoc",
+  "start_line": 1,
+  "end_line": 103,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "To support such use cases a second instruction `WRS.STO` (WRS-with-short-timeout) is provided that works like `WRS.NTO` but bounds the stall duration to an implementation-define short timeout such that the stall is terminated on the timeout if no other conditions have occurred to terminate the stall.",
+      "line_number": 34,
+      "parameter_name": "WRS_STO_TIMEOUT",
+      "existing_udb_name": "WRS_STO_TIMEOUT",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The implementation defines the short timeout duration for the `WRS.STO` instruction, making it a direct implementation choice."
+    },
+    {
+      "excerpt": "While stalled, an implementation is permitted to occasionally terminate the stall and complete execution for any reason.",
+      "line_number": 66,
+      "parameter_name": "STALL_TERMINATION_POLICY",
+      "existing_udb_name": "STALL_TERMINATION_POLICY",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "medium",
+      "reasoning": "The implementation has the choice to terminate the stall for any reason, which is a design-time decision."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The instructions in the Zawrs extension are only useful in conjunction with the LR instruction, which is provided by the Zalrsc component of the A extension.",
+      "line_number": 27,
+      "reason": "This is a note about the utility of the instructions and does not define an implementation choice."
+    },
+    {
+      "excerpt": "The reservation set is valid.",
+      "line_number": 66,
+      "reason": "This describes a condition that must be met for the instructions to function, not an implementation choice."
+    },
+    {
+      "excerpt": "If `WRS.STO`, a 'short' duration since start of stall has not elapsed.",
+      "line_number": 66,
+      "reason": "This describes a condition related to the execution of the instruction rather than an implementation-defined parameter."
+    },
+    {
+      "excerpt": "When the `TW` (Timeout Wait) bit in `mstatus` is set and `WRS.NTO` is executed in any privilege mode other than M mode, and it does not complete within an implementation-specific bounded time limit, the `WRS.NTO` instruction will cause an illegal-instruction exception.",
+      "line_number": 73,
+      "reason": "This describes behavior under specific conditions rather than an implementation choice."
+    },
+    {
+      "excerpt": "The duration of a `WRS.STO` instruction's timeout may vary significantly within and among implementations.",
+      "line_number": 83,
+      "reason": "This is a general statement about variability and does not specify a parameter or choice."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"To support such use cases a second instruction `WRS.STO` (WRS-with-short-timeout) is provided that works like `WRS.NTO` but bounds the stall duration to an implementation-define short timeout such that the stall is terminated on the timeout if no other conditions have occurred to terminate the stall.\",\n      \"line_number\": 34,\n      \"parameter_name\": \"WRS_STO_TIMEOUT\",\n      \"existing_udb_name\": \"WRS_STO_TIMEOUT\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"range\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation defines the short timeout duration for the `WRS.STO` instruction, making it a direct implementation choice.\"\n    },\n    {\n      \"excerpt\": \"While stalled, an implementation is permitted to occasionally terminate the stall and complete execution for any reason.\",\n      \"line_number\": 66,\n      \"parameter_name\": \"STALL_TERMINATION_POLICY\",\n      \"existing_udb_name\": \"STALL_TERMINATION_POLICY\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"medium\",\n      \"reasoning\": \"The implementation has the choice to terminate the stall for any reason, which is a design-time decision.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"The instructions in the Zawrs extension are only useful in conjunction with the LR instruction, which is provided by the Zalrsc component of the A extension.\",\n      \"line_number\": 27,\n      \"reason\": \"This is a note about the utility of the instructions and does not define an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The reservation set is valid.\",\n      \"line_number\": 66,\n      \"reason\": \"This describes a condition that must be met for the instructions to function, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"If `WRS.STO`, a 'short' duration since start of stall has not elapsed.\",\n      \"line_number\": 66,\n      \"reason\": \"This describes a condition related to the execution of the instruction rather than an implementation-defined parameter.\"\n    },\n    {\n      \"excerpt\": \"When the `TW` (Timeout Wait) bit in `mstatus` is set and `WRS.NTO` is executed in any privilege mode other than M mode, and it does not complete within an implementation-specific bounded time limit, the `WRS.NTO` instruction will cause an illegal-instruction exception.\",\n      \"line_number\": 73,\n      \"reason\": \"This describes behavior under specific conditions rather than an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The duration of a `WRS.STO` instruction's timeout may vary significantly within and among implementations.\",\n      \"line_number\": 83,\n      \"reason\": \"This is a general statement about variability and does not specify a parameter or choice.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 7468,
+  "output_tokens": 633,
+  "latency_ms": 6984,
+  "timestamp": "2026-07-24T18:39:38.175539+00:00",
+  "error": null,
+  "retry_count": 0
+}

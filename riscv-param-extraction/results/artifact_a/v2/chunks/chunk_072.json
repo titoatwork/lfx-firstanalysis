@@ -1,0 +1,54 @@
+{
+  "chunk_id": "chunk_072",
+  "source_file": "zicsr.adoc",
+  "start_line": 1,
+  "end_line": 254,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "The hardware platform may define that accesses to certain CSRs are strongly ordered, as defined by the Memory-Ordering PMAs section in Volume II of this manual.",
+      "line_number": 254,
+      "parameter_name": "STRONGLY_ORDERED_CSR_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "Whether accesses to certain CSRs are strongly ordered is an implementation choice, not controlled by any CSR field. This is a design-time decision."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE]\n====\nWhile CSRs are primarily used by the privileged architecture, there are several uses in unprivileged code including for counters and timers, and for floating-point status.\n====",
+      "line_number": 5,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a general observation, not an architectural requirement."
+    },
+    {
+      "excerpt": "For any event or consequence that occurs due to a CSR having a particular value, if a write to the CSR gives it that value, the resulting event or consequence is said to be an indirect effect of the write.",
+      "line_number": 197,
+      "reason": "This describes behavior related to CSR writes and their effects, not an implementation choice. It does not define a parameter."
+    },
+    {
+      "excerpt": "Standard CSRs do not have any side effects on reads. Standard CSRs may have side effects on writes.",
+      "line_number": 203,
+      "reason": "This is a fixed requirement about standard CSRs and their behavior, not an implementation choice."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nAs of this writing, no standard CSRs have side effects on field writes. Hence, whether a standard CSR access has any side effects can be determined solely from the opcode.\n====",
+      "line_number": 211,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It provides information rather than defining a parameter."
+    },
+    {
+      "excerpt": "The assembler pseudoinstruction to read a CSR, CSRR _rd, csr_, is encoded as CSRRS _rd, csr, x0_.",
+      "line_number": 239,
+      "reason": "This describes how assembler pseudoinstructions are encoded, which is not an architectural parameter but rather a specification of instruction encoding."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"The hardware platform may define that accesses to certain CSRs are strongly ordered, as defined by the Memory-Ordering PMAs section in Volume II of this manual.\",\n      \"line_number\": 254,\n      \"parameter_name\": \"STRONGLY_ORDERED_CSR_ACCESS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"Whether accesses to certain CSRs are strongly ordered is an implementation choice, not controlled by any CSR field. This is a design-time decision.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"[NOTE]\\n====\\nWhile CSRs are primarily used by the privileged architecture, there are several uses in unprivileged code including for counters and timers, and for floating-point status.\\n====\",\n      \"line_number\": 5,\n      \"reason\": \"This text is inside a [NOTE] block and is therefore non-normative. It describes a general observation, not an architectural requirement.\"\n    },\n    {\n      \"excerpt\": \"For any event or consequence that occurs due to a CSR having a particular value, if a write to the CSR gives it that value, the resulting event or consequence is said to be an indirect effect of the write.\",\n      \"line_number\": 197,\n      \"reason\": \"This describes behavior related to CSR writes and their effects, not an implementation choice. It does not define a parameter.\"\n    },\n    {\n      \"excerpt\": \"Standard CSRs do not have any side effects on reads. Standard CSRs may have side effects on writes.\",\n      \"line_number\": 203,\n      \"reason\": \"This is a fixed requirement about standard CSRs and their behavior, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"[NOTE]\\n====\\nAs of this writing, no standard CSRs have side effects on field writes. Hence, whether a standard CSR access has any side effects can be determined solely from the opcode.\\n====\",\n      \"line_number\": 211,\n      \"reason\": \"This text is inside a [NOTE] block and is therefore non-normative. It provides information rather than defining a parameter.\"\n    },\n    {\n      \"excerpt\": \"The assembler pseudoinstruction to read a CSR, CSRR _rd, csr_, is encoded as CSRRS _rd, csr, x0_.\",\n      \"line_number\": 239,\n      \"reason\": \"This describes how assembler pseudoinstructions are encoded, which is not an architectural parameter but rather a specification of instruction encoding.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 9206,
+  "output_tokens": 565,
+  "latency_ms": 6739,
+  "timestamp": "2026-07-24T18:44:37.501452+00:00",
+  "error": null,
+  "retry_count": 0
+}

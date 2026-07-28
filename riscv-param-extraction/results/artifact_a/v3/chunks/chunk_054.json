@@ -1,0 +1,48 @@
+{
+  "chunk_id": "chunk_054",
+  "source_file": "sstc.adoc",
+  "start_line": 1,
+  "end_line": 24,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "This extension adds the S-level `stimecmp` CSR",
+      "line_number": 10,
+      "parameter_name": "S_TIMECMP_EXIST",
+      "existing_udb_name": "S_TIMECMP_EXIST",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The existence of the S-level `stimecmp` CSR is an implementation choice, indicating whether this CSR is included in the architecture."
+    },
+    {
+      "excerpt": "this extension adds a similar facility to the Hypervisor extension for VS-mode.",
+      "line_number": 12,
+      "parameter_name": "VS_TIMECMP_EXIST",
+      "existing_udb_name": "VS_TIMECMP_EXIST",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The existence of the VS-level `vstimecmp` CSR is an implementation choice, indicating whether this CSR is included in the architecture."
+    },
+    {
+      "excerpt": "This extension adds the `STCE` bit to the `menvcfg` and `henvcfg` CSRs.",
+      "line_number": 14,
+      "parameter_name": "STCE_BIT_EXIST",
+      "existing_udb_name": "STCE_BIT_EXIST",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The addition of the `STCE` bit to the `menvcfg` and `henvcfg` CSRs is an implementation choice, indicating whether this bit is included in the architecture."
+    }
+  ],
+  "skipped_non_parameters": [],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"This extension adds the S-level `stimecmp` CSR\",\n      \"line_number\": 10,\n      \"parameter_name\": \"S_TIMECMP_EXIST\",\n      \"existing_udb_name\": \"S_TIMECMP_EXIST\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The existence of the S-level `stimecmp` CSR is an implementation choice, indicating whether this CSR is included in the architecture.\"\n    },\n    {\n      \"excerpt\": \"this extension adds a similar facility to the Hypervisor extension for VS-mode.\",\n      \"line_number\": 12,\n      \"parameter_name\": \"VS_TIMECMP_EXIST\",\n      \"existing_udb_name\": \"VS_TIMECMP_EXIST\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The existence of the VS-level `vstimecmp` CSR is an implementation choice, indicating whether this CSR is included in the architecture.\"\n    },\n    {\n      \"excerpt\": \"This extension adds the `STCE` bit to the `menvcfg` and `henvcfg` CSRs.\",\n      \"line_number\": 14,\n      \"parameter_name\": \"STCE_BIT_EXIST\",\n      \"existing_udb_name\": \"STCE_BIT_EXIST\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The addition of the `STCE` bit to the `menvcfg` and `henvcfg` CSRs is an implementation choice, indicating whether this bit is included in the architecture.\"\n    }\n  ],\n  \"skipped_non_parameters\": []\n}\n```",
+  "input_tokens": 7122,
+  "output_tokens": 378,
+  "latency_ms": 8300,
+  "timestamp": "2026-07-25T18:03:17.936974+00:00",
+  "error": null,
+  "retry_count": 0
+}

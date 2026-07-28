@@ -1,0 +1,74 @@
+{
+  "chunk_id": "chunk_059",
+  "source_file": "v-st-ext.adoc",
+  "start_line": 3386,
+  "end_line": 5396,
+  "content_start_line": 3394,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "The maximum size in bits of a vector element that any operation can produce or consume, _ELEN_ >= 8, which must be a power of 2.",
+      "line_number": 3394,
+      "parameter_name": "ELEN",
+      "existing_udb_name": "ELEN",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "ELEN is a direct implementation parameter: the maximum element size. It has constraints (>= 8, power of 2) but the specific value is chosen by the implementer."
+    },
+    {
+      "excerpt": "The number of bits in a single vector register, _VLEN_ >= ELEN, which must be a power of 2, and must be no greater than 2^16.",
+      "line_number": 3394,
+      "parameter_name": "VLEN",
+      "existing_udb_name": "VLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "VLEN is a direct implementation parameter: the size of a vector register. It has constraints (>= ELEN, power of 2, <= 2^16) but the specific value is chosen by the implementer."
+    },
+    {
+      "excerpt": "The `vtype` SEW can be used to indicate or calculate the effective element size (EEW) of one or more operands of an element group instruction.",
+      "line_number": 5396,
+      "parameter_name": "SEW",
+      "existing_udb_name": "SEW",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "SEW is a direct implementation parameter that determines the effective element size for vector operations. The specific value is chosen by the implementer."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "NOTE: The vector length extensions can be used to either specify additional software or architecture profile requirements, or to advertise hardware capabilities.",
+      "line_number": 5396,
+      "reason": "This text is a note and does not define an architectural parameter; it describes potential uses of vector length extensions."
+    },
+    {
+      "excerpt": "NOTE: The `vcompress` instruction is encoded as an unmasked instruction (`vm=1`).",
+      "line_number": 5396,
+      "reason": "This is a note about the encoding of the instruction and does not define an architectural parameter."
+    },
+    {
+      "excerpt": "NOTE: A future extension might define a standard way of saving and restoring opaque microarchitectural state from a vector unit implementation to support context switching with imprecise traps.",
+      "line_number": 5396,
+      "reason": "This is a speculative note about future extensions and does not define an architectural parameter."
+    },
+    {
+      "excerpt": "NOTE: The `vfirst` instruction finds the lowest-numbered active element of the source mask vector that has the value 1 and writes that element's index to a GPR.",
+      "line_number": 5396,
+      "reason": "This is a note describing the behavior of the instruction and does not define an architectural parameter."
+    },
+    {
+      "excerpt": "NOTE: The `vmv<nr>r.v` instructions copy whole vector registers (i.e., all VLEN bits) and can copy whole vector register groups.",
+      "line_number": 5396,
+      "reason": "This is a note about the functionality of the instruction and does not define an architectural parameter."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"The maximum size in bits of a vector element that any operation can produce or consume, _ELEN_ >= 8, which must be a power of 2.\",\n      \"line_number\": 3394,\n      \"parameter_name\": \"ELEN\",\n      \"existing_udb_name\": \"ELEN\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"value\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"ELEN is a direct implementation parameter: the maximum element size. It has constraints (>= 8, power of 2) but the specific value is chosen by the implementer.\"\n    },\n    {\n      \"excerpt\": \"The number of bits in a single vector register, _VLEN_ >= ELEN, which must be a power of 2, and must be no greater than 2^16.\",\n      \"line_number\": 3394,\n      \"parameter_name\": \"VLEN\",\n      \"existing_udb_name\": \"VLEN\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"value\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"VLEN is a direct implementation parameter: the size of a vector register. It has constraints (>= ELEN, power of 2, <= 2^16) but the specific value is chosen by the implementer.\"\n    },\n    {\n      \"excerpt\": \"The `vtype` SEW can be used to indicate or calculate the effective element size (EEW) of one or more operands of an element group instruction.\",\n      \"line_number\": 5396,\n      \"parameter_name\": \"SEW\",\n      \"existing_udb_name\": \"SEW\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"value\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"SEW is a direct implementation parameter that determines the effective element size for vector operations. The specific value is chosen by the implementer.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"NOTE: The vector length extensions can be used to either specify additional software or architecture profile requirements, or to advertise hardware capabilities.\",\n      \"line_number\": 5396,\n      \"reason\": \"This text is a note and does not define an architectural parameter; it describes potential uses of vector length extensions.\"\n    },\n    {\n      \"excerpt\": \"NOTE: The `vcompress` instruction is encoded as an unmasked instruction (`vm=1`).\",\n      \"line_number\": 5396,\n      \"reason\": \"This is a note about the encoding of the instruction and does not define an architectural parameter.\"\n    },\n    {\n      \"excerpt\": \"NOTE: A future extension might define a standard way of saving and restoring opaque microarchitectural state from a vector unit implementation to support context switching with imprecise traps.\",\n      \"line_number\": 5396,\n      \"reason\": \"This is a speculative note about future extensions and does not define an architectural parameter.\"\n    },\n    {\n      \"excerpt\": \"NOTE: The `vfirst` instruction finds the lowest-numbered active element of the source mask vector that has the value 1 and writes that element's index to a GPR.\",\n      \"line_number\": 5396,\n      \"reason\": \"This is a note describing the behavior of the instruction and does not define an architectural parameter.\"\n    },\n    {\n      \"excerpt\": \"NOTE: The `vmv<nr>r.v` instructions copy whole vector registers (i.e., all VLEN bits) and can copy whole vector register groups.\",\n      \"line_number\": 5396,\n      \"reason\": \"This is a note about the functionality of the instruction and does not define an architectural parameter.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 30714,
+  "output_tokens": 799,
+  "latency_ms": 8568,
+  "timestamp": "2026-07-24T18:34:42.581868+00:00",
+  "error": null,
+  "retry_count": 0
+}

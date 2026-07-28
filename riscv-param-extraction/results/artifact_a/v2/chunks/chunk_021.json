@@ -1,0 +1,74 @@
+{
+  "chunk_id": "chunk_021",
+  "source_file": "machine.adoc",
+  "start_line": 3330,
+  "end_line": 3655,
+  "content_start_line": 3360,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "Implementations may implement zero, 16, or 64 PMP entries; the lowest-numbered PMP entries must be implemented first.",
+      "line_number": 3340,
+      "parameter_name": "NUM_PMP_ENTRIES",
+      "existing_udb_name": "NUM_PMP_ENTRIES",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of PMP entries is a direct implementation choice (0, 16, or 64). It is not controlled by any CSR field."
+    },
+    {
+      "excerpt": "Not all physical address bits may be implemented, and so the `pmpaddr` registers are *WARL*.",
+      "line_number": 3350,
+      "parameter_name": "PMPADDR_WARL",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The implementation defines which physical address bits are implemented in the `pmpaddr` registers, making it a WARL parameter."
+    },
+    {
+      "excerpt": "The PMP grain is 2^G+2^ bytes and must be the same across all PMP regions.",
+      "line_number": 3360,
+      "parameter_name": "PMP_GRAIN",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The granularity of PMP regions is an implementation choice defined by the parameter G, which determines the size of the regions."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "PMP checks are applied to all accesses whose effective privilege mode is S or U, including instruction fetches and data accesses in S and U mode.",
+      "line_number": 3345,
+      "reason": "This describes the behavior of PMP checks under certain conditions, not an implementation choice."
+    },
+    {
+      "excerpt": "PMP violations are always trapped precisely at the processor.",
+      "line_number": 3355,
+      "reason": "This is a fixed requirement that applies to all implementations, not a parameter."
+    },
+    {
+      "excerpt": "The R, W, and X fields form a collective *WARL* field for which the combinations with R=0 and W=1 are reserved.",
+      "line_number": 3365,
+      "reason": "This describes the behavior of the R, W, and X fields in the context of WARL, but does not specify an implementation choice."
+    },
+    {
+      "excerpt": "If no PMP entry matches an S-mode or U-mode memory operation, but at least one PMP entry is implemented, the operation fails.",
+      "line_number": 3370,
+      "reason": "This describes the behavior of memory operations under certain conditions, not an implementation choice."
+    },
+    {
+      "excerpt": "When paging is enabled, instructions that access virtual memory may result in multiple physical-memory accesses.",
+      "line_number": 3380,
+      "reason": "This describes the behavior of memory accesses in the context of paging, not an implementation choice."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"Implementations may implement zero, 16, or 64 PMP entries; the lowest-numbered PMP entries must be implemented first.\",\n      \"line_number\": 3340,\n      \"parameter_name\": \"NUM_PMP_ENTRIES\",\n      \"existing_udb_name\": \"NUM_PMP_ENTRIES\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"range\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The number of PMP entries is a direct implementation choice (0, 16, or 64). It is not controlled by any CSR field.\"\n    },\n    {\n      \"excerpt\": \"Not all physical address bits may be implemented, and so the `pmpaddr` registers are *WARL*.\",\n      \"line_number\": 3350,\n      \"parameter_name\": \"PMPADDR_WARL\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation defines which physical address bits are implemented in the `pmpaddr` registers, making it a WARL parameter.\"\n    },\n    {\n      \"excerpt\": \"The PMP grain is 2^G+2^ bytes and must be the same across all PMP regions.\",\n      \"line_number\": 3360,\n      \"parameter_name\": \"PMP_GRAIN\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"range\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The granularity of PMP regions is an implementation choice defined by the parameter G, which determines the size of the regions.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"PMP checks are applied to all accesses whose effective privilege mode is S or U, including instruction fetches and data accesses in S and U mode.\",\n      \"line_number\": 3345,\n      \"reason\": \"This describes the behavior of PMP checks under certain conditions, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"PMP violations are always trapped precisely at the processor.\",\n      \"line_number\": 3355,\n      \"reason\": \"This is a fixed requirement that applies to all implementations, not a parameter.\"\n    },\n    {\n      \"excerpt\": \"The R, W, and X fields form a collective *WARL* field for which the combinations with R=0 and W=1 are reserved.\",\n      \"line_number\": 3365,\n      \"reason\": \"This describes the behavior of the R, W, and X fields in the context of WARL, but does not specify an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"If no PMP entry matches an S-mode or U-mode memory operation, but at least one PMP entry is implemented, the operation fails.\",\n      \"line_number\": 3370,\n      \"reason\": \"This describes the behavior of memory operations under certain conditions, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"When paging is enabled, instructions that access virtual memory may result in multiple physical-memory accesses.\",\n      \"line_number\": 3380,\n      \"reason\": \"This describes the behavior of memory accesses in the context of paging, not an implementation choice.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 10115,
+  "output_tokens": 714,
+  "latency_ms": 9323,
+  "timestamp": "2026-07-24T18:12:16.849003+00:00",
+  "error": null,
+  "retry_count": 0
+}

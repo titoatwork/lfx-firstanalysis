@@ -1,0 +1,94 @@
+{
+  "chunk_id": "chunk_028",
+  "source_file": "priv-csrs.adoc",
+  "start_line": 1,
+  "end_line": 1273,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "Implementations might allow a more-privileged level to trap otherwise permitted CSR accesses by a less-privileged level to allow these accesses to be intercepted.",
+      "line_number": 36,
+      "parameter_name": "HW_CSR_ACCESS_TRAPPING",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "Whether a more-privileged level can trap accesses from a less-privileged level is an implementation choice, making it a direct parameter."
+    },
+    {
+      "excerpt": "Implementations will not raise an exception on writes of unsupported values to a *WARL* field.",
+      "line_number": 127,
+      "parameter_name": "WARL_WRITE_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The behavior of not raising an exception on unsupported writes to WARL fields is an implementation-defined choice."
+    },
+    {
+      "excerpt": "Some read/write CSR fields are only defined for a subset of bit encodings, but allow any value to be written while guaranteeing to return a legal value whenever read.",
+      "line_number": 127,
+      "parameter_name": "WARL_FIELD_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The specification describes the behavior of WARL fields, which allows for implementation-defined legal values."
+    },
+    {
+      "excerpt": "Implementations can return arbitrary bit patterns on the read of a *WLRL* field when the last write was of an illegal value.",
+      "line_number": 127,
+      "parameter_name": "WLRL_READ_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice of what to return on a read of a WLRL field after an illegal write is left to the implementation."
+    },
+    {
+      "excerpt": "The width of the temporary register is changed to the new width.",
+      "line_number": 127,
+      "parameter_name": "CSR_WIDTH_MODULATION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The implementation decides how to handle CSR width changes, making this a design-time choice."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "Some whole read/write fields are reserved for future use.",
+      "line_number": 127,
+      "reason": "This describes a behavior that is not an implementation choice but rather a guideline for future compatibility."
+    },
+    {
+      "excerpt": "Software should ignore the values read from these fields, and should preserve the values held in these fields when writing values to other fields of the same register.",
+      "line_number": 127,
+      "reason": "This is a guideline for software behavior, not an architectural parameter."
+    },
+    {
+      "excerpt": "Implementations are permitted but not required to raise an illegal-instruction exception if an instruction attempts to write a non-supported value to a *WLRL* field.",
+      "line_number": 127,
+      "reason": "This describes a permission rather than a definitive implementation choice, thus not qualifying as a parameter."
+    },
+    {
+      "excerpt": "The CSR address convention uses the upper bits of the CSR address to encode default access privileges.",
+      "line_number": 127,
+      "reason": "This is a description of a convention rather than an implementation choice."
+    },
+    {
+      "excerpt": "The value written to one CSR may control whether a field of a second CSR is writable.",
+      "line_number": 127,
+      "reason": "This describes a behavior based on CSR interactions rather than a parameter that can be chosen by the implementer."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"Implementations might allow a more-privileged level to trap otherwise permitted CSR accesses by a less-privileged level to allow these accesses to be intercepted.\",\n      \"line_number\": 36,\n      \"parameter_name\": \"HW_CSR_ACCESS_TRAPPING\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"Whether a more-privileged level can trap accesses from a less-privileged level is an implementation choice, making it a direct parameter.\"\n    },\n    {\n      \"excerpt\": \"Implementations will not raise an exception on writes of unsupported values to a *WARL* field.\",\n      \"line_number\": 127,\n      \"parameter_name\": \"WARL_WRITE_BEHAVIOR\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The behavior of not raising an exception on unsupported writes to WARL fields is an implementation-defined choice.\"\n    },\n    {\n      \"excerpt\": \"Some read/write CSR fields are only defined for a subset of bit encodings, but allow any value to be written while guaranteeing to return a legal value whenever read.\",\n      \"line_number\": 127,\n      \"parameter_name\": \"WARL_FIELD_BEHAVIOR\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The specification describes the behavior of WARL fields, which allows for implementation-defined legal values.\"\n    },\n    {\n      \"excerpt\": \"Implementations can return arbitrary bit patterns on the read of a *WLRL* field when the last write was of an illegal value.\",\n      \"line_number\": 127,\n      \"parameter_name\": \"WLRL_READ_BEHAVIOR\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The choice of what to return on a read of a WLRL field after an illegal write is left to the implementation.\"\n    },\n    {\n      \"excerpt\": \"The width of the temporary register is changed to the new width.\",\n      \"line_number\": 127,\n      \"parameter_name\": \"CSR_WIDTH_MODULATION\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"range\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation decides how to handle CSR width changes, making this a design-time choice.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"Some whole read/write fields are reserved for future use.\",\n      \"line_number\": 127,\n      \"reason\": \"This describes a behavior that is not an implementation choice but rather a guideline for future compatibility.\"\n    },\n    {\n      \"excerpt\": \"Software should ignore the values read from these fields, and should preserve the values held in these fields when writing values to other fields of the same register.\",\n      \"line_number\": 127,\n      \"reason\": \"This is a guideline for software behavior, not an architectural parameter.\"\n    },\n    {\n      \"excerpt\": \"Implementations are permitted but not required to raise an illegal-instruction exception if an instruction attempts to write a non-supported value to a *WLRL* field.\",\n      \"line_number\": 127,\n      \"reason\": \"This describes a permission rather than a definitive implementation choice, thus not qualifying as a parameter.\"\n    },\n    {\n      \"excerpt\": \"The CSR address convention uses the upper bits of the CSR address to encode default access privileges.\",\n      \"line_number\": 127,\n      \"reason\": \"This is a description of a convention rather than an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The value written to one CSR may control whether a field of a second CSR is writable.\",\n      \"line_number\": 127,\n      \"reason\": \"This describes a behavior based on CSR interactions rather than a parameter that can be chosen by the implementer.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 17138,
+  "output_tokens": 907,
+  "latency_ms": 10011,
+  "timestamp": "2026-07-24T18:14:43.966375+00:00",
+  "error": null,
+  "retry_count": 0
+}

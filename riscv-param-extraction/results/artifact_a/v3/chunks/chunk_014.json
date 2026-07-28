@@ -1,0 +1,38 @@
+{
+  "chunk_id": "chunk_014",
+  "source_file": "fraclmul.adoc",
+  "start_line": 1,
+  "end_line": 175,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "vsetvli s1, zero, e8,mf2,ta,mu // LMUL=1/2 !",
+      "line_number": 75,
+      "parameter_name": "FRACTIONAL_LMUL_MIN",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to support fractional LMUL values, such as 1/2, which is a design-time decision not controlled by any CSR field."
+    },
+    {
+      "excerpt": "vsetvli s1, zero, e64,m4,ta,mu // LMUL=4",
+      "line_number": 82,
+      "parameter_name": "FRACTIONAL_LMUL_MAX",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to support fractional LMUL values, such as 4, which is a design-time decision not controlled by any CSR field."
+    }
+  ],
+  "skipped_non_parameters": [],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"vsetvli s1, zero, e8,mf2,ta,mu // LMUL=1/2 !\",\n      \"line_number\": 75,\n      \"parameter_name\": \"FRACTIONAL_LMUL_MIN\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"value\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation can choose to support fractional LMUL values, such as 1/2, which is a design-time decision not controlled by any CSR field.\"\n    },\n    {\n      \"excerpt\": \"vsetvli s1, zero, e64,m4,ta,mu // LMUL=4\",\n      \"line_number\": 82,\n      \"parameter_name\": \"FRACTIONAL_LMUL_MAX\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"value\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation can choose to support fractional LMUL values, such as 4, which is a design-time decision not controlled by any CSR field.\"\n    }\n  ],\n  \"skipped_non_parameters\": []\n}\n```",
+  "input_tokens": 8935,
+  "output_tokens": 273,
+  "latency_ms": 5226,
+  "timestamp": "2026-07-24T20:22:17.034155+00:00",
+  "error": null,
+  "retry_count": 0
+}

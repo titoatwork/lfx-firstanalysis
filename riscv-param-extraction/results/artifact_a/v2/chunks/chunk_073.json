@@ -1,0 +1,43 @@
+{
+  "chunk_id": "chunk_073",
+  "source_file": "zifencei.adoc",
+  "start_line": 1,
+  "end_line": 129,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The FENCE.I instruction was designed to support a wide variety of implementations.",
+      "line_number": 10,
+      "reason": "This is a general statement about the design of the FENCE.I instruction and does not specify an implementation choice."
+    },
+    {
+      "excerpt": "In particular, for designs that have an incoherent instruction cache and an incoherent data cache, or where the instruction cache refill does not snoop a coherent data cache, both caches must be completely flushed when a FENCE.I instruction is encountered.",
+      "line_number": 20,
+      "reason": "This describes a requirement for certain designs, not an implementation choice."
+    },
+    {
+      "excerpt": "For this reason, the standard Linux ABI has removed FENCE.I from user-level and now requires a system call to maintain instruction-fetch coherence.",
+      "line_number": 30,
+      "reason": "This is a description of a change in the ABI and does not indicate an architectural parameter."
+    },
+    {
+      "excerpt": "Future approaches to instruction-fetch coherence under discussion include providing more restricted versions of FENCE.I that only target a given address specified in _rs1_, and/or allowing software to use an ABI that relies on machine-mode cache-maintenance operations.",
+      "line_number": 40,
+      "reason": "This is speculative and does not define a current architectural parameter."
+    },
+    {
+      "excerpt": "A FENCE.I instruction orders all explicit memory accesses that precede the FENCE.I in program order before all instruction fetches that follow the FENCE.I in program order.",
+      "line_number": 50,
+      "reason": "This describes the behavior of the FENCE.I instruction rather than an implementation choice."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"The FENCE.I instruction was designed to support a wide variety of implementations.\",\n      \"line_number\": 10,\n      \"reason\": \"This is a general statement about the design of the FENCE.I instruction and does not specify an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"In particular, for designs that have an incoherent instruction cache and an incoherent data cache, or where the instruction cache refill does not snoop a coherent data cache, both caches must be completely flushed when a FENCE.I instruction is encountered.\",\n      \"line_number\": 20,\n      \"reason\": \"This describes a requirement for certain designs, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"For this reason, the standard Linux ABI has removed FENCE.I from user-level and now requires a system call to maintain instruction-fetch coherence.\",\n      \"line_number\": 30,\n      \"reason\": \"This is a description of a change in the ABI and does not indicate an architectural parameter.\"\n    },\n    {\n      \"excerpt\": \"Future approaches to instruction-fetch coherence under discussion include providing more restricted versions of FENCE.I that only target a given address specified in _rs1_, and/or allowing software to use an ABI that relies on machine-mode cache-maintenance operations.\",\n      \"line_number\": 40,\n      \"reason\": \"This is speculative and does not define a current architectural parameter.\"\n    },\n    {\n      \"excerpt\": \"A FENCE.I instruction orders all explicit memory accesses that precede the FENCE.I in program order before all instruction fetches that follow the FENCE.I in program order.\",\n      \"line_number\": 50,\n      \"reason\": \"This describes the behavior of the FENCE.I instruction rather than an implementation choice.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 7485,
+  "output_tokens": 386,
+  "latency_ms": 4798,
+  "timestamp": "2026-07-24T18:44:43.998242+00:00",
+  "error": null,
+  "retry_count": 0
+}

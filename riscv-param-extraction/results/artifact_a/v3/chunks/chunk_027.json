@@ -1,0 +1,104 @@
+{
+  "chunk_id": "chunk_027",
+  "source_file": "priv-cfi.adoc",
+  "start_line": 1,
+  "end_line": 373,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "When S-mode is implemented, it is determined as follows: ... |  S or HS     | `menvcfg.LPE`",
+      "line_number": 12,
+      "parameter_name": "LPE_STATE_S_MODE",
+      "existing_udb_name": "LPE_STATE_S_MODE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The LPE state in S-mode is determined by the `menvcfg.LPE` field, which is a WARL field. The implementation can choose whether this field is supported."
+    },
+    {
+      "excerpt": "When S-mode is not implemented, it is determined as follows: ... |  U           | `menvcfg.LPE`",
+      "line_number": 18,
+      "parameter_name": "LPE_STATE_U_MODE",
+      "existing_udb_name": "LPE_STATE_U_MODE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The LPE state in U-mode is determined by the `menvcfg.LPE` field, which is a WARL field. The implementation can choose whether this field is supported."
+    },
+    {
+      "excerpt": "When S-mode is implemented, it is determined as follows: ... |  S or HS     | `henvcfg.SSE`",
+      "line_number": 34,
+      "parameter_name": "SSE_STATE_S_MODE",
+      "existing_udb_name": "SSE_STATE_S_MODE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The SSE state in S-mode is determined by the `henvcfg.SSE` field, which is a WARL field. The implementation can choose whether this field is supported."
+    },
+    {
+      "excerpt": "When S-mode is not implemented, then `xSSE` is 0 at both M and U privilege modes.",
+      "line_number": 39,
+      "parameter_name": "SSE_STATE_U_MODE_NO_S_MODE",
+      "existing_udb_name": "SSE_STATE_U_MODE_NO_S_MODE",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The SSE state in U-mode when S-mode is not implemented is a direct implementation choice, as it is defined to be 0."
+    },
+    {
+      "excerpt": "The encoding `R=0`, `W=1`, and `X=0`, is defined to represent an SS page.",
+      "line_number": 66,
+      "parameter_name": "SS_PAGE_ENCODING",
+      "existing_udb_name": "SS_PAGE_ENCODING",
+      "class": "NORM_CSR_WARL",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The encoding for shadow stack pages is a WARL field, and the implementation can choose how to represent this encoding."
+    },
+    {
+      "excerpt": "The `SSAMOSWAP.W/D` instructions require the PMA of the accessed memory range to provide AMOSwap level support.",
+      "line_number": 118,
+      "parameter_name": "SSAMOSWAP_MEMORY_PMA_SUPPORT",
+      "existing_udb_name": "SSAMOSWAP_MEMORY_PMA_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "Whether the PMA provides AMOSwap level support for `SSAMOSWAP.W/D` instructions is an implementation choice."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The Zicfilp must be explicitly enabled for use at each privilege mode.",
+      "line_number": 8,
+      "reason": "This is a fixed requirement that all implementations must satisfy. There is no implementation choice here."
+    },
+    {
+      "excerpt": "When programs that use Zicfiss instructions are installed on a processor that does not support the Zicfiss extension but supports the Zimop and Zcmop extensions, the programs continues to function correctly but without backward-edge CFI protection as the Zicfiss instructions will revert to their Zimop/Zcmop-defined behavior.",
+      "line_number": 66,
+      "reason": "This describes behavior based on the presence or absence of certain extensions, not an implementation choice."
+    },
+    {
+      "excerpt": "Activating Zicfiss in M-mode is currently not supported.",
+      "line_number": 66,
+      "reason": "This is a fixed requirement and does not leave any choice to the implementer."
+    },
+    {
+      "excerpt": "The trap handler in privilege mode `x` must save the `__x__PELP` bit and the `x7` register before performing an indirect call/jump if `xLPE=1`.",
+      "line_number": 66,
+      "reason": "This is a fixed requirement for trap handler behavior, not an implementation choice."
+    },
+    {
+      "excerpt": "Misaligned accesses to shadow stack are not required and enforcing alignment is more secure to detect errors in the program.",
+      "line_number": 66,
+      "reason": "This is a suggestion about implementation practices, not an architectural parameter."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"When S-mode is implemented, it is determined as follows: ... |  S or HS     | `menvcfg.LPE`\",\n      \"line_number\": 12,\n      \"parameter_name\": \"LPE_STATE_S_MODE\",\n      \"existing_udb_name\": \"LPE_STATE_S_MODE\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The LPE state in S-mode is determined by the `menvcfg.LPE` field, which is a WARL field. The implementation can choose whether this field is supported.\"\n    },\n    {\n      \"excerpt\": \"When S-mode is not implemented, it is determined as follows: ... |  U           | `menvcfg.LPE`\",\n      \"line_number\": 18,\n      \"parameter_name\": \"LPE_STATE_U_MODE\",\n      \"existing_udb_name\": \"LPE_STATE_U_MODE\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The LPE state in U-mode is determined by the `menvcfg.LPE` field, which is a WARL field. The implementation can choose whether this field is supported.\"\n    },\n    {\n      \"excerpt\": \"When S-mode is implemented, it is determined as follows: ... |  S or HS     | `henvcfg.SSE`\",\n      \"line_number\": 34,\n      \"parameter_name\": \"SSE_STATE_S_MODE\",\n      \"existing_udb_name\": \"SSE_STATE_S_MODE\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The SSE state in S-mode is determined by the `henvcfg.SSE` field, which is a WARL field. The implementation can choose whether this field is supported.\"\n    },\n    {\n      \"excerpt\": \"When S-mode is not implemented, then `xSSE` is 0 at both M and U privilege modes.\",\n      \"line_number\": 39,\n      \"parameter_name\": \"SSE_STATE_U_MODE_NO_S_MODE\",\n      \"existing_udb_name\": \"SSE_STATE_U_MODE_NO_S_MODE\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The SSE state in U-mode when S-mode is not implemented is a direct implementation choice, as it is defined to be 0.\"\n    },\n    {\n      \"excerpt\": \"The encoding `R=0`, `W=1`, and `X=0`, is defined to represent an SS page.\",\n      \"line_number\": 66,\n      \"parameter_name\": \"SS_PAGE_ENCODING\",\n      \"existing_udb_name\": \"SS_PAGE_ENCODING\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"bitmask\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The encoding for shadow stack pages is a WARL field, and the implementation can choose how to represent this encoding.\"\n    },\n    {\n      \"excerpt\": \"The `SSAMOSWAP.W/D` instructions require the PMA of the accessed memory range to provide AMOSwap level support.\",\n      \"line_number\": 118,\n      \"parameter_name\": \"SSAMOSWAP_MEMORY_PMA_SUPPORT\",\n      \"existing_udb_name\": \"SSAMOSWAP_MEMORY_PMA_SUPPORT\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"Whether the PMA provides AMOSwap level support for `SSAMOSWAP.W/D` instructions is an implementation choice.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"The Zicfilp must be explicitly enabled for use at each privilege mode.\",\n      \"line_number\": 8,\n      \"reason\": \"This is a fixed requirement that all implementations must satisfy. There is no implementation choice here.\"\n    },\n    {\n      \"excerpt\": \"When programs that use Zicfiss instructions are installed on a processor that does not support the Zicfiss extension but supports the Zimop and Zcmop extensions, the programs continues to function correctly but without backward-edge CFI protection as the Zicfiss instructions will revert to their Zimop/Zcmop-defined behavior.\",\n      \"line_number\": 66,\n      \"reason\": \"This describes behavior based on the presence or absence of certain extensions, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"Activating Zicfiss in M-mode is currently not supported.\",\n      \"line_number\": 66,\n      \"reason\": \"This is a fixed requirement and does not leave any choice to the implementer.\"\n    },\n    {\n      \"excerpt\": \"The trap handler in privilege mode `x` must save the `__x__PELP` bit and the `x7` register before performing an indirect call/jump if `xLPE=1`.\",\n      \"line_number\": 66,\n      \"reason\": \"This is a fixed requirement for trap handler behavior, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"Misaligned accesses to shadow stack are not required and enforcing alignment is more secure to detect errors in the program.\",\n      \"line_number\": 66,\n      \"reason\": \"This is a suggestion about implementation practices, not an architectural parameter.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 11290,
+  "output_tokens": 1185,
+  "latency_ms": 13617,
+  "timestamp": "2026-07-24T20:30:43.365311+00:00",
+  "error": null,
+  "retry_count": 0
+}

@@ -1,0 +1,124 @@
+{
+  "chunk_id": "chunk_048",
+  "source_file": "smctr.adoc",
+  "start_line": 1,
+  "end_line": 763,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "The number of records that can be held in the buffer depends upon both the implementation (the maximum supported depth) and the CTR configuration (the software selected depth).",
+      "line_number": 10,
+      "parameter_name": "CTR_DEPTH",
+      "existing_udb_name": "CTR_DEPTH",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The maximum depth of the CTR buffer is an implementation choice, allowing for different configurations based on the hardware capabilities."
+    },
+    {
+      "excerpt": "The `mctrctl` register is a 64-bit read/write register that enables and configures the CTR capability.",
+      "line_number": 40,
+      "parameter_name": "MCTRCTL_ACCESS",
+      "existing_udb_name": "MCTRCTL_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The `mctrctl` register can be configured to enable or disable various features, making it a read/write parameter."
+    },
+    {
+      "excerpt": "All fields are optional except for M, S, U, and BPFRZ. All unimplemented fields are read-only 0, while all implemented fields are writable.",
+      "line_number": 60,
+      "parameter_name": "MCTRCTL_FIELDS_OPTIONALITY",
+      "existing_udb_name": "MCTRCTL_FIELDS_OPTIONALITY",
+      "class": "NORM_CSR_RW",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The optionality of fields in the `mctrctl` register indicates which fields can be implemented or left as read-only, affecting the writable nature of the register."
+    },
+    {
+      "excerpt": "The 32-bit `sctrdepth` register specifies the depth of the CTR buffer.",
+      "line_number": 120,
+      "parameter_name": "SCTR_DEPTH",
+      "existing_udb_name": "SCTR_DEPTH",
+      "class": "NORM_CSR_RW",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The depth of the CTR buffer is specified by the `sctrdepth` register, which can vary by implementation, making it a writable parameter."
+    },
+    {
+      "excerpt": "WARL field that selects the depth of the CTR buffer. Encodings: \u2018000 - 16, \u2018001 - 32, \u2018010 - 64, \u2018011 - 128, \u2018100 - 256, '11x - reserved.",
+      "line_number": 130,
+      "parameter_name": "SCTR_DEPTH_ENCODINGS",
+      "existing_udb_name": "SCTR_DEPTH_ENCODINGS",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The `sctrdepth` register has WARL encodings that determine the legal values for the depth of the CTR buffer, which varies by implementation."
+    },
+    {
+      "excerpt": "The `sctrstatus` register grants access to CTR status information and is updated by the hardware whenever CTR is active.",
+      "line_number": 200,
+      "parameter_name": "SCTR_STATUS_ACCESS",
+      "existing_udb_name": "SCTR_STATUS_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The `sctrstatus` register can be read or written to, depending on the implementation, making it a read/write parameter."
+    },
+    {
+      "excerpt": "The `ctrdata` register may optionally include a count of CPU cycles elapsed since the prior CTR record.",
+      "line_number": 300,
+      "parameter_name": "CTRDATA_CYCLE_COUNT_OPTIONALITY",
+      "existing_udb_name": "CTRDATA_CYCLE_COUNT_OPTIONALITY",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The optional inclusion of cycle counting in the `ctrdata` register indicates that implementations can choose whether to support this feature."
+    },
+    {
+      "excerpt": "When the optional `__x__ctrctl`.RASEMU bit is implemented and set to 1, transfer recording behavior is altered to emulate the behavior of a return-address stack (RAS).",
+      "line_number": 400,
+      "parameter_name": "CTRCTL_RAS_EMULATION",
+      "existing_udb_name": "CTRCTL_RAS_EMULATION",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to support RAS emulation by setting the RASEMU bit in the `ctrctl` register, making it a writable parameter."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "CTR records qualified control transfers.",
+      "line_number": 500,
+      "reason": "This describes behavior rather than an implementation choice; it does not define a parameter."
+    },
+    {
+      "excerpt": "The `ctrdata` register contains metadata for the recorded transfer.",
+      "line_number": 350,
+      "reason": "This is a description of the register's purpose, not an implementation choice."
+    },
+    {
+      "excerpt": "The `sctrctl` register provides supervisor mode access to a subset of `mctrctl`.",
+      "line_number": 80,
+      "reason": "This describes the relationship between registers rather than an implementation choice."
+    },
+    {
+      "excerpt": "The `mctrctl` register must be able to hold all valid virtual or physical addresses that can serve as a `pc`.",
+      "line_number": 220,
+      "reason": "This is a fixed requirement for the register's capability, not an implementation choice."
+    },
+    {
+      "excerpt": "The `sctrstatus` register is updated by hardware whenever CTR is active.",
+      "line_number": 200,
+      "reason": "This describes behavior rather than an implementation choice; it does not define a parameter."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"The number of records that can be held in the buffer depends upon both the implementation (the maximum supported depth) and the CTR configuration (the software selected depth).\",\n      \"line_number\": 10,\n      \"parameter_name\": \"CTR_DEPTH\",\n      \"existing_udb_name\": \"CTR_DEPTH\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"range\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The maximum depth of the CTR buffer is an implementation choice, allowing for different configurations based on the hardware capabilities.\"\n    },\n    {\n      \"excerpt\": \"The `mctrctl` register is a 64-bit read/write register that enables and configures the CTR capability.\",\n      \"line_number\": 40,\n      \"parameter_name\": \"MCTRCTL_ACCESS\",\n      \"existing_udb_name\": \"MCTRCTL_ACCESS\",\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The `mctrctl` register can be configured to enable or disable various features, making it a read/write parameter.\"\n    },\n    {\n      \"excerpt\": \"All fields are optional except for M, S, U, and BPFRZ. All unimplemented fields are read-only 0, while all implemented fields are writable.\",\n      \"line_number\": 60,\n      \"parameter_name\": \"MCTRCTL_FIELDS_OPTIONALITY\",\n      \"existing_udb_name\": \"MCTRCTL_FIELDS_OPTIONALITY\",\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"bitmask\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The optionality of fields in the `mctrctl` register indicates which fields can be implemented or left as read-only, affecting the writable nature of the register.\"\n    },\n    {\n      \"excerpt\": \"The 32-bit `sctrdepth` register specifies the depth of the CTR buffer.\",\n      \"line_number\": 120,\n      \"parameter_name\": \"SCTR_DEPTH\",\n      \"existing_udb_name\": \"SCTR_DEPTH\",\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"range\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The depth of the CTR buffer is specified by the `sctrdepth` register, which can vary by implementation, making it a writable parameter.\"\n    },\n    {\n      \"excerpt\": \"WARL field that selects the depth of the CTR buffer. Encodings: \u2018000 - 16, \u2018001 - 32, \u2018010 - 64, \u2018011 - 128, \u2018100 - 256, '11x - reserved.\",\n      \"line_number\": 130,\n      \"parameter_name\": \"SCTR_DEPTH_ENCODINGS\",\n      \"existing_udb_name\": \"SCTR_DEPTH_ENCODINGS\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"enum\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The `sctrdepth` register has WARL encodings that determine the legal values for the depth of the CTR buffer, which varies by implementation.\"\n    },\n    {\n      \"excerpt\": \"The `sctrstatus` register grants access to CTR status information and is updated by the hardware whenever CTR is active.\",\n      \"line_number\": 200,\n      \"parameter_name\": \"SCTR_STATUS_ACCESS\",\n      \"existing_udb_name\": \"SCTR_STATUS_ACCESS\",\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The `sctrstatus` register can be read or written to, depending on the implementation, making it a read/write parameter.\"\n    },\n    {\n      \"excerpt\": \"The `ctrdata` register may optionally include a count of CPU cycles elapsed since the prior CTR record.\",\n      \"line_number\": 300,\n      \"parameter_name\": \"CTRDATA_CYCLE_COUNT_OPTIONALITY\",\n      \"existing_udb_name\": \"CTRDATA_CYCLE_COUNT_OPTIONALITY\",\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The optional inclusion of cycle counting in the `ctrdata` register indicates that implementations can choose whether to support this feature.\"\n    },\n    {\n      \"excerpt\": \"When the optional `__x__ctrctl`.RASEMU bit is implemented and set to 1, transfer recording behavior is altered to emulate the behavior of a return-address stack (RAS).\",\n      \"line_number\": 400,\n      \"parameter_name\": \"CTRCTL_RAS_EMULATION\",\n      \"existing_udb_name\": \"CTRCTL_RAS_EMULATION\",\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation can choose to support RAS emulation by setting the RASEMU bit in the `ctrctl` register, making it a writable parameter.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"CTR records qualified control transfers.\",\n      \"line_number\": 500,\n      \"reason\": \"This describes behavior rather than an implementation choice; it does not define a parameter.\"\n    },\n    {\n      \"excerpt\": \"The `ctrdata` register contains metadata for the recorded transfer.\",\n      \"line_number\": 350,\n      \"reason\": \"This is a description of the register's purpose, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The `sctrctl` register provides supervisor mode access to a subset of `mctrctl`.\",\n      \"line_number\": 80,\n      \"reason\": \"This describes the relationship between registers rather than an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The `mctrctl` register must be able to hold all valid virtual or physical addresses that can serve as a `pc`.\",\n      \"line_number\": 220,\n      \"reason\": \"This is a fixed requirement for the register's capability, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The `sctrstatus` register is updated by hardware whenever CTR is active.\",\n      \"line_number\": 200,\n      \"reason\": \"This describes behavior rather than an implementation choice; it does not define a parameter.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 19010,
+  "output_tokens": 1354,
+  "latency_ms": 15399,
+  "timestamp": "2026-07-24T18:25:42.468007+00:00",
+  "error": null,
+  "retry_count": 0
+}

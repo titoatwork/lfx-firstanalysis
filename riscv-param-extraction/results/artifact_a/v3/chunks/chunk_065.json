@@ -1,0 +1,84 @@
+{
+  "chunk_id": "chunk_065",
+  "source_file": "zalasr.adoc",
+  "start_line": 1,
+  "end_line": 137,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "The misaligned atomicity granule PMA, defined in Volume II of this manual, optionally relaxes this alignment requirement.",
+      "line_number": 37,
+      "parameter_name": "MISALIGNED_ATOMICITY_GRANULE_PMA",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to relax the alignment requirement for misaligned atomicity granules, making this a design-time decision."
+    },
+    {
+      "excerpt": "If all accessed bytes lie within the same misaligned atomicity granule, the instruction will not raise an exception for reasons of address alignment.",
+      "line_number": 41,
+      "parameter_name": "MISALIGNED_ATOMICITY_GRANULE_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "Whether the instruction raises an exception for misalignment when all bytes are within the same atomicity granule is an implementation choice."
+    },
+    {
+      "excerpt": "This load must have the ordering annotation _aq_ and may have ordering annotation _rl_ encoded in the instruction.",
+      "line_number": 66,
+      "parameter_name": "LOAD_ACQUIRE_ORDERING_ANNOTATION",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The load-acquire instruction requires the _aq_ annotation and optionally supports the _rl_ annotation, making the set of supported annotations an implementation-defined choice."
+    },
+    {
+      "excerpt": "This store must have ordering annotation _rl_ and may have ordering annotation _aq_ encoded in the instruction.",
+      "line_number": 102,
+      "parameter_name": "STORE_RELEASE_ORDERING_ANNOTATION",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The store-release instruction requires the _rl_ annotation and optionally supports the _aq_ annotation, making the set of supported annotations an implementation-defined choice."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "If the address is not naturally aligned, an address-misaligned exception or an access-fault exception will be generated.",
+      "line_number": 35,
+      "reason": "This describes the behavior of the instruction under certain conditions, not an implementation choice."
+    },
+    {
+      "excerpt": "The Zalasr instructions always sign-extend the value placed in _rd_ and ignore the upper bits of the value of _rs2_.",
+      "line_number": 29,
+      "reason": "This is a fixed requirement for the instruction's behavior, not a parameter that varies by implementation."
+    },
+    {
+      "excerpt": "The versions without the _aq_ bit set are RESERVED.",
+      "line_number": 70,
+      "reason": "This indicates reserved instruction encodings, not an implementation choice."
+    },
+    {
+      "excerpt": "LD.{AQ, AQRL} is RV64-only.",
+      "line_number": 73,
+      "reason": "This is a fixed requirement about the instruction's availability, not a parameter."
+    },
+    {
+      "excerpt": "The _rl_ bit is mandatory because the two encodings that would be produced are not seen as useful at this time.",
+      "line_number": 107,
+      "reason": "This describes a requirement for the instruction's encoding, not an implementation choice."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"The misaligned atomicity granule PMA, defined in Volume II of this manual, optionally relaxes this alignment requirement.\",\n      \"line_number\": 37,\n      \"parameter_name\": \"MISALIGNED_ATOMICITY_GRANULE_PMA\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation can choose to relax the alignment requirement for misaligned atomicity granules, making this a design-time decision.\"\n    },\n    {\n      \"excerpt\": \"If all accessed bytes lie within the same misaligned atomicity granule, the instruction will not raise an exception for reasons of address alignment.\",\n      \"line_number\": 41,\n      \"parameter_name\": \"MISALIGNED_ATOMICITY_GRANULE_BEHAVIOR\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"Whether the instruction raises an exception for misalignment when all bytes are within the same atomicity granule is an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"This load must have the ordering annotation _aq_ and may have ordering annotation _rl_ encoded in the instruction.\",\n      \"line_number\": 66,\n      \"parameter_name\": \"LOAD_ACQUIRE_ORDERING_ANNOTATION\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The load-acquire instruction requires the _aq_ annotation and optionally supports the _rl_ annotation, making the set of supported annotations an implementation-defined choice.\"\n    },\n    {\n      \"excerpt\": \"This store must have ordering annotation _rl_ and may have ordering annotation _aq_ encoded in the instruction.\",\n      \"line_number\": 102,\n      \"parameter_name\": \"STORE_RELEASE_ORDERING_ANNOTATION\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The store-release instruction requires the _rl_ annotation and optionally supports the _aq_ annotation, making the set of supported annotations an implementation-defined choice.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"If the address is not naturally aligned, an address-misaligned exception or an access-fault exception will be generated.\",\n      \"line_number\": 35,\n      \"reason\": \"This describes the behavior of the instruction under certain conditions, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The Zalasr instructions always sign-extend the value placed in _rd_ and ignore the upper bits of the value of _rs2_.\",\n      \"line_number\": 29,\n      \"reason\": \"This is a fixed requirement for the instruction's behavior, not a parameter that varies by implementation.\"\n    },\n    {\n      \"excerpt\": \"The versions without the _aq_ bit set are RESERVED.\",\n      \"line_number\": 70,\n      \"reason\": \"This indicates reserved instruction encodings, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"LD.{AQ, AQRL} is RV64-only.\",\n      \"line_number\": 73,\n      \"reason\": \"This is a fixed requirement about the instruction's availability, not a parameter.\"\n    },\n    {\n      \"excerpt\": \"The _rl_ bit is mandatory because the two encodings that would be produced are not seen as useful at this time.\",\n      \"line_number\": 107,\n      \"reason\": \"This describes a requirement for the instruction's encoding, not an implementation choice.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 8827,
+  "output_tokens": 819,
+  "latency_ms": 7945,
+  "timestamp": "2026-07-25T18:09:19.030705+00:00",
+  "error": null,
+  "retry_count": 0
+}

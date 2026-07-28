@@ -1,0 +1,43 @@
+{
+  "chunk_id": "chunk_071",
+  "source_file": "zicond.adoc",
+  "start_line": 1,
+  "end_line": 187,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "Furthermore, if the Zkt extension is implemented, this instruction's timing is independent of the data values in _rs1_ and _rs2_.",
+      "line_number": 30,
+      "reason": "This describes behavior contingent on the implementation of the Zkt extension, not an architectural parameter."
+    },
+    {
+      "excerpt": "Furthermore, if the Zkt extension is implemented, this instruction's timing is independent of the data values in _rs1_ and _rs2_.",
+      "line_number": 90,
+      "reason": "Similar to the previous example, this is a conditional statement about timing behavior based on the presence of the Zkt extension, not a parameter."
+    },
+    {
+      "excerpt": "This instruction carries a syntactic dependency from both _rs1_ and _rs2_ to _rd_.",
+      "line_number": 28,
+      "reason": "This describes a syntactic dependency in the instruction's operation, not an implementation choice."
+    },
+    {
+      "excerpt": "This instruction carries a syntactic dependency from both _rs1_ and _rs2_ to _rd_.",
+      "line_number": 88,
+      "reason": "Again, this describes a syntactic dependency, which is not an architectural parameter."
+    },
+    {
+      "excerpt": "The instructions from this extension can be used to construct sequences that perform conditional-arithmetic, conditional-bitwise-logical, and conditional-select operations.",
+      "line_number": 101,
+      "reason": "This is a general statement about the usage of the instructions, not a parameter."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"Furthermore, if the Zkt extension is implemented, this instruction's timing is independent of the data values in _rs1_ and _rs2_.\",\n      \"line_number\": 30,\n      \"reason\": \"This describes behavior contingent on the implementation of the Zkt extension, not an architectural parameter.\"\n    },\n    {\n      \"excerpt\": \"Furthermore, if the Zkt extension is implemented, this instruction's timing is independent of the data values in _rs1_ and _rs2_.\",\n      \"line_number\": 90,\n      \"reason\": \"Similar to the previous example, this is a conditional statement about timing behavior based on the presence of the Zkt extension, not a parameter.\"\n    },\n    {\n      \"excerpt\": \"This instruction carries a syntactic dependency from both _rs1_ and _rs2_ to _rd_.\",\n      \"line_number\": 28,\n      \"reason\": \"This describes a syntactic dependency in the instruction's operation, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"This instruction carries a syntactic dependency from both _rs1_ and _rs2_ to _rd_.\",\n      \"line_number\": 88,\n      \"reason\": \"Again, this describes a syntactic dependency, which is not an architectural parameter.\"\n    },\n    {\n      \"excerpt\": \"The instructions from this extension can be used to construct sequences that perform conditional-arithmetic, conditional-bitwise-logical, and conditional-select operations.\",\n      \"line_number\": 101,\n      \"reason\": \"This is a general statement about the usage of the instructions, not a parameter.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 7858,
+  "output_tokens": 362,
+  "latency_ms": 3894,
+  "timestamp": "2026-07-24T18:43:34.718442+00:00",
+  "error": null,
+  "retry_count": 0
+}

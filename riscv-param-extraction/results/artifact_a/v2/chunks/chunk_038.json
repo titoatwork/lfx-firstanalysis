@@ -1,0 +1,79 @@
+{
+  "chunk_id": "chunk_038",
+  "source_file": "rnmi.adoc",
+  "start_line": 1,
+  "end_line": 166,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "The RNMI interrupt trap handler address is implementation-defined.",
+      "line_number": 30,
+      "parameter_name": "RNMI_INTERRUPT_TRAP_HANDLER_ADDRESS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The RNMI interrupt trap handler address is a design-time decision made by the implementer, as it is explicitly stated to be implementation-defined."
+    },
+    {
+      "excerpt": "RNMI also has an associated exception trap handler address, which is implementation defined.",
+      "line_number": 34,
+      "parameter_name": "RNMI_EXCEPTION_TRAP_HANDLER_ADDRESS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The exception trap handler address for RNMI is also implementation-defined, indicating a choice left to the implementer."
+    },
+    {
+      "excerpt": "`mnepc` is a WARL register that must be able to hold all valid virtual addresses.",
+      "line_number": 66,
+      "parameter_name": "MNEPC_VALID_ADDRESS_CAPACITY",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The `mnepc` register is a WARL field, and its ability to hold valid virtual addresses varies by implementation, making it a parameter."
+    },
+    {
+      "excerpt": "`mnstatus` also holds the NMIE bit.",
+      "line_number": 114,
+      "parameter_name": "MNIE_BIT_ACCESS",
+      "existing_udb_name": "MNIE_BIT_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The NMIE bit in `mnstatus` can be settable, indicating a choice for the implementer on whether it is read-write or read-only."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "RNMIs are masked out of reset to give software the opportunity to initialize data structures and devices for subsequent RNMI handling.",
+      "line_number": 118,
+      "reason": "This is a description of behavior during reset, not an implementation choice."
+    },
+    {
+      "excerpt": "The other bits in `mnstatus` are reserved; software should write zeros and hardware implementations should return zeros.",
+      "line_number": 116,
+      "reason": "This describes fixed behavior for reserved bits, not a parameter that allows for implementation choice."
+    },
+    {
+      "excerpt": "When NMIE=1, non-maskable interrupts are enabled.",
+      "line_number": 114,
+      "reason": "This describes the behavior of the NMIE bit rather than an implementation choice regarding its functionality."
+    },
+    {
+      "excerpt": "The Smrnmi extension does not change the behavior of the MRET and SRET instructions.",
+      "line_number": 156,
+      "reason": "This is a fixed requirement about the behavior of existing instructions, not an implementation choice."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"The RNMI interrupt trap handler address is implementation-defined.\",\n      \"line_number\": 30,\n      \"parameter_name\": \"RNMI_INTERRUPT_TRAP_HANDLER_ADDRESS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"value\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The RNMI interrupt trap handler address is a design-time decision made by the implementer, as it is explicitly stated to be implementation-defined.\"\n    },\n    {\n      \"excerpt\": \"RNMI also has an associated exception trap handler address, which is implementation defined.\",\n      \"line_number\": 34,\n      \"parameter_name\": \"RNMI_EXCEPTION_TRAP_HANDLER_ADDRESS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"value\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The exception trap handler address for RNMI is also implementation-defined, indicating a choice left to the implementer.\"\n    },\n    {\n      \"excerpt\": \"`mnepc` is a WARL register that must be able to hold all valid virtual addresses.\",\n      \"line_number\": 66,\n      \"parameter_name\": \"MNEPC_VALID_ADDRESS_CAPACITY\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The `mnepc` register is a WARL field, and its ability to hold valid virtual addresses varies by implementation, making it a parameter.\"\n    },\n    {\n      \"excerpt\": \"`mnstatus` also holds the NMIE bit.\",\n      \"line_number\": 114,\n      \"parameter_name\": \"MNIE_BIT_ACCESS\",\n      \"existing_udb_name\": \"MNIE_BIT_ACCESS\",\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The NMIE bit in `mnstatus` can be settable, indicating a choice for the implementer on whether it is read-write or read-only.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"RNMIs are masked out of reset to give software the opportunity to initialize data structures and devices for subsequent RNMI handling.\",\n      \"line_number\": 118,\n      \"reason\": \"This is a description of behavior during reset, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The other bits in `mnstatus` are reserved; software should write zeros and hardware implementations should return zeros.\",\n      \"line_number\": 116,\n      \"reason\": \"This describes fixed behavior for reserved bits, not a parameter that allows for implementation choice.\"\n    },\n    {\n      \"excerpt\": \"When NMIE=1, non-maskable interrupts are enabled.\",\n      \"line_number\": 114,\n      \"reason\": \"This describes the behavior of the NMIE bit rather than an implementation choice regarding its functionality.\"\n    },\n    {\n      \"excerpt\": \"The Smrnmi extension does not change the behavior of the MRET and SRET instructions.\",\n      \"line_number\": 156,\n      \"reason\": \"This is a fixed requirement about the behavior of existing instructions, not an implementation choice.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 8445,
+  "output_tokens": 711,
+  "latency_ms": 8868,
+  "timestamp": "2026-07-24T18:17:04.412776+00:00",
+  "error": null,
+  "retry_count": 0
+}

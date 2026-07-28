@@ -1,0 +1,94 @@
+{
+  "chunk_id": "chunk_002",
+  "source_file": "b-st-ext.adoc",
+  "start_line": 1,
+  "end_line": 3426,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "The bitmanip extensions are defined for RV32 and RV64.",
+      "line_number": 8,
+      "parameter_name": "BITMANIP_ARCHITECTURES",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to support the bitmanip extensions for either RV32, RV64, or both. This is a direct implementation choice."
+    },
+    {
+      "excerpt": "The B standard extension comprises instructions provided by the Zba, Zbb, and Zbs extensions.",
+      "line_number": 30,
+      "parameter_name": "B_EXTENSION_COMPOSITION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to include the B extension, which is composed of specific Z extensions. This is a design-time decision."
+    },
+    {
+      "excerpt": "The Zba instructions can be used to accelerate the generation of addresses that index into arrays of basic types.",
+      "line_number": 50,
+      "parameter_name": "ZBA_INSTRUCTION_USE_CASE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The implementation can choose how to utilize the Zba instructions for address generation, which is a design-time decision."
+    },
+    {
+      "excerpt": "The xperm8 instruction operates on bytes.",
+      "line_number": 300,
+      "parameter_name": "XPERM8_INSTRUCTION_OPERAND_TYPE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to define the xperm8 instruction to operate on bytes, which is a design-time decision."
+    },
+    {
+      "excerpt": "The xperm4 instruction operates on nibbles.",
+      "line_number": 320,
+      "parameter_name": "XPERM4_INSTRUCTION_OPERAND_TYPE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to define the xperm4 instruction to operate on nibbles, which is a design-time decision."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE, caption=\"Imp\" ]\n===============================================================\nThe Logical with Negate instructions can be implemented by inverting the _rs2_ inputs to the base-required AND, OR, and XOR logic instructions.",
+      "line_number": 100,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "The `mtvec` register must always be implemented, but can contain a read-only value.",
+      "line_number": 1217,
+      "reason": "This is a fixed requirement ('must always be implemented') that all implementations must satisfy. There is no implementation choice here."
+    },
+    {
+      "excerpt": "The `mtvec` register must always be implemented, but can contain a read-only value.",
+      "line_number": 1217,
+      "reason": "This is a fixed requirement ('must always be implemented') that all implementations must satisfy. There is no implementation choice here."
+    },
+    {
+      "excerpt": "The `mtvec` register must always be implemented, but can contain a read-only value.",
+      "line_number": 1217,
+      "reason": "This is a fixed requirement ('must always be implemented') that all implementations must satisfy. There is no implementation choice here."
+    },
+    {
+      "excerpt": "The `mtvec` register must always be implemented, but can contain a read-only value.",
+      "line_number": 1217,
+      "reason": "This is a fixed requirement ('must always be implemented') that all implementations must satisfy. There is no implementation choice here."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"The bitmanip extensions are defined for RV32 and RV64.\",\n      \"line_number\": 8,\n      \"parameter_name\": \"BITMANIP_ARCHITECTURES\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation can choose to support the bitmanip extensions for either RV32, RV64, or both. This is a direct implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The B standard extension comprises instructions provided by the Zba, Zbb, and Zbs extensions.\",\n      \"line_number\": 30,\n      \"parameter_name\": \"B_EXTENSION_COMPOSITION\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation can choose to include the B extension, which is composed of specific Z extensions. This is a design-time decision.\"\n    },\n    {\n      \"excerpt\": \"The Zba instructions can be used to accelerate the generation of addresses that index into arrays of basic types.\",\n      \"line_number\": 50,\n      \"parameter_name\": \"ZBA_INSTRUCTION_USE_CASE\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation can choose how to utilize the Zba instructions for address generation, which is a design-time decision.\"\n    },\n    {\n      \"excerpt\": \"The xperm8 instruction operates on bytes.\",\n      \"line_number\": 300,\n      \"parameter_name\": \"XPERM8_INSTRUCTION_OPERAND_TYPE\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation can choose to define the xperm8 instruction to operate on bytes, which is a design-time decision.\"\n    },\n    {\n      \"excerpt\": \"The xperm4 instruction operates on nibbles.\",\n      \"line_number\": 320,\n      \"parameter_name\": \"XPERM4_INSTRUCTION_OPERAND_TYPE\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation can choose to define the xperm4 instruction to operate on nibbles, which is a design-time decision.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"[NOTE, caption=\\\"Imp\\\" ]\\n===============================================================\\nThe Logical with Negate instructions can be implemented by inverting the _rs2_ inputs to the base-required AND, OR, and XOR logic instructions.\",\n      \"line_number\": 100,\n      \"reason\": \"This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement.\"\n    },\n    {\n      \"excerpt\": \"The `mtvec` register must always be implemented, but can contain a read-only value.\",\n      \"line_number\": 1217,\n      \"reason\": \"This is a fixed requirement ('must always be implemented') that all implementations must satisfy. There is no implementation choice here.\"\n    },\n    {\n      \"excerpt\": \"The `mtvec` register must always be implemented, but can contain a read-only value.\",\n      \"line_number\": 1217,\n      \"reason\": \"This is a fixed requirement ('must always be implemented') that all implementations must satisfy. There is no implementation choice here.\"\n    },\n    {\n      \"excerpt\": \"The `mtvec` register must always be implemented, but can contain a read-only value.\",\n      \"line_number\": 1217,\n      \"reason\": \"This is a fixed requirement ('must always be implemented') that all implementations must satisfy. There is no implementation choice here.\"\n    },\n    {\n      \"excerpt\": \"The `mtvec` register must always be implemented, but can contain a read-only value.\",\n      \"line_number\": 1217,\n      \"reason\": \"This is a fixed requirement ('must always be implemented') that all implementations must satisfy. There is no implementation choice here.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 31051,
+  "output_tokens": 930,
+  "latency_ms": 15095,
+  "timestamp": "2026-07-24T17:59:52.000366+00:00",
+  "error": null,
+  "retry_count": 0
+}

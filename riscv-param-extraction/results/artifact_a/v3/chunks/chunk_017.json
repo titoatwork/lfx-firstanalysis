@@ -1,0 +1,74 @@
+{
+  "chunk_id": "chunk_017",
+  "source_file": "indirect-csr.adoc",
+  "start_line": 1,
+  "end_line": 344,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "`miselect` is a WARL register.",
+      "line_number": 34,
+      "parameter_name": "MISELECT_WARL",
+      "existing_udb_name": "MISELECT_WARL",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The `miselect` register is defined as WARL, meaning the set of legal values it can hold varies by implementation."
+    },
+    {
+      "excerpt": "The `siselect` register will support the value range 0..0xFFF at a minimum.",
+      "line_number": 139,
+      "parameter_name": "SISELECT_MIN_RANGE",
+      "existing_udb_name": "SISELECT_MIN_RANGE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The `siselect` register's minimum value range is defined, but future extensions may define a larger range, making it an implementation choice."
+    },
+    {
+      "excerpt": "The `vsiselect` register will support the value range 0..0xFFF at a minimum.",
+      "line_number": 267,
+      "parameter_name": "VSISELECT_MIN_RANGE",
+      "existing_udb_name": "VSISELECT_MIN_RANGE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "Similar to `siselect`, the `vsiselect` register's minimum value range is defined, but it may be extended by future implementations."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The behavior upon accessing `mireg*` from M-mode, while `miselect` holds a value that is not implemented, is UNSPECIFIED.",
+      "line_number": 66,
+      "reason": "This describes behavior when accessing registers under certain conditions, which is not an implementation choice."
+    },
+    {
+      "excerpt": "An implementation is not required to support any custom values for `miselect`.",
+      "line_number": 78,
+      "reason": "This is a statement about implementation requirements, not a parameter that defines an architectural choice."
+    },
+    {
+      "excerpt": "It is expected that implementations will typically raise an illegal-instruction exception for such accesses.",
+      "line_number": 84,
+      "reason": "This is a recommendation about expected behavior, not a parameter that leaves a choice to the implementer."
+    },
+    {
+      "excerpt": "If extension Smstateen is implemented together with Smcsrind, bit 60 of state-enable register `mstateen0` controls access to `siselect`, `sireg*`, `vsiselect`, and `vsireg*`.",
+      "line_number": 319,
+      "reason": "This describes a control mechanism rather than an architectural parameter that is left to the implementer."
+    },
+    {
+      "excerpt": "CSR address space is reserved for a possible future 'Sucsrind' extension that extends indirect CSR access to user mode.",
+      "line_number": 344,
+      "reason": "This is a statement about future possibilities, not a current architectural parameter."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"`miselect` is a WARL register.\",\n      \"line_number\": 34,\n      \"parameter_name\": \"MISELECT_WARL\",\n      \"existing_udb_name\": \"MISELECT_WARL\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The `miselect` register is defined as WARL, meaning the set of legal values it can hold varies by implementation.\"\n    },\n    {\n      \"excerpt\": \"The `siselect` register will support the value range 0..0xFFF at a minimum.\",\n      \"line_number\": 139,\n      \"parameter_name\": \"SISELECT_MIN_RANGE\",\n      \"existing_udb_name\": \"SISELECT_MIN_RANGE\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"range\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The `siselect` register's minimum value range is defined, but future extensions may define a larger range, making it an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The `vsiselect` register will support the value range 0..0xFFF at a minimum.\",\n      \"line_number\": 267,\n      \"parameter_name\": \"VSISELECT_MIN_RANGE\",\n      \"existing_udb_name\": \"VSISELECT_MIN_RANGE\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"range\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"Similar to `siselect`, the `vsiselect` register's minimum value range is defined, but it may be extended by future implementations.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"The behavior upon accessing `mireg*` from M-mode, while `miselect` holds a value that is not implemented, is UNSPECIFIED.\",\n      \"line_number\": 66,\n      \"reason\": \"This describes behavior when accessing registers under certain conditions, which is not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"An implementation is not required to support any custom values for `miselect`.\",\n      \"line_number\": 78,\n      \"reason\": \"This is a statement about implementation requirements, not a parameter that defines an architectural choice.\"\n    },\n    {\n      \"excerpt\": \"It is expected that implementations will typically raise an illegal-instruction exception for such accesses.\",\n      \"line_number\": 84,\n      \"reason\": \"This is a recommendation about expected behavior, not a parameter that leaves a choice to the implementer.\"\n    },\n    {\n      \"excerpt\": \"If extension Smstateen is implemented together with Smcsrind, bit 60 of state-enable register `mstateen0` controls access to `siselect`, `sireg*`, `vsiselect`, and `vsireg*`.\",\n      \"line_number\": 319,\n      \"reason\": \"This describes a control mechanism rather than an architectural parameter that is left to the implementer.\"\n    },\n    {\n      \"excerpt\": \"CSR address space is reserved for a possible future 'Sucsrind' extension that extends indirect CSR access to user mode.\",\n      \"line_number\": 344,\n      \"reason\": \"This is a statement about future possibilities, not a current architectural parameter.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 10960,
+  "output_tokens": 720,
+  "latency_ms": 8049,
+  "timestamp": "2026-07-24T20:24:42.102516+00:00",
+  "error": null,
+  "retry_count": 0
+}

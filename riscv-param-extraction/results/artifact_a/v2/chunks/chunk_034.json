@@ -1,0 +1,64 @@
+{
+  "chunk_id": "chunk_034",
+  "source_file": "q-st-ext.adoc",
+  "start_line": 1,
+  "end_line": 120,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "The floating-point registers are now extended to hold either a single, double, or quad-precision floating-point value (FLEN=128).",
+      "line_number": 6,
+      "parameter_name": "FLEN",
+      "existing_udb_name": "FLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "FLEN specifies the size of the floating-point registers and is a direct implementation choice. The specific value is set to 128, but the parameter indicates that implementations can choose the floating-point register size."
+    },
+    {
+      "excerpt": "FLQ and FSQ are only guaranteed to execute atomically if the effective address is naturally aligned and XLEN=128.",
+      "line_number": 20,
+      "parameter_name": "XLEN",
+      "existing_udb_name": "XLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "XLEN indicates the width of the data path and is a direct implementation choice. The specification states that atomic execution is guaranteed only if XLEN is set to 128."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The quad-precision floating-point computational instructions are defined analogously to their double-precision counterparts, but operate on quad-precision operands.",
+      "line_number": 36,
+      "reason": "This describes the behavior of quad-precision instructions in relation to double-precision instructions, not an implementation choice."
+    },
+    {
+      "excerpt": "FMV.X.Q and FMV.Q.X instructions are not provided in RV32 or RV64, so quad-precision bit patterns must be moved to the integer registers via memory.",
+      "line_number": 66,
+      "reason": "This states a limitation of the instruction set rather than an implementation choice regarding the architecture."
+    },
+    {
+      "excerpt": "New floating-point-to-integer and integer-to-floating-point conversion instructions are added.",
+      "line_number": 50,
+      "reason": "This is a description of new instructions being added, not a parameter that indicates an implementation choice."
+    },
+    {
+      "excerpt": "The quad-precision floating-point classify instruction, FCLASS.Q, is defined analogously to its double-precision counterpart, but operates on quad-precision operands.",
+      "line_number": 90,
+      "reason": "This describes the functionality of the FCLASS.Q instruction without indicating any implementation choice."
+    },
+    {
+      "excerpt": "The NaN-boxing scheme described in <<nanboxing>> is now extended recursively to allow a single-precision value to be NaN-boxed inside a double-precision value which is itself NaN-boxed inside a quad-precision value.",
+      "line_number": 4,
+      "reason": "This describes the behavior of the NaN-boxing scheme rather than an implementation choice."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"The floating-point registers are now extended to hold either a single, double, or quad-precision floating-point value (FLEN=128).\",\n      \"line_number\": 6,\n      \"parameter_name\": \"FLEN\",\n      \"existing_udb_name\": \"FLEN\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"value\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"FLEN specifies the size of the floating-point registers and is a direct implementation choice. The specific value is set to 128, but the parameter indicates that implementations can choose the floating-point register size.\"\n    },\n    {\n      \"excerpt\": \"FLQ and FSQ are only guaranteed to execute atomically if the effective address is naturally aligned and XLEN=128.\",\n      \"line_number\": 20,\n      \"parameter_name\": \"XLEN\",\n      \"existing_udb_name\": \"XLEN\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"value\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"XLEN indicates the width of the data path and is a direct implementation choice. The specification states that atomic execution is guaranteed only if XLEN is set to 128.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"The quad-precision floating-point computational instructions are defined analogously to their double-precision counterparts, but operate on quad-precision operands.\",\n      \"line_number\": 36,\n      \"reason\": \"This describes the behavior of quad-precision instructions in relation to double-precision instructions, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"FMV.X.Q and FMV.Q.X instructions are not provided in RV32 or RV64, so quad-precision bit patterns must be moved to the integer registers via memory.\",\n      \"line_number\": 66,\n      \"reason\": \"This states a limitation of the instruction set rather than an implementation choice regarding the architecture.\"\n    },\n    {\n      \"excerpt\": \"New floating-point-to-integer and integer-to-floating-point conversion instructions are added.\",\n      \"line_number\": 50,\n      \"reason\": \"This is a description of new instructions being added, not a parameter that indicates an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The quad-precision floating-point classify instruction, FCLASS.Q, is defined analogously to its double-precision counterpart, but operates on quad-precision operands.\",\n      \"line_number\": 90,\n      \"reason\": \"This describes the functionality of the FCLASS.Q instruction without indicating any implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The NaN-boxing scheme described in <<nanboxing>> is now extended recursively to allow a single-precision value to be NaN-boxed inside a double-precision value which is itself NaN-boxed inside a quad-precision value.\",\n      \"line_number\": 4,\n      \"reason\": \"This describes the behavior of the NaN-boxing scheme rather than an implementation choice.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 7470,
+  "output_tokens": 646,
+  "latency_ms": 10560,
+  "timestamp": "2026-07-24T18:16:06.265548+00:00",
+  "error": null,
+  "retry_count": 0
+}

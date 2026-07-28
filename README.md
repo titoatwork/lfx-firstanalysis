@@ -68,9 +68,9 @@ The scorer credits a gold parameter either by exact name or through one of five 
 
 Across the eight runs, exact matches span a range of 4 and inexact matches span 23. The component carrying seven eighths of the score is the component that moves, which is the mechanism behind finding 1.
 
-It also means the two models differ in kind rather than degree. On adjusted recall the published gap reads 72.9% against 32.2%, about 2.3x. On exact-name recall it is roughly an order of magnitude: 48.6% against 5.1%, about **9.6x**, taking gpt-4o-mini from the two complete arm A runs above, which agree exactly at 9 exact matches each. The alignment layer compresses a large real difference into a modest-looking one.
+It also means the two models differ in kind rather than degree. On adjusted recall the published gap reads 72.9% against 32.2%, about 2.3x. On exact-name recall it reads 48.6% against 6.2%, about **7.8x**. The alignment layer compresses a large real difference into a modest-looking one.
 
-This figure read 7.8x until 2026-07-28. That version used the published Artifact A run, whose alignment file was never retained, so its exact count could not be audited. The number moved because the auditable runs replaced it, not because the finding changed. See [`metrics.md`](./riscv-param-extraction/docs/metrics.md) for the full accounting.
+Two independent runs on a different harness put the same gap at 9.6x, so the direction is not sensitive to which artifact you use. Read the multiplier as an order of magnitude rather than a precise ratio, since the two sides come from different extraction paths.
 
 Inexact matching is not wrong; a model answering "support for misaligned loads and stores" has found `MISALIGNED_LDST`. The problem is that the credit is mostly heuristic and nothing in the reported number says so. **This one cost me the cleanest comparison I had**, since the headline figure I had been citing turns out to understate the result it was being used to support.
 
@@ -134,7 +134,7 @@ Spring Part I (extract → analyze → spreadsheet) is the work of [@ishaan-aror
 - Every recall figure is a single run; run-to-run variance on this task is ~10 points.
 - All published recall is **grounding** with the name catalogue supplied. Discovery recall is the subject of Artifact C and is not yet complete.
 - The nine dual-model "new" candidates are **not** a validated review queue: `IALIGN` and `FLEN` are derived quantities the gate passed at high confidence.
-- Artifact A's per-chunk outputs **and its alignment file** were not retained. That blocks two things, not one: its model-exclusive sets cannot be audited, and neither can its exact-match count, which is why the exact-name comparison above now uses the arm A runs instead. Retention is a hard gate on all later runs, enforced by `verify.sh` rather than remembered.
+- Artifact A's per-chunk outputs were missing from this repo for three days and were briefly described here as lost. They were not lost. They were sitting uncommitted in a `git stash` on the local UDB clone, and I did not think to look there before writing that they were gone. All 60 chunks, both alignment files and the deduped lists are now committed under [`results/artifact_a/`](./riscv-param-extraction/results/artifact_a/), and every figure they back re-derives: alignment exact is 11 against the published 11, v3 is 10 against 10, and `pipeline/agreement.py` reproduces the exclusive-set counts exactly. Retention is a hard gate on all later runs, enforced by `verify.sh` rather than remembered.
 - Artifact A's second model is `gpt-4o-mini`, which underperforms Claude on this corpus.
 - The holdout is an **exploratory null** under documented v1.2 prompt limitations, not clean temporal evidence.
 - Challenge results on 2 snippets are not comparable to corpus recall.

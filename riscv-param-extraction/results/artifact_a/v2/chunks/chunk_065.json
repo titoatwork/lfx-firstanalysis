@@ -1,0 +1,84 @@
+{
+  "chunk_id": "chunk_065",
+  "source_file": "zalasr.adoc",
+  "start_line": 1,
+  "end_line": 137,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "The misaligned atomicity granule PMA, defined in Volume II of this manual, optionally relaxes this alignment requirement.",
+      "line_number": 37,
+      "parameter_name": "MISALIGNED_ATOMICITY_GRANULE_PMA",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to relax the alignment requirement for the misaligned atomicity granule PMA. This is a design-time decision, not controlled by any CSR field."
+    },
+    {
+      "excerpt": "If all accessed bytes lie within the same misaligned atomicity granule, the instruction will not raise an exception for reasons of address alignment.",
+      "line_number": 41,
+      "parameter_name": "MISALIGNED_ATOMICITY_GRANULE_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "Whether the instruction raises an exception for address alignment when all accessed bytes lie within the same misaligned atomicity granule is an implementation choice. This is a design-time decision."
+    },
+    {
+      "excerpt": "This load must have the ordering annotation _aq_ and may have ordering annotation _rl_ encoded in the instruction.",
+      "line_number": 66,
+      "parameter_name": "LOAD_ACQUIRE_ORDERING_ANNOTATIONS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The implementation must support the _aq_ annotation and may optionally support the _rl_ annotation for load-acquire instructions. This defines the read-write nature of the ordering annotations."
+    },
+    {
+      "excerpt": "This store must have ordering annotation _rl_ and may have ordering annotation _aq_ encoded in the instruction.",
+      "line_number": 92,
+      "parameter_name": "STORE_RELEASE_ORDERING_ANNOTATIONS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The implementation must support the _rl_ annotation and may optionally support the _aq_ annotation for store-release instructions. This defines the read-write nature of the ordering annotations."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "If the address is not naturally aligned, an address-misaligned exception or an access-fault exception will be generated.",
+      "line_number": 35,
+      "reason": "This describes the behavior when the address is misaligned, which is determined by the implementation but does not define a parameter since it is not an implementation choice."
+    },
+    {
+      "excerpt": "The versions without the _aq_ bit set are RESERVED.",
+      "line_number": 70,
+      "reason": "This is a fixed requirement about the instruction encodings and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "The versions without the _rl_ bit set are RESERVED.",
+      "line_number": 97,
+      "reason": "This is a fixed requirement about the instruction encodings and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "The _aq_ bit is mandatory because the two encodings that would be produced are not seen as useful at this time.",
+      "line_number": 73,
+      "reason": "This is a fixed requirement about the necessity of the _aq_ bit and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "The _rl_ bit is mandatory because the two encodings that would be produced are not seen as useful at this time.",
+      "line_number": 100,
+      "reason": "This is a fixed requirement about the necessity of the _rl_ bit and does not represent an implementation choice."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"The misaligned atomicity granule PMA, defined in Volume II of this manual, optionally relaxes this alignment requirement.\",\n      \"line_number\": 37,\n      \"parameter_name\": \"MISALIGNED_ATOMICITY_GRANULE_PMA\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation can choose whether to relax the alignment requirement for the misaligned atomicity granule PMA. This is a design-time decision, not controlled by any CSR field.\"\n    },\n    {\n      \"excerpt\": \"If all accessed bytes lie within the same misaligned atomicity granule, the instruction will not raise an exception for reasons of address alignment.\",\n      \"line_number\": 41,\n      \"parameter_name\": \"MISALIGNED_ATOMICITY_GRANULE_BEHAVIOR\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"Whether the instruction raises an exception for address alignment when all accessed bytes lie within the same misaligned atomicity granule is an implementation choice. This is a design-time decision.\"\n    },\n    {\n      \"excerpt\": \"This load must have the ordering annotation _aq_ and may have ordering annotation _rl_ encoded in the instruction.\",\n      \"line_number\": 66,\n      \"parameter_name\": \"LOAD_ACQUIRE_ORDERING_ANNOTATIONS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"enum\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation must support the _aq_ annotation and may optionally support the _rl_ annotation for load-acquire instructions. This defines the read-write nature of the ordering annotations.\"\n    },\n    {\n      \"excerpt\": \"This store must have ordering annotation _rl_ and may have ordering annotation _aq_ encoded in the instruction.\",\n      \"line_number\": 92,\n      \"parameter_name\": \"STORE_RELEASE_ORDERING_ANNOTATIONS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"enum\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation must support the _rl_ annotation and may optionally support the _aq_ annotation for store-release instructions. This defines the read-write nature of the ordering annotations.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"If the address is not naturally aligned, an address-misaligned exception or an access-fault exception will be generated.\",\n      \"line_number\": 35,\n      \"reason\": \"This describes the behavior when the address is misaligned, which is determined by the implementation but does not define a parameter since it is not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The versions without the _aq_ bit set are RESERVED.\",\n      \"line_number\": 70,\n      \"reason\": \"This is a fixed requirement about the instruction encodings and does not represent an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The versions without the _rl_ bit set are RESERVED.\",\n      \"line_number\": 97,\n      \"reason\": \"This is a fixed requirement about the instruction encodings and does not represent an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The _aq_ bit is mandatory because the two encodings that would be produced are not seen as useful at this time.\",\n      \"line_number\": 73,\n      \"reason\": \"This is a fixed requirement about the necessity of the _aq_ bit and does not represent an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The _rl_ bit is mandatory because the two encodings that would be produced are not seen as useful at this time.\",\n      \"line_number\": 100,\n      \"reason\": \"This is a fixed requirement about the necessity of the _rl_ bit and does not represent an implementation choice.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 8280,
+  "output_tokens": 873,
+  "latency_ms": 12822,
+  "timestamp": "2026-07-24T18:39:29.695658+00:00",
+  "error": null,
+  "retry_count": 0
+}

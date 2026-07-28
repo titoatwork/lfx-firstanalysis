@@ -1,0 +1,84 @@
+{
+  "chunk_id": "chunk_067",
+  "source_file": "zc.adoc",
+  "start_line": 1,
+  "end_line": 2582,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "If jvt.mode is a reserved value, then _cm.jt_ is also reserved. In the future other defined values of jvt.mode may change the behaviour of _cm.jt_.",
+      "line_number": 258,
+      "parameter_name": "JVT_MODE",
+      "existing_udb_name": "JVT_MODE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The jvt.mode field is WARL, meaning the implementation can choose which modes are supported. The parameter is the set of legal values for jvt.mode."
+    },
+    {
+      "excerpt": "The jvt CSR requires a state enable if Smstateen is implemented.",
+      "line_number": 258,
+      "parameter_name": "JVT_STATE_ENABLE",
+      "existing_udb_name": "JVT_STATE_ENABLE",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "Whether the jvt CSR requires a state enable is an implementation choice, making it a direct parameter."
+    },
+    {
+      "excerpt": "The total stack adjustment represents the total size of the stack frame, which is _stack_adj_base_ added to _spimm_ scaled by 16.",
+      "line_number": 258,
+      "parameter_name": "STACK_ADJUSTMENT",
+      "existing_udb_name": "STACK_ADJUSTMENT",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The stack adjustment is determined by the implementation based on the number of registers being pushed or popped, making it a direct parameter."
+    },
+    {
+      "excerpt": "Valid values: stack_adj = [16|32|48|64];",
+      "line_number": 258,
+      "parameter_name": "STACK_ADJUSTMENT_VALUES",
+      "existing_udb_name": "STACK_ADJUSTMENT_VALUES",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The valid values for stack adjustment depend on the implementation and are defined as a WARL field, indicating the set of supported values."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The Zc* extension is intended to be used for microcontrollers, and includes all relevant Zc extensions.",
+      "line_number": 1,
+      "reason": "This is a descriptive statement about the purpose of the Zc* extension, not an implementation choice."
+    },
+    {
+      "excerpt": "The jvt register is an XLEN-bit *WARL* read/write register that holds the jump table configuration.",
+      "line_number": 258,
+      "reason": "This describes the nature of the jvt register but does not specify an implementation choice or parameter."
+    },
+    {
+      "excerpt": "The PUSH instruction adjusts the stack pointer to create the stack frame.",
+      "line_number": 258,
+      "reason": "This describes the behavior of the PUSH instruction rather than an implementation choice."
+    },
+    {
+      "excerpt": "If a trap occurs during the sequence then _xEPC_ is updated with the PC of the instruction.",
+      "line_number": 258,
+      "reason": "This describes the behavior during a trap, not an implementation-defined parameter."
+    },
+    {
+      "excerpt": "The memory pointed to by _jvt.base_ is treated as instruction memory for the purpose of executing table jump instructions.",
+      "line_number": 258,
+      "reason": "This describes how memory is treated for table jumps, not an implementation choice."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"If jvt.mode is a reserved value, then _cm.jt_ is also reserved. In the future other defined values of jvt.mode may change the behaviour of _cm.jt_.\",\n      \"line_number\": 258,\n      \"parameter_name\": \"JVT_MODE\",\n      \"existing_udb_name\": \"JVT_MODE\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The jvt.mode field is WARL, meaning the implementation can choose which modes are supported. The parameter is the set of legal values for jvt.mode.\"\n    },\n    {\n      \"excerpt\": \"The jvt CSR requires a state enable if Smstateen is implemented.\",\n      \"line_number\": 258,\n      \"parameter_name\": \"JVT_STATE_ENABLE\",\n      \"existing_udb_name\": \"JVT_STATE_ENABLE\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"Whether the jvt CSR requires a state enable is an implementation choice, making it a direct parameter.\"\n    },\n    {\n      \"excerpt\": \"The total stack adjustment represents the total size of the stack frame, which is _stack_adj_base_ added to _spimm_ scaled by 16.\",\n      \"line_number\": 258,\n      \"parameter_name\": \"STACK_ADJUSTMENT\",\n      \"existing_udb_name\": \"STACK_ADJUSTMENT\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"range\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The stack adjustment is determined by the implementation based on the number of registers being pushed or popped, making it a direct parameter.\"\n    },\n    {\n      \"excerpt\": \"Valid values: stack_adj = [16|32|48|64];\",\n      \"line_number\": 258,\n      \"parameter_name\": \"STACK_ADJUSTMENT_VALUES\",\n      \"existing_udb_name\": \"STACK_ADJUSTMENT_VALUES\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The valid values for stack adjustment depend on the implementation and are defined as a WARL field, indicating the set of supported values.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"The Zc* extension is intended to be used for microcontrollers, and includes all relevant Zc extensions.\",\n      \"line_number\": 1,\n      \"reason\": \"This is a descriptive statement about the purpose of the Zc* extension, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The jvt register is an XLEN-bit *WARL* read/write register that holds the jump table configuration.\",\n      \"line_number\": 258,\n      \"reason\": \"This describes the nature of the jvt register but does not specify an implementation choice or parameter.\"\n    },\n    {\n      \"excerpt\": \"The PUSH instruction adjusts the stack pointer to create the stack frame.\",\n      \"line_number\": 258,\n      \"reason\": \"This describes the behavior of the PUSH instruction rather than an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"If a trap occurs during the sequence then _xEPC_ is updated with the PC of the instruction.\",\n      \"line_number\": 258,\n      \"reason\": \"This describes the behavior during a trap, not an implementation-defined parameter.\"\n    },\n    {\n      \"excerpt\": \"The memory pointed to by _jvt.base_ is treated as instruction memory for the purpose of executing table jump instructions.\",\n      \"line_number\": 258,\n      \"reason\": \"This describes how memory is treated for table jumps, not an implementation choice.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 28365,
+  "output_tokens": 816,
+  "latency_ms": 9847,
+  "timestamp": "2026-07-25T18:10:38.657760+00:00",
+  "error": null,
+  "retry_count": 0
+}

@@ -1,0 +1,43 @@
+{
+  "chunk_id": "chunk_072",
+  "source_file": "zicsr.adoc",
+  "start_line": 1,
+  "end_line": 254,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE]\n====\nWhile CSRs are primarily used by the privileged architecture, there are several uses in unprivileged code including for counters and timers, and for floating-point status.\n====",
+      "line_number": 5,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes general information about CSRs, not an architectural requirement."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nSince CSRRS and CSRRC perform a read-modify-write operation, any bits that read as a different value to their underlying value may be modified by these instructions even if the corresponding bit is not set in _rs1_. For example, pmpaddr__n__[G-1] may have an underlying value of 1 but read as 0. Executing CSRRC or CSRRS to modify a different bit will cause 0 to be read from pmpaddr__n__[G-1] and then written back, updating the underlying value to 0.\n====",
+      "line_number": 43,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes behavior of CSR instructions, not an implementation choice."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nAs of this writing, no standard CSRs have side effects on field writes. Hence, whether a standard CSR access has any side effects can be determined solely from the opcode.\n====",
+      "line_number": 118,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It provides information about standard CSRs, not an architectural requirement."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nInformally, the CSR space acts as a weakly ordered memory-mapped I/O region, as defined by the Memory-Ordering PMAs section in Volume II of this manual. As a result, the order of CSR accesses with respect to all other accesses is constrained by the same mechanisms that constrain the order of memory-mapped I/O accesses to such a region.\n====",
+      "line_number": 174,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes the behavior of CSR space, not an implementation choice."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nThe rules for the reordering of CSR accesses in the global memory order should probably be moved to <<memorymodel>> concerning the RVWMO memory consistency model.\n====",
+      "line_number": 254,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It suggests a change in documentation, not an architectural requirement."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"[NOTE]\\n====\\nWhile CSRs are primarily used by the privileged architecture, there are several uses in unprivileged code including for counters and timers, and for floating-point status.\\n====\",\n      \"line_number\": 5,\n      \"reason\": \"This text is inside a [NOTE] block and is therefore non-normative. It describes general information about CSRs, not an architectural requirement.\"\n    },\n    {\n      \"excerpt\": \"[NOTE]\\n====\\nSince CSRRS and CSRRC perform a read-modify-write operation, any bits that read as a different value to their underlying value may be modified by these instructions even if the corresponding bit is not set in _rs1_. For example, pmpaddr__n__[G-1] may have an underlying value of 1 but read as 0. Executing CSRRC or CSRRS to modify a different bit will cause 0 to be read from pmpaddr__n__[G-1] and then written back, updating the underlying value to 0.\\n====\",\n      \"line_number\": 43,\n      \"reason\": \"This text is inside a [NOTE] block and is therefore non-normative. It describes behavior of CSR instructions, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"[NOTE]\\n====\\nAs of this writing, no standard CSRs have side effects on field writes. Hence, whether a standard CSR access has any side effects can be determined solely from the opcode.\\n====\",\n      \"line_number\": 118,\n      \"reason\": \"This text is inside a [NOTE] block and is therefore non-normative. It provides information about standard CSRs, not an architectural requirement.\"\n    },\n    {\n      \"excerpt\": \"[NOTE]\\n====\\nInformally, the CSR space acts as a weakly ordered memory-mapped I/O region, as defined by the Memory-Ordering PMAs section in Volume II of this manual. As a result, the order of CSR accesses with respect to all other accesses is constrained by the same mechanisms that constrain the order of memory-mapped I/O accesses to such a region.\\n====\",\n      \"line_number\": 174,\n      \"reason\": \"This text is inside a [NOTE] block and is therefore non-normative. It describes the behavior of CSR space, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"[NOTE]\\n====\\nThe rules for the reordering of CSR accesses in the global memory order should probably be moved to <<memorymodel>> concerning the RVWMO memory consistency model.\\n====\",\n      \"line_number\": 254,\n      \"reason\": \"This text is inside a [NOTE] block and is therefore non-normative. It suggests a change in documentation, not an architectural requirement.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 9753,
+  "output_tokens": 611,
+  "latency_ms": 7097,
+  "timestamp": "2026-07-25T18:14:23.504608+00:00",
+  "error": null,
+  "retry_count": 0
+}

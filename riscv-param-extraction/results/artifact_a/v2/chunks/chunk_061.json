@@ -1,0 +1,74 @@
+{
+  "chunk_id": "chunk_061",
+  "source_file": "vector-crypto.adoc",
+  "start_line": 3311,
+  "end_line": 4966,
+  "content_start_line": 3341,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "The Round group number (`rnd`) comes from `uimm[2:0]`; the bits in `uimm[4:3]` are ignored. Round group numbers range from 0 to 7 and indicate which group of four round keys are being generated.",
+      "line_number": 4530,
+      "parameter_name": "SM4_KEY_EXPANSION_ROUND_GROUPS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The round group number is a WARL field that can take values from 0 to 7, indicating the implementation-defined groups of round keys."
+    },
+    {
+      "excerpt": "The number of element groups to be processed is `vl`/`EGS`. `vl` must be set to the number of `SEW=32` elements to be processed and therefore must be a multiple of `EGS=4`. Likewise, `vstart` must be a multiple of `EGS=4`.",
+      "line_number": 4550,
+      "parameter_name": "SM4_ELEMENT_GROUPS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The implementation chooses how many element groups to process based on `vl` and `EGS`, which is a design-time decision."
+    },
+    {
+      "excerpt": "The elements in `vs2` are zero-extended to 2*`SEW` bits, then shifted left by the shift amount specified by either the corresponding elements of `vs1` (vector-vector), integer register `rs1` (vector-scalar), or an immediate value (vector-immediate).",
+      "line_number": 4870,
+      "parameter_name": "VWSLL_SHIFT_AMOUNT_SOURCE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The implementation can choose the source of the shift amount (from `vs1`, `rs1`, or an immediate), which is a design-time decision."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] Software needs to generate the initial round keys. This is done by XORing the 128-bit encryption key with the system parameters: FK[0:3]",
+      "line_number": 4535,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a software requirement, not an architectural parameter."
+    },
+    {
+      "excerpt": "The current state of eight 32-bit words is read in as an element group from `vd`. Eight 32-bit message words are read in as an element group from `vs2`, although only four of them are used.",
+      "line_number": 4555,
+      "reason": "This describes the behavior of the instruction and does not define an implementation choice. The parameter would be which values of `SEW` are supported."
+    },
+    {
+      "excerpt": "The number of element groups to be processed is `vl`/`EGS`.",
+      "line_number": 4560,
+      "reason": "This is a fixed requirement for how to calculate the number of element groups, not an implementation choice."
+    },
+    {
+      "excerpt": "[NOTE] Preventing overlap between `vd` and `vs2` simplifies implementation with `VLEN < EGW`.",
+      "line_number": 4875,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a suggestion for implementation, not an architectural parameter."
+    },
+    {
+      "excerpt": "The elements are listed here in the order they appear in the register, with the most significant element on the left, and the least significant on the right.",
+      "line_number": 4880,
+      "reason": "This describes the layout of the elements in the register and does not define an implementation choice."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"The Round group number (`rnd`) comes from `uimm[2:0]`; the bits in `uimm[4:3]` are ignored. Round group numbers range from 0 to 7 and indicate which group of four round keys are being generated.\",\n      \"line_number\": 4530,\n      \"parameter_name\": \"SM4_KEY_EXPANSION_ROUND_GROUPS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"range\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The round group number is a WARL field that can take values from 0 to 7, indicating the implementation-defined groups of round keys.\"\n    },\n    {\n      \"excerpt\": \"The number of element groups to be processed is `vl`/`EGS`. `vl` must be set to the number of `SEW=32` elements to be processed and therefore must be a multiple of `EGS=4`. Likewise, `vstart` must be a multiple of `EGS=4`.\",\n      \"line_number\": 4550,\n      \"parameter_name\": \"SM4_ELEMENT_GROUPS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"range\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation chooses how many element groups to process based on `vl` and `EGS`, which is a design-time decision.\"\n    },\n    {\n      \"excerpt\": \"The elements in `vs2` are zero-extended to 2*`SEW` bits, then shifted left by the shift amount specified by either the corresponding elements of `vs1` (vector-vector), integer register `rs1` (vector-scalar), or an immediate value (vector-immediate).\",\n      \"line_number\": 4870,\n      \"parameter_name\": \"VWSLL_SHIFT_AMOUNT_SOURCE\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"enum\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation can choose the source of the shift amount (from `vs1`, `rs1`, or an immediate), which is a design-time decision.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"[NOTE] Software needs to generate the initial round keys. This is done by XORing the 128-bit encryption key with the system parameters: FK[0:3]\",\n      \"line_number\": 4535,\n      \"reason\": \"This text is inside a [NOTE] block and is therefore non-normative. It describes a software requirement, not an architectural parameter.\"\n    },\n    {\n      \"excerpt\": \"The current state of eight 32-bit words is read in as an element group from `vd`. Eight 32-bit message words are read in as an element group from `vs2`, although only four of them are used.\",\n      \"line_number\": 4555,\n      \"reason\": \"This describes the behavior of the instruction and does not define an implementation choice. The parameter would be which values of `SEW` are supported.\"\n    },\n    {\n      \"excerpt\": \"The number of element groups to be processed is `vl`/`EGS`.\",\n      \"line_number\": 4560,\n      \"reason\": \"This is a fixed requirement for how to calculate the number of element groups, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"[NOTE] Preventing overlap between `vd` and `vs2` simplifies implementation with `VLEN < EGW`.\",\n      \"line_number\": 4875,\n      \"reason\": \"This text is inside a [NOTE] block and is therefore non-normative. It describes a suggestion for implementation, not an architectural parameter.\"\n    },\n    {\n      \"excerpt\": \"The elements are listed here in the order they appear in the register, with the most significant element on the left, and the least significant on the right.\",\n      \"line_number\": 4880,\n      \"reason\": \"This describes the layout of the elements in the register and does not define an implementation choice.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 28958,
+  "output_tokens": 906,
+  "latency_ms": 10269,
+  "timestamp": "2026-07-24T18:37:05.959415+00:00",
+  "error": null,
+  "retry_count": 0
+}

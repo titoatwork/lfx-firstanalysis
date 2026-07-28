@@ -1,0 +1,104 @@
+{
+  "chunk_id": "chunk_028",
+  "source_file": "priv-csrs.adoc",
+  "start_line": 1,
+  "end_line": 1273,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "Implementations may contain additional CSRs, accessible by some subset of the privilege levels using the CSR instructions described in Volume I.",
+      "line_number": 10,
+      "parameter_name": "ADDITIONAL_CSR_ACCESSIBILITY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The implementation has the choice to include additional CSRs and determine which privilege levels can access them, making this a direct implementation parameter."
+    },
+    {
+      "excerpt": "Implementations should raise illegal-instruction exceptions on machine-mode access to the latter set of registers.",
+      "line_number": 30,
+      "parameter_name": "ILLEGAL_INSTRUCTION_ON_MACHINE_MODE_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "Whether to raise illegal-instruction exceptions for certain machine-mode accesses is an implementation choice, thus it is a direct parameter."
+    },
+    {
+      "excerpt": "Implementations can return any legal value on the read of a WARL field when the last write was of an illegal value, but the legal value returned should deterministically depend on the illegal written value and the architectural state of the hart.",
+      "line_number": 90,
+      "parameter_name": "WARL_FIELD_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The behavior of WARL fields, specifically which legal values can be returned, is implementation-defined, making this a WARL parameter."
+    },
+    {
+      "excerpt": "Some read/write CSR fields specify behavior for only a subset of possible bit encodings, with other bit encodings reserved.",
+      "line_number": 80,
+      "parameter_name": "WLRL_FIELD_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The specification of legal values for WLRL fields is left to the implementation, indicating a WARL parameter."
+    },
+    {
+      "excerpt": "Some read/write CSR fields are only defined for a subset of bit encodings, but allow any value to be written while guaranteeing to return a legal value whenever read.",
+      "line_number": 100,
+      "parameter_name": "WARL_FIELD_DEFINITION",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The definition of which values are legal for WARL fields is implementation-defined, making this a WARL parameter."
+    },
+    {
+      "excerpt": "If a write to one CSR changes the set of legal values allowed for a field of a second CSR, then unless specified otherwise, the second CSR's field immediately gets an UNSPECIFIED value from among its new legal values.",
+      "line_number": 110,
+      "parameter_name": "CSR_FIELD_VALUE_CHANGE_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "medium",
+      "reasoning": "The behavior of CSR fields changing based on writes to other CSRs is implementation-defined, indicating a direct parameter."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The CSR address convention uses the upper bits of the CSR address to encode default access privileges.",
+      "line_number": 20,
+      "reason": "This describes a fixed requirement about CSR address encoding, not an implementation choice."
+    },
+    {
+      "excerpt": "Attempts to access a CSR without appropriate privilege level raise illegal-instruction exceptions.",
+      "line_number": 40,
+      "reason": "This is a fixed requirement that applies to all implementations, not a parameter."
+    },
+    {
+      "excerpt": "Software should ignore the values read from these fields, and should preserve the values held in these fields when writing values to other fields of the same register.",
+      "line_number": 70,
+      "reason": "This describes software behavior and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "Implementations will not raise an exception on writes of unsupported values to a WARL field.",
+      "line_number": 90,
+      "reason": "This describes a behavior of WARL fields rather than an implementation choice."
+    },
+    {
+      "excerpt": "Changing the width of a CSR is not a read or write of the CSR and thus does not trigger any side effects.",
+      "line_number": 120,
+      "reason": "This describes a fixed behavior regarding CSR width changes, not an implementation choice."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"Implementations may contain additional CSRs, accessible by some subset of the privilege levels using the CSR instructions described in Volume I.\",\n      \"line_number\": 10,\n      \"parameter_name\": \"ADDITIONAL_CSR_ACCESSIBILITY\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation has the choice to include additional CSRs and determine which privilege levels can access them, making this a direct implementation parameter.\"\n    },\n    {\n      \"excerpt\": \"Implementations should raise illegal-instruction exceptions on machine-mode access to the latter set of registers.\",\n      \"line_number\": 30,\n      \"parameter_name\": \"ILLEGAL_INSTRUCTION_ON_MACHINE_MODE_ACCESS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"Whether to raise illegal-instruction exceptions for certain machine-mode accesses is an implementation choice, thus it is a direct parameter.\"\n    },\n    {\n      \"excerpt\": \"Implementations can return any legal value on the read of a WARL field when the last write was of an illegal value, but the legal value returned should deterministically depend on the illegal written value and the architectural state of the hart.\",\n      \"line_number\": 90,\n      \"parameter_name\": \"WARL_FIELD_BEHAVIOR\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The behavior of WARL fields, specifically which legal values can be returned, is implementation-defined, making this a WARL parameter.\"\n    },\n    {\n      \"excerpt\": \"Some read/write CSR fields specify behavior for only a subset of possible bit encodings, with other bit encodings reserved.\",\n      \"line_number\": 80,\n      \"parameter_name\": \"WLRL_FIELD_BEHAVIOR\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The specification of legal values for WLRL fields is left to the implementation, indicating a WARL parameter.\"\n    },\n    {\n      \"excerpt\": \"Some read/write CSR fields are only defined for a subset of bit encodings, but allow any value to be written while guaranteeing to return a legal value whenever read.\",\n      \"line_number\": 100,\n      \"parameter_name\": \"WARL_FIELD_DEFINITION\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The definition of which values are legal for WARL fields is implementation-defined, making this a WARL parameter.\"\n    },\n    {\n      \"excerpt\": \"If a write to one CSR changes the set of legal values allowed for a field of a second CSR, then unless specified otherwise, the second CSR's field immediately gets an UNSPECIFIED value from among its new legal values.\",\n      \"line_number\": 110,\n      \"parameter_name\": \"CSR_FIELD_VALUE_CHANGE_BEHAVIOR\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"medium\",\n      \"reasoning\": \"The behavior of CSR fields changing based on writes to other CSRs is implementation-defined, indicating a direct parameter.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"The CSR address convention uses the upper bits of the CSR address to encode default access privileges.\",\n      \"line_number\": 20,\n      \"reason\": \"This describes a fixed requirement about CSR address encoding, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"Attempts to access a CSR without appropriate privilege level raise illegal-instruction exceptions.\",\n      \"line_number\": 40,\n      \"reason\": \"This is a fixed requirement that applies to all implementations, not a parameter.\"\n    },\n    {\n      \"excerpt\": \"Software should ignore the values read from these fields, and should preserve the values held in these fields when writing values to other fields of the same register.\",\n      \"line_number\": 70,\n      \"reason\": \"This describes software behavior and does not indicate an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"Implementations will not raise an exception on writes of unsupported values to a WARL field.\",\n      \"line_number\": 90,\n      \"reason\": \"This describes a behavior of WARL fields rather than an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"Changing the width of a CSR is not a read or write of the CSR and thus does not trigger any side effects.\",\n      \"line_number\": 120,\n      \"reason\": \"This describes a fixed behavior regarding CSR width changes, not an implementation choice.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 17685,
+  "output_tokens": 1074,
+  "latency_ms": 11517,
+  "timestamp": "2026-07-24T20:31:56.339953+00:00",
+  "error": null,
+  "retry_count": 0
+}

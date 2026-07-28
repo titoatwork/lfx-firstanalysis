@@ -1,0 +1,89 @@
+{
+  "chunk_id": "chunk_040",
+  "source_file": "rv32.adoc",
+  "start_line": 1,
+  "end_line": 1105,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "The EEI will define what portions of the address space are legal to access with which instructions (e.g., some addresses might be read only, or support word access only).",
+      "line_number": 1001,
+      "parameter_name": "EEI_ADDRESS_SPACE_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "unknown",
+      "confidence": "high",
+      "reasoning": "The specification states that the execution environment implementation (EEI) will define the legal access portions of the address space, which is a design-time decision."
+    },
+    {
+      "excerpt": "The EEI will define whether the memory system is little-endian or big-endian.",
+      "line_number": 1003,
+      "parameter_name": "EEI_MEMORY_ENDIANNESS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The specification indicates that the endianness of the memory system is determined by the EEI, which is an implementation choice."
+    },
+    {
+      "excerpt": "An EEI may guarantee that misaligned loads and stores are fully supported, and so the software running inside the execution environment will never experience a contained or fatal address-misaligned trap.",
+      "line_number": 1030,
+      "parameter_name": "EEI_MISALIGNED_LOAD_STORE_SUPPORT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The specification allows the EEI to choose whether misaligned loads and stores are supported, which is a design-time decision."
+    },
+    {
+      "excerpt": "An EEI may not guarantee misaligned loads and stores are handled invisibly.",
+      "line_number": 1035,
+      "parameter_name": "EEI_MISALIGNED_LOAD_STORE_HANDLING",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The specification states that the handling of misaligned loads and stores is an implementation choice, indicating a parameter."
+    },
+    {
+      "excerpt": "The FENCE mode field _fm_ defines the semantics of the FENCE instruction.",
+      "line_number": 1065,
+      "parameter_name": "FENCE_MODE_SEMANTICS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The FENCE instruction's behavior is determined by the _fm_ field, which is WARL, allowing implementations to choose the semantics."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The behavior upon decoding a reserved instruction is UNSPECIFIED.",
+      "line_number": 1020,
+      "reason": "This describes the behavior of reserved instructions, which is not an implementation choice but rather a specification of undefined behavior."
+    },
+    {
+      "excerpt": "The current PC can be obtained by setting the U-immediate to 0.",
+      "line_number": 1080,
+      "reason": "This describes a method for obtaining the current PC, which is a fixed behavior rather than an implementation choice."
+    },
+    {
+      "excerpt": "The assembly syntax for `lui` and `auipc` does not represent the lower 12 bits of the U-immediate, which are always zero.",
+      "line_number": 1090,
+      "reason": "This is a fixed requirement about the instruction encoding, not an implementation choice."
+    },
+    {
+      "excerpt": "The NOP instruction does not change any architecturally visible state, except for advancing the `pc` and incrementing any applicable performance counters.",
+      "line_number": 1100,
+      "reason": "This describes the behavior of the NOP instruction, which is not an implementation choice but a defined behavior."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"The EEI will define what portions of the address space are legal to access with which instructions (e.g., some addresses might be read only, or support word access only).\",\n      \"line_number\": 1001,\n      \"parameter_name\": \"EEI_ADDRESS_SPACE_ACCESS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"unknown\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The specification states that the execution environment implementation (EEI) will define the legal access portions of the address space, which is a design-time decision.\"\n    },\n    {\n      \"excerpt\": \"The EEI will define whether the memory system is little-endian or big-endian.\",\n      \"line_number\": 1003,\n      \"parameter_name\": \"EEI_MEMORY_ENDIANNESS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"enum\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The specification indicates that the endianness of the memory system is determined by the EEI, which is an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"An EEI may guarantee that misaligned loads and stores are fully supported, and so the software running inside the execution environment will never experience a contained or fatal address-misaligned trap.\",\n      \"line_number\": 1030,\n      \"parameter_name\": \"EEI_MISALIGNED_LOAD_STORE_SUPPORT\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The specification allows the EEI to choose whether misaligned loads and stores are supported, which is a design-time decision.\"\n    },\n    {\n      \"excerpt\": \"An EEI may not guarantee misaligned loads and stores are handled invisibly.\",\n      \"line_number\": 1035,\n      \"parameter_name\": \"EEI_MISALIGNED_LOAD_STORE_HANDLING\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The specification states that the handling of misaligned loads and stores is an implementation choice, indicating a parameter.\"\n    },\n    {\n      \"excerpt\": \"The FENCE mode field _fm_ defines the semantics of the FENCE instruction.\",\n      \"line_number\": 1065,\n      \"parameter_name\": \"FENCE_MODE_SEMANTICS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"enum\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The FENCE instruction's behavior is determined by the _fm_ field, which is WARL, allowing implementations to choose the semantics.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"The behavior upon decoding a reserved instruction is UNSPECIFIED.\",\n      \"line_number\": 1020,\n      \"reason\": \"This describes the behavior of reserved instructions, which is not an implementation choice but rather a specification of undefined behavior.\"\n    },\n    {\n      \"excerpt\": \"The current PC can be obtained by setting the U-immediate to 0.\",\n      \"line_number\": 1080,\n      \"reason\": \"This describes a method for obtaining the current PC, which is a fixed behavior rather than an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The assembly syntax for `lui` and `auipc` does not represent the lower 12 bits of the U-immediate, which are always zero.\",\n      \"line_number\": 1090,\n      \"reason\": \"This is a fixed requirement about the instruction encoding, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The NOP instruction does not change any architecturally visible state, except for advancing the `pc` and incrementing any applicable performance counters.\",\n      \"line_number\": 1100,\n      \"reason\": \"This describes the behavior of the NOP instruction, which is not an implementation choice but a defined behavior.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 18809,
+  "output_tokens": 894,
+  "latency_ms": 10255,
+  "timestamp": "2026-07-24T20:35:31.174778+00:00",
+  "error": null,
+  "retry_count": 0
+}

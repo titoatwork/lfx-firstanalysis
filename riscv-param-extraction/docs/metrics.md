@@ -24,18 +24,18 @@ Full write-up and committed artifacts: [`artifact_c/results/PRIMARY_RESULTS.md`]
 |---------|------:|--------:|---------:|----------------:|--------------:|
 | gpt-4o-mini, 8 runs | 5–9 | 47–70 | 29.4–44.6% | 2.8–5.1% | **84.5–90.4%** |
 | claude-sonnet-4, Part I | 86 | 43 | 72.9% | 48.6% | 33.3% |
-| gpt-4o-mini, published † | 11 | 46 | 32.2% | 6.2% | 80.7% |
-| gpt-4o-mini, v3 prompt † | 10 | 52 | 35.0% | 5.6% | 83.9% |
+| gpt-4o-mini, published | 11 | 46 | 32.2% | 6.2% | 80.7% |
+| gpt-4o-mini, v3 prompt | 10 | 52 | 35.0% | 5.6% | 83.9% |
 
-**† Aggregate-only, and not auditable.** These two runs predate the artefact-retention rule. Their per-chunk outputs and alignment files were not kept, so `Exact` here is `exact_matches_evaluated` read from the metrics file, which is a **lower bound**: `analyze.py:510` counts only exact matches that also carried a comparable class. It cannot be cross-checked against an alignment tally, and it never will be without re-running the model. Where both artefacts do survive, on the Claude row, the field equals the alignment tally exactly (86 against 86), so these figures are probably correct. Probably correct is not the same as verifiable. The top two rows re-derive from committed alignment files and are the ones to cite.
+All four rows are auditable. `Exact` in the metrics files is `exact_matches_evaluated`, which `analyze.py:510` filters by `class_match is not None`, making it a lower bound rather than the exact-match count. Every row here has been cross-checked against its alignment file's own tally and they agree: Claude 86, published mini 11, v3 10. The mini and v3 alignment files were recovered on 2026-07-28 from an uncommitted `git stash` on the local UDB clone, after three days of this file describing them as lost, and are now committed under [`results/artifact_a/`](../results/artifact_a/).
 
 Two consequences.
 
 **The instability is concentrated in the heuristic layer.** Across the eight runs exact matches span a range of 4 while inexact matches span 23. The component carrying roughly seven eighths of the score is the component that moves.
 
-**The published cross-model gap is understated.** On reported adjusted recall it reads 72.9% against 32.2%, about 2.3x. On exact-name recall it is far wider. The reproducible comparison is **48.6% against 5.1%, about 9.6x**, taking gpt-4o-mini from the two complete arm A runs whose alignment files are committed and which agree exactly at 9 exact matches each. The aggregate-only published run gives 6.2% and 7.8x; that figure was cited here until 2026-07-28 and is superseded because its alignment was never retained.
+**The published cross-model gap is understated.** On reported adjusted recall it reads 72.9% against 32.2%, about 2.3x. On exact-name recall it reads **48.6% against 6.2%, about 7.8x**. Both sides of that comparison ran through the same Part I `extract.py`, so it is the like-for-like figure.
 
-Both comparisons cross an extraction-harness boundary, since the Claude baseline ran through the Part I `extract.py` and the arm A runs through `run_arms.py`. Read the multiplier as an order of magnitude rather than a precise ratio. The direction is not in doubt: one model names the parameter, the other is scored on description similarity.
+The two complete arm A runs put the same gap at 9.6x, from a different extraction harness, and agree with each other exactly at 9 exact matches. Two independent paths, same direction, same order of magnitude. Read the multiplier as an order of magnitude rather than a precise ratio. The direction is not in doubt: one model names the parameter, the other is scored on description similarity.
 
 Inexact matching is not wrong; a model answering "support for misaligned loads and stores" has found `MISALIGNED_LDST`. The point is that the credit is mostly heuristic, that is where the noise lives, and neither fact is visible in the headline number.
 
@@ -209,7 +209,7 @@ Shared-name sample: `CACHE_BLOCK_SIZE`, `ELEN`, `VLEN`, `MTVEC_MODES`, `NUM_PMP_
 
 > **At least two of the nine are not missed parameters. Recorded 2026-07-28.** Labelling the nine dual-model candidates against UDB: `IALIGN` is **derived**, not a parameter, via `function ialign` in `spec/std/isa/isa/globals.isa` (returns 16 or 32 depending on `C` and `misa.C`); no parameter file exists. Found by [@RAJVEER42](https://github.com/riscv/riscv-unified-db/issues/2053). `FLEN` is also derived, from which of `F`/`D`/`Q` is implemented, though without an explicit derivation function. `ILEN` is unresolved: no parameter, no function, only a prose constraint in `Ziccif.yaml`. So dual-model agreement at high confidence failed to filter at least two non-parameters. **The nine must not be described as a validated review queue.**
 >
-> **Retention gap, recorded 2026-07-28.** The per-chunk gpt-4o-mini outputs behind this section were kept local rather than committed, and the working clone has since moved branches. The aggregate counts below stand, and the nine dual-model names are listed in the claim ledger. The **model-exclusive sets are no longer on disk**, so the 227 Claude-only and 209 mini-only candidates cannot be recomputed or audited. Treat the counts as reported-but-unauditable until the Artifact C run regenerates them. Retention is a hard gate on that run (`artifact_c/PREREGISTRATION.md` §6b).
+> **Retention gap, opened and closed 2026-07-28.** The per-chunk gpt-4o-mini outputs behind this section were kept local rather than committed, and this note previously said the model-exclusive sets were "no longer on disk". That was wrong. They were sitting uncommitted in a `git stash` on the local UDB clone and nobody looked there. All 60 chunks, the alignment file and the deduped list are now committed under [`results/artifact_a/`](../results/artifact_a/), and `pipeline/agreement.py` reproduces the counts below exactly (236 / 218 / 9 / 227 / 209). Retention is a hard gate on later runs (`artifact_c/PREREGISTRATION.md` §6b).
 
 Proposed-new = name **not** in GT185 UDB set and no trusted `existing_udb_name` hit; **confidence=high** only.
 

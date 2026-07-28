@@ -1,0 +1,84 @@
+{
+  "chunk_id": "chunk_018",
+  "source_file": "intro.adoc",
+  "start_line": 1,
+  "end_line": 696,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "Each base integer instruction set is characterized by the width of the integer registers and the corresponding size of the address space and by the number of integer registers.",
+      "line_number": 303,
+      "parameter_name": "XLEN",
+      "existing_udb_name": "XLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "XLEN refers to the width of the integer registers, which can be either 32 or 64 bits, and is a direct implementation choice."
+    },
+    {
+      "excerpt": "The base RISC-V ISA has fixed-length 32-bit instructions that must be naturally aligned on 32-bit boundaries.",
+      "line_number": 487,
+      "parameter_name": "IALIGN",
+      "existing_udb_name": "IALIGN",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "IALIGN is the instruction-address alignment constraint, which is 32 bits in the base ISA but can be relaxed to 16 bits in extensions. This is a design-time choice."
+    },
+    {
+      "excerpt": "We use the term ILEN (measured in bits) to refer to the maximum instruction length supported by an implementation, and which is always a multiple of IALIGN.",
+      "line_number": 487,
+      "parameter_name": "ILEN",
+      "existing_udb_name": "ILEN",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "ILEN is the maximum instruction length supported by an implementation, which can vary based on the specific implementation and is a design-time decision."
+    },
+    {
+      "excerpt": "RISC-V base ISAs have either little-endian or big-endian memory systems, with the privileged architecture further defining bi-endian operation.",
+      "line_number": 569,
+      "parameter_name": "ENDIANNESS",
+      "existing_udb_name": "ENDIANNESS",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The choice of endianness (little-endian, big-endian, or bi-endian) is an implementation decision that can vary between different RISC-V implementations."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The RISC-V ISA is defined avoiding implementation details as much as possible.",
+      "line_number": 12,
+      "reason": "This is a general statement about the ISA design philosophy and does not specify an implementation choice."
+    },
+    {
+      "excerpt": "The execution environment determines the mapping of hardware resources into a hart's address space.",
+      "line_number": 487,
+      "reason": "This describes the role of the execution environment rather than an architectural parameter that is left to the implementer."
+    },
+    {
+      "excerpt": "The manner in which interrupts are generated, routed to, and enabled by a hart depends on the EEI.",
+      "line_number": 569,
+      "reason": "This describes behavior that depends on the execution environment and does not specify an implementation choice."
+    },
+    {
+      "excerpt": "The base integer instruction sets use a two's-complement representation for signed integer values.",
+      "line_number": 303,
+      "reason": "This is a fixed requirement for how signed integers are represented and does not leave any choice to the implementer."
+    },
+    {
+      "excerpt": "The RISC-V privileged architecture provides fields in `misa` to control the unprivileged ISA at each level to support emulating different base ISAs on the same hardware.",
+      "line_number": 569,
+      "reason": "This describes a feature of the privileged architecture rather than an architectural parameter that is left to the implementer."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"Each base integer instruction set is characterized by the width of the integer registers and the corresponding size of the address space and by the number of integer registers.\",\n      \"line_number\": 303,\n      \"parameter_name\": \"XLEN\",\n      \"existing_udb_name\": \"XLEN\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"enum\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"XLEN refers to the width of the integer registers, which can be either 32 or 64 bits, and is a direct implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The base RISC-V ISA has fixed-length 32-bit instructions that must be naturally aligned on 32-bit boundaries.\",\n      \"line_number\": 487,\n      \"parameter_name\": \"IALIGN\",\n      \"existing_udb_name\": \"IALIGN\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"enum\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"IALIGN is the instruction-address alignment constraint, which is 32 bits in the base ISA but can be relaxed to 16 bits in extensions. This is a design-time choice.\"\n    },\n    {\n      \"excerpt\": \"We use the term ILEN (measured in bits) to refer to the maximum instruction length supported by an implementation, and which is always a multiple of IALIGN.\",\n      \"line_number\": 487,\n      \"parameter_name\": \"ILEN\",\n      \"existing_udb_name\": \"ILEN\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"range\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"ILEN is the maximum instruction length supported by an implementation, which can vary based on the specific implementation and is a design-time decision.\"\n    },\n    {\n      \"excerpt\": \"RISC-V base ISAs have either little-endian or big-endian memory systems, with the privileged architecture further defining bi-endian operation.\",\n      \"line_number\": 569,\n      \"parameter_name\": \"ENDIANNESS\",\n      \"existing_udb_name\": \"ENDIANNESS\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"enum\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The choice of endianness (little-endian, big-endian, or bi-endian) is an implementation decision that can vary between different RISC-V implementations.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"The RISC-V ISA is defined avoiding implementation details as much as possible.\",\n      \"line_number\": 12,\n      \"reason\": \"This is a general statement about the ISA design philosophy and does not specify an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The execution environment determines the mapping of hardware resources into a hart's address space.\",\n      \"line_number\": 487,\n      \"reason\": \"This describes the role of the execution environment rather than an architectural parameter that is left to the implementer.\"\n    },\n    {\n      \"excerpt\": \"The manner in which interrupts are generated, routed to, and enabled by a hart depends on the EEI.\",\n      \"line_number\": 569,\n      \"reason\": \"This describes behavior that depends on the execution environment and does not specify an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The base integer instruction sets use a two's-complement representation for signed integer values.\",\n      \"line_number\": 303,\n      \"reason\": \"This is a fixed requirement for how signed integers are represented and does not leave any choice to the implementer.\"\n    },\n    {\n      \"excerpt\": \"The RISC-V privileged architecture provides fields in `misa` to control the unprivileged ISA at each level to support emulating different base ISAs on the same hardware.\",\n      \"line_number\": 569,\n      \"reason\": \"This describes a feature of the privileged architecture rather than an architectural parameter that is left to the implementer.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 14506,
+  "output_tokens": 851,
+  "latency_ms": 10628,
+  "timestamp": "2026-07-24T20:25:54.220319+00:00",
+  "error": null,
+  "retry_count": 0
+}

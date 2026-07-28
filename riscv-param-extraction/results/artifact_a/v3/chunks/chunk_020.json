@@ -1,0 +1,94 @@
+{
+  "chunk_id": "chunk_020",
+  "source_file": "machine.adoc",
+  "start_line": 1,
+  "end_line": 3359,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "The Extensions field is a *WARL* field that can contain writable bits where the implementation allows the supported ISA to be modified.",
+      "line_number": 56,
+      "parameter_name": "MISA_EXTENSIONS",
+      "existing_udb_name": "MISA_EXTENSIONS",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The Extensions field in the misa register is a WARL field, and the specific writable bits that can be set vary by implementation, making it a parameter."
+    },
+    {
+      "excerpt": "The `mtvec` register is an MXLEN-bit *WARL* read/write register that holds trap vector configuration, consisting of a vector base address (BASE) and a vector mode (MODE).",
+      "line_number": 1230,
+      "parameter_name": "MTVEC_MODES",
+      "existing_udb_name": "MTVEC_MODES",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The mtvec register's MODE field is WARL, and the set of supported mode values varies by implementation, making it a parameter."
+    },
+    {
+      "excerpt": "The MBE, SBE, and UBE bits in `mstatus` and `mstatush` are *WARL* fields that control the endianness of memory accesses other than instruction fetches.",
+      "line_number": 679,
+      "parameter_name": "M_MODE_ENDIANNESS",
+      "existing_udb_name": "M_MODE_ENDIANNESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether MBE is read-only-0 (always little-endian), read-only-1 (always big-endian), or read-write (dynamic endianness). This controls the RO/RW nature of the field."
+    },
+    {
+      "excerpt": "The `mcountinhibit` register is a 32-bit *WARL* register that controls which of the hardware performance-monitoring counters increment.",
+      "line_number": 1669,
+      "parameter_name": "COUNTINHIBIT_EN",
+      "existing_udb_name": "COUNTINHIBIT_EN",
+      "class": "NORM_CSR_RW",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "Which bits of mcountinhibit are writable depends on which HPM counters are implemented. Unimplemented counters have read-only-zero bits. This is a NORM_CSR_RW parameter because it determines which bits of the WARL register are functional."
+    },
+    {
+      "excerpt": "The `mconfigptr` register must be implemented, but it may be zero to indicate the configuration data structure does not exist or that an alternative mechanism must be used to locate it.",
+      "line_number": 3035,
+      "parameter_name": "MCONFIGPTR_ACCESS",
+      "existing_udb_name": "MCONFIGPTR_ACCESS",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether mconfigptr is zero (indicating no configuration data structure) or a valid address. This is a design-time decision."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "This register must be readable in any implementation.",
+      "line_number": 22,
+      "reason": "This is a fixed requirement ('must be readable') that all implementations must satisfy. There is no implementation choice here \u2014 it is not a parameter."
+    },
+    {
+      "excerpt": "If S-mode is not supported, SBE is read-only 0.",
+      "line_number": 679,
+      "reason": "This describes the behavior of the SBE field when S-mode is not supported. The parameter is which values of SBE are supported, not this behavioral description."
+    },
+    {
+      "excerpt": "The `mepc` register is an MXLEN-bit read/write register formatted as shown in <<norm:mepc_enc_img>>.",
+      "line_number": 2200,
+      "reason": "This is a fixed requirement about the register's format and does not leave any choice to the implementer."
+    },
+    {
+      "excerpt": "The `mstatus` fields MIE and MPRV are reset to 0.",
+      "line_number": 3340,
+      "reason": "This is a fixed requirement about the reset state of the MIE and MPRV fields, not an implementation choice."
+    },
+    {
+      "excerpt": "The `mvendorid` CSR is a 32-bit read-only register providing the JEDEC manufacturer ID of the provider of the core.",
+      "line_number": 2070,
+      "reason": "This is a fixed requirement about the register's purpose and does not leave any choice to the implementer."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"The Extensions field is a *WARL* field that can contain writable bits where the implementation allows the supported ISA to be modified.\",\n      \"line_number\": 56,\n      \"parameter_name\": \"MISA_EXTENSIONS\",\n      \"existing_udb_name\": \"MISA_EXTENSIONS\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The Extensions field in the misa register is a WARL field, and the specific writable bits that can be set vary by implementation, making it a parameter.\"\n    },\n    {\n      \"excerpt\": \"The `mtvec` register is an MXLEN-bit *WARL* read/write register that holds trap vector configuration, consisting of a vector base address (BASE) and a vector mode (MODE).\",\n      \"line_number\": 1230,\n      \"parameter_name\": \"MTVEC_MODES\",\n      \"existing_udb_name\": \"MTVEC_MODES\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The mtvec register's MODE field is WARL, and the set of supported mode values varies by implementation, making it a parameter.\"\n    },\n    {\n      \"excerpt\": \"The MBE, SBE, and UBE bits in `mstatus` and `mstatush` are *WARL* fields that control the endianness of memory accesses other than instruction fetches.\",\n      \"line_number\": 679,\n      \"parameter_name\": \"M_MODE_ENDIANNESS\",\n      \"existing_udb_name\": \"M_MODE_ENDIANNESS\",\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"enum\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation chooses whether MBE is read-only-0 (always little-endian), read-only-1 (always big-endian), or read-write (dynamic endianness). This controls the RO/RW nature of the field.\"\n    },\n    {\n      \"excerpt\": \"The `mcountinhibit` register is a 32-bit *WARL* register that controls which of the hardware performance-monitoring counters increment.\",\n      \"line_number\": 1669,\n      \"parameter_name\": \"COUNTINHIBIT_EN\",\n      \"existing_udb_name\": \"COUNTINHIBIT_EN\",\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"bitmask\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"Which bits of mcountinhibit are writable depends on which HPM counters are implemented. Unimplemented counters have read-only-zero bits. This is a NORM_CSR_RW parameter because it determines which bits of the WARL register are functional.\"\n    },\n    {\n      \"excerpt\": \"The `mconfigptr` register must be implemented, but it may be zero to indicate the configuration data structure does not exist or that an alternative mechanism must be used to locate it.\",\n      \"line_number\": 3035,\n      \"parameter_name\": \"MCONFIGPTR_ACCESS\",\n      \"existing_udb_name\": \"MCONFIGPTR_ACCESS\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation chooses whether mconfigptr is zero (indicating no configuration data structure) or a valid address. This is a design-time decision.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"This register must be readable in any implementation.\",\n      \"line_number\": 22,\n      \"reason\": \"This is a fixed requirement ('must be readable') that all implementations must satisfy. There is no implementation choice here \u2014 it is not a parameter.\"\n    },\n    {\n      \"excerpt\": \"If S-mode is not supported, SBE is read-only 0.\",\n      \"line_number\": 679,\n      \"reason\": \"This describes the behavior of the SBE field when S-mode is not supported. The parameter is which values of SBE are supported, not this behavioral description.\"\n    },\n    {\n      \"excerpt\": \"The `mepc` register is an MXLEN-bit read/write register formatted as shown in <<norm:mepc_enc_img>>.\",\n      \"line_number\": 2200,\n      \"reason\": \"This is a fixed requirement about the register's format and does not leave any choice to the implementer.\"\n    },\n    {\n      \"excerpt\": \"The `mstatus` fields MIE and MPRV are reset to 0.\",\n      \"line_number\": 3340,\n      \"reason\": \"This is a fixed requirement about the reset state of the MIE and MPRV fields, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The `mvendorid` CSR is a 32-bit read-only register providing the JEDEC manufacturer ID of the provider of the core.\",\n      \"line_number\": 2070,\n      \"reason\": \"This is a fixed requirement about the register's purpose and does not leave any choice to the implementer.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 45421,
+  "output_tokens": 1098,
+  "latency_ms": 12709,
+  "timestamp": "2026-07-24T20:28:17.804478+00:00",
+  "error": null,
+  "retry_count": 0
+}

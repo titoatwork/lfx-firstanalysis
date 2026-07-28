@@ -1,0 +1,124 @@
+{
+  "chunk_id": "chunk_046",
+  "source_file": "smcdeleg.adoc",
+  "start_line": 1,
+  "end_line": 140,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "For a RISC-V hardware platform, Smcdeleg and Ssccfg must always be implemented in tandem.",
+      "line_number": 12,
+      "parameter_name": "SMCDELEG_SSCCFG_TANDEM",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation must support both Smcdeleg and Ssccfg together, which is a design-time decision."
+    },
+    {
+      "excerpt": "When the Smcdeleg/Ssccfg extensions are enabled (`menvcfg`.CDE=1), it further allows M-mode to delegate select counters to S-mode.",
+      "line_number": 20,
+      "parameter_name": "CDE_DELEGATION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to enable counter delegation to S-mode is an implementation decision based on the CDE bit."
+    },
+    {
+      "excerpt": "If extension Smstateen is implemented, refer to extensions Smcsrind/Sscsrind for how setting bit 60 of CSR `mstateen0` to zero prevents access to registers `siselect`, `sireg*`, `vsiselect`, and `vsireg*` from privileged modes less privileged than M-mode.",
+      "line_number": 40,
+      "parameter_name": "SMSTATEEN_IMPLEMENTATION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "Whether the Smstateen extension is implemented is a design choice that affects access control to certain registers."
+    },
+    {
+      "excerpt": "If Sscofpmf is implemented, event selector bit 62 (MINH) is read-only 0 when accessed through `sireg*`.",
+      "line_number": 56,
+      "parameter_name": "SSCOFPMF_IMPLEMENTATION",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation decides whether the Sscofpmf extension is supported, which affects the read-only status of a specific bit."
+    },
+    {
+      "excerpt": "If Smcntrpmf is implemented, counter configuration register bit 62 (MINH) is read-only 0 when accessed through `sireg*`.",
+      "line_number": 64,
+      "parameter_name": "SMCNTRPMF_IMPLEMENTATION",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to implement Smcntrpmf affects the read-only status of a specific bit in the counter configuration register."
+    },
+    {
+      "excerpt": "For implementations that support Smcdeleg/Ssccfg, Sscofpmf, and the H extension, when `menvcfg`.CDE=1, attempts to read `scountovf` from VS-mode or VU-mode raise a virtual-instruction exception.",
+      "line_number": 78,
+      "parameter_name": "SCOVF_VIRTUAL_INSTRUCTION_EXCEPTION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation decides whether to raise a virtual-instruction exception based on the support for specific extensions."
+    },
+    {
+      "excerpt": "For implementations that support Smcdeleg, Sscofpmf, and Smaia, the local-counter-overflow interrupt (LCOFI) bit (bit 13) in each of CSRs `mvip` and `mvien` is implemented and writable.",
+      "line_number": 84,
+      "parameter_name": "LCOFI_MVIP_MVIEN_IMPLEMENTATION",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to implement the LCOFI bit in specific CSRs is dependent on the support for certain extensions."
+    },
+    {
+      "excerpt": "For implementations that support Smcdeleg/Ssccfg, Sscofpmf, Smaia/Ssaia, and the H extension, the LCOFI bit (bit 13) in each of `hvip` and `hvien` is implemented and writable.",
+      "line_number": 90,
+      "parameter_name": "LCOFI_HVIP_HVIEN_IMPLEMENTATION",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation decides whether the LCOFI bit in these CSRs is writable based on the support for specific extensions."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The `hvip` register is defined by the hypervisor (H) extension, while the `mvip`, `mvien` and `hvien` registers are defined by the Smaia/Ssaia extensions.",
+      "line_number": 99,
+      "reason": "This is a fixed requirement that does not leave any choice to the implementer."
+    },
+    {
+      "excerpt": "The memory-mapped `mtime` register is not a performance monitoring counter to be managed by supervisor software, hence the special treatment of `siselect` value 0x41 described above.",
+      "line_number": 70,
+      "reason": "This describes a specific behavior regarding the `mtime` register, not an implementation choice."
+    },
+    {
+      "excerpt": "When `menvcfg`.CDE=0, attempts to access `scountinhibit` raise an illegal-instruction exception.",
+      "line_number": 75,
+      "reason": "This describes behavior based on the value of a CSR field, not an implementation choice."
+    },
+    {
+      "excerpt": "An attempt to access any `vsireg*` from M or S mode raises an illegal-instruction exception.",
+      "line_number": 100,
+      "reason": "This describes behavior based on the privilege mode, not an implementation choice."
+    },
+    {
+      "excerpt": "When Supervisor Counter Delegation is enabled, attempts to access `scountinhibit` from VS-mode or VU-mode raise a virtual-instruction exception.",
+      "line_number": 83,
+      "reason": "This describes behavior based on the delegation state, not an implementation choice."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"For a RISC-V hardware platform, Smcdeleg and Ssccfg must always be implemented in tandem.\",\n      \"line_number\": 12,\n      \"parameter_name\": \"SMCDELEG_SSCCFG_TANDEM\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation must support both Smcdeleg and Ssccfg together, which is a design-time decision.\"\n    },\n    {\n      \"excerpt\": \"When the Smcdeleg/Ssccfg extensions are enabled (`menvcfg`.CDE=1), it further allows M-mode to delegate select counters to S-mode.\",\n      \"line_number\": 20,\n      \"parameter_name\": \"CDE_DELEGATION\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The choice to enable counter delegation to S-mode is an implementation decision based on the CDE bit.\"\n    },\n    {\n      \"excerpt\": \"If extension Smstateen is implemented, refer to extensions Smcsrind/Sscsrind for how setting bit 60 of CSR `mstateen0` to zero prevents access to registers `siselect`, `sireg*`, `vsiselect`, and `vsireg*` from privileged modes less privileged than M-mode.\",\n      \"line_number\": 40,\n      \"parameter_name\": \"SMSTATEEN_IMPLEMENTATION\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"Whether the Smstateen extension is implemented is a design choice that affects access control to certain registers.\"\n    },\n    {\n      \"excerpt\": \"If Sscofpmf is implemented, event selector bit 62 (MINH) is read-only 0 when accessed through `sireg*`.\",\n      \"line_number\": 56,\n      \"parameter_name\": \"SSCOFPMF_IMPLEMENTATION\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation decides whether the Sscofpmf extension is supported, which affects the read-only status of a specific bit.\"\n    },\n    {\n      \"excerpt\": \"If Smcntrpmf is implemented, counter configuration register bit 62 (MINH) is read-only 0 when accessed through `sireg*`.\",\n      \"line_number\": 64,\n      \"parameter_name\": \"SMCNTRPMF_IMPLEMENTATION\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The choice to implement Smcntrpmf affects the read-only status of a specific bit in the counter configuration register.\"\n    },\n    {\n      \"excerpt\": \"For implementations that support Smcdeleg/Ssccfg, Sscofpmf, and the H extension, when `menvcfg`.CDE=1, attempts to read `scountovf` from VS-mode or VU-mode raise a virtual-instruction exception.\",\n      \"line_number\": 78,\n      \"parameter_name\": \"SCOVF_VIRTUAL_INSTRUCTION_EXCEPTION\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation decides whether to raise a virtual-instruction exception based on the support for specific extensions.\"\n    },\n    {\n      \"excerpt\": \"For implementations that support Smcdeleg, Sscofpmf, and Smaia, the local-counter-overflow interrupt (LCOFI) bit (bit 13) in each of CSRs `mvip` and `mvien` is implemented and writable.\",\n      \"line_number\": 84,\n      \"parameter_name\": \"LCOFI_MVIP_MVIEN_IMPLEMENTATION\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The choice to implement the LCOFI bit in specific CSRs is dependent on the support for certain extensions.\"\n    },\n    {\n      \"excerpt\": \"For implementations that support Smcdeleg/Ssccfg, Sscofpmf, Smaia/Ssaia, and the H extension, the LCOFI bit (bit 13) in each of `hvip` and `hvien` is implemented and writable.\",\n      \"line_number\": 90,\n      \"parameter_name\": \"LCOFI_HVIP_HVIEN_IMPLEMENTATION\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation decides whether the LCOFI bit in these CSRs is writable based on the support for specific extensions.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"The `hvip` register is defined by the hypervisor (H) extension, while the `mvip`, `mvien` and `hvien` registers are defined by the Smaia/Ssaia extensions.\",\n      \"line_number\": 99,\n      \"reason\": \"This is a fixed requirement that does not leave any choice to the implementer.\"\n    },\n    {\n      \"excerpt\": \"The memory-mapped `mtime` register is not a performance monitoring counter to be managed by supervisor software, hence the special treatment of `siselect` value 0x41 described above.\",\n      \"line_number\": 70,\n      \"reason\": \"This describes a specific behavior regarding the `mtime` register, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"When `menvcfg`.CDE=0, attempts to access `scountinhibit` raise an illegal-instruction exception.\",\n      \"line_number\": 75,\n      \"reason\": \"This describes behavior based on the value of a CSR field, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"An attempt to access any `vsireg*` from M or S mode raises an illegal-instruction exception.\",\n      \"line_number\": 100,\n      \"reason\": \"This describes behavior based on the privilege mode, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"When Supervisor Counter Delegation is enabled, attempts to access `scountinhibit` from VS-mode or VU-mode raise a virtual-instruction exception.\",\n      \"line_number\": 83,\n      \"reason\": \"This describes behavior based on the delegation state, not an implementation choice.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 9157,
+  "output_tokens": 1484,
+  "latency_ms": 14150,
+  "timestamp": "2026-07-24T20:41:31.632628+00:00",
+  "error": null,
+  "retry_count": 0
+}

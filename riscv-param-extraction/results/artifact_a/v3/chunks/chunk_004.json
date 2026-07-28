@@ -1,0 +1,84 @@
+{
+  "chunk_id": "chunk_004",
+  "source_file": "bfloat16.adoc",
+  "start_line": 1,
+  "end_line": 790,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "For BF16 these values are: radix (b) 2, significand (p) 8, emax 127.",
+      "line_number": 66,
+      "parameter_name": "BF16_FORMAT_PARAMETERS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The radix, significand, and maximum exponent for BF16 are direct implementation choices that define the format."
+    },
+    {
+      "excerpt": "BF16 addition, subtraction, multiplication, division, and square-root operations can be faithfully emulated by converting the BF16 operands to single-precision, performing the operation using single-precision arithmetic, and then converting back to BF16.",
+      "line_number": 204,
+      "parameter_name": "BF16_EMULATION_SUPPORT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The ability to emulate BF16 operations using single-precision is an implementation choice, indicating whether this emulation is supported."
+    },
+    {
+      "excerpt": "While conversion instructions tend to include all supported formats, in these extensions we only support conversion between BF16 and FP32 as we are targeting a special use case.",
+      "line_number": 276,
+      "parameter_name": "BF16_CONVERSION_FORMATS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The specification indicates that the supported conversion formats are an implementation choice, specifically between BF16 and FP32."
+    },
+    {
+      "excerpt": "The group of extensions introduced by the BF16 Instruction Set Extensions is listed here.",
+      "line_number": 370,
+      "parameter_name": "BF16_EXTENSION_DEPENDENCIES",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The dependencies of the BF16 extensions on other extensions (like 'F' and 'V') are implementation choices that can vary."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE]\n====\nFuture floating-point extensions, including those that operate on BF16 values, may chose not to support subnormal numbers.\n====",
+      "line_number": 204,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a potential future choice, not an architectural requirement."
+    },
+    {
+      "excerpt": "As is the case with other floating-point instructions, the BF16 instructions support all 5 RISC-V Floating-point rounding modes.",
+      "line_number": 204,
+      "reason": "This describes the behavior of BF16 instructions regarding rounding modes, which is not an implementation choice but a fixed requirement."
+    },
+    {
+      "excerpt": "RISC-V supports IEEE-defined default exception handling. BF16 is no exception.",
+      "line_number": 204,
+      "reason": "This is a fixed requirement regarding exception handling that applies to all implementations, not an architectural parameter."
+    },
+    {
+      "excerpt": "BF16 instructions set floating-point exception flags the same way as all other floating-point instructions in RISC-V.",
+      "line_number": 204,
+      "reason": "This describes the behavior of BF16 instructions regarding exception flags, which is not an implementation choice but a fixed requirement."
+    },
+    {
+      "excerpt": "Detection of individual BF16 extensions uses the unified software-based RISC-V discovery method.",
+      "line_number": 204,
+      "reason": "This describes a method for detecting extensions, which is not an implementation choice but a procedural detail."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"For BF16 these values are: radix (b) 2, significand (p) 8, emax 127.\",\n      \"line_number\": 66,\n      \"parameter_name\": \"BF16_FORMAT_PARAMETERS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The radix, significand, and maximum exponent for BF16 are direct implementation choices that define the format.\"\n    },\n    {\n      \"excerpt\": \"BF16 addition, subtraction, multiplication, division, and square-root operations can be faithfully emulated by converting the BF16 operands to single-precision, performing the operation using single-precision arithmetic, and then converting back to BF16.\",\n      \"line_number\": 204,\n      \"parameter_name\": \"BF16_EMULATION_SUPPORT\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The ability to emulate BF16 operations using single-precision is an implementation choice, indicating whether this emulation is supported.\"\n    },\n    {\n      \"excerpt\": \"While conversion instructions tend to include all supported formats, in these extensions we only support conversion between BF16 and FP32 as we are targeting a special use case.\",\n      \"line_number\": 276,\n      \"parameter_name\": \"BF16_CONVERSION_FORMATS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The specification indicates that the supported conversion formats are an implementation choice, specifically between BF16 and FP32.\"\n    },\n    {\n      \"excerpt\": \"The group of extensions introduced by the BF16 Instruction Set Extensions is listed here.\",\n      \"line_number\": 370,\n      \"parameter_name\": \"BF16_EXTENSION_DEPENDENCIES\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The dependencies of the BF16 extensions on other extensions (like 'F' and 'V') are implementation choices that can vary.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"[NOTE]\\n====\\nFuture floating-point extensions, including those that operate on BF16 values, may chose not to support subnormal numbers.\\n====\",\n      \"line_number\": 204,\n      \"reason\": \"This text is inside a [NOTE] block and is therefore non-normative. It describes a potential future choice, not an architectural requirement.\"\n    },\n    {\n      \"excerpt\": \"As is the case with other floating-point instructions, the BF16 instructions support all 5 RISC-V Floating-point rounding modes.\",\n      \"line_number\": 204,\n      \"reason\": \"This describes the behavior of BF16 instructions regarding rounding modes, which is not an implementation choice but a fixed requirement.\"\n    },\n    {\n      \"excerpt\": \"RISC-V supports IEEE-defined default exception handling. BF16 is no exception.\",\n      \"line_number\": 204,\n      \"reason\": \"This is a fixed requirement regarding exception handling that applies to all implementations, not an architectural parameter.\"\n    },\n    {\n      \"excerpt\": \"BF16 instructions set floating-point exception flags the same way as all other floating-point instructions in RISC-V.\",\n      \"line_number\": 204,\n      \"reason\": \"This describes the behavior of BF16 instructions regarding exception flags, which is not an implementation choice but a fixed requirement.\"\n    },\n    {\n      \"excerpt\": \"Detection of individual BF16 extensions uses the unified software-based RISC-V discovery method.\",\n      \"line_number\": 204,\n      \"reason\": \"This describes a method for detecting extensions, which is not an implementation choice but a procedural detail.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 13607,
+  "output_tokens": 847,
+  "latency_ms": 10105,
+  "timestamp": "2026-07-24T20:17:25.258014+00:00",
+  "error": null,
+  "retry_count": 0
+}

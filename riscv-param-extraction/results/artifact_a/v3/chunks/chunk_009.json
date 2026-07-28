@@ -1,0 +1,94 @@
+{
+  "chunk_id": "chunk_009",
+  "source_file": "cmo.adoc",
+  "start_line": 1,
+  "end_line": 1094,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "the size of a cache block shall be uniform throughout the system.",
+      "line_number": 66,
+      "parameter_name": "CACHE_BLOCK_SIZE_UNIFORMITY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The specification states that the size of a cache block must be uniform throughout the system, which is a design-time decision left to the implementer."
+    },
+    {
+      "excerpt": "An implementation may or may not update the entire set of bytes atomically with a single store operation.",
+      "line_number": 103,
+      "parameter_name": "CACHE_BLOCK_ZERO_ATOMICITY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "Whether the cache-block zero instruction updates the bytes atomically is an implementation choice, making it a direct parameter."
+    },
+    {
+      "excerpt": "A cache-block management instruction is permitted to access the specified cache block whenever a load instruction or store instruction is permitted to access the corresponding physical addresses.",
+      "line_number": 469,
+      "parameter_name": "CACHE_BLOCK_MANAGEMENT_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The access permissions for cache-block management instructions depend on the implementation's handling of load and store instructions, making it a WARL parameter."
+    },
+    {
+      "excerpt": "A cache-block zero instruction is permitted to access the specified cache block whenever a store instruction is permitted to access the corresponding physical addresses and when the PMAs indicate that cache-block zero instructions are a supported access type.",
+      "line_number": 487,
+      "parameter_name": "CACHE_BLOCK_ZERO_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The access permissions for cache-block zero instructions depend on the implementation's handling of store instructions and PMA settings, making it a WARL parameter."
+    },
+    {
+      "excerpt": "A cache-block prefetch instruction is permitted to access the specified cache block whenever a load instruction, store instruction, or instruction fetch is permitted to access the corresponding physical addresses.",
+      "line_number": 505,
+      "parameter_name": "CACHE_BLOCK_PREFETCH_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The access permissions for cache-block prefetch instructions depend on the implementation's handling of load, store, and instruction fetch operations, making it a WARL parameter."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The term CMO encompasses all operations on caches or resources related to caches.",
+      "line_number": 12,
+      "reason": "This text is non-normative and provides a definition rather than an implementation choice."
+    },
+    {
+      "excerpt": "Caches organize copies of data into cache blocks, each of which represents a contiguous, naturally aligned power-of-two (or NAPOT) range of memory locations.",
+      "line_number": 45,
+      "reason": "This describes the organization of caches and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "The coherent agents within such a set shall access a given memory location with the same physical address and the same physical memory attributes.",
+      "line_number": 118,
+      "reason": "This is a fixed requirement that applies to all implementations, not an architectural parameter."
+    },
+    {
+      "excerpt": "Execution of certain CMO instructions may result in traps due to CSR state, described in the csr_state section.",
+      "line_number": 469,
+      "reason": "This describes potential behavior rather than an implementation choice."
+    },
+    {
+      "excerpt": "The PMP access control bits shall be the same for all physical addresses in the cache block.",
+      "line_number": 682,
+      "reason": "This is a fixed requirement that applies to all implementations, not an architectural parameter."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"the size of a cache block shall be uniform throughout the system.\",\n      \"line_number\": 66,\n      \"parameter_name\": \"CACHE_BLOCK_SIZE_UNIFORMITY\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"value\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The specification states that the size of a cache block must be uniform throughout the system, which is a design-time decision left to the implementer.\"\n    },\n    {\n      \"excerpt\": \"An implementation may or may not update the entire set of bytes atomically with a single store operation.\",\n      \"line_number\": 103,\n      \"parameter_name\": \"CACHE_BLOCK_ZERO_ATOMICITY\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"Whether the cache-block zero instruction updates the bytes atomically is an implementation choice, making it a direct parameter.\"\n    },\n    {\n      \"excerpt\": \"A cache-block management instruction is permitted to access the specified cache block whenever a load instruction or store instruction is permitted to access the corresponding physical addresses.\",\n      \"line_number\": 469,\n      \"parameter_name\": \"CACHE_BLOCK_MANAGEMENT_ACCESS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The access permissions for cache-block management instructions depend on the implementation's handling of load and store instructions, making it a WARL parameter.\"\n    },\n    {\n      \"excerpt\": \"A cache-block zero instruction is permitted to access the specified cache block whenever a store instruction is permitted to access the corresponding physical addresses and when the PMAs indicate that cache-block zero instructions are a supported access type.\",\n      \"line_number\": 487,\n      \"parameter_name\": \"CACHE_BLOCK_ZERO_ACCESS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The access permissions for cache-block zero instructions depend on the implementation's handling of store instructions and PMA settings, making it a WARL parameter.\"\n    },\n    {\n      \"excerpt\": \"A cache-block prefetch instruction is permitted to access the specified cache block whenever a load instruction, store instruction, or instruction fetch is permitted to access the corresponding physical addresses.\",\n      \"line_number\": 505,\n      \"parameter_name\": \"CACHE_BLOCK_PREFETCH_ACCESS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The access permissions for cache-block prefetch instructions depend on the implementation's handling of load, store, and instruction fetch operations, making it a WARL parameter.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"The term CMO encompasses all operations on caches or resources related to caches.\",\n      \"line_number\": 12,\n      \"reason\": \"This text is non-normative and provides a definition rather than an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"Caches organize copies of data into cache blocks, each of which represents a contiguous, naturally aligned power-of-two (or NAPOT) range of memory locations.\",\n      \"line_number\": 45,\n      \"reason\": \"This describes the organization of caches and does not indicate an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The coherent agents within such a set shall access a given memory location with the same physical address and the same physical memory attributes.\",\n      \"line_number\": 118,\n      \"reason\": \"This is a fixed requirement that applies to all implementations, not an architectural parameter.\"\n    },\n    {\n      \"excerpt\": \"Execution of certain CMO instructions may result in traps due to CSR state, described in the csr_state section.\",\n      \"line_number\": 469,\n      \"reason\": \"This describes potential behavior rather than an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The PMP access control bits shall be the same for all physical addresses in the cache block.\",\n      \"line_number\": 682,\n      \"reason\": \"This is a fixed requirement that applies to all implementations, not an architectural parameter.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 16777,
+  "output_tokens": 948,
+  "latency_ms": 10841,
+  "timestamp": "2026-07-24T20:19:48.529973+00:00",
+  "error": null,
+  "retry_count": 0
+}

@@ -1,0 +1,69 @@
+{
+  "chunk_id": "chunk_031",
+  "source_file": "priv-intro.adoc",
+  "start_line": 1,
+  "end_line": 217,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "Implementations might provide anywhere from 1 to 3 privilege modes trading off reduced isolation for lower implementation cost.",
+      "line_number": 139,
+      "parameter_name": "NUM_PRIVILEGE_MODES",
+      "existing_udb_name": "NUM_PRIVILEGE_MODES",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of privilege modes (1 to 3) is an implementation choice that affects system design. It is not controlled by any CSR field."
+    },
+    {
+      "excerpt": "Each privilege level has a core set of privileged ISA extensions with optional extensions and variants.",
+      "line_number": 145,
+      "parameter_name": "PRIVILEGE_LEVEL_EXTENSIONS",
+      "existing_udb_name": "PRIVILEGE_LEVEL_EXTENSIONS",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The specific extensions and variants supported at each privilege level are implementation-defined choices, allowing flexibility in design."
+    },
+    {
+      "excerpt": "Implementations may also include a debug mode to support off-chip debugging and/or manufacturing test.",
+      "line_number": 197,
+      "parameter_name": "DEBUG_MODE_SUPPORT",
+      "existing_udb_name": "DEBUG_MODE_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "Whether to include a debug mode is an implementation choice, making it a direct parameter of the architecture."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The machine level has the highest privileges and is the only mandatory privilege level for a RISC-V hardware platform.",
+      "line_number": 135,
+      "reason": "This is a fixed requirement that all implementations must satisfy, not an implementation choice."
+    },
+    {
+      "excerpt": "The lock feature of the optional PMP facility can provide some limited protection even with only M-mode implemented.",
+      "line_number": 155,
+      "reason": "This describes a feature of the PMP facility, not an implementation-defined parameter."
+    },
+    {
+      "excerpt": "A hart normally runs application code in U-mode until some trap (e.g., a supervisor call or a timer interrupt) forces a switch to a trap handler.",
+      "line_number": 165,
+      "reason": "This describes runtime behavior and not an implementation choice regarding privilege levels."
+    },
+    {
+      "excerpt": "Horizontal traps can be implemented as vertical traps that return control to a horizontal trap handler in the less-privileged mode.",
+      "line_number": 175,
+      "reason": "This describes a potential implementation strategy, not a parameter that is left to the implementer."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"Implementations might provide anywhere from 1 to 3 privilege modes trading off reduced isolation for lower implementation cost.\",\n      \"line_number\": 139,\n      \"parameter_name\": \"NUM_PRIVILEGE_MODES\",\n      \"existing_udb_name\": \"NUM_PRIVILEGE_MODES\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"range\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The number of privilege modes (1 to 3) is an implementation choice that affects system design. It is not controlled by any CSR field.\"\n    },\n    {\n      \"excerpt\": \"Each privilege level has a core set of privileged ISA extensions with optional extensions and variants.\",\n      \"line_number\": 145,\n      \"parameter_name\": \"PRIVILEGE_LEVEL_EXTENSIONS\",\n      \"existing_udb_name\": \"PRIVILEGE_LEVEL_EXTENSIONS\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The specific extensions and variants supported at each privilege level are implementation-defined choices, allowing flexibility in design.\"\n    },\n    {\n      \"excerpt\": \"Implementations may also include a debug mode to support off-chip debugging and/or manufacturing test.\",\n      \"line_number\": 197,\n      \"parameter_name\": \"DEBUG_MODE_SUPPORT\",\n      \"existing_udb_name\": \"DEBUG_MODE_SUPPORT\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"Whether to include a debug mode is an implementation choice, making it a direct parameter of the architecture.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"The machine level has the highest privileges and is the only mandatory privilege level for a RISC-V hardware platform.\",\n      \"line_number\": 135,\n      \"reason\": \"This is a fixed requirement that all implementations must satisfy, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The lock feature of the optional PMP facility can provide some limited protection even with only M-mode implemented.\",\n      \"line_number\": 155,\n      \"reason\": \"This describes a feature of the PMP facility, not an implementation-defined parameter.\"\n    },\n    {\n      \"excerpt\": \"A hart normally runs application code in U-mode until some trap (e.g., a supervisor call or a timer interrupt) forces a switch to a trap handler.\",\n      \"line_number\": 165,\n      \"reason\": \"This describes runtime behavior and not an implementation choice regarding privilege levels.\"\n    },\n    {\n      \"excerpt\": \"Horizontal traps can be implemented as vertical traps that return control to a horizontal trap handler in the less-privileged mode.\",\n      \"line_number\": 175,\n      \"reason\": \"This describes a potential implementation strategy, not a parameter that is left to the implementer.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 8652,
+  "output_tokens": 618,
+  "latency_ms": 9341,
+  "timestamp": "2026-07-24T20:33:07.133269+00:00",
+  "error": null,
+  "retry_count": 0
+}

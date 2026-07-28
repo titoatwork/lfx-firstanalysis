@@ -1,0 +1,104 @@
+{
+  "chunk_id": "chunk_015",
+  "source_file": "hypervisor.adoc",
+  "start_line": 1,
+  "end_line": 2932,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "The number of bits implemented in `hgeip` and `hgeie` for guest external interrupts is UNSPECIFIED and may be zero.",
+      "line_number": 1940,
+      "parameter_name": "GEILEN",
+      "existing_udb_name": "GEILEN",
+      "class": "NORM_CSR_WARL",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of bits for guest external interrupts is unspecified and can vary by implementation, making it a WARL parameter."
+    },
+    {
+      "excerpt": "The VSXL field controls the effective XLEN for VS-mode (known as VSXLEN), which may differ from the XLEN for HS-mode (HSXLEN).",
+      "line_number": 1219,
+      "parameter_name": "VSXLEN",
+      "existing_udb_name": "VSXLEN",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The effective XLEN for VS-mode can vary by implementation, indicating a set of supported values."
+    },
+    {
+      "excerpt": "The `hgatp` register is an HSXLEN-bit read/write register, formatted as shown in <<rv32hgatp>> for HSXLEN=32 and <<rv64hgatp>> for HSXLEN=64, which controls G-stage address translation and protection.",
+      "line_number": 1970,
+      "parameter_name": "HGATP_MODE",
+      "existing_udb_name": "HGATP_MODE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The MODE field in `hgatp` can vary by implementation, indicating which address translation schemes are supported."
+    },
+    {
+      "excerpt": "The `hstatus` fields VTSR, VTW, and VTVM are defined analogously to the `mstatus` fields TSR, TW, and TVM, but affect execution only in VS-mode.",
+      "line_number": 1230,
+      "parameter_name": "VTVM",
+      "existing_udb_name": "VTVM",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether VTVM is writable or read-only, affecting the mutability of the field."
+    },
+    {
+      "excerpt": "The `htval` register is a *WARL* register that must be able to hold zero and may be capable of holding only an arbitrary subset of other 2-bit-shifted guest physical addresses, if any.",
+      "line_number": 2100,
+      "parameter_name": "HTVAL",
+      "existing_udb_name": "HTVAL",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The `htval` register can hold a subset of values that vary by implementation, making it a WARL parameter."
+    },
+    {
+      "excerpt": "The `mtval2` register is a *WARL* register that must be able to hold zero and may be capable of holding only an arbitrary subset of other 2-bit-shifted guest physical addresses, if any.",
+      "line_number": 2150,
+      "parameter_name": "MTVAL2",
+      "existing_udb_name": "MTVAL2",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The `mtval2` register can hold a subset of values that vary by implementation, making it a WARL parameter."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The `henvcfg` CSR is a 64-bit read/write register, formatted as shown in <<henvcfg>>, that controls certain characteristics of the execution environment when virtualization mode V=1.",
+      "line_number": 2200,
+      "reason": "This describes the characteristics of the `henvcfg` CSR but does not specify an implementation choice."
+    },
+    {
+      "excerpt": "When V=1, the `vsatp` register substitutes for the usual `satp`, so instructions that normally read or modify `satp` actually access `vsatp` instead.",
+      "line_number": 2300,
+      "reason": "This describes the behavior of the `vsatp` register in relation to `satp`, not an implementation choice."
+    },
+    {
+      "excerpt": "The `hcounteren` register must be implemented. However, any of the bits may be read-only zero, indicating reads to the corresponding counter will cause an exception when V=1.",
+      "line_number": 2400,
+      "reason": "This describes a requirement for the `hcounteren` register but does not specify an implementation choice."
+    },
+    {
+      "excerpt": "The `hstatus` register is an HSXLEN-bit read/write register formatted as shown in <<hstatusreg>> when HSXLEN=32 and <<hstatusreg>> when HSXLEN=64.",
+      "line_number": 2500,
+      "reason": "This describes the format of the `hstatus` register but does not specify an implementation choice."
+    },
+    {
+      "excerpt": "The `mtinst` register is an MXLEN-bit read/write register formatted as shown in <<mtinstreg>>.",
+      "line_number": 2600,
+      "reason": "This describes the format of the `mtinst` register but does not specify an implementation choice."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"The number of bits implemented in `hgeip` and `hgeie` for guest external interrupts is UNSPECIFIED and may be zero.\",\n      \"line_number\": 1940,\n      \"parameter_name\": \"GEILEN\",\n      \"existing_udb_name\": \"GEILEN\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"range\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The number of bits for guest external interrupts is unspecified and can vary by implementation, making it a WARL parameter.\"\n    },\n    {\n      \"excerpt\": \"The VSXL field controls the effective XLEN for VS-mode (known as VSXLEN), which may differ from the XLEN for HS-mode (HSXLEN).\",\n      \"line_number\": 1219,\n      \"parameter_name\": \"VSXLEN\",\n      \"existing_udb_name\": \"VSXLEN\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The effective XLEN for VS-mode can vary by implementation, indicating a set of supported values.\"\n    },\n    {\n      \"excerpt\": \"The `hgatp` register is an HSXLEN-bit read/write register, formatted as shown in <<rv32hgatp>> for HSXLEN=32 and <<rv64hgatp>> for HSXLEN=64, which controls G-stage address translation and protection.\",\n      \"line_number\": 1970,\n      \"parameter_name\": \"HGATP_MODE\",\n      \"existing_udb_name\": \"HGATP_MODE\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"enum\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The MODE field in `hgatp` can vary by implementation, indicating which address translation schemes are supported.\"\n    },\n    {\n      \"excerpt\": \"The `hstatus` fields VTSR, VTW, and VTVM are defined analogously to the `mstatus` fields TSR, TW, and TVM, but affect execution only in VS-mode.\",\n      \"line_number\": 1230,\n      \"parameter_name\": \"VTVM\",\n      \"existing_udb_name\": \"VTVM\",\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation can choose whether VTVM is writable or read-only, affecting the mutability of the field.\"\n    },\n    {\n      \"excerpt\": \"The `htval` register is a *WARL* register that must be able to hold zero and may be capable of holding only an arbitrary subset of other 2-bit-shifted guest physical addresses, if any.\",\n      \"line_number\": 2100,\n      \"parameter_name\": \"HTVAL\",\n      \"existing_udb_name\": \"HTVAL\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The `htval` register can hold a subset of values that vary by implementation, making it a WARL parameter.\"\n    },\n    {\n      \"excerpt\": \"The `mtval2` register is a *WARL* register that must be able to hold zero and may be capable of holding only an arbitrary subset of other 2-bit-shifted guest physical addresses, if any.\",\n      \"line_number\": 2150,\n      \"parameter_name\": \"MTVAL2\",\n      \"existing_udb_name\": \"MTVAL2\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The `mtval2` register can hold a subset of values that vary by implementation, making it a WARL parameter.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"The `henvcfg` CSR is a 64-bit read/write register, formatted as shown in <<henvcfg>>, that controls certain characteristics of the execution environment when virtualization mode V=1.\",\n      \"line_number\": 2200,\n      \"reason\": \"This describes the characteristics of the `henvcfg` CSR but does not specify an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"When V=1, the `vsatp` register substitutes for the usual `satp`, so instructions that normally read or modify `satp` actually access `vsatp` instead.\",\n      \"line_number\": 2300,\n      \"reason\": \"This describes the behavior of the `vsatp` register in relation to `satp`, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The `hcounteren` register must be implemented. However, any of the bits may be read-only zero, indicating reads to the corresponding counter will cause an exception when V=1.\",\n      \"line_number\": 2400,\n      \"reason\": \"This describes a requirement for the `hcounteren` register but does not specify an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The `hstatus` register is an HSXLEN-bit read/write register formatted as shown in <<hstatusreg>> when HSXLEN=32 and <<hstatusreg>> when HSXLEN=64.\",\n      \"line_number\": 2500,\n      \"reason\": \"This describes the format of the `hstatus` register but does not specify an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The `mtinst` register is an MXLEN-bit read/write register formatted as shown in <<mtinstreg>>.\",\n      \"line_number\": 2600,\n      \"reason\": \"This describes the format of the `mtinst` register but does not specify an implementation choice.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 38391,
+  "output_tokens": 1259,
+  "latency_ms": 14123,
+  "timestamp": "2026-07-24T20:23:32.604551+00:00",
+  "error": null,
+  "retry_count": 0
+}

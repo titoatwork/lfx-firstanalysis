@@ -1,0 +1,53 @@
+{
+  "total_udb_params": 185,
+  "debug_spec_params": 8,
+  "total_llm_params_deduped": 230,
+  "raw_recall": 0.3081,
+  "adjusted_recall": 0.322,
+  "adjusted_recall_pct": "32.2%",
+  "matched_udb_count": 57,
+  "matched_non_debug_count": 57,
+  "classification_accuracy": 1.0,
+  "classification_accuracy_pct": "100.0%",
+  "exact_matches_evaluated": 11,
+  "class_correct": 11,
+  "confusion_matrix": {
+    "NORM_DIRECT": {
+      "NORM_DIRECT": 8
+    },
+    "NORM_CSR_RW": {
+      "NORM_CSR_RW": 2
+    },
+    "NORM_CSR_WARL": {
+      "NORM_CSR_WARL": 1
+    }
+  },
+  "per_class_recall": {
+    "NORM_CSR_RW": {
+      "found": 6,
+      "total": 51
+    },
+    "NORM_DIRECT": {
+      "found": 48,
+      "total": 100
+    },
+    "NORM_CSR_WARL": {
+      "found": 3,
+      "total": 24
+    },
+    "SW_RULE": {
+      "found": 0,
+      "total": 2
+    }
+  },
+  "confidence_distribution": {
+    "high": 229,
+    "medium": 1
+  },
+  "new_params_by_class": {
+    "NORM_CSR_RW": 45,
+    "NORM_CSR_WARL": 32,
+    "NORM_DIRECT": 135
+  },
+  "new_params_total": 212
+}

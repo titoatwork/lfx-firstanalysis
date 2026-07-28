@@ -1,0 +1,74 @@
+{
+  "chunk_id": "chunk_076",
+  "source_file": "zilsd.adoc",
+  "start_line": 1,
+  "end_line": 315,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "As the access size is 64-bit, accesses are only considered naturally aligned for effective addresses that are a multiple of 8.",
+      "line_number": 45,
+      "parameter_name": "NATURAL_ALIGNMENT_64BIT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether to consider 64-bit accesses as naturally aligned based on effective addresses being multiples of 8. This is a design-time decision."
+    },
+    {
+      "excerpt": "If the effective address is a multiple of 4, then each word access is required to be performed atomically.",
+      "line_number": 49,
+      "parameter_name": "ATOMIC_WORD_ACCESS_MULTIPLE_OF_4",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation decides whether word accesses at multiples of 4 are guaranteed to be atomic. This is an implementation choice."
+    },
+    {
+      "excerpt": "LD and SD instructions are considered to be misaligned loads and stores, with one additional constraint: an LD or SD instruction whose effective address is a multiple of 4 gives rise to two 4-byte memory operations.",
+      "line_number": 69,
+      "parameter_name": "MISALIGNED_LOAD_STORE_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation defines how LD and SD instructions behave in terms of misalignment, specifically regarding the number of memory operations generated. This is a design-time decision."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "If an implementation performs a doubleword load access atomically and the register file implements write-back for even/odd register pairs, the mentioned atomicity requirements are inherently fulfilled.",
+      "line_number": 63,
+      "reason": "This is a conditional statement about implementation behavior, not a parameter that defines an architectural choice."
+    },
+    {
+      "excerpt": "LD instructions with destination `x0` are processed as any other load, but the result is discarded entirely and x1 is not written.",
+      "line_number": 83,
+      "reason": "This describes the behavior of a specific instruction rather than an implementation choice. It does not define a parameter."
+    },
+    {
+      "excerpt": "For the purposes of RVWMO and exception handling, LD and SD instructions are considered to be misaligned loads and stores.",
+      "line_number": 69,
+      "reason": "This is a fixed requirement about how LD and SD instructions are treated in terms of alignment, not an implementation choice."
+    },
+    {
+      "excerpt": "Software should make no assumptions about the number or order of accesses these instructions might give rise to, beyond the 4-byte constraint mentioned above.",
+      "line_number": 69,
+      "reason": "This is a guideline for software behavior, not an architectural parameter that defines implementation choices."
+    },
+    {
+      "excerpt": "Even if naturally aligned, the memory access might not be performed atomically.",
+      "line_number": 49,
+      "reason": "This describes a potential behavior of memory access rather than an implementation choice. It does not define a parameter."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"As the access size is 64-bit, accesses are only considered naturally aligned for effective addresses that are a multiple of 8.\",\n      \"line_number\": 45,\n      \"parameter_name\": \"NATURAL_ALIGNMENT_64BIT\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation chooses whether to consider 64-bit accesses as naturally aligned based on effective addresses being multiples of 8. This is a design-time decision.\"\n    },\n    {\n      \"excerpt\": \"If the effective address is a multiple of 4, then each word access is required to be performed atomically.\",\n      \"line_number\": 49,\n      \"parameter_name\": \"ATOMIC_WORD_ACCESS_MULTIPLE_OF_4\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation decides whether word accesses at multiples of 4 are guaranteed to be atomic. This is an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"LD and SD instructions are considered to be misaligned loads and stores, with one additional constraint: an LD or SD instruction whose effective address is a multiple of 4 gives rise to two 4-byte memory operations.\",\n      \"line_number\": 69,\n      \"parameter_name\": \"MISALIGNED_LOAD_STORE_BEHAVIOR\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation defines how LD and SD instructions behave in terms of misalignment, specifically regarding the number of memory operations generated. This is a design-time decision.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"If an implementation performs a doubleword load access atomically and the register file implements write-back for even/odd register pairs, the mentioned atomicity requirements are inherently fulfilled.\",\n      \"line_number\": 63,\n      \"reason\": \"This is a conditional statement about implementation behavior, not a parameter that defines an architectural choice.\"\n    },\n    {\n      \"excerpt\": \"LD instructions with destination `x0` are processed as any other load, but the result is discarded entirely and x1 is not written.\",\n      \"line_number\": 83,\n      \"reason\": \"This describes the behavior of a specific instruction rather than an implementation choice. It does not define a parameter.\"\n    },\n    {\n      \"excerpt\": \"For the purposes of RVWMO and exception handling, LD and SD instructions are considered to be misaligned loads and stores.\",\n      \"line_number\": 69,\n      \"reason\": \"This is a fixed requirement about how LD and SD instructions are treated in terms of alignment, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"Software should make no assumptions about the number or order of accesses these instructions might give rise to, beyond the 4-byte constraint mentioned above.\",\n      \"line_number\": 69,\n      \"reason\": \"This is a guideline for software behavior, not an architectural parameter that defines implementation choices.\"\n    },\n    {\n      \"excerpt\": \"Even if naturally aligned, the memory access might not be performed atomically.\",\n      \"line_number\": 49,\n      \"reason\": \"This describes a potential behavior of memory access rather than an implementation choice. It does not define a parameter.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 9811,
+  "output_tokens": 752,
+  "latency_ms": 8398,
+  "timestamp": "2026-07-25T18:16:45.800733+00:00",
+  "error": null,
+  "retry_count": 0
+}

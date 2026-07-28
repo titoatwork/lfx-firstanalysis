@@ -1,0 +1,79 @@
+{
+  "chunk_id": "chunk_046",
+  "source_file": "smcdeleg.adoc",
+  "start_line": 1,
+  "end_line": 140,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "For counters delegated to S-mode, the associated `mcountinhibit` bits can be accessed via `scountinhibit`.",
+      "line_number": 118,
+      "parameter_name": "SCOUNTINHIBIT_DELEGATED_RW",
+      "existing_udb_name": "SCOUNTINHIBIT_DELEGATED_RW",
+      "class": "NORM_CSR_RW",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The bits in `scountinhibit` that correspond to delegated counters are writable, while those for non-delegated counters are read-only zero. This defines which bits are writable based on delegation."
+    },
+    {
+      "excerpt": "For implementations that support Smcdeleg/Ssccfg, Sscofpmf, and the H extension, when `menvcfg`.CDE=1, attempts to read `scountovf` from VS-mode or VU-mode raise a virtual-instruction exception.",
+      "line_number": 134,
+      "parameter_name": "SCOVF_VIRTUAL_INSTRUCTION_EXCEPTION",
+      "existing_udb_name": "SCOVF_VIRTUAL_INSTRUCTION_EXCEPTION",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "Whether reading `scountovf` raises a virtual-instruction exception in VS-mode or VU-mode is an implementation choice based on the support of specific extensions. This is a design-time decision."
+    },
+    {
+      "excerpt": "For implementations that support Smcdeleg, Sscofpmf, and Smaia, the local-counter-overflow interrupt (LCOFI) bit (bit 13) in each of CSRs `mvip` and `mvien` is implemented and writable.",
+      "line_number": 138,
+      "parameter_name": "LCOFI_MVIP_MVIEN_IMPLEMENTED_RW",
+      "existing_udb_name": "LCOFI_MVIP_MVIEN_IMPLEMENTED_RW",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The LCOFI bit in `mvip` and `mvien` is writable if the corresponding extensions are implemented. This defines the RW nature of the LCOFI bit based on implementation."
+    },
+    {
+      "excerpt": "It is optional whether the LCOFI bit (bit 13) in each of `mideleg` and `hideleg`, which allows all LCOFIs to be delegated to S-mode and VS-mode, respectively, is implemented and writable.",
+      "line_number": 140,
+      "parameter_name": "LCOFI_DELEGATION_OPTIONAL_RW",
+      "existing_udb_name": "LCOFI_DELEGATION_OPTIONAL_RW",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to implement and make writable the LCOFI bit in `mideleg` and `hideleg` is optional, indicating a design-time decision by the implementer."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "When the Smcdeleg/Ssccfg extensions are enabled (`menvcfg`.CDE=1), it further allows M-mode to delegate select counters to S-mode.",
+      "line_number": 66,
+      "reason": "This describes behavior when a specific condition is met (CDE=1), not an implementation choice. The parameter would be the legal values for CDE, not this behavior."
+    },
+    {
+      "excerpt": "If any extension upon which the underlying state depends is not implemented, an attempt from M or S mode to access the given state through `sireg*` raises an illegal-instruction exception.",
+      "line_number": 118,
+      "reason": "This describes a consequence of not implementing certain extensions, not an implementation choice. The parameter would be which extensions are supported, not this behavior."
+    },
+    {
+      "excerpt": "The `hvip` register is defined by the hypervisor (H) extension, while the `mvip`, `mvien` and `hvien` registers are defined by the Smaia/Ssaia extensions.",
+      "line_number": 134,
+      "reason": "This is a fixed requirement about the definition of registers based on extensions, not an implementation choice."
+    },
+    {
+      "excerpt": "When Supervisor Counter Delegation is enabled, attempts to access `scountinhibit` from VS-mode or VU-mode raise a virtual-instruction exception.",
+      "line_number": 134,
+      "reason": "This describes behavior under a specific condition (when delegation is enabled), not an implementation choice. The parameter would be whether delegation is supported."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"For counters delegated to S-mode, the associated `mcountinhibit` bits can be accessed via `scountinhibit`.\",\n      \"line_number\": 118,\n      \"parameter_name\": \"SCOUNTINHIBIT_DELEGATED_RW\",\n      \"existing_udb_name\": \"SCOUNTINHIBIT_DELEGATED_RW\",\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"bitmask\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The bits in `scountinhibit` that correspond to delegated counters are writable, while those for non-delegated counters are read-only zero. This defines which bits are writable based on delegation.\"\n    },\n    {\n      \"excerpt\": \"For implementations that support Smcdeleg/Ssccfg, Sscofpmf, and the H extension, when `menvcfg`.CDE=1, attempts to read `scountovf` from VS-mode or VU-mode raise a virtual-instruction exception.\",\n      \"line_number\": 134,\n      \"parameter_name\": \"SCOVF_VIRTUAL_INSTRUCTION_EXCEPTION\",\n      \"existing_udb_name\": \"SCOVF_VIRTUAL_INSTRUCTION_EXCEPTION\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"Whether reading `scountovf` raises a virtual-instruction exception in VS-mode or VU-mode is an implementation choice based on the support of specific extensions. This is a design-time decision.\"\n    },\n    {\n      \"excerpt\": \"For implementations that support Smcdeleg, Sscofpmf, and Smaia, the local-counter-overflow interrupt (LCOFI) bit (bit 13) in each of CSRs `mvip` and `mvien` is implemented and writable.\",\n      \"line_number\": 138,\n      \"parameter_name\": \"LCOFI_MVIP_MVIEN_IMPLEMENTED_RW\",\n      \"existing_udb_name\": \"LCOFI_MVIP_MVIEN_IMPLEMENTED_RW\",\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The LCOFI bit in `mvip` and `mvien` is writable if the corresponding extensions are implemented. This defines the RW nature of the LCOFI bit based on implementation.\"\n    },\n    {\n      \"excerpt\": \"It is optional whether the LCOFI bit (bit 13) in each of `mideleg` and `hideleg`, which allows all LCOFIs to be delegated to S-mode and VS-mode, respectively, is implemented and writable.\",\n      \"line_number\": 140,\n      \"parameter_name\": \"LCOFI_DELEGATION_OPTIONAL_RW\",\n      \"existing_udb_name\": \"LCOFI_DELEGATION_OPTIONAL_RW\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The choice to implement and make writable the LCOFI bit in `mideleg` and `hideleg` is optional, indicating a design-time decision by the implementer.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"When the Smcdeleg/Ssccfg extensions are enabled (`menvcfg`.CDE=1), it further allows M-mode to delegate select counters to S-mode.\",\n      \"line_number\": 66,\n      \"reason\": \"This describes behavior when a specific condition is met (CDE=1), not an implementation choice. The parameter would be the legal values for CDE, not this behavior.\"\n    },\n    {\n      \"excerpt\": \"If any extension upon which the underlying state depends is not implemented, an attempt from M or S mode to access the given state through `sireg*` raises an illegal-instruction exception.\",\n      \"line_number\": 118,\n      \"reason\": \"This describes a consequence of not implementing certain extensions, not an implementation choice. The parameter would be which extensions are supported, not this behavior.\"\n    },\n    {\n      \"excerpt\": \"The `hvip` register is defined by the hypervisor (H) extension, while the `mvip`, `mvien` and `hvien` registers are defined by the Smaia/Ssaia extensions.\",\n      \"line_number\": 134,\n      \"reason\": \"This is a fixed requirement about the definition of registers based on extensions, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"When Supervisor Counter Delegation is enabled, attempts to access `scountinhibit` from VS-mode or VU-mode raise a virtual-instruction exception.\",\n      \"line_number\": 134,\n      \"reason\": \"This describes behavior under a specific condition (when delegation is enabled), not an implementation choice. The parameter would be whether delegation is supported.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 8610,
+  "output_tokens": 1046,
+  "latency_ms": 11417,
+  "timestamp": "2026-07-24T18:24:12.493704+00:00",
+  "error": null,
+  "retry_count": 0
+}

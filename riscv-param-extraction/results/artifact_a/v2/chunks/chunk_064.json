@@ -1,0 +1,74 @@
+{
+  "chunk_id": "chunk_064",
+  "source_file": "zacas.adoc",
+  "start_line": 1,
+  "end_line": 225,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "`AMOCAS.W/D/Q` requires that the address held in `rs1` be naturally aligned to the size of the operand (i.e., 16-byte aligned for _quadwords_, eight-byte aligned for _doublewords_, and four-byte aligned for _words_).",
+      "line_number": 215,
+      "parameter_name": "AMOCAS_ADDRESS_ALIGNMENT",
+      "existing_udb_name": "AMOCAS_ADDRESS_ALIGNMENT",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The alignment requirements for the address in `rs1` are implementation-defined and vary based on the operand size. This is a WARL parameter as it specifies legal values for alignment."
+    },
+    {
+      "excerpt": "The memory operation performed by an `AMOCAS.W/D/Q`, when successful, has acquire semantics if `aq` bit is 1 and has release semantics if `rl` bit is 1.",
+      "line_number": 215,
+      "parameter_name": "AMOCAS_AQ_RL_SEMANTICS",
+      "existing_udb_name": "AMOCAS_AQ_RL_SEMANTICS",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether the memory operation has acquire or release semantics based on the `aq` and `rl` bits. This is a direct implementation choice."
+    },
+    {
+      "excerpt": "An `AMOCAS.W/D/Q` instruction always requires write permissions.",
+      "line_number": 215,
+      "parameter_name": "AMOCAS_WRITE_PERMISSION",
+      "existing_udb_name": "AMOCAS_WRITE_PERMISSION",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The requirement for write permissions is a design-time decision made by the implementer, making it a direct parameter."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE]\n====\nSome algorithms may load the previous data value of a memory location into the register used as the compare data value source by a Zacas instruction.",
+      "line_number": 1,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "Just as for AMOs in the A extension, `AMOCAS.W/D/Q` optionally provide release consistency semantics, using the `aq` and `rl` bits, to help implement multiprocessor synchronization.",
+      "line_number": 215,
+      "reason": "This describes the behavior of the `aq` and `rl` bits rather than an implementation choice. The parameter is about the semantics, not the implementation."
+    },
+    {
+      "excerpt": "An unsuccessful `AMOCAS.W/D/Q` may either not perform a memory write or may write back the old value loaded from memory.",
+      "line_number": 215,
+      "reason": "This describes potential behavior of the instruction rather than an implementation-defined parameter."
+    },
+    {
+      "excerpt": "The following example code sequence illustrates the use of `AMOCAS.D` in a RV32 implementation to atomically increment a 64-bit counter.",
+      "line_number": 1,
+      "reason": "This is an example of usage and does not define an architectural parameter."
+    },
+    {
+      "excerpt": "The instruction requires the first register in the pair to be even numbered; encodings with odd numbered registers specified in `rs2` and `rd` are reserved.",
+      "line_number": 215,
+      "reason": "This describes a requirement for register encoding rather than an implementation choice."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"`AMOCAS.W/D/Q` requires that the address held in `rs1` be naturally aligned to the size of the operand (i.e., 16-byte aligned for _quadwords_, eight-byte aligned for _doublewords_, and four-byte aligned for _words_).\",\n      \"line_number\": 215,\n      \"parameter_name\": \"AMOCAS_ADDRESS_ALIGNMENT\",\n      \"existing_udb_name\": \"AMOCAS_ADDRESS_ALIGNMENT\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"enum\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The alignment requirements for the address in `rs1` are implementation-defined and vary based on the operand size. This is a WARL parameter as it specifies legal values for alignment.\"\n    },\n    {\n      \"excerpt\": \"The memory operation performed by an `AMOCAS.W/D/Q`, when successful, has acquire semantics if `aq` bit is 1 and has release semantics if `rl` bit is 1.\",\n      \"line_number\": 215,\n      \"parameter_name\": \"AMOCAS_AQ_RL_SEMANTICS\",\n      \"existing_udb_name\": \"AMOCAS_AQ_RL_SEMANTICS\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation chooses whether the memory operation has acquire or release semantics based on the `aq` and `rl` bits. This is a direct implementation choice.\"\n    },\n    {\n      \"excerpt\": \"An `AMOCAS.W/D/Q` instruction always requires write permissions.\",\n      \"line_number\": 215,\n      \"parameter_name\": \"AMOCAS_WRITE_PERMISSION\",\n      \"existing_udb_name\": \"AMOCAS_WRITE_PERMISSION\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The requirement for write permissions is a design-time decision made by the implementer, making it a direct parameter.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"[NOTE]\\n====\\nSome algorithms may load the previous data value of a memory location into the register used as the compare data value source by a Zacas instruction.\",\n      \"line_number\": 1,\n      \"reason\": \"This text is inside a [NOTE] block and is therefore non-normative. It describes a suggestion, not an architectural requirement.\"\n    },\n    {\n      \"excerpt\": \"Just as for AMOs in the A extension, `AMOCAS.W/D/Q` optionally provide release consistency semantics, using the `aq` and `rl` bits, to help implement multiprocessor synchronization.\",\n      \"line_number\": 215,\n      \"reason\": \"This describes the behavior of the `aq` and `rl` bits rather than an implementation choice. The parameter is about the semantics, not the implementation.\"\n    },\n    {\n      \"excerpt\": \"An unsuccessful `AMOCAS.W/D/Q` may either not perform a memory write or may write back the old value loaded from memory.\",\n      \"line_number\": 215,\n      \"reason\": \"This describes potential behavior of the instruction rather than an implementation-defined parameter.\"\n    },\n    {\n      \"excerpt\": \"The following example code sequence illustrates the use of `AMOCAS.D` in a RV32 implementation to atomically increment a 64-bit counter.\",\n      \"line_number\": 1,\n      \"reason\": \"This is an example of usage and does not define an architectural parameter.\"\n    },\n    {\n      \"excerpt\": \"The instruction requires the first register in the pair to be even numbered; encodings with odd numbered registers specified in `rs2` and `rd` are reserved.\",\n      \"line_number\": 215,\n      \"reason\": \"This describes a requirement for register encoding rather than an implementation choice.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 9335,
+  "output_tokens": 837,
+  "latency_ms": 8991,
+  "timestamp": "2026-07-24T18:38:25.878906+00:00",
+  "error": null,
+  "retry_count": 0
+}

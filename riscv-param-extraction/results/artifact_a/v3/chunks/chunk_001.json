@@ -1,0 +1,74 @@
+{
+  "chunk_id": "chunk_001",
+  "source_file": "a-st-ext.adoc",
+  "start_line": 1,
+  "end_line": 484,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "An implementation can register an arbitrarily large reservation set on each LR, provided the reservation set includes all bytes of the addressed data word or doubleword.",
+      "line_number": 156,
+      "parameter_name": "LR_RESERVATION_SET_SIZE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The size of the reservation set that can be registered on each LR is an implementation choice, allowing for flexibility in how many bytes can be reserved."
+    },
+    {
+      "excerpt": "The misaligned atomicity granule PMA, defined in Volume II of this manual, optionally relaxes this alignment requirement.",
+      "line_number": 290,
+      "parameter_name": "MISALIGNED_ATOMICITY_GRANULE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The specification allows implementations to define a misaligned atomicity granule size, which is an implementation-defined subset of values that can vary."
+    },
+    {
+      "excerpt": "To help implement multiprocessor synchronization, the AMOs optionally provide release consistency semantics.",
+      "line_number": 392,
+      "parameter_name": "AMO_RELEASE_CONSISTENCY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "Whether AMOs provide release consistency semantics is an implementation choice, allowing for flexibility in how memory operations are ordered."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE]\n====\nAfter much debate, the language community and architecture community appear to have finally settled on release consistency as the standard memory consistency model and so the RISC-V atomic support is built around this model.\n====",
+      "line_number": 5,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a community consensus, not an architectural requirement."
+    },
+    {
+      "excerpt": "If the address is not naturally aligned, an address-misaligned exception or an access-fault exception will be generated.",
+      "line_number": 276,
+      "reason": "This describes behavior that occurs under specific conditions, not an implementation choice. The parameter would be the alignment requirements, not the behavior on misalignment."
+    },
+    {
+      "excerpt": "The failure code with value 1 encodes an unspecified failure.",
+      "line_number": 164,
+      "reason": "This is a fixed requirement about the failure code and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nWe provided fetch-and-op style atomic primitives as they scale to highly parallel systems better than LR/SC or CAS.\n====",
+      "line_number": 392,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes design choices rather than architectural parameters."
+    },
+    {
+      "excerpt": "The SC must fail if the address is not within the reservation set of the most recent LR in program order.",
+      "line_number": 164,
+      "reason": "This describes a requirement for SC behavior rather than an implementation choice. The parameter would be the conditions under which SC can succeed or fail."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"An implementation can register an arbitrarily large reservation set on each LR, provided the reservation set includes all bytes of the addressed data word or doubleword.\",\n      \"line_number\": 156,\n      \"parameter_name\": \"LR_RESERVATION_SET_SIZE\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"range\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The size of the reservation set that can be registered on each LR is an implementation choice, allowing for flexibility in how many bytes can be reserved.\"\n    },\n    {\n      \"excerpt\": \"The misaligned atomicity granule PMA, defined in Volume II of this manual, optionally relaxes this alignment requirement.\",\n      \"line_number\": 290,\n      \"parameter_name\": \"MISALIGNED_ATOMICITY_GRANULE\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"range\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The specification allows implementations to define a misaligned atomicity granule size, which is an implementation-defined subset of values that can vary.\"\n    },\n    {\n      \"excerpt\": \"To help implement multiprocessor synchronization, the AMOs optionally provide release consistency semantics.\",\n      \"line_number\": 392,\n      \"parameter_name\": \"AMO_RELEASE_CONSISTENCY\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"Whether AMOs provide release consistency semantics is an implementation choice, allowing for flexibility in how memory operations are ordered.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"[NOTE]\\n====\\nAfter much debate, the language community and architecture community appear to have finally settled on release consistency as the standard memory consistency model and so the RISC-V atomic support is built around this model.\\n====\",\n      \"line_number\": 5,\n      \"reason\": \"This text is inside a [NOTE] block and is therefore non-normative. It describes a community consensus, not an architectural requirement.\"\n    },\n    {\n      \"excerpt\": \"If the address is not naturally aligned, an address-misaligned exception or an access-fault exception will be generated.\",\n      \"line_number\": 276,\n      \"reason\": \"This describes behavior that occurs under specific conditions, not an implementation choice. The parameter would be the alignment requirements, not the behavior on misalignment.\"\n    },\n    {\n      \"excerpt\": \"The failure code with value 1 encodes an unspecified failure.\",\n      \"line_number\": 164,\n      \"reason\": \"This is a fixed requirement about the failure code and does not represent an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"[NOTE]\\n====\\nWe provided fetch-and-op style atomic primitives as they scale to highly parallel systems better than LR/SC or CAS.\\n====\",\n      \"line_number\": 392,\n      \"reason\": \"This text is inside a [NOTE] block and is therefore non-normative. It describes design choices rather than architectural parameters.\"\n    },\n    {\n      \"excerpt\": \"The SC must fail if the address is not within the reservation set of the most recent LR in program order.\",\n      \"line_number\": 164,\n      \"reason\": \"This describes a requirement for SC behavior rather than an implementation choice. The parameter would be the conditions under which SC can succeed or fail.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 12423,
+  "output_tokens": 763,
+  "latency_ms": 10818,
+  "timestamp": "2026-07-24T20:15:24.086822+00:00",
+  "error": null,
+  "retry_count": 0
+}

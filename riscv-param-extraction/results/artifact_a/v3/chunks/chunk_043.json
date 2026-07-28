@@ -1,0 +1,43 @@
+{
+  "chunk_id": "chunk_043",
+  "source_file": "rvwmo.adoc",
+  "start_line": 1,
+  "end_line": 807,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE]\n====\n[#norm:rvwmo_only_mainmem]#This chapter defines the memory model for regular main memory\noperations. The interaction of the memory model with I/O memory,\ninstruction fetches, FENCE.I, page-table walks, and SFENCE.VMA is not\n(yet) formalized.# Some or all of the above may be formalized in a future\nrevision of this specification. Future ISA\nextensions such as the V vector and J JIT extensions will need\nto be incorporated into a future revision as well.",
+      "line_number": 12,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes future possibilities, not current architectural parameters."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nThe decomposition of misaligned memory operations down to byte\ngranularity facilitates emulation on implementations that do not\nnatively support misaligned accesses. Such implementations might, for\nexample, simply iterate over the bytes of a misaligned access one by\none.\n====",
+      "line_number": 90,
+      "reason": "This text is also inside a [NOTE] block and provides implementation guidance rather than defining an architectural parameter."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nIn the memory model literature, the term \"RCpc\" stands for release\nconsistency with processor-consistent synchronization operations, and\nthe term \"RCsc\" stands for release consistency with sequentially\nconsistent synchronization operations.\n====",
+      "line_number": 134,
+      "reason": "This is a non-normative note explaining terminology, not an architectural parameter."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nThe <<ax-atom, Atomicity Axiom>> theoretically supports LR/SC pairs of different widths and to\nmismatched addresses, since implementations are permitted to allow SC\noperations to succeed in such cases. However, in practice, we expect\nsuch patterns to be rare, and their use is discouraged.\n====",
+      "line_number": 174,
+      "reason": "This note discusses theoretical support and practical recommendations, not an implementation choice."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nGenerally speaking, non-AMO load instructions do not have data source\nregisters, and unconditional non-AMO store instructions do not have\ndestination registers. However, a successful SC instruction is\nconsidered to have the register specified in _rd_ as a destination\nregister, and hence it is possible for an instruction to have a\nsyntactic dependency on a successful SC instruction that precedes it in\nprogram order.\n====",
+      "line_number": 220,
+      "reason": "This note provides general information about instruction behavior, not an architectural parameter."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"[NOTE]\\n====\\n[#norm:rvwmo_only_mainmem]#This chapter defines the memory model for regular main memory\\noperations. The interaction of the memory model with I/O memory,\\ninstruction fetches, FENCE.I, page-table walks, and SFENCE.VMA is not\\n(yet) formalized.# Some or all of the above may be formalized in a future\\nrevision of this specification. Future ISA\\nextensions such as the V vector and J JIT extensions will need\\nto be incorporated into a future revision as well.\",\n      \"line_number\": 12,\n      \"reason\": \"This text is inside a [NOTE] block and is therefore non-normative. It describes future possibilities, not current architectural parameters.\"\n    },\n    {\n      \"excerpt\": \"[NOTE]\\n====\\nThe decomposition of misaligned memory operations down to byte\\ngranularity facilitates emulation on implementations that do not\\nnatively support misaligned accesses. Such implementations might, for\\nexample, simply iterate over the bytes of a misaligned access one by\\none.\\n====\",\n      \"line_number\": 90,\n      \"reason\": \"This text is also inside a [NOTE] block and provides implementation guidance rather than defining an architectural parameter.\"\n    },\n    {\n      \"excerpt\": \"[NOTE]\\n====\\nIn the memory model literature, the term \\\"RCpc\\\" stands for release\\nconsistency with processor-consistent synchronization operations, and\\nthe term \\\"RCsc\\\" stands for release consistency with sequentially\\nconsistent synchronization operations.\\n====\",\n      \"line_number\": 134,\n      \"reason\": \"This is a non-normative note explaining terminology, not an architectural parameter.\"\n    },\n    {\n      \"excerpt\": \"[NOTE]\\n====\\nThe <<ax-atom, Atomicity Axiom>> theoretically supports LR/SC pairs of different widths and to\\nmismatched addresses, since implementations are permitted to allow SC\\noperations to succeed in such cases. However, in practice, we expect\\nsuch patterns to be rare, and their use is discouraged.\\n====\",\n      \"line_number\": 174,\n      \"reason\": \"This note discusses theoretical support and practical recommendations, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"[NOTE]\\n====\\nGenerally speaking, non-AMO load instructions do not have data source\\nregisters, and unconditional non-AMO store instructions do not have\\ndestination registers. However, a successful SC instruction is\\nconsidered to have the register specified in _rd_ as a destination\\nregister, and hence it is possible for an instruction to have a\\nsyntactic dependency on a successful SC instruction that precedes it in\\nprogram order.\\n====\",\n      \"line_number\": 220,\n      \"reason\": \"This note provides general information about instruction behavior, not an architectural parameter.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 15126,
+  "output_tokens": 622,
+  "latency_ms": 6625,
+  "timestamp": "2026-07-24T20:37:52.969065+00:00",
+  "error": null,
+  "retry_count": 0
+}

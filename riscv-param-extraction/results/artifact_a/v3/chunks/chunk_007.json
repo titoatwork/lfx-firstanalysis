@@ -1,0 +1,84 @@
+{
+  "chunk_id": "chunk_007",
+  "source_file": "c-st-ext.adoc",
+  "start_line": 1,
+  "end_line": 931,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "the C extension allows 16-bit instructions to be freely intermixed with 32-bit instructions, with the latter now able to start on any 16-bit boundary, i.e., IALIGN=16.",
+      "line_number": 15,
+      "parameter_name": "IALIGN",
+      "existing_udb_name": "IALIGN",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "IALIGN is a direct implementation choice regarding the alignment of instructions. The specific alignment value is chosen by the implementer."
+    },
+    {
+      "excerpt": "If the C extension is implemented, the appropriate compressed floating-point load and store instructions must be provided whenever the relevant standard floating-point extension (F and/or D) is also implemented.",
+      "line_number": 45,
+      "parameter_name": "FLOATING_POINT_LOAD_STORE_SUPPORT",
+      "existing_udb_name": "FLOATING_POINT_LOAD_STORE_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "Whether to implement compressed floating-point load and store instructions is an implementation choice that depends on the support for the F and D extensions."
+    },
+    {
+      "excerpt": "C.ADDI16SP adds the non-zero sign-extended 6-bit immediate to the value in the stack pointer (`sp=x2`), where the immediate is scaled to represent multiples of 16 in the range [-512, 496].",
+      "line_number": 150,
+      "parameter_name": "C_ADD16SP_IMM_RANGE",
+      "existing_udb_name": "C_ADD16SP_IMM_RANGE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The range of the immediate value for the C.ADDI16SP instruction is implementation-defined, allowing for a specific subset of values to be supported."
+    },
+    {
+      "excerpt": "For RV32C, _shamt[5]_ must be zero; the code points with _shamt[5]=1 are designated for custom extensions.",
+      "line_number": 300,
+      "parameter_name": "RV32C_SHAMT5_SUPPORT",
+      "existing_udb_name": "RV32C_SHAMT5_SUPPORT",
+      "class": "NORM_CSR_WARL",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The support for the shamt[5] bit being zero is an implementation choice, indicating whether custom extensions are allowed."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] Removing the 32-bit alignment constraint on the original 32-bit instructions allows significantly greater code density.",
+      "line_number": 8,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "The C extension is compatible with all other standard instruction extensions.",
+      "line_number": 12,
+      "reason": "This is a fixed requirement that applies to all implementations \u2014 there is no implementation choice here."
+    },
+    {
+      "excerpt": "The compressed instruction encodings are mostly common across RV32C and RV64C.",
+      "line_number": 40,
+      "reason": "This describes the general behavior of the instruction encodings, not an implementation choice."
+    },
+    {
+      "excerpt": "The RISC-V ABI was changed to make the frequently used registers map to registers 'x8-x15'.",
+      "line_number": 70,
+      "reason": "This is a fixed requirement about register mapping that all implementations must follow."
+    },
+    {
+      "excerpt": "Strictly speaking, C.JALR does not expand exactly to a base RVI instruction as the value added to the PC to form the link address is 2 rather than 4 as in the base ISA.",
+      "line_number": 450,
+      "reason": "This is a behavioral description of how C.JALR operates, not a parameter defining an implementation choice."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"the C extension allows 16-bit instructions to be freely intermixed with 32-bit instructions, with the latter now able to start on any 16-bit boundary, i.e., IALIGN=16.\",\n      \"line_number\": 15,\n      \"parameter_name\": \"IALIGN\",\n      \"existing_udb_name\": \"IALIGN\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"value\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"IALIGN is a direct implementation choice regarding the alignment of instructions. The specific alignment value is chosen by the implementer.\"\n    },\n    {\n      \"excerpt\": \"If the C extension is implemented, the appropriate compressed floating-point load and store instructions must be provided whenever the relevant standard floating-point extension (F and/or D) is also implemented.\",\n      \"line_number\": 45,\n      \"parameter_name\": \"FLOATING_POINT_LOAD_STORE_SUPPORT\",\n      \"existing_udb_name\": \"FLOATING_POINT_LOAD_STORE_SUPPORT\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"Whether to implement compressed floating-point load and store instructions is an implementation choice that depends on the support for the F and D extensions.\"\n    },\n    {\n      \"excerpt\": \"C.ADDI16SP adds the non-zero sign-extended 6-bit immediate to the value in the stack pointer (`sp=x2`), where the immediate is scaled to represent multiples of 16 in the range [-512, 496].\",\n      \"line_number\": 150,\n      \"parameter_name\": \"C_ADD16SP_IMM_RANGE\",\n      \"existing_udb_name\": \"C_ADD16SP_IMM_RANGE\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"range\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The range of the immediate value for the C.ADDI16SP instruction is implementation-defined, allowing for a specific subset of values to be supported.\"\n    },\n    {\n      \"excerpt\": \"For RV32C, _shamt[5]_ must be zero; the code points with _shamt[5]=1 are designated for custom extensions.\",\n      \"line_number\": 300,\n      \"parameter_name\": \"RV32C_SHAMT5_SUPPORT\",\n      \"existing_udb_name\": \"RV32C_SHAMT5_SUPPORT\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The support for the shamt[5] bit being zero is an implementation choice, indicating whether custom extensions are allowed.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"[NOTE] Removing the 32-bit alignment constraint on the original 32-bit instructions allows significantly greater code density.\",\n      \"line_number\": 8,\n      \"reason\": \"This text is inside a [NOTE] block and is therefore non-normative. It describes a suggestion, not an architectural requirement.\"\n    },\n    {\n      \"excerpt\": \"The C extension is compatible with all other standard instruction extensions.\",\n      \"line_number\": 12,\n      \"reason\": \"This is a fixed requirement that applies to all implementations \u2014 there is no implementation choice here.\"\n    },\n    {\n      \"excerpt\": \"The compressed instruction encodings are mostly common across RV32C and RV64C.\",\n      \"line_number\": 40,\n      \"reason\": \"This describes the general behavior of the instruction encodings, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The RISC-V ABI was changed to make the frequently used registers map to registers 'x8-x15'.\",\n      \"line_number\": 70,\n      \"reason\": \"This is a fixed requirement about register mapping that all implementations must follow.\"\n    },\n    {\n      \"excerpt\": \"Strictly speaking, C.JALR does not expand exactly to a base RVI instruction as the value added to the PC to form the link address is 2 rather than 4 as in the base ISA.\",\n      \"line_number\": 450,\n      \"reason\": \"This is a behavioral description of how C.JALR operates, not a parameter defining an implementation choice.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 17380,
+  "output_tokens": 914,
+  "latency_ms": 9545,
+  "timestamp": "2026-07-24T20:18:36.263277+00:00",
+  "error": null,
+  "retry_count": 0
+}

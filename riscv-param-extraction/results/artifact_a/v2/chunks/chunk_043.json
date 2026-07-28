@@ -1,0 +1,43 @@
+{
+  "chunk_id": "chunk_043",
+  "source_file": "rvwmo.adoc",
+  "start_line": 1,
+  "end_line": 807,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE]\n====\nThis chapter defines the memory model for regular main memory operations. The interaction of the memory model with I/O memory, instruction fetches, FENCE.I, page-table walks, and SFENCE.VMA is not (yet) formalized.",
+      "line_number": 10,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a limitation of the specification, not an architectural requirement."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nMemory consistency models supporting overlapping memory accesses of different widths simultaneously remain an active area of academic research and are not yet fully understood.",
+      "line_number": 15,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It discusses ongoing research rather than providing a parameter."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nThe decomposition of misaligned memory operations down to byte granularity facilitates emulation on implementations that do not natively support misaligned accesses.",
+      "line_number": 45,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a potential implementation technique, not an architectural choice."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nThe <<ax-atom, Atomicity Axiom>> theoretically supports LR/SC pairs of different widths and to mismatched addresses, since implementations are permitted to allow SC operations to succeed in such cases.",
+      "line_number": 70,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It discusses theoretical support rather than a concrete parameter."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nGenerally speaking, non-AMO load instructions do not have data source registers, and unconditional non-AMO store instructions do not have destination registers.",
+      "line_number": 90,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It provides general information about instruction behavior, not an implementation choice."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"[NOTE]\\n====\\nThis chapter defines the memory model for regular main memory operations. The interaction of the memory model with I/O memory, instruction fetches, FENCE.I, page-table walks, and SFENCE.VMA is not (yet) formalized.\",\n      \"line_number\": 10,\n      \"reason\": \"This text is inside a [NOTE] block and is therefore non-normative. It describes a limitation of the specification, not an architectural requirement.\"\n    },\n    {\n      \"excerpt\": \"[NOTE]\\n====\\nMemory consistency models supporting overlapping memory accesses of different widths simultaneously remain an active area of academic research and are not yet fully understood.\",\n      \"line_number\": 15,\n      \"reason\": \"This text is inside a [NOTE] block and is therefore non-normative. It discusses ongoing research rather than providing a parameter.\"\n    },\n    {\n      \"excerpt\": \"[NOTE]\\n====\\nThe decomposition of misaligned memory operations down to byte granularity facilitates emulation on implementations that do not natively support misaligned accesses.\",\n      \"line_number\": 45,\n      \"reason\": \"This text is inside a [NOTE] block and is therefore non-normative. It describes a potential implementation technique, not an architectural choice.\"\n    },\n    {\n      \"excerpt\": \"[NOTE]\\n====\\nThe <<ax-atom, Atomicity Axiom>> theoretically supports LR/SC pairs of different widths and to mismatched addresses, since implementations are permitted to allow SC operations to succeed in such cases.\",\n      \"line_number\": 70,\n      \"reason\": \"This text is inside a [NOTE] block and is therefore non-normative. It discusses theoretical support rather than a concrete parameter.\"\n    },\n    {\n      \"excerpt\": \"[NOTE]\\n====\\nGenerally speaking, non-AMO load instructions do not have data source registers, and unconditional non-AMO store instructions do not have destination registers.\",\n      \"line_number\": 90,\n      \"reason\": \"This text is inside a [NOTE] block and is therefore non-normative. It provides general information about instruction behavior, not an implementation choice.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 14579,
+  "output_tokens": 472,
+  "latency_ms": 8176,
+  "timestamp": "2026-07-24T18:20:35.306444+00:00",
+  "error": null,
+  "retry_count": 0
+}

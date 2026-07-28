@@ -1,0 +1,84 @@
+{
+  "chunk_id": "chunk_070",
+  "source_file": "zfinx.adoc",
+  "start_line": 1,
+  "end_line": 162,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "Floating-point operands of width _w_ < XLEN bits occupy bits _w_-1:0 of an `x` register.",
+      "line_number": 34,
+      "parameter_name": "NARROW_OPERAND_WIDTH",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The width of floating-point operands that can be held in an `x` register is a direct implementation choice, as it can vary based on the specific implementation of the Zfinx extension."
+    },
+    {
+      "excerpt": "Floating-point operations that produce _w_ < XLEN-bit results fill bits XLEN-1: _w_ with copies of bit _w_-1 (the sign bit).",
+      "line_number": 42,
+      "parameter_name": "NARROW_RESULT_WIDTH",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The behavior of how results are filled in the `x` register for floating-point operations is an implementation choice, depending on the width of the result."
+    },
+    {
+      "excerpt": "Double-precision operands in RV32Zdinx are held in aligned `x`-register pairs, i.e., register numbers must be even.",
+      "line_number": 83,
+      "parameter_name": "DOUBLE_PRECISION_REGISTER_ALIGNMENT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The requirement for double-precision operands to be held in aligned register pairs is a design choice that can vary by implementation."
+    },
+    {
+      "excerpt": "The `misa` bits F, D, and Q are hardwired to 0 when the Zfinx extension is implemented.",
+      "line_number": 139,
+      "parameter_name": "MISA_F_D_Q_HARDWIRED_ZERO",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The hardwiring of the `misa` bits F, D, and Q to 0 is a direct implementation choice that affects the architecture when the Zfinx extension is present."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The NaN-boxing scheme employed in the `f` registers was designed to efficiently support recoded floating-point formats.",
+      "line_number": 50,
+      "reason": "This text describes a characteristic of the NaN-boxing scheme and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "In case this is not available, transferring double-precision operands in RV32Zdinx from or to memory requires two loads or stores.",
+      "line_number": 107,
+      "reason": "This describes a requirement for transferring double-precision operands and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "The Zfinx extension depends on the 'Zicsr' extension for control and status register access.",
+      "line_number": 19,
+      "reason": "This indicates a dependency on another extension and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "The Zhinx extension provides analogous half-precision floating-point instructions.",
+      "line_number": 115,
+      "reason": "This describes the purpose of the Zhinx extension and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "The Zhinxmin extension provides minimal support for 16-bit half-precision floating-point instructions that operate on the `x` registers.",
+      "line_number": 125,
+      "reason": "This describes the functionality of the Zhinxmin extension and does not indicate an implementation choice."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"Floating-point operands of width _w_ < XLEN bits occupy bits _w_-1:0 of an `x` register.\",\n      \"line_number\": 34,\n      \"parameter_name\": \"NARROW_OPERAND_WIDTH\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"range\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The width of floating-point operands that can be held in an `x` register is a direct implementation choice, as it can vary based on the specific implementation of the Zfinx extension.\"\n    },\n    {\n      \"excerpt\": \"Floating-point operations that produce _w_ < XLEN-bit results fill bits XLEN-1: _w_ with copies of bit _w_-1 (the sign bit).\",\n      \"line_number\": 42,\n      \"parameter_name\": \"NARROW_RESULT_WIDTH\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"range\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The behavior of how results are filled in the `x` register for floating-point operations is an implementation choice, depending on the width of the result.\"\n    },\n    {\n      \"excerpt\": \"Double-precision operands in RV32Zdinx are held in aligned `x`-register pairs, i.e., register numbers must be even.\",\n      \"line_number\": 83,\n      \"parameter_name\": \"DOUBLE_PRECISION_REGISTER_ALIGNMENT\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The requirement for double-precision operands to be held in aligned register pairs is a design choice that can vary by implementation.\"\n    },\n    {\n      \"excerpt\": \"The `misa` bits F, D, and Q are hardwired to 0 when the Zfinx extension is implemented.\",\n      \"line_number\": 139,\n      \"parameter_name\": \"MISA_F_D_Q_HARDWIRED_ZERO\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The hardwiring of the `misa` bits F, D, and Q to 0 is a direct implementation choice that affects the architecture when the Zfinx extension is present.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"The NaN-boxing scheme employed in the `f` registers was designed to efficiently support recoded floating-point formats.\",\n      \"line_number\": 50,\n      \"reason\": \"This text describes a characteristic of the NaN-boxing scheme and does not indicate an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"In case this is not available, transferring double-precision operands in RV32Zdinx from or to memory requires two loads or stores.\",\n      \"line_number\": 107,\n      \"reason\": \"This describes a requirement for transferring double-precision operands and does not indicate an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The Zfinx extension depends on the 'Zicsr' extension for control and status register access.\",\n      \"line_number\": 19,\n      \"reason\": \"This indicates a dependency on another extension and does not represent an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The Zhinx extension provides analogous half-precision floating-point instructions.\",\n      \"line_number\": 115,\n      \"reason\": \"This describes the purpose of the Zhinx extension and does not indicate an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The Zhinxmin extension provides minimal support for 16-bit half-precision floating-point instructions that operate on the `x` registers.\",\n      \"line_number\": 125,\n      \"reason\": \"This describes the functionality of the Zhinxmin extension and does not indicate an implementation choice.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 8396,
+  "output_tokens": 865,
+  "latency_ms": 8969,
+  "timestamp": "2026-07-25T18:13:14.799685+00:00",
+  "error": null,
+  "retry_count": 0
+}

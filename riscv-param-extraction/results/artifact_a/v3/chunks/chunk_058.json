@@ -1,0 +1,104 @@
+{
+  "chunk_id": "chunk_058",
+  "source_file": "v-st-ext.adoc",
+  "start_line": 1,
+  "end_line": 3393,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "The maximum size in bits of a vector element that any operation can produce or consume, _ELEN_ >= 8, which must be a power of 2.",
+      "line_number": 8,
+      "parameter_name": "ELEN",
+      "existing_udb_name": "ELEN",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "ELEN is a direct implementation parameter: the maximum element size. It has constraints (>= 8, power of 2) but the specific value is chosen by the implementer."
+    },
+    {
+      "excerpt": "The number of bits in a single vector register, _VLEN_ >= ELEN, which must be a power of 2, and must be no greater than 2^16.",
+      "line_number": 9,
+      "parameter_name": "VLEN",
+      "existing_udb_name": "VLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "VLEN is a direct implementation parameter: the size of a vector register. It has constraints (>= ELEN, power of 2, <= 2^16) but the specific value is chosen by the implementer."
+    },
+    {
+      "excerpt": "Implementations must support LMUL integer values of 1, 2, 4, and 8.",
+      "line_number": 206,
+      "parameter_name": "LMUL_VALUES",
+      "existing_udb_name": "LMUL_VALUES",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The LMUL values are a WARL parameter, as implementations must support specific integer values, but the exact values supported can vary by implementation."
+    },
+    {
+      "excerpt": "Implementations must provide fractional LMUL settings that allow the narrowest supported type to occupy a fraction of a vector register corresponding to the ratio of the narrowest supported type's width to that of the largest supported type's width.",
+      "line_number": 207,
+      "parameter_name": "FRACTIONAL_LMUL_SUPPORT",
+      "existing_udb_name": "FRACTIONAL_LMUL_SUPPORT",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The support for fractional LMUL settings is a WARL parameter, as it allows for implementation-defined behavior regarding how narrow types are accommodated in vector registers."
+    },
+    {
+      "excerpt": "The `vill` bit is used to encode that a previous `vset{i}vl{i}` instruction attempted to write an unsupported value to `vtype`.",
+      "line_number": 267,
+      "parameter_name": "VTYPE_VILL",
+      "existing_udb_name": "VTYPE_VILL",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The `vill` bit's behavior is determined by whether the `vtype` value is supported, making it a read-write parameter that indicates the state of the `vtype` register."
+    },
+    {
+      "excerpt": "If the `vtype` value is not supported by the implementation, then the `vill` bit is set in `vtype`, the remaining bits in `vtype` are set to zero.",
+      "line_number": 270,
+      "parameter_name": "VTYPE_VILL_BEHAVIOR",
+      "existing_udb_name": "VTYPE_VILL_BEHAVIOR",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The behavior of the `vill` bit when an unsupported `vtype` value is written is a read-write parameter, indicating how the register responds to invalid configurations."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] The base vector extension is intended to provide general support for data-parallel execution within the 32-bit instruction encoding space, with later vector extensions supporting richer functionality for certain domains.",
+      "line_number": 3,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes the intent of the vector extension, not an architectural requirement."
+    },
+    {
+      "excerpt": "The vector extension must have a consistent state at reset.",
+      "line_number": 295,
+      "reason": "This is a fixed requirement ('must have a consistent state') that all implementations must satisfy. There is no implementation choice here \u2014 it is not a parameter."
+    },
+    {
+      "excerpt": "The `vill` bit is held in bit XLEN-1 of the CSR to support checking for illegal values with a branch on the sign bit.",
+      "line_number": 268,
+      "reason": "This describes the implementation detail of how the `vill` bit is stored and used, not an architectural parameter."
+    },
+    {
+      "excerpt": "The `vstart` CSR is writable by unprivileged code, but non-zero `vstart` values may cause vector instructions to run substantially slower on some implementations.",
+      "line_number": 295,
+      "reason": "This describes a potential performance impact of using the `vstart` CSR, not an implementation choice or parameter."
+    },
+    {
+      "excerpt": "The `vstart` CSR is defined to have only enough writable bits to hold the largest element index (one less than the maximum VLMAX).",
+      "line_number": 295,
+      "reason": "This is a fixed requirement about the size of the `vstart` CSR, not an implementation choice."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"The maximum size in bits of a vector element that any operation can produce or consume, _ELEN_ >= 8, which must be a power of 2.\",\n      \"line_number\": 8,\n      \"parameter_name\": \"ELEN\",\n      \"existing_udb_name\": \"ELEN\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"value\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"ELEN is a direct implementation parameter: the maximum element size. It has constraints (>= 8, power of 2) but the specific value is chosen by the implementer.\"\n    },\n    {\n      \"excerpt\": \"The number of bits in a single vector register, _VLEN_ >= ELEN, which must be a power of 2, and must be no greater than 2^16.\",\n      \"line_number\": 9,\n      \"parameter_name\": \"VLEN\",\n      \"existing_udb_name\": \"VLEN\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"value\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"VLEN is a direct implementation parameter: the size of a vector register. It has constraints (>= ELEN, power of 2, <= 2^16) but the specific value is chosen by the implementer.\"\n    },\n    {\n      \"excerpt\": \"Implementations must support LMUL integer values of 1, 2, 4, and 8.\",\n      \"line_number\": 206,\n      \"parameter_name\": \"LMUL_VALUES\",\n      \"existing_udb_name\": \"LMUL_VALUES\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The LMUL values are a WARL parameter, as implementations must support specific integer values, but the exact values supported can vary by implementation.\"\n    },\n    {\n      \"excerpt\": \"Implementations must provide fractional LMUL settings that allow the narrowest supported type to occupy a fraction of a vector register corresponding to the ratio of the narrowest supported type's width to that of the largest supported type's width.\",\n      \"line_number\": 207,\n      \"parameter_name\": \"FRACTIONAL_LMUL_SUPPORT\",\n      \"existing_udb_name\": \"FRACTIONAL_LMUL_SUPPORT\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The support for fractional LMUL settings is a WARL parameter, as it allows for implementation-defined behavior regarding how narrow types are accommodated in vector registers.\"\n    },\n    {\n      \"excerpt\": \"The `vill` bit is used to encode that a previous `vset{i}vl{i}` instruction attempted to write an unsupported value to `vtype`.\",\n      \"line_number\": 267,\n      \"parameter_name\": \"VTYPE_VILL\",\n      \"existing_udb_name\": \"VTYPE_VILL\",\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The `vill` bit's behavior is determined by whether the `vtype` value is supported, making it a read-write parameter that indicates the state of the `vtype` register.\"\n    },\n    {\n      \"excerpt\": \"If the `vtype` value is not supported by the implementation, then the `vill` bit is set in `vtype`, the remaining bits in `vtype` are set to zero.\",\n      \"line_number\": 270,\n      \"parameter_name\": \"VTYPE_VILL_BEHAVIOR\",\n      \"existing_udb_name\": \"VTYPE_VILL_BEHAVIOR\",\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The behavior of the `vill` bit when an unsupported `vtype` value is written is a read-write parameter, indicating how the register responds to invalid configurations.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"[NOTE] The base vector extension is intended to provide general support for data-parallel execution within the 32-bit instruction encoding space, with later vector extensions supporting richer functionality for certain domains.\",\n      \"line_number\": 3,\n      \"reason\": \"This text is inside a [NOTE] block and is therefore non-normative. It describes the intent of the vector extension, not an architectural requirement.\"\n    },\n    {\n      \"excerpt\": \"The vector extension must have a consistent state at reset.\",\n      \"line_number\": 295,\n      \"reason\": \"This is a fixed requirement ('must have a consistent state') that all implementations must satisfy. There is no implementation choice here \u2014 it is not a parameter.\"\n    },\n    {\n      \"excerpt\": \"The `vill` bit is held in bit XLEN-1 of the CSR to support checking for illegal values with a branch on the sign bit.\",\n      \"line_number\": 268,\n      \"reason\": \"This describes the implementation detail of how the `vill` bit is stored and used, not an architectural parameter.\"\n    },\n    {\n      \"excerpt\": \"The `vstart` CSR is writable by unprivileged code, but non-zero `vstart` values may cause vector instructions to run substantially slower on some implementations.\",\n      \"line_number\": 295,\n      \"reason\": \"This describes a potential performance impact of using the `vstart` CSR, not an implementation choice or parameter.\"\n    },\n    {\n      \"excerpt\": \"The `vstart` CSR is defined to have only enough writable bits to hold the largest element index (one less than the maximum VLMAX).\",\n      \"line_number\": 295,\n      \"reason\": \"This is a fixed requirement about the size of the `vstart` CSR, not an implementation choice.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 48104,
+  "output_tokens": 1268,
+  "latency_ms": 15852,
+  "timestamp": "2026-07-24T20:48:58.269461+00:00",
+  "error": null,
+  "retry_count": 0
+}

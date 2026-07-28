@@ -1,0 +1,79 @@
+{
+  "chunk_id": "chunk_021",
+  "source_file": "machine.adoc",
+  "start_line": 3330,
+  "end_line": 3655,
+  "content_start_line": 3360,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "Implementations may implement zero, 16, or 64 PMP entries; the lowest-numbered PMP entries must be implemented first.",
+      "line_number": 3340,
+      "parameter_name": "NUM_PMP_ENTRIES",
+      "existing_udb_name": "NUM_PMP_ENTRIES",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of PMP entries is a direct implementation choice (0, 16, or 64). It is not controlled by any CSR field."
+    },
+    {
+      "excerpt": "All PMP CSR fields are WARL and may be read-only zero.",
+      "line_number": 3345,
+      "parameter_name": "PMP_CSR_ACCESS",
+      "existing_udb_name": "PMP_CSR_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether PMP CSR fields are read-only zero or writable. This is a binary choice about the mutability of the fields."
+    },
+    {
+      "excerpt": "Not all physical address bits may be implemented, and so the `pmpaddr` registers are WARL.",
+      "line_number": 3355,
+      "parameter_name": "PMPADDR_BITS_IMPLEMENTED",
+      "existing_udb_name": "PMPADDR_BITS_IMPLEMENTED",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The implementation defines which physical address bits of the `pmpaddr` registers are supported. The parameter is the set of legal values for the address bits."
+    },
+    {
+      "excerpt": "Although the PMP mechanism supports regions as small as four bytes, platforms may specify coarser PMP regions.",
+      "line_number": 3650,
+      "parameter_name": "PMP_REGION_GRANULARITY",
+      "existing_udb_name": "PMA_GRANULARITY",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The granularity of PMP regions is an implementation choice, which can be coarser than the minimum of four bytes. This is a design-time decision."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "Platforms vary widely in demands for physical memory protection, and some platforms may provide other PMP structures in addition to or instead of the scheme described in this section.",
+      "line_number": 3332,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "PMP checks are applied to all accesses whose effective privilege mode is S or U, including instruction fetches and data accesses in S and U mode.",
+      "line_number": 3347,
+      "reason": "This describes the behavior of PMP checks under certain conditions, not an implementation choice."
+    },
+    {
+      "excerpt": "If at least one PMP entry is implemented, but all PMP entries\u2019 A fields are set to OFF, then all S-mode and U-mode memory accesses will fail.",
+      "line_number": 3652,
+      "reason": "This describes a specific behavior of PMP entries rather than an implementation-defined parameter."
+    },
+    {
+      "excerpt": "When paging is enabled, instructions that access virtual memory may result in multiple physical-memory accesses.",
+      "line_number": 3654,
+      "reason": "This describes the behavior of PMP checks in relation to paging, not an implementation choice."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"Implementations may implement zero, 16, or 64 PMP entries; the lowest-numbered PMP entries must be implemented first.\",\n      \"line_number\": 3340,\n      \"parameter_name\": \"NUM_PMP_ENTRIES\",\n      \"existing_udb_name\": \"NUM_PMP_ENTRIES\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"range\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The number of PMP entries is a direct implementation choice (0, 16, or 64). It is not controlled by any CSR field.\"\n    },\n    {\n      \"excerpt\": \"All PMP CSR fields are WARL and may be read-only zero.\",\n      \"line_number\": 3345,\n      \"parameter_name\": \"PMP_CSR_ACCESS\",\n      \"existing_udb_name\": \"PMP_CSR_ACCESS\",\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation chooses whether PMP CSR fields are read-only zero or writable. This is a binary choice about the mutability of the fields.\"\n    },\n    {\n      \"excerpt\": \"Not all physical address bits may be implemented, and so the `pmpaddr` registers are WARL.\",\n      \"line_number\": 3355,\n      \"parameter_name\": \"PMPADDR_BITS_IMPLEMENTED\",\n      \"existing_udb_name\": \"PMPADDR_BITS_IMPLEMENTED\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation defines which physical address bits of the `pmpaddr` registers are supported. The parameter is the set of legal values for the address bits.\"\n    },\n    {\n      \"excerpt\": \"Although the PMP mechanism supports regions as small as four bytes, platforms may specify coarser PMP regions.\",\n      \"line_number\": 3650,\n      \"parameter_name\": \"PMP_REGION_GRANULARITY\",\n      \"existing_udb_name\": \"PMA_GRANULARITY\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"range\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The granularity of PMP regions is an implementation choice, which can be coarser than the minimum of four bytes. This is a design-time decision.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"Platforms vary widely in demands for physical memory protection, and some platforms may provide other PMP structures in addition to or instead of the scheme described in this section.\",\n      \"line_number\": 3332,\n      \"reason\": \"This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement.\"\n    },\n    {\n      \"excerpt\": \"PMP checks are applied to all accesses whose effective privilege mode is S or U, including instruction fetches and data accesses in S and U mode.\",\n      \"line_number\": 3347,\n      \"reason\": \"This describes the behavior of PMP checks under certain conditions, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"If at least one PMP entry is implemented, but all PMP entries\u2019 A fields are set to OFF, then all S-mode and U-mode memory accesses will fail.\",\n      \"line_number\": 3652,\n      \"reason\": \"This describes a specific behavior of PMP entries rather than an implementation-defined parameter.\"\n    },\n    {\n      \"excerpt\": \"When paging is enabled, instructions that access virtual memory may result in multiple physical-memory accesses.\",\n      \"line_number\": 3654,\n      \"reason\": \"This describes the behavior of PMP checks in relation to paging, not an implementation choice.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 10662,
+  "output_tokens": 811,
+  "latency_ms": 9042,
+  "timestamp": "2026-07-24T20:29:28.293382+00:00",
+  "error": null,
+  "retry_count": 0
+}

@@ -1,0 +1,74 @@
+{
+  "chunk_id": "chunk_063",
+  "source_file": "zabha.adoc",
+  "start_line": 1,
+  "end_line": 68,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "The Zabha extension mandates that the address contained in the `rs1` register must be naturally aligned to the size of the operand.",
+      "line_number": 54,
+      "parameter_name": "ZABHA_RS1_ADDRESS_ALIGNMENT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The requirement for the address in `rs1` to be naturally aligned is a design-time decision made by the implementer, indicating that the alignment can vary based on the operand size."
+    },
+    {
+      "excerpt": "Zabha extension provides the `AMO[ADD|AND|OR|XOR|SWAP|MIN[U]|MAX[U]].[B|H]` instructions.",
+      "line_number": 34,
+      "parameter_name": "ZABHA_AMO_INSTRUCTIONS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The set of AMO instructions provided by the Zabha extension can vary by implementation, as it includes optional instructions based on the presence of the Zacas extension."
+    },
+    {
+      "excerpt": "The `AMOCAS.[B|H]` instructions similarly ignore the stem:[XLEN-1:2^{(width + 3)}] bits of the original value in `rd`.",
+      "line_number": 56,
+      "parameter_name": "ZABHA_AMOCAS_IGNORE_BITS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The behavior of the `AMOCAS.[B|H]` instructions regarding ignored bits is an implementation choice, indicating that the handling of these bits can vary."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "Zabha omits _byte_ and _halfword_ support for `LR` and `SC` due to low utility.",
+      "line_number": 66,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a design choice rather than an architectural parameter."
+    },
+    {
+      "excerpt": "In systems with large-scale or Non-Uniform Memory Access (NUMA) configurations, emulation based on `LR`/`SC` introduces issues related to scalability and fairness, particularly under conditions of high contention.",
+      "line_number": 10,
+      "reason": "This describes potential issues with emulation strategies rather than an implementation choice, thus not qualifying as a parameter."
+    },
+    {
+      "excerpt": "Emulation of narrower AMOs through wider AMO* instructions on non-idempotent IO memory regions may result in unintended side effects.",
+      "line_number": 12,
+      "reason": "This is a description of the consequences of a design choice rather than a parameter that leaves a choice to the implementer."
+    },
+    {
+      "excerpt": "Utilizing wider AMO* instructions for emulating narrower AMOs risks activating extraneous breakpoints or watchpoints.",
+      "line_number": 14,
+      "reason": "This describes a potential risk associated with a design choice, not an architectural parameter."
+    },
+    {
+      "excerpt": "In the absence of native support for subword atomics, compilers often resort to inlining code sequences to provide the required emulation.",
+      "line_number": 16,
+      "reason": "This describes a software strategy rather than an implementation-defined parameter."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"The Zabha extension mandates that the address contained in the `rs1` register must be naturally aligned to the size of the operand.\",\n      \"line_number\": 54,\n      \"parameter_name\": \"ZABHA_RS1_ADDRESS_ALIGNMENT\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"enum\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The requirement for the address in `rs1` to be naturally aligned is a design-time decision made by the implementer, indicating that the alignment can vary based on the operand size.\"\n    },\n    {\n      \"excerpt\": \"Zabha extension provides the `AMO[ADD|AND|OR|XOR|SWAP|MIN[U]|MAX[U]].[B|H]` instructions.\",\n      \"line_number\": 34,\n      \"parameter_name\": \"ZABHA_AMO_INSTRUCTIONS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The set of AMO instructions provided by the Zabha extension can vary by implementation, as it includes optional instructions based on the presence of the Zacas extension.\"\n    },\n    {\n      \"excerpt\": \"The `AMOCAS.[B|H]` instructions similarly ignore the stem:[XLEN-1:2^{(width + 3)}] bits of the original value in `rd`.\",\n      \"line_number\": 56,\n      \"parameter_name\": \"ZABHA_AMOCAS_IGNORE_BITS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The behavior of the `AMOCAS.[B|H]` instructions regarding ignored bits is an implementation choice, indicating that the handling of these bits can vary.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"Zabha omits _byte_ and _halfword_ support for `LR` and `SC` due to low utility.\",\n      \"line_number\": 66,\n      \"reason\": \"This text is inside a [NOTE] block and is therefore non-normative. It describes a design choice rather than an architectural parameter.\"\n    },\n    {\n      \"excerpt\": \"In systems with large-scale or Non-Uniform Memory Access (NUMA) configurations, emulation based on `LR`/`SC` introduces issues related to scalability and fairness, particularly under conditions of high contention.\",\n      \"line_number\": 10,\n      \"reason\": \"This describes potential issues with emulation strategies rather than an implementation choice, thus not qualifying as a parameter.\"\n    },\n    {\n      \"excerpt\": \"Emulation of narrower AMOs through wider AMO* instructions on non-idempotent IO memory regions may result in unintended side effects.\",\n      \"line_number\": 12,\n      \"reason\": \"This is a description of the consequences of a design choice rather than a parameter that leaves a choice to the implementer.\"\n    },\n    {\n      \"excerpt\": \"Utilizing wider AMO* instructions for emulating narrower AMOs risks activating extraneous breakpoints or watchpoints.\",\n      \"line_number\": 14,\n      \"reason\": \"This describes a potential risk associated with a design choice, not an architectural parameter.\"\n    },\n    {\n      \"excerpt\": \"In the absence of native support for subword atomics, compilers often resort to inlining code sequences to provide the required emulation.\",\n      \"line_number\": 16,\n      \"reason\": \"This describes a software strategy rather than an implementation-defined parameter.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 7210,
+  "output_tokens": 805,
+  "latency_ms": 7904,
+  "timestamp": "2026-07-24T18:38:15.369582+00:00",
+  "error": null,
+  "retry_count": 0
+}

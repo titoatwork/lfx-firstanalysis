@@ -1,0 +1,64 @@
+{
+  "chunk_id": "chunk_075",
+  "source_file": "zihintpause.adoc",
+  "start_line": 1,
+  "end_line": 56,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "The duration of a PAUSE instruction's effect may vary significantly within and among implementations.",
+      "line_number": 10,
+      "parameter_name": "PAUSE_DURATION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The duration of the PAUSE instruction's effect is an implementation choice, varying significantly across implementations. This is a design-time decision, not controlled by any CSR field."
+    },
+    {
+      "excerpt": "A series of PAUSE instructions can be used to create a cumulative delay loosely proportional to the number of PAUSE instructions.",
+      "line_number": 14,
+      "parameter_name": "PAUSE_CUMULATIVE_DELAY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The cumulative delay created by multiple PAUSE instructions is implementation-defined, as it can vary based on how the implementation handles the PAUSE instruction. This is a design-time decision."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "Software can use the PAUSE instruction to reduce energy consumption while executing spin-wait code sequences.",
+      "line_number": 5,
+      "reason": "This is a suggestion for software behavior and does not define an architectural parameter."
+    },
+    {
+      "excerpt": "In typical implementations this duration should be much less than the time to perform a context switch, probably more on the rough order of an on-chip cache miss latency or a cacheless access to main memory.",
+      "line_number": 11,
+      "reason": "This describes expected behavior in typical implementations but does not define a parameter as it is not an implementation choice."
+    },
+    {
+      "excerpt": "PAUSE is encoded as a hint within the FENCE opcode because some implementations are expected to deliberately stall the PAUSE instruction until outstanding memory transactions have completed.",
+      "line_number": 20,
+      "reason": "This describes the encoding of the PAUSE instruction and its expected behavior, not an implementation choice."
+    },
+    {
+      "excerpt": "Like other FENCE instructions, PAUSE cannot be used within LR/SC sequences without voiding the forward-progress guarantee.",
+      "line_number": 24,
+      "reason": "This describes a restriction on the use of the PAUSE instruction rather than an architectural parameter."
+    },
+    {
+      "excerpt": "The choice of a predecessor set of W is arbitrary, since the successor set is null.",
+      "line_number": 26,
+      "reason": "This indicates an arbitrary choice rather than a defined architectural parameter."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"The duration of a PAUSE instruction's effect may vary significantly within and among implementations.\",\n      \"line_number\": 10,\n      \"parameter_name\": \"PAUSE_DURATION\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"range\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The duration of the PAUSE instruction's effect is an implementation choice, varying significantly across implementations. This is a design-time decision, not controlled by any CSR field.\"\n    },\n    {\n      \"excerpt\": \"A series of PAUSE instructions can be used to create a cumulative delay loosely proportional to the number of PAUSE instructions.\",\n      \"line_number\": 14,\n      \"parameter_name\": \"PAUSE_CUMULATIVE_DELAY\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"range\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The cumulative delay created by multiple PAUSE instructions is implementation-defined, as it can vary based on how the implementation handles the PAUSE instruction. This is a design-time decision.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"Software can use the PAUSE instruction to reduce energy consumption while executing spin-wait code sequences.\",\n      \"line_number\": 5,\n      \"reason\": \"This is a suggestion for software behavior and does not define an architectural parameter.\"\n    },\n    {\n      \"excerpt\": \"In typical implementations this duration should be much less than the time to perform a context switch, probably more on the rough order of an on-chip cache miss latency or a cacheless access to main memory.\",\n      \"line_number\": 11,\n      \"reason\": \"This describes expected behavior in typical implementations but does not define a parameter as it is not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"PAUSE is encoded as a hint within the FENCE opcode because some implementations are expected to deliberately stall the PAUSE instruction until outstanding memory transactions have completed.\",\n      \"line_number\": 20,\n      \"reason\": \"This describes the encoding of the PAUSE instruction and its expected behavior, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"Like other FENCE instructions, PAUSE cannot be used within LR/SC sequences without voiding the forward-progress guarantee.\",\n      \"line_number\": 24,\n      \"reason\": \"This describes a restriction on the use of the PAUSE instruction rather than an architectural parameter.\"\n    },\n    {\n      \"excerpt\": \"The choice of a predecessor set of W is arbitrary, since the successor set is null.\",\n      \"line_number\": 26,\n      \"reason\": \"This indicates an arbitrary choice rather than a defined architectural parameter.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 7273,
+  "output_tokens": 595,
+  "latency_ms": 6009,
+  "timestamp": "2026-07-25T18:15:43.286851+00:00",
+  "error": null,
+  "retry_count": 0
+}

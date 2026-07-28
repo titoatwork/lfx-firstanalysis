@@ -1,0 +1,94 @@
+{
+  "chunk_id": "chunk_070",
+  "source_file": "zfinx.adoc",
+  "start_line": 1,
+  "end_line": 162,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "Floating-point operands of width _w_ < XLEN bits occupy bits _w_-1:0 of an `x` register.",
+      "line_number": 50,
+      "parameter_name": "NARROW_OPERAND_WIDTH",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The implementation chooses how to handle floating-point operands of width less than XLEN, specifically which bits of the `x` register are used. This is a design-time decision."
+    },
+    {
+      "excerpt": "Floating-point operations that produce _w_ < XLEN-bit results fill bits XLEN-1: _w_ with copies of bit _w_-1 (the sign bit).",
+      "line_number": 54,
+      "parameter_name": "NARROW_RESULT_WIDTH",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The implementation decides how to fill the upper bits of the `x` register for results of floating-point operations that produce less than XLEN bits. This is a design-time choice."
+    },
+    {
+      "excerpt": "Double-precision operands in RV32Zdinx are held in aligned `x`-register pairs, i.e., register numbers must be even.",
+      "line_number": 97,
+      "parameter_name": "DOUBLE_PRECISION_REGISTER_ALIGNMENT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation must choose whether to enforce the alignment of double-precision operands in even-numbered `x` registers. This is a design-time decision."
+    },
+    {
+      "excerpt": "The `mstatus` field FS is hardwired to 0 if the Zfinx extension is implemented, and FS no longer affects the trapping behavior of floating-point instructions or `fcsr` accesses.",
+      "line_number": 139,
+      "parameter_name": "MSTATUS_FS_HARDWIRED_ZERO",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation decides to hardwire the FS field of `mstatus` to 0 when the Zfinx extension is present, affecting the trapping behavior of floating-point instructions. This is a design-time choice."
+    },
+    {
+      "excerpt": "The `misa` bits F, D, and Q are hardwired to 0 when the Zfinx extension is implemented.",
+      "line_number": 143,
+      "parameter_name": "MISA_F_D_Q_HARDWIRED_ZERO",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses to hardwire the F, D, and Q bits of the `misa` register to 0 when the Zfinx extension is implemented. This is a design-time decision."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The Zfinx extension adds all of the instructions that the F extension adds, _except_ for the transfer instructions FLW, FSW, FMV.W.X, FMV.X.W, C.FLW[SP], and C.FSW[SP].",
+      "line_number": 25,
+      "reason": "This describes the instructions added by the Zfinx extension and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "In general, software that assumes the presence of the F extension is incompatible with software that assumes the presence of the Zfinx extension, and vice versa.",
+      "line_number": 12,
+      "reason": "This is a statement about software compatibility, not an architectural parameter."
+    },
+    {
+      "excerpt": "The NaN-boxing scheme employed in the `f` registers was designed to efficiently support recoded floating-point formats.",
+      "line_number": 62,
+      "reason": "This is a descriptive note about the NaN-boxing scheme and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "Regardless of endianness, the lower-numbered register holds the low-order bits, and the higher-numbered register holds the high-order bits.",
+      "line_number": 101,
+      "reason": "This describes the behavior of register usage for double-precision operands and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "When a double-width floating-point result is written to `x0`, the entire write takes no effect.",
+      "line_number": 107,
+      "reason": "This describes the behavior of writing to `x0` and does not indicate an implementation choice."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"Floating-point operands of width _w_ < XLEN bits occupy bits _w_-1:0 of an `x` register.\",\n      \"line_number\": 50,\n      \"parameter_name\": \"NARROW_OPERAND_WIDTH\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"range\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation chooses how to handle floating-point operands of width less than XLEN, specifically which bits of the `x` register are used. This is a design-time decision.\"\n    },\n    {\n      \"excerpt\": \"Floating-point operations that produce _w_ < XLEN-bit results fill bits XLEN-1: _w_ with copies of bit _w_-1 (the sign bit).\",\n      \"line_number\": 54,\n      \"parameter_name\": \"NARROW_RESULT_WIDTH\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"range\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation decides how to fill the upper bits of the `x` register for results of floating-point operations that produce less than XLEN bits. This is a design-time choice.\"\n    },\n    {\n      \"excerpt\": \"Double-precision operands in RV32Zdinx are held in aligned `x`-register pairs, i.e., register numbers must be even.\",\n      \"line_number\": 97,\n      \"parameter_name\": \"DOUBLE_PRECISION_REGISTER_ALIGNMENT\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation must choose whether to enforce the alignment of double-precision operands in even-numbered `x` registers. This is a design-time decision.\"\n    },\n    {\n      \"excerpt\": \"The `mstatus` field FS is hardwired to 0 if the Zfinx extension is implemented, and FS no longer affects the trapping behavior of floating-point instructions or `fcsr` accesses.\",\n      \"line_number\": 139,\n      \"parameter_name\": \"MSTATUS_FS_HARDWIRED_ZERO\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation decides to hardwire the FS field of `mstatus` to 0 when the Zfinx extension is present, affecting the trapping behavior of floating-point instructions. This is a design-time choice.\"\n    },\n    {\n      \"excerpt\": \"The `misa` bits F, D, and Q are hardwired to 0 when the Zfinx extension is implemented.\",\n      \"line_number\": 143,\n      \"parameter_name\": \"MISA_F_D_Q_HARDWIRED_ZERO\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation chooses to hardwire the F, D, and Q bits of the `misa` register to 0 when the Zfinx extension is implemented. This is a design-time decision.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"The Zfinx extension adds all of the instructions that the F extension adds, _except_ for the transfer instructions FLW, FSW, FMV.W.X, FMV.X.W, C.FLW[SP], and C.FSW[SP].\",\n      \"line_number\": 25,\n      \"reason\": \"This describes the instructions added by the Zfinx extension and does not indicate an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"In general, software that assumes the presence of the F extension is incompatible with software that assumes the presence of the Zfinx extension, and vice versa.\",\n      \"line_number\": 12,\n      \"reason\": \"This is a statement about software compatibility, not an architectural parameter.\"\n    },\n    {\n      \"excerpt\": \"The NaN-boxing scheme employed in the `f` registers was designed to efficiently support recoded floating-point formats.\",\n      \"line_number\": 62,\n      \"reason\": \"This is a descriptive note about the NaN-boxing scheme and does not indicate an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"Regardless of endianness, the lower-numbered register holds the low-order bits, and the higher-numbered register holds the high-order bits.\",\n      \"line_number\": 101,\n      \"reason\": \"This describes the behavior of register usage for double-precision operands and does not indicate an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"When a double-width floating-point result is written to `x0`, the entire write takes no effect.\",\n      \"line_number\": 107,\n      \"reason\": \"This describes the behavior of writing to `x0` and does not indicate an implementation choice.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 7849,
+  "output_tokens": 1076,
+  "latency_ms": 10541,
+  "timestamp": "2026-07-24T18:43:29.132126+00:00",
+  "error": null,
+  "retry_count": 0
+}

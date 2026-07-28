@@ -1,0 +1,48 @@
+{
+  "chunk_id": "chunk_019",
+  "source_file": "m-st-ext.adoc",
+  "start_line": 1,
+  "end_line": 157,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "We separate integer multiply and divide out from the base to simplify low-end implementations, or for applications where integer multiply and divide operations are either infrequent or better handled in attached accelerators.",
+      "line_number": 6,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "MULHSU is used in multi-word signed multiplication to multiply the most-significant word of the multiplicand (which contains the sign bit) with the less-significant words of the multiplier (which are unsigned).",
+      "line_number": 20,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "In RV64, MUL can be used to obtain the upper 32 bits of the 64-bit product, but signed arguments must be proper 32-bit signed values, whereas unsigned arguments must have their upper 32 bits clear.",
+      "line_number": 30,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "For both signed and unsigned division, except in the case of overflow, it holds that dividend = divisor {times} quotient + remainder.",
+      "line_number": 50,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "We considered raising exceptions on integer divide by zero, with these exceptions causing a trap in most execution environments.",
+      "line_number": 90,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "The `Zmmul` extension enables low-cost implementations that require multiplication operations but not division.",
+      "line_number": 130,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"We separate integer multiply and divide out from the base to simplify low-end implementations, or for applications where integer multiply and divide operations are either infrequent or better handled in attached accelerators.\",\n      \"line_number\": 6,\n      \"reason\": \"This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement.\"\n    },\n    {\n      \"excerpt\": \"MULHSU is used in multi-word signed multiplication to multiply the most-significant word of the multiplicand (which contains the sign bit) with the less-significant words of the multiplier (which are unsigned).\",\n      \"line_number\": 20,\n      \"reason\": \"This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement.\"\n    },\n    {\n      \"excerpt\": \"In RV64, MUL can be used to obtain the upper 32 bits of the 64-bit product, but signed arguments must be proper 32-bit signed values, whereas unsigned arguments must have their upper 32 bits clear.\",\n      \"line_number\": 30,\n      \"reason\": \"This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement.\"\n    },\n    {\n      \"excerpt\": \"For both signed and unsigned division, except in the case of overflow, it holds that dividend = divisor {times} quotient + remainder.\",\n      \"line_number\": 50,\n      \"reason\": \"This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement.\"\n    },\n    {\n      \"excerpt\": \"We considered raising exceptions on integer divide by zero, with these exceptions causing a trap in most execution environments.\",\n      \"line_number\": 90,\n      \"reason\": \"This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement.\"\n    },\n    {\n      \"excerpt\": \"The `Zmmul` extension enables low-cost implementations that require multiplication operations but not division.\",\n      \"line_number\": 130,\n      \"reason\": \"This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 7903,
+  "output_tokens": 515,
+  "latency_ms": 6028,
+  "timestamp": "2026-07-24T18:11:13.580861+00:00",
+  "error": null,
+  "retry_count": 0
+}

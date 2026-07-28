@@ -1,0 +1,33 @@
+{
+  "chunk_id": "chunk_003",
+  "source_file": "b-st-ext.adoc",
+  "start_line": 3397,
+  "end_line": 3485,
+  "content_start_line": 3427,
+  "model": "gpt-4o-mini",
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The *zext.h* mnemonic corresponds to different instruction encodings in RV32 and RV64.",
+      "line_number": 3405,
+      "reason": "This text describes the relationship between the mnemonic and instruction encodings, but does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "This instruction is available only on RV32.",
+      "line_number": 3435,
+      "reason": "This is a fixed requirement that the instruction is only available on RV32, not an implementation choice."
+    },
+    {
+      "excerpt": "This instruction is useful for implementing the SHA3 cryptographic hash function on a 32-bit architecture, as it implements the bit-interleaving operation used to speed up the 64-bit rotations directly.",
+      "line_number": 3441,
+      "reason": "This is a software hint and does not define an architectural parameter; it is informative and not a requirement."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"The *zext.h* mnemonic corresponds to different instruction encodings in RV32 and RV64.\",\n      \"line_number\": 3405,\n      \"reason\": \"This text describes the relationship between the mnemonic and instruction encodings, but does not indicate an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"This instruction is available only on RV32.\",\n      \"line_number\": 3435,\n      \"reason\": \"This is a fixed requirement that the instruction is only available on RV32, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"This instruction is useful for implementing the SHA3 cryptographic hash function on a 32-bit architecture, as it implements the bit-interleaving operation used to speed up the 64-bit rotations directly.\",\n      \"line_number\": 3441,\n      \"reason\": \"This is a software hint and does not define an architectural parameter; it is informative and not a requirement.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 7269,
+  "output_tokens": 221,
+  "latency_ms": 3473,
+  "timestamp": "2026-07-24T20:17:13.678927+00:00",
+  "error": null,
+  "retry_count": 0
+}

@@ -1,0 +1,84 @@
+{
+  "chunk_id": "chunk_012",
+  "source_file": "d-st-ext.adoc",
+  "start_line": 1,
+  "end_line": 239,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "FLEN can be 32, 64, or 128 depending on which of the F, D, and Q extensions are supported.",
+      "line_number": 8,
+      "parameter_name": "FLEN",
+      "existing_udb_name": "FLEN",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "FLEN is a WARL field where the legal values (32, 64, or 128) depend on the supported extensions. The parameter is the set of legal FLEN values."
+    },
+    {
+      "excerpt": "FLD and FSD are only guaranteed to execute atomically if the effective address is naturally aligned and XLEN{ge}64.",
+      "line_number": 66,
+      "parameter_name": "DOUBLE_PRECISION_LOAD_STORE_ATOMIC_ALIGNMENT",
+      "existing_udb_name": "DOUBLE_PRECISION_LOAD_STORE_ATOMIC_ALIGNMENT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether to guarantee atomic execution of FLD and FSD based on alignment and XLEN. This is a direct implementation choice."
+    },
+    {
+      "excerpt": "For RV64, FCVT.W[U].D sign-extends the 32-bit result.",
+      "line_number": 139,
+      "parameter_name": "RV64_FCVT_WU_D_SIGN_EXTEND",
+      "existing_udb_name": "RV64_FCVT_WU_D_SIGN_EXTEND",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "Whether FCVT.W[U].D sign-extends the result is an implementation choice specific to RV64. This is a design-time decision."
+    },
+    {
+      "excerpt": "For XLEN{ge}64 only, instructions are provided to move bit patterns between the floating-point and integer registers.",
+      "line_number": 174,
+      "parameter_name": "XLEN_64_FLOAT_INT_MOVE_SUPPORT",
+      "existing_udb_name": "XLEN_64_FLOAT_INT_MOVE_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The support for moving bit patterns between floating-point and integer registers is contingent on XLEN being 64 or greater, which is an implementation choice."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The double-precision value may be a NaN-boxed single-precision value.",
+      "line_number": 66,
+      "reason": "This is a fixed requirement about the nature of double-precision values and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "All floating-point to integer and integer to floating-point conversion instructions round according to the _rm_ field.",
+      "line_number": 139,
+      "reason": "This describes behavior based on the rounding mode field, not an implementation choice."
+    },
+    {
+      "excerpt": "The double-precision floating-point computational instructions are defined analogously to their single-precision counterparts.",
+      "line_number": 66,
+      "reason": "This is a description of how the instructions are defined and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "The double-precision floating-point compare instructions are defined analogously to their single-precision counterparts.",
+      "line_number": 66,
+      "reason": "This is a description of the instruction definition and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "The double-precision floating-point classify instruction, FCLASS.D, is defined analogously to its single-precision counterpart.",
+      "line_number": 66,
+      "reason": "This is a description of the instruction definition and does not indicate an implementation choice."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"FLEN can be 32, 64, or 128 depending on which of the F, D, and Q extensions are supported.\",\n      \"line_number\": 8,\n      \"parameter_name\": \"FLEN\",\n      \"existing_udb_name\": \"FLEN\",\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"enum\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"FLEN is a WARL field where the legal values (32, 64, or 128) depend on the supported extensions. The parameter is the set of legal FLEN values.\"\n    },\n    {\n      \"excerpt\": \"FLD and FSD are only guaranteed to execute atomically if the effective address is naturally aligned and XLEN{ge}64.\",\n      \"line_number\": 66,\n      \"parameter_name\": \"DOUBLE_PRECISION_LOAD_STORE_ATOMIC_ALIGNMENT\",\n      \"existing_udb_name\": \"DOUBLE_PRECISION_LOAD_STORE_ATOMIC_ALIGNMENT\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation chooses whether to guarantee atomic execution of FLD and FSD based on alignment and XLEN. This is a direct implementation choice.\"\n    },\n    {\n      \"excerpt\": \"For RV64, FCVT.W[U].D sign-extends the 32-bit result.\",\n      \"line_number\": 139,\n      \"parameter_name\": \"RV64_FCVT_WU_D_SIGN_EXTEND\",\n      \"existing_udb_name\": \"RV64_FCVT_WU_D_SIGN_EXTEND\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"Whether FCVT.W[U].D sign-extends the result is an implementation choice specific to RV64. This is a design-time decision.\"\n    },\n    {\n      \"excerpt\": \"For XLEN{ge}64 only, instructions are provided to move bit patterns between the floating-point and integer registers.\",\n      \"line_number\": 174,\n      \"parameter_name\": \"XLEN_64_FLOAT_INT_MOVE_SUPPORT\",\n      \"existing_udb_name\": \"XLEN_64_FLOAT_INT_MOVE_SUPPORT\",\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The support for moving bit patterns between floating-point and integer registers is contingent on XLEN being 64 or greater, which is an implementation choice.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"The double-precision value may be a NaN-boxed single-precision value.\",\n      \"line_number\": 66,\n      \"reason\": \"This is a fixed requirement about the nature of double-precision values and does not represent an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"All floating-point to integer and integer to floating-point conversion instructions round according to the _rm_ field.\",\n      \"line_number\": 139,\n      \"reason\": \"This describes behavior based on the rounding mode field, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The double-precision floating-point computational instructions are defined analogously to their single-precision counterparts.\",\n      \"line_number\": 66,\n      \"reason\": \"This is a description of how the instructions are defined and does not indicate an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The double-precision floating-point compare instructions are defined analogously to their single-precision counterparts.\",\n      \"line_number\": 66,\n      \"reason\": \"This is a description of the instruction definition and does not indicate an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The double-precision floating-point classify instruction, FCLASS.D, is defined analogously to its single-precision counterpart.\",\n      \"line_number\": 66,\n      \"reason\": \"This is a description of the instruction definition and does not indicate an implementation choice.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 8921,
+  "output_tokens": 856,
+  "latency_ms": 12990,
+  "timestamp": "2026-07-24T18:05:09.292777+00:00",
+  "error": null,
+  "retry_count": 0
+}

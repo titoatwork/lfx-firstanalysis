@@ -1,0 +1,84 @@
+{
+  "chunk_id": "chunk_001",
+  "source_file": "a-st-ext.adoc",
+  "start_line": 1,
+  "end_line": 484,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "An implementation can register an arbitrarily large reservation set on each LR, provided the reservation set includes all bytes of the addressed data word or doubleword.",
+      "line_number": 484,
+      "parameter_name": "LR_RESERVATION_SET_SIZE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The size of the reservation set for LR instructions is an implementation choice, allowing for flexibility in how many bytes can be reserved."
+    },
+    {
+      "excerpt": "The misaligned atomicity granule PMA specifies the size of a misaligned atomicity granule, a power-of-two number of bytes.",
+      "line_number": 484,
+      "parameter_name": "MISALIGNED_ATOMICITY_GRANULE_SIZE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The size of the misaligned atomicity granule is an implementation-defined parameter that can vary, allowing for different implementations to define their own granule sizes."
+    },
+    {
+      "excerpt": "If the _aq_ bit is set, then no later memory operations in this RISC-V hart can be observed to take place before the AMO.",
+      "line_number": 484,
+      "parameter_name": "AMO_AQ_SEMANTICS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to enforce acquire semantics for AMO operations based on the setting of the _aq_ bit, making it a design-time decision."
+    },
+    {
+      "excerpt": "Conversely, if the _rl_ bit is set, then other RISC-V harts will not observe the AMO before memory accesses preceding the AMO in this RISC-V hart.",
+      "line_number": 484,
+      "parameter_name": "AMO_RL_SEMANTICS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to enforce release semantics for AMO operations based on the setting of the _rl_ bit, making it a design-time decision."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The atomic-instruction extension, named \"A\", contains instructions that atomically read-modify-write memory to support synchronization between multiple RISC-V harts running in the same memory space.",
+      "line_number": 1,
+      "reason": "This is a descriptive statement about the purpose of the extension and does not define an implementation choice."
+    },
+    {
+      "excerpt": "The FENCE instruction provides options to order accesses to one or both of these two address domains.",
+      "line_number": 1,
+      "reason": "This describes the functionality of the FENCE instruction, not an implementation choice."
+    },
+    {
+      "excerpt": "If both bits are clear, no additional ordering constraints are imposed on the atomic memory operation.",
+      "line_number": 484,
+      "reason": "This describes behavior based on the state of the bits, not an implementation choice."
+    },
+    {
+      "excerpt": "The SC must fail if the address is not within the reservation set of the most recent LR in program order.",
+      "line_number": 484,
+      "reason": "This is a fixed requirement for the behavior of SC instructions and does not leave room for implementation choice."
+    },
+    {
+      "excerpt": "The precise statement of the atomicity requirements for successful LR/SC sequences is defined by the Atomicity Axiom.",
+      "line_number": 484,
+      "reason": "This refers to a defined requirement rather than an implementation choice."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"An implementation can register an arbitrarily large reservation set on each LR, provided the reservation set includes all bytes of the addressed data word or doubleword.\",\n      \"line_number\": 484,\n      \"parameter_name\": \"LR_RESERVATION_SET_SIZE\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"range\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The size of the reservation set for LR instructions is an implementation choice, allowing for flexibility in how many bytes can be reserved.\"\n    },\n    {\n      \"excerpt\": \"The misaligned atomicity granule PMA specifies the size of a misaligned atomicity granule, a power-of-two number of bytes.\",\n      \"line_number\": 484,\n      \"parameter_name\": \"MISALIGNED_ATOMICITY_GRANULE_SIZE\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"value\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The size of the misaligned atomicity granule is an implementation-defined parameter that can vary, allowing for different implementations to define their own granule sizes.\"\n    },\n    {\n      \"excerpt\": \"If the _aq_ bit is set, then no later memory operations in this RISC-V hart can be observed to take place before the AMO.\",\n      \"line_number\": 484,\n      \"parameter_name\": \"AMO_AQ_SEMANTICS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation can choose whether to enforce acquire semantics for AMO operations based on the setting of the _aq_ bit, making it a design-time decision.\"\n    },\n    {\n      \"excerpt\": \"Conversely, if the _rl_ bit is set, then other RISC-V harts will not observe the AMO before memory accesses preceding the AMO in this RISC-V hart.\",\n      \"line_number\": 484,\n      \"parameter_name\": \"AMO_RL_SEMANTICS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation can choose whether to enforce release semantics for AMO operations based on the setting of the _rl_ bit, making it a design-time decision.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"The atomic-instruction extension, named \\\"A\\\", contains instructions that atomically read-modify-write memory to support synchronization between multiple RISC-V harts running in the same memory space.\",\n      \"line_number\": 1,\n      \"reason\": \"This is a descriptive statement about the purpose of the extension and does not define an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The FENCE instruction provides options to order accesses to one or both of these two address domains.\",\n      \"line_number\": 1,\n      \"reason\": \"This describes the functionality of the FENCE instruction, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"If both bits are clear, no additional ordering constraints are imposed on the atomic memory operation.\",\n      \"line_number\": 484,\n      \"reason\": \"This describes behavior based on the state of the bits, not an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The SC must fail if the address is not within the reservation set of the most recent LR in program order.\",\n      \"line_number\": 484,\n      \"reason\": \"This is a fixed requirement for the behavior of SC instructions and does not leave room for implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The precise statement of the atomicity requirements for successful LR/SC sequences is defined by the Atomicity Axiom.\",\n      \"line_number\": 484,\n      \"reason\": \"This refers to a defined requirement rather than an implementation choice.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 11876,
+  "output_tokens": 865,
+  "latency_ms": 21799,
+  "timestamp": "2026-07-24T17:59:23.899981+00:00",
+  "error": null,
+  "retry_count": 0
+}

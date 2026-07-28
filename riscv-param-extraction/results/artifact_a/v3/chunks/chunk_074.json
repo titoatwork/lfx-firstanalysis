@@ -1,0 +1,84 @@
+{
+  "chunk_id": "chunk_074",
+  "source_file": "zihintntl.adoc",
+  "start_line": 1,
+  "end_line": 189,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "The NTL.P1 instruction indicates that the target instruction does not exhibit temporal locality within the capacity of the innermost level of private cache in the memory hierarchy.",
+      "line_number": 8,
+      "parameter_name": "NTL_P1_CACHE_LOCALITY",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The NTL.P1 instruction's effect on cache locality is implementation-defined, indicating whether the innermost level of private cache is utilized or not."
+    },
+    {
+      "excerpt": "The NTL.PALL instruction indicates that the target instruction does not exhibit temporal locality within the capacity of any level of private cache in the memory hierarchy.",
+      "line_number": 12,
+      "parameter_name": "NTL_PALL_CACHE_LOCALITY",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The NTL.PALL instruction's effect on cache locality is implementation-defined, indicating whether any level of private cache is utilized or not."
+    },
+    {
+      "excerpt": "The NTL.S1 instruction indicates that the target instruction does not exhibit temporal locality within the capacity of the innermost level of shared cache in the memory hierarchy.",
+      "line_number": 16,
+      "parameter_name": "NTL_S1_CACHE_LOCALITY",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The NTL.S1 instruction's effect on shared cache locality is implementation-defined, indicating whether the innermost level of shared cache is utilized or not."
+    },
+    {
+      "excerpt": "The NTL.ALL instruction indicates that the target instruction does not exhibit temporal locality within the capacity of any level of cache in the memory hierarchy.",
+      "line_number": 20,
+      "parameter_name": "NTL_ALL_CACHE_LOCALITY",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The NTL.ALL instruction's effect on cache locality is implementation-defined, indicating whether any level of cache is utilized or not."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The NTL instructions can be used to avoid cache pollution when streaming data or traversing large data structures, or to reduce latency in producer-consumer interactions.",
+      "line_number": 6,
+      "reason": "This text describes potential uses of NTL instructions but does not define an implementation choice, thus it is not a parameter."
+    },
+    {
+      "excerpt": "Some implementations might respect these HINTs for some memory accesses but not others: e.g., implementations that implement LR/SC by acquiring a cache line in the exclusive state in L1 might ignore NTL instructions on LR and SC.",
+      "line_number": 27,
+      "reason": "This describes behavior that may vary by implementation but does not define a specific architectural parameter."
+    },
+    {
+      "excerpt": "The working-set sizes listed in <<ntl-portable>> are not meant to constrain implementers' cache-sizing decisions.",
+      "line_number": 45,
+      "reason": "This is a guideline for implementers rather than a parameter that defines an implementation choice."
+    },
+    {
+      "excerpt": "Software is discouraged from following an NTL instruction with an instruction that does not explicitly access memory.",
+      "line_number": 83,
+      "reason": "This is a recommendation for software behavior, not an architectural parameter."
+    },
+    {
+      "excerpt": "In the event that a trap is taken on the target instruction, implementations are discouraged from applying the NTL to the first instruction in the trap handler.",
+      "line_number": 90,
+      "reason": "This describes a recommendation for handling traps rather than an implementation choice, thus it is not a parameter."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"The NTL.P1 instruction indicates that the target instruction does not exhibit temporal locality within the capacity of the innermost level of private cache in the memory hierarchy.\",\n      \"line_number\": 8,\n      \"parameter_name\": \"NTL_P1_CACHE_LOCALITY\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The NTL.P1 instruction's effect on cache locality is implementation-defined, indicating whether the innermost level of private cache is utilized or not.\"\n    },\n    {\n      \"excerpt\": \"The NTL.PALL instruction indicates that the target instruction does not exhibit temporal locality within the capacity of any level of private cache in the memory hierarchy.\",\n      \"line_number\": 12,\n      \"parameter_name\": \"NTL_PALL_CACHE_LOCALITY\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The NTL.PALL instruction's effect on cache locality is implementation-defined, indicating whether any level of private cache is utilized or not.\"\n    },\n    {\n      \"excerpt\": \"The NTL.S1 instruction indicates that the target instruction does not exhibit temporal locality within the capacity of the innermost level of shared cache in the memory hierarchy.\",\n      \"line_number\": 16,\n      \"parameter_name\": \"NTL_S1_CACHE_LOCALITY\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The NTL.S1 instruction's effect on shared cache locality is implementation-defined, indicating whether the innermost level of shared cache is utilized or not.\"\n    },\n    {\n      \"excerpt\": \"The NTL.ALL instruction indicates that the target instruction does not exhibit temporal locality within the capacity of any level of cache in the memory hierarchy.\",\n      \"line_number\": 20,\n      \"parameter_name\": \"NTL_ALL_CACHE_LOCALITY\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The NTL.ALL instruction's effect on cache locality is implementation-defined, indicating whether any level of cache is utilized or not.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"The NTL instructions can be used to avoid cache pollution when streaming data or traversing large data structures, or to reduce latency in producer-consumer interactions.\",\n      \"line_number\": 6,\n      \"reason\": \"This text describes potential uses of NTL instructions but does not define an implementation choice, thus it is not a parameter.\"\n    },\n    {\n      \"excerpt\": \"Some implementations might respect these HINTs for some memory accesses but not others: e.g., implementations that implement LR/SC by acquiring a cache line in the exclusive state in L1 might ignore NTL instructions on LR and SC.\",\n      \"line_number\": 27,\n      \"reason\": \"This describes behavior that may vary by implementation but does not define a specific architectural parameter.\"\n    },\n    {\n      \"excerpt\": \"The working-set sizes listed in <<ntl-portable>> are not meant to constrain implementers' cache-sizing decisions.\",\n      \"line_number\": 45,\n      \"reason\": \"This is a guideline for implementers rather than a parameter that defines an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"Software is discouraged from following an NTL instruction with an instruction that does not explicitly access memory.\",\n      \"line_number\": 83,\n      \"reason\": \"This is a recommendation for software behavior, not an architectural parameter.\"\n    },\n    {\n      \"excerpt\": \"In the event that a trap is taken on the target instruction, implementations are discouraged from applying the NTL to the first instruction in the trap handler.\",\n      \"line_number\": 90,\n      \"reason\": \"This describes a recommendation for handling traps rather than an implementation choice, thus it is not a parameter.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 9035,
+  "output_tokens": 906,
+  "latency_ms": 10490,
+  "timestamp": "2026-07-25T18:15:35.617844+00:00",
+  "error": null,
+  "retry_count": 0
+}

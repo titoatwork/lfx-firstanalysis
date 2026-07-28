@@ -1,0 +1,174 @@
+{
+  "chunk_id": "chunk_051",
+  "source_file": "smstateen.adoc",
+  "start_line": 1,
+  "end_line": 383,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "The Smstateen and Ssstateen extensions collectively specify machine-mode and supervisor-mode features.",
+      "line_number": 38,
+      "parameter_name": "STATEEN_EXTENSION_MODE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to support either the Smstateen or Ssstateen extensions, which are optional. This is a direct implementation choice."
+    },
+    {
+      "excerpt": "The exact number four is an attempted compromise between providing too few bits on the one hand and going overboard with CSRs that will never be used on the other.",
+      "line_number": 66,
+      "parameter_name": "NUM_STATEEN_CSRS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of state enable CSRs (four) is a design choice made by the implementer, allowing flexibility in the number of CSRs provided."
+    },
+    {
+      "excerpt": "Each bit of a `stateen` CSR controls less-privileged access to an extension's state.",
+      "line_number": 78,
+      "parameter_name": "STATEEN_CSR_ACCESS_CONTROL",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The bits in the `stateen` CSRs are writable and control access to specific states, making this a parameter about which bits are implemented and writable."
+    },
+    {
+      "excerpt": "When this extension is not implemented, all state added by an extension is accessible as defined by that extension.",
+      "line_number": 92,
+      "parameter_name": "STATEEN_EXTENSION_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice of whether to implement the state enable extensions determines access to the state added by those extensions, which is a design-time decision."
+    },
+    {
+      "excerpt": "The C bit controls access to any and all custom state.",
+      "line_number": 157,
+      "parameter_name": "STATEEN_C_BIT_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The C bit's mutability (whether it is writable or read-only) is an implementation choice, affecting access to custom state."
+    },
+    {
+      "excerpt": "The FCSR bit controls access to `fcsr` for the case when floating-point instructions operate on `x` registers instead of `f` registers.",
+      "line_number": 164,
+      "parameter_name": "STATEEN_FCSR_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The FCSR bit's access control is writable, allowing the implementer to choose whether it is enabled or disabled."
+    },
+    {
+      "excerpt": "The JVT bit controls access to the `jvt` CSR provided by the Zcmt extension.",
+      "line_number": 171,
+      "parameter_name": "STATEEN_JVT_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The JVT bit's access control is writable, allowing the implementer to choose whether it is enabled or disabled."
+    },
+    {
+      "excerpt": "The SE0 bit in `mstateen0` controls access to the `hstateen0`, `hstateen0h`, and the `sstateen0` CSRs.",
+      "line_number": 178,
+      "parameter_name": "STATEEN_SE0_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The SE0 bit's access control is writable, allowing the implementer to choose whether it is enabled or disabled."
+    },
+    {
+      "excerpt": "The ENVCFG bit in `mstateen0` controls access to the `henvcfg`, `henvcfgh`, and the `senvcfg` CSRs.",
+      "line_number": 185,
+      "parameter_name": "STATEEN_ENVCFG_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The ENVCFG bit's access control is writable, allowing the implementer to choose whether it is enabled or disabled."
+    },
+    {
+      "excerpt": "The CSRIND bit in `mstateen0` controls access to the `siselect`, `sireg*`, `vsiselect`, and `vsireg*` CSRs provided by the Sscsrind extensions.",
+      "line_number": 192,
+      "parameter_name": "STATEEN_CSRIND_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The CSRIND bit's access control is writable, allowing the implementer to choose whether it is enabled or disabled."
+    },
+    {
+      "excerpt": "The IMSIC bit in `mstateen0` controls access to the IMSIC state, including CSRs `stopei` and `vstopei`, provided by the Ssaia extension.",
+      "line_number": 199,
+      "parameter_name": "STATEEN_IMSIC_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The IMSIC bit's access control is writable, allowing the implementer to choose whether it is enabled or disabled."
+    },
+    {
+      "excerpt": "The AIA bit in `mstateen0` controls access to all state introduced by the Ssaia extension and not controlled by either the CSRIND or the IMSIC bits.",
+      "line_number": 206,
+      "parameter_name": "STATEEN_AIA_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The AIA bit's access control is writable, allowing the implementer to choose whether it is enabled or disabled."
+    },
+    {
+      "excerpt": "The CONTEXT bit in `mstateen0` controls access to the `scontext` and `hcontext` CSRs provided by the Sdtrig extension.",
+      "line_number": 213,
+      "parameter_name": "STATEEN_CONTEXT_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The CONTEXT bit's access control is writable, allowing the implementer to choose whether it is enabled or disabled."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The implementation of optional RISC-V extensions has the potential to open covert channels between separate user threads, or between separate guest OSes running under a hypervisor.",
+      "line_number": 1,
+      "reason": "This is a general statement about the implications of implementing extensions, not a specific architectural parameter."
+    },
+    {
+      "excerpt": "The problem occurs when an extension adds processor state -- usually explicit registers, but possibly other forms of state -- that the main OS or hypervisor is unaware of.",
+      "line_number": 5,
+      "reason": "This describes a potential issue with extensions rather than a parameter that can be chosen by the implementer."
+    },
+    {
+      "excerpt": "The number of registers provided at each level is four because it is believed that 4 * 64 = 256 bits for machine and hypervisor levels, and 4 * 32 = 128 bits for supervisor level, will be adequate for many years to come.",
+      "line_number": 66,
+      "reason": "This is a rationale for the number of registers rather than a parameter that can be chosen by the implementer."
+    },
+    {
+      "excerpt": "When this extension is not implemented, all state added by an extension is accessible as defined by that extension.",
+      "line_number": 92,
+      "reason": "This describes behavior when the extension is not implemented, not a parameter that can be chosen by the implementer."
+    },
+    {
+      "excerpt": "If machine level sets any writable `mstateen` bits to nonzero, it must initialize the matching `hstateen` CSRs, if they exist, by writing zeros to them.",
+      "line_number": 284,
+      "reason": "This describes a requirement for software behavior rather than an architectural parameter."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"The Smstateen and Ssstateen extensions collectively specify machine-mode and supervisor-mode features.\",\n      \"line_number\": 38,\n      \"parameter_name\": \"STATEEN_EXTENSION_MODE\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"enum\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The implementation can choose to support either the Smstateen or Ssstateen extensions, which are optional. This is a direct implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The exact number four is an attempted compromise between providing too few bits on the one hand and going overboard with CSRs that will never be used on the other.\",\n      \"line_number\": 66,\n      \"parameter_name\": \"NUM_STATEEN_CSRS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"range\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The number of state enable CSRs (four) is a design choice made by the implementer, allowing flexibility in the number of CSRs provided.\"\n    },\n    {\n      \"excerpt\": \"Each bit of a `stateen` CSR controls less-privileged access to an extension's state.\",\n      \"line_number\": 78,\n      \"parameter_name\": \"STATEEN_CSR_ACCESS_CONTROL\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"bitmask\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The bits in the `stateen` CSRs are writable and control access to specific states, making this a parameter about which bits are implemented and writable.\"\n    },\n    {\n      \"excerpt\": \"When this extension is not implemented, all state added by an extension is accessible as defined by that extension.\",\n      \"line_number\": 92,\n      \"parameter_name\": \"STATEEN_EXTENSION_ACCESS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The choice of whether to implement the state enable extensions determines access to the state added by those extensions, which is a design-time decision.\"\n    },\n    {\n      \"excerpt\": \"The C bit controls access to any and all custom state.\",\n      \"line_number\": 157,\n      \"parameter_name\": \"STATEEN_C_BIT_ACCESS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The C bit's mutability (whether it is writable or read-only) is an implementation choice, affecting access to custom state.\"\n    },\n    {\n      \"excerpt\": \"The FCSR bit controls access to `fcsr` for the case when floating-point instructions operate on `x` registers instead of `f` registers.\",\n      \"line_number\": 164,\n      \"parameter_name\": \"STATEEN_FCSR_ACCESS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The FCSR bit's access control is writable, allowing the implementer to choose whether it is enabled or disabled.\"\n    },\n    {\n      \"excerpt\": \"The JVT bit controls access to the `jvt` CSR provided by the Zcmt extension.\",\n      \"line_number\": 171,\n      \"parameter_name\": \"STATEEN_JVT_ACCESS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The JVT bit's access control is writable, allowing the implementer to choose whether it is enabled or disabled.\"\n    },\n    {\n      \"excerpt\": \"The SE0 bit in `mstateen0` controls access to the `hstateen0`, `hstateen0h`, and the `sstateen0` CSRs.\",\n      \"line_number\": 178,\n      \"parameter_name\": \"STATEEN_SE0_ACCESS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The SE0 bit's access control is writable, allowing the implementer to choose whether it is enabled or disabled.\"\n    },\n    {\n      \"excerpt\": \"The ENVCFG bit in `mstateen0` controls access to the `henvcfg`, `henvcfgh`, and the `senvcfg` CSRs.\",\n      \"line_number\": 185,\n      \"parameter_name\": \"STATEEN_ENVCFG_ACCESS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The ENVCFG bit's access control is writable, allowing the implementer to choose whether it is enabled or disabled.\"\n    },\n    {\n      \"excerpt\": \"The CSRIND bit in `mstateen0` controls access to the `siselect`, `sireg*`, `vsiselect`, and `vsireg*` CSRs provided by the Sscsrind extensions.\",\n      \"line_number\": 192,\n      \"parameter_name\": \"STATEEN_CSRIND_ACCESS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The CSRIND bit's access control is writable, allowing the implementer to choose whether it is enabled or disabled.\"\n    },\n    {\n      \"excerpt\": \"The IMSIC bit in `mstateen0` controls access to the IMSIC state, including CSRs `stopei` and `vstopei`, provided by the Ssaia extension.\",\n      \"line_number\": 199,\n      \"parameter_name\": \"STATEEN_IMSIC_ACCESS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The IMSIC bit's access control is writable, allowing the implementer to choose whether it is enabled or disabled.\"\n    },\n    {\n      \"excerpt\": \"The AIA bit in `mstateen0` controls access to all state introduced by the Ssaia extension and not controlled by either the CSRIND or the IMSIC bits.\",\n      \"line_number\": 206,\n      \"parameter_name\": \"STATEEN_AIA_ACCESS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The AIA bit's access control is writable, allowing the implementer to choose whether it is enabled or disabled.\"\n    },\n    {\n      \"excerpt\": \"The CONTEXT bit in `mstateen0` controls access to the `scontext` and `hcontext` CSRs provided by the Sdtrig extension.\",\n      \"line_number\": 213,\n      \"parameter_name\": \"STATEEN_CONTEXT_ACCESS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The CONTEXT bit's access control is writable, allowing the implementer to choose whether it is enabled or disabled.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"The implementation of optional RISC-V extensions has the potential to open covert channels between separate user threads, or between separate guest OSes running under a hypervisor.\",\n      \"line_number\": 1,\n      \"reason\": \"This is a general statement about the implications of implementing extensions, not a specific architectural parameter.\"\n    },\n    {\n      \"excerpt\": \"The problem occurs when an extension adds processor state -- usually explicit registers, but possibly other forms of state -- that the main OS or hypervisor is unaware of.\",\n      \"line_number\": 5,\n      \"reason\": \"This describes a potential issue with extensions rather than a parameter that can be chosen by the implementer.\"\n    },\n    {\n      \"excerpt\": \"The number of registers provided at each level is four because it is believed that 4 * 64 = 256 bits for machine and hypervisor levels, and 4 * 32 = 128 bits for supervisor level, will be adequate for many years to come.\",\n      \"line_number\": 66,\n      \"reason\": \"This is a rationale for the number of registers rather than a parameter that can be chosen by the implementer.\"\n    },\n    {\n      \"excerpt\": \"When this extension is not implemented, all state added by an extension is accessible as defined by that extension.\",\n      \"line_number\": 92,\n      \"reason\": \"This describes behavior when the extension is not implemented, not a parameter that can be chosen by the implementer.\"\n    },\n    {\n      \"excerpt\": \"If machine level sets any writable `mstateen` bits to nonzero, it must initialize the matching `hstateen` CSRs, if they exist, by writing zeros to them.\",\n      \"line_number\": 284,\n      \"reason\": \"This describes a requirement for software behavior rather than an architectural parameter.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 11678,
+  "output_tokens": 2032,
+  "latency_ms": 30278,
+  "timestamp": "2026-07-24T18:28:25.668093+00:00",
+  "error": null,
+  "retry_count": 0
+}

@@ -1,0 +1,94 @@
+{
+  "chunk_id": "chunk_038",
+  "source_file": "rnmi.adoc",
+  "start_line": 1,
+  "end_line": 166,
+  "content_start_line": 1,
+  "model": "gpt-4o-mini",
+  "parameters": [
+    {
+      "excerpt": "The RNMI interrupt trap handler address is implementation-defined.",
+      "line_number": 30,
+      "parameter_name": "RNMI_INTERRUPT_TRAP_HANDLER_ADDRESS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The RNMI interrupt trap handler address is a design-time decision left to the implementer, making it a direct implementation choice."
+    },
+    {
+      "excerpt": "RNMI also has an associated exception trap handler address, which is implementation defined.",
+      "line_number": 34,
+      "parameter_name": "RNMI_EXCEPTION_TRAP_HANDLER_ADDRESS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The RNMI exception trap handler address is also a design-time decision left to the implementer, indicating it is a direct implementation choice."
+    },
+    {
+      "excerpt": "`mnepc` is a WARL register that must be able to hold all valid virtual addresses.",
+      "line_number": 66,
+      "parameter_name": "MNEPC_VALID_ADDRESS_CAPACITY",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The `mnepc` register is WARL, and the set of valid virtual addresses it can hold is implementation-defined, making it a parameter of class NORM_CSR_WARL."
+    },
+    {
+      "excerpt": "If an implementation allows IALIGN to be either 16 or 32 (by changing CSR `misa`, for example), then, whenever IALIGN=32, bit `mnepc[1]` is masked on reads so that it appears to be 0.",
+      "line_number": 70,
+      "parameter_name": "MNEPC_IALIGN_MASKING",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice of whether to mask bit `mnepc[1]` based on IALIGN is an implementation decision, making it a direct parameter."
+    },
+    {
+      "excerpt": "`mnstatus` also holds the NMIE bit. When NMIE=1, non-maskable interrupts are enabled.",
+      "line_number": 102,
+      "parameter_name": "NMIE_ENABLE_STATE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The NMIE bit in `mnstatus` can be set or cleared by software, indicating whether non-maskable interrupts are enabled or disabled, which is a read-write characteristic."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "RNMIs are masked out of reset to give software the opportunity to initialize data structures and devices for subsequent RNMI handling.",
+      "line_number": 118,
+      "reason": "This is a description of behavior during reset and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "The other bits in `mnstatus` are reserved; software should write zeros and hardware implementations should return zeros.",
+      "line_number": 108,
+      "reason": "This describes a fixed requirement for reserved bits and does not leave any choice to the implementer."
+    },
+    {
+      "excerpt": "Software can set NMIE to 1, but attempts to clear NMIE have no effect.",
+      "line_number": 112,
+      "reason": "This describes the behavior of the NMIE bit but does not indicate an implementation choice regarding its functionality."
+    },
+    {
+      "excerpt": "When NMIE=0, the hart behaves as though `mstatus`.MPRV were clear, regardless of the current setting of `mstatus`.MPRV.",
+      "line_number": 104,
+      "reason": "This describes behavior based on the state of NMIE and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "To support this feature in a direct manner would have required allowing software to clear the NMIE bit\u2014a design choice that would have contravened the concept of non-maskability.",
+      "line_number": 116,
+      "reason": "This is a commentary on design choices rather than a specification of an architectural parameter."
+    }
+  ],
+  "raw_response": "```json\n{\n  \"parameters\": [\n    {\n      \"excerpt\": \"The RNMI interrupt trap handler address is implementation-defined.\",\n      \"line_number\": 30,\n      \"parameter_name\": \"RNMI_INTERRUPT_TRAP_HANDLER_ADDRESS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"value\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The RNMI interrupt trap handler address is a design-time decision left to the implementer, making it a direct implementation choice.\"\n    },\n    {\n      \"excerpt\": \"RNMI also has an associated exception trap handler address, which is implementation defined.\",\n      \"line_number\": 34,\n      \"parameter_name\": \"RNMI_EXCEPTION_TRAP_HANDLER_ADDRESS\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"value\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The RNMI exception trap handler address is also a design-time decision left to the implementer, indicating it is a direct implementation choice.\"\n    },\n    {\n      \"excerpt\": \"`mnepc` is a WARL register that must be able to hold all valid virtual addresses.\",\n      \"line_number\": 66,\n      \"parameter_name\": \"MNEPC_VALID_ADDRESS_CAPACITY\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_WARL\",\n      \"value_type\": \"set\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The `mnepc` register is WARL, and the set of valid virtual addresses it can hold is implementation-defined, making it a parameter of class NORM_CSR_WARL.\"\n    },\n    {\n      \"excerpt\": \"If an implementation allows IALIGN to be either 16 or 32 (by changing CSR `misa`, for example), then, whenever IALIGN=32, bit `mnepc[1]` is masked on reads so that it appears to be 0.\",\n      \"line_number\": 70,\n      \"parameter_name\": \"MNEPC_IALIGN_MASKING\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_DIRECT\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The choice of whether to mask bit `mnepc[1]` based on IALIGN is an implementation decision, making it a direct parameter.\"\n    },\n    {\n      \"excerpt\": \"`mnstatus` also holds the NMIE bit. When NMIE=1, non-maskable interrupts are enabled.\",\n      \"line_number\": 102,\n      \"parameter_name\": \"NMIE_ENABLE_STATE\",\n      \"existing_udb_name\": null,\n      \"class\": \"NORM_CSR_RW\",\n      \"value_type\": \"binary\",\n      \"confidence\": \"high\",\n      \"reasoning\": \"The NMIE bit in `mnstatus` can be set or cleared by software, indicating whether non-maskable interrupts are enabled or disabled, which is a read-write characteristic.\"\n    }\n  ],\n  \"skipped_non_parameters\": [\n    {\n      \"excerpt\": \"RNMIs are masked out of reset to give software the opportunity to initialize data structures and devices for subsequent RNMI handling.\",\n      \"line_number\": 118,\n      \"reason\": \"This is a description of behavior during reset and does not indicate an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"The other bits in `mnstatus` are reserved; software should write zeros and hardware implementations should return zeros.\",\n      \"line_number\": 108,\n      \"reason\": \"This describes a fixed requirement for reserved bits and does not leave any choice to the implementer.\"\n    },\n    {\n      \"excerpt\": \"Software can set NMIE to 1, but attempts to clear NMIE have no effect.\",\n      \"line_number\": 112,\n      \"reason\": \"This describes the behavior of the NMIE bit but does not indicate an implementation choice regarding its functionality.\"\n    },\n    {\n      \"excerpt\": \"When NMIE=0, the hart behaves as though `mstatus`.MPRV were clear, regardless of the current setting of `mstatus`.MPRV.\",\n      \"line_number\": 104,\n      \"reason\": \"This describes behavior based on the state of NMIE and does not indicate an implementation choice.\"\n    },\n    {\n      \"excerpt\": \"To support this feature in a direct manner would have required allowing software to clear the NMIE bit\u2014a design choice that would have contravened the concept of non-maskability.\",\n      \"line_number\": 116,\n      \"reason\": \"This is a commentary on design choices rather than a specification of an architectural parameter.\"\n    }\n  ]\n}\n```",
+  "input_tokens": 8992,
+  "output_tokens": 993,
+  "latency_ms": 10900,
+  "timestamp": "2026-07-24T20:34:19.473590+00:00",
+  "error": null,
+  "retry_count": 0
+}
