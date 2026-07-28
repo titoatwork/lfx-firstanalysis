@@ -1,0 +1,81 @@
+{
+  "parameters": [
+    {
+      "excerpt": "NOTE: It is implementation defined whether interrupts can also be taken during the sequence execution.",
+      "line_number": 950,
+      "parameter_name": "HW_ZCMP_INTERRUPTS_DURING_PUSHPOP",
+      "existing_udb_name": null,
+      "class": "SW_RULE",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The spec explicitly states it is 'implementation defined' whether interrupts can be taken during PUSH/POP sequence execution. This is a binary implementation choice (allow or disallow interrupts during the multi-cycle sequence). Software can handle this deterministically by not relying on interrupt timing during these sequences, making it a SW_RULE parameter."
+    },
+    {
+      "excerpt": "It is platform defined whether the core implementation waits for the bus responses before continuing to the final stage of the sequence, or handles errors responses after completing the PUSH instruction.",
+      "line_number": 970,
+      "parameter_name": "ZCMP_PUSH_BUS_FAULT_HANDLING",
+      "existing_udb_name": null,
+      "class": "NON_ISA",
+      "value_type": "enum",
+      "confidence": "medium",
+      "reasoning": "The spec uses 'platform defined' (not 'implementation defined') for bus fault handling behavior during PUSH. This is a platform-level choice about memory system interaction, outside the ISA proper, classifying it as NON_ISA."
+    },
+    {
+      "excerpt": "If <<Zcmt>> is implemented then _jvt_ must also be implemented, but can contain a read-only value. If _jvt_ is writable, the set of values the register may hold can vary by implementation.",
+      "line_number": 2350,
+      "parameter_name": "JVT_ACCESS",
+      "existing_udb_name": "JVT_READ_ONLY",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The jvt CSR must be implemented if Zcmt is present, but the implementation chooses whether it is read-only (fixed value) or read-write. This is a binary choice about the mutability of the register, matching the known UDB parameter JVT_READ_ONLY."
+    },
+    {
+      "excerpt": "If _jvt_ is writable, the set of values the register may hold can vary by implementation.",
+      "line_number": 2352,
+      "parameter_name": "JVT_WARL_VALUES",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "When jvt is writable, the set of legal values for its BASE and MODE fields is implementation-defined (WARL). The parameter is the subset of architecturally possible values that the implementation actually supports."
+    },
+    {
+      "excerpt": "_jvt.mode_ is a *WARL* field, so can only be programmed to modes which are implemented.",
+      "line_number": 2370,
+      "parameter_name": "JVT_MODES",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The jvt.mode field is WARL, and the set of supported mode values (currently only mode 0 'Jump table mode' is defined, but future modes may be added) varies by implementation. The parameter is the set of legal mode values the implementation accepts."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "Zcmp is primarily targeted at embedded class CPUs due to implementation complexity. Additionally, it is not compatible with application class profiles.",
+      "line_number": 130,
+      "reason": "This is a recommendation about target audience and profile compatibility, not an implementation-defined parameter. The incompatibility with Zcd is a fixed architectural constraint."
+    },
+    {
+      "excerpt": "Prerequisites:: Zbb is also required.",
+      "line_number": 400,
+      "reason": "This is a fixed dependency requirement for the c.sext.b instruction (requires Zbb extension), not an implementation choice."
+    },
+    {
+      "excerpt": "The entire PUSH/POP sequence is re-executed after returning from the trap handler, and multiple traps are possible during the sequence.",
+      "line_number": 940,
+      "reason": "This describes mandatory architectural behavior for trap handling during PUSH/POP, not an implementation-defined parameter."
+    },
+    {
+      "excerpt": "cm.jt reads an entry from the jump vector table in memory and jumps to the address that was read.",
+      "line_number": 2450,
+      "reason": "This describes the fixed semantic behavior of the cm.jt instruction when jvt.mode=0, not an implementation choice."
+    },
+    {
+      "excerpt": "The _s_ register mapping is taken from the UABI, and may not match the currently unratified EABI. _cm.mvsa01.e_ may be included in the future.",
+      "line_number": 1800,
+      "reason": "This is a comment about ABI mapping and future extension possibilities, not a current architectural parameter."
+    }
+  ]
+}

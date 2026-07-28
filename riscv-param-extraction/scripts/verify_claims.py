@@ -117,6 +117,7 @@ def decomp_range(field: str, fn):
 
 
 GEMINI_RUN = "20260728T015247Z_gemini-3.6-flash"
+NEMOTRON_RUN = "20260728T015526Z_nvidia_nemotron-3-ultra-550b-a55b_free"
 
 
 def call_outcome(arm: str, kind: str):
@@ -132,7 +133,15 @@ def call_outcome(arm: str, kind: str):
     def classify(err: str) -> str:
         if not err:
             return "ok"
-        return "quota" if "RESOURCE_EXHAUSTED" in err else "network"
+        # "refused" is the provider saying no, whether that is a daily quota
+        # (Gemini: RESOURCE_EXHAUSTED) or a throughput cap (OpenRouter: Rate
+        # limit exceeded). Both are the vendor's decision. Everything else is
+        # this machine failing, and must never be reported as a vendor limit.
+        if "RESOURCE_EXHAUSTED" in err or "Rate limit" in err:
+            return "quota"
+        if "getaddrinfo" in err or "unreachable" in err:
+            return "network"
+        return "other"
 
     return lambda d: sum(
         1 for c in d["calls"]
@@ -362,6 +371,31 @@ CLAIMS: list[Claim] = [
     Claim("gemini.armB_network", 53, "PRIMARY_RESULTS.md limitations",
           AC_RUNS / GEMINI_RUN / "RUN_MANIFEST.json",
           call_outcome("B", "network"), tags=["gemini"]),
+
+    # ---- third provider, third failure mode: OpenRouter throughput cap ----
+    # No network failures here at all, so unlike the Gemini arm B this one is
+    # cleanly attributable to the vendor.
+    Claim("nemotron.armA_ok", 50, "PRIMARY_RESULTS.md limitations",
+          AC_RUNS / NEMOTRON_RUN / "RUN_MANIFEST.json",
+          call_outcome("A", "ok"), tags=["nemotron"]),
+    Claim("nemotron.armA_refused", 9, "PRIMARY_RESULTS.md limitations",
+          AC_RUNS / NEMOTRON_RUN / "RUN_MANIFEST.json",
+          call_outcome("A", "quota"), tags=["nemotron"]),
+    Claim("nemotron.armA_network", 0, "PRIMARY_RESULTS.md limitations",
+          AC_RUNS / NEMOTRON_RUN / "RUN_MANIFEST.json",
+          call_outcome("A", "network"), tags=["nemotron"]),
+    Claim("nemotron.armB_ok", 0, "PRIMARY_RESULTS.md limitations",
+          AC_RUNS / NEMOTRON_RUN / "RUN_MANIFEST.json",
+          call_outcome("B", "ok"), tags=["nemotron"]),
+    Claim("nemotron.armB_refused", 60, "PRIMARY_RESULTS.md limitations",
+          AC_RUNS / NEMOTRON_RUN / "RUN_MANIFEST.json",
+          call_outcome("B", "quota"), tags=["nemotron"]),
+    # The fragment must stay below the 60-chunk gate. If a future edit ever
+    # pushes it to 60 without a real re-run, this fails rather than letting a
+    # 50-chunk arm into a published table.
+    Claim("nemotron.armA_is_fragment", True, "PRIMARY_RESULTS.md limitations",
+          AC_RUNS / NEMOTRON_RUN / "RUN_MANIFEST.json",
+          lambda d: call_outcome("A", "ok")(d) < 60, tags=["nemotron"]),
 ]
 
 # Claims that are true but cannot be re-derived from anything committed.

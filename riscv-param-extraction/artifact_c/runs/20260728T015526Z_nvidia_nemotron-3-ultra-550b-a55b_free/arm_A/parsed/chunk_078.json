@@ -1,0 +1,27 @@
+{
+  "chunk_id": "chunk_078",
+  "arm": "A",
+  "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "parameters": [
+    {
+      "excerpt": "The current standard only supports PMLEN=XLEN-48 (i.e., PMLEN=16 in RV64) and PMLEN=XLEN-57 (i.e., PMLEN=7 in RV64).",
+      "line_number": 123,
+      "parameter_name": "PMLEN",
+      "existing_udb_name": "PMLEN",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "PMLEN is a configurable parameter set via CSR fields with WARL semantics. The standard defines two possible values (XLEN-48 and XLEN-57), and the implementation chooses which subset of these values are legal for each privilege mode."
+    },
+    {
+      "excerpt": "Profiles and implementations may choose to support an arbitrary subset of these extensions and must define valid ranges for their corresponding values of PMLEN.",
+      "line_number": 204,
+      "parameter_name": "PM_EXTENSIONS_IMPLEMENTED",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The specification explicitly states that implementations may choose an arbitrary subset of the five pointer masking extensions (Ssnpm, Smnpm, Smmpm, Sspm, Supm) to implement. This is a direct design-time choice not controlled by a CSR field."
+    }
+  ]
+}

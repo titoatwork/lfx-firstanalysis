@@ -1,0 +1,30 @@
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "RV64I widens the integer registers and supported user address space to 64 bits (XLEN=64 in <<gprs>>).",
+      "line_number": 7,
+      "reason": "This is a fixed architectural requirement for RV64I (XLEN=64), not an implementation choice. All RV64I implementations must have 64-bit registers."
+    },
+    {
+      "excerpt": "In RV64I, only the low 6 bits of _rs2_ are considered for the shift amount.",
+      "line_number": 69,
+      "reason": "This is a fixed ISA definition for shift instruction behavior in RV64I, not an implementation-defined parameter."
+    },
+    {
+      "excerpt": "SLLIW, SRLIW, and SRAIW encodings with _imm[5] {ne} 0_ are reserved.",
+      "line_number": 40,
+      "reason": "This is a fixed architectural definition of reserved encodings, not an implementation choice. The spec explicitly defines these as reserved."
+    },
+    {
+      "excerpt": "91% of the HINT space is reserved for standard HINTs. The remainder of the HINT space is designated for custom HINTs; no standard HINTs will ever be defined in this subspace.",
+      "line_number": 97,
+      "reason": "This is a fixed architectural allocation of the HINT encoding space, not an implementation parameter. The division between standard and custom is mandated by the spec."
+    },
+    {
+      "excerpt": "The execution environment will define what portions of the address space are legal to access.",
+      "line_number": 77,
+      "reason": "This delegates to the execution environment (platform), not the ISA implementation. It describes a platform-level choice, not an architectural parameter of the RV64I ISA itself."
+    }
+  ]
+}

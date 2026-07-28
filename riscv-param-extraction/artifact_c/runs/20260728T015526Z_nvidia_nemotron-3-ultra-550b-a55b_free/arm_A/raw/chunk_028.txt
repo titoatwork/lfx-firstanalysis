@@ -1,0 +1,41 @@
+{
+  "parameters": [
+    {
+      "excerpt": "Implementations are permitted but not required to raise an illegal-instruction exception if an instruction attempts to write a non-supported value to a WLRL field.",
+      "line_number": 1225,
+      "parameter_name": "TRAP_ON_ILLEGAL_WLRL",
+      "existing_udb_name": "TRAP_ON_ILLEGAL_WLRL",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The spec explicitly states that implementations may choose whether to trap on writes of unsupported values to WLRL fields. This is a direct implementation choice not controlled by any CSR field."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The top two bits (csr[11:10]) indicate whether the register is read/write (00,01, or 10) or read-only (11).",
+      "line_number": 45,
+      "reason": "This is a fixed architectural convention for CSR address encoding, not an implementation choice."
+    },
+    {
+      "excerpt": "Attempts to access a CSR without appropriate privilege level raise illegal-instruction exceptions or, as described in <<sec:hcauses>>, virtual-instruction exceptions.",
+      "line_number": 52,
+      "reason": "This is a mandatory requirement for all implementations, not an optional parameter."
+    },
+    {
+      "excerpt": "Implementations should raise illegal-instruction exceptions on machine-mode access to the latter set of registers.",
+      "line_number": 58,
+      "reason": "This is a recommendation ('should') for debug CSR access behavior, not an architectural parameter left to the implementer."
+    },
+    {
+      "excerpt": "Software should ignore the values read from these fields, and should preserve the values held in these fields when writing values to other fields of the same register.",
+      "line_number": 1195,
+      "reason": "This describes software obligations for WPRI fields, not an implementation-defined parameter."
+    },
+    {
+      "excerpt": "For forward compatibility, implementations that do not furnish these fields must make them read-only zero.",
+      "line_number": 1197,
+      "reason": "This is a mandatory requirement for unimplemented WPRI fields, not a choice."
+    }
+  ]
+}

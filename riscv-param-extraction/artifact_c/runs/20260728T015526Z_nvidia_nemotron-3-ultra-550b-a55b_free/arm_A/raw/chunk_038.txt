@@ -1,0 +1,76 @@
+{
+  "parameters": [
+    {
+      "excerpt": "The RNMI interrupt trap handler address is implementation-defined.",
+      "line_number": 38,
+      "parameter_name": "RNMI_INTERRUPT_HANDLER_ADDRESS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The spec explicitly states the RNMI interrupt trap handler address is implementation-defined, making it a direct design-time choice of a specific address value. Not controlled by any CSR field."
+    },
+    {
+      "excerpt": "RNMI also has an associated exception trap handler address, which is implementation defined.",
+      "line_number": 40,
+      "parameter_name": "RNMI_EXCEPTION_HANDLER_ADDRESS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The spec explicitly states the RNMI exception trap handler address is implementation-defined, a direct design-time choice of an address value. The NOTE suggesting mtvec as an example is non-normative."
+    },
+    {
+      "excerpt": "`mnepc` is a *WARL* register that must be able to hold all valid virtual addresses. It need not be capable of holding all possible invalid addresses. Prior to writing `mnepc`, implementations may convert an invalid address into some other invalid address that `mnepc` is capable of holding.",
+      "line_number": 75,
+      "parameter_name": "MNEPC_WARL_VALUES",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "mnepc is explicitly designated WARL. The set of legal values it can hold (all valid virtual addresses plus any subset of invalid addresses) and the conversion function for invalid addresses are implementation-defined choices about the WARL register's legal value set."
+    },
+    {
+      "excerpt": "If the reason is an interrupt and RNMI causes are not supported, bit MXLEN-1 is set to 1, and zero is written to the least-significant bits.",
+      "line_number": 87,
+      "parameter_name": "RNMI_CAUSES_SUPPORTED",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "medium",
+      "reasoning": "The conditional phrasing 'RNMI causes are not supported' implies a binary implementation choice: whether the hardware supports distinct RNMI cause codes in mncause or only signals 'interrupt with zero cause'. This is a direct design-time parameter not controlled by a CSR field."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "These interrupts have higher priority than any other interrupt or exception on the hart and cannot be disabled by software.",
+      "line_number": 31,
+      "reason": "Fixed architectural requirement (priority and non-maskability), not an implementation choice."
+    },
+    {
+      "excerpt": "The `mnscratch` CSR holds an MXLEN-bit read-write register",
+      "line_number": 54,
+      "reason": "Fixed requirement for mnscratch size and access type; no implementation optionality."
+    },
+    {
+      "excerpt": "The low bit of `mnepc` (`mnepc[0]`) is always zero. On implementations that support only IALIGN=32, the two low bits (`mnepc[1:0]`) are always zero.",
+      "line_number": 65,
+      "reason": "Fixed hardware behavior conditioned on IALIGN (a separate parameter), not an independent choice in this extension."
+    },
+    {
+      "excerpt": "Upon reset, NMIE contains the value 0.",
+      "line_number": 114,
+      "reason": "Fixed reset value requirement, not an implementation-defined parameter."
+    },
+    {
+      "excerpt": "Software can set NMIE to 1, but attempts to clear NMIE have no effect.",
+      "line_number": 122,
+      "reason": "Fixed WARL behavior of the NMIE field (set-once), not a configurable parameter."
+    },
+    {
+      "excerpt": "NOTE: For example, some implementations might use the address specified in `mtvec` as the RNMI exception trap handler.",
+      "line_number": 43,
+      "reason": "Text inside a [NOTE] block is non-normative (NON_NORM); it illustrates a possibility but does not define a parameter."
+    }
+  ]
+}

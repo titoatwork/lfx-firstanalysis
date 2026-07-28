@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_038",
+  "arm": "A",
+  "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "parameters": [
+    {
+      "excerpt": "The RNMI interrupt trap handler address is implementation-defined.",
+      "line_number": 38,
+      "parameter_name": "RNMI_INTERRUPT_HANDLER_ADDRESS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The spec explicitly states the RNMI interrupt trap handler address is implementation-defined, making it a direct design-time choice of a specific address value. Not controlled by any CSR field."
+    },
+    {
+      "excerpt": "RNMI also has an associated exception trap handler address, which is implementation defined.",
+      "line_number": 40,
+      "parameter_name": "RNMI_EXCEPTION_HANDLER_ADDRESS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The spec explicitly states the RNMI exception trap handler address is implementation-defined, a direct design-time choice of an address value. The NOTE suggesting mtvec as an example is non-normative."
+    },
+    {
+      "excerpt": "`mnepc` is a *WARL* register that must be able to hold all valid virtual addresses. It need not be capable of holding all possible invalid addresses. Prior to writing `mnepc`, implementations may convert an invalid address into some other invalid address that `mnepc` is capable of holding.",
+      "line_number": 75,
+      "parameter_name": "MNEPC_WARL_VALUES",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "mnepc is explicitly designated WARL. The set of legal values it can hold (all valid virtual addresses plus any subset of invalid addresses) and the conversion function for invalid addresses are implementation-defined choices about the WARL register's legal value set."
+    },
+    {
+      "excerpt": "If the reason is an interrupt and RNMI causes are not supported, bit MXLEN-1 is set to 1, and zero is written to the least-significant bits.",
+      "line_number": 87,
+      "parameter_name": "RNMI_CAUSES_SUPPORTED",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "medium",
+      "reasoning": "The conditional phrasing 'RNMI causes are not supported' implies a binary implementation choice: whether the hardware supports distinct RNMI cause codes in mncause or only signals 'interrupt with zero cause'. This is a direct design-time parameter not controlled by a CSR field."
+    }
+  ]
+}

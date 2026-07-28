@@ -1,0 +1,61 @@
+Based on my analysis of the Smcdeleg/Ssccfg Counter Delegation Extensions specification, here are the architectural parameters with their defining line numbers:
+
+## Architectural Parameters
+
+| Parameter | Description | Defining Line(s) |
+|-----------|-------------|------------------|
+| **menvcfg.CDE** | Counter Delegation Enable bit in menvcfg CSR; enables counter delegation to S-mode when set | 7, 40, 54, 62, 67 |
+| **mcounteren** | Machine Counter Enable register; 32-bit register controlling read access and delegation for counters 0-31 | 5, 7, 43 |
+| **mcounteren[i] (i=0..31)** | Individual counter delegation bits; bit i=1 delegates counter i to S-mode (when CDE=1) | 7, 43 |
+| **mcountinhibit** | Machine Counter Inhibit register; bits control counting for each counter | 58 |
+| **scountinhibit** | Supervisor Counter Inhibit register; new CSR defined by Smcdeleg/Ssccfg, masked alias of mcountinhibit | 58, 59, 60, 62, 63 |
+| **scountovf** | Supervisor Counter Overflow register; virtualizable when H extension present | 67 |
+| **mstateen0[60]** | Bit 60 of mstateen0 CSR; when 0, blocks access to siselect/sireg*/vsiselect/vsireg* from modes less privileged than M-mode | 32, 36 |
+| **hstateen0[60]** | Bit 60 of hstateen0 CSR; when 0, blocks access to vsiselect/vsireg* from VS-mode | 32, 36 |
+| **XLEN** | XLEN value (32 or 64); affects legality of sireg4/sireg5 access (illegal when XLEN=64) | 42 |
+| **siselect** | Supervisor Index Select register; index range 0x40-0x5F reserved for delegated counter access | 10, 38 |
+| **vsiselect** | Virtual Supervisor Index Select register; index range 0x40-0x5F for virtualized counter access | 10, 50 |
+| **sireg* registers** | Indirect HPM data registers (sireg/sireg2/sireg3/sireg4/sireg5/sireg6) for accessing delegated counter state | 15, 41, 42 |
+| **vsireg* registers** | Virtual Supervisor indirect HPM data registers for VS-mode access to virtualized counter state | 15, 50, 53, 54 |
+| **mvip[13] (LCOFI)** | Local Counter Overflow Interrupt bit (bit 13) in mvip; required when Smcdeleg+Sscofpmf+Smaia implemented | 71 |
+| **mvien[13] (LCOFI)** | LCOFI bit (bit 13) in mvien; required when Smcdeleg+Sscofpmf+Smaia implemented | 71 |
+| **hvip[13] (LCOFI)** | LCOFI bit (bit 13) in hvip; required when Smcdeleg/Ssccfg+Sscofpmf+Smaia/Ssaia+H implemented | 74 |
+| **hvien[13] (LCOFI)** | LCOFI bit (bit 13) in hvien; required when Smcdeleg/Ssccfg+Sscofpmf+Smaia/Ssaia+H implemented | 74 |
+| **vsie[13] (LCOFI)** | LCOFI bit (bit 13) in vsie; implicitly implemented when hvip[13] implemented | 79 |
+| **vsip[13] (LCOFI)** | LCOFI bit (bit 13) in vsip; implicitly implemented when hvip[13] implemented | 79 |
+| **mideleg[13] (LCOFI)** | LCOFI bit (bit 13) in mideleg; optional, enables delegation of LCOFI to S-mode | 81 |
+| **hideleg[13] (LCOFI)** | LCOFI bit (bit 13) in hideleg; optional, enables delegation of LCOFI to VS-mode | 81 |
+| **Zicntr extension** | Base counter extension presence; required for cycle/instret counters | 23 |
+| **Zihpm extension** | HPM extension presence; required for hpmcounter3-31 | 24 |
+| **Sscofpmf extension** | Supervisor Counter Overflow/Filter extension presence; affects hpmevent MINH bit access | 25 |
+| **Smcntrpmf extension** | Machine Counter Performance Monitoring extension presence; affects cyclecfg/instretcfg MINH bit access | 26 |
+| **Smstateen extension** | State Enable extension presence; enables mstateen0/hstateen0 access control | 32 |
+| **Smcsrind/Sscsrind extensions** | Indirect CSR Access extensions presence; defines mstateen0/hstateen0 behavior | 32 |
+| **H extension** | Hypervisor extension presence; enables VS-mode, hvip, hideleg, virtualization features | 50 |
+| **Smaia/Ssaia extensions** | Advanced Interrupt Architecture extensions presence; defines mvip/mvien/hvien | 71, 74 |
+| **Smcdeleg/Ssccfg extensions** | Counter Delegation extensions presence; must be implemented in tandem | 1, 7, 58, 71, 74 |
+| **hpmevent.MINH (bit 62)** | MINH bit (bit 62) in hpmevent; read-only 0 when accessed via sireg* if Sscofpmf implemented | 28 |
+| **cyclecfg/instretcfg.MINH (bit 62)** | MINH bit (bit 62) in cyclecfg/instretcfg; read-only 0 when accessed via sireg* if Smcntrpmf implemented | 30 |
+| **siselect counter mapping** | siselect=0x40→cycle(0), 0x41→mtime(special), 0x42→instret(1), 0x43-0x5F→hpmcounter3-31(3-31) | 16-21 |
+| **sireg3/sireg6 access policy** | Access to sireg3 and sireg6 always raises illegal-instruction exception | 41 |
+| **sireg4/sireg5 access policy** | Access to sireg4/sireg5 raises illegal-instruction exception when XLEN=64 | 42 |
+| **mcounteren[i]=0 behavior** | Access to sireg* for non-delegated counter (mcounteren[i]=0) raises illegal-instruction exception | 43 |
+| **mstateen0[60]=0 behavior** | Blocks access to siselect/sireg*/vsiselect/vsireg* from S/U/VS/VU modes | 32, 36 |
+| **hstateen0[60]=0 behavior** | Blocks access to vsiselect/vsireg* from VS-mode | 32, 36 |
+| **H extension: VS-mode vsireg* from M/S** | Access to vsireg* from M/S mode raises illegal-instruction exception | 53 |
+| **H extension: VS-mode sireg* access** | Access to sireg* (really vsireg*) from VS-mode: illegal if CDE=0, virtual-instruction if CDE=1 | 54 |
+| **Missing extension for counter state** | Access to sireg* for counter state requiring unimplemented extension raises illegal-instruction exception | 48 |
+| **menvcfg.CDE=0: sireg* access** | Access to any sireg* when CDE=0 raises illegal-instruction exception | 40 |
+| **menvcfg.CDE=0: scountinhibit access** | Access to scountinhibit when CDE=0 raises illegal-instruction exception | 62 |
+| **menvcfg.CDE=1: VS-mode scountinhibit** | VS/VU-mode access to scountinhibit raises virtual-instruction exception | 63 |
+| **menvcfg.CDE=1: VS-mode scountovf read** | VS/VU-mode read of scountovf raises virtual-instruction exception | 67 |
+| **scountinhibit delegated bits** | For delegated counters, associated mcountinhibit bits are RW via scountinhibit | 59 |
+| **scountinhibit non-delegated bits** | For non-delegated counters, associated scountinhibit bits are read-only zero | 60 |
+| **Smcdeleg/Ssccfg tandem requirement** | Smcdeleg and Ssccfg must always be implemented together on a RISC-V platform | 7 |
+
+## Notes
+
+- Parameters marked as "optional" (mideleg[13], hideleg[13]) are architecturally permitted to be unimplemented or read-only zero
+- Extension presence parameters (Zicntr, Zihpm, Sscofpmf, Smcntrpmf, Smstateen, Smcsrind/Sscsrind, H, Smaia/Ssaia, Smcdeleg/Ssccfg) are boolean architectural parameters indicating whether the extension is implemented
+- The siselect counter mapping is a fixed architectural mapping, not a configurable parameter
+- Access control behaviors (illegal-instruction vs virtual-instruction exceptions) are architecturally mandated based on the stated conditions

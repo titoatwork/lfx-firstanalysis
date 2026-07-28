@@ -1,0 +1,111 @@
+{
+  "parameters": [
+    {
+      "excerpt": "An implementation can register an arbitrarily large reservation set on each LR, provided the reservation set includes all bytes of the addressed data word or doubleword.",
+      "line_number": 100,
+      "parameter_name": "LRSC_RESERVATION_STRATEGY",
+      "existing_udb_name": "LRSC_RESERVATION_STRATEGY",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The size and shape of the LR reservation set is an implementation choice (arbitrarily large but must cover the accessed bytes). This is a direct microarchitectural parameter not controlled by any CSR."
+    },
+    {
+      "excerpt": "but it is UNSPECIFIED whether any side effects of implicit address translation and protection memory accesses (such as setting a page-table entry D bit) occur on a failed SC.W.",
+      "line_number": 75,
+      "parameter_name": "LRSC_FAILED_SC_D_BIT_UPDATE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The spec explicitly marks as UNSPECIFIED whether a failed SC.W updates page-table D bits. This is a binary implementation choice about side effects of failed store-conditionals."
+    },
+    {
+      "excerpt": "For the purposes of memory protection, a failed SC.W may be treated like a store.",
+      "line_number": 76,
+      "parameter_name": "LRSC_FAILED_SC_AS_STORE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether a failed SC.W is treated as a store for memory protection checks (e.g., permission faults). This is a binary design-time choice."
+    },
+    {
+      "excerpt": "If the address is not naturally aligned, an address-misaligned exception or an access-fault exception will be generated. The access-fault exception can be generated for a memory access that would otherwise be able to complete except for the misalignment, if the misaligned access should not be emulated.",
+      "line_number": 90,
+      "parameter_name": "LRSC_MISALIGNED_BEHAVIOR",
+      "existing_udb_name": "LRSC_MISALIGNED_BEHAVIOR",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "For misaligned LR/SC addresses, the implementation chooses between raising an address-misaligned exception or an access-fault exception. This is a direct implementation parameter with finite enum choices."
+    },
+    {
+      "excerpt": "If the address is not naturally aligned, an address-misaligned exception or an access-fault exception will be generated. The access-fault exception can be generated for a memory access that would otherwise be able to complete except for the misalignment, if the misaligned access should not be emulated.",
+      "line_number": 217,
+      "parameter_name": "MISALIGNED_AMO",
+      "existing_udb_name": "MISALIGNED_AMO",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "Same exception-type choice for misaligned AMO addresses as for LR/SC. The implementation selects between address-misaligned and access-fault exceptions."
+    },
+    {
+      "excerpt": "The misaligned atomicity granule PMA, defined in Volume II of this manual, optionally relaxes this alignment requirement. If present, the misaligned atomicity granule PMA specifies the size of a misaligned atomicity granule, a power-of-two number of bytes.",
+      "line_number": 220,
+      "parameter_name": "MISALIGNED_MAX_ATOMICITY_GRANULE_SIZE",
+      "existing_udb_name": "MISALIGNED_MAX_ATOMICITY_GRANULE_SIZE",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The presence and size (power-of-two bytes) of the misaligned atomicity granule PMA is an optional implementation parameter. If implemented, the granule size is chosen from a range of power-of-two values."
+    },
+    {
+      "excerpt": "(If such a device writes the reservation set but does not write the bytes accessed by the LR, the SC may or may not fail.)",
+      "line_number": 110,
+      "parameter_name": "LRSC_DEVICE_WRITE_RESERVATION_SET_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "medium",
+      "reasoning": "When a non-hart device writes to the reservation set but not the exact bytes accessed by the LR, the spec says the SC 'may or may not fail' — a binary implementation choice about reservation invalidation granularity for device writes."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "After much debate, the language community and architecture community appear to have finally settled on release consistency as the standard memory consistency model and so the RISC-V atomic support is built around this model.",
+      "line_number": 15,
+      "reason": "This text is inside a [NOTE] block, which is non-normative. It provides rationale, not architectural requirements or parameters."
+    },
+    {
+      "excerpt": "Both compare-and-swap (CAS) and LR/SC can be used to build lock-free data structures. After extensive discussion, we opted for LR/SC for several reasons...",
+      "line_number": 78,
+      "reason": "This is a [NOTE] block explaining design rationale. It does not define any implementation parameters."
+    },
+    {
+      "excerpt": "We reserve a failure code of 1 to mean ''unspecified'' so that simple implementations may return this value using the existing multiplexer required for the SLT/SLTU instructions.",
+      "line_number": 85,
+      "reason": "This is a [NOTE] block explaining the reasoning for a fixed architectural choice (failure code 1 = unspecified). The failure code encoding is fixed, not a parameter."
+    },
+    {
+      "excerpt": "The platform should provide a means to determine the size and shape of the reservation set. A platform specification may constrain the size and shape of the reservation set.",
+      "line_number": 112,
+      "reason": "This is a [NOTE] block describing platform-level requirements, not ISA architectural parameters. The 'should' and 'may' here are platform recommendations, not implementation choices left to the hardware designer by the ISA spec."
+    },
+    {
+      "excerpt": "Software should not set the _rl_ bit on an LR instruction unless the _aq_ bit is also set, nor should software set the _aq_ bit on an SC instruction unless the _rl_ bit is also set.",
+      "line_number": 130,
+      "reason": "This is a software rule (normative for software), not an implementation parameter. It constrains software behavior, not hardware design choices."
+    },
+    {
+      "excerpt": "If a hart _H_ enters a constrained LR/SC loop, the execution environment must guarantee that one of the following events eventually occurs...",
+      "line_number": 175,
+      "reason": "This is a requirement on the execution environment (livelock-freedom guarantee), not an implementation parameter. The 'must guarantee' applies to the system, not a design-time choice."
+    },
+    {
+      "excerpt": "We provided fetch-and-op style atomic primitives as they scale to highly parallel systems better than LR/SC or CAS. A simple microarchitecture can implement AMOs using the LR/SC primitives...",
+      "line_number": 225,
+      "reason": "This is a [NOTE] block with design rationale and implementation suggestions. The 'can implement' describes a possible technique, not a required or optional architectural parameter."
+    }
+  ]
+}

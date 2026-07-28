@@ -1,0 +1,41 @@
+{
+  "parameters": [
+    {
+      "excerpt": "The hardware platform may define that accesses to certain CSRs are strongly ordered, as defined by the Memory-Ordering PMAs section in Volume II of this manual. Accesses to strongly ordered CSRs have stronger ordering constraints with respect to accesses to both weakly ordered CSRs and accesses to memory-mapped I/O regions.",
+      "line_number": 240,
+      "parameter_name": "STRONGLY_ORDERED_CSRS",
+      "existing_udb_name": null,
+      "class": "NON_ISA",
+      "value_type": "set",
+      "confidence": "medium",
+      "reasoning": "The spec explicitly states the hardware platform may choose which CSRs have strong ordering (vs the default weak ordering). This is a platform-level configuration choice outside the core ISA, defining a subset of the 4096 CSR address space that gets stronger memory-ordering guarantees."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "For the RVWMO memory consistency model (<<memorymodel>>), CSR accesses are weakly ordered by default, so other harts or devices may observe CSR accesses in an order different from program order.",
+      "line_number": 220,
+      "reason": "This describes the default behavior (weak ordering) that all implementations must follow. The 'by default' indicates a baseline requirement, not an implementation choice. The choice to override this default for specific CSRs is the parameter (STRONGLY_ORDERED_CSRS), not this default rule."
+    },
+    {
+      "excerpt": "Standard CSRs do not have any side effects on reads. Standard CSRs may have side effects on writes.",
+      "line_number": 180,
+      "reason": "This is a normative statement about the standard CSR definitions in the privileged spec. It describes what the architecture specifies, not an implementation choice. Individual standard CSRs are defined elsewhere with fixed side-effect behavior."
+    },
+    {
+      "excerpt": "Custom extensions might add CSRs for which accesses have side effects on either reads or writes.",
+      "line_number": 185,
+      "reason": "This describes a possibility for custom extensions, not a parameter of the base Zicsr ISA. It does not indicate a choice left to the implementer of the standard extension."
+    },
+    {
+      "excerpt": "[NOTE]====\nInformally, the CSR space acts as a weakly ordered memory-mapped I/O region...\n====",
+      "line_number": 225,
+      "reason": "This text is inside a [NOTE] block, which is explicitly non-normative per the classification rules. Notes provide rationale and examples but do not define requirements or parameters."
+    },
+    {
+      "excerpt": "The CSRRW (Atomic Read/Write CSR) instruction atomically swaps values in the CSRs and integer registers.",
+      "line_number": 30,
+      "reason": "This is a fixed normative requirement for the CSRRW instruction behavior. All implementations must provide this exact semantics; there is no implementation-defined variation."
+    }
+  ]
+}

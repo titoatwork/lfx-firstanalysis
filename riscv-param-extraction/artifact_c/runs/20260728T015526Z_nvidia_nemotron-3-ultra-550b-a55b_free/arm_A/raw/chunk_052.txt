@@ -1,0 +1,30 @@
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The following bits are added to `mhpmevent`: [table showing OF, MINH, SINH, UINH, VSINH, VUINH at bits 63-56]",
+      "line_number": 30,
+      "reason": "These are standardized field definitions for mhpmevent, not implementation choices. The extension mandates these fields; they are not optional or configurable by the implementer beyond the base ISA's privilege mode support."
+    },
+    {
+      "excerpt": "For each ``x``INH bit, if the associated privilege mode is not implemented, the bit is read-only zero.",
+      "line_number": 52,
+      "reason": "This is a normative requirement conditional on the base ISA parameter of which privilege modes exist. It does not introduce a new architectural parameter."
+    },
+    {
+      "excerpt": "The OF bit is set when the corresponding hpmcounter overflows, and remains set until written by software.",
+      "line_number": 55,
+      "reason": "Fixed behavioral requirement for the OF bit, not an implementation choice."
+    },
+    {
+      "excerpt": "If supervisor mode is implemented, the 32-bit scountovf register contains read-only shadow copies of the OF bits in all 29 mhpmevent registers.",
+      "line_number": 63,
+      "reason": "The scountovf register's existence, width (32-bit), and function are mandated when S-mode is implemented. The number 29 derives from the base spec's maximum of 32 hpmcounters (3-31), not a new parameter."
+    },
+    {
+      "excerpt": "When an OF bit is set, it eventually, but not necessarily immediately, sets the LCOFIP bit in the `mip`/`sip` registers.",
+      "line_number": 72,
+      "reason": "This describes a liveness property (interrupt signaling will occur eventually) with no specified upper bound. It is a microarchitectural timing characteristic, not an ISA-visible architectural parameter that the implementer chooses from a defined set."
+    }
+  ]
+}

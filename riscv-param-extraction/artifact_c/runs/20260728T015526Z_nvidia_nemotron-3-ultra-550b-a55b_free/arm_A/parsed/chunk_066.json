@@ -1,0 +1,27 @@
+{
+  "chunk_id": "chunk_066",
+  "arm": "A",
+  "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "parameters": [
+    {
+      "excerpt": "bounds the stall duration to an implementation-define short timeout such that the stall is terminated on the timeout if no other conditions have occurred to terminate the stall.",
+      "line_number": 19,
+      "parameter_name": "WRS_STO_SHORT_TIMEOUT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The WRS.STO instruction's short timeout duration is explicitly left as an implementation-defined value. The implementer chooses the bound on stall duration at design time. This is a direct architectural parameter not controlled by any CSR field."
+    },
+    {
+      "excerpt": "and it does not complete within an implementation-specific bounded time limit, the `WRS.NTO` instruction will cause an illegal-instruction exception.",
+      "line_number": 51,
+      "parameter_name": "WRS_NTO_BOUNDED_TIME_LIMIT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "When the TW bit in mstatus is set (or VTW in hstatus), WRS.NTO must complete within an implementation-specific bounded time limit or trap. This time limit is a direct implementation choice. The same parameter applies to both the TW and VTW cases (lines 51 and 56)."
+    }
+  ]
+}

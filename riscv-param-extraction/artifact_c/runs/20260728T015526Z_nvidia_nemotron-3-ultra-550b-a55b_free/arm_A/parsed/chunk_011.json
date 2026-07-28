@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_011",
+  "arm": "A",
+  "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "parameters": [
+    {
+      "excerpt": "The Zihpm extension comprises up to 29 additional unprivileged 64-bit hardware performance counters, hpmcounter3-hpmcounter31.",
+      "line_number": 95,
+      "parameter_name": "HPM_COUNTER_EN",
+      "existing_udb_name": "HPM_COUNTER_EN",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The number of implemented HPM counters (0 to 29, corresponding to hpmcounter3 through hpmcounter31) is explicitly left as platform-specific. The implementer chooses which subset of the 29 possible counters are implemented."
+    },
+    {
+      "excerpt": "The implemented number and width of these additional counters, and the set of events they count, are platform-specific.",
+      "line_number": 99,
+      "parameter_name": "HPM_COUNTER_WIDTH",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The width of each HPM counter (up to 64 bits) is explicitly stated to be platform-specific. The implementer chooses the counter width, which may be less than the full 64-bit CSR width."
+    },
+    {
+      "excerpt": "The implemented number and width of these additional counters, and the set of events they count, are platform-specific.",
+      "line_number": 99,
+      "parameter_name": "HPM_EVENTS",
+      "existing_udb_name": "HPM_EVENTS",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The set of countable events for each HPM counter is explicitly platform-specific. The implementer defines which microarchitectural or architectural events can be counted."
+    },
+    {
+      "excerpt": "Accessing an unimplemented counter may cause an illegal-instruction exception or may return a constant value.",
+      "line_number": 100,
+      "parameter_name": "HPM_UNIMPLEMENTED_ACCESS_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The implementation must choose one of two behaviors for accesses to unimplemented HPM counters: raise an illegal-instruction exception or return a constant value. This is a direct implementation choice not controlled by any CSR."
+    }
+  ]
+}

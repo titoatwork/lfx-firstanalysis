@@ -1,0 +1,86 @@
+Looking at the Zifencei specification text, I can identify several architectural parameters. Let me extract them with line numbers.
+
+```json
+[
+  {
+    "name": "Zifencei_extension_version",
+    "description": "Version of the Zifencei extension for Instruction-Fetch Fence",
+    "value": "2.0",
+    "type": "version",
+    "source_line": 1,
+    "source_text": "\"Zifencei\" Extension for Instruction-Fetch Fence, Version 2.0"
+  },
+  {
+    "name": "FENCE_I_instruction_funct12_field",
+    "description": "FENCE.I instruction funct12 field reserved for finer-grain fences in future extensions",
+    "value": "reserved for finer-grain fences in future extensions",
+    "type": "instruction_field",
+    "source_line": 85,
+    "source_text": "The unused fields in the FENCE.I instruction, _funct12_, _rs1_, and _rd_, are reserved for finer-grain fences in future extensions."
+  },
+  {
+    "name": "FENCE_I_instruction_rs1_field",
+    "description": "FENCE.I instruction rs1 field reserved for finer-grain fences (e.g., address-based) in future extensions",
+    "value": "reserved for finer-grain fences in future extensions (e.g., address in rs1)",
+    "type": "instruction_field",
+    "source_line": 85,
+    "source_text": "The unused fields in the FENCE.I instruction, _funct12_, _rs1_, and _rd_, are reserved for finer-grain fences in future extensions."
+  },
+  {
+    "name": "FENCE_I_instruction_rd_field",
+    "description": "FENCE.I instruction rd field reserved for finer-grain fences in future extensions",
+    "value": "reserved for finer-grain fences in future extensions",
+    "type": "instruction_field",
+    "source_line": 85,
+    "source_text": "The unused fields in the FENCE.I instruction, _funct12_, _rs1_, and _rd_, are reserved for finer-grain fences in future extensions."
+  },
+  {
+    "name": "FENCE_I_forward_compatibility_requirement",
+    "description": "Forward compatibility requirement: base implementations shall ignore funct12, rs1, rd fields; standard software shall zero them",
+    "value": "base implementations shall ignore these fields, and standard software shall zero these fields",
+    "type": "forward_compatibility_requirement",
+    "source_line": 87,
+    "source_text": "For forward compatibility, base implementations shall ignore these fields, and standard software shall zero these fields."
+  },
+  {
+    "name": "FENCE_I_future_extension_direction",
+    "description": "Future extension direction: finer-grain fences targeting a given address specified in rs1",
+    "value": "finer-grain fences that only target a given address specified in _rs1_",
+    "type": "future_extension_direction",
+    "source_line": 115,
+    "source_text": "Future approaches to instruction-fetch coherence under discussion include providing more restricted versions of FENCE.I that only target a given address specified in _rs1_"
+  },
+  {
+    "name": "FENCE_I_future_extension_direction_machine_mode_cache_maintenance",
+    "description": "Future extension direction: machine-mode cache maintenance operations for instruction-fetch coherence",
+    "value": "machine-mode cache-maintenance operations",
+    "type": "future_extension_direction",
+    "source_line": 117,
+    "source_text": "and/or allowing software to use an ABI that relies on machine-mode cache-maintenance operations."
+  },
+  {
+    "name": "FENCE_I_scope_limitation",
+    "description": "FENCE.I only synchronizes the local hart's instruction fetches, not other harts in a multiprocessor system",
+    "value": "local hart only; does not ensure other harts' instruction fetches observe local hart's stores",
+    "type": "architectural_limitation",
+    "source_line": 73,
+    "source_text": "FENCE.I does _not_ ensure that other RISC-V harts' instruction fetches will observe the local hart's stores in a multiprocessor system."
+  },
+  {
+    "name": "FENCE_I_implementation_variations",
+    "description": "Implementation variations for FENCE.I: simple flush, cache snooping, inclusive unified L2 cache",
+    "value": "simple flush; cache snooping on misses; inclusive unified L2 cache invalidation; uncached RAM",
+    "type": "implementation_variation",
+    "source_line": 15,
+    "source_text": "A simple implementation can flush the local instruction cache and the instruction pipeline when the FENCE.I is executed. A more complex implementation might snoop the instruction (data) cache on every data (instruction) cache miss, or use an inclusive unified private L2 cache to invalidate lines from the primary instruction cache when they are being written by a local store instruction."
+  },
+  {
+    "name": "FENCE_I_user_level_unsuitability",
+    "description": "FENCE.I is not sufficient for user-level instruction-fetch coherence in Unix-like OS environments due to hart migration",
+    "value": "insufficient for user-level in Unix-like OS; requires system call for context migration",
+    "type": "architectural_limitation",
+    "source_line": 35,
+    "source_text": "The FENCE.I only synchronizes the local hart, and the OS can reschedule the user hart to a different physical hart after the FENCE.I. This would require the OS to execute an additional FENCE.I as part of every context migration."
+  }
+]
+```

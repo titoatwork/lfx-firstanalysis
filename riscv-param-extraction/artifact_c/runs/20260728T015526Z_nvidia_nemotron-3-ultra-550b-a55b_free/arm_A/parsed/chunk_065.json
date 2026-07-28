@@ -1,0 +1,17 @@
+{
+  "chunk_id": "chunk_065",
+  "arm": "A",
+  "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "parameters": [
+    {
+      "excerpt": "If the address is not naturally aligned, an address-misaligned exception or an access-fault exception will be generated.",
+      "line_number": 22,
+      "parameter_name": "ZALASR_MISALIGNED_EXCEPTION_TYPE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "medium",
+      "reasoning": "The spec uses 'or' between two exception types for misaligned Zalasr accesses, which in RISC-V convention indicates an implementation choice. The implementer chooses which exception to raise (address-misaligned vs access-fault). This is a direct design-time choice not controlled by any CSR."
+    }
+  ]
+}

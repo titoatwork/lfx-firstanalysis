@@ -1,0 +1,17 @@
+{
+  "chunk_id": "chunk_028",
+  "arm": "A",
+  "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "parameters": [
+    {
+      "excerpt": "Implementations are permitted but not required to raise an illegal-instruction exception if an instruction attempts to write a non-supported value to a WLRL field.",
+      "line_number": 1225,
+      "parameter_name": "TRAP_ON_ILLEGAL_WLRL",
+      "existing_udb_name": "TRAP_ON_ILLEGAL_WLRL",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The spec explicitly states that implementations may choose whether to trap on writes of unsupported values to WLRL fields. This is a direct implementation choice not controlled by any CSR field."
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "parameters": [
+    {
+      "excerpt": "The `miselect` register implements at least enough bits to support all implemented `miselect` values (corresponding to the implemented extensions that utilize `miselect`/`mireg*` to indirectly access register state).",
+      "line_number": 50,
+      "parameter_name": "MISELECT_WIDTH",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The spec mandates a minimum width (enough bits for implemented extensions) but allows the implementer to provide more bits up to XLEN. This is a direct design-time choice not controlled by any CSR field."
+    },
+    {
+      "excerpt": "The `miselect` register may be read-only zero if there are no extensions implemented that utilize it.",
+      "line_number": 52,
+      "parameter_name": "MISELECT_READ_ONLY_ZERO_WHEN_UNUSED",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether miselect is read-only zero (when no extensions use it) or read-write. This controls the mutability of the CSR, a classic NORM_CSR_RW parameter."
+    },
+    {
+      "excerpt": "The `siselect` register will support the value range 0..0xFFF at a minimum. A future extension may define a value range outside of this minimum range. Only if such an extension is implemented will `siselect` be required to support larger values.",
+      "line_number": 100,
+      "parameter_name": "SISELECT_WIDTH",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The spec requires at least 12 bits (0..0xFFF) but the implementer may provide more bits (up to XLEN) if they implement extensions that need them. This is a direct implementation choice."
+    },
+    {
+      "excerpt": "The `vsiselect` register will support the value range 0..0xFFF at a minimum. A future extension may define a value range outside of this minimum range. Only if such an extension is implemented will `vsiselect` be required to support larger values.",
+      "line_number": 145,
+      "parameter_name": "VSISELECT_WIDTH",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "Same as siselect: minimum 12 bits, but implementer may provide more up to XLEN depending on implemented extensions. Direct design-time choice."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "An implementation is not required to support any custom values for `miselect`.",
+      "line_number": 58,
+      "reason": "This statement appears inside a [NOTE] block, which is non-normative. Per rules, parameters are never extracted from NOTE/TIP/WARNING/IMPORTANT blocks."
+    },
+    {
+      "excerpt": "The behavior upon accessing `mireg*` from M-mode, while `miselect` holds a value that is not implemented, is UNSPECIFIED.",
+      "line_number": 65,
+      "reason": "UNSPECIFIED behavior is not an architectural parameter; it means the spec deliberately imposes no requirement and software cannot rely on any particular outcome. The implementation's choice is not a documented parameter."
+    },
+    {
+      "excerpt": "Note that the widths of `siselect` and `sireg*` are always the current XLEN rather than SXLEN.",
+      "line_number": 130,
+      "reason": "This is a fixed requirement ('always') that applies to all implementations. There is no implementation choice here."
+    },
+    {
+      "excerpt": "If extension Smstateen is implemented together with Smcsrind, bit 60 of state-enable register `mstateen0` controls access to `siselect`, `sireg*`, `vsiselect`, and `vsireg*`.",
+      "line_number": 190,
+      "reason": "This describes defined behavior when another extension (Smstateen) is present. It is not a parameter of the Smcsrind/Sscsrind extension itself."
+    },
+    {
+      "excerpt": "CSR address space is reserved for a possible future 'Sucsrind' extension that extends indirect CSR access to user mode.",
+      "line_number": 215,
+      "reason": "This is a forward-looking reservation note, not an implementation choice for the current extension. It appears in a [NOTE] block and is informative only."
+    }
+  ]
+}

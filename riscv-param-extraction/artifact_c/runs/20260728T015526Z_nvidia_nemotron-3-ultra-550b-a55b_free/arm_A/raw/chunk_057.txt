@@ -1,0 +1,30 @@
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "Zicfiss implementations may prevent forwarding from a non-shadow-stack store to the SSPOPCHK or the C.SSPOPCHK instructions.",
+      "line_number": 470,
+      "reason": "This text appears inside a [NOTE] block, making it non-normative (NON_NORM). It describes a microarchitectural suggestion, not an architectural requirement or parameter."
+    },
+    {
+      "excerpt": "The Zicfilp extensions may be activated for use individually and independently for each privilege mode.",
+      "line_number": 100,
+      "reason": "The 'may be activated' describes a software/runtime capability (enabling the extension per privilege mode), not a hardware implementation choice. The hardware either implements the extension or not; activation is controlled by privileged CSRs (SSE bits) defined elsewhere."
+    },
+    {
+      "excerpt": "If the Zcmop extension is implemented, the Zicfiss extension also provides the C.SSPUSH and C.SSPOPCHK instructions.",
+      "line_number": 330,
+      "reason": "This is a dependency on another standard extension (Zcmop), not an independent parameter of Zicfiss. Whether compressed instructions exist is determined by Zcmop implementation, not a Zicfiss-specific choice."
+    },
+    {
+      "excerpt": "The bits 1:0 of `ssp` are read-only zero. If the UXLEN or SXLEN may never be 32, then the bit 2 is also read-only zero.",
+      "line_number": 380,
+      "reason": "This conditional read-only definition is a consequence of the implementation's fundamental XLEN support (32-bit vs 64-bit), not a free CFI-specific parameter. The spec normatively defines the mapping from XLEN capability to CSR layout."
+    },
+    {
+      "excerpt": "SSAMOSWAP.W/D optionally provides release consistency semantics, using the aq and rl bits.",
+      "line_number": 570,
+      "reason": "The word 'optionally' here refers to software's option to request ordering (by setting aq/rl), not hardware optionality. The aq/rl bits are present in the encoding and, per 'Just as for AMOs in the A extension', their semantics are mandatory if the A/Zaamo extension is implemented."
+    }
+  ]
+}

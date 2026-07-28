@@ -1,0 +1,30 @@
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The D extension widens the 32 floating-point registers, `f0-f31`, to 64 bits (FLEN=64 in <<fprs>>#.",
+      "line_number": 13,
+      "reason": "This is a fixed requirement of the D extension (FLEN=64), not an implementation choice. The D extension mandates this register widening."
+    },
+    {
+      "excerpt": "FLEN can be 32, 64, or 128 depending on which of the F, D, and Q extensions are supported.",
+      "line_number": 18,
+      "reason": "This text appears in a [NOTE] block, which is non-normative. It describes the overall system design space, not a parameter of the D extension itself."
+    },
+    {
+      "excerpt": "FLD and FSD are only guaranteed to execute atomically if the effective address is naturally aligned and XLEN{ge}64.",
+      "line_number": 72,
+      "reason": "This is a behavioral guarantee/requirement ('only guaranteed if'), not an implementation-defined parameter. The atomicity condition is architecturally specified."
+    },
+    {
+      "excerpt": "For XLEN{ge}64 only, instructions are provided to move bit patterns between the floating-point and integer registers.",
+      "line_number": 132,
+      "reason": "This is a conditional requirement based on the base ISA's XLEN (RV32 vs RV64), not an independent implementation choice within the D extension."
+    },
+    {
+      "excerpt": "Earlier versions of this document did not define the behavior of feeding the results of narrower or wider operands into an operation... The new definition removes this implementation-specific behavior",
+      "line_number": 52,
+      "reason": "This NOTE block discusses historical implementation-specific behavior that has been removed. Current behavior is fully specified, leaving no parameter."
+    }
+  ]
+}

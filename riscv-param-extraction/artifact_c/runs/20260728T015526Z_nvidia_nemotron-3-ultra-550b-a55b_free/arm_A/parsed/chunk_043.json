@@ -1,0 +1,37 @@
+{
+  "chunk_id": "chunk_043",
+  "arm": "A",
+  "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "parameters": [
+    {
+      "excerpt": "[#norm:rvwmo_misaligned_ldst_memops]#A misaligned load or store instruction may be decomposed into a set of component memory operations of any granularity.#",
+      "line_number": 71,
+      "parameter_name": "MISALIGNED_SPLIT_STRATEGY",
+      "existing_udb_name": "MISALIGNED_SPLIT_STRATEGY",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The spec explicitly states misaligned loads/stores 'may be decomposed into a set of component memory operations of any granularity,' leaving the decomposition granularity (e.g., byte, halfword, word) as a direct implementation choice. This is not controlled by any CSR field."
+    },
+    {
+      "excerpt": "[#norm:rvwmo_fp_gt_xlen_memops]#A floating-point load or store of more than XLEN bits may also be decomposed into a set of component memory operations of any granularity.#",
+      "line_number": 73,
+      "parameter_name": "FP_GT_XLEN_SPLIT_STRATEGY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "Analogous to the misaligned case, the spec permits FP accesses wider than XLEN to be decomposed at any granularity, making the split strategy a direct implementation choice. Listed separately from integer misaligned accesses."
+    },
+    {
+      "excerpt": "[#norm:rvwmo_misaligned_in_atomic_pma]#if misaligned atomics are supported via the misaligned atomicity granule PMA, then AMOs within an atomicity granule are not decomposed, nor are loads and stores defined in the base ISAs, nor are loads and stores of no more than XLEN bits defined in the F, D, and Q extensions.#",
+      "line_number": 77,
+      "parameter_name": "MISALIGNED_MAX_ATOMICITY_GRANULE_SIZE",
+      "existing_udb_name": "MISALIGNED_MAX_ATOMICITY_GRANULE_SIZE",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "medium",
+      "reasoning": "The text references a 'misaligned atomicity granule PMA' whose granule size determines which accesses are atomic/non-decomposed. The granule size (e.g., 64-byte, 128-byte) is an implementation-defined PMA parameter, though the spec only conditionally references it here."
+    }
+  ]
+}

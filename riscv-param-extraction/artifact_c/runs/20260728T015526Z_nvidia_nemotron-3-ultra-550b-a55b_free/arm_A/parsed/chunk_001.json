@@ -1,0 +1,77 @@
+{
+  "chunk_id": "chunk_001",
+  "arm": "A",
+  "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "parameters": [
+    {
+      "excerpt": "An implementation can register an arbitrarily large reservation set on each LR, provided the reservation set includes all bytes of the addressed data word or doubleword.",
+      "line_number": 100,
+      "parameter_name": "LRSC_RESERVATION_STRATEGY",
+      "existing_udb_name": "LRSC_RESERVATION_STRATEGY",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The size and shape of the LR reservation set is an implementation choice (arbitrarily large but must cover the accessed bytes). This is a direct microarchitectural parameter not controlled by any CSR."
+    },
+    {
+      "excerpt": "but it is UNSPECIFIED whether any side effects of implicit address translation and protection memory accesses (such as setting a page-table entry D bit) occur on a failed SC.W.",
+      "line_number": 75,
+      "parameter_name": "LRSC_FAILED_SC_D_BIT_UPDATE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The spec explicitly marks as UNSPECIFIED whether a failed SC.W updates page-table D bits. This is a binary implementation choice about side effects of failed store-conditionals."
+    },
+    {
+      "excerpt": "For the purposes of memory protection, a failed SC.W may be treated like a store.",
+      "line_number": 76,
+      "parameter_name": "LRSC_FAILED_SC_AS_STORE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether a failed SC.W is treated as a store for memory protection checks (e.g., permission faults). This is a binary design-time choice."
+    },
+    {
+      "excerpt": "If the address is not naturally aligned, an address-misaligned exception or an access-fault exception will be generated. The access-fault exception can be generated for a memory access that would otherwise be able to complete except for the misalignment, if the misaligned access should not be emulated.",
+      "line_number": 90,
+      "parameter_name": "LRSC_MISALIGNED_BEHAVIOR",
+      "existing_udb_name": "LRSC_MISALIGNED_BEHAVIOR",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "For misaligned LR/SC addresses, the implementation chooses between raising an address-misaligned exception or an access-fault exception. This is a direct implementation parameter with finite enum choices."
+    },
+    {
+      "excerpt": "If the address is not naturally aligned, an address-misaligned exception or an access-fault exception will be generated. The access-fault exception can be generated for a memory access that would otherwise be able to complete except for the misalignment, if the misaligned access should not be emulated.",
+      "line_number": 217,
+      "parameter_name": "MISALIGNED_AMO",
+      "existing_udb_name": "MISALIGNED_AMO",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "Same exception-type choice for misaligned AMO addresses as for LR/SC. The implementation selects between address-misaligned and access-fault exceptions."
+    },
+    {
+      "excerpt": "The misaligned atomicity granule PMA, defined in Volume II of this manual, optionally relaxes this alignment requirement. If present, the misaligned atomicity granule PMA specifies the size of a misaligned atomicity granule, a power-of-two number of bytes.",
+      "line_number": 220,
+      "parameter_name": "MISALIGNED_MAX_ATOMICITY_GRANULE_SIZE",
+      "existing_udb_name": "MISALIGNED_MAX_ATOMICITY_GRANULE_SIZE",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The presence and size (power-of-two bytes) of the misaligned atomicity granule PMA is an optional implementation parameter. If implemented, the granule size is chosen from a range of power-of-two values."
+    },
+    {
+      "excerpt": "(If such a device writes the reservation set but does not write the bytes accessed by the LR, the SC may or may not fail.)",
+      "line_number": 110,
+      "parameter_name": "LRSC_DEVICE_WRITE_RESERVATION_SET_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "medium",
+      "reasoning": "When a non-hart device writes to the reservation set but not the exact bytes accessed by the LR, the spec says the SC 'may or may not fail' \u2014 a binary implementation choice about reservation invalidation granularity for device writes."
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+Looking at this Zilsd/Zclsd specification, I need to extract all architectural parameters defined in this specification. Let me identify them systematically.
+
+## Architectural Parameters Extracted
+
+### 1. Register Pair Constraints
+| Parameter | Value/Constraint | Defining Location |
+|-----------|------------------|-------------------|
+| **Zilsd_reg_pair_even_register** | Register numbers for load/store pair operands must be even (even/odd register pairs) | Line ~15, `norm:Zilsd_reg_pairs` |
+| **Zilsd_reg_pair_bit_ordering** | Lower-numbered register holds low-order bits (31:0), higher-numbered holds high-order bits (63:32), regardless of memory endianness | Line ~18, `norm:Zilsd_bits_to_pair` |
+| **Zilsd_cld_csd_register_range** | C.LD and C.SD instructions can only use registers x8-x15 (3-bit register specifiers) | Line ~146, "Use of x0 as operand" section |
+| **Zilsd_cldsp_rd_nonzero_even** | C.LDSP destination register rd ≠ x0 and rd[0]=0 (even, non-zero) | Line ~230, c.ldsp encoding `attr: ['dest≠0, dest[0]=0']` |
+| **Zilsd_csdsp_rs2_even** | C.SDSP source register rs2[0]=0 (even register) | Line ~255, c.sdsp encoding `attr: ['src, src[0]=0']` |
+| **Zilsd_ld_rd_even** | LD destination register rd[0]=0 (even register) | Line ~178, ld encoding `attr: ['dest, dest[0]=0']` |
+| **Zilsd_sd_rs2_even** | SD source register rs2[0]=0 (even register) | Line ~203, sd encoding `attr: ['src, src[0]=0']` |
+| **Zilsd_cld_rd_prime_even** | C.LD destination register rd'[0]=0 (even, x8-x15) | Line ~278, c.ld encoding `attr: ['dest, dest[0]=0']` |
+| **Zilsd_csd_rs2_prime_even** | C.SD source register rs2'[0]=0 (even, x8-x15) | Line ~303, c.sd encoding `attr: ['src, src[0]=0']` |
+
+### 2. Register Pair Operand Behavior with x0
+| Parameter | Behavior | Defining Location |
+|-----------|----------|-------------------|
+| **Zilsd_ld_x0_dest_behavior** | LD with rd=x0 processes as normal load but discards result entirely; x1 not written | Line ~140, `norm:Zilsd_ld_x0` |
+| **Zilsd_cldsp_x0_dest_reserved** | C.LDSP with rd=x0 is reserved (code points reserved) | Line ~142, `norm:Zilsd_c-ldsp_x0` |
+| **Zilsd_sd_x0_src_behavior** | SD/C.SDSP with rs2=x0 uses 64-bit zero operand; x1 not accessed | Line ~144, `norm:Zilsd_sd_x0` |
+
+### 3. Memory Alignment & Atomicity Requirements
+| Parameter | Requirement | Defining Location |
+|-----------|-------------|-------------------|
+| **Zilsd_align8_natural_alignment** | 64-bit accesses naturally aligned only at 8-byte multiples (address % 8 == 0) | Line ~45, `norm:Zilsd_align8_no_exc` |
+| **Zilsd_align8_no_misaligned_trap** | 8-byte aligned accesses guaranteed not to raise address-misaligned exception | Line ~45, `norm:Zilsd_align8_no_exc` |
+| **Zilsd_align8_atomic_not_guaranteed** | Even 8-byte aligned accesses not guaranteed atomic | Line ~47, `norm:Zilsd_align8_atomic` |
+| **Zilsd_align4_word_atomic_required** | 4-byte aligned (but not 8-byte) addresses require each 32-bit word access to be atomic | Line ~49, `norm:Zilsd_align4_atomic` |
+| **Zilsd_align4_misaligned_trap_possible** | 4-byte aligned (not 8-byte) accesses can cause misaligned trap | Table lines 51-57 |
+| **Zilsd_unaligned_no_atomicity_no_guarantee** | Non-4-byte-aligned: no atomicity guarantee, can cause misaligned trap | Table lines 51-57 |
+| **Zilsd_align4_two_4byte_ops** | 4-byte aligned effective address → two 4-byte memory operations (order unconstrained, each atomic, interruptible) | Line ~151, `norm:Zilsd_align4_two_4byte` |
+| **Zilsd_rvwmo_misaligned_classification** | LD/SD considered misaligned loads/stores for RVWMO and exception handling | Line ~149, `norm:Zilsd_RVWMO_exc_misaligned` |
+
+### 4. Trap Handling Requirements
+| Parameter | Requirement | Defining Location |
+|-----------|-------------|-------------------|
+| **Zilsd_ld_resume_trap_base_reg_preserved** | On trap during LD, base register (x2 for C.LDSP, rs1 otherwise) must retain original value; other register in pair may be updated | Line ~60, `norm:Zilsd_ld_resume_trap` |
+
+### 5. Instruction Encoding Parameters (Architectural Bit Widths)
+| Instruction | Parameter | Bit Width / Constraint | Defining Location |
+|-------------|-----------|------------------------|-------------------|
+| **LD** | opcode | 7 bits = 0x03 (LOAD) | Line ~174 |
+| **LD** | funct3 | 3 bits = 0x3 (width=D) | Line ~177 |
+| **LD** | rd | 5 bits, rd[0]=0 | Line ~176 |
+| **LD** | rs1 | 5 bits | Line ~178 |
+| **LD** | imm[11:0] | 12 bits, sign-extended offset | Line ~179 |
+| **SD** | opcode | 7 bits = 0x23 (STORE) | Line ~199 |
+| **SD** | funct3 | 3 bits = 0x3 (width=D) | Line ~202 |
+| **SD** | rs1 | 5 bits | Line ~203 |
+| **SD** | rs2 | 5 bits, rs2[0]=0 | Line ~204 |
+| **SD** | imm[11:5] | 7 bits | Line ~205 |
+| **SD** | imm[4:0] | 5 bits | Line ~200 |
+| **C.LDSP** | opcode | 2 bits = 0x2 (C2) | Line ~223 |
+| **C.LDSP** | funct3 | 3 bits = 0x3 (C.LDSP) | Line ~228 |
+| **C.LDSP** | rd | 5 bits, rd≠0, rd[0]=0 | Line ~227 |
+| **C.LDSP** | imm | 6 bits (offset[4:3|8:6] + offset[5]), zero-extended, scaled ×8 | Lines ~225-227 |
+| **C.SDSP** | opcode | 2 bits = 0x2 (C2) | Line ~248 |
+| **C.SDSP** | funct3 | 3 bits = 0x7 (C.SDSP) | Line ~253 |
+| **C.SDSP** | rs2 | 5 bits, rs2[0]=0 | Line ~250 |
+| **C.SDSP** | imm | 6 bits (offset[5:3|8:6]), zero-extended, scaled ×8 | Line ~251 |
+| **C.LD** | opcode | 2 bits = 0x0 (C0) | Line ~273 |
+| **C.LD** | funct3 | 3 bits = 0x3 (C.LD) | Line ~283 |
+| **C.LD** | rd' | 3 bits (x8-x15), rd'[0]=0 | Line ~276 |
+| **C.LD** | rs1' | 3 bits (x8-x15) | Line ~279 |
+| **C.LD** | imm | 5 bits (offset[7:6] + offset[5:3]), zero-extended, scaled ×8 | Lines ~277-281 |
+| **C.SD** | opcode | 2 bits = 0x0 (C0) | Line ~298 |
+| **C.SD** | funct3 | 3 bits = 0x7 (C.SD) | Line ~308 |
+| **C.SD** | rs2' | 3 bits (x8-x15), rs2'[0]=0 | Line ~301 |
+| **C.SD** | rs1' | 3 bits (x8-x15) | Line ~304 |
+| **C.SD** | imm | 5 bits (offset[7:6] + offset[5:3]), zero-extended, scaled ×8 | Lines ~302-306 |
+
+### 5. Extension Dependencies & Incompatibilities
+| Parameter | Definition | Location |
+|-----------|------------|----------|
+| **Zclsd_depends_on_Zilsd** | Zclsd depends on Zilsd | Line ~35 "Zclsd depends on Zilsd" |
+| **Zclsd_depends_on_Zca** | Zclsd depends on Zca | Line ~35 "and Zca" |
+| **Zclsd_incompatible_with_Zcf** | Zclsd has overlapping encodings with Zcf, incompatible | Line ~35 "overlapping encodings with Zcf and is thus incompatible with Zcf" |
+
+### 6. Extension Identification Parameters
+| Parameter | Value | Location |
+|-----------|-------|----------|
+| **Zilsd_version** | Version 1.0 | Line 1 "Version 1.0" |
+| **Zclsd_version** | Version 1.0 (implied) | Line 1 |
+| **Zilsd_isa** | RV32 only (not RV64) | Line ~25 "RV32-only instructions" |
+| **Zclsd_isa** | RV32 only | Line ~37 "RV32-only instructions" |
+
+---
+
+## Summary Table for Output
+
+| Parameter Name | Value/Constraint | Defining Line(s) | Normative Anchor |
+|----------------|------------------|------------------|------------------|
+| Zilsd_reg_pair_even_register | Register numbers for pair operands must be even | ~15 | norm:Zilsd_reg_pairs |
+| Zilsd_reg_pair_bit_ordering | Low reg = bits 31:0, high reg = bits 63:32 (regardless of endianness) | ~18 | norm:Zilsd_bits_to_pair |
+| Zilsd_cld_csd_register_range | C.LD/C.SD restricted to x8-x15 | ~146 | (normative text) |
+| Zilsd_cldsp_rd_nonzero_even | C.LDSP rd ≠ x0, rd[0]=0 | ~227, ~230 | c.ldsp encoding |
+| Zilsd_csdsp_rs2_even | C.SDSP rs2[0]=0 | ~250 | c.sdsp encoding |
+| Zilsd_ld_rd_even | LD rd[0]=0 | ~176 | ld encoding |
+| Zilsd_sd_rs2_even | SD rs2[0]=0 | ~204 | sd encoding |
+| Zilsd_cld_rd_prime_even | C.LD rd'[0]=0 | ~278 | c.ld encoding |
+| Zilsd_csd_rs2_prime_even | C.SD rs2'[0]=0 | ~303 | c.sd encoding |
+| Zilsd_ld_x0_dest_behavior | LD rd=x0 discards result, x1 not written | ~140 | norm:Zilsd_ld_x0 |
+| Zilsd_cldsp_x0_dest_reserved | C.LDSP rd=x0 reserved | ~142 | norm:Zilsd_c-ldsp_x0 |
+| Zilsd_sd_x0_src_behavior | SD/C.SDSP rs2=x0 → 64-bit zero, x1 not accessed | ~144 | norm:Zilsd_sd_x0 |
+| Zilsd_align8_natural_alignment | 8-byte alignment for natural alignment | ~45 | norm:Zilsd_align8_no_exc |
+| Zilsd_align8_no_misaligned_trap | 8-byte aligned → no misaligned trap | ~45 | norm:Zilsd_align8_no_exc |
+| Zilsd_align8_atomic_not_guaranteed | 8-byte aligned not guaranteed atomic | ~47 | norm:Zilsd_align8_atomic |
+| Zilsd_align4_word_atomic_required | 4-byte aligned → each 32-bit word access atomic | ~49 | norm:Zilsd_align4_atomic |
+| Zilsd_align4_misaligned_trap_possible | 4-byte aligned (not 8) → may trap misaligned | 51-57 | alignment table |
+| Zilsd_unaligned_no_atomicity | Unaligned → no atomicity, may trap | 51-57 | alignment table |
+| Zilsd_align4_two_4byte_ops | 4-byte aligned → two 4-byte ops (unordered, each atomic, interruptible) | ~151 | norm:Zilsd_align4_two_4byte |
+| Zilsd_rvwmo_misaligned_classification | LD/SD treated as misaligned for RVWMO/exceptions | ~149 | norm:Zilsd_RVWMO_exc_misaligned |
+| Zilsd_ld_resume_trap_base_reg_preserved | On LD trap, base reg (x2/rs1) must have original value | ~60 | norm:Zilsd_ld_resume_trap |
+| Zilsd_ld_encoding_opcode | 7 bits = 0x03 | ~174 | ld encoding |
+| Zilsd_ld_encoding_funct3 | 3 bits = 0x3 | ~177 | ld encoding |
+| Zilsd_ld_encoding_rd_width | 5 bits, rd[0]=0 | ~176 | ld encoding |
+| Zilsd_ld_encoding_rs1_width | 5 bits | ~178 | ld encoding |
+| Zilsd_ld_encoding_imm_width | 12 bits, sign-extended | ~179 | ld encoding |
+| Zilsd_sd_encoding_opcode | 7 bits = 0x23 | ~199 | sd encoding |
+| Zilsd_sd_encoding_funct3 | 3 bits = 0x3 | ~202 | sd encoding |
+| Zilsd_sd_encoding_rs1_width | 5 bits | ~203 | sd encoding |
+| Zilsd_sd_encoding_rs2_width | 5 bits, rs2[0]=0 | ~204 | sd encoding |
+| Zilsd_sd_encoding_imm_high | 7 bits (imm[11:5]) | ~205 | sd encoding |
+| Zilsd_sd_encoding_imm_low | 5 bits (imm[4:0]) | ~200 | sd encoding |
+| Zilsd_cldsp_encoding_opcode | 2 bits = 0x2 | ~223 | c.ldsp encoding |
+| Zilsd_cldsp_encoding_funct3 | 3 bits = 0x3 | ~228 | c.ldsp encoding |
+| Zilsd_cldsp_encoding_rd_width | 5 bits, rd≠0, rd[0]=0 | ~227 | c.ldsp encoding |
+| Zilsd_cldsp_encoding_imm_width | 6 bits, zero-ext, scaled ×8 | ~225-227 | c.ldsp encoding |
+| Zilsd_csdsp_encoding_opcode | 2 bits = 0x2 | ~248 | c.sdsp encoding |
+| Zilsd_csdsp_encoding_funct3 | 3 bits = 0x7 | ~253 | c.sdsp encoding |
+| Zilsd_csdsp_encoding_rs2_width | 5 bits, rs2[0]=0 | ~250 | c.sdsp encoding |
+| Zilsd_csdsp_encoding_imm_width | 6 bits, zero-ext, scaled ×8 | ~251 | c.sdsp encoding |
+| Zilsd_cld_encoding_opcode | 2 bits = 0x0 | ~273 | c.ld encoding |
+| Zilsd_cld_encoding_funct3 | 3 bits = 0x3 | ~283 | c.ld encoding |
+| Zilsd_cld_encoding_rd_prime_width | 3 bits (x8-x15), rd'[0]=0 | ~276 | c.ld encoding |
+| Zilsd_cld_encoding_rs1_prime_width | 3 bits (x8-x15) | ~279 | c.ld encoding |
+| Zilsd_cld_encoding_imm_width | 5 bits, zero-ext, scaled ×8 | ~277-281 | c.ld encoding |
+| Zilsd_csd_encoding_opcode | 2 bits = 0x0 | ~298 | c.sd encoding |
+| Zilsd_csd_encoding_funct3 | 3 bits = 0x7 | ~308 | c.sd encoding |
+| Zilsd_csd_encoding_rs2_prime_width | 3 bits (x8-x15), rs2'[0]=0 | ~301 | c.sd encoding |
+| Zilsd_csd_encoding_rs1_prime_width | 3 bits (x8-x15) | ~304 | c.sd encoding |
+| Zilsd_csd_encoding_imm_width | 5 bits, zero-ext, scaled ×8 | ~302-306 | c.sd encoding |
+| Zclsd_depends_on_Zilsd | Zclsd requires Zilsd | ~35 | (normative text) |
+| Zclsd_depends_on_Zca | Zclsd requires Zca | ~35 | (normative text) |
+| Zclsd_incompatible_with_Zcf | Zclsd overlaps Zcf encodings | ~35 | (normative text) |
+| Zilsd_version | 1.0 | 1 | (header) |
+| Zilsd_isa_applicability | RV32 only | ~25 | (table) |
+| Zclsd_isa_applicability | RV32 only | ~37 | (table) |
+
+These are all the architectural parameters defined in the Zilsd/Zclsd specification. They include register constraints, memory alignment/atomicity requirements, trap handling requirements, instruction encoding bit-widths and constants, extension dependencies, and x0 register special behaviors.

@@ -1,0 +1,87 @@
+{
+  "chunk_id": "chunk_009",
+  "arm": "A",
+  "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "parameters": [
+    {
+      "excerpt": "The capacity and organization of a cache and the size of a cache block are both _implementation-specific_, and the execution environment provides software a means to discover information about the caches and cache blocks in a system.",
+      "line_number": 111,
+      "parameter_name": "CACHE_BLOCK_SIZE",
+      "existing_udb_name": "CACHE_BLOCK_SIZE",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The cache block size is explicitly stated as implementation-specific with software discovery. It is a direct design-time choice (power-of-two, uniform across system) not controlled by any CSR."
+    },
+    {
+      "excerpt": "An implementation may update the bytes in any order and with any granularity and atomicity, including individual bytes.",
+      "line_number": 485,
+      "parameter_name": "CBO_ZERO_WRITE_STRATEGY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The spec explicitly allows implementations to choose the write granularity and atomicity for CBO.ZERO (byte, word, block, etc.). This is a microarchitectural choice with architectural visibility."
+    },
+    {
+      "excerpt": "When executing a *cbo.clean* instruction, an implementation may instead perform a flush operation, since the result of that operation is indistinguishable from the sequence of performing a clean operation just before deallocating all cached copies in the set of coherent caches.",
+      "line_number": 685,
+      "parameter_name": "FORCE_UPGRADE_CBO_CLEAN_TO_FLUSH",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation may choose to upgrade CLEAN to FLUSH. This is a binary design-time choice not controlled by CSR state."
+    },
+    {
+      "excerpt": "When executing a *cbo.inval* instruction, an implementation may instead perform a flush operation, since the result of that operation is indistinguishable from the sequence of performing a write transfer to memory just before performing an invalidate operation.",
+      "line_number": 745,
+      "parameter_name": "FORCE_UPGRADE_CBO_INVAL_TO_FLUSH",
+      "existing_udb_name": "FORCE_UPGRADE_CBO_INVAL_TO_FLUSH",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation may choose to upgrade INVAL to FLUSH. This matches the known UDB parameter name and is a binary design-time choice."
+    },
+    {
+      "excerpt": "An implementation may opt to cache a copy of the cache block in a cache accessed by an instruction fetch in order to improve memory access latency, but this behavior is not required.",
+      "line_number": 855,
+      "parameter_name": "PREFETCH_HINT_ACTION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "medium",
+      "reasoning": "Each prefetch type (I, R, W) has a separate note stating the implementation may or may not act on the hint. The parameter is the subset of prefetch types that have observable effect. Classified as a set since each type can be independently implemented."
+    },
+    {
+      "excerpt": "Each `x{csrname}` register is WARL; however, software should determine the legal values from the execution environment discovery mechanism.",
+      "line_number": 385,
+      "parameter_name": "ENVCFG_CBIE_LEGAL_VALUES",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The CBIE field (2 bits) in menvcfg/senvcfg/henvcfg is WARL with implementation-defined legal values. The pseudocode defines behavior for 00 and 01; other encodings may or may not be legal."
+    },
+    {
+      "excerpt": "Each `x{csrname}` register is WARL; however, software should determine the legal values from the execution environment discovery mechanism.",
+      "line_number": 385,
+      "parameter_name": "ENVCFG_CBCFE_LEGAL_VALUES",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The CBCFE field (1 bit) in menvcfg/senvcfg/henvcfg is WARL. Legal values are a subset of {0,1} chosen by the implementation."
+    },
+    {
+      "excerpt": "Each `x{csrname}` register is WARL; however, software should determine the legal values from the execution environment discovery mechanism.",
+      "line_number": 385,
+      "parameter_name": "ENVCFG_CBZE_LEGAL_VALUES",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The CBZE field (1 bit) in menvcfg/senvcfg/henvcfg is WARL. Legal values are a subset of {0,1} chosen by the implementation."
+    }
+  ]
+}

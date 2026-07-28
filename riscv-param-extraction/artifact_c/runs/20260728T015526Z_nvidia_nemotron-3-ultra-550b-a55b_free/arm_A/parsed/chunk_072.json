@@ -1,0 +1,17 @@
+{
+  "chunk_id": "chunk_072",
+  "arm": "A",
+  "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "parameters": [
+    {
+      "excerpt": "The hardware platform may define that accesses to certain CSRs are strongly ordered, as defined by the Memory-Ordering PMAs section in Volume II of this manual. Accesses to strongly ordered CSRs have stronger ordering constraints with respect to accesses to both weakly ordered CSRs and accesses to memory-mapped I/O regions.",
+      "line_number": 240,
+      "parameter_name": "STRONGLY_ORDERED_CSRS",
+      "existing_udb_name": null,
+      "class": "NON_ISA",
+      "value_type": "set",
+      "confidence": "medium",
+      "reasoning": "The spec explicitly states the hardware platform may choose which CSRs have strong ordering (vs the default weak ordering). This is a platform-level configuration choice outside the core ISA, defining a subset of the 4096 CSR address space that gets stronger memory-ordering guarantees."
+    }
+  ]
+}

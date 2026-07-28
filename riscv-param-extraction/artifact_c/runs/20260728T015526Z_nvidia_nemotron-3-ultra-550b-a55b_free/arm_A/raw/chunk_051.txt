@@ -1,0 +1,271 @@
+{
+  "parameters": [
+    {
+      "excerpt": "Each standard-defined bit of a `stateen` CSR is WARL and may be read-only zero or one, subject to the following conditions.",
+      "line_number": 144,
+      "parameter_name": "MSTATEEN_AIA_TYPE",
+      "existing_udb_name": "MSTATEEN_AIA_TYPE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The AIA bit in mstateen0 is a standard-defined WARL field. The spec explicitly states that each such bit may be implemented as read-only zero, read-only one, or read-write, making the set of legal values an implementation choice."
+    },
+    {
+      "excerpt": "Each standard-defined bit of a `stateen` CSR is WARL and may be read-only zero or one, subject to the following conditions.",
+      "line_number": 144,
+      "parameter_name": "MSTATEEN_CONTEXT_TYPE",
+      "existing_udb_name": "MSTATEEN_CONTEXT_TYPE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The CONTEXT bit in mstateen0 is a standard-defined WARL field. The spec explicitly states that each such bit may be implemented as read-only zero, read-only one, or read-write, making the set of legal values an implementation choice."
+    },
+    {
+      "excerpt": "Each standard-defined bit of a `stateen` CSR is WARL and may be read-only zero or one, subject to the following conditions.",
+      "line_number": 144,
+      "parameter_name": "MSTATEEN_CSRIND_TYPE",
+      "existing_udb_name": "MSTATEEN_CSRIND_TYPE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The CSRIND bit in mstateen0 is a standard-defined WARL field. The spec explicitly states that each such bit may be implemented as read-only zero, read-only one, or read-write, making the set of legal values an implementation choice."
+    },
+    {
+      "excerpt": "Each standard-defined bit of a `stateen` CSR is WARL and may be read-only zero or one, subject to the following conditions.",
+      "line_number": 144,
+      "parameter_name": "MSTATEEN_ENVCFG_TYPE",
+      "existing_udb_name": "MSTATEEN_ENVCFG_TYPE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The ENVCFG bit in mstateen0 is a standard-defined WARL field. The spec explicitly states that each such bit may be implemented as read-only zero, read-only one, or read-write, making the set of legal values an implementation choice."
+    },
+    {
+      "excerpt": "Each standard-defined bit of a `stateen` CSR is WARL and may be read-only zero or one, subject to the following conditions.",
+      "line_number": 144,
+      "parameter_name": "MSTATEEN_IMSIC_TYPE",
+      "existing_udb_name": "MSTATEEN_IMSIC_TYPE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The IMSIC bit in mstateen0 is a standard-defined WARL field. The spec explicitly states that each such bit may be implemented as read-only zero, read-only one, or read-write, making the set of legal values an implementation choice."
+    },
+    {
+      "excerpt": "Each standard-defined bit of a `stateen` CSR is WARL and may be read-only zero or one, subject to the following conditions.",
+      "line_number": 144,
+      "parameter_name": "MSTATEEN_JVT_TYPE",
+      "existing_udb_name": "MSTATEEN_JVT_TYPE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The JVT bit in mstateen0 is a standard-defined WARL field. The spec explicitly states that each such bit may be implemented as read-only zero, read-only one, or read-write, making the set of legal values an implementation choice."
+    },
+    {
+      "excerpt": "Bit 63 of each `mstateen` CSR may be read-only zero only if the hypervisor extension is not implemented and the matching supervisor-level `sstateen` CSR is all read-only zeros.",
+      "line_number": 186,
+      "parameter_name": "MSTATEEN_SE0_TYPE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The SE0 bit (bit 63) in mstateen0 is a standard-defined WARL field with a specific constraint: it may be read-only zero only when the hypervisor extension is absent and the corresponding sstateen is all zeros. Otherwise it must be writable (or read-only one). The set of legal values is thus implementation-defined subject to this condition."
+    },
+    {
+      "excerpt": "Each standard-defined bit of a `stateen` CSR is WARL and may be read-only zero or one, subject to the following conditions.",
+      "line_number": 144,
+      "parameter_name": "MSTATEEN_C_TYPE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "medium",
+      "reasoning": "The C bit in mstateen0 is a standard-defined WARL field. The general rule applies, so its legal values (read-only zero, read-only one, or read-write) are an implementation choice."
+    },
+    {
+      "excerpt": "Each standard-defined bit of a `stateen` CSR is WARL and may be read-only zero or one, subject to the following conditions.",
+      "line_number": 144,
+      "parameter_name": "MSTATEEN_FCSR_TYPE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "medium",
+      "reasoning": "The FCSR bit in mstateen0 is a standard-defined WARL field. The general rule applies, but with an additional constraint: when misa.F=1, the bit is forced to read-only zero. When misa.F=0, the implementation may choose among read-only zero, read-only one, or read-write."
+    },
+    {
+      "excerpt": "Each standard-defined bit of a `stateen` CSR is WARL and may be read-only zero or one, subject to the following conditions.",
+      "line_number": 144,
+      "parameter_name": "MSTATEEN_CTR_TYPE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "medium",
+      "reasoning": "The CTR bit in mstateen0 appears in the register diagram as a standard-defined bit (not WPRI). The general rule applies, so its legal values are an implementation choice."
+    },
+    {
+      "excerpt": "Each standard-defined bit of a `stateen` CSR is WARL and may be read-only zero or one, subject to the following conditions.",
+      "line_number": 144,
+      "parameter_name": "MSTATEEN_SRMCFG_TYPE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "medium",
+      "reasoning": "The SRMCFG bit in mstateen0 is a standard-defined WARL field (described in the spec). The general rule applies, so its legal values are an implementation choice."
+    },
+    {
+      "excerpt": "Each standard-defined bit of a `stateen` CSR is WARL and may be read-only zero or one, subject to the following conditions.",
+      "line_number": 144,
+      "parameter_name": "MSTATEEN_P1P13_TYPE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "medium",
+      "reasoning": "The P1P13 bit in mstateen0 is a standard-defined WARL field (described in the spec). The general rule applies, so its legal values are an implementation choice."
+    },
+    {
+      "excerpt": "Each standard-defined bit of a `stateen` CSR is WARL and may be read-only zero or one, subject to the following conditions.",
+      "line_number": 144,
+      "parameter_name": "HSTATEEN_AIA_TYPE",
+      "existing_udb_name": "HSTATEEN_AIA_TYPE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The AIA bit in hstateen0 is a standard-defined WARL field. The general rule applies, so its legal values are an implementation choice."
+    },
+    {
+      "excerpt": "Each standard-defined bit of a `stateen` CSR is WARL and may be read-only zero or one, subject to the following conditions.",
+      "line_number": 144,
+      "parameter_name": "HSTATEEN_CONTEXT_TYPE",
+      "existing_udb_name": "HSTATEEN_CONTEXT_TYPE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The CONTEXT bit in hstateen0 is a standard-defined WARL field. The general rule applies, so its legal values are an implementation choice."
+    },
+    {
+      "excerpt": "Each standard-defined bit of a `stateen` CSR is WARL and may be read-only zero or one, subject to the following conditions.",
+      "line_number": 144,
+      "parameter_name": "HSTATEEN_CSRIND_TYPE",
+      "existing_udb_name": "HSTATEEN_CSRIND_TYPE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The CSRIND bit in hstateen0 is a standard-defined WARL field. The general rule applies, so its legal values are an implementation choice."
+    },
+    {
+      "excerpt": "Each standard-defined bit of a `stateen` CSR is WARL and may be read-only zero or one, subject to the following conditions.",
+      "line_number": 144,
+      "parameter_name": "HSTATEEN_ENVCFG_TYPE",
+      "existing_udb_name": "HSTATEEN_ENVCFG_TYPE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The ENVCFG bit in hstateen0 is a standard-defined WARL field. The general rule applies, so its legal values are an implementation choice."
+    },
+    {
+      "excerpt": "Each standard-defined bit of a `stateen` CSR is WARL and may be read-only zero or one, subject to the following conditions.",
+      "line_number": 144,
+      "parameter_name": "HSTATEEN_IMSIC_TYPE",
+      "existing_udb_name": "HSTATEEN_IMSIC_TYPE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The IMSIC bit in hstateen0 is a standard-defined WARL field. The general rule applies, so its legal values are an implementation choice."
+    },
+    {
+      "excerpt": "Each standard-defined bit of a `stateen` CSR is WARL and may be read-only zero or one, subject to the following conditions.",
+      "line_number": 144,
+      "parameter_name": "HSTATEEN_JVT_TYPE",
+      "existing_udb_name": "HSTATEEN_JVT_TYPE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The JVT bit in hstateen0 is a standard-defined WARL field. The general rule applies, so its legal values are an implementation choice."
+    },
+    {
+      "excerpt": "Each standard-defined bit of a `stateen` CSR is WARL and may be read-only zero or one, subject to the following conditions.",
+      "line_number": 144,
+      "parameter_name": "HSTATEEN_C_TYPE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "medium",
+      "reasoning": "The C bit in hstateen0 is a standard-defined WARL field. The general rule applies, so its legal values are an implementation choice."
+    },
+    {
+      "excerpt": "Each standard-defined bit of a `stateen` CSR is WARL and may be read-only zero or one, subject to the following conditions.",
+      "line_number": 144,
+      "parameter_name": "HSTATEEN_FCSR_TYPE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "medium",
+      "reasoning": "The FCSR bit in hstateen0 is a standard-defined WARL field. The general rule applies, with the same misa.F constraint as in mstateen0."
+    },
+    {
+      "excerpt": "Each standard-defined bit of a `stateen` CSR is WARL and may be read-only zero or one, subject to the following conditions.",
+      "line_number": 144,
+      "parameter_name": "HSTATEEN_CTR_TYPE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "medium",
+      "reasoning": "The CTR bit in hstateen0 appears in the register diagram as a standard-defined bit. The general rule applies, so its legal values are an implementation choice."
+    },
+    {
+      "excerpt": "Each standard-defined bit of a `stateen` CSR is WARL and may be read-only zero or one, subject to the following conditions.",
+      "line_number": 144,
+      "parameter_name": "SSTATEEN_JVT_TYPE",
+      "existing_udb_name": "SSTATEEN_JVT_TYPE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The JVT bit in sstateen0 is a standard-defined WARL field. The general rule applies, so its legal values are an implementation choice."
+    },
+    {
+      "excerpt": "Each standard-defined bit of a `stateen` CSR is WARL and may be read-only zero or one, subject to the following conditions.",
+      "line_number": 144,
+      "parameter_name": "SSTATEEN_C_TYPE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "medium",
+      "reasoning": "The C bit in sstateen0 is a standard-defined WARL field. The general rule applies, so its legal values are an implementation choice."
+    },
+    {
+      "excerpt": "Each standard-defined bit of a `stateen` CSR is WARL and may be read-only zero or one, subject to the following conditions.",
+      "line_number": 144,
+      "parameter_name": "SSTATEEN_FCSR_TYPE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "medium",
+      "reasoning": "The FCSR bit in sstateen0 is a standard-defined WARL field. The general rule applies, with the same misa.F constraint as in mstateen0."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "If a need is anticipated, the set of `stateen` CSRs could in the future be doubled by adding these...",
+      "line_number": 359,
+      "reason": "This text is inside a [NOTE] block, which is non-normative. It describes a possible future extension, not a current architectural parameter."
+    },
+    {
+      "excerpt": "For RV64 harts, this extension adds four new 64-bit CSRs at machine level: `mstateen0` (Machine State Enable 0), `mstateen1`, `mstateen2`, and `mstateen3`.",
+      "line_number": 64,
+      "reason": "This is a fixed requirement (the number and width of CSRs) that all implementations must follow. There is no implementation choice."
+    },
+    {
+      "excerpt": "When this extension is not implemented, all state added by an extension is accessible as defined by that extension.",
+      "line_number": 107,
+      "reason": "This describes the behavior when the extension is absent. It is a fixed rule, not an implementation parameter."
+    },
+    {
+      "excerpt": "Software should ensure that all writable bits of `sstateen` CSRs are initialized to zeros when an OS at supervisor level is first entered.",
+      "line_number": 337,
+      "reason": "This is a software requirement (initialization policy), not a hardware architectural parameter."
+    },
+    {
+      "excerpt": "The C bit controls access to any and all custom state.",
+      "line_number": 247,
+      "reason": "This describes the function of the C bit. While the bit's access type (RO zero, RO one, RW) is a parameter, this sentence itself does not define that parameter; it only defines the bit's purpose."
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "When S-mode is implemented, it is determined as follows: .`xLPE` determination when S-mode is implemented [table mapping privilege modes to CSR bits]",
+      "line_number": 25,
+      "reason": "This is a fixed normative mapping of privilege modes to CSR bits (mseccfg.MLPE, menvcfg.LPE, etc.). It does not describe an implementation choice; the CSR bits are architecturally defined."
+    },
+    {
+      "excerpt": "The encoding `R=0`, `W=1`, and `X=0`, is defined to represent an SS page.",
+      "line_number": 135,
+      "reason": "This is a fixed architectural encoding for shadow stack pages, not an implementation-defined parameter."
+    },
+    {
+      "excerpt": "When S-mode is not implemented, then `xSSE` is 0 at both M and U privilege modes.",
+      "line_number": 125,
+      "reason": "This is a fixed requirement for systems without S-mode, not an implementation choice."
+    },
+    {
+      "excerpt": "If the virtual address in `ssp` is not `XLEN` aligned, then the `SSPUSH`/`C.SSPUSH`/`SSPOPCHK`/`C.SSPOPCHK` instructions cause a store/AMO access-fault exception.",
+      "line_number": 170,
+      "reason": "This is a mandatory architectural requirement for alignment checking, not an implementation option."
+    },
+    {
+      "excerpt": "A future extension may define a shadow stack encoding in the G-stage page table to support use cases such as a hypervisor enforcing shadow stack protections for its guests.",
+      "line_number": 210,
+      "reason": "This text appears in a [NOTE] block and is non-normative; it describes a possible future extension, not a current architectural parameter."
+    }
+  ]
+}

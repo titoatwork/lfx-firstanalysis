@@ -1,0 +1,30 @@
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "A portion of the RVC encoding space is reserved for microarchitectural HINTs. Like the HINTs in the RV32I base ISA, these instructions do not modify any architectural state, except for advancing the pc and any applicable performance counters. HINTs are executed as no-ops on implementations that ignore them.",
+      "line_number": 290,
+      "reason": "HINTs by definition do not affect architectural state; whether an implementation acts on them is a microarchitectural optimization, not an architectural parameter. The spec fixes the HINT encodings and their default NOP behavior."
+    },
+    {
+      "excerpt": "For RV32C, _shamt[5]_ must be zero; the code points with _shamt[5]_=1 are designated for custom extensions.",
+      "line_number": 180,
+      "reason": "This designates opcode space for custom extensions; it is not a parameter of the standard C extension that an implementer chooses. The standard extension fixes shamt[5]=0."
+    },
+    {
+      "excerpt": "The C extension can be added to any of the base ISAs (RV32I, RV32E, RV64I, RV64E)",
+      "line_number": 13,
+      "reason": "Whether to include the C extension is a standard ISA configuration choice, not an architectural parameter within the C extension specification itself."
+    },
+    {
+      "excerpt": "C.MV expands to a different instruction than the canonical MV pseudoinstruction... Implementations that handle MV specially, e.g. using register-renaming hardware, may find it more convenient to expand C.MV to MV instead of ADD, at slight additional hardware cost.",
+      "line_number": 175,
+      "reason": "This text appears in a [NOTE] block (non-normative) and describes a microarchitectural implementation suggestion, not an architectural parameter."
+    },
+    {
+      "excerpt": "A 16-bit instruction with all bits zero is permanently reserved as an illegal instruction.",
+      "line_number": 270,
+      "reason": "This is a fixed normative requirement ('permanently reserved'), not an implementation choice. All implementations must treat all-zero as illegal."
+    }
+  ]
+}

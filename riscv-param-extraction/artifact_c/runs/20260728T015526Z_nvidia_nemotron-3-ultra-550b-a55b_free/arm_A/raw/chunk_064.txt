@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Zacas_Supported",
+    "type": "boolean",
+    "description": "Whether the Zacas extension for atomic compare-and-swap instructions is implemented.",
+    "source_line": 1,
+    "source_text": "== \"Zacas\" Extension for Atomic Compare-and-Swap (CAS) Instructions, Version 1.0.0"
+  },
+  {
+    "name": "Zacas_Failed_CAS_Writeback",
+    "type": "boolean",
+    "description": "Whether an unsuccessful AMOCAS.W/D/Q instruction writes back the old value loaded from memory. The specification explicitly permits either behavior: 'may either not perform a memory write or may write back the old value loaded from memory.'",
+    "source_line": 175,
+    "source_text": "An unsuccessful `AMOCAS.W/D/Q` may either not perform a memory write or may write back the old value loaded from memory."
+  }
+]

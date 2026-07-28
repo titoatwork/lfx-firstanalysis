@@ -1,0 +1,30 @@
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE]\n====\nThe more natural CSR number for mcyclecfg would be 0x320, but that was allocated to mcountinhibit.\n\nThis register format matches that specified for programmable counters by Sscofpmf.  The bit position for the OF bit (bit 63) is read-only 0, since these counters do not generate local-counter-overflow interrupts on overflow.\n====",
+      "line_number": 44,
+      "reason": "This is a [NOTE] block (non-normative). It discusses CSR allocation history and register format rationale, not an architectural parameter."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nThe RISC-V ISA has no requirement that the number of cycles for a trap or trap return be the same for all occurrences.  Implementations are free to determine the extent to which this number may be consistent and predictable (or not), and the same is true for the specific cycle in which privilege mode changes.\n====",
+      "line_number": 59,
+      "reason": "This is a [NOTE] block (non-normative). Although it says 'Implementations are free to determine', it appears in a NOTE block and describes microarchitectural timing variability, not an architectural parameter visible to software."
+    },
+    {
+      "excerpt": "[#norm:unimplemented_mode_bits]#For each bit in 61:58, if the associated privilege mode is not implemented, the bit is read-only zero.#",
+      "line_number": 38,
+      "reason": "This references whether privilege modes (S, U, VS, VU) are implemented, which is determined by other extensions (S-mode, U-mode, V-extension), not a parameter of the Smcntrpmf extension itself."
+    },
+    {
+      "excerpt": "[#norm:csr_supervisor_access]#The content of these registers may be accessible from Supervisor level if the Smcdeleg/Ssccfg extensions are implemented.#",
+      "line_number": 42,
+      "reason": "The accessibility is conditional on other extensions (Smcdeleg/Ssccfg) being implemented. This is not a parameter of Smcntrpmf; it is a cross-extension interaction."
+    },
+    {
+      "excerpt": "Mode transition operations (traps and trap returns) may take multiple clock cycles, and the change of privilege mode may be reported as occurring in any one of those cycles (possibly different for each occurrence of a trap or trap return).",
+      "line_number": 57,
+      "reason": "The 'may' here describes behavioral possibility (timing variability), not an implementation-defined architectural choice. The normative text fixes the counting behavior; the exact cycle of mode change is microarchitectural."
+    }
+  ]
+}

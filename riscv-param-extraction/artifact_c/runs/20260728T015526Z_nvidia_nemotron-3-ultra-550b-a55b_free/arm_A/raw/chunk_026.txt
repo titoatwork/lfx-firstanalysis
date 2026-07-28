@@ -1,0 +1,30 @@
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "RISC-V ISA strings begin with either RV32I, RV32E, RV64I, or RV64E, indicating the supported address space size in bits for the base integer ISA.",
+      "line_number": 22,
+      "reason": "This describes the standard naming convention for base ISA variants. The choice of which base ISA to implement is an architectural decision captured elsewhere (e.g., MISA register), not a parameter defined by this naming chapter."
+    },
+    {
+      "excerpt": "Underscores \"_\" may be used to separate ISA extensions to improve readability and to provide disambiguation, e.g., \"RV32I2_M2_A2\".",
+      "line_number": 48,
+      "reason": "The word 'may' here indicates permission in the naming syntax, not an implementation-defined hardware choice. This is a documentation convention, not an architectural parameter."
+    },
+    {
+      "excerpt": "Non-standard extensions are named by using a single \"X\" followed by the alphanumeric name.",
+      "line_number": 105,
+      "reason": "This defines a mandatory naming convention for non-standard extensions. There is no implementation choice here — it is a fixed requirement for how to format the name string."
+    },
+    {
+      "excerpt": "Version numbers are divided into major and minor version numbers, separated by a \"p\". If the minor version is \"0\", then \"p0\" can be omitted from the version string.",
+      "line_number": 120,
+      "reason": "This describes the version numbering syntax for ISA strings. It is a documentation standard, not a hardware implementation parameter."
+    },
+    {
+      "excerpt": "The table also defines the canonical order in which extension names must appear in the name string, with top-to-bottom in table indicating first-to-last in the name string, e.g., RV32IMACV is legal, whereas RV32IMAVC is not.",
+      "line_number": 145,
+      "reason": "This is a fixed requirement for the canonical ordering of extension names in the ISA string. It is a naming convention rule, not an architectural parameter."
+    }
+  ]
+}

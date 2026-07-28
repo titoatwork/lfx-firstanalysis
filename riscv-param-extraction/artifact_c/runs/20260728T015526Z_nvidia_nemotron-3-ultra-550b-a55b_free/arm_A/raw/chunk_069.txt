@@ -1,0 +1,30 @@
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "FLH and FSH are only guaranteed to execute atomically if the effective address is naturally aligned.",
+      "line_number": 25,
+      "reason": "This is a guarantee statement about atomicity requirements, not an implementation choice. It does not say implementations may optionally support atomic unaligned access; it defines the minimum guarantee."
+    },
+    {
+      "excerpt": "If the D extension is present, FCVT.D.H or FCVT.H.D converts a half-precision floating-point number to a double-precision floating-point number, or vice-versa, respectively.",
+      "line_number": 64,
+      "reason": "This is conditional behavior based on whether the D extension is implemented, which is a separate architectural decision. It is not a parameter of the Zfh extension itself."
+    },
+    {
+      "excerpt": "FCVT.L[U].H and FCVT.H.L[U] are RV64-only instructions.",
+      "line_number": 56,
+      "reason": "This is a fixed architectural requirement based on XLEN (RV64 vs RV32), not an implementation-defined choice within the Zfh extension."
+    },
+    {
+      "excerpt": "The Zfhmin extension includes the following instructions from the Zfh extension: FLH, FSH, FMV.X.H, FMV.H.X, FCVT.S.H, and FCVT.H.S.",
+      "line_number": 103,
+      "reason": "This defines the composition of the Zfhmin extension subset. It is a fixed specification, not an implementation parameter."
+    },
+    {
+      "excerpt": "FLH and FSH do not modify the bits being transferred; in particular, the payloads of non-canonical NaNs are preserved.",
+      "line_number": 27,
+      "reason": "This is a required behavioral guarantee for all implementations, not an optional choice."
+    }
+  ]
+}

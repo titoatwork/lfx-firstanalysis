@@ -125,7 +125,20 @@ Reported upstream as [#2163](https://github.com/riscv/riscv-unified-db/issues/21
 
 - **n=2 per arm.** Enough to show the design is underpowered, not enough to characterise the distribution. A spread from two samples is not a confidence interval.
 - **The decomposition was not preregistered.** It came out of diagnosing the variance. It is a measurement of committed artifacts rather than a test of a hypothesis, and it is reported as exploratory. It is fully reproducible without an API key, since scoring is deterministic.
-- **Cross-provider replication did not complete, and the two failures have different causes.** On `gemini-3.6-flash`, arm A returned 21 of 60 chunks and the other 39 calls were refused with `429 RESOURCE_EXHAUSTED`, which is a real free-tier quota block. Arm B produced no data, but only 7 of its 60 failures were quota refusals; the remaining 53 were local network errors (`getaddrinfo failed`, plus one unreachable host). Arm B is therefore evidence about this machine's connectivity, not about Google's limits, and it is not cited as a quota result. The daily allowance itself is not recoverable from the artifact, because the 429 body is truncated before the quota identifier: the widely quoted 20 requests per day is vendor documentation rather than something measured here. A single arm needs 60 responses, and neither provider produced the two same-model runs a variance estimate requires on free quota within this window. The partial runs are committed and excluded from every table by the 60-chunk gate in the script, which prints what it dropped. A properly powered cross-model comparison on this corpus needs paid inference, which is itself a planning constraint for [#1750](https://github.com/riscv/riscv-unified-db/issues/1750), whose deliverable is comparing two or more LLMs.
+- **Cross-provider replication did not complete. Three attempts, three different failure modes, none of them the model's fault.**
+
+  | Provider | Arm | Returned | Refused by provider | Local network |
+  |---|---|---:|---|---:|
+  | `gemini-3.6-flash` | A | 21/60 | 39 × `429 RESOURCE_EXHAUSTED` (daily quota) | 0 |
+  | `gemini-3.6-flash` | B | 0/60 | 7 × `429 RESOURCE_EXHAUSTED` | **53** |
+  | `nemotron-3-ultra-550b-a55b:free` | A | 50/60 | 9 × `429 Rate limit exceeded` (+1 timeout) | 0 |
+  | `nemotron-3-ultra-550b-a55b:free` | B | 0/60 | 60 × `429 Rate limit exceeded` | 0 |
+
+  The Gemini arm B failures are evidence about this machine's connectivity, not about Google's limits, and are not cited as a quota result. The daily allowance is likewise not recoverable from the artifact, because the 429 body is truncated before the quota identifier: the widely quoted 20 requests per day is vendor documentation rather than something measured here.
+
+  A single arm needs 60 responses. No provider delivered two same-model runs, so no cross-provider variance estimate exists, and **H5 remains untested** because it requires two models within one arm. All three partial runs are committed and excluded from every table by the 60-chunk gate, which prints what it dropped.
+
+  The generalisable point is not that one vendor was stingy. It is that **free inference tiers are rate-shaped in three different ways and none of them fit a 120-call experiment**, which is a concrete planning constraint for [#1750](https://github.com/riscv/riscv-unified-db/issues/1750), whose deliverable is comparing two or more LLMs.
 - The registered rule applies: these nulls mean **not detected under this design**, not evidence of absence.
 - Context reaches only 32 of 60 chunks, so arms C and D are identical to A and B on the other 28. Registered in advance in section 4b.
 

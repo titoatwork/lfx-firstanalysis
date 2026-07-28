@@ -1,0 +1,41 @@
+{
+  "parameters": [
+    {
+      "excerpt": "If the address is not naturally aligned, an address-misaligned exception or an access-fault exception will be generated.",
+      "line_number": 22,
+      "parameter_name": "ZALASR_MISALIGNED_EXCEPTION_TYPE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "medium",
+      "reasoning": "The spec uses 'or' between two exception types for misaligned Zalasr accesses, which in RISC-V convention indicates an implementation choice. The implementer chooses which exception to raise (address-misaligned vs access-fault). This is a direct design-time choice not controlled by any CSR."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The Zalasr extension builds on the atomic support provided by the Zaamo (Atomic Memory Operations), Zalrsc (Load-Reserved and Store-Conditional), and Zabha (Byte and Halfword Atomic Memory Operations) extensions by providing additional atomic operations (although it can be implemented independently of them).",
+      "line_number": 7,
+      "reason": "Describes extension dependencies and states Zalasr can be implemented without the others. This is a statement about valid extension combinations, not an architectural parameter with implementation-defined values."
+    },
+    {
+      "excerpt": "The Zalasr instructions always sign-extend the value placed in _rd_ and ignore the upper bits of the value of _rs2_.",
+      "line_number": 19,
+      "reason": "Fixed behavioral requirement ('always sign-extend', 'ignore upper bits') that all implementations must follow. No implementation choice exists."
+    },
+    {
+      "excerpt": "The instructions in the Zalasr extension require that the address held in _rs1_ be naturally aligned to the size in bytes (2^width^) of the operand.",
+      "line_number": 21,
+      "reason": "Fixed alignment requirement ('require that... be naturally aligned'). The relaxation via PMA is a separate platform feature, not a Zalasr parameter."
+    },
+    {
+      "excerpt": "The versions without the _aq_ bit set are RESERVED.",
+      "line_number": 45,
+      "reason": "Fixed encoding constraint (RESERVED encodings). Not an implementation choice."
+    },
+    {
+      "excerpt": "The misaligned atomicity granule PMA, defined in Volume II of this manual, optionally relaxes this alignment requirement.",
+      "line_number": 24,
+      "reason": "Refers to a PMA (Physical Memory Attribute) feature defined in Volume II. Whether this PMA is supported is a platform-level parameter, not a Zalasr-specific architectural parameter."
+    }
+  ]
+}

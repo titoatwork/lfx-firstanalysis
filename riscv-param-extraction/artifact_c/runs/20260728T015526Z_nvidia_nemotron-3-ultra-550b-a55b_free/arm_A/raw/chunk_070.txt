@@ -1,0 +1,40 @@
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The Zfinx extension adds all of the instructions that the F extension adds, except for the transfer instructions FLW, FSW, FMV.W.X, FMV.X.W, C.FLW[SP], and C.FSW[SP].",
+      "line_number": 30,
+      "reason": "This is a fixed requirement defining the Zfinx instruction set. There is no implementation choice — all Zfinx implementations must include exactly these instructions."
+    },
+    {
+      "excerpt": "Floating-point operands of width _w_ < XLEN bits occupy bits _w_-1:0 of an `x` register. Floating-point operations on _w_-bit operands ignore operand bits XLEN-1: _w_.",
+      "line_number": 44,
+      "reason": "This defines fixed architectural behavior for narrower operand processing. No implementation optionality is expressed."
+    },
+    {
+      "excerpt": "Floating-point operations that produce _w_ < XLEN-bit results fill bits XLEN-1: _w_ with copies of bit _w_-1 (the sign bit).",
+      "line_number": 50,
+      "reason": "This defines fixed result behavior (sign-extension). No implementation choice is offered."
+    },
+    {
+      "excerpt": "Double-precision operands in RV32Zdinx are held in aligned `x`-register pairs, i.e., register numbers must be even. Use of misaligned (odd-numbered) registers for double-width floating-point operands is _reserved_.",
+      "line_number": 78,
+      "reason": "This is a fixed architectural rule for RV32Zdinx register layout. The term 'reserved' indicates a fixed prohibition, not an implementation option."
+    },
+    {
+      "excerpt": "In the standard privileged architecture defined in Volume II, the `mstatus` field FS is hardwired to 0 if the Zfinx extension is implemented, and FS no longer affects the trapping behavior of floating-point instructions or `fcsr` accesses.",
+      "line_number": 118,
+      "reason": "This is a fixed requirement for privileged architecture when Zfinx is present. The FS field behavior is mandated, not parameterized."
+    },
+    {
+      "excerpt": "The `misa` bits F, D, and Q are hardwired to 0 when the Zfinx extension is implemented.",
+      "line_number": 123,
+      "reason": "This is a fixed requirement for the misa CSR when Zfinx is implemented. No implementation choice exists."
+    },
+    {
+      "excerpt": "A future discoverability mechanism might be used to probe the existence of the Zfinx, Zhinx, and Zdinx extensions.",
+      "line_number": 128,
+      "reason": "This text appears in a [NOTE] block, which is non-normative. It describes a possible future feature, not a current architectural parameter."
+    }
+  ]
+}

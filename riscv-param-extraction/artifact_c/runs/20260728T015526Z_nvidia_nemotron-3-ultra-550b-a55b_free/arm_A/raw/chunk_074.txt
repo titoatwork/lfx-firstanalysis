@@ -1,0 +1,226 @@
+[
+  {
+    "name": "ZIHINTNTL_VERSION",
+    "type": "string",
+    "value": "1.0",
+    "description": "Version of the Zihintntl extension for Non-Temporal Locality Hints.",
+    "source_line": 1,
+    "source_file": "zihintntl.adoc"
+  },
+  {
+    "name": "NTL_INSTRUCTION_VARIANTS",
+    "type": "array",
+    "value": ["NTL.P1", "NTL.PALL", "NTL.S1", "NTL.ALL"],
+    "description": "Four NTL hint instruction variants defined by the extension.",
+    "source_line": 10,
+    "source_file": "zihintntl.adoc"
+  },
+  {
+    "name": "NTL_P1_SEMANTICS",
+    "type": "string",
+    "value": "Indicates that the target instruction does not exhibit temporal locality within the capacity of the innermost level of private cache in the memory hierarchy.",
+    "description": "Semantic meaning of the NTL.P1 hint instruction.",
+    "source_line": 10,
+    "source_file": "zihintntl.adoc"
+  },
+  {
+    "name": "NTL_P1_ENCODING",
+    "type": "string",
+    "value": "ADD x0, x0, x2",
+    "description": "Base ISA encoding for NTL.P1 instruction.",
+    "source_line": 13,
+    "source_file": "zihintntl.adoc"
+  },
+  {
+    "name": "NTL_PALL_SEMANTICS",
+    "type": "string",
+    "value": "Indicates that the target instruction does not exhibit temporal locality within the capacity of any level of private cache in the memory hierarchy.",
+    "description": "Semantic meaning of the NTL.PALL hint instruction.",
+    "source_line": 15,
+    "source_file": "zihintntl.adoc"
+  },
+  {
+    "name": "NTL_PALL_ENCODING",
+    "type": "string",
+    "value": "ADD x0, x0, x3",
+    "description": "Base ISA encoding for NTL.PALL instruction.",
+    "source_line": 18,
+    "source_file": "zihintntl.adoc"
+  },
+  {
+    "name": "NTL_S1_SEMANTICS",
+    "type": "string",
+    "value": "Indicates that the target instruction does not exhibit temporal locality within the capacity of the innermost level of shared cache in the memory hierarchy.",
+    "description": "Semantic meaning of the NTL.S1 hint instruction.",
+    "source_line": 20,
+    "source_file": "zihintntl.adoc"
+  },
+  {
+    "name": "NTL_S1_ENCODING",
+    "type": "string",
+    "value": "ADD x0, x0, x4",
+    "description": "Base ISA encoding for NTL.S1 instruction.",
+    "source_line": 23,
+    "source_file": "zihintntl.adoc"
+  },
+  {
+    "name": "NTL_ALL_SEMANTICS",
+    "type": "string",
+    "value": "Indicates that the target instruction does not exhibit temporal locality within the capacity of any level of cache in the memory hierarchy.",
+    "description": "Semantic meaning of the NTL.ALL hint instruction.",
+    "source_line": 25,
+    "source_file": "zihintntl.adoc"
+  },
+  {
+    "name": "NTL_ALL_ENCODING",
+    "type": "string",
+    "value": "ADD x0, x0, x5",
+    "description": "Base ISA encoding for NTL.ALL instruction.",
+    "source_line": 28,
+    "source_file": "zihintntl.adoc"
+  },
+  {
+    "name": "NTL_COMPRESSED_VARIANTS_CONDITIONAL",
+    "type": "boolean",
+    "value": true,
+    "description": "Compressed variants of NTL hints are provided only when the C or Zca extension is implemented.",
+    "source_line": 55,
+    "source_file": "zihintntl.adoc"
+  },
+  {
+    "name": "C_NTL_P1_ENCODING",
+    "type": "string",
+    "value": "C.ADD x0, x2",
+    "description": "Compressed encoding for NTL.P1 (C.NTL.P1) when C or Zca extension is present.",
+    "source_line": 55,
+    "source_file": "zihintntl.adoc"
+  },
+  {
+    "name": "C_NTL_PALL_ENCODING",
+    "type": "string",
+    "value": "C.ADD x0, x3",
+    "description": "Compressed encoding for NTL.PALL (C.NTL.PALL) when C or Zca extension is present.",
+    "source_line": 55,
+    "source_file": "zihintntl.adoc"
+  },
+  {
+    "name": "C_NTL_S1_ENCODING",
+    "type": "string",
+    "value": "C.ADD x0, x4",
+    "description": "Compressed encoding for NTL.S1 (C.NTL.S1) when C or Zca extension is present.",
+    "source_line": 55,
+    "source_file": "zihintntl.adoc"
+  },
+  {
+    "name": "C_NTL_ALL_ENCODING",
+    "type": "string",
+    "value": "C.ADD x0, x5",
+    "description": "Compressed encoding for NTL.ALL (C.NTL.ALL) when C or Zca extension is present.",
+    "source_line": 55,
+    "source_file": "zihintntl.adoc"
+  },
+  {
+    "name": "NTL_AFFECTED_INSTRUCTIONS",
+    "type": "string",
+    "value": "All memory-access instructions except cache-management instructions in the Zicbom extension.",
+    "description": "Scope of instructions affected by NTL hints.",
+    "source_line": 60,
+    "source_file": "zihintntl.adoc"
+  },
+  {
+    "name": "NTL_ZICBOP_PREFETCH_BEHAVIOR",
+    "type": "string",
+    "value": "When an NTL instruction is applied to a prefetch hint in the Zicbop extension, it indicates that a cache line should be prefetched into a cache that is outer from the level specified by the NTL.",
+    "description": "Behavior of NTL hints when combined with Zicbop prefetch instructions.",
+    "source_line": 78,
+    "source_file": "zihintntl.adoc"
+  },
+  {
+    "name": "NTL_TRAP_BEHAVIOR_RECOMMENDATION",
+    "type": "string",
+    "value": "Implementations are discouraged from applying the NTL to the first instruction in the trap handler when a trap is taken on the target instruction. Implementations are recommended to ignore the HINT in this case.",
+    "description": "Recommended behavior when a trap occurs on the target instruction of an NTL hint.",
+    "source_line": 87,
+    "source_file": "zihintntl.adoc"
+  },
+  {
+    "name": "NTL_PORTABLE_RECOMMENDATIONS",
+    "type": "table",
+    "value": {
+      "columns": ["Scenario", "Recommended NTL variant"],
+      "rows": [
+        ["Access to a working set between L1 and L2 size", "NTL.P1"],
+        ["Access to a working set between L2 and L3 size", "NTL.PALL"],
+        ["Access to a working set greater than L3 size", "NTL.S1"],
+        ["Access with no exploitable temporal locality (e.g., streaming)", "NTL.ALL"],
+        ["Access to a contended synchronization variable", "NTL.PALL"]
+      ]
+    },
+    "description": "Recommended NTL variant for portable software in various scenarios (Table ntl-portable).",
+    "source_line": 95,
+    "source_file": "zihintntl.adoc"
+  },
+  {
+    "name": "NTL_TUNED_RECOMMENDATIONS",
+    "type": "table",
+    "value": {
+      "columns": ["Memory hierarchy", "P1", "PALL", "S1", "ALL", "Recommended NTL variant for explicit cache management"],
+      "rows": [
+        ["No caches", "---", "---", "---", "---", "none"],
+        ["Private L1 only", "L1", "L1", "L1", "L1", "ALL"],
+        ["Private L1; shared L2", "L1", "L1", "L2", "L2", "P1|ALL"],
+        ["Private L1; shared L2/L3", "L1", "L1", "L2", "L3", "P1|S1|ALL"],
+        ["Private L1/L2", "L1", "L2", "L2", "L2", "P1|ALL"],
+        ["Private L1/L2; shared L3", "L1", "L2", "L3", "L3", "P1|PALL|ALL"],
+        ["Private L1/L2; shared L3/L4", "L1", "L2", "L3", "L4", "P1|PALL|S1|ALL"],
+        ["Private L1/L2/L3; shared L4", "L1", "L3", "L4", "L4", "P1|P1|PALL|ALL"],
+        ["Private L1; shared L2/L3/L4", "L1", "L1", "L2", "L4", "P1|S1|ALL|ALL"],
+        ["Private L1/L2; shared L3/L4/L5", "L1", "L2", "L3", "L5", "P1|PALL|S1|ALL"],
+        ["Private L1/L2/L3; shared L4/L5", "L1", "L3", "L4", "L5", "P1|P1|PALL|ALL"]
+      ]
+    },
+    "description": "Recommended mapping of NTL variants to cache levels for various memory hierarchies, and recommended NTL variant for explicit cache management (Table ntl).",
+    "source_line": 108,
+    "source_file": "zihintntl.adoc"
+  },
+  {
+    "name": "NTL_LR_SC_EXCEPTION_NOTE",
+    "type": "string",
+    "value": "NTL instructions are encoded as ADDs and can be used within LR/SC loops without voiding the forward-progress guarantee. However, using other loads/stores within an LR/SC loop voids the guarantee, so the only reason to use NTL within such a loop is to modify the LR or SC.",
+    "description": "Note on using NTL instructions within LR/SC loops.",
+    "source_line": 145,
+    "source_file": "zihintntl.adoc"
+  },
+  {
+    "name": "NTL_HINT_IGNORE_PERMITTED",
+    "type": "boolean",
+    "value": true,
+    "description": "NTL hints may be freely ignored by implementations; they do not mandate cache provision.",
+    "source_line": 40,
+    "source_file": "zihintntl.adoc"
+  },
+  {
+    "name": "NTL_NO_ARCH_STATE_CHANGE",
+    "type": "boolean",
+    "value": true,
+    "description": "NTL instructions do not change architectural state nor alter architecturally visible effects of the target instruction.",
+    "source_line": 5,
+    "source_file": "zihintntl.adoc"
+  },
+  {
+    "name": "NTL_INTERRUPT_BEHAVIOR_NOTE",
+    "type": "string",
+    "value": "If an interrupt occurs between NTL and target instruction, execution normally resumes at target instruction. NTL not re-executed does not change program semantics. Some implementations may prefer to take interrupt before NTL rather than between NTL and memory access.",
+    "description": "Note on interrupt behavior between NTL instruction and its target.",
+    "source_line": 90,
+    "source_file": "zihintntl.adoc"
+  },
+  {
+    "name": "NTL_NON_MEMORY_TARGET_DISCOURAGED",
+    "type": "boolean",
+    "value": true,
+    "description": "Software is discouraged from following an NTL instruction with an instruction that does not explicitly access memory; nonadherence may reduce performance but has no architecturally visible effect.",
+    "source_line": 83,
+    "source_file": "zihintntl.adoc"
+  }
+]

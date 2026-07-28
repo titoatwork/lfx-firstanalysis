@@ -1,0 +1,389 @@
+[
+  {
+    "name": "PMP_GRANULARITY_G",
+    "description": "PMP granularity parameter G, where PMP grain is 2^(G+2) bytes. Platform-specific but uniform across all PMP regions. Minimum granularity is 4 bytes (G=0). Platforms may specify coarser granularity.",
+    "type": "integer",
+    "constraints": "G >= 0, platform-specific, uniform across all PMP regions. Minimum G=0 (4-byte granularity).",
+    "source_location": "machine.adoc:3363",
+    "normative_tag": "pmp_granularity_param",
+    "dependencies": ["PMP_ENTRY_COUNT", "PMP_A_FIELD_ENCODING"]
+  },
+  {
+    "name": "PMP_HARDWIRED_MMODE_ONLY_REGIONS",
+    "description": "Whether certain physical memory regions are hardwired to be accessible only in M-mode and not visible in lower privilege modes.",
+    "type": "boolean",
+    "constraints": "Platform-specific; some regions may be hardwired M-mode only.",
+    "source_location": "machine.adoc:3365",
+    "normative_tag": "pmp_mmode_only_regions",
+    "dependencies": ["PMP_ENTRY_COUNT", "PMP_L_BIT_M_MODE_ENFORCEMENT"]
+  },
+  {
+    "name": "PMP_CHECK_PRIVILEGE_MODES",
+    "description": "Privilege modes subject to PMP checks: S-mode, U-mode, and M-mode when MPRV=1 and MPP=S/U. Also applies to page-table walks (effective privilege S).",
+    "type": "set",
+    "constraints": "Always includes S and U modes. Includes M-mode when MPRV=1 and MPP=S/U. Page-table walks use effective privilege S.",
+    "source_location": "machine.adoc:3375",
+    "normative_tag": "pmp_check_priv_modes",
+    "dependencies": ["MSTATUS_MPRV", "MSTATUS_MPP", "PMP_CHECK_PAGETABLE_ACCESS"]
+  },
+  {
+    "name": "PMP_CHECK_PAGETABLE_ACCESS",
+    "description": "PMP checks apply to page-table accesses for virtual-address translation, with effective privilege mode S.",
+    "type": "boolean",
+    "constraints": "Always enabled when paging is active; effective privilege mode for page-table walks is S.",
+    "source_location": "machine.adoc:3376",
+    "normative_tag": "pmp_check_pagetable_access",
+    "dependencies": ["PMP_CHECK_PRIVILEGE_MODES", "PMP_WITH_PAGING"]
+  },
+  {
+    "name": "PMP_MMODE_LOCKING_OPTIONAL",
+    "description": "Optionally, PMP checks may apply to M-mode accesses, in which case PMP registers are locked (even M-mode cannot change them until reset).",
+    "type": "boolean",
+    "constraints": "Optional feature; if implemented, PMP registers locked until reset when M-mode checks enabled.",
+    "source_location": "machine.adoc:3377",
+    "normative_tag": "pmp_mmode_locking",
+    "dependencies": ["PMP_L_BIT_FUNCTION", "PMP_L_BIT_M_MODE_ENFORCEMENT"]
+  },
+  {
+    "name": "PMP_VIOLATION_PRECISE_TRAP",
+    "description": "PMP violations are always trapped precisely at the processor.",
+    "type": "boolean",
+    "constraints": "Always precise; no imprecise PMP traps.",
+    "source_location": "machine.adoc:3380",
+    "normative_tag": "pmp_violation_precise_trap",
+    "dependencies": ["PMP_ACCESS_FAULT_EXCEPTION"]
+  },
+  {
+    "name": "PMP_ENTRY_STRUCTURE",
+    "description": "Each PMP entry consists of an 8-bit configuration register and one MXLEN-bit address register. Some settings use the preceding entry's address register.",
+    "type": "struct",
+    "constraints": "8-bit config + MXLEN-bit address per entry. TOR mode uses preceding entry's address register.",
+    "source_location": "machine.adoc:3385",
+    "normative_tag": "pmp_entry_structure",
+    "dependencies": ["PMP_ENTRY_COUNT", "MXLEN", "PMP_A_FIELD_TOR"]
+  },
+  {
+    "name": "PMP_ENTRY_COUNT",
+    "description": "Number of PMP entries implemented. Up to 64 entries supported. Implementations may implement 0, 16, or 64 entries. Lowest-numbered entries must be implemented first.",
+    "type": "integer",
+    "constraints": "Valid values: 0, 16, or 64. Entries 0..N-1 implemented contiguously from 0.",
+    "source_location": "machine.adoc:3385",
+    "normative_tag": "pmp_entry_count",
+    "dependencies": ["PMP_ENTRY_STRUCTURE", "PMP_CFG_RV32_LAYOUT", "PMP_CFG_RV64_LAYOUT"]
+  },
+  {
+    "name": "PMP_CSR_FIELDS_WARL",
+    "description": "All PMP CSR fields are WARL (Write Any Read Legal) and may be read-only zero.",
+    "type": "boolean",
+    "constraints": "All fields WARL; implementations may hardwire fields to zero.",
+    "source_location": "machine.adoc:3386",
+    "normative_tag": "pmp_csrs_warl_access",
+    "dependencies": ["PMP_ENTRY_COUNT", "PMP_CFG_PERMISSIONS", "PMP_A_FIELD_ENCODING"]
+  },
+  {
+    "name": "PMP_CSR_ACCESS_MMODE_ONLY",
+    "description": "PMP CSRs are only accessible in M-mode.",
+    "type": "boolean",
+    "constraints": "Accessible only in M-mode; inaccessible in S/U modes.",
+    "source_location": "machine.adoc:3386",
+    "normative_tag": "pmp_csr_mode",
+    "dependencies": ["PMP_CSR_FIELDS_WARL"]
+  },
+  {
+    "name": "PMP_CFG_RV32_LAYOUT",
+    "description": "RV32 PMP configuration CSR layout: 16 CSRs (pmpcfg0–pmpcfg15) holding configurations for 64 PMP entries (4 entries per CSR).",
+    "type": "struct",
+    "constraints": "16 CSRs × 4 entries = 64 entries. Each entry 8 bits. pmpcfg0 holds pmp0cfg–pmp3cfg, etc.",
+    "source_location": "machine.adoc:3388",
+    "normative_tag": "pmp_cfg_rv32_layout",
+    "dependencies": ["PMP_ENTRY_COUNT", "XLEN"]
+  },
+  {
+    "name": "PMP_CFG_RV64_LAYOUT",
+    "description": "RV64 PMP configuration CSR layout: 8 even-numbered CSRs (pmpcfg0, pmpcfg2, ..., pmpcfg14) holding configurations for 64 PMP entries (8 entries per CSR).",
+    "type": "struct",
+    "constraints": "8 CSRs × 8 entries = 64 entries. Each entry 8 bits. Odd-numbered pmpcfg CSRs (1,3,...,15) are illegal in RV64.",
+    "source_location": "machine.adoc:3389",
+    "normative_tag": "pmp_cfg_rv64_layout",
+    "dependencies": ["PMP_ENTRY_COUNT", "XLEN", "PMP_CFG_RV64_ILLEGAL"]
+  },
+  {
+    "name": "PMP_CFG_RV64_ILLEGAL",
+    "description": "In RV64, odd-numbered PMP configuration registers (pmpcfg1, pmpcfg3, ..., pmpcfg15) are illegal.",
+    "type": "boolean",
+    "constraints": "Odd pmpcfg CSRs raise illegal instruction exception in RV64.",
+    "source_location": "machine.adoc:3390",
+    "normative_tag": "pmp_cfg_rv64_illegal",
+    "dependencies": ["PMP_CFG_RV64_LAYOUT", "XLEN"]
+  },
+  {
+    "name": "PMP_ADDR_REGISTERS",
+    "description": "PMP address registers are CSRs named pmpaddr0 through pmpaddr63 (64 registers total).",
+    "type": "array",
+    "constraints": "64 registers (pmpaddr0–pmpaddr63), each MXLEN bits. Only first N implemented per PMP_ENTRY_COUNT.",
+    "source_location": "machine.adoc:3405",
+    "normative_tag": "pmp_addr_registers",
+    "dependencies": ["PMP_ENTRY_COUNT", "MXLEN"]
+  },
+  {
+    "name": "PMP_ADDR_ENCODING",
+    "description": "PMP address register encoding: RV32 encodes bits 33-2 of a 34-bit physical address; RV64 encodes bits 55-2 of a 56-bit physical address.",
+    "type": "struct",
+    "constraints": "RV32: 34-bit PA, bits [33:2] stored. RV64: 56-bit PA, bits [55:2] stored. Bits [1:0] always zero (4-byte alignment).",
+    "source_location": "machine.adoc:3405",
+    "normative_tag": "pmp_addr_encoding",
+    "dependencies": ["PMP_ADDR_REGISTERS", "XLEN", "PMP_ADDR_WARL"]
+  },
+  {
+    "name": "PMP_ADDR_WARL",
+    "description": "PMP address registers are WARL; not all physical address bits may be implemented.",
+    "type": "boolean",
+    "constraints": "WARL fields; unimplemented high-order bits read as zero and ignore writes.",
+    "source_location": "machine.adoc:3406",
+    "normative_tag": "pmp_addr_warl",
+    "dependencies": ["PMP_ADDR_ENCODING", "PMP_ADDR_REGISTERS"]
+  },
+  {
+    "name": "PMP_CFG_PERMISSIONS",
+    "description": "PMP configuration register contains R (read), W (write), X (execute) permission bits. When set, access permitted; when clear, access denied.",
+    "type": "bitfield",
+    "constraints": "3 bits: R, W, X. R=0/W=1 combination reserved (WARL).",
+    "source_location": "machine.adoc:3420",
+    "normative_tag": "pmp_cfg_permissions",
+    "dependencies": ["PMP_RWX_WARL", "PMP_A_FIELD_ENCODING", "PMP_L_BIT_FUNCTION"]
+  },
+  {
+    "name": "PMP_RWX_WARL",
+    "description": "R, W, X fields form a collective WARL field. Combinations with R=0 and W=1 are reserved.",
+    "type": "bitfield",
+    "constraints": "WARL; legal combinations: (R,W,X) ∈ {(0,0,0), (0,0,1), (1,0,0), (1,0,1), (1,1,0), (1,1,1)}. (0,1,*) reserved.",
+    "source_location": "machine.adoc:3421",
+    "normative_tag": "pmp_rwx_warl",
+    "dependencies": ["PMP_CFG_PERMISSIONS"]
+  },
+  {
+    "name": "PMP_EXEC_FAULT_EXCEPTION",
+    "description": "Instruction fetch from PMP region without execute permission raises instruction access-fault exception.",
+    "type": "exception",
+    "constraints": "Precise trap on instruction fetch violating X permission.",
+    "source_location": "machine.adoc:3425",
+    "normative_tag": "pmp_exec_fault",
+    "dependencies": ["PMP_CFG_PERMISSIONS", "PMP_VIOLATION_PRECISE_TRAP"]
+  },
+  {
+    "name": "PMP_LOAD_FAULT_EXCEPTION",
+    "description": "Load, load-reserved, or cache-block management instruction accessing PMP region without read permission raises load access-fault exception.",
+    "type": "exception",
+    "constraints": "Precise trap on load-type access violating R permission.",
+    "source_location": "machine.adoc:3425",
+    "normative_tag": "pmp_load_fault",
+    "dependencies": ["PMP_CFG_PERMISSIONS", "PMP_VIOLATION_PRECISE_TRAP"]
+  },
+  {
+    "name": "PMP_STORE_FAULT_EXCEPTION",
+    "description": "Store, store-conditional, AMO, or cache-block zero instruction accessing PMP region without write permission raises store access-fault exception.",
+    "type": "exception",
+    "constraints": "Precise trap on store-type access violating W permission.",
+    "source_location": "machine.adoc:3426",
+    "normative_tag": "pmp_store_fault",
+    "dependencies": ["PMP_CFG_PERMISSIONS", "PMP_VIOLATION_PRECISE_TRAP"]
+  },
+  {
+    "name": "PMP_A_FIELD_ENCODING",
+    "description": "A field encoding in PMP configuration register: 0=OFF (disabled), 1=TOR (top of range), 2=NA4 (naturally aligned 4-byte), 3=NAPOT (naturally aligned power-of-two, ≥8 bytes).",
+    "type": "enum",
+    "constraints": "4 values: OFF=0, TOR=1, NA4=2, NAPOT=3. All support 4-byte granularity.",
+    "source_location": "machine.adoc:3435",
+    "normative_tag": "pmp_a_field_encoding",
+    "dependencies": ["PMP_A_FIELD_OFF", "PMP_A_FIELD_NAPOT_NA4", "PMP_A_FIELD_TOR", "PMP_REGION_GRANULARITY_G"]
+  },
+  {
+    "name": "PMP_A_FIELD_OFF",
+    "description": "When A=0 (OFF), the PMP entry is disabled and matches no addresses.",
+    "type": "boolean",
+    "constraints": "A=0 → entry matches no addresses regardless of address register value.",
+    "source_location": "machine.adoc:3436",
+    "normative_tag": "pmp_a_field_off",
+    "dependencies": ["PMP_A_FIELD_ENCODING"]
+  },
+  {
+    "name": "PMP_A_FIELD_NAPOT_NA4",
+    "description": "NAPOT mode (A=3) supports naturally aligned power-of-two regions ≥8 bytes. NA4 mode (A=2) supports naturally aligned 4-byte regions. Both support 4-byte granularity.",
+    "type": "enum",
+    "constraints": "NA4: 4-byte aligned 4-byte regions. NAPOT: 2^n byte aligned regions (n≥3). Granularity 4 bytes.",
+    "source_location": "machine.adoc:3436",
+    "normative_tag": "pmp_a_field_napot_na4",
+    "dependencies": ["PMP_A_FIELD_ENCODING", "PMP_NAPOT_ENCODING_LOW_BITS", "PMP_REGION_GRANULARITY_G"]
+  },
+  {
+    "name": "PMP_NAPOT_ENCODING_LOW_BITS",
+    "description": "NAPOT ranges use low-order bits of the associated address register to encode the region size. Encoding follows pattern where trailing 1s in address register indicate region size.",
+    "type": "bitfield",
+    "constraints": "Address register low bits encode log2(size) - 3. E.g., ...0111 = 8-byte, ...1111 = 16-byte, etc.",
+    "source_location": "machine.adoc:3445",
+    "normative_tag": "pmp_napot_encoding_low_bits",
+    "dependencies": ["PMP_A_FIELD_NAPOT_NA4", "PMP_ADDR_REGISTERS"]
+  },
+  {
+    "name": "PMP_A_FIELD_TOR",
+    "description": "TOR mode (A=1): associated address register forms top of range; preceding PMP address register forms bottom. Entry 0 uses 0 as lower bound. Matches addresses y where pmpaddr[i-1] ≤ y < pmpaddr[i].",
+    "type": "range",
+    "constraints": "Requires two address registers (current and previous). Entry 0 lower bound = 0. If pmpaddr[i-1] ≥ pmpaddr[i], entry matches no addresses.",
+    "source_location": "machine.adoc:3455",
+    "normative_tag": "pmp_a_field_tor",
+    "dependencies": ["PMP_A_FIELD_ENCODING", "PMP_ADDR_REGISTERS", "PMP_ENTRY_STRUCTURE"]
+  },
+  {
+    "name": "PMP_REGION_GRANULARITY_G",
+    "description": "PMP granularity parameter G. PMP grain = 2^(G+2) bytes. Must be same across all PMP regions. Platforms may specify coarser granularity than minimum 4 bytes.",
+    "type": "integer",
+    "constraints": "G ≥ 0, platform-specific, uniform across all regions. G=0 → 4-byte grain. G=1 → 8-byte grain, etc.",
+    "source_location": "machine.adoc:3470",
+    "normative_tag": "pmp_region_granularity_g",
+    "dependencies": ["PMP_GRANULARITY_PARAM", "PMP_NA4_SELECT_RESTRICTION", "PMP_NAPOT_ADDR_READ_MASK", "PMP_TOR_OFF_ADDR_READ_MASK"]
+  },
+  {
+    "name": "PMP_NA4_SELECT_RESTRICTION",
+    "description": "When G ≥ 1, NA4 mode (A=2) is not selectable.",
+    "type": "boolean",
+    "constraints": "If G ≥ 1, writing A=2 (NA4) is ignored or treated as OFF (WARL).",
+    "source_location": "machine.adoc:3470",
+    "normative_tag": "pmp_na4_select_restriction",
+    "dependencies": ["PMP_REGION_GRANULARITY_G", "PMP_A_FIELD_NAPOT_NA4"]
+  },
+  {
+    "name": "PMP_NAPOT_ADDR_READ_MASK",
+    "description": "When G ≥ 2 and NAPOT mode (A[1]=1), bits pmpaddr[i][G-2:0] read as all ones.",
+    "type": "bitfield",
+    "constraints": "Read-only ones in low G-1 bits of address register when in NAPOT mode with G ≥ 2.",
+    "source_location": "machine.adoc:3470",
+    "normative_tag": "pmp_napot_addr_read_mask",
+    "dependencies": ["PMP_REGION_GRANULARITY_G", "PMP_A_FIELD_NAPOT_NA4", "PMP_ADDR_REGISTERS"]
+  },
+  {
+    "name": "PMP_TOR_OFF_ADDR_READ_MASK",
+    "description": "When G ≥ 1 and mode is OFF or TOR (A[1]=0), bits pmpaddr[i][G-1:0] read as all zeros. These bits do not affect TOR address-matching logic.",
+    "type": "bitfield",
+    "constraints": "Read-only zeros in low G bits of address register when in OFF/TOR mode with G ≥ 1.",
+    "source_location": "machine.adoc:3471",
+    "normative_tag": "pmp_tor_off_addr_read_mask",
+    "dependencies": ["PMP_REGION_GRANULARITY_G", "PMP_A_FIELD_OFF", "PMP_A_FIELD_TOR", "PMP_ADDR_REGISTERS"]
+  },
+  {
+    "name": "PMP_ADDR_RETENTION_ON_MODE_CHANGE",
+    "description": "Changing pmpcfg[i].A[1] affects the value read from pmpaddr[i] but does not affect the underlying stored value. pmpaddr[i][G-1] retains its original value when switching between NAPOT and TOR/OFF and back to NAPOT.",
+    "type": "boolean",
+    "constraints": "Underlying address register bits preserved across mode changes; only read view changes.",
+    "source_location": "machine.adoc:3471",
+    "normative_tag": "pmp_addr_retention_on_mode_change",
+    "dependencies": ["PMP_NAPOT_ADDR_READ_MASK", "PMP_TOR_OFF_ADDR_READ_MASK", "PMP_ADDR_REGISTERS"]
+  },
+  {
+    "name": "PMP_L_BIT_FUNCTION",
+    "description": "L bit indicates PMP entry is locked. Writes to the configuration register and associated address registers are ignored. Locked entries remain locked until hart reset.",
+    "type": "boolean",
+    "constraints": "L=1 → writes to pmpicfg and pmpaddri ignored. Persists until reset.",
+    "source_location": "machine.adoc:3485",
+    "normative_tag": "pmp_l_bit_function",
+    "dependencies": ["PMP_L_BIT_WRITE_PROTECTION", "PMP_L_BIT_M_MODE_ENFORCEMENT"]
+  },
+  {
+    "name": "PMP_L_BIT_WRITE_PROTECTION",
+    "description": "If PMP entry i is locked (L=1), writes to pmpicfg and pmpaddri are ignored. Additionally, if A=TOR, writes to pmpaddri-1 are also ignored.",
+    "type": "boolean",
+    "constraints": "Lock extends to preceding address register in TOR mode. L=1 + A=TOR → pmpaddr[i-1] also write-protected.",
+    "source_location": "machine.adoc:3486",
+    "normative_tag": "pmp_l_bit_write_protection",
+    "dependencies": ["PMP_L_BIT_FUNCTION", "PMP_A_FIELD_TOR"]
+  },
+  {
+    "name": "PMP_L_BIT_M_MODE_ENFORCEMENT",
+    "description": "L bit also controls M-mode permission enforcement. L=1: R/W/X permissions enforced for all privilege modes. L=0: M-mode accesses matching the entry always succeed; R/W/X apply only to S/U modes.",
+    "type": "boolean",
+    "constraints": "L=1 → permissions enforced for M, S, U. L=0 → M-mode ignores permissions, S/U still checked.",
+    "source_location": "machine.adoc:3490",
+    "normative_tag": "pmp_l_bit_m_mode_enforcement",
+    "dependencies": ["PMP_L_BIT_FUNCTION", "PMP_RWX_CHECK", "PMP_CHECK_PRIVILEGE_MODES"]
+  },
+  {
+    "name": "PMP_MISALIGNED_ACCESS_BEHAVIOR",
+    "description": "Misaligned accesses may be decomposed into multiple memory operations. PMP checking performed on each operation independently. A portion of a misaligned store that passes PMP check may become visible even if another portion fails.",
+    "type": "behavior",
+    "constraints": "Per-operation PMP checking; partial visibility of stores/AMOs possible on misaligned access.",
+    "source_location": "machine.adoc:3500",
+    "normative_tag": "pmp_misaligned_access_behavior",
+    "dependencies": ["PMP_ENTRY_PRIORITY", "PMP_FULL_MATCH_REQUIRED", "PMP_RWX_CHECK"]
+  },
+  {
+    "name": "PMP_ENTRY_PRIORITY",
+    "description": "PMP entries are statically prioritized by index. Lowest-numbered entry matching any byte of a memory operation determines success/failure.",
+    "type": "priority",
+    "constraints": "Priority order: entry 0 > entry 1 > ... > entry N-1. First match wins.",
+    "source_location": "machine.adoc:3502",
+    "normative_tag": "pmp_entry_priority",
+    "dependencies": ["PMP_ENTRY_COUNT", "PMP_FULL_MATCH_REQUIRED", "PMP_RWX_CHECK"]
+  },
+  {
+    "name": "PMP_FULL_MATCH_REQUIRED",
+    "description": "The matching PMP entry must match all bytes of a memory operation, or the operation fails irrespective of L, R, W, X bits.",
+    "type": "boolean",
+    "constraints": "Partial match → access fails. Entry must fully cover the access address range.",
+    "source_location": "machine.adoc:3502",
+    "normative_tag": "pmp_full_match_required",
+    "dependencies": ["PMP_ENTRY_PRIORITY", "PMP_RWX_CHECK"]
+  },
+  {
+    "name": "PMP_RWX_CHECK",
+    "description": "If PMP entry matches all bytes: L=0 and M-mode → success. Otherwise (L=1 or S/U mode) → success only if R/W/X bit for access type is set.",
+    "type": "logic",
+    "constraints": "Permission check: (L=0 ∧ M-mode) ∨ (R/W/X bit set for access type).",
+    "source_location": "machine.adoc:3505",
+    "normative_tag": "pmp_rwx_check",
+    "dependencies": ["PMP_CFG_PERMISSIONS", "PMP_L_BIT_M_MODE_ENFORCEMENT", "PMP_CHECK_PRIVILEGE_MODES"]
+  },
+  {
+    "name": "PMP_NO_ENTRY_MATCH_BEHAVIOR",
+    "description": "If no PMP entry matches: M-mode access succeeds. S/U-mode access fails if at least one PMP entry is implemented.",
+    "type": "logic",
+    "constraints": "Default deny for S/U when PMP implemented; default allow for M-mode.",
+    "source_location": "machine.adoc:3508",
+    "normative_tag": "pmp_no_entry_match",
+    "dependencies": ["PMP_ENTRY_COUNT", "PMP_CHECK_PRIVILEGE_MODES", "PMP_RWX_CHECK"]
+  },
+  {
+    "name": "PMP_ACCESS_FAULT_EXCEPTION",
+    "description": "Failed memory operations generate instruction, load, or store access-fault exception. A single instruction may generate multiple memory operations; exception raised if at least one fails, though others may succeed with visible side effects.",
+    "type": "exception",
+    "constraints": "Exception type matches access type (I/L/S). Non-atomic instruction decomposition possible.",
+    "source_location": "machine.adoc:3512",
+    "normative_tag": "pmp_access_fault_exception",
+    "dependencies": ["PMP_EXEC_FAULT_EXCEPTION", "PMP_LOAD_FAULT_EXCEPTION", "PMP_STORE_FAULT_EXCEPTION", "PMP_MISALIGNED_ACCESS_BEHAVIOR"]
+  },
+  {
+    "name": "PMP_WITH_PAGING",
+    "description": "When paging is enabled, PMP checks apply to all physical memory accesses including implicit page-table references. Effective privilege mode for page-table accesses is S.",
+    "type": "boolean",
+    "constraints": "PMP checks apply to page-table walks (effective privilege S) and all explicit accesses.",
+    "source_location": "machine.adoc:3525",
+    "normative_tag": "pmp_with_paging",
+    "dependencies": ["PMP_CHECK_PAGETABLE_ACCESS", "PMP_CHECK_PRIVILEGE_MODES"]
+  },
+  {
+    "name": "PMP_SPECULATIVE_TRANSLATIONS",
+    "description": "Implementations with virtual memory may perform speculative address translations and cache them (including identity mappings for Bare mode and M-mode). PMP settings for resulting physical address may be checked/cached between translation and explicit access.",
+    "type": "boolean",
+    "constraints": "Speculative translation and PMP checking/caching permitted. Software must synchronize.",
+    "source_location": "machine.adoc:3527",
+    "normative_tag": "pmp_speculative_translations",
+    "dependencies": ["PMP_WITH_PAGING", "PMP_SFENCE_REQUIRED"]
+  },
+  {
+    "name": "PMP_SFENCE_REQUIRED",
+    "description": "When PMP settings are modified, M-mode software must synchronize with virtual memory system and PMP/address-translation caches by executing SFENCE.VMA with rs1=x0, rs2=x0 after PMP CSR writes.",
+    "type": "instruction",
+    "constraints": "SFENCE.VMA (rs1=x0, rs2=x0) required after PMP CSR writes when virtual memory implemented. Not needed if no page-based virtual memory.",
+    "source_location": "machine.adoc:3530",
+    "normative_tag": "pmp_sfence_required",
+    "dependencies": ["PMP_SPECULATIVE_TRANSLATIONS", "PMP_WITH_PAGING"]
+  }
+]

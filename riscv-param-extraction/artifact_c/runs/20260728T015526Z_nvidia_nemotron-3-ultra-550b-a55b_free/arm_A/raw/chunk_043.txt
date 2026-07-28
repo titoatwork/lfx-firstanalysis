@@ -1,0 +1,61 @@
+{
+  "parameters": [
+    {
+      "excerpt": "[#norm:rvwmo_misaligned_ldst_memops]#A misaligned load or store instruction may be decomposed into a set of component memory operations of any granularity.#",
+      "line_number": 71,
+      "parameter_name": "MISALIGNED_SPLIT_STRATEGY",
+      "existing_udb_name": "MISALIGNED_SPLIT_STRATEGY",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The spec explicitly states misaligned loads/stores 'may be decomposed into a set of component memory operations of any granularity,' leaving the decomposition granularity (e.g., byte, halfword, word) as a direct implementation choice. This is not controlled by any CSR field."
+    },
+    {
+      "excerpt": "[#norm:rvwmo_fp_gt_xlen_memops]#A floating-point load or store of more than XLEN bits may also be decomposed into a set of component memory operations of any granularity.#",
+      "line_number": 73,
+      "parameter_name": "FP_GT_XLEN_SPLIT_STRATEGY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "Analogous to the misaligned case, the spec permits FP accesses wider than XLEN to be decomposed at any granularity, making the split strategy a direct implementation choice. Listed separately from integer misaligned accesses."
+    },
+    {
+      "excerpt": "[#norm:rvwmo_misaligned_in_atomic_pma]#if misaligned atomics are supported via the misaligned atomicity granule PMA, then AMOs within an atomicity granule are not decomposed, nor are loads and stores defined in the base ISAs, nor are loads and stores of no more than XLEN bits defined in the F, D, and Q extensions.#",
+      "line_number": 77,
+      "parameter_name": "MISALIGNED_MAX_ATOMICITY_GRANULE_SIZE",
+      "existing_udb_name": "MISALIGNED_MAX_ATOMICITY_GRANULE_SIZE",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "medium",
+      "reasoning": "The text references a 'misaligned atomicity granule PMA' whose granule size determines which accesses are atomic/non-decomposed. The granule size (e.g., 64-byte, 128-byte) is an implementation-defined PMA parameter, though the spec only conditionally references it here."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[#norm:rvwmo_single_copy_atomic]#All memory operations are single-copy atomic: they can never be observed in a partially complete state.#",
+      "line_number": 52,
+      "reason": "This is a fixed architectural requirement ('are single-copy atomic') applying to all implementations, not an implementation choice."
+    },
+    {
+      "excerpt": "[#norm:rvwmo_aligned_memop]#Each aligned memory instruction that accesses XLEN or fewer bits gives rise to exactly one memory operation, unless specified otherwise.#",
+      "line_number": 54,
+      "reason": "This is a normative rule defining the memory model's primitives, not a parameter. The 'unless specified otherwise' refers to explicit exceptions listed elsewhere, not implementation optionality."
+    },
+    {
+      "excerpt": "[NOTE]\n====\n[#norm:rvwmo_only_mainmem]#This chapter defines the memory model for regular main memory operations. The interaction of the memory model with I/O memory, instruction fetches, FENCE.I, page-table walks, and SFENCE.VMA is not (yet) formalized.#\n====",
+      "line_number": 33,
+      "reason": "Text inside a [NOTE] block is non-normative (NON_NORM). It describes scope limitations and future work, not architectural parameters."
+    },
+    {
+      "excerpt": "[#norm:rvwmo_ld_val_axiom_lead-in]#Each byte of each load _i_ returns the value written to that byte by the store that is the latest in global memory order among the following stores:#",
+      "line_number": 200,
+      "reason": "This describes the Load Value Axiom — a behavioral rule that all implementations must satisfy. It defines allowed executions, not an implementation choice."
+    },
+    {
+      "excerpt": ".Granularities at which syntactic dependencies are tracked through CSRs\n[%autowidth,float=\"center\",align=\"center\",cols=\"<,<,<\",options=\"header\",]\n|===\n|Name |Portions Tracked as Independent Units |Aliases\n|_fflags_ |Bits 4, 3, 2, 1, 0 |_fcsr_\n|_frm_ |entire CSR |_fcsr_\n|_fcsr_ |Bits 7-5, 4, 3, 2, 1, 0 |_fflags_, _frm_\n|===",
+      "line_number": 400,
+      "reason": "The CSR dependency tracking granularity table is a fixed architectural specification (which CSR bits are tracked independently), not an implementation-defined parameter. The note confirms read-only CSRs are excluded by definition."
+    }
+  ]
+}

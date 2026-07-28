@@ -1,0 +1,30 @@
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[#norm:flen_param]#The F extension adds 32 floating-point registers, `f0-f31`, each 32 bits wide#",
+      "line_number": 14,
+      "reason": "Fixed requirement: the F extension mandates exactly 32 floating-point registers of 32 bits each. No implementation choice."
+    },
+    {
+      "excerpt": "The floating-point control and status register, `fcsr`, is a RISC-V control and status register (CSR). It is a 32-bit read/write register",
+      "line_number": 86,
+      "reason": "Fixed requirement: fcsr is explicitly defined as a 32-bit read/write register with no optionality for read-only or different widths."
+    },
+    {
+      "excerpt": "Bits 31--8 of the `fcsr` are reserved for other standard extensions. If these extensions are not present, implementations shall ignore writes to these bits and supply a zero value when read.",
+      "line_number": 114,
+      "reason": "Fixed requirement: reserved bits have defined behavior (ignore writes, read as zero). No implementation choice."
+    },
+    {
+      "excerpt": "Except when otherwise stated, if the result of a floating-point operation is NaN, it is the canonical NaN. The canonical NaN has a positive sign and all significand bits clear except the MSB, a.k.a. the quiet bit. For single-precision floating-point, this corresponds to the pattern `0x7fc00000`.",
+      "line_number": 191,
+      "reason": "Fixed requirement: canonical NaN encoding is mandated. The NOTE block mentions implementers may provide nonstandard NaN payload propagation, but that is non-normative."
+    },
+    {
+      "excerpt": "As described in <<ldst>>, the execution environment defines whether misaligned floating-point loads and stores are handled invisibly or raise a contained or fatal trap.",
+      "line_number": 256,
+      "reason": "Delegates to execution environment (platform spec), not an ISA implementation parameter. The choice is defined in the base ISA (referenced by <<ldst>>), not in this F extension chunk."
+    }
+  ]
+}

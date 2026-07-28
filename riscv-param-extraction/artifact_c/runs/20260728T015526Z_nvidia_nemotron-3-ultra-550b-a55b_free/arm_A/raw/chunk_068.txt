@@ -1,0 +1,30 @@
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "If the D extension is implemented, FLI.D performs the analogous operation, but loads a double-precision value into floating-point register _rd_.",
+      "line_number": 78,
+      "reason": "This is a conditional requirement based on whether the D extension is present, not an implementation choice within Zfa. The behavior is fully specified when D is implemented."
+    },
+    {
+      "excerpt": "This instruction is only provided if the D extension is implemented.",
+      "line_number": 173,
+      "reason": "This states a dependency requirement (FCVTMOD.W.D requires D extension), not an optional implementation choice. The instruction either exists (if D) or doesn't (if no D)."
+    },
+    {
+      "excerpt": "For RV32 only, if the D extension is implemented, the FMVH.X.D instruction moves bits 63:32 of floating-point register _rs1_ into integer register _rd_.",
+      "line_number": 180,
+      "reason": "This is a fixed architectural requirement conditional on XLEN=32 and D extension. No implementation choice is offered."
+    },
+    {
+      "excerpt": "The set of 32 constants was chosen by examining floating-point libraries, including the C standard math library, and to optimize fixed-point to floating-point conversion.",
+      "line_number": 58,
+      "reason": "This text is inside a [NOTE] block, which is non-normative. It provides design rationale, not an architectural parameter."
+    },
+    {
+      "excerpt": "These instructions are encoded like their FMIN and FMAX counterparts, but with instruction bit 13 set to 1.",
+      "line_number": 112,
+      "reason": "This specifies a fixed encoding mandated by the specification. There is no implementation choice in the encoding."
+    }
+  ]
+}

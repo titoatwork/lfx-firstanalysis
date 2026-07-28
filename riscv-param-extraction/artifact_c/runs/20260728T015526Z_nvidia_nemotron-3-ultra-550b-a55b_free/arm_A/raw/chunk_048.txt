@@ -1,0 +1,111 @@
+{
+  "parameters": [
+    {
+      "excerpt": "It is implementation-specific which DEPTH value(s) are supported.",
+      "line_number": 185,
+      "parameter_name": "CTR_BUFFER_DEPTH_SUPPORTED",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The sctrdepth.DEPTH field is WARL with encodings for 16, 32, 64, 128, 256 entries. The spec explicitly states that which of these depths are supported is implementation-specific, making the set of supported depths a direct architectural parameter."
+    },
+    {
+      "excerpt": "All fields are optional except for M, S, U, and BPFRZ. All unimplemented fields are read-only 0, while all implemented fields are writable.",
+      "line_number": 102,
+      "parameter_name": "MCTRCTL_OPTIONAL_FIELDS_IMPLEMENTED",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The mctrctl register contains numerous optional fields (RASEMU, STE, MTE, LCOFIFRZ, EXCINH, INTRINH, TRETINH, NTBREN, TKBRINH, INDCALLINH, DIRCALLINH, INDJMPINH, DIRJMPINH, CORSWAPINH, RETINH, INDLJMPINH, DIRLJMPINH, Custom[3:0]). The implementation chooses which subset to implement; unimplemented fields are read-only zero. This is a direct design-time choice of a subset from a fixed universe."
+    },
+    {
+      "excerpt": "The `ctrdata` register contains metadata for the recorded transfer. This register must be implemented, though all fields within it are optional. Unimplemented fields are read-only 0.",
+      "line_number": 278,
+      "parameter_name": "CTRDATA_FIELDS_IMPLEMENTED",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The ctrdata register has three defined fields (TYPE, CCV, CC). The spec states all fields are optional, so the implementation chooses which subset to implement. This is a direct design-time choice of a subset from a fixed universe."
+    },
+    {
+      "excerpt": "An implementation that supports cycle counting must implement CCV and all CCM bits, but may implement 0..4 exponent bits in CCE. Unimplemented CCE bits are read-only 0.",
+      "line_number": 355,
+      "parameter_name": "CCE_BITS_IMPLEMENTED",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of CCE (Cycle Count Exponent) bits is explicitly left to the implementation as a range of 0 to 4 bits. This is a direct numeric parameter with bounds."
+    },
+    {
+      "excerpt": "If external trap recording is implemented, `mctrctl`.MTE and `sctrctl`.STE must be implemented, while `vsctrctl`.STE must be implemented if the H extension is implemented.",
+      "line_number": 245,
+      "parameter_name": "EXTERNAL_TRAP_RECORDING_IMPLEMENTED",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The spec describes external trap recording as an optional feature ('By default external traps are not recorded, but privileged software... can opt-in'). The conditional requirement on MTE/STE bits indicates the feature itself is a binary implementation choice."
+    },
+    {
+      "excerpt": "When the optional `__x__ctrctl`.RASEMU bit is implemented and set to 1, transfer recording behavior is altered to emulate the behavior of a return-address stack (RAS).",
+      "line_number": 380,
+      "parameter_name": "RASEMU_IMPLEMENTED",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The RASEMU bit in mctrctl is explicitly listed as an optional field. Whether the RAS emulation mode is supported is a binary implementation choice."
+    },
+    {
+      "excerpt": "All fields are optional except for M, S, U, and BPFRZ.",
+      "line_number": 102,
+      "parameter_name": "LCOFIFRZ_IMPLEMENTED",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "LCOFIFRZ is one of the optional fields in mctrctl (and sctrctl/vsctrctl). The spec notes it must be writable if Sscofpmf is implemented, but its presence is otherwise a binary implementation choice."
+    },
+    {
+      "excerpt": "Any custom CTR extension must be associated with a non-zero value within the designated custom bits in `__x__ctrctl`.",
+      "line_number": 440,
+      "parameter_name": "CUSTOM_EXTENSION_IMPLEMENTED",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "medium",
+      "reasoning": "The 4 custom bits in mctrctl are designated for custom extensions. Whether an implementation defines and enables a custom extension using these bits is a binary design-time choice, though the exact behavior is open-ended."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The number of records that can be held in the buffer depends upon both the implementation (the maximum supported depth) and the CTR configuration (the software selected depth).",
+      "line_number": 15,
+      "reason": "This sentence describes the two factors determining buffer depth but does not itself define a parameter; the parameter is the set of supported DEPTH values captured separately."
+    },
+    {
+      "excerpt": "Implementations may convert an invalid address into a valid address that the register is capable of holding.",
+      "line_number": 215,
+      "reason": "This describes an allowed implementation behavior for handling invalid addresses in ctrsource/ctrtarget, but does not define a discrete architectural parameter with a fixed set of choices."
+    },
+    {
+      "excerpt": "CCV should additionally be cleared after any other implementation-specific scenarios where active cycles might not be counted in CtrCycleCounter.",
+      "line_number": 370,
+      "reason": "This refers to implementation-specific scenarios for clearing CCV, but does not define a specific architectural parameter; it acknowledges that microarchitectural details may affect cycle counting."
+    },
+    {
+      "excerpt": "Because the ROI of CTR is perceived to be low for RV32 implementations, CTR does not fully support RV32.",
+      "line_number": 108,
+      "reason": "This is a non-normative note about RV32 support limitations, not an architectural parameter."
+    },
+    {
+      "excerpt": "When `mstateen0`.CTR=1 and `hstateen0`.CTR=1, VS-mode accesses to supervisor CTR state behave as described... When `mstateen0`.CTR=1 and `hstateen0`.CTR=0, both VS-mode accesses... raise a virtual-instruction exception.",
+      "line_number": 315,
+      "reason": "This describes the behavior of the Smstateen/Ssstateen extension's CTR bit, which is a separate extension. It is not a parameter of the Smctr extension itself."
+    }
+  ]
+}

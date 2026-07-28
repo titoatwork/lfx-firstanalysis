@@ -1,0 +1,30 @@
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "`zvknha`: `SEW` is any value other than 32",
+      "line_number": 3355,
+      "reason": "This is a reserved encoding rule fixing SEW=32 for the zvknha extension, not an implementation choice. The legal SEW values are fixed by the extension specification."
+    },
+    {
+      "excerpt": "`zvknhb`: `SEW` is any value other than 32 or 64",
+      "line_number": 3356,
+      "reason": "This is a reserved encoding rule fixing SEW∈{32,64} for the zvknhb extension, not an implementation choice."
+    },
+    {
+      "excerpt": "For the best performance, it is recommended that implementations have VLEN>=256. When VLEN<EGW, an appropriate LMUL needs to be used by software",
+      "line_number": 3520,
+      "reason": "This text appears in a [NOTE] block, making it non-normative (NON_NORM). It is a performance recommendation, not an architectural parameter."
+    },
+    {
+      "excerpt": "if(LMUL*VLEN < EGW) then { handle_illegal(); }",
+      "line_number": 3385,
+      "reason": "This is a mandatory requirement (illegal instruction exception if VLEN*LMUL < EGW), not an implementation-defined choice. All implementations must enforce this."
+    },
+    {
+      "excerpt": "Implementation Hint: The round constants (CK) can be generated on the fly fairly cheaply.",
+      "line_number": 3620,
+      "reason": "This appears in a [NOTE] block labeled 'Implementation Hint', making it non-normative (NON_NORM). It suggests an optimization, not an architectural parameter."
+    }
+  ]
+}
