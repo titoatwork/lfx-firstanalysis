@@ -37,7 +37,21 @@ RUN4 = "20260728T013748Z_gpt-4o-mini-2024-07-18"
 
 @dataclass
 class Claim:
-    """One published number, and where it must be re-derivable from."""
+    """One published number, and where it must be re-derivable from.
+
+    `audit_level` records a second, weaker guarantee that this harness used to
+    conflate with the first:
+
+      full_run        the number re-derives from a committed file AND the run
+                      behind that file is reproducible from committed artefacts
+      aggregate_only  the number re-derives from a committed file, but the run
+                      behind it left no per-chunk or alignment trail, so it can
+                      never be cross-checked
+
+    Passing `verify_claims.py` proved only the first half until 2026-07-28.
+    Artifact A slipped through on that gap: its exact-match count is real and
+    re-derives, and there is no artefact anywhere that could contradict it.
+    """
 
     claim_id: str
     stated: object
@@ -47,6 +61,7 @@ class Claim:
     note: str = ""
     tol: float = 0.0
     tags: list[str] = field(default_factory=list)
+    audit_level: str = "full_run"
 
 
 def load(p: Path) -> dict:
@@ -290,16 +305,40 @@ CLAIMS: list[Claim] = [
           RESULTS / "metrics_claude-sonnet-4.part1-committed.json",
           lambda m: round(100 * (m["matched_udb_count"] - m["exact_matches_evaluated"])
                           / m["matched_udb_count"], 1), tol=0.05, tags=["decomp"]),
+    # Artifact A and the v3 ablation predate the retention rule. Their alignment
+    # files were never kept, so these three can be re-derived but never audited.
     Claim("decomp.mini_exact", 11, "PRIMARY_RESULTS.md",
           RESULTS / "metrics_gpt-4o-mini.json",
-          lambda m: m["exact_matches_evaluated"], tags=["decomp"]),
+          lambda m: m["exact_matches_evaluated"], tags=["decomp"],
+          audit_level="aggregate_only"),
     Claim("decomp.mini_share", 80.7, "PRIMARY_RESULTS.md",
           RESULTS / "metrics_gpt-4o-mini.json",
           lambda m: round(100 * (m["matched_udb_count"] - m["exact_matches_evaluated"])
-                          / m["matched_udb_count"], 1), tol=0.05, tags=["decomp"]),
+                          / m["matched_udb_count"], 1), tol=0.05, tags=["decomp"],
+          audit_level="aggregate_only"),
     Claim("decomp.v3_exact", 10, "PRIMARY_RESULTS.md",
           RESULTS / "metrics_gpt-4o-mini.v3.json",
-          lambda m: m["exact_matches_evaluated"], tags=["decomp"]),
+          lambda m: m["exact_matches_evaluated"], tags=["decomp"],
+          audit_level="aggregate_only"),
+
+    # ---- the reproducible cross-model comparison that replaced 7.8x ----
+    # Both complete arm A runs land on 9 exact matches. 86/9 = 9.6x, and the
+    # adjusted denominator (177) cancels, so the ratio needs no separate gate.
+    Claim("decomp.armA_run1_exact", 9, "README.md, metrics.md, PRIMARY_RESULTS.md",
+          DECOMP, d_exact(RUN1, "A"), tags=["decomp", "crossmodel"]),
+    Claim("decomp.crossmodel_exact_ratio", 9.6,
+          "README.md, metrics.md, PRIMARY_RESULTS.md",
+          DECOMP,
+          lambda d: round(86 / min(r["exact"] for r in d["rows"] if r["arm"] == "A"), 1),
+          tol=0.05, tags=["decomp", "crossmodel"]),
+    # The published text says both arm A runs agree at 9. A ratio built on min()
+    # would still pass if one of them vanished, so the agreement is gated too.
+    # Found by sabotage-testing the two claims above.
+    Claim("decomp.armA_exact_agreement", 2,
+          "README.md, metrics.md, PRIMARY_RESULTS.md",
+          DECOMP,
+          lambda d: sum(1 for r in d["rows"] if r["arm"] == "A" and r["exact"] == 9),
+          tags=["decomp", "crossmodel"]),
 
     # ---- why cross-provider replication did not complete ----
     # Arm A is the quota evidence: 21 responses, then the provider refused the
@@ -396,6 +435,14 @@ def main() -> int:
     print(f"  verified     : {ok}")
     print(f"  mismatched   : {bad}")
     print(f"  missing      : {missing}")
+
+    aggregate_only = [c for c in claims if c.audit_level == "aggregate_only"]
+    if aggregate_only:
+        print(f"\nre-derives but cannot be audited : {len(aggregate_only)}")
+        for c in aggregate_only:
+            print(f"  {c.claim_id:<26} {c.artifact.relative_to(ROOT)}")
+        print("  The run behind these left no per-chunk or alignment trail, so no")
+        print("  artefact could contradict them. They pass. Do not lead with them.")
 
     if failures:
         print("\n" + "\n".join(failures))

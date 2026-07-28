@@ -82,12 +82,16 @@ Output volume does not explain it. Two runs produced **identical** deduplicated 
 | Run | Matched | Exact | Inexact | Reported | **Exact-name only** | Inexact share |
 |-----|--------:|------:|--------:|---------:|--------------------:|--------------:|
 | claude-sonnet-4 (Part I) | 129 | 86 | 43 | 72.9% | **48.6%** | 33.3% |
-| gpt-4o-mini (published) | 57 | 11 | 46 | 32.2% | 6.2% | 80.7% |
-| gpt-4o-mini v3 prompt | 62 | 10 | 52 | 35.0% | 5.6% | 83.9% |
+| gpt-4o-mini (published) † | 57 | 11 | 46 | 32.2% | 6.2% | 80.7% |
+| gpt-4o-mini v3 prompt † | 62 | 10 | 52 | 35.0% | 5.6% | 83.9% |
+
+**† These two rows are aggregate-only and cannot be audited.** Both runs predate the retention rule in section 6b. Their per-chunk outputs and alignment files were not kept, so `Exact` is `exact_matches_evaluated` from the metrics file, a lower bound that counts only exact matches carrying a comparable class (`analyze.py:510`). On the Claude row, where the alignment file does survive, that field matches the alignment tally exactly (86 against 86), so these numbers are probably right but cannot be checked. Prefer the eight arm rows above, which re-derive from committed alignment files.
 
 The two models differ in kind, not just in degree. Claude names the parameter two thirds of the time; gpt-4o-mini almost never does and is scored mostly on description similarity.
 
-This changes how the headline comparison reads. On reported adjusted recall the gap is 72.9% against 32.2%, about 2.3x. On exact-name recall it is 48.6% against 6.2%, about **7.8x**. The alignment layer compresses a large real difference into a modest-looking one, and it does so by being generous to the weaker model.
+This changes how the headline comparison reads. On reported adjusted recall the gap is 72.9% against 32.2%, about 2.3x. On exact-name recall the reproducible comparison is **48.6% against 5.1%, about 9.6x**, taking gpt-4o-mini from the two complete arm A runs, which agree exactly at 9 exact matches each. The aggregate-only published run gives 6.2% and 7.8x; that was the figure cited here until 2026-07-28, and it is superseded because its alignment file was never retained.
+
+Both comparisons cross an extraction-harness boundary: the Claude baseline ran through the Part I `extract.py`, the arm A runs through `run_arms.py`. Treat the multiplier as an order of magnitude, not a precise ratio. The alignment layer compresses a large real difference into a modest-looking one, and it does so by being generous to the weaker model.
 
 It also predicts the variance asymmetry, which is testable: a model scored mostly on exact names should be far more stable run to run than one scored mostly on fuzzy matching. The Part I Claude run has n=1, so this remains a prediction, not a result.
 

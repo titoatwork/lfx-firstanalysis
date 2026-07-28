@@ -24,14 +24,18 @@ Full write-up and committed artifacts: [`artifact_c/results/PRIMARY_RESULTS.md`]
 |---------|------:|--------:|---------:|----------------:|--------------:|
 | gpt-4o-mini, 8 runs | 5–9 | 47–70 | 29.4–44.6% | 2.8–5.1% | **84.5–90.4%** |
 | claude-sonnet-4, Part I | 86 | 43 | 72.9% | 48.6% | 33.3% |
-| gpt-4o-mini, published | 11 | 46 | 32.2% | 6.2% | 80.7% |
-| gpt-4o-mini, v3 prompt | 10 | 52 | 35.0% | 5.6% | 83.9% |
+| gpt-4o-mini, published † | 11 | 46 | 32.2% | 6.2% | 80.7% |
+| gpt-4o-mini, v3 prompt † | 10 | 52 | 35.0% | 5.6% | 83.9% |
+
+**† Aggregate-only, and not auditable.** These two runs predate the artefact-retention rule. Their per-chunk outputs and alignment files were not kept, so `Exact` here is `exact_matches_evaluated` read from the metrics file, which is a **lower bound**: `analyze.py:510` counts only exact matches that also carried a comparable class. It cannot be cross-checked against an alignment tally, and it never will be without re-running the model. Where both artefacts do survive, on the Claude row, the field equals the alignment tally exactly (86 against 86), so these figures are probably correct. Probably correct is not the same as verifiable. The top two rows re-derive from committed alignment files and are the ones to cite.
 
 Two consequences.
 
 **The instability is concentrated in the heuristic layer.** Across the eight runs exact matches span a range of 4 while inexact matches span 23. The component carrying roughly seven eighths of the score is the component that moves.
 
-**The published cross-model gap is understated.** On reported adjusted recall it reads 72.9% against 32.2%, about 2.3x. On exact-name recall it reads 48.6% against 6.2%, about 7.8x. The two models differ in kind: one names the parameter, the other is scored on description similarity.
+**The published cross-model gap is understated.** On reported adjusted recall it reads 72.9% against 32.2%, about 2.3x. On exact-name recall it is far wider. The reproducible comparison is **48.6% against 5.1%, about 9.6x**, taking gpt-4o-mini from the two complete arm A runs whose alignment files are committed and which agree exactly at 9 exact matches each. The aggregate-only published run gives 6.2% and 7.8x; that figure was cited here until 2026-07-28 and is superseded because its alignment was never retained.
+
+Both comparisons cross an extraction-harness boundary, since the Claude baseline ran through the Part I `extract.py` and the arm A runs through `run_arms.py`. Read the multiplier as an order of magnitude rather than a precise ratio. The direction is not in doubt: one model names the parameter, the other is scored on description similarity.
 
 Inexact matching is not wrong; a model answering "support for misaligned loads and stores" has found `MISALIGNED_LDST`. The point is that the credit is mostly heuristic, that is where the noise lives, and neither fact is visible in the headline number.
 
