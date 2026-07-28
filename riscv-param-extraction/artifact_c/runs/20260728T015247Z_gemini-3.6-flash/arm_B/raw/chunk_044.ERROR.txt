@@ -1,0 +1,1 @@
+[WinError 10065] A socket operation was attempted to an unreachable host

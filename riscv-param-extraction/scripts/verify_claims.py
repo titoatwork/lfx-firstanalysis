@@ -101,6 +101,30 @@ def decomp_range(field: str, fn):
     return lambda d: fn(r[field] for r in d["rows"])
 
 
+GEMINI_RUN = "20260728T015247Z_gemini-3.6-flash"
+
+
+def call_outcome(arm: str, kind: str):
+    """Count one arm's calls in a run manifest, split by what actually failed.
+
+    This split is load-bearing rather than cosmetic. A 429 is the provider
+    refusing the request; a getaddrinfo failure is this machine losing its
+    network mid-run. PRIMARY_RESULTS.md cites only the first as a quota
+    result, so both are pinned here and a future run that quietly reclassifies
+    one as the other will fail the gate instead of improving the story.
+    """
+
+    def classify(err: str) -> str:
+        if not err:
+            return "ok"
+        return "quota" if "RESOURCE_EXHAUSTED" in err else "network"
+
+    return lambda d: sum(
+        1 for c in d["calls"]
+        if c["arm"] == arm and classify(c.get("error") or "") == kind
+    )
+
+
 CLAIMS: list[Claim] = [
     # ---- metrics.md section 2, Part I remeasure against the pinned gold ----
     Claim("part1.adjusted_recall", 72.9, "metrics.md §2",
@@ -276,6 +300,29 @@ CLAIMS: list[Claim] = [
     Claim("decomp.v3_exact", 10, "PRIMARY_RESULTS.md",
           RESULTS / "metrics_gpt-4o-mini.v3.json",
           lambda m: m["exact_matches_evaluated"], tags=["decomp"]),
+
+    # ---- why cross-provider replication did not complete ----
+    # Arm A is the quota evidence: 21 responses, then the provider refused the
+    # rest, with no network failure anywhere in the arm. Arm B is not quota
+    # evidence at all and must not be quoted as if it were.
+    Claim("gemini.armA_ok", 21, "PRIMARY_RESULTS.md limitations",
+          AC_RUNS / GEMINI_RUN / "RUN_MANIFEST.json",
+          call_outcome("A", "ok"), tags=["gemini"]),
+    Claim("gemini.armA_quota", 39, "PRIMARY_RESULTS.md limitations",
+          AC_RUNS / GEMINI_RUN / "RUN_MANIFEST.json",
+          call_outcome("A", "quota"), tags=["gemini"]),
+    Claim("gemini.armA_network", 0, "PRIMARY_RESULTS.md limitations",
+          AC_RUNS / GEMINI_RUN / "RUN_MANIFEST.json",
+          call_outcome("A", "network"), tags=["gemini"]),
+    Claim("gemini.armB_ok", 0, "PRIMARY_RESULTS.md limitations",
+          AC_RUNS / GEMINI_RUN / "RUN_MANIFEST.json",
+          call_outcome("B", "ok"), tags=["gemini"]),
+    Claim("gemini.armB_quota", 7, "PRIMARY_RESULTS.md limitations",
+          AC_RUNS / GEMINI_RUN / "RUN_MANIFEST.json",
+          call_outcome("B", "quota"), tags=["gemini"]),
+    Claim("gemini.armB_network", 53, "PRIMARY_RESULTS.md limitations",
+          AC_RUNS / GEMINI_RUN / "RUN_MANIFEST.json",
+          call_outcome("B", "network"), tags=["gemini"]),
 ]
 
 # Claims that are true but cannot be re-derived from anything committed.
@@ -289,6 +336,10 @@ UNVERIFIABLE = [
      "per-chunk outputs were not retained; only the aggregate counts survive"),
     ("pilot.cost", "pilot ~$0.05 model split",
      "provider billing, not reproducible from artifacts"),
+    ("gemini.daily_limit", "20 free-tier requests per day for gemini-3.6-flash",
+     "the 429 body is truncated before the quota identifier, so the artifact "
+     "shows refusal but never states the allowance; vendor documentation, not "
+     "a measurement, and PRIMARY_RESULTS.md now says so"),
 ]
 
 
