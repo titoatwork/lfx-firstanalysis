@@ -95,6 +95,17 @@ treating adjusted recall as a range.
 - The registered rule applies: a null here is "not detected under a design built for something else",
   not evidence of absence.
 
+## Reported upstream
+
+Filed as [riscv/riscv-unified-db#2163](https://github.com/riscv/riscv-unified-db/issues/2163), against
+[#1750](https://github.com/riscv/riscv-unified-db/issues/1750) (LFX Phase 4, "run it against at least 2
+different LLMs"), since single-run comparison between models cannot distinguish a capability difference
+from this much run-to-run movement.
+
+Checked for prior art before filing: no existing issue or PR upstream covers evaluation variance,
+nondeterminism or reproducibility of recall. The `long_name: TODO` census was **not** filed, because
+[#2155](https://github.com/riscv/riscv-unified-db/pull/2155) is already active on that.
+
 ## Reproduction
 
 ```bash
