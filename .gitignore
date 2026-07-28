@@ -97,6 +97,10 @@ TOMORROW*.md
 # because generated findings carry local temp paths and triage-vs-competitor notes.
 riscv-param-extraction/workflow_slice/findings/
 upstream-pr-drafts/**/COMMENT.md
+# Same reasoning: these carry verification tables and approval status,
+# written for us rather than for a reader. PR_BODY.md files stay tracked
+# because they are drafts of text intended to be public anyway.
+upstream-pr-drafts/**/ISSUE.md
 _tmp_*
 **/_scratch*
 
