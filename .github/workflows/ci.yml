@@ -6,6 +6,28 @@ on:
   pull_request:
 
 jobs:
+  # Every number published in this repository must re-derive from a committed
+  # artifact. If a figure in metrics.md, PRIMARY_RESULTS.md or the README stops
+  # agreeing with the file it came from, this job fails and the badge goes red.
+  published-claims:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r riscv-param-extraction/requirements.txt
+
+      - name: Every published number re-derives from a committed artifact
+        run: python riscv-param-extraction/scripts/verify_claims.py
+
+      - name: Claim table (for the run log)
+        if: always()
+        run: python riscv-param-extraction/scripts/verify_claims.py --list
+
   challenge-and-export:
     runs-on: ubuntu-latest
     defaults:
@@ -50,3 +72,6 @@ jobs:
 
       - name: Full challenge ci_check
         run: python challenge/scripts/ci_check.py
+
+      - name: Evaluation fixtures and review-envelope separation
+        run: python workflow_slice/scripts/ci_slice_check.py
