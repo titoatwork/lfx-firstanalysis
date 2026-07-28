@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_074",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The NTL.P1 instruction indicates that the target instruction does not exhibit temporal locality within the capacity of the innermost level of private cache in the memory hierarchy.",
+      "line_number": 7,
+      "parameter_name": "NTL_P1_CACHE_LEVEL",
+      "existing_udb_name": "NTL_P1_CACHE_LEVEL",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The NTL.P1 instruction's behavior regarding cache locality is a direct implementation choice, indicating whether the innermost level of private cache is respected."
+    },
+    {
+      "excerpt": "The NTL.PALL instruction indicates that the target instruction does not exhibit temporal locality within the capacity of any level of private cache in the memory hierarchy.",
+      "line_number": 11,
+      "parameter_name": "NTL_PALL_CACHE_LEVEL",
+      "existing_udb_name": "NTL_PALL_CACHE_LEVEL",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The NTL.PALL instruction's behavior regarding cache locality is a direct implementation choice, indicating whether any level of private cache is respected."
+    },
+    {
+      "excerpt": "The NTL.S1 instruction indicates that the target instruction does not exhibit temporal locality within the capacity of the innermost level of shared cache in the memory hierarchy.",
+      "line_number": 15,
+      "parameter_name": "NTL_S1_CACHE_LEVEL",
+      "existing_udb_name": "NTL_S1_CACHE_LEVEL",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The NTL.S1 instruction's behavior regarding shared cache locality is a direct implementation choice, indicating whether the innermost level of shared cache is respected."
+    },
+    {
+      "excerpt": "The NTL.ALL instruction indicates that the target instruction does not exhibit temporal locality within the capacity of any level of cache in the memory hierarchy.",
+      "line_number": 19,
+      "parameter_name": "NTL_ALL_CACHE_LEVEL",
+      "existing_udb_name": "NTL_ALL_CACHE_LEVEL",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The NTL.ALL instruction's behavior regarding cache locality is a direct implementation choice, indicating whether any level of cache is respected."
+    }
+  ]
+}

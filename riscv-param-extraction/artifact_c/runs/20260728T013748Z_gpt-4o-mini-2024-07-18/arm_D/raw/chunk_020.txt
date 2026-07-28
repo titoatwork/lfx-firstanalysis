@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The `mtvec` register is an MXLEN-bit *WARL* read/write register that holds trap vector configuration, consisting of a vector base address (BASE) and a vector mode (MODE).",
+      "line_number": 1217,
+      "parameter_name": "MTVEC_MODES",
+      "existing_udb_name": "MTVEC_MODES",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The mtvec MODE field is WARL, and the set of supported mode values (Direct=0, Vectored=1) varies by implementation. The parameter is the set of legal MODE values."
+    },
+    {
+      "excerpt": "The MBE, SBE, and UBE bits in `mstatus` and `mstatush` are *WARL* fields that control the endianness of memory accesses other than instruction fetches.",
+      "line_number": 679,
+      "parameter_name": "M_MODE_ENDIANNESS",
+      "existing_udb_name": "M_MODE_ENDIANNESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether MBE is read-only-0 (always little-endian), read-only-1 (always big-endian), or read-write (dynamic endianness). This controls the RO/RW nature of the field, not just which values are legal."
+    },
+    {
+      "excerpt": "The `mstatus` fields MIE and MPRV are reset to 0.",
+      "line_number": 1005,
+      "parameter_name": "HW_MSTATUS_MIE_MPRV_RESET",
+      "existing_udb_name": "HW_MSTATUS_MIE_MPRV_RESET",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The reset values of MIE and MPRV are implementation choices, indicating whether they can be set to 0 or not."
+    },
+    {
+      "excerpt": "An implementation may impose additional constraints on the collective setting of two or more `misa` fields, in which case they function collectively as a single *WARL* field.",
+      "line_number": 1205,
+      "parameter_name": "MISA_FIELD_CONSTRAINTS",
+      "existing_udb_name": "MISA_FIELD_CONSTRAINTS",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "medium",
+      "reasoning": "The implementation can define additional constraints on the `misa` fields, which indicates a choice left to the implementer."
+    },
+    {
+      "excerpt": "The `mconfigptr` register must be implemented, but it may be zero to indicate the configuration data structure does not exist or that an alternative mechanism must be used to locate it.",
+      "line_number": 1234,
+      "parameter_name": "MCONFIGPTR_OPTIONALITY",
+      "existing_udb_name": "MCONFIGPTR_OPTIONALITY",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to return zero for the `mconfigptr`, indicating an optional feature."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The `misa` register must always be implemented, but can contain a read-only value.",
+      "line_number": 1217,
+      "reason": "This is a fixed requirement ('must always be implemented') that applies to all implementations, not an architectural parameter."
+    },
+    {
+      "excerpt": "The `mstatus` register must be readable in any implementation.",
+      "line_number": 1005,
+      "reason": "This is a fixed requirement ('must be readable') that all implementations must satisfy. There is no implementation choice here."
+    },
+    {
+      "excerpt": "The `mvendorid` CSR is a 32-bit read-only register providing the JEDEC manufacturer ID of the provider of the core.",
+      "line_number": 1005,
+      "reason": "This describes a fixed characteristic of the CSR, not an implementation choice."
+    },
+    {
+      "excerpt": "The `mimpid` CSR provides a unique encoding of the version of the processor implementation.",
+      "line_number": 1005,
+      "reason": "This is a fixed requirement that applies to all implementations, not an architectural parameter."
+    },
+    {
+      "excerpt": "The `mstatus` fields MIE and MPRV are reset to 0.",
+      "line_number": 1005,
+      "reason": "This is a fixed requirement that applies to all implementations, not an architectural parameter."
+    }
+  ]
+}
+```

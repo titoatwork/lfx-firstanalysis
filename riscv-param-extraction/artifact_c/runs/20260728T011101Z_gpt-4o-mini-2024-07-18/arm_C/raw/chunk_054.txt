@@ -1,0 +1,53 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "This extension adds the `STCE` bit to the `menvcfg` CSR.",
+      "line_number": 20,
+      "parameter_name": "MENVCFG_STCE",
+      "existing_udb_name": "MENVCFG_STCE",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The STCE bit in the menvcfg CSR is a read/write field that enables or disables the operational status of the stimecmp register. This is a binary choice about the mutability of the field."
+    },
+    {
+      "excerpt": "This extension adds the `STCE` bit to the `henvcfg` CSR.",
+      "line_number": 20,
+      "parameter_name": "HENVCFG_STCE",
+      "existing_udb_name": "HENVCFG_STCE",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The STCE bit in the henvcfg CSR is a read/write field that controls the operational status of the stimecmp register in VS-mode. This is a binary choice about the mutability of the field."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "This extension serves to provide supervisor mode with its own CSR-based timer interrupt facility that it can directly manage to provide its own timer service.",
+      "line_number": 6,
+      "reason": "This is a descriptive statement about the purpose of the extension and does not define an implementation choice."
+    },
+    {
+      "excerpt": "The extension name is 'Sstc' ('Ss' for Privileged arch and Supervisor-level extensions, and 'tc' for timecmp).",
+      "line_number": 10,
+      "reason": "This is a definition of the extension name and does not indicate an architectural parameter."
+    },
+    {
+      "excerpt": "Further, this extension adds a similar facility to the Hypervisor extension for VS-mode.",
+      "line_number": 8,
+      "reason": "This describes the addition of a facility but does not specify an implementation choice or parameter."
+    },
+    {
+      "excerpt": "With the resultant requirement that timer services for S-mode/HS-mode (and for VS-mode) have to all be provided by M-mode.",
+      "line_number": 4,
+      "reason": "This is a fixed requirement about how timer services are provided and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "M-mode software then multiplexes these multiple logical timers onto its one physical M-mode timer facility.",
+      "line_number": 5,
+      "reason": "This describes the behavior of M-mode software and does not define an architectural parameter."
+    }
+  ]
+}
+```

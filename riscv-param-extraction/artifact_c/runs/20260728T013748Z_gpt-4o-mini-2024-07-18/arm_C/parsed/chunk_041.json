@@ -1,0 +1,17 @@
+{
+  "chunk_id": "chunk_041",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "RV32E and RV64E reduce the integer register count to 16 general-purpose registers, (`x0-x15`), where `x0` is a dedicated zero register.",
+      "line_number": 15,
+      "parameter_name": "NUM_GENERAL_PURPOSE_REGISTERS",
+      "existing_udb_name": "NUM_GENERAL_PURPOSE_REGISTERS",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The number of general-purpose registers is a direct implementation choice, specifically set to 16 in RV32E and RV64E. This is not controlled by any CSR field."
+    }
+  ]
+}

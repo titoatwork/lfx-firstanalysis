@@ -1,0 +1,67 @@
+{
+  "chunk_id": "chunk_047",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "mcyclecfg and minstretcfg are 64-bit registers that configure privilege mode filtering for the cycle and instret counters, respectively.",
+      "line_number": 8,
+      "parameter_name": "MACHINE_COUNTER_CONFIG_REGISTERS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The mcyclecfg and minstretcfg registers are direct implementation choices that configure privilege mode filtering, indicating whether counting is inhibited in various modes."
+    },
+    {
+      "excerpt": "If set, then counting of events in M-mode is inhibited.",
+      "line_number": 15,
+      "parameter_name": "MINH_INHIBIT_M_MODE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The MINH field in both mcyclecfg and minstretcfg controls whether counting is inhibited in M-mode, representing a read-write choice for the implementer."
+    },
+    {
+      "excerpt": "If set, then counting of events in S/HS-mode is inhibited.",
+      "line_number": 16,
+      "parameter_name": "SINH_INHIBIT_S_MODE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The SINH field in both mcyclecfg and minstretcfg controls whether counting is inhibited in S/HS-mode, representing a read-write choice for the implementer."
+    },
+    {
+      "excerpt": "If set, then counting of events in U-mode is inhibited.",
+      "line_number": 17,
+      "parameter_name": "UINH_INHIBIT_U_MODE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The UINH field in both mcyclecfg and minstretcfg controls whether counting is inhibited in U-mode, representing a read-write choice for the implementer."
+    },
+    {
+      "excerpt": "If set, then counting of events in VS-mode is inhibited.",
+      "line_number": 18,
+      "parameter_name": "VSINH_INHIBIT_VS_MODE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The VSINH field in both mcyclecfg and minstretcfg controls whether counting is inhibited in VS-mode, representing a read-write choice for the implementer."
+    },
+    {
+      "excerpt": "If set, then counting of events in VU-mode is inhibited.",
+      "line_number": 19,
+      "parameter_name": "VUINH_INHIBIT_VU_MODE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The VUINH field in both mcyclecfg and minstretcfg controls whether counting is inhibited in VU-mode, representing a read-write choice for the implementer."
+    }
+  ]
+}

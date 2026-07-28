@@ -1,0 +1,37 @@
+{
+  "chunk_id": "chunk_031",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "Implementations might provide anywhere from 1 to 3 privilege modes trading off reduced isolation for lower implementation cost.",
+      "line_number": 139,
+      "parameter_name": "NUM_PRIVILEGE_MODES",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of privilege modes (1 to 3) is a direct implementation choice that can vary between different RISC-V implementations."
+    },
+    {
+      "excerpt": "The machine level has the highest privileges and is the only mandatory privilege level for a RISC-V hardware platform.",
+      "line_number": 147,
+      "parameter_name": "M_MODE_MANDATORY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The requirement that M-mode must be implemented is a design choice that can be confirmed by the implementer, making it a binary parameter."
+    },
+    {
+      "excerpt": "Implementations may also include a debug mode to support off-chip debugging and/or manufacturing test.",
+      "line_number": 197,
+      "parameter_name": "DEBUG_MODE_SUPPORT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to include a debug mode is left to the implementer, making it a binary decision."
+    }
+  ]
+}

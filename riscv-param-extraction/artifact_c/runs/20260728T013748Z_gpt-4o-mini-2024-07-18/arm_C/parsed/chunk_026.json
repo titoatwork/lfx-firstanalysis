@@ -1,0 +1,77 @@
+{
+  "chunk_id": "chunk_026",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "RISC-V ISA strings begin with either RV32I, RV32E, RV64I, or RV64E, indicating the supported address space size in bits for the base integer ISA.",
+      "line_number": 10,
+      "parameter_name": "BASE_INTEGER_ISA",
+      "existing_udb_name": "NULL",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The base integer ISA is a direct implementation choice that specifies the supported address space size, with clear options (RV32I, RV32E, RV64I, RV64E)."
+    },
+    {
+      "excerpt": "Standard ISA extensions are given a name consisting of a single letter.",
+      "line_number": 20,
+      "parameter_name": "STANDARD_ISA_EXTENSIONS",
+      "existing_udb_name": "NULL",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The naming of standard ISA extensions is an implementation choice, with a defined set of single-letter extensions (e.g., M, A, F, D)."
+    },
+    {
+      "excerpt": "The first letter following the 'Z' conventionally indicates the most closely related alphabetical extension category, IMAFDQLCBKJTPVH.",
+      "line_number": 60,
+      "parameter_name": "Z_EXTENSION_CATEGORIES",
+      "existing_udb_name": "NULL",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The categorization of 'Z' extensions is an implementation choice that allows for a variety of alphanumeric names based on the first letter, indicating related extension categories."
+    },
+    {
+      "excerpt": "Standard extensions that extend the supervisor-level virtual-memory architecture are prefixed with the letters 'Sv', followed by an alphanumeric name.",
+      "line_number": 100,
+      "parameter_name": "SUPERVISOR_LEVEL_EXTENSIONS",
+      "existing_udb_name": "NULL",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The naming convention for supervisor-level extensions is an implementation choice, allowing for various alphanumeric names prefixed with 'Sv'."
+    },
+    {
+      "excerpt": "Standard extensions that extend the hypervisor-level architecture are prefixed with the letters 'Sh', followed by an alphanumeric name.",
+      "line_number": 120,
+      "parameter_name": "HYPERVISOR_LEVEL_EXTENSIONS",
+      "existing_udb_name": "NULL",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The naming convention for hypervisor-level extensions is an implementation choice, allowing for various alphanumeric names prefixed with 'Sh'."
+    },
+    {
+      "excerpt": "Non-standard extensions are named by using a single 'X' followed by the alphanumeric name.",
+      "line_number": 160,
+      "parameter_name": "NON_STANDARD_EXTENSIONS",
+      "existing_udb_name": "NULL",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The naming convention for non-standard extensions is an implementation choice, allowing for various alphanumeric names prefixed with 'X'."
+    },
+    {
+      "excerpt": "Version numbers are divided into major and minor version numbers, separated by a 'p'.",
+      "line_number": 200,
+      "parameter_name": "VERSION_NUMBERING_SCHEME",
+      "existing_udb_name": "NULL",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The version numbering scheme is an implementation choice that defines how version numbers are structured, allowing for major and minor versioning."
+    }
+  ]
+}

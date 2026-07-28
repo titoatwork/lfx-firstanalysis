@@ -1,0 +1,67 @@
+{
+  "chunk_id": "chunk_045",
+  "arm": "A",
+  "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "parameters": [
+    {
+      "excerpt": "Implementations may implement `mseccfg` such that `[s,u]seed` is a read-only constant value `0`. Software may discover if access to the `seed` CSR can be enabled in U and S mode by writing a `1` to `[s,u]seed` and reading back the result.",
+      "line_number": 3658,
+      "parameter_name": "MSECCFG_SSEED_USEED_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The spec explicitly states implementations may choose to make the SSEED and USEED fields in mseccfg read-only zero (disabling access control) or writable (enabling access control). This is a binary choice about the mutability of these CSR fields."
+    },
+    {
+      "excerpt": "The behavior of other input and output bits is largely left to the vendor (as they depend on the technical details of the physical entropy source), as is the address of the custom `mnoise` CSR.",
+      "line_number": 4842,
+      "parameter_name": "MNOISE_CSR_ADDRESS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The address of the custom mnoise CSR is explicitly left to the vendor/implementer. This is a direct implementation choice of a CSR address."
+    },
+    {
+      "excerpt": "When not implemented (e.g., in virtual machines), `mnoise` can permanently read zero (`0x00000000`) and ignore writes.",
+      "line_number": 4845,
+      "parameter_name": "MNOISE_IMPLEMENTED",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The spec describes behavior when mnoise is not implemented, implying the implementer chooses whether to implement this custom CSR at all. This is a binary implementation choice."
+    },
+    {
+      "excerpt": "When available, but `NOISE_TEST = 0`, `mnoise` can return a nonzero constant (e.g. `0x00000001`) but no noise samples.",
+      "line_number": 4848,
+      "parameter_name": "MNOISE_NOISE_TEST_ZERO_VALUE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "medium",
+      "reasoning": "The spec states the mnoise CSR 'can return a nonzero constant' when NOISE_TEST=0, giving the implementer freedom to choose the specific constant value. This is a 32-bit value choice."
+    },
+    {
+      "excerpt": "An implementation of the entropy source should meet at least one of the following requirements sets in order to be considered a secure and safe design: NIST SP 800-90B, BSI AIS-31 PTG.2, or Virtual Sources.",
+      "line_number": 3565,
+      "parameter_name": "ENTROPY_SOURCE_STANDARD",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "medium",
+      "reasoning": "The spec lists three alternative requirement sets (NIST, BSI, Virtual) that an implementation should meet. While 'should' is used rather than 'may', the implementer must choose which standard(s) to target for certification, making this an implementation design choice with three discrete options."
+    },
+    {
+      "excerpt": "The `seed` CSR is also access controlled by execution mode, and attempted read or write access will raise an illegal-instruction exception outside M mode unless access is explicitly granted.",
+      "line_number": 3518,
+      "parameter_name": "SEED_CSR_DEFAULT_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "low",
+      "reasoning": "The spec states access outside M mode raises an exception 'unless access is explicitly granted' via mseccfg.SSEED/USEED. Combined with the parameter above, the default access policy (M-mode only) is fixed, but the ability to grant access is the parameter. This entry captures the default restriction as a fixed baseline; the real parameter is MSECCFG_SSEED_USEED_ACCESS above."
+    }
+  ]
+}

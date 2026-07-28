@@ -1,0 +1,68 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "FLEN=32 for the F single-precision floating-point extension.",
+      "line_number": 10,
+      "parameter_name": "FLEN",
+      "existing_udb_name": "FLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "FLEN describes the width of the floating-point registers, which is a direct implementation choice for the F extension."
+    },
+    {
+      "excerpt": "The floating-point control and status register, `fcsr`, is a 32-bit read/write register that selects the dynamic rounding mode for floating-point arithmetic operations.",
+      "line_number": 20,
+      "parameter_name": "FCSR_ACCESS",
+      "existing_udb_name": "FCSR_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The `fcsr` register can be read and written, indicating a choice for the implementer regarding its mutability."
+    },
+    {
+      "excerpt": "Rounding modes are encoded as follows: 000 RNE, 001 RTZ, 010 RDN, 011 RUP, 100 RMM, 101 Reserved, 110 Reserved, 111 DYN.",
+      "line_number": 30,
+      "parameter_name": "ROUNDING_MODES",
+      "existing_udb_name": "ROUNDING_MODES",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The `frm` field in the `fcsr` register is WARL, and the set of legal rounding mode values varies by implementation."
+    },
+    {
+      "excerpt": "The accrued exception flags indicate the exception conditions that have arisen on any floating-point arithmetic instruction since the field was last reset by software.",
+      "line_number": 40,
+      "parameter_name": "FFLAGS_ACCESS",
+      "existing_udb_name": "FFLAGS_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The `fflags` register can be read and written, indicating a choice for the implementer regarding its mutability."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "Floating-point operations use either a static rounding mode encoded in the instruction, or a dynamic rounding mode held in `frm`.",
+      "line_number": 50,
+      "reason": "This describes the behavior of floating-point operations based on the rounding mode, not an implementation choice."
+    },
+    {
+      "excerpt": "The behavior of floating-point instructions that depend on rounding mode when executed with a reserved rounding mode is reserved.",
+      "line_number": 60,
+      "reason": "This is a behavioral description regarding reserved rounding modes, not a parameter definition."
+    },
+    {
+      "excerpt": "The F extension provides a {le} comparison, whereas the base ISAs provide a {ge} branch comparison.",
+      "line_number": 70,
+      "reason": "This is a fixed requirement about the comparison operations provided by the F extension, not an implementation choice."
+    },
+    {
+      "excerpt": "The base floating-point ISA was defined so as to allow implementations to employ an internal recoding of the floating-point format in registers.",
+      "line_number": 80,
+      "reason": "This describes a design choice made in the ISA, not an architectural parameter left to the implementer."
+    }
+  ]
+}
+```

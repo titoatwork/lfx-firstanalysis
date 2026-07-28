@@ -1,0 +1,73 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "the size of a cache block shall be uniform throughout the system.",
+      "line_number": 45,
+      "parameter_name": "CACHE_BLOCK_SIZE",
+      "existing_udb_name": "CACHE_BLOCK_SIZE",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The size of a cache block is a direct implementation choice that must be uniform across the system, making it a clear architectural parameter."
+    },
+    {
+      "excerpt": "An implementation may or may not update the entire set of bytes atomically with a single store operation.",
+      "line_number": 83,
+      "parameter_name": "ATOMIC_CACHE_BLOCK_ZERO",
+      "existing_udb_name": "ATOMIC_CACHE_BLOCK_ZERO",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice of whether the cache-block zero instruction updates bytes atomically is left to the implementer, indicating a binary parameter."
+    },
+    {
+      "excerpt": "An implementation may opt to cache a copy of the cache block in a cache accessed by an instruction fetch in order to improve memory access latency, but this behavior is not required.",
+      "line_number": 109,
+      "parameter_name": "HW_PREFETCH_CACHING",
+      "existing_udb_name": "HW_PREFETCH_CACHING",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The decision to cache a copy of the cache block for instruction fetches is an implementation choice, making it a clear architectural parameter."
+    },
+    {
+      "excerpt": "The Zicboz extension introduces an additional supported access type PMA for cache-block zero instructions.",
+      "line_number": 103,
+      "parameter_name": "CACHE_BLOCK_ZERO_PMA",
+      "existing_udb_name": "CACHE_BLOCK_ZERO_PMA",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The PMA for cache-block zero instructions is WARL, indicating that the set of legal values can vary by implementation."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] _The term CMO encompasses all operations on caches or resources related to caches. The term CBO represents a subset of CMOs that operate only on cache blocks._",
+      "line_number": 7,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes terminology, not an architectural requirement."
+    },
+    {
+      "excerpt": "[NOTE] _Load and store operations are decoupled from read and write transfers by caches._",
+      "line_number": 25,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes behavior, not an architectural requirement."
+    },
+    {
+      "excerpt": "[NOTE] _The above restrictions ensure that a \"clean\" copy of a cache block, fetched by a read transfer from memory and unmodified by a store operation, cannot later overwrite the copy of the cache block in memory updated by a write transfer to memory from a non-coherent agent._",
+      "line_number": 69,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes behavior, not an architectural requirement."
+    },
+    {
+      "excerpt": "[NOTE] _The interaction between cache-block management instructions and instruction fetches will be specified in a future extension._",
+      "line_number": 103,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes future plans, not an architectural requirement."
+    },
+    {
+      "excerpt": "[NOTE] _Cache-block zero instructions store zeros independently of whether data from the underlying memory locations are cacheable._",
+      "line_number": 83,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes behavior, not an architectural requirement."
+    }
+  ]
+}
+```

@@ -1,0 +1,73 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "RISC-V ISA strings begin with either RV32I, RV32E, RV64I, or RV64E, indicating the supported address space size in bits for the base integer ISA.",
+      "line_number": 12,
+      "parameter_name": "BASE_INTEGER_ISA",
+      "existing_udb_name": "NULL",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The base integer ISA is a direct implementation choice that specifies the supported address space size in bits. The specific value is chosen by the implementer from a finite set of options."
+    },
+    {
+      "excerpt": "The first letter following the 'Z' conventionally indicates the most closely related alphabetical extension category, IMAFDQLCBKJTPVH.",
+      "line_number": 92,
+      "parameter_name": "Z_EXTENSION_CATEGORIES",
+      "existing_udb_name": "NULL",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The categorization of 'Z' extensions is a direct implementation choice, where the first letter indicates the related extension category. This is not controlled by any CSR field."
+    },
+    {
+      "excerpt": "Standard supervisor-level extensions should be listed after standard unprivileged extensions, and like other multi-letter extensions, must be separated from other multi-letter extensions by an underscore.",
+      "line_number": 139,
+      "parameter_name": "SUPERVISOR_EXTENSION_ORDERING",
+      "existing_udb_name": "NULL",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The ordering of supervisor-level extensions is a direct implementation choice that must be adhered to, indicating how these extensions are to be organized in naming."
+    },
+    {
+      "excerpt": "If multiple non-standard extensions are listed, they should be ordered alphabetically.",
+      "line_number": 197,
+      "parameter_name": "NON_STANDARD_EXTENSION_ORDERING",
+      "existing_udb_name": "NULL",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The ordering of non-standard extensions is a direct implementation choice that specifies how these extensions should be organized in naming."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE]\n====\nThe RISC-V ISA is designed to support a wide variety of implementations with various experimental instruction-set extensions. We have found that an organized naming scheme simplifies software tools and documentation.\n====",
+      "line_number": 5,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a design goal rather than an architectural requirement."
+    },
+    {
+      "excerpt": "Recognizing that instruction sets may expand or alter over time, we encode extension version numbers following the extension name.",
+      "line_number": 174,
+      "reason": "This describes a method for encoding version numbers rather than an implementation choice. It does not indicate a parameter that can vary by implementation."
+    },
+    {
+      "excerpt": "Changes in major version numbers imply a loss of backwards compatibility, whereas changes in only the minor version number must be backwards-compatible.",
+      "line_number": 179,
+      "reason": "This is a fixed requirement regarding versioning and compatibility, not an architectural parameter that can vary by implementation."
+    },
+    {
+      "excerpt": "The 'Sh' prefix is used by the few hypervisor-level extensions that have no supervisor-visible effects.",
+      "line_number": 145,
+      "reason": "This describes a naming convention rather than an implementation choice. It does not indicate a parameter that can vary by implementation."
+    },
+    {
+      "excerpt": "All multi-letter extensions, including those with the 'Z' prefix, must be separated from other multi-letter extensions by an underscore.",
+      "line_number": 98,
+      "reason": "This is a fixed requirement for naming conventions, not an architectural parameter that can vary by implementation."
+    }
+  ]
+}
+```

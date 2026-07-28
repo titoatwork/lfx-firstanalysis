@@ -1,0 +1,58 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The Zabha extension addresses these limitations by adding support for _byte_ and _halfword_ atomic memory operations to the RISC-V Unprivileged ISA.",
+      "line_number": 15,
+      "parameter_name": "SUPPORT_BYTE_HALFWORD_AMO",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to support byte and halfword atomic memory operations, which is a direct design decision."
+    },
+    {
+      "excerpt": "The `AMOCAS.[B|H]` instructions similarly ignore the stem:[XLEN-1:2^{(width + 3)}] bits of the original value in `rd`.",
+      "line_number": 34,
+      "parameter_name": "AMOCAS_IGNORE_BITS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to ignore specific bits in the `rd` register for the `AMOCAS` instructions, which is a design choice."
+    },
+    {
+      "excerpt": "The same exception options as specified in the A extension are applicable in cases where the address is not naturally aligned.",
+      "line_number": 41,
+      "parameter_name": "ADDRESS_ALIGNMENT_OPTIONS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The implementation can choose from the same exception options as in the A extension for address alignment, indicating a design choice."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "Zabha omits _byte_ and _halfword_ support for `LR` and `SC` due to low utility.",
+      "line_number": 66,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a decision not to support certain features, not an architectural parameter."
+    },
+    {
+      "excerpt": "In systems with large-scale or Non-Uniform Memory Access (NUMA) configurations, emulation based on `LR`/`SC` introduces issues related to scalability and fairness, particularly under conditions of high contention.",
+      "line_number": 7,
+      "reason": "This describes potential issues with emulation strategies in specific configurations, not an implementation choice."
+    },
+    {
+      "excerpt": "Utilizing wider AMO* instructions for emulating narrower AMOs risks activating extraneous breakpoints or watchpoints.",
+      "line_number": 11,
+      "reason": "This describes a risk associated with a specific implementation strategy, not a parameter that can be chosen."
+    },
+    {
+      "excerpt": "For non-bitwise operations, emulation is achievable using word-sized `LR`/`SC` instructions.",
+      "line_number": 5,
+      "reason": "This describes a method of achieving functionality rather than an architectural choice left to the implementer."
+    }
+  ]
+}
+```

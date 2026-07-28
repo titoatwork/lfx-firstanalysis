@@ -1,0 +1,27 @@
+{
+  "chunk_id": "chunk_034",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The floating-point registers are now extended to hold either a single, double, or quad-precision floating-point value (FLEN=128).",
+      "line_number": 6,
+      "parameter_name": "FLEN",
+      "existing_udb_name": "FLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "FLEN specifies the length of the floating-point registers, which is a direct implementation choice set to 128 bits for quad-precision."
+    },
+    {
+      "excerpt": "FLQ and FSQ are only guaranteed to execute atomically if the effective address is naturally aligned and XLEN=128.",
+      "line_number": 15,
+      "parameter_name": "XLEN",
+      "existing_udb_name": "XLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "XLEN indicates the width of the data path and is a direct implementation choice that must be set to 128 for quad-precision operations."
+    }
+  ]
+}

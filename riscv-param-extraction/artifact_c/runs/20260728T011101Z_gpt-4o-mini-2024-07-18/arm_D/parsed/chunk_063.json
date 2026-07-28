@@ -1,0 +1,27 @@
+{
+  "chunk_id": "chunk_063",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The Zabha extension mandates that the address contained in the `rs1` register must be naturally aligned to the size of the operand.",
+      "line_number": 54,
+      "parameter_name": "ZABHA_RS1_ALIGNMENT",
+      "existing_udb_name": "ZABHA_RS1_ALIGNMENT",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The alignment requirement for the address in `rs1` is a direct implementation choice that can vary based on the operand size. This is not controlled by any CSR field."
+    },
+    {
+      "excerpt": "Similar to the AMOs specified in the A extension, the Zabha extension mandates that the address contained in the `rs1` register must be naturally aligned to the size of the operand.",
+      "line_number": 54,
+      "parameter_name": "ZABHA_AMO_OPERAND_SIZE",
+      "existing_udb_name": "ZABHA_AMO_OPERAND_SIZE",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The operand size for the AMOs is a direct implementation choice that can vary based on the specific instruction used (byte or halfword)."
+    }
+  ]
+}

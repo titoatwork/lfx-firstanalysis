@@ -1,0 +1,53 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "If jvt.mode is a reserved value, then _cm.jt_ is also reserved. In the future other defined values of jvt.mode may change the behaviour of _cm.jt_.",
+      "line_number": 258,
+      "parameter_name": "JVT_MODE",
+      "existing_udb_name": "JVT_MODE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The jvt.mode field is WARL, and the set of supported modes can vary by implementation. The parameter is the set of legal values for jvt.mode."
+    },
+    {
+      "excerpt": "The value in the BASE field must always be aligned on a 64-byte boundary.",
+      "line_number": 258,
+      "parameter_name": "JVT_BASE_ALIGNMENT",
+      "existing_udb_name": "JVT_BASE_ALIGNMENT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The alignment requirement for the BASE field is a direct implementation choice that must be adhered to, but the specific alignment value is determined by the implementer."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The jvt register is an XLEN-bit WARL read/write register that holds the jump table configuration, consisting of the jump table base address (BASE) and the jump table mode (MODE).",
+      "line_number": 258,
+      "reason": "This is a fixed requirement describing the jvt register and its purpose, not an implementation choice."
+    },
+    {
+      "excerpt": "The memory pointed to by jvt.base is treated as instruction memory for the purpose of executing table jump instructions, implying execute access permission.",
+      "line_number": 258,
+      "reason": "This describes behavior related to the jvt.base memory, not an architectural parameter."
+    },
+    {
+      "excerpt": "The jvt register must also be implemented, but can contain a read-only value.",
+      "line_number": 258,
+      "reason": "This is a fixed requirement that applies to all implementations, not an implementation choice."
+    },
+    {
+      "excerpt": "If the same function is called with and without linking then it must have two entries in the table.",
+      "line_number": 258,
+      "reason": "This describes a requirement for function entries in the table, not an implementation choice."
+    },
+    {
+      "excerpt": "The jvt CSR adds architectural state to the system software context (such as an OS process), therefore must be saved/restored on context switches.",
+      "line_number": 258,
+      "reason": "This is a fixed requirement regarding the handling of the jvt CSR, not an implementation choice."
+    }
+  ]
+}
+```

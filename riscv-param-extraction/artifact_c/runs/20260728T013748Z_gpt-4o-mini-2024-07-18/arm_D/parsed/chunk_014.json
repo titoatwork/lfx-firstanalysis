@@ -1,0 +1,27 @@
+{
+  "chunk_id": "chunk_014",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "vsetvli s1, zero, e8,mf2,ta,mu // LMUL=1/2 !",
+      "line_number": 175,
+      "parameter_name": "LMUL_FRACTIONAL",
+      "existing_udb_name": "LMUL_FRACTIONAL",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to support fractional LMUL values, such as 1/2, which is a direct design choice not controlled by any CSR field."
+    },
+    {
+      "excerpt": "vsetvli s1, zero, e64,m4,ta,mu // LMUL=4",
+      "line_number": 175,
+      "parameter_name": "LMUL_INTEGER",
+      "existing_udb_name": "LMUL_INTEGER",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to support integer LMUL values, such as 4, which is a direct design choice not controlled by any CSR field."
+    }
+  ]
+}

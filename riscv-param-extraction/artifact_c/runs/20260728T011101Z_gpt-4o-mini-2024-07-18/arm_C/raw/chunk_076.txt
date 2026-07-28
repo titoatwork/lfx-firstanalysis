@@ -1,0 +1,73 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "Operands containing `src` for store instructions and `dest` for load instructions are held in aligned `x`-register pairs, i.e., register numbers must be even.",
+      "line_number": 7,
+      "parameter_name": "REGISTER_PAIR_ALIGNMENT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The requirement that register numbers must be even for load/store pairs is a direct implementation choice regarding register usage."
+    },
+    {
+      "excerpt": "As the access size is 64-bit, accesses are only considered naturally aligned for effective addresses that are a multiple of 8.",
+      "line_number": 15,
+      "parameter_name": "NATURAL_ALIGNMENT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The specification states that 64-bit accesses must be aligned to multiples of 8, which is a design choice for the implementation."
+    },
+    {
+      "excerpt": "If the effective address is a multiple of 4, then each word access is required to be performed atomically.",
+      "line_number": 19,
+      "parameter_name": "ATOMIC_WORD_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The requirement for atomicity based on address alignment is a design choice that can vary by implementation."
+    },
+    {
+      "excerpt": "LD and SD instructions are considered to be misaligned loads and stores, with one additional constraint: an LD or SD instruction whose effective address is a multiple of 4 gives rise to two 4-byte memory operations.",
+      "line_number": 27,
+      "parameter_name": "MISALIGNED_LOAD_STORE_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The behavior of LD and SD instructions regarding misalignment is an implementation choice that can vary."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "If an implementation performs a doubleword load access atomically and the register file implements write-back for even/odd register pairs, the mentioned atomicity requirements are inherently fulfilled.",
+      "line_number": 23,
+      "reason": "This text describes a condition that is implementation-defined but does not specify a parameter that can be chosen by the implementer."
+    },
+    {
+      "excerpt": "For the purposes of RVWMO and exception handling, LD and SD instructions are considered to be misaligned loads and stores.",
+      "line_number": 27,
+      "reason": "This is a fixed requirement regarding how LD and SD instructions are treated, not an implementation choice."
+    },
+    {
+      "excerpt": "Software should make no assumptions about the number or order of accesses these instructions might give rise to, beyond the 4-byte constraint mentioned above.",
+      "line_number": 31,
+      "reason": "This is a guideline for software behavior, not an architectural parameter."
+    },
+    {
+      "excerpt": "C.LDSP is only valid when _rd_{ne}x0; the code points with _rd_=x0 are reserved.",
+      "line_number": 45,
+      "reason": "This describes a restriction on instruction usage rather than an implementation choice."
+    },
+    {
+      "excerpt": "Even if naturally aligned, the memory access might not be performed atomically.",
+      "line_number": 19,
+      "reason": "This is a behavioral description rather than a parameter that can be chosen by the implementer."
+    }
+  ]
+}
+```

@@ -1,0 +1,27 @@
+```json
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "All of the BF16 instructions in the extensions defined in this specification (i.e., Zfbfmin, Zvfbfmin, and Zvfbfwma) fully support subnormal numbers.",
+      "line_number": 144,
+      "reason": "This is a fixed requirement for all implementations of these extensions, not an implementation-defined choice."
+    },
+    {
+      "excerpt": "Future floating-point extensions, including those that operate on BF16 values, may chose not to support subnormal numbers.",
+      "line_number": 148,
+      "reason": "This sentence appears inside a non-normative [NOTE] block and refers to potential future specifications, not an architectural parameter in this spec."
+    },
+    {
+      "excerpt": "Except where otherwise explicitly stated, when the result of a floating-point operation is a qNaN, it is the RISC-V canonical NaN.",
+      "line_number": 173,
+      "reason": "This is a fixed normative requirement defining canonical NaN generation, not an implementation choice."
+    },
+    {
+      "excerpt": "The BF16 extensions defined in this specification (i.e., `Zfbfmin`, `Zvfbfmin`, and `Zvfbfwma`) depend on the single-precision floating-point extension `F`.",
+      "line_number": 249,
+      "reason": "This describes a mandatory extension dependency rule, not a hardware implementation parameter."
+    }
+  ]
+}
+```

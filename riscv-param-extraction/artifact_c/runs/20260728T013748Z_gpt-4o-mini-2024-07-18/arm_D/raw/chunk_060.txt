@@ -1,0 +1,73 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The number of element groups to be processed is `vl`/`EGS`.",
+      "line_number": 3340,
+      "parameter_name": "EGS",
+      "existing_udb_name": "EGS",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "EGS is a direct implementation choice that defines how many elements are processed in a vector instruction. The specific value is determined by the implementer."
+    },
+    {
+      "excerpt": "For element-group instructions, `LMUL`*`VLEN` must always be at least as large as `EGW`, otherwise an illegal-instruction exception is raised.",
+      "line_number": 3340,
+      "parameter_name": "LMUL",
+      "existing_udb_name": "LMUL",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "LMUL is a direct implementation choice that affects how many vector registers can be grouped together for operations. The specific value is chosen by the implementer."
+    },
+    {
+      "excerpt": "The required `SEW` for each cryptographic instruction was chosen to match what is typically needed for other instructions when implementing the targeted algorithm.",
+      "line_number": 3340,
+      "parameter_name": "SEW",
+      "existing_udb_name": "SEW",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "SEW is a direct implementation choice that defines the selected element width for vector operations. The specific value is determined by the implementer based on the algorithm requirements."
+    },
+    {
+      "excerpt": "If `Zve32x` is supported then `Zvkb` or `Zvbb` provide support for EEW of 8, 16, and 32. If `Zve64x` is supported then `Zvkb` or `Zvbb` also add support for EEW 64.",
+      "line_number": 3340,
+      "parameter_name": "EEW",
+      "existing_udb_name": "EEW",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "EEW is a direct implementation choice that defines the effective element width for vector operations. The specific values supported depend on the extensions implemented."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "This instruction must always be implemented such that its execution latency does not depend on the data being operated upon.",
+      "line_number": 3340,
+      "reason": "This is a fixed requirement that applies to all implementations, not an architectural choice."
+    },
+    {
+      "excerpt": "The number of element groups to be processed is `vl`/`EGS`.",
+      "line_number": 3340,
+      "reason": "This describes behavior based on the CSR field value at runtime, not an implementation choice."
+    },
+    {
+      "excerpt": "The `vstart` register must be set to the number of `SEW=32` elements to be processed and therefore must be a multiple of `EGS=4`.",
+      "line_number": 3340,
+      "reason": "This is a fixed requirement for the CSR behavior, not an architectural parameter."
+    },
+    {
+      "excerpt": "The `vd` register group must not overlap with either `vs1` or `vs2`.",
+      "line_number": 3340,
+      "reason": "This is a requirement for implementation to avoid overlap, not an architectural choice."
+    },
+    {
+      "excerpt": "The `vtype` CSR provides the default type used to interpret the contents of the vector register file.",
+      "line_number": 3340,
+      "reason": "This describes the function of a CSR, not an implementation choice."
+    }
+  ]
+}
+```

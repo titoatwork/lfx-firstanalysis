@@ -1,0 +1,73 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The number of element groups to be processed is `vl`/`EGS`.",
+      "line_number": 3340,
+      "parameter_name": "EGS",
+      "existing_udb_name": "EGS",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "EGS is a direct implementation choice that defines how many elements are processed in a vector instruction. The specific value is determined by the implementer."
+    },
+    {
+      "excerpt": "For element-group instructions, `LMUL`*`VLEN` must always be at least as large as `EGW`, otherwise an illegal-instruction exception is raised.",
+      "line_number": 3340,
+      "parameter_name": "EGW",
+      "existing_udb_name": "EGW",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "EGW is a direct implementation choice that specifies the total number of bits in an element group. The specific value is determined by the implementer."
+    },
+    {
+      "excerpt": "The `vstart` CSR must be set to the number of `SEW=32` elements to be processed and therefore must be a multiple of `EGS=4`.",
+      "line_number": 3340,
+      "parameter_name": "SEW",
+      "existing_udb_name": "SEW",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "SEW is a direct implementation choice that defines the selected element width for vector operations. The specific value is determined by the implementer."
+    },
+    {
+      "excerpt": "The `vd` register group must not overlap with either `vs1` or `vs2`.",
+      "line_number": 3340,
+      "parameter_name": "VD_VS1_VS2_NO_OVERLAP",
+      "existing_udb_name": "VD_VS1_VS2_NO_OVERLAP",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "This is a design choice that the implementer must make to ensure proper operation of the instructions without data corruption."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "This instruction must always be implemented such that its execution latency does not depend on the data being operated upon.",
+      "line_number": 3340,
+      "reason": "This is a fixed requirement that applies to all implementations and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "The number of element groups to be processed is `vl`/`EGS`.",
+      "line_number": 3340,
+      "reason": "This describes behavior based on the CSR field value at runtime, not an implementation choice."
+    },
+    {
+      "excerpt": "The `vd` register group overlaps with either `vs1` or `vs2`.",
+      "line_number": 3340,
+      "reason": "This is a fixed requirement that applies to all implementations and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "The `vstart` CSR must be set to the number of `SEW=32` elements to be processed.",
+      "line_number": 3340,
+      "reason": "This describes a fixed requirement for the CSR and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "The `vtype` CSR provides the default type used to interpret the contents of the vector register file.",
+      "line_number": 3340,
+      "reason": "This describes a fixed requirement for the CSR and does not represent an implementation choice."
+    }
+  ]
+}
+```

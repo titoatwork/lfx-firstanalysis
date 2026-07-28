@@ -1,0 +1,53 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "RV64I widens the integer registers and supported user address space to 64 bits (XLEN=64 in <<gprs>>).",
+      "line_number": 6,
+      "parameter_name": "XLEN",
+      "existing_udb_name": "XLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "XLEN is a direct implementation choice that defines the width of integer registers and address space. The specific value (64) is chosen by the implementer."
+    },
+    {
+      "excerpt": "The execution environment will define what portions of the address space are legal to access.",
+      "line_number": 118,
+      "parameter_name": "LEGAL_ADDRESS_SPACE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The implementation defines which portions of the 64-bit address space are accessible, making it an architectural parameter."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "These \"*W\" instructions ignore the upper 32 bits of their inputs and always produce 32-bit signed values, sign-extending them to 64 bits, i.e. bits XLEN-1 through 31 are equal.",
+      "line_number": 12,
+      "reason": "This describes the behavior of specific instructions rather than an implementation choice. It does not define a parameter."
+    },
+    {
+      "excerpt": "Overflows are ignored and the result is the low 32 bits of the result sign-extended to 64 bits.",
+      "line_number": 20,
+      "reason": "This is a behavioral description of how the ADDIW instruction operates, not an architectural parameter."
+    },
+    {
+      "excerpt": "LUI places the 32-bit U-immediate into register _rd_, filling in the lowest 12 bits with zeros.",
+      "line_number": 66,
+      "reason": "This describes the operation of the LUI instruction rather than an implementation choice. It does not define a parameter."
+    },
+    {
+      "excerpt": "The LD instruction loads a 64-bit value from memory into register _rd_ for RV64I.",
+      "line_number": 118,
+      "reason": "This is a fixed requirement for the LD instruction and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "All instructions that are microarchitectural HINTs in RV32I (see <<rv32>>) are also HINTs in RV64I.",
+      "line_number": 138,
+      "reason": "This describes the relationship between RV32I and RV64I HINT instructions, not an architectural parameter."
+    }
+  ]
+}
+```

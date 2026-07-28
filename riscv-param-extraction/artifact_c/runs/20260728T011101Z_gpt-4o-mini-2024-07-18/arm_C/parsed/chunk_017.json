@@ -1,0 +1,37 @@
+{
+  "chunk_id": "chunk_017",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The `siselect` register will support the value range 0..0xFFF at a minimum.",
+      "line_number": 336,
+      "parameter_name": "SSELECT_VALUE_RANGE",
+      "existing_udb_name": "SSELECT_VALUE_RANGE",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The `siselect` register has a minimum value range defined, which is an implementation choice that can be extended by future specifications."
+    },
+    {
+      "excerpt": "The `vsiselect` register will support the value range 0..0xFFF at a minimum.",
+      "line_number": 592,
+      "parameter_name": "VSELECT_VALUE_RANGE",
+      "existing_udb_name": "VSELECT_VALUE_RANGE",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The `vsiselect` register has a minimum value range defined, which is an implementation choice that can be extended by future specifications."
+    },
+    {
+      "excerpt": "The value of `miselect` determines which register is accessed upon read or write of each of the machine indirect alias CSRs (`mireg*`).",
+      "line_number": 848,
+      "parameter_name": "MSELECT_VALUE_RANGE",
+      "existing_udb_name": "MSELECT_VALUE_RANGE",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The `miselect` register's value determines which indirect register is accessed, and its range can be defined by dependent extensions."
+    }
+  ]
+}

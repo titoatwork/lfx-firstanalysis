@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "For BF16 these values are: radix (b) 2, significand (p) 8, emax 127.",
+      "line_number": 56,
+      "parameter_name": "BF16_FORMAT_PARAMETERS",
+      "existing_udb_name": "BF16_FORMAT_PARAMETERS",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The radix, significand, and maximum exponent for the BF16 format are direct implementation choices that can vary by implementation."
+    },
+    {
+      "excerpt": "The BF16 instructions support all 5 RISC-V Floating-point rounding modes.",
+      "line_number": 150,
+      "parameter_name": "BF16_ROUNDING_MODES",
+      "existing_udb_name": "BF16_ROUNDING_MODES",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to support any of the 5 rounding modes for BF16 instructions, making this a direct implementation choice."
+    },
+    {
+      "excerpt": "The BF16 instructions set floating-point exception flags the same way as all other floating-point instructions in RISC-V.",
+      "line_number": 172,
+      "parameter_name": "BF16_EXCEPTION_HANDLING",
+      "existing_udb_name": "BF16_EXCEPTION_HANDLING",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose how to handle floating-point exceptions for BF16 instructions, which is a design-time decision."
+    },
+    {
+      "excerpt": "This extension provides the minimal set of instructions needed to enable scalar support of the BF16 format.",
+      "line_number": 290,
+      "parameter_name": "BF16_SCALAR_INSTRUCTIONS",
+      "existing_udb_name": "BF16_SCALAR_INSTRUCTIONS",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The specific scalar instructions for BF16 are implementation choices that can vary, thus defining a parameter."
+    },
+    {
+      "excerpt": "This extension provides the minimal set of instructions needed to enable vector support of the BF16 format.",
+      "line_number": 350,
+      "parameter_name": "BF16_VECTOR_INSTRUCTIONS",
+      "existing_udb_name": "BF16_VECTOR_INSTRUCTIONS",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The specific vector instructions for BF16 are implementation choices that can vary, thus defining a parameter."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "Future floating-point extensions, including those that operate on BF16 values, may chose not to support subnormal numbers.",
+      "line_number": 164,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a potential future choice, not an architectural requirement."
+    },
+    {
+      "excerpt": "BF16 addition, subtraction, multiplication, division, and square-root operations can be faithfully emulated by converting the BF16 operands to single-precision.",
+      "line_number": 290,
+      "reason": "This describes a method of emulation rather than an implementation choice. It does not define a parameter."
+    },
+    {
+      "excerpt": "The implementation can choose how to handle floating-point exceptions for BF16 instructions.",
+      "line_number": 172,
+      "reason": "This is a behavioral description rather than a parameter definition. The parameter would be the specific exception handling mechanisms."
+    },
+    {
+      "excerpt": "The BF16 instructions support all 5 RISC-V Floating-point rounding modes.",
+      "line_number": 150,
+      "reason": "This describes the support for rounding modes but does not specify which modes are implemented, thus not qualifying as a parameter."
+    },
+    {
+      "excerpt": "This means that a '754 compliant implementation of binary floating point, which needs to support at least one basic format, cannot support only FP16.",
+      "line_number": 20,
+      "reason": "This is a fixed requirement that applies to all implementations and does not leave room for implementation-defined choices."
+    }
+  ]
+}
+```

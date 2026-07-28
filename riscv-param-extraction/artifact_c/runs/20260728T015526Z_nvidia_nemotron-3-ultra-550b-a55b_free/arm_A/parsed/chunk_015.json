@@ -1,0 +1,167 @@
+{
+  "chunk_id": "chunk_015",
+  "arm": "A",
+  "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "parameters": [
+    {
+      "excerpt": "In particular, an implementation may make VSXL be a read-only field whose value always ensures that VSXLEN=HSXLEN.",
+      "line_number": 227,
+      "parameter_name": "HSTATUS_VSXL_READ_ONLY",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The spec explicitly states that an implementation may choose to make the VSXL field read-only (forcing VSXLEN=HSXLEN) or read-write (allowing different VSXLEN). This is a binary choice about the mutability of a CSR field."
+    },
+    {
+      "excerpt": "An implementation may have WFI always raise a virtual-instruction exception in VS-mode when VTW=1 (and `mstatus`.TW=0), even if there are pending globally-disabled interrupts when the instruction is executed.",
+      "line_number": 244,
+      "parameter_name": "HW_VTW_WFI_ALWAYS_VIRTINSTR",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The spec gives the implementation a choice between two behaviors for WFI in VS-mode when VTW=1: either raise a virtual-instruction exception only if WFI does not complete within a bounded time, or always raise the exception. This is a direct implementation choice not controlled by a CSR."
+    },
+    {
+      "excerpt": "An implementation may make VSBE a read-only field that always specifies the same endianness as HS-mode.",
+      "line_number": 341,
+      "parameter_name": "VS_MODE_ENDIANNESS",
+      "existing_udb_name": "VS_MODE_ENDIANNESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The VSBE field in hstatus controls VS-mode endianness. The implementation can choose to make it read-only (fixed to little or big endian) or read-write (dynamic). This matches the known UDB parameter VS_MODE_ENDIANNESS which captures the endianness configuration for VS-mode."
+    },
+    {
+      "excerpt": "The number of bits implemented in `hgeip` and `hgeie` for guest external interrupts is UNSPECIFIED and may be zero. This number is known as _GEILEN_.",
+      "line_number": 630,
+      "parameter_name": "NUM_EXTERNAL_GUEST_INTERRUPTS",
+      "existing_udb_name": "NUM_EXTERNAL_GUEST_INTERRUPTS",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "GEILEN is the number of guest external interrupt bits, which is implementation-defined (0 to 31 for RV32, 0 to 63 for RV64). This is a direct architectural parameter."
+    },
+    {
+      "excerpt": "Implementations are not required to support all defined MODE settings when HSXLEN=64.",
+      "line_number": 1054,
+      "parameter_name": "HGATP_MODES_SUPPORTED",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The spec defines three G-stage translation modes for RV64 (Sv39x4, Sv48x4, Sv57x4) but states that implementations may support a subset. The set of supported modes is an implementation choice."
+    },
+    {
+      "excerpt": "The number of VMID bits is UNSPECIFIED and may be zero. The number of implemented VMID bits, termed _VMIDLEN_, may be determined by writing one to every bit position in the VMID field, then reading back the value in `hgatp` to see which bit positions in the VMID field hold a one.",
+      "line_number": 1071,
+      "parameter_name": "VMID_WIDTH",
+      "existing_udb_name": "VMID_WIDTH",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "VMIDLEN (number of VMID bits) is implementation-defined, with a maximum of 7 for Sv32x4 and 14 for Sv39x4/Sv48x4/Sv57x4. This is a direct parameter."
+    },
+    {
+      "excerpt": "An implementation that supports only the defined paged virtual-memory schemes and/or Bare may make PPN[1:0] read-only zero.",
+      "line_number": 1067,
+      "parameter_name": "HGATP_PPN_LOW_READ_ONLY",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The lowest two bits of the PPN field in hgatp are always zero for paged modes; the implementation may choose to hardwire them to zero (read-only) or allow them to be written (though they will read as zero). This is a binary choice about the mutability of those bits."
+    },
+    {
+      "excerpt": "In particular, an implementation may make UXL be a read-only copy of field VSXL of `hstatus`, forcing VU-mode XLEN=VSXLEN.",
+      "line_number": 1168,
+      "parameter_name": "VSSTATUS_UXL_READ_ONLY_COPY",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The UXL field in vsstatus controls VU-mode XLEN. The implementation may choose to make it a read-only copy of VSXL (forcing VU-mode XLEN to equal VSXLEN) or allow it to be independently writable. This is a binary choice about the field's mutability."
+    },
+    {
+      "excerpt": "An implementation may make field UBE be a read-only copy of `hstatus`.VSBE.",
+      "line_number": 1208,
+      "parameter_name": "VU_MODE_ENDIANNESS",
+      "existing_udb_name": "VU_MODE_ENDIANNESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The UBE field in vsstatus controls VU-mode endianness. The implementation may make it a read-only copy of VSBE (thus VU-mode endianness follows VS-mode) or allow it to be independently writable. This matches the known UDB parameter VU_MODE_ENDIANNESS."
+    },
+    {
+      "excerpt": "`hcounteren` must be implemented. However, any of the bits may be read-only zero, indicating reads to the corresponding counter will cause an exception when V=1. Hence, they are effectively *WARL* fields.",
+      "line_number": 865,
+      "parameter_name": "HCOUNTENABLE_EN",
+      "existing_udb_name": "HCOUNTENABLE_EN",
+      "class": "NORM_CSR_RW",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "Each bit in hcounteren (CY, TM, IR, HPMn) can be independently implemented as read-only zero or read-write. This is a per-bit choice, captured by the known UDB parameter HCOUNTENABLE_EN."
+    },
+    {
+      "excerpt": "`htval` is a *WARL* register that must be able to hold zero and may be capable of holding only an arbitrary subset of other 2-bit-shifted guest physical addresses, if any.",
+      "line_number": 947,
+      "parameter_name": "HTVAL_GPA_SUBSET",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The set of guest physical addresses that can be stored in htval is implementation-defined (any subset of 2-bit-shifted GPAs). This is a WARL register with implementation-defined legal values."
+    },
+    {
+      "excerpt": "`mtval2` is a *WARL* register that must be able to hold zero and may be capable of holding only an arbitrary subset of other 2-bit-shifted guest physical addresses, if any.",
+      "line_number": 1816,
+      "parameter_name": "MTVAL2_GPA_SUBSET",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "Similar to htval, mtval2's legal values are an arbitrary subset of 2-bit-shifted guest physical addresses. This is a WARL register with implementation-defined legal values."
+    },
+    {
+      "excerpt": "`htinst` is a *WARL* register that need only be able to hold the values that the implementation may automatically write to it on a trap.",
+      "line_number": 973,
+      "parameter_name": "HTINST_VALUES",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The set of values that htinst can hold is exactly the set of values the hardware may write on a trap (transformed instructions, custom values, pseudoinstructions). This is implementation-defined."
+    },
+    {
+      "excerpt": "`mtinst` is a *WARL* register that need only be able to hold the values that the implementation may automatically write to it on a trap.",
+      "line_number": 1839,
+      "parameter_name": "MTINST_VALUES",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "Same as htinst but for M-mode. The legal values are implementation-defined."
+    },
+    {
+      "excerpt": "Simpler implementations of HFENCE.VVMA can ignore the guest virtual address in _rs1_ and the guest ASID value in _rs2_, as well as `hgatp`.VMID, and always perform a global fence for the VS-level memory management of all virtual machines, or even a global fence for all memory-management data structures.",
+      "line_number": 1556,
+      "parameter_name": "HFENCE_VVMA_PRECISION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "medium",
+      "reasoning": "The spec notes that implementations may choose to implement a precise HFENCE.VVMA (using address, ASID, VMID) or a global fence. This is an implementation choice affecting the fence's precision."
+    },
+    {
+      "excerpt": "Simpler implementations of HFENCE.GVMA can ignore the guest physical address in _rs1_ and the VMID value in _rs2_ and always perform a global fence for the guest-physical memory management of all virtual machines, or even a global fence for all memory-management data structures.",
+      "line_number": 1610,
+      "parameter_name": "HFENCE_GVMA_PRECISION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "medium",
+      "reasoning": "Similar to HFENCE.VVMA, the implementation may choose a precise or global fence for HFENCE.GVMA."
+    }
+  ]
+}

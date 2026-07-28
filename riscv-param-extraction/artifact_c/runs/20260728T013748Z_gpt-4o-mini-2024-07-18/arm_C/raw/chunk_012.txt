@@ -1,0 +1,68 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "FLEN can be 32, 64, or 128 depending on which of the F, D, and Q extensions are supported.",
+      "line_number": 7,
+      "parameter_name": "FLEN",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "FLEN represents a direct implementation choice regarding the floating-point register width, with specific allowed values (32, 64, or 128) based on supported extensions."
+    },
+    {
+      "excerpt": "A narrower _n_-bit transfer, _n_<FLEN, into the `f` registers will create a valid NaN-boxed value.",
+      "line_number": 29,
+      "parameter_name": "NARROWER_TRANSFER_NAN_BOXING",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to create a valid NaN-boxed value for narrower transfers, indicating a binary choice in handling these operations."
+    },
+    {
+      "excerpt": "FLD and FSD are only guaranteed to execute atomically if the effective address is naturally aligned and XLEN{ge}64.",
+      "line_number": 83,
+      "parameter_name": "FLD_FSD_ATOMIC_ALIGNMENT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The atomic execution of FLD and FSD depends on the alignment of the effective address and the implementation of XLEN, which is a design-time choice."
+    },
+    {
+      "excerpt": "For XLEN{ge}64 only, instructions are provided to move bit patterns between the floating-point and integer registers.",
+      "line_number": 157,
+      "parameter_name": "XLEN_SUPPORTS_BIT_PATTERN_MOVEMENT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The ability to move bit patterns between floating-point and integer registers is contingent on the implementation of XLEN being 64 or greater, indicating a design choice."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The double-precision value may be a NaN-boxed single-precision value.",
+      "line_number": 81,
+      "reason": "This is a note about the behavior of values and does not define an implementation choice."
+    },
+    {
+      "excerpt": "All floating-point to integer and integer to floating-point conversion instructions round according to the _rm_ field.",
+      "line_number": 139,
+      "reason": "This describes the behavior of conversion instructions rather than an implementation choice."
+    },
+    {
+      "excerpt": "The double-precision floating-point compare instructions are defined analogously to their single-precision counterparts.",
+      "line_number": 197,
+      "reason": "This is a description of how instructions are defined, not an architectural parameter."
+    },
+    {
+      "excerpt": "The double-precision floating-point classify instruction, FCLASS.D, is defined analogously to its single-precision counterpart.",
+      "line_number": 215,
+      "reason": "This describes the definition of an instruction rather than an implementation choice."
+    }
+  ]
+}
+```

@@ -1,0 +1,157 @@
+{
+  "chunk_id": "chunk_058",
+  "arm": "A",
+  "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "parameters": [
+    {
+      "excerpt": "The maximum size in bits of a vector element that any operation can produce or consume, _ELEN_ {ge} 8, which must be a power of 2.",
+      "line_number": 22,
+      "parameter_name": "ELEN",
+      "existing_udb_name": "ELEN",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "ELEN is a direct implementation parameter: the maximum element size. It has constraints (>= 8, power of 2) but the specific value is chosen by the implementer."
+    },
+    {
+      "excerpt": "The number of bits in a single vector register, _VLEN_ {ge} ELEN, which must be a power of 2, and must be no greater than 2^16^.",
+      "line_number": 23,
+      "parameter_name": "VLEN",
+      "existing_udb_name": "VLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "VLEN is a direct implementation parameter: the vector register size in bits. It has constraints (>= ELEN, power of 2, <= 65536) but the specific value is chosen by the implementer."
+    },
+    {
+      "excerpt": "Implementations may have a writable `misa.V` field.",
+      "line_number": 78,
+      "parameter_name": "MUTABLE_MISA_V",
+      "existing_udb_name": "MUTABLE_MISA_V",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether the misa.V bit is read-only (fixed) or read-write (mutable). This controls the RO/RW nature of the CSR field."
+    },
+    {
+      "excerpt": "Analogous to the way in which the floating-point unit is handled, the `mstatus.VS` field may exist even if `misa.V` is clear.",
+      "line_number": 79,
+      "parameter_name": "MSTATUS_VS_EXISTS_WHEN_MISA_V_CLEAR",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether the mstatus.VS field exists (is implemented) when the vector extension is disabled (misa.V=0). This is a binary design-time choice about CSR field existence."
+    },
+    {
+      "excerpt": "Implementations may also change `mstatus.VS` from Initial or Clean to Dirty at any time, even when there is no change in vector state.",
+      "line_number": 73,
+      "parameter_name": "HW_MSTATUS_VS_DIRTY_UPDATE",
+      "existing_udb_name": "HW_MSTATUS_VS_DIRTY_UPDATE",
+      "class": "SW_RULE",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "Whether hardware spontaneously updates mstatus.VS to Dirty is implementation-defined, but software can handle this deterministically by checking and managing VS state. Matches the pattern of HW_MSTATUS_FS_DIRTY_UPDATE."
+    },
+    {
+      "excerpt": "Implementations may also change `mstatus.VS` or `vsstatus.VS` from Initial or Clean to Dirty at any time, even when there is no change in vector state.",
+      "line_number": 93,
+      "parameter_name": "HW_MSTATUS_VS_DIRTY_UPDATE",
+      "existing_udb_name": "HW_MSTATUS_VS_DIRTY_UPDATE",
+      "class": "SW_RULE",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "Same parameter as above, also applies to vsstatus.VS in hypervisor mode. Whether hardware spontaneously updates VS to Dirty is implementation-defined but software-manageable."
+    },
+    {
+      "excerpt": "For implementations with a writable `misa.V` field, the `vsstatus.VS` field may exist even if `misa.V` is clear.",
+      "line_number": 98,
+      "parameter_name": "VSSTATUS_VS_EXISTS_WHEN_MISA_V_CLEAR",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether the vsstatus.VS field exists when misa.V=0 (for implementations with writable misa.V). Binary design-time choice about CSR field existence."
+    },
+    {
+      "excerpt": "Implementations are permitted to raise illegal-instruction exceptions when attempting to execute a vector instruction with a value of `vstart` that the implementation can never produce when executing that same instruction with the same `vtype` setting.",
+      "line_number": 185,
+      "parameter_name": "VSTART_ILLEGAL_ON_UNSUPPORTED",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "medium",
+      "reasoning": "The implementation chooses whether to trap on vstart values it can never generate. This is a design-time choice about exception behavior for unsupported vstart values."
+    },
+    {
+      "excerpt": "The use of `vtype` encodings with LMUL < SEW~MIN~/ELEN is __reserved__, but implementations can set `vill` if they do not support these configurations.",
+      "line_number": 132,
+      "parameter_name": "VILL_ON_LMUL_LT_SEW_MIN_DIV_ELEN",
+      "existing_udb_name": null,
+      "class": "SW_RULE",
+      "value_type": "binary",
+      "confidence": "medium",
+      "reasoning": "Implementations may choose whether to set vill for reserved LMUL < SEW_MIN/ELEN encodings. Software can handle this by checking vill after vsetvli. Outcome is deterministic if software follows the rule."
+    },
+    {
+      "excerpt": "Implementations may set `vill` in either case.",
+      "line_number": 263,
+      "parameter_name": "VILL_SET_ON_RS1_X0_RD_X0",
+      "existing_udb_name": null,
+      "class": "SW_RULE",
+      "value_type": "binary",
+      "confidence": "medium",
+      "reasoning": "When rs1=x0 and rd=x0 with a new SEW/LMUL ratio that would change VLMAX, or when vill was 1 beforehand, implementations may choose to set vill. Software can handle by checking vill."
+    },
+    {
+      "excerpt": "Implementations are allowed to raise a misaligned address exception on whole register loads and stores if the base address is not naturally aligned to the larger of the size of the encoded EEW in bytes (EEW/8) or the implementation's smallest supported SEW size in bytes (SEW~MIN~/8).",
+      "line_number": 578,
+      "parameter_name": "WHOLE_REG_MISALIGNED_EXCEPTION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The implementation chooses the alignment requirement for whole register loads/stores: never raise misaligned, raise on EEW alignment, raise on SEW_MIN alignment, or raise on max(EEW, SEW_MIN) alignment. This is a design-time choice."
+    },
+    {
+      "excerpt": "If an element accessed by a vector memory instruction is not naturally aligned to the size of the element, either the element is transferred successfully or an address-misaligned exception is raised on that element.",
+      "line_number": 585,
+      "parameter_name": "VECTOR_MISALIGNED_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The implementation chooses the behavior for misaligned vector memory accesses: always succeed, always trap, or either (implementation-defined per access). This is a design-time choice independent of scalar misaligned support."
+    },
+    {
+      "excerpt": "An implementation may have neither, one, or both scalar and vector memory accesses support some or all misaligned accesses in hardware.",
+      "line_number": 588,
+      "parameter_name": "VECTOR_MISALIGNED_SUPPORT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The implementation chooses the level of hardware support for misaligned vector memory accesses: none, some (specific alignments), or all. This is a design-time microarchitectural choice."
+    },
+    {
+      "excerpt": "If a trap occurs during access to a segment, it is implementation-defined whether a subset of the faulting segment's accesses are performed before the trap is taken.",
+      "line_number": 525,
+      "parameter_name": "SEGMENT_TRAP_PARTIAL_ACCESS",
+      "existing_udb_name": null,
+      "class": "SW_RULE",
+      "value_type": "binary",
+      "confidence": "medium",
+      "reasoning": "Whether a segment load/store performs partial accesses before trapping is implementation-defined. Software must not rely on atomicity of segment accesses. Outcome is deterministic if software follows the rule."
+    },
+    {
+      "excerpt": "In both cases, it is implementation-defined whether a subset of the segment is loaded.",
+      "line_number": 505,
+      "parameter_name": "SEGMENT_FF_PARTIAL_ACCESS",
+      "existing_udb_name": null,
+      "class": "SW_RULE",
+      "value_type": "binary",
+      "confidence": "medium",
+      "reasoning": "For fault-only-first segment loads, whether a partial segment is loaded before trimming vl or trapping is implementation-defined. Software must handle either case. Outcome is deterministic if software follows the rule."
+    }
+  ]
+}

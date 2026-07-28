@@ -1,0 +1,137 @@
+{
+  "chunk_id": "chunk_068",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The correspondence of _rs1_ field values and single-precision floating-point values is shown in <<tab:flis>>.",
+      "line_number": 10,
+      "parameter_name": "FLI_S_VALUES",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The _rs1_ field values correspond to a set of single-precision floating-point constants, which are implementation-defined legal values."
+    },
+    {
+      "excerpt": "If the D extension is implemented, FLI.D performs the analogous operation, but loads a double-precision value into floating-point register _rd_.",
+      "line_number": 20,
+      "parameter_name": "FLI_D_IMPLEMENTATION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation choice to support the FLI.D instruction is a direct decision based on whether the D extension is included."
+    },
+    {
+      "excerpt": "If the Q extension is implemented, FLI.Q performs the analogous operation, but loads a quad-precision value into floating-point register _rd_.",
+      "line_number": 30,
+      "parameter_name": "FLI_Q_IMPLEMENTATION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to implement the FLI.Q instruction is directly dependent on the presence of the Q extension."
+    },
+    {
+      "excerpt": "If the Zfh or Zvfh extension is implemented, FLI.H performs the analogous operation, but loads a half-precision floating-point value into register _rd_.",
+      "line_number": 40,
+      "parameter_name": "FLI_H_IMPLEMENTATION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation of the FLI.H instruction is contingent on the Zfh or Zvfh extension being present, making it a direct implementation choice."
+    },
+    {
+      "excerpt": "If the D extension is implemented, FMINM.D and FMAXM.D instructions are analogously defined to operate on double-precision numbers.",
+      "line_number": 60,
+      "parameter_name": "FMINM_D_IMPLEMENTATION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation of FMINM.D and FMAXM.D instructions is directly dependent on the presence of the D extension."
+    },
+    {
+      "excerpt": "If the Zfh extension is implemented, FMINM.H and FMAXM.H instructions are analogously defined to operate on half-precision numbers.",
+      "line_number": 70,
+      "parameter_name": "FMINM_H_IMPLEMENTATION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to implement FMINM.H and FMAXM.H instructions is based on whether the Zfh extension is included, making it a direct implementation choice."
+    },
+    {
+      "excerpt": "If the Q extension is implemented, FMINM.Q and FMAXM.Q instructions are analogously defined to operate on quad-precision numbers.",
+      "line_number": 80,
+      "parameter_name": "FMINM_Q_IMPLEMENTATION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation of FMINM.Q and FMAXM.Q instructions is contingent on the presence of the Q extension, making it a direct implementation choice."
+    },
+    {
+      "excerpt": "If the D extension is implemented, FROUND.D and FROUNDNX.D instructions are analogously defined to operate on double-precision numbers.",
+      "line_number": 100,
+      "parameter_name": "FROUND_D_IMPLEMENTATION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to implement FROUND.D and FROUNDNX.D instructions is directly dependent on the presence of the D extension."
+    },
+    {
+      "excerpt": "If the Zfh extension is implemented, FROUND.H and FROUNDNX.H instructions are analogously defined to operate on half-precision numbers.",
+      "line_number": 110,
+      "parameter_name": "FROUND_H_IMPLEMENTATION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation of FROUND.H and FROUNDNX.H instructions is contingent on the presence of the Zfh extension, making it a direct implementation choice."
+    },
+    {
+      "excerpt": "If the Q extension is implemented, FROUND.Q and FROUNDNX.Q instructions are analogously defined to operate on quad-precision numbers.",
+      "line_number": 120,
+      "parameter_name": "FROUND_Q_IMPLEMENTATION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to implement FROUND.Q and FROUNDNX.Q instructions is directly dependent on the presence of the Q extension."
+    },
+    {
+      "excerpt": "This instruction is only provided if the D extension is implemented.",
+      "line_number": 140,
+      "parameter_name": "FCVTMOD_W_D_IMPLEMENTATION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation of the FCVTMOD.W.D instruction is contingent on the presence of the D extension, making it a direct implementation choice."
+    },
+    {
+      "excerpt": "For RV32 only, if the D extension is implemented, the FMVH.X.D instruction moves bits 63:32 of floating-point register _rs1_ into integer register _rd_.",
+      "line_number": 160,
+      "parameter_name": "FMVH_X_D_IMPLEMENTATION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to implement the FMVH.X.D instruction is directly dependent on the presence of the D extension and the RV32 architecture."
+    },
+    {
+      "excerpt": "For RV64 only, if the Q extension is implemented, the FMVH.X.Q instruction moves bits 127:64 of floating-point register _rs1_ into integer register _rd_.",
+      "line_number": 180,
+      "parameter_name": "FMVH_X_Q_IMPLEMENTATION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to implement the FMVH.X.Q instruction is directly dependent on the presence of the Q extension and the RV64 architecture."
+    }
+  ]
+}

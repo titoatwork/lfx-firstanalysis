@@ -1,0 +1,17 @@
+{
+  "chunk_id": "chunk_044",
+  "arm": "A",
+  "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "parameters": [
+    {
+      "excerpt": "This CSR provides up to 16 physical `entropy` bits that can be used to seed cryptographic random bit generators.",
+      "line_number": 277,
+      "parameter_name": "ZKR_SEED_ENTROPY_BITS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The spec explicitly states the seed CSR provides 'up to 16 physical entropy bits', leaving the exact number (0-16) as an implementation choice. This is a direct architectural parameter not controlled by any CSR field."
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The `siselect` register will support the value range 0..0xFFF at a minimum.",
+      "line_number": 336,
+      "parameter_name": "SSELECT_VALUE_RANGE",
+      "existing_udb_name": "SSELECT_VALUE_RANGE",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The `siselect` register has a minimum value range defined, which is an implementation choice that can be extended by future specifications."
+    },
+    {
+      "excerpt": "The `vsiselect` register will support the value range 0..0xFFF at a minimum.",
+      "line_number": 592,
+      "parameter_name": "VSELECT_VALUE_RANGE",
+      "existing_udb_name": "VSELECT_VALUE_RANGE",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The `vsiselect` register has a minimum value range defined, which is an implementation choice that can be extended by future specifications."
+    },
+    {
+      "excerpt": "The value of `miselect` determines which register is accessed upon read or write of each of the machine indirect alias CSRs (`mireg*`).",
+      "line_number": 848,
+      "parameter_name": "MSELECT_VALUE_RANGE",
+      "existing_udb_name": "MSELECT_VALUE_RANGE",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The `miselect` register's value determines which indirect register is accessed, and its range can be defined by dependent extensions."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The behavior upon accessing `mireg*` from M-mode, while `miselect` holds a value that is not implemented, is UNSPECIFIED.",
+      "line_number": 849,
+      "reason": "This describes behavior under specific conditions rather than an implementation choice, thus it is not a parameter."
+    },
+    {
+      "excerpt": "An implementation is not required to support any custom values for `miselect`.",
+      "line_number": 850,
+      "reason": "This is a statement about implementation requirements, not an architectural parameter."
+    },
+    {
+      "excerpt": "The CSRs in the table above are required if S-mode is implemented.",
+      "line_number": 337,
+      "reason": "This is a fixed requirement that applies to all implementations, not an implementation choice."
+    },
+    {
+      "excerpt": "It is expected that implementations will typically raise an illegal-instruction exception for such accesses.",
+      "line_number": 851,
+      "reason": "This describes expected behavior rather than an implementation choice, thus it is not a parameter."
+    },
+    {
+      "excerpt": "If extension Smstateen is implemented together with Smcsrind, bit 60 of state-enable register `mstateen0` controls access to `siselect`, `sireg*`, `vsiselect`, and `vsireg*`.",
+      "line_number": 344,
+      "reason": "This describes control behavior based on the implementation of an extension, not a parameter that can be chosen."
+    }
+  ]
+}
+```

@@ -1,0 +1,32 @@
+```json
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The Ssdbltrp extension addresses a double trap privilege modes lower than M.",
+      "line_number": 3,
+      "reason": "This is a descriptive statement about the purpose of the extension, not an implementation choice."
+    },
+    {
+      "excerpt": "It enables HS-mode to invoke a critical error handler in a virtual machine on a double trap in VS-mode.",
+      "line_number": 4,
+      "reason": "This describes functionality enabled by the extension, not an architectural parameter."
+    },
+    {
+      "excerpt": "It also allows M-mode to invoke a critical error handler in the OS/Hypervisor on a double trap in S/HS-mode.",
+      "line_number": 5,
+      "reason": "This is a description of behavior rather than a parameter that can be chosen by the implementer."
+    },
+    {
+      "excerpt": "The Ssdbltrp extension adds the `menvcfg`.DTE and the `sstatus`.SDT fields.",
+      "line_number": 7,
+      "reason": "This is a statement about the addition of fields, not an implementation choice."
+    },
+    {
+      "excerpt": "If the hypervisor extension is additionally implemented, then the extension adds the `henvcfg`.DTE and the `vsstatus`.SDT fields.",
+      "line_number": 9,
+      "reason": "This describes a conditional addition of fields based on the implementation of another extension, not a parameter."
+    }
+  ]
+}
+```

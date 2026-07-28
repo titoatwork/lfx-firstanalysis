@@ -1,0 +1,38 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "Implementations may implement `mseccfg` such that `[s,u]seed` is a read-only constant value `0`.",
+      "line_number": 3715,
+      "parameter_name": "MSECCFG_SEED_READ_ONLY",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The spec permits implementations to make mseccfg.sseed and mseccfg.useed read-only constant 0 (disallowing U/S-mode access) or read-write. This is an implementation choice controlling the read-only vs read-write nature of these CSR fields."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "Attempts to access the `seed` CSR using a read-only CSR-access instruction (`CSRRS`/`CSRRC` with rs1=`x0` or `CSRRSI`/`CSRRCI` with uimm=0) raise an illegal-instruction exception",
+      "line_number": 3568,
+      "reason": "This is a fixed architectural requirement applying to all implementations, not an implementation choice."
+    },
+    {
+      "excerpt": "The write value (in `rs1` or `uimm`) must be ignored by implementations.",
+      "line_number": 3570,
+      "reason": "This is a mandatory requirement for all implementations when executing writes to the seed CSR."
+    },
+    {
+      "excerpt": "Vendors do not have to implement all of the list's instructions to be Zkt compliant; however, if they claim to have Zkt and implement any of the listed instructions, it must have data-independent latency.",
+      "line_number": 3762,
+      "reason": "This describes the rule for Zkt extension compliance based on supported instructions, rather than an architectural parameter."
+    },
+    {
+      "excerpt": "In order for shared RISC-V self-certification scripts (and drivers) to accommodate the test interface in a secure fashion, we suggest that it is implemented as a custom, M-mode only CSR, denoted here as `mnoise`.",
+      "line_number": 4635,
+      "reason": "This text appears in a non-normative section and presents a suggestion for a custom interface rather than an ISA parameter."
+    }
+  ]
+}
+```

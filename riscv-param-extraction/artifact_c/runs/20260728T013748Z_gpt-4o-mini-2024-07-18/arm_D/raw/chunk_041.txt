@@ -1,0 +1,22 @@
+```json
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "RV32E and RV64E reduce the integer register count to 16 general-purpose registers, (`x0-x15`), where `x0` is a dedicated zero register.",
+      "line_number": 9,
+      "reason": "This is a fixed requirement stating the number of general-purpose registers, not an implementation choice."
+    },
+    {
+      "excerpt": "Unless otherwise stated, standard extensions compatible with RV32I and RV64I are also compatible with RV32E and RV64E, respectively.",
+      "line_number": 13,
+      "reason": "This is a statement about compatibility, not an architectural parameter that allows for implementation choices."
+    },
+    {
+      "excerpt": "RV32E and RV64E use the same instruction-set encoding as RV32I and RV64I respectively, except that only registers `x0-x15` are provided.",
+      "line_number": 21,
+      "reason": "This describes the encoding and register availability, which is a fixed requirement rather than an implementation-defined parameter."
+    }
+  ]
+}
+```

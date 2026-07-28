@@ -1,0 +1,37 @@
+{
+  "chunk_id": "chunk_004",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "For BF16 these values are: radix (b) 2, significand (p) 8, emax 127.",
+      "line_number": 56,
+      "parameter_name": "BF16_FORMAT_PARAMETERS",
+      "existing_udb_name": "BF16_FORMAT_PARAMETERS",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The radix, significand, and maximum exponent for BF16 are direct implementation choices that define the format."
+    },
+    {
+      "excerpt": "RISC-V Floating Point Rounding Modes: 000 | RNE | Round to Nearest, ties to Even, 001 | RTZ | Round towards Zero, 010 | RDN | Round Down (towards \u2212{inf}), 011 | RUP | Round Up (towards +{inf}), 100 | RMM | Round to Nearest, ties to Max Magnitude.",
+      "line_number": 118,
+      "parameter_name": "BF16_ROUNDING_MODES",
+      "existing_udb_name": "BF16_ROUNDING_MODES",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The rounding modes supported by BF16 are implementation choices that can vary, providing a set of options for the implementer."
+    },
+    {
+      "excerpt": "The BF16 extensions defined in this specification (i.e., Zfbfmin, Zvfbfmin, and Zvfbfwma) depend on the single-precision floating-point extension F.",
+      "line_number": 490,
+      "parameter_name": "BF16_EXTENSION_DEPENDENCIES",
+      "existing_udb_name": "BF16_EXTENSION_DEPENDENCIES",
+      "class": "NON_ISA",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The dependencies of BF16 extensions on other extensions (like F) are implementation choices that can vary based on the architecture."
+    }
+  ]
+}

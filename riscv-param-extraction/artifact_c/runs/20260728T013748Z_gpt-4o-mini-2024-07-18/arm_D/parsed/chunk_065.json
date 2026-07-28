@@ -1,0 +1,37 @@
+{
+  "chunk_id": "chunk_065",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The misaligned atomicity granule PMA, defined in Volume II of this manual, optionally relaxes this alignment requirement.",
+      "line_number": 29,
+      "parameter_name": "MISALIGNED_ATOMICITY_GRANULE",
+      "existing_udb_name": "MISALIGNED_ATOMICITY_GRANULE",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to relax the alignment requirement for misaligned atomicity granules, making it a direct implementation choice."
+    },
+    {
+      "excerpt": "This load must have the ordering annotation _aq_ and may have ordering annotation _rl_ encoded in the instruction.",
+      "line_number": 66,
+      "parameter_name": "LOAD_AQ_RL_OPTIONAL",
+      "existing_udb_name": "LOAD_AQ_RL_OPTIONAL",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation must include the _aq_ annotation, but the _rl_ annotation is optional, indicating a design choice."
+    },
+    {
+      "excerpt": "This store must have ordering annotation _rl_ and may have ordering annotation _aq_ encoded in the instruction.",
+      "line_number": 109,
+      "parameter_name": "STORE_RL_AQ_OPTIONAL",
+      "existing_udb_name": "STORE_RL_AQ_OPTIONAL",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation must include the _rl_ annotation, but the _aq_ annotation is optional, indicating a design choice."
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "Implementations might provide anywhere from 1 to 3 privilege modes trading off reduced isolation for lower implementation cost.",
+      "line_number": 157,
+      "parameter_name": "NUM_PRIVILEGE_MODES",
+      "existing_udb_name": "NUM_PRIVILEGE_MODES",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of privilege modes (1 to 3) is a direct implementation choice that affects system design and isolation."
+    },
+    {
+      "excerpt": "Implementations may also include a debug mode to support off-chip debugging and/or manufacturing test.",
+      "line_number": 197,
+      "parameter_name": "DEBUG_MODE_SUPPORT",
+      "existing_udb_name": "DEBUG_MODE_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to include a debug mode is an implementation decision, allowing for either support or lack thereof."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The machine level has the highest privileges and is the only mandatory privilege level for a RISC-V hardware platform.",
+      "line_number": 165,
+      "reason": "This is a fixed requirement ('only mandatory privilege level') that all implementations must satisfy. There is no implementation choice here."
+    },
+    {
+      "excerpt": "All hardware implementations must provide M-mode, as this is the only mode that has unfettered access to the whole machine.",
+      "line_number": 169,
+      "reason": "This is a fixed requirement ('must provide M-mode') that applies to all implementations, not an architectural parameter."
+    },
+    {
+      "excerpt": "The lock feature of the optional PMP facility can provide some limited protection even with only M-mode implemented.",
+      "line_number": 173,
+      "reason": "This is a suggestion about the PMP facility and does not define an implementation choice; it is not a parameter."
+    },
+    {
+      "excerpt": "A hart normally runs application code in U-mode until some trap (e.g., a supervisor call or a timer interrupt) forces a switch to a trap handler.",
+      "line_number": 183,
+      "reason": "This describes expected behavior of the hart and does not indicate an implementation choice; it is not a parameter."
+    },
+    {
+      "excerpt": "Horizontal traps can be implemented as vertical traps that return control to a horizontal trap handler in the less-privileged mode.",
+      "line_number": 195,
+      "reason": "This describes a potential implementation technique rather than an architectural parameter; it does not indicate a choice left to the implementer."
+    }
+  ]
+}
+```

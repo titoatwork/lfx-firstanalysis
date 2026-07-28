@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_064",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The instruction requires the first register in the pair to be even numbered; encodings with odd numbered registers specified in `rs2` and `rd` are reserved.",
+      "line_number": 56,
+      "parameter_name": "AMOCAS_REG_PAIR_EVEN",
+      "existing_udb_name": "AMOCAS_REG_PAIR_EVEN",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The requirement for the first register in the pair to be even numbered is a direct implementation choice that affects how the instruction is encoded."
+    },
+    {
+      "excerpt": "When the first register of a source register pair is `x0`, then both halves of the pair read as zero.",
+      "line_number": 62,
+      "parameter_name": "AMOCAS_SRC_REG_X0_ZERO",
+      "existing_udb_name": "AMOCAS_SRC_REG_X0_ZERO",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The behavior of the source register pair when the first register is `x0` is an implementation choice that defines how the instruction operates."
+    },
+    {
+      "excerpt": "When the first register of a destination register pair is `x0`, then the entire register result is discarded and neither destination register is written.",
+      "line_number": 68,
+      "parameter_name": "AMOCAS_DEST_REG_X0_DISCARD",
+      "existing_udb_name": "AMOCAS_DEST_REG_X0_DISCARD",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The behavior of the destination register pair when the first register is `x0` is an implementation choice that affects the outcome of the instruction."
+    },
+    {
+      "excerpt": "The memory operation performed by an `AMOCAS.W/D/Q`, when successful, has acquire semantics if `aq` bit is 1 and has release semantics if `rl` bit is 1.",
+      "line_number": 157,
+      "parameter_name": "AMOCAS_MEM_OP_SEMANTICS",
+      "existing_udb_name": "AMOCAS_MEM_OP_SEMANTICS",
+      "class": "NORM_DIRECT",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to provide acquire and release semantics based on the `aq` and `rl` bits, which are direct implementation choices."
+    }
+  ]
+}

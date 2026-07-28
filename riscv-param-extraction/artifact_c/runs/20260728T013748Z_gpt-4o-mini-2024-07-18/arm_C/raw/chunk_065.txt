@@ -1,0 +1,73 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The instructions in the Zalasr extension require that the address held in _rs1_ be naturally aligned to the size in bytes (2^width^) of the operand.",
+      "line_number": 37,
+      "parameter_name": "NATURAL_ALIGNMENT_WIDTH",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The alignment requirement is a direct implementation choice based on the operand size, which is determined by the width parameter."
+    },
+    {
+      "excerpt": "The misaligned atomicity granule PMA, defined in Volume II of this manual, optionally relaxes this alignment requirement.",
+      "line_number": 61,
+      "parameter_name": "MISALIGNED_ATOMICITY_GRANULE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to relax the alignment requirement for misaligned accesses, making it a binary choice."
+    },
+    {
+      "excerpt": "This load must have the ordering annotation _aq_ and may have ordering annotation _rl_ encoded in the instruction.",
+      "line_number": 83,
+      "parameter_name": "LOAD_ACQUIRE_ORDERING",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The implementation must support the _aq_ annotation and may optionally support the _rl_ annotation, defining the ordering behavior of load-acquire instructions."
+    },
+    {
+      "excerpt": "This store must have ordering annotation _rl_ and may have ordering annotation _aq_ encoded in the instruction.",
+      "line_number": 113,
+      "parameter_name": "STORE_RELEASE_ORDERING",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The implementation must support the _rl_ annotation and may optionally support the _aq_ annotation, defining the ordering behavior of store-release instructions."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "If the address is not naturally aligned, an address-misaligned exception or an access-fault exception will be generated.",
+      "line_number": 41,
+      "reason": "This describes the behavior when alignment requirements are not met, not an implementation choice."
+    },
+    {
+      "excerpt": "The versions without the _aq_ bit set are RESERVED.",
+      "line_number": 89,
+      "reason": "This is a fixed requirement about instruction encoding, not an architectural parameter."
+    },
+    {
+      "excerpt": "The versions without the _rl_ bit set are RESERVED.",
+      "line_number": 119,
+      "reason": "This is a fixed requirement about instruction encoding, not an architectural parameter."
+    },
+    {
+      "excerpt": "The load-acquire instruction atomically loads a 2^width^-byte value from the address in _rs1_ and places the sign-extended value into the register _rd_, subject to the ordering annotations specified in the instruction.",
+      "line_number": 73,
+      "reason": "This describes the behavior of the instruction rather than an implementation choice."
+    },
+    {
+      "excerpt": "The store-release instruction atomically stores the 2^width^-byte value from the low bits of register _rs2_ to the address in _rs1_, subject to the ordering annotations specified in the instruction.",
+      "line_number": 113,
+      "reason": "This describes the behavior of the instruction rather than an implementation choice."
+    }
+  ]
+}
+```

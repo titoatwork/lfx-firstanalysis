@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "When SXLEN=64, it is a WARL field that encodes the current value of UXLEN. In particular, an implementation may make UXL be a read-only field whose value always ensures that UXLEN=SXLEN.",
+      "line_number": 56,
+      "parameter_name": "UXL_FIELD",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The UXL field is a WARL field that can have different implementations, and its behavior can vary based on the implementation's choice."
+    },
+    {
+      "excerpt": "The UBE bit is a WARL field that controls the endianness of explicit memory accesses made from U-mode, which may differ from the endianness of memory accesses in S-mode.",
+      "line_number": 112,
+      "parameter_name": "UBE_FIELD",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The UBE field is a WARL field that can be implemented in different ways, allowing for variations in endianness control."
+    },
+    {
+      "excerpt": "The S-mode-disable-trap (SDT) bit is a WARL field introduced by the Ssdbltrp extension to address double trap.",
+      "line_number": 179,
+      "parameter_name": "SDT_FIELD",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The SDT field is a WARL field that can be implemented differently based on the design choices of the implementation."
+    },
+    {
+      "excerpt": "The `satp` CSR is an SXLEN-bit read/write register, formatted as shown in <<rv32satp>> for SXLEN=32 and <<rv64satp>> for SXLEN=64, which controls supervisor-mode address translation and protection.",
+      "line_number": 267,
+      "parameter_name": "SATP_MODE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The MODE field in the `satp` CSR is a read/write field that allows implementations to choose the address translation scheme."
+    },
+    {
+      "excerpt": "The `senvcfg` CSR is an SXLEN-bit read/write register, formatted as shown in <<senvcfg>>, that controls certain characteristics of the U-mode execution environment.",
+      "line_number": 266,
+      "parameter_name": "SENVCFG_FIELDS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The fields in the `senvcfg` CSR are read/write and can be implemented differently based on the design choices of the implementation."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The implementation must provide a facility for scheduling timer interrupts in terms of the real-time counter, `time`.",
+      "line_number": 234,
+      "reason": "This is a fixed requirement that all implementations must satisfy, not an implementation choice."
+    },
+    {
+      "excerpt": "The `sscratch` CSR is an SXLEN-bit read/write register, dedicated for use by the supervisor.",
+      "line_number": 245,
+      "reason": "This describes the purpose of the `sscratch` CSR, but does not indicate any implementation-defined behavior."
+    },
+    {
+      "excerpt": "The `stimecmp` CSR is a 64-bit register and has 64-bit precision on all RV32 and RV64 systems.",
+      "line_number": 250,
+      "reason": "This is a fixed requirement about the size and precision of the `stimecmp` CSR, not an implementation choice."
+    },
+    {
+      "excerpt": "The `scause` CSR is an SXLEN-bit read-write register formatted as shown in <<scausereg>>.",
+      "line_number": 260,
+      "reason": "This describes the format of the `scause` CSR but does not indicate any implementation-defined behavior."
+    },
+    {
+      "excerpt": "The `sepc` is a SXLEN-bit read/write CSR formatted as shown in <<epcreg>>.",
+      "line_number": 270,
+      "reason": "This describes the format of the `sepc` CSR but does not indicate any implementation-defined behavior."
+    }
+  ]
+}
+```

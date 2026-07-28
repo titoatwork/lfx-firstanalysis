@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "the C extension can be added to any of the base ISAs (RV32I, RV32E, RV64I, RV64E)",
+      "line_number": 7,
+      "parameter_name": "BASE_ISA_SUPPORT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The choice of which base ISA to support (RV32I, RV32E, RV64I, RV64E) is left to the implementer."
+    },
+    {
+      "excerpt": "the appropriate compressed floating-point load and store instructions must be provided whenever the relevant standard floating-point extension (F and/or D) is also implemented.",
+      "line_number": 15,
+      "parameter_name": "FLOATING_POINT_EXTENSION_SUPPORT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation must decide whether to support the floating-point load and store instructions based on the presence of the F and/or D extensions."
+    },
+    {
+      "excerpt": "the immediate can be zero for C.ADDIW, where this corresponds to `sext.w rd`.",
+      "line_number": 66,
+      "parameter_name": "C_ADDIW_IMMEDIATE_ZERO",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The C.ADDIW instruction allows the immediate to be zero, which is an implementation choice regarding the behavior of this instruction."
+    },
+    {
+      "excerpt": "C.ADDI16SP adds the non-zero sign-extended 6-bit immediate to the value in the stack pointer (`sp=x2`), where the immediate is scaled to represent multiples of 16 in the range [-512, 496].",
+      "line_number": 90,
+      "parameter_name": "C_ADDI16SP_IMMEDIATE_RANGE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The range of the immediate for the C.ADDI16SP instruction is defined, allowing implementers to choose how to handle this range."
+    },
+    {
+      "excerpt": "C.ADDI4SPN is valid only when _nzuimm_≠0; the code points with _nzuimm_=0 are reserved.",
+      "line_number": 120,
+      "parameter_name": "C_ADDI4SPN_VALIDITY",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The validity of the C.ADDI4SPN instruction based on the immediate value is an implementation choice."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] Removing the 32-bit alignment constraint on the original 32-bit instructions allows significantly greater code density.",
+      "line_number": 11,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "[NOTE] The RISC-V ABI was changed to make the frequently used registers map to registers 'x8-x15'.",
+      "line_number": 43,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a change in ABI, not an architectural parameter."
+    },
+    {
+      "excerpt": "[NOTE] In the standard RISC-V calling convention, the stack pointer `sp` is always 16-byte aligned.",
+      "line_number": 150,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a calling convention requirement, not an implementation choice."
+    },
+    {
+      "excerpt": "[NOTE] This group of six instructions do not provide large savings individually, but do not occupy much encoding space and are straightforward to implement.",
+      "line_number": 250,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It provides commentary on instruction design, not an architectural parameter."
+    },
+    {
+      "excerpt": "[NOTE] The implication is that any implementation that claims to support both the A and C extensions must ensure that LR/SC sequences containing valid C instructions will eventually complete.",
+      "line_number": 300,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes an implication of supporting extensions, not an architectural choice."
+    }
+  ]
+}
+```

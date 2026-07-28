@@ -1,0 +1,73 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The RNMI interrupt trap handler address is implementation-defined.",
+      "line_number": 34,
+      "parameter_name": "RNMI_TRAP_HANDLER_ADDRESS",
+      "existing_udb_name": "RNMI_TRAP_HANDLER_ADDRESS",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The RNMI interrupt trap handler address is explicitly stated to be implementation-defined, indicating a choice for the implementer."
+    },
+    {
+      "excerpt": "RNMI also has an associated exception trap handler address, which is implementation defined.",
+      "line_number": 36,
+      "parameter_name": "RNMI_EXCEPTION_TRAP_HANDLER_ADDRESS",
+      "existing_udb_name": "RNMI_EXCEPTION_TRAP_HANDLER_ADDRESS",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The exception trap handler address for RNMI is also implementation-defined, allowing the implementer to choose its value."
+    },
+    {
+      "excerpt": "`mnepc` is a WARL register that must be able to hold all valid virtual addresses.",
+      "line_number": 78,
+      "parameter_name": "MNEPC_VALID_ADDRESS_RANGE",
+      "existing_udb_name": "MNEPC_VALID_ADDRESS_RANGE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The `mnepc` register is defined as WARL, and the set of valid virtual addresses it can hold is implementation-defined."
+    },
+    {
+      "excerpt": "`mnstatus` also holds the NMIE bit. When NMIE=1, non-maskable interrupts are enabled.",
+      "line_number": 134,
+      "parameter_name": "HW_MNSTATUS_NMIE_ENABLE",
+      "existing_udb_name": "HW_MNSTATUS_NMIE_ENABLE",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The NMIE bit in `mnstatus` can be set or cleared by the implementation, indicating a choice between enabling or disabling non-maskable interrupts."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE]\n====\nRNMIs are masked out of reset to give software the opportunity to initialize data structures and devices for subsequent RNMI handling.\n====",
+      "line_number": 142,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a behavior rather than an architectural choice."
+    },
+    {
+      "excerpt": "When an RNMI interrupt is detected, the interrupted PC is written to the `mnepc` CSR.",
+      "line_number": 146,
+      "reason": "This describes the behavior of the system when an RNMI interrupt occurs, not an implementation choice."
+    },
+    {
+      "excerpt": "The `mnstatus`.NMIE bit is cleared, masking all interrupts.",
+      "line_number": 148,
+      "reason": "This describes the behavior of the system during an RNMI interrupt, not an implementation-defined parameter."
+    },
+    {
+      "excerpt": "Software can set NMIE to 1, but attempts to clear NMIE have no effect.",
+      "line_number": 138,
+      "reason": "This describes software behavior regarding the NMIE bit, not an implementation choice."
+    },
+    {
+      "excerpt": "The `mnscratch` CSR holds an MXLEN-bit read-write register which enables the RNMI trap handler to save and restore the context that was interrupted.",
+      "line_number": 66,
+      "reason": "This describes the function of the `mnscratch` CSR rather than an implementation choice regarding its characteristics."
+    }
+  ]
+}
+```

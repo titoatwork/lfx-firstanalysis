@@ -1,0 +1,37 @@
+{
+  "chunk_id": "chunk_067",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "If jvt.mode is a reserved value, then _cm.jt_ is also reserved.",
+      "line_number": 2345,
+      "parameter_name": "JVT_MODE",
+      "existing_udb_name": "JVT_MODE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The jvt.mode field is WARL, meaning the set of modes that can be programmed is implementation-defined. The parameter is the set of legal values for this field."
+    },
+    {
+      "excerpt": "The value in the BASE field must always be aligned on a 64-byte boundary.",
+      "line_number": 2320,
+      "parameter_name": "JVT_BASE_ALIGNMENT",
+      "existing_udb_name": "JVT_BASE_ALIGNMENT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The alignment requirement for the BASE field is a direct implementation choice that must be adhered to, making it a parameter."
+    },
+    {
+      "excerpt": "The jvt register is an XLEN-bit WARL read/write register that holds the jump table configuration.",
+      "line_number": 2310,
+      "parameter_name": "JVT_REGISTER_SIZE",
+      "existing_udb_name": "JVT_REGISTER_SIZE",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The size of the jvt register is determined by the XLEN of the implementation, which is a direct choice made by the implementer."
+    }
+  ]
+}

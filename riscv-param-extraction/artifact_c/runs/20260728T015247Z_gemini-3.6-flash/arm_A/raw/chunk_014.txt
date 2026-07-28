@@ -1,0 +1,22 @@
+```json
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "This appendix presents a non-normative example to help explain where compilers can make good use of the fractional LMUL feature.",
+      "line_number": 10,
+      "reason": "This entire text is an informative/non-normative appendix explaining compiler optimizations."
+    },
+    {
+      "excerpt": "Without fractional LMUL, the compiler would be forced to use LMUL=1 for the 8-bit computation and LMUL=8 for the 64-bit computation(s)",
+      "line_number": 36,
+      "reason": "Describes compiler code-generation strategies and trade-offs, not hardware implementation parameters."
+    },
+    {
+      "excerpt": "If instead of using LMUL=1 for the 8-bit computation, the compiler is allowed to use a fractional LMUL=1/2, then the 64-bit computations can be performed using LMUL=4",
+      "line_number": 114,
+      "reason": "Informative commentary on an assembly code example, not an architectural parameter definition."
+    }
+  ]
+}
+```

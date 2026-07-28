@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "When S-mode is implemented, it is determined as follows: |Privilege Mode| xLPE |  M           | `mseccfg.MLPE` |  S or HS     | `menvcfg.LPE` |  VS          | `henvcfg.LPE` |  U or VU     | `senvcfg.LPE` |",
+      "line_number": 12,
+      "parameter_name": "LPE_STATE",
+      "existing_udb_name": "LPE_STATE",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The xLPE state is determined by the implementation of the mseccfg, menvcfg, henvcfg, and senvcfg CSRs, which are direct implementation choices."
+    },
+    {
+      "excerpt": "When S-mode is not implemented, it is determined as follows: |Privilege Mode| xLPE |  M           | `mseccfg.MLPE` |  U           | `menvcfg.LPE` |",
+      "line_number": 20,
+      "parameter_name": "LPE_STATE_NO_S_MODE",
+      "existing_udb_name": "LPE_STATE_NO_S_MODE",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The xLPE state when S-mode is not implemented is determined by the implementation of the mseccfg and menvcfg CSRs, which are direct implementation choices."
+    },
+    {
+      "excerpt": "Attempts to access the `ssp` CSR may result in either an illegal-instruction exception or a virtual-instruction exception, contingent upon the state of the *__x__*`envcfg.SSE` fields.",
+      "line_number": 66,
+      "parameter_name": "SSP_CSR_ACCESS",
+      "existing_udb_name": "SSP_CSR_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The access to the ssp CSR is determined by the SSE field in the envcfg CSRs, which is a read-write choice for the implementation."
+    },
+    {
+      "excerpt": "When S-mode is implemented, it is determined as follows: |Privilege Mode| `xSSE` |  M           | `0` |  S or HS     | `menvcfg.SSE` |  VS          | `henvcfg.SSE` |  U or VU     | `senvcfg.SSE` |",
+      "line_number": 90,
+      "parameter_name": "SSE_STATE",
+      "existing_udb_name": "SSE_STATE",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The xSSE state is determined by the implementation of the menvcfg, henvcfg, and senvcfg CSRs, which are direct implementation choices."
+    },
+    {
+      "excerpt": "When S-mode is not implemented, then `xSSE` is 0 at both M and U privilege modes.",
+      "line_number": 97,
+      "parameter_name": "SSE_STATE_NO_S_MODE",
+      "existing_udb_name": "SSE_STATE_NO_S_MODE",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The xSSE state when S-mode is not implemented is a direct implementation choice, specifically set to 0 for M and U modes."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] The Zicfilp must be explicitly enabled for use at each privilege mode.",
+      "line_number": 8,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "When programs that use Zicfiss instructions are installed on a processor that does not support the Zicfiss extension but supports the Zimop and Zcmop extensions, the programs continues to function correctly but without backward-edge CFI protection as the Zicfiss instructions will revert to their Zimop/Zcmop-defined behavior.",
+      "line_number": 118,
+      "reason": "This describes behavior under specific conditions and does not define an implementation choice."
+    },
+    {
+      "excerpt": "[NOTE] Activating Zicfiss in U-mode must be done explicitly per process.",
+      "line_number": 104,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "When S-mode is not implemented, activation in U-mode is also not supported.",
+      "line_number": 112,
+      "reason": "This is a fixed requirement that applies to all implementations and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "[NOTE] Changes to `xSSE` take effect immediately; address-translation caches need not be synchronized with SFENCE.VMA, HFENCE.GVMA, or HFENCE.VVMA instructions.",
+      "line_number": 99,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement."
+    }
+  ]
+}
+```

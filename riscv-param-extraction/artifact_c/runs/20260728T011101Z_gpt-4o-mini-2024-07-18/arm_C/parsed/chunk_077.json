@@ -1,0 +1,37 @@
+{
+  "chunk_id": "chunk_077",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The Zimop extension defines 32 MOP instructions named MOP.R.__n__, where __n__ is an integer between 0 and 31, inclusive.",
+      "line_number": 10,
+      "parameter_name": "NUM_ZIMOP_MOP_R_INSTRUCTIONS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of MOP.R instructions is a direct implementation choice, defined as 32 with a specific range of values (0 to 31)."
+    },
+    {
+      "excerpt": "The Zimop extension additionally defines 8 MOP instructions named MOP.RR.__n__, where __n__ is an integer between 0 and 7, inclusive.",
+      "line_number": 20,
+      "parameter_name": "NUM_ZIMOP_MOP_RR_INSTRUCTIONS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of MOP.RR instructions is a direct implementation choice, defined as 8 with a specific range of values (0 to 7)."
+    },
+    {
+      "excerpt": "This section defines the 'Zcmop' extension, which defines eight 16-bit MOP instructions named C.MOP.__n__, where __n__ is an odd integer between 1 and 15, inclusive.",
+      "line_number": 66,
+      "parameter_name": "NUM_ZCMOP_INSTRUCTIONS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of C.MOP instructions is a direct implementation choice, defined as 8 with a specific range of values (1, 3, 5, 7, 9, 11, 13, 15)."
+    }
+  ]
+}

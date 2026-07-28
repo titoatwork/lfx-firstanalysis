@@ -1,0 +1,37 @@
+{
+  "chunk_id": "chunk_011",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The execution environment should provide a means to determine the current rate (cycles/second) at which the cycle counter is incrementing.",
+      "line_number": 75,
+      "parameter_name": "HW_CYCLE_COUNTER_RATE",
+      "existing_udb_name": "HW_CYCLE_COUNTER_RATE",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The implementation must provide a way to determine the rate of the cycle counter, which is a design choice made by the implementer."
+    },
+    {
+      "excerpt": "The execution environment should provide a means of determining the period of a counter tick (seconds/tick).",
+      "line_number": 118,
+      "parameter_name": "HW_COUNTER_TICK_PERIOD",
+      "existing_udb_name": "HW_COUNTER_TICK_PERIOD",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The implementation must provide a way to determine the period of the counter tick, which is a design choice made by the implementer."
+    },
+    {
+      "excerpt": "The implemented number and width of these additional counters, and the set of events they count, are platform-specific.",
+      "line_number": 197,
+      "parameter_name": "HW_PERF_COUNTERS_CONFIG",
+      "existing_udb_name": "HW_PERF_COUNTERS_CONFIG",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The number and width of performance counters, as well as the events they count, are implementation choices that vary by platform."
+    }
+  ]
+}

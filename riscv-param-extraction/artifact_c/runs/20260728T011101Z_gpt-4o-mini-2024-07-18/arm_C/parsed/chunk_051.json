@@ -1,0 +1,87 @@
+{
+  "chunk_id": "chunk_051",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "For RV64 harts, this extension adds four new 64-bit CSRs at machine level: `mstateen0` (Machine State Enable 0), `mstateen1`, `mstateen2`, and `mstateen3`.",
+      "line_number": 40,
+      "parameter_name": "NUM_MSTATEEN_CSRS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of machine-level state enable CSRs is a direct implementation choice, and the specific number is left to the implementer."
+    },
+    {
+      "excerpt": "If supervisor mode is implemented, another four CSRs are defined at supervisor level: `sstateen0`, `sstateen1`, `sstateen2`, and `sstateen3`.",
+      "line_number": 45,
+      "parameter_name": "NUM_SSTATEEN_CSRS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of supervisor-level state enable CSRs is a direct implementation choice, and the specific number is left to the implementer."
+    },
+    {
+      "excerpt": "And if the hypervisor extension is implemented, another set of CSRs is added: `hstateen0`, `hstateen1`, `hstateen2`, and `hstateen3`.",
+      "line_number": 50,
+      "parameter_name": "NUM_HSTATEEN_CSRS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of hypervisor-level state enable CSRs is a direct implementation choice, and the specific number is left to the implementer."
+    },
+    {
+      "excerpt": "Each bit of a `stateen` CSR controls less-privileged access to an extension's state, for an extension that was not deemed 'worthy' of a full XS field in `sstatus` like the FS and VS fields for the F and V extensions.",
+      "line_number": 66,
+      "parameter_name": "STATEEN_CSR_ACCESS_CONTROL",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The bits in the `stateen` CSRs control access to various states, and the implementation can choose which bits are set to allow access."
+    },
+    {
+      "excerpt": "The C bit controls access to any and all custom state.",
+      "line_number": 134,
+      "parameter_name": "STATEEN_C_BIT_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether the C bit is read-write or read-only, which directly affects access to custom state."
+    },
+    {
+      "excerpt": "The FCSR bit controls access to `fcsr` for the case when floating-point instructions operate on `x` registers instead of `f` registers as specified by the Zfinx and related extensions.",
+      "line_number": 145,
+      "parameter_name": "STATEEN_FCSR_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether the FCSR bit is read-write or read-only, affecting access to the floating-point control and status register."
+    },
+    {
+      "excerpt": "The JVT bit controls access to the `jvt` CSR provided by the Zcmt extension.",
+      "line_number": 155,
+      "parameter_name": "STATEEN_JVT_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether the JVT bit is read-write or read-only, affecting access to the JVT CSR."
+    },
+    {
+      "excerpt": "The SE0 bit in `mstateen0` controls access to the `hstateen0`, `hstateen0h`, and the `sstateen0` CSRs.",
+      "line_number": 164,
+      "parameter_name": "STATEEN_SE0_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether the SE0 bit is read-write or read-only, affecting access to the state enable CSRs."
+    }
+  ]
+}

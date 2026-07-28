@@ -1,0 +1,43 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "This instruction is available only on RV32.",
+      "line_number": 3445,
+      "parameter_name": "ZIP_INSTRUCTION_AVAILABILITY",
+      "existing_udb_name": "ZIP_INSTRUCTION_AVAILABILITY",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The availability of the zip instruction is a direct implementation choice, specifically that it is only available on RV32. This is not controlled by any CSR field."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The *zext.h* mnemonic corresponds to different instruction encodings in RV32 and RV64.",
+      "line_number": 3400,
+      "reason": "This describes the relationship between the mnemonic and instruction encodings, but does not define an implementation choice."
+    },
+    {
+      "excerpt": "This instruction gathers bits from the high and low halves of the source word into odd/even bit positions in the destination word.",
+      "line_number": 3441,
+      "reason": "This is a description of the instruction's behavior, not an architectural parameter."
+    },
+    {
+      "excerpt": "This instruction is useful for implementing the SHA3 cryptographic hash function on a 32-bit architecture.",
+      "line_number": 3448,
+      "reason": "This is a suggestion about the utility of the instruction, not a parameter defining implementation choices."
+    },
+    {
+      "excerpt": "The instruction zero-extends the least-significant halfword of the source to XLEN by inserting 0's into all of the bits more significant than 15.",
+      "line_number": 3430,
+      "reason": "This describes the operation of the instruction rather than an implementation choice."
+    },
+    {
+      "excerpt": "The instruction is the inverse of the <<insns-unzip-sc,unzip>> instruction.",
+      "line_number": 3443,
+      "reason": "This is a behavioral description of the instruction's relationship to another instruction, not a parameter."
+    }
+  ]
+}
+```

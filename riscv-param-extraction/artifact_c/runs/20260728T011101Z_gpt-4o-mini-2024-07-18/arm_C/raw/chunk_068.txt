@@ -1,0 +1,78 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The correspondence of _rs1_ field values and single-precision floating-point values is shown in <<tab:flis>>.",
+      "line_number": 10,
+      "parameter_name": "FLI_S_VALUES",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The values that can be loaded by the FLI.S instruction are defined by the _rs1_ field, which corresponds to a set of single-precision floating-point constants. This set of values is implementation-defined."
+    },
+    {
+      "excerpt": "If the D extension is implemented, FLI.D performs the analogous operation, but loads a double-precision value into floating-point register _rd_.",
+      "line_number": 20,
+      "parameter_name": "FLI_D_ENABLED",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to support the FLI.D instruction based on the presence of the D extension. This is a direct implementation choice."
+    },
+    {
+      "excerpt": "If the Q extension is implemented, FLI.Q performs the analogous operation, but loads a quad-precision value into floating-point register _rd_.",
+      "line_number": 30,
+      "parameter_name": "FLI_Q_ENABLED",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to support the FLI.Q instruction based on the presence of the Q extension. This is a direct implementation choice."
+    },
+    {
+      "excerpt": "If the Zfh or Zvfh extension is implemented, FLI.H performs the analogous operation, but loads a half-precision floating-point value into register _rd_.",
+      "line_number": 40,
+      "parameter_name": "FLI_H_ENABLED",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to support the FLI.H instruction based on the presence of the Zfh or Zvfh extension. This is a direct implementation choice."
+    },
+    {
+      "excerpt": "The FCVTMOD.W.D instruction is defined similarly to the FCVT.W.D instruction, with the following differences. FCVTMOD.W.D always rounds towards zero.",
+      "line_number": 100,
+      "parameter_name": "FCVTMOD_W_D_ENABLED",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to support the FCVTMOD.W.D instruction based on the presence of the D extension. This is a direct implementation choice."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The preferred assembly syntax for entries 1, 30, and 31 is `min`, `inf`, and `nan`, respectively.",
+      "line_number": 15,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a preferred syntax, not an architectural requirement."
+    },
+    {
+      "excerpt": "These instructions implement the IEEE 754-2019 minimum and maximum operations.",
+      "line_number": 70,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes the purpose of the instructions, not an implementation choice."
+    },
+    {
+      "excerpt": "The assembly syntax requires the RTZ rounding mode to be explicitly specified, i.e., `fcvtmod.w.d rd, rs1, rtz`.",
+      "line_number": 120,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes assembly syntax requirements, not an architectural parameter."
+    },
+    {
+      "excerpt": "We do not expect analogous comparison instructions will be added to the vector ISA, since they can be reasonably efficiently emulated using masking.",
+      "line_number": 250,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It expresses an expectation about future instructions, not an implementation choice."
+    }
+  ]
+}
+```

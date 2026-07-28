@@ -1,0 +1,57 @@
+{
+  "chunk_id": "chunk_058",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The maximum size in bits of a vector element that any operation can produce or consume, _ELEN_ >= 8, which must be a power of 2.",
+      "line_number": 12,
+      "parameter_name": "ELEN",
+      "existing_udb_name": "ELEN",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "ELEN is a direct implementation choice that specifies the maximum size of a vector element, with constraints on its minimum value and form."
+    },
+    {
+      "excerpt": "The number of bits in a single vector register, _VLEN_ >= ELEN, which must be a power of 2, and must be no greater than 2^16.",
+      "line_number": 13,
+      "parameter_name": "VLEN",
+      "existing_udb_name": "VLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "VLEN is a direct implementation choice that defines the size of a vector register, with constraints on its relationship to ELEN and its maximum value."
+    },
+    {
+      "excerpt": "Implementations must support LMUL integer values of 1, 2, 4, and 8.",
+      "line_number": 220,
+      "parameter_name": "LMUL_VALUES",
+      "existing_udb_name": "LMUL_VALUES",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The LMUL field in the vtype CSR is WARL, and the legal values for LMUL are explicitly defined, indicating an implementation choice."
+    },
+    {
+      "excerpt": "Implementations must provide fractional LMUL settings that allow the narrowest supported type to occupy a fraction of a vector register corresponding to the ratio of the narrowest supported type's width to that of the largest supported type's width.",
+      "line_number": 220,
+      "parameter_name": "FRACTIONAL_LMUL_SUPPORT",
+      "existing_udb_name": "FRACTIONAL_LMUL_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The requirement for supporting fractional LMUL settings is a design choice that implementations must make, indicating a parameter."
+    },
+    {
+      "excerpt": "The `vill` bit is used to encode that a previous `vset{i}vl{i}` instruction attempted to write an unsupported value to `vtype`.",
+      "line_number": 220,
+      "parameter_name": "VILL_SUPPORT",
+      "existing_udb_name": "VILL_SUPPORT",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The `vill` field in the vtype CSR indicates whether an unsupported value was written, which is a choice for the implementation."
+    }
+  ]
+}

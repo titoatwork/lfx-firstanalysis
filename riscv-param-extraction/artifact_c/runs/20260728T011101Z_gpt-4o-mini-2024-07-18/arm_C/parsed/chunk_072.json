@@ -1,0 +1,37 @@
+{
+  "chunk_id": "chunk_072",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The `fcsr` is a 32-bit read/write register that selects the dynamic rounding mode for floating-point arithmetic operations and holds the accrued exception flags.",
+      "line_number": 254,
+      "parameter_name": "FCSR_ACCESS",
+      "existing_udb_name": "FCSR_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The `fcsr` register can be either read-write or read-only, depending on the implementation. This is a binary choice about the mutability of the register."
+    },
+    {
+      "excerpt": "The `mcycle` CSR may be shared between harts on the same core, in which case writes to `mcycle` will be visible to those harts.",
+      "line_number": 254,
+      "parameter_name": "M_CYCLE_SHARED",
+      "existing_udb_name": "M_CYCLE_SHARED",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether the `mcycle` CSR is shared between harts, which is a direct design decision."
+    },
+    {
+      "excerpt": "The `mip` CSR contains information on pending interrupts, while `mie` is the corresponding CSR containing interrupt enable.",
+      "line_number": 254,
+      "parameter_name": "MIP_INTERRUPT_FIELDS",
+      "existing_udb_name": "MIP_INTERRUPT_FIELDS",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The fields within the `mip` CSR are WARL, meaning the set of fields that are implemented can vary by implementation."
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "chunk_id": "chunk_061",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The Round group number (`rnd`) comes from `uimm[2:0]`; the bits in `uimm[4:3]` are ignored. Round group numbers range from 0 to 7 and indicate which group of four round keys are being generated.",
+      "line_number": 3920,
+      "parameter_name": "SM4_KEY_EXPANSION_ROUND_GROUP",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The round group number is a direct implementation choice that can vary from 0 to 7, indicating which group of four round keys are generated."
+    },
+    {
+      "excerpt": "The number of element groups to be processed is `vl`/`EGS`. `vl` must be set to the number of `SEW=32` elements to be processed and therefore must be a multiple of `EGS=4`. Likewise, `vstart` must be a multiple of `EGS=4`.",
+      "line_number": 3928,
+      "parameter_name": "SM4_ELEMENT_GROUP_SIZE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The element group size is determined by the implementation and must be a multiple of `EGS=4`, which is a design choice."
+    },
+    {
+      "excerpt": "The elements in `vs2` are zero-extended to 2*`SEW` bits, then shifted left by the shift amount specified by either the corresponding elements of `vs1` (vector-vector), integer register `rs1` (vector-scalar), or an immediate value (vector-immediate).",
+      "line_number": 4870,
+      "parameter_name": "VWSLL_SHIFT_AMOUNT_SOURCE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The source of the shift amount can vary based on the instruction type (vector-vector, vector-scalar, or vector-immediate), which is a design choice."
+    }
+  ]
+}

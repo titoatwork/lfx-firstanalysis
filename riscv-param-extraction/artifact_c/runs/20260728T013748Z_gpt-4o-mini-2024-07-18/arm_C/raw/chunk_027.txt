@@ -1,0 +1,93 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "When S-mode is implemented, it is determined as follows: ... |  S or HS     | `menvcfg.LPE`",
+      "line_number": 12,
+      "parameter_name": "LPE_STATE_S_MODE",
+      "existing_udb_name": "LPE_STATE_S_MODE",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The LPE state in S-mode is determined by the `menvcfg.LPE` field, which can be either enabled or disabled, making it a read-write choice."
+    },
+    {
+      "excerpt": "When S-mode is not implemented, it is determined as follows: ... |  U           | `menvcfg.LPE`",
+      "line_number": 18,
+      "parameter_name": "LPE_STATE_U_MODE",
+      "existing_udb_name": "LPE_STATE_U_MODE",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The LPE state in U-mode is determined by the `menvcfg.LPE` field, which can be either enabled or disabled, making it a read-write choice."
+    },
+    {
+      "excerpt": "Attempts to access the `ssp` CSR may result in either an illegal-instruction exception or a virtual-instruction exception, contingent upon the state of the *__x__*`envcfg.SSE` fields.",
+      "line_number": 134,
+      "parameter_name": "SSE_STATE_ACCESS_CONTROL",
+      "existing_udb_name": "SSE_STATE_ACCESS_CONTROL",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The access control for the `ssp` CSR is determined by the `envcfg.SSE` field, which can either allow or disallow access, making it a read-write choice."
+    },
+    {
+      "excerpt": "When S-mode is implemented, it is determined as follows: ... |  S or HS     | `menvcfg.SSE`",
+      "line_number": 145,
+      "parameter_name": "SSE_STATE_S_MODE",
+      "existing_udb_name": "SSE_STATE_S_MODE",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The SSE state in S-mode is determined by the `menvcfg.SSE` field, which can be either enabled or disabled, making it a read-write choice."
+    },
+    {
+      "excerpt": "When S-mode is not implemented, then `xSSE` is 0 at both M and U privilege modes.",
+      "line_number": 152,
+      "parameter_name": "SSE_STATE_U_MODE",
+      "existing_udb_name": "SSE_STATE_U_MODE",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The SSE state in U-mode is determined by the `senvcfg.SSE` field, which can be either enabled or disabled, making it a read-write choice."
+    },
+    {
+      "excerpt": "The `SSPUSH`/`C.SSPUSH`/`SSPOPCHK`/`C.SSPOPCHK` instructions cause a store/AMO access-fault exception.",
+      "line_number": 220,
+      "parameter_name": "SSPUSH_ACCESS_FAULT",
+      "existing_udb_name": "SSPUSH_ACCESS_FAULT",
+      "class": "SW_RULE",
+      "value_type": "enum",
+      "confidence": "medium",
+      "reasoning": "The behavior of the `SSPUSH` instruction causing an access-fault is contingent on the state of the memory and the `ssp` CSR, making it implementation-defined but deterministic based on software behavior."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The Zicfilp must be explicitly enabled for use at each privilege mode.",
+      "line_number": 8,
+      "reason": "This text is a fixed requirement that all implementations must satisfy, not an implementation choice."
+    },
+    {
+      "excerpt": "When programs that use Zicfiss instructions are installed on a processor that does not support the Zicfiss extension but supports the Zimop and Zcmop extensions, the programs continues to function correctly but without backward-edge CFI protection as the Zicfiss instructions will revert to their Zimop/Zcmop-defined behavior.",
+      "line_number": 174,
+      "reason": "This describes behavior under specific conditions rather than an implementation choice, thus not qualifying as a parameter."
+    },
+    {
+      "excerpt": "The trap handler in privilege mode `x` must save the `__x__PELP` bit and the `x7` register before performing an indirect call/jump if `xLPE=1`.",
+      "line_number": 210,
+      "reason": "This is a fixed requirement for trap handler behavior, not an implementation choice."
+    },
+    {
+      "excerpt": "When Zicfiss is enabled in S-mode it is benign to use an operating system that is not compiled with Zicfiss instructions.",
+      "line_number": 195,
+      "reason": "This describes a behavior that is not an implementation choice, thus not a parameter."
+    },
+    {
+      "excerpt": "The `SSPOPCHK` instruction performs a load followed by a check of the loaded data value with the link register as source.",
+      "line_number": 230,
+      "reason": "This describes the behavior of an instruction rather than an implementation choice, thus not a parameter."
+    }
+  ]
+}
+```

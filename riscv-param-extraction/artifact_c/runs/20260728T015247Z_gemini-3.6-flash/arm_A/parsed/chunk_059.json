@@ -1,0 +1,17 @@
+{
+  "chunk_id": "chunk_059",
+  "arm": "A",
+  "model": "gemini-3.6-flash",
+  "parameters": [
+    {
+      "excerpt": "EGSMAX is the largest EGS supported by the implementation.",
+      "line_number": 5139,
+      "parameter_name": "EGSMAX",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "EGSMAX represents the maximum element group size supported by a hardware implementation, which is an implementation-defined parameter for vector element group extensions."
+    }
+  ]
+}

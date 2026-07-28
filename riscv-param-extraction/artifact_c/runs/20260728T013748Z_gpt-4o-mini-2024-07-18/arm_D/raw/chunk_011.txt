@@ -1,0 +1,63 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The execution environment should provide a means to determine the current rate (cycles/second) at which the cycle counter is incrementing.",
+      "line_number": 75,
+      "parameter_name": "HW_CYCLE_COUNTER_RATE",
+      "existing_udb_name": "HW_CYCLE_COUNTER_RATE",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The implementation must provide a way to determine the rate of the cycle counter, which is a design choice made by the implementer."
+    },
+    {
+      "excerpt": "The execution environment should provide a means of determining the period of a counter tick (seconds/tick).",
+      "line_number": 118,
+      "parameter_name": "HW_COUNTER_TICK_PERIOD",
+      "existing_udb_name": "HW_COUNTER_TICK_PERIOD",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The implementation must provide a way to determine the period of the counter tick, which is a design choice made by the implementer."
+    },
+    {
+      "excerpt": "The implemented number and width of these additional counters, and the set of events they count, are platform-specific.",
+      "line_number": 197,
+      "parameter_name": "HW_PERF_COUNTERS_CONFIG",
+      "existing_udb_name": "HW_PERF_COUNTERS_CONFIG",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The number and width of performance counters, as well as the events they count, are implementation choices that vary by platform."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "Some execution environments might prohibit access to counters, for example, to impede timing side-channel attacks.",
+      "line_number": 10,
+      "reason": "This is a suggestion about potential implementation choices, not a defined architectural parameter."
+    },
+    {
+      "excerpt": "On some simple platforms, cycle count might represent a valid implementation of RDTIME, in which case RDTIME and RDCYCLE may return the same result.",
+      "line_number": 134,
+      "reason": "This describes a possible behavior of the implementation rather than an architectural choice left to the implementer."
+    },
+    {
+      "excerpt": "In some applications, it is important to be able to read multiple counters at the same instant in time.",
+      "line_number": 198,
+      "reason": "This is a contextual note about application behavior rather than a parameter defining implementation choices."
+    },
+    {
+      "excerpt": "Accessing an unimplemented counter may cause an illegal-instruction exception or may return a constant value.",
+      "line_number": 203,
+      "reason": "This describes behavior related to unimplemented features rather than an architectural choice."
+    },
+    {
+      "excerpt": "If the configuration used to select the events counted by a counter is misconfigured, the counter may return a constant value.",
+      "line_number": 205,
+      "reason": "This describes a potential outcome of misconfiguration rather than a parameter that defines implementation choices."
+    }
+  ]
+}
+```

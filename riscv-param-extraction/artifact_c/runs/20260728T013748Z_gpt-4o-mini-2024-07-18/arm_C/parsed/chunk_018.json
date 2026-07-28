@@ -1,0 +1,87 @@
+{
+  "chunk_id": "chunk_018",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "Each base integer instruction set is characterized by the width of the integer registers and the corresponding size of the address space and by the number of integer registers.",
+      "line_number": 150,
+      "parameter_name": "XLEN",
+      "existing_udb_name": "XLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "XLEN represents the width of the integer registers, which can be either 32 or 64 bits, and is a direct implementation choice."
+    },
+    {
+      "excerpt": "The base integer ISAs are very similar to that of the early RISC processors except with no branch delay slots and with support for optional variable-length instruction encodings.",
+      "line_number": 155,
+      "parameter_name": "VARIABLE_LENGTH_INSTRUCTIONS",
+      "existing_udb_name": "VARIABLE_LENGTH_INSTRUCTIONS",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to support variable-length instructions or not, making this a binary choice."
+    },
+    {
+      "excerpt": "The standard integer multiplication and division extension is named 'M', and adds instructions to multiply and divide values held in the integer registers.",
+      "line_number": 265,
+      "parameter_name": "M_EXTENSION_SUPPORT",
+      "existing_udb_name": "M_EXTENSION_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation may choose to support the 'M' extension for integer multiplication and division, which is an implementation-defined choice."
+    },
+    {
+      "excerpt": "The standard atomic instruction extension, denoted by 'A', adds instructions that atomically read, modify, and write memory for inter-processor synchronization.",
+      "line_number": 270,
+      "parameter_name": "A_EXTENSION_SUPPORT",
+      "existing_udb_name": "A_EXTENSION_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation may choose to support the 'A' extension for atomic operations, which is an implementation-defined choice."
+    },
+    {
+      "excerpt": "The standard single-precision floating-point extension, denoted by 'F', adds floating-point registers, single-precision computational instructions, and single-precision loads and stores.",
+      "line_number": 275,
+      "parameter_name": "F_EXTENSION_SUPPORT",
+      "existing_udb_name": "F_EXTENSION_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation may choose to support the 'F' extension for single-precision floating-point operations, which is an implementation-defined choice."
+    },
+    {
+      "excerpt": "The standard double-precision floating-point extension, denoted by 'D', expands the floating-point registers, and adds double-precision computational instructions, loads, and stores.",
+      "line_number": 280,
+      "parameter_name": "D_EXTENSION_SUPPORT",
+      "existing_udb_name": "D_EXTENSION_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation may choose to support the 'D' extension for double-precision floating-point operations, which is an implementation-defined choice."
+    },
+    {
+      "excerpt": "The standard 'C' compressed instruction extension provides narrower 16-bit forms of common instructions.",
+      "line_number": 285,
+      "parameter_name": "C_EXTENSION_SUPPORT",
+      "existing_udb_name": "C_EXTENSION_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation may choose to support the 'C' extension for compressed instructions, which is an implementation-defined choice."
+    },
+    {
+      "excerpt": "RISC-V base ISAs have either little-endian or big-endian memory systems, with the privileged architecture further defining bi-endian operation.",
+      "line_number": 610,
+      "parameter_name": "ENDIANNESS",
+      "existing_udb_name": "ENDIANNESS",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The implementation can choose between little-endian, big-endian, or bi-endian memory systems, making this an implementation-defined choice."
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "chunk_id": "chunk_067",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "If jvt.mode is a reserved value, then _cm.jt_ is also reserved. In the future other defined values of jvt.mode may change the behaviour of _cm.jt_.",
+      "line_number": 258,
+      "parameter_name": "JVT_MODE",
+      "existing_udb_name": "JVT_MODE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The jvt.mode field is WARL, and the set of supported modes can vary by implementation. The parameter is the set of legal values for jvt.mode."
+    },
+    {
+      "excerpt": "The value in the BASE field must always be aligned on a 64-byte boundary.",
+      "line_number": 258,
+      "parameter_name": "JVT_BASE_ALIGNMENT",
+      "existing_udb_name": "JVT_BASE_ALIGNMENT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The alignment requirement for the BASE field is a direct implementation choice that must be adhered to, but the specific alignment value is determined by the implementer."
+    }
+  ]
+}

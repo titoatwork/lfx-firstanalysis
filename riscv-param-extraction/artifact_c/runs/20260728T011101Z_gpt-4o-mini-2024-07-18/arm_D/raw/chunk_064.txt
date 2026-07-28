@@ -1,0 +1,68 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The instruction requires the first register in the pair to be even numbered; encodings with odd numbered registers specified in `rs2` and `rd` are reserved.",
+      "line_number": 56,
+      "parameter_name": "AMOCAS_REG_PAIR_EVEN",
+      "existing_udb_name": "AMOCAS_REG_PAIR_EVEN",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The requirement for the first register in the pair to be even numbered is a design choice made by the implementer, not controlled by any CSR field."
+    },
+    {
+      "excerpt": "When the first register of a source register pair is `x0`, then both halves of the pair read as zero.",
+      "line_number": 64,
+      "parameter_name": "AMOCAS_SRC_REG_X0_ZERO",
+      "existing_udb_name": "AMOCAS_SRC_REG_X0_ZERO",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The behavior of reading zero when the first register is `x0` is an implementation choice, indicating how the instruction handles this specific case."
+    },
+    {
+      "excerpt": "When the first register of a destination register pair is `x0`, then the entire register result is discarded and neither destination register is written.",
+      "line_number": 72,
+      "parameter_name": "AMOCAS_DEST_REG_X0_DISCARD",
+      "existing_udb_name": "AMOCAS_DEST_REG_X0_DISCARD",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to discard the result when the first destination register is `x0` is a design decision made by the implementer."
+    },
+    {
+      "excerpt": "The memory operation performed by an `AMOCAS.W/D/Q`, when successful, has acquire semantics if `aq` bit is 1 and has release semantics if `rl` bit is 1.",
+      "line_number": 164,
+      "parameter_name": "AMOCAS_AQ_RL_SEMANTICS",
+      "existing_udb_name": "AMOCAS_AQ_RL_SEMANTICS",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to provide acquire and release semantics based on the `aq` and `rl` bits, which are design choices."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "Some algorithms may load the previous data value of a memory location into the register used as the compare data value source by a Zacas instruction.",
+      "line_number": 118,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a suggestion for algorithm implementation, not an architectural requirement."
+    },
+    {
+      "excerpt": "An `AMOCAS.W/D/Q` instruction always requires write permissions.",
+      "line_number": 182,
+      "reason": "This is a fixed requirement ('always requires write permissions') that all implementations must satisfy. There is no implementation choice here."
+    },
+    {
+      "excerpt": "Just as for AMOs in the A extension, `AMOCAS.W/D/Q` requires that the address held in `rs1` be naturally aligned to the size of the operand.",
+      "line_number": 164,
+      "reason": "This describes a requirement for address alignment that all implementations must follow, not an implementation choice."
+    },
+    {
+      "excerpt": "An unsuccessful `AMOCAS.W/D/Q` may either not perform a memory write or may write back the old value loaded from memory.",
+      "line_number": 174,
+      "reason": "This describes behavior of the instruction under certain conditions, not an implementation-defined parameter."
+    }
+  ]
+}
+```

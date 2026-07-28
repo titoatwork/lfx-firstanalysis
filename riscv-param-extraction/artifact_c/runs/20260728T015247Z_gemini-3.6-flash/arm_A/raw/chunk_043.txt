@@ -1,0 +1,38 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "A misaligned load or store instruction may be decomposed into a set of component memory operations of any granularity.",
+      "line_number": 111,
+      "parameter_name": "MISALIGNED_SPLIT_STRATEGY",
+      "existing_udb_name": "MISALIGNED_SPLIT_STRATEGY",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The spec explicitly leaves the choice of whether and how to decompose misaligned loads and stores into smaller memory operations up to the implementation."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "All memory operations are single-copy atomic: they can never be observed in a partially complete state.",
+      "line_number": 75,
+      "reason": "This is a strict architectural requirement that applies to all implementations, not an implementation choice."
+    },
+    {
+      "excerpt": "This chapter defines the memory model for regular main memory operations. The interaction of the memory model with I/O memory, instruction fetches, FENCE.I, page-table walks, and SFENCE.VMA is not (yet) formalized.",
+      "line_number": 43,
+      "reason": "This text is inside an informative [NOTE] block and is non-normative."
+    },
+    {
+      "excerpt": "An execution of a RISC-V program obeys the RVWMO memory consistency model only if there exists a global memory order conforming to preserved program order and satisfying the load value axiom, the atomicity axiom, and the progress axiom.",
+      "line_number": 269,
+      "reason": "This is a fixed definition of memory model correctness, not an implementation parameter."
+    },
+    {
+      "excerpt": "The atomics extension \"A\" does not require execution environments to support misaligned atomic instructions at all.",
+      "line_number": 121,
+      "reason": "This statement summarizes requirements defined in the Atomics extension rather than introducing a new parameter definition in this section."
+    }
+  ]
+}
+```

@@ -1,0 +1,32 @@
+```json
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The Smdbltrp extension addresses a double trap (See <<machine-double-trap>>) in M-mode.",
+      "line_number": 1,
+      "reason": "This is a descriptive statement about the purpose of the extension, not an architectural parameter."
+    },
+    {
+      "excerpt": "When the Smrnmi extension (<<rnmi>>) is implemented, it enables invocation of the RNMI handler on a double trap in M-mode to handle the critical error.",
+      "line_number": 3,
+      "reason": "This describes behavior contingent on the implementation of the Smrnmi extension, not a parameter choice."
+    },
+    {
+      "excerpt": "If the Smrnmi extension is not implemented or if a double trap occurs during the RNMI handler's execution, this extension helps transition the hart to a critical error state and enables signaling the critical error to the platform.",
+      "line_number": 5,
+      "reason": "This describes a conditional behavior based on the implementation of the Smrnmi extension, not an architectural parameter."
+    },
+    {
+      "excerpt": "To improve error diagnosis and resolution, this extension supports debugging harts in a critical error state.",
+      "line_number": 7,
+      "reason": "This is a general statement about the capabilities of the extension, not a specific implementation choice."
+    },
+    {
+      "excerpt": "The extension introduces a mechanism to enter Debug Mode instead of asserting a critical-error signal to the platform when the hart is in a critical error state.",
+      "line_number": 9,
+      "reason": "This describes a specific behavior of the extension rather than an architectural parameter that can vary by implementation."
+    }
+  ]
+}
+```

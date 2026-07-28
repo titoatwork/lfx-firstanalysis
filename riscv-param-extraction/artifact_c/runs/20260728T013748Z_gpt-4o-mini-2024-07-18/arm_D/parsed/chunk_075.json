@@ -1,0 +1,17 @@
+{
+  "chunk_id": "chunk_075",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The duration of a PAUSE instruction's effect may vary significantly within and among implementations.",
+      "line_number": 10,
+      "parameter_name": "PAUSE_DURATION",
+      "existing_udb_name": "PAUSE_DURATION",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The duration of the PAUSE instruction's effect is an implementation choice that can vary, making it a direct parameter of the implementation."
+    }
+  ]
+}

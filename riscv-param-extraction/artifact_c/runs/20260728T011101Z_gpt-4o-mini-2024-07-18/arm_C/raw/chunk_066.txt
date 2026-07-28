@@ -1,0 +1,38 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "To support such use cases a second instruction `WRS.STO` (WRS-with-short-timeout) is provided that works like `WRS.NTO` but bounds the stall duration to an implementation-define short timeout such that the stall is terminated on the timeout if no other conditions have occurred to terminate the stall.",
+      "line_number": 20,
+      "parameter_name": "WRS_STO_TIMEOUT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The implementation defines the short timeout duration for the `WRS.STO` instruction, making it a direct implementation choice."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The instructions in the Zawrs extension are only useful in conjunction with the LR instruction, which is provided by the Zalrsc component of the A extension.",
+      "line_number": 12,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a requirement for usage, not an architectural parameter."
+    },
+    {
+      "excerpt": "While stalled, an implementation is permitted to occasionally terminate the stall and complete execution for any reason.",
+      "line_number": 45,
+      "reason": "This describes behavior during execution and does not define an implementation choice; it is not a parameter."
+    },
+    {
+      "excerpt": "When executing in VS or VU mode, if the `VTW` bit is set in `hstatus`, the `TW` bit in `mstatus` is clear, and the `WRS.NTO` does not complete within an implementation-specific bounded time limit, the `WRS.NTO` instruction will cause a virtual-instruction exception.",
+      "line_number": 66,
+      "reason": "This describes behavior under specific conditions rather than defining an implementation choice, thus it is not a parameter."
+    },
+    {
+      "excerpt": "The duration of a `WRS.STO` instruction's timeout may vary significantly within and among implementations.",
+      "line_number": 88,
+      "reason": "This is a descriptive statement about variability in implementation, not a specific parameter definition."
+    }
+  ]
+}
+```

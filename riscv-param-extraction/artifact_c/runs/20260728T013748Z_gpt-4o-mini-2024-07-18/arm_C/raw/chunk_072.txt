@@ -1,0 +1,53 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The `fcsr` is a 32-bit read/write register that selects the dynamic rounding mode for floating-point arithmetic operations and holds the accrued exception flags.",
+      "line_number": 254,
+      "parameter_name": "FCSR_ACCESS",
+      "existing_udb_name": "FCSR_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether the fcsr is read-only or read-write. This is a binary choice about the mutability of the register."
+    },
+    {
+      "excerpt": "Rounding modes are encoded as follows: 000 RNE, 001 RTZ, 010 RDN, 011 RUP, 100 RMM, 101 Reserved, 110 Reserved, 111 DYN.",
+      "line_number": 254,
+      "parameter_name": "FCSR_ROUNDING_MODES",
+      "existing_udb_name": "FCSR_ROUNDING_MODES",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The rounding modes in the fcsr are WARL, and the set of supported values can vary by implementation. The parameter is the set of legal rounding mode values."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The counters and timers are no longer considered mandatory parts of the standard base ISAs, and so the CSR instructions required to access them have been moved out of <<rv32>> into this separate chapter.",
+      "line_number": 5,
+      "reason": "This is a fixed requirement about the status of counters and timers, not an implementation choice."
+    },
+    {
+      "excerpt": "For any event or consequence that occurs due to a CSR having a particular value, if a write to the CSR gives it that value, the resulting event or consequence is said to be an indirect effect of the write.",
+      "line_number": 254,
+      "reason": "This describes behavior related to CSR writes and their effects, not an architectural parameter."
+    },
+    {
+      "excerpt": "Standard CSRs do not have any side effects on reads. Standard CSRs may have side effects on writes.",
+      "line_number": 254,
+      "reason": "This is a general statement about CSR behavior, not a specific implementation choice."
+    },
+    {
+      "excerpt": "The implementation chooses whether the fcsr is read-only or read-write.",
+      "line_number": 254,
+      "reason": "This is a fixed requirement about the fcsr's access, not an implementation choice."
+    },
+    {
+      "excerpt": "The `mip` CSR contains information on pending interrupts, while `mie` is the corresponding CSR containing interrupt enable.",
+      "line_number": 254,
+      "reason": "This describes the function of the mip CSR, not an implementation choice."
+    }
+  ]
+}
+```

@@ -22,7 +22,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import sys
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -32,6 +31,8 @@ AC_RUNS = ROOT / "artifact_c" / "runs"
 
 RUN1 = "20260727T201408Z_gpt-4o-mini-2024-07-18"
 RUN2 = "20260727T203634Z_gpt-4o-mini-2024-07-18"
+RUN3 = "20260728T011101Z_gpt-4o-mini-2024-07-18"
+RUN4 = "20260728T013748Z_gpt-4o-mini-2024-07-18"
 
 
 @dataclass
@@ -70,6 +71,34 @@ def cls(m: dict, name: str) -> tuple[int, int] | None:
 
 def arm_metrics(run: str, arm: str) -> Path:
     return AC_RUNS / run / f"metrics_arm_{arm}.json"
+
+
+DECOMP = ROOT / "artifact_c" / "analysis" / "match_decomposition.json"
+
+
+def decomp_row(run: str, arm: str):
+    """One arm's exact/inexact split from decompose_matches.py."""
+    def get(d: dict):
+        for r in d.get("rows", []):
+            if r["run"] == run and r["arm"] == arm:
+                return r
+        return None
+    return get
+
+
+def d_exact(run: str, arm: str):
+    g = decomp_row(run, arm)
+    return lambda d: (r := g(d)) and r["exact"]
+
+
+def d_share(run: str, arm: str):
+    """Percentage of matched gold credited by inexact passes rather than exact name."""
+    g = decomp_row(run, arm)
+    return lambda d: None if (r := g(d)) is None else round(100 * r["inexact_share"], 1)
+
+
+def decomp_range(field: str, fn):
+    return lambda d: fn(r[field] for r in d["rows"])
 
 
 CLAIMS: list[Claim] = [
@@ -182,6 +211,71 @@ CLAIMS: list[Claim] = [
           arm_metrics(RUN1, "B"), lambda m: cls(m, "NORM_CSR_WARL"), tags=["artifactC"]),
     Claim("artifactC.armB_warl_run2", (9, 24), "PRIMARY_RESULTS.md",
           arm_metrics(RUN2, "B"), lambda m: cls(m, "NORM_CSR_WARL"), tags=["artifactC"]),
+
+    # ---- arms C and D, the context arms, both runs ----
+    Claim("artifactC.armC_run1", 32.8, "PRIMARY_RESULTS.md",
+          arm_metrics(RUN3, "C"), lambda m: pct(m, "adjusted_recall"), tol=0.05,
+          tags=["artifactC"]),
+    Claim("artifactC.armC_run2", 39.5, "PRIMARY_RESULTS.md",
+          arm_metrics(RUN4, "C"), lambda m: pct(m, "adjusted_recall"), tol=0.05,
+          tags=["artifactC"]),
+    Claim("artifactC.armD_run1", 35.0, "PRIMARY_RESULTS.md",
+          arm_metrics(RUN3, "D"), lambda m: pct(m, "adjusted_recall"), tol=0.05,
+          tags=["artifactC"]),
+    Claim("artifactC.armD_run2", 31.1, "PRIMARY_RESULTS.md",
+          arm_metrics(RUN4, "D"), lambda m: pct(m, "adjusted_recall"), tol=0.05,
+          tags=["artifactC"]),
+    # the bimodal CSR_RW observation
+    Claim("artifactC.armC_csr_rw_run1", (5, 51), "PRIMARY_RESULTS.md",
+          arm_metrics(RUN3, "C"), lambda m: cls(m, "NORM_CSR_RW"), tags=["artifactC"]),
+    Claim("artifactC.armC_csr_rw_run2", (21, 51), "PRIMARY_RESULTS.md",
+          arm_metrics(RUN4, "C"), lambda m: cls(m, "NORM_CSR_RW"), tags=["artifactC"]),
+
+    # ---- exact vs inexact decomposition (exploratory, not preregistered) ----
+    # The headline of the write-up: the score is mostly awarded by fuzzy matching,
+    # and the exact-name component is the stable one.
+    Claim("decomp.exact_min", 5, "PRIMARY_RESULTS.md", DECOMP,
+          decomp_range("exact", min), tags=["decomp"]),
+    Claim("decomp.exact_max", 9, "PRIMARY_RESULTS.md", DECOMP,
+          decomp_range("exact", max), tags=["decomp"]),
+    Claim("decomp.inexact_min", 47, "PRIMARY_RESULTS.md", DECOMP,
+          decomp_range("inexact", min), tags=["decomp"]),
+    Claim("decomp.inexact_max", 70, "PRIMARY_RESULTS.md", DECOMP,
+          decomp_range("inexact", max), tags=["decomp"]),
+    Claim("decomp.share_min", 84.5, "PRIMARY_RESULTS.md", DECOMP,
+          lambda d: round(100 * min(r["inexact_share"] for r in d["rows"]), 1),
+          tol=0.05, tags=["decomp"]),
+    Claim("decomp.share_max", 90.4, "PRIMARY_RESULTS.md", DECOMP,
+          lambda d: round(100 * max(r["inexact_share"] for r in d["rows"]), 1),
+          tol=0.05, tags=["decomp"]),
+    Claim("decomp.armA_run2_exact", 9, "PRIMARY_RESULTS.md", DECOMP,
+          d_exact(RUN2, "A"), tags=["decomp"]),
+    Claim("decomp.armB_run1_share", 90.4, "PRIMARY_RESULTS.md", DECOMP,
+          d_share(RUN1, "B"), tol=0.05, tags=["decomp"]),
+    # every arm in the table is a complete 60-chunk run
+    Claim("decomp.all_arms_complete", True, "PRIMARY_RESULTS.md", DECOMP,
+          lambda d: all(r["chunks"] >= 60 for r in d["rows"]), tags=["decomp"]),
+    Claim("decomp.arms_counted", 8, "PRIMARY_RESULTS.md", DECOMP,
+          lambda d: len(d["rows"]), tags=["decomp"]),
+
+    # published baselines, same decomposition: the two models differ in kind
+    Claim("decomp.claude_exact", 86, "PRIMARY_RESULTS.md",
+          RESULTS / "metrics_claude-sonnet-4.part1-committed.json",
+          lambda m: m["exact_matches_evaluated"], tags=["decomp"]),
+    Claim("decomp.claude_share", 33.3, "PRIMARY_RESULTS.md",
+          RESULTS / "metrics_claude-sonnet-4.part1-committed.json",
+          lambda m: round(100 * (m["matched_udb_count"] - m["exact_matches_evaluated"])
+                          / m["matched_udb_count"], 1), tol=0.05, tags=["decomp"]),
+    Claim("decomp.mini_exact", 11, "PRIMARY_RESULTS.md",
+          RESULTS / "metrics_gpt-4o-mini.json",
+          lambda m: m["exact_matches_evaluated"], tags=["decomp"]),
+    Claim("decomp.mini_share", 80.7, "PRIMARY_RESULTS.md",
+          RESULTS / "metrics_gpt-4o-mini.json",
+          lambda m: round(100 * (m["matched_udb_count"] - m["exact_matches_evaluated"])
+                          / m["matched_udb_count"], 1), tol=0.05, tags=["decomp"]),
+    Claim("decomp.v3_exact", 10, "PRIMARY_RESULTS.md",
+          RESULTS / "metrics_gpt-4o-mini.v3.json",
+          lambda m: m["exact_matches_evaluated"], tags=["decomp"]),
 ]
 
 # Claims that are true but cannot be re-derived from anything committed.
@@ -219,7 +313,7 @@ def main() -> int:
     if args.list:
         print(f"{'claim':<34}{'stated':<16}{'published in':<24}artifact")
         for c in claims:
-            print(f"  {c.claim_id:<32}{str(c.stated):<16}{c.where_published:<24}"
+            print(f"  {c.claim_id:<32}{c.stated!s:<16}{c.where_published:<24}"
                   f"{c.artifact.relative_to(ROOT)}")
         return 0
 
@@ -233,7 +327,7 @@ def main() -> int:
             continue
         try:
             got = c.getter(load(c.artifact))
-        except Exception as exc:
+        except Exception as exc:  # noqa: BLE001 - a broken getter is a failed claim
             bad += 1
             failures.append(f"ERROR             {c.claim_id}  {type(exc).__name__}: {exc}")
             continue

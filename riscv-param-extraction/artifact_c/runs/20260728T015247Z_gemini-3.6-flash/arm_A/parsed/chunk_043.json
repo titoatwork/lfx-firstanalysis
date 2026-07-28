@@ -1,0 +1,17 @@
+{
+  "chunk_id": "chunk_043",
+  "arm": "A",
+  "model": "gemini-3.6-flash",
+  "parameters": [
+    {
+      "excerpt": "A misaligned load or store instruction may be decomposed into a set of component memory operations of any granularity.",
+      "line_number": 111,
+      "parameter_name": "MISALIGNED_SPLIT_STRATEGY",
+      "existing_udb_name": "MISALIGNED_SPLIT_STRATEGY",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The spec explicitly leaves the choice of whether and how to decompose misaligned loads and stores into smaller memory operations up to the implementation."
+    }
+  ]
+}

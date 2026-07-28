@@ -1,0 +1,103 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "RISC-V ISA strings begin with either RV32I, RV32E, RV64I, or RV64E, indicating the supported address space size in bits for the base integer ISA.",
+      "line_number": 12,
+      "parameter_name": "BASE_ISA",
+      "existing_udb_name": "BASE_ISA",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The base ISA can be one of several predefined values (RV32I, RV32E, RV64I, RV64E), which is a direct implementation choice."
+    },
+    {
+      "excerpt": "The first letter following the 'Z' conventionally indicates the most closely related alphabetical extension category, IMAFDQLCBKJTPVH.",
+      "line_number": 66,
+      "parameter_name": "Z_EXTENSION_CATEGORY",
+      "existing_udb_name": "Z_EXTENSION_CATEGORY",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The choice of the first letter after 'Z' is an implementation decision that categorizes the extension, allowing for various implementations."
+    },
+    {
+      "excerpt": "If multiple 'Z' extensions are named, they should be ordered first by category, then alphabetically within a category.",
+      "line_number": 70,
+      "parameter_name": "Z_EXTENSION_ORDERING",
+      "existing_udb_name": "Z_EXTENSION_ORDERING",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The ordering of multiple 'Z' extensions is a design choice left to the implementer, indicating how they can structure their extension names."
+    },
+    {
+      "excerpt": "Standard supervisor-level extensions should be listed after standard unprivileged extensions, and like other multi-letter extensions, must be separated from other multi-letter extensions by an underscore.",
+      "line_number": 114,
+      "parameter_name": "SUPERVISOR_EXTENSION_ORDERING",
+      "existing_udb_name": "SUPERVISOR_EXTENSION_ORDERING",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The ordering of supervisor-level extensions relative to unprivileged extensions is an implementation choice, allowing flexibility in naming."
+    },
+    {
+      "excerpt": "If multiple hypervisor-level extensions are listed, they should be ordered alphabetically.",
+      "line_number": 139,
+      "parameter_name": "HYPERVISOR_EXTENSION_ORDERING",
+      "existing_udb_name": "HYPERVISOR_EXTENSION_ORDERING",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The alphabetical ordering of hypervisor-level extensions is a design choice for implementers, allowing for consistent naming conventions."
+    },
+    {
+      "excerpt": "Non-standard extensions must be listed after all standard extensions, and, like other multi-letter extensions, must be separated from other multi-letter extensions by an underscore.",
+      "line_number": 174,
+      "parameter_name": "NON_STANDARD_EXTENSION_ORDERING",
+      "existing_udb_name": "NON_STANDARD_EXTENSION_ORDERING",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The ordering of non-standard extensions is an implementation choice, providing flexibility in how extensions are named."
+    },
+    {
+      "excerpt": "Version numbers are divided into major and minor version numbers, separated by a 'p'.",
+      "line_number": 198,
+      "parameter_name": "VERSION_NUMBER_FORMAT",
+      "existing_udb_name": "VERSION_NUMBER_FORMAT",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The format for version numbers is a design choice that can vary between implementations, allowing for different versioning schemes."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The RISC-V ISA is designed to support a wide variety of implementations with various experimental instruction-set extensions.",
+      "line_number": 6,
+      "reason": "This text is non-normative and describes the design intent rather than an architectural parameter."
+    },
+    {
+      "excerpt": "The ISA naming strings are case insensitive.",
+      "line_number": 15,
+      "reason": "This is a fixed requirement about naming behavior, not an implementation choice."
+    },
+    {
+      "excerpt": "Changes in major version numbers imply a loss of backwards compatibility, whereas changes in only the minor version number must be backwards-compatible.",
+      "line_number": 202,
+      "reason": "This describes the implications of version changes rather than an implementation choice."
+    },
+    {
+      "excerpt": "To avoid ambiguity, no extension name may end with a number or a 'p' preceded by a number.",
+      "line_number": 204,
+      "reason": "This is a fixed requirement for naming conventions, not an architectural parameter."
+    },
+    {
+      "excerpt": "We introduced the version numbering scheme with the second release.",
+      "line_number": 200,
+      "reason": "This is historical context and does not define an architectural parameter."
+    }
+  ]
+}
+```

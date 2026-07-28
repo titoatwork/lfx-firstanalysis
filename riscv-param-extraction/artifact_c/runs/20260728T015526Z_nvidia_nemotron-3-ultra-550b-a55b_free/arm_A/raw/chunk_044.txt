@@ -1,0 +1,41 @@
+{
+  "parameters": [
+    {
+      "excerpt": "This CSR provides up to 16 physical `entropy` bits that can be used to seed cryptographic random bit generators.",
+      "line_number": 277,
+      "parameter_name": "ZKR_SEED_ENTROPY_BITS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The spec explicitly states the seed CSR provides 'up to 16 physical entropy bits', leaving the exact number (0-16) as an implementation choice. This is a direct architectural parameter not controlled by any CSR field."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "This instruction must _always_ be implemented such that its execution latency does not depend on the data being operated on.",
+      "line_number": 412,
+      "reason": "This is a fixed requirement ('must always') applying to all implementations of the instruction, not an implementation-defined choice."
+    },
+    {
+      "excerpt": "A core which implements `Zkn` must implement all of the above extensions.",
+      "line_number": 215,
+      "reason": "This is a mandatory inclusion requirement for the Zkn extension, not an optional parameter."
+    },
+    {
+      "excerpt": "Note that `rnum` must be in the range `0x0..0xA`. The values `0xB..0xF` are reserved.",
+      "line_number": 650,
+      "reason": "The reserved value behavior is architecturally defined (illegal instruction), not left to implementation choice."
+    },
+    {
+      "excerpt": "or zero if the index into _rs2_ is out of bounds",
+      "line_number": 1850,
+      "reason": "The out-of-bounds behavior for xperm8/xperm4 is explicitly specified as returning zero, not implementation-defined."
+    },
+    {
+      "excerpt": "This instruction only exists on RV64 based systems.",
+      "line_number": 1100,
+      "reason": "This is a fixed architectural requirement (packw only on RV64), not a parameter."
+    }
+  ]
+}

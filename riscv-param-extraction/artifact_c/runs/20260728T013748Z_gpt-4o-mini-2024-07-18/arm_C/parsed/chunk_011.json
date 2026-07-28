@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_011",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "RISC-V ISAs provide a set of up to thirty-two 64-bit performance counters and timers",
+      "line_number": 5,
+      "parameter_name": "NUM_PERFORMANCE_COUNTERS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of performance counters is an implementation choice, with a maximum of thirty-two counters specified."
+    },
+    {
+      "excerpt": "The execution environment should provide a means to determine the current rate (cycles/second) at which the cycle counter is incrementing.",
+      "line_number": 66,
+      "parameter_name": "CYCLE_COUNTER_RATE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The rate at which the cycle counter increments is an implementation-defined parameter that can vary by environment."
+    },
+    {
+      "excerpt": "The execution environment should provide a means of determining the period of a counter tick (seconds/tick).",
+      "line_number": 113,
+      "parameter_name": "COUNTER_TICK_PERIOD",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The period of the counter tick is an implementation-defined parameter that can vary across different environments."
+    },
+    {
+      "excerpt": "The implemented number and width of these additional counters, and the set of events they count, are platform-specific.",
+      "line_number": 197,
+      "parameter_name": "HPM_COUNTERS_IMPLEMENTATION_SPECIFIC",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The number and width of additional performance counters, as well as the events they count, are determined by the implementation."
+    }
+  ]
+}

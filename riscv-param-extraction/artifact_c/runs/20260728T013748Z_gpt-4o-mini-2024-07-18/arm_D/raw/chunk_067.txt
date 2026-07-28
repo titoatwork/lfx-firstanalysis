@@ -1,0 +1,63 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "If jvt.mode is a reserved value, then _cm.jt_ is also reserved.",
+      "line_number": 2345,
+      "parameter_name": "JVT_MODE",
+      "existing_udb_name": "JVT_MODE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The jvt.mode field is WARL, meaning the set of modes that can be programmed is implementation-defined. The parameter is the set of legal values for this field."
+    },
+    {
+      "excerpt": "The value in the BASE field must always be aligned on a 64-byte boundary.",
+      "line_number": 2320,
+      "parameter_name": "JVT_BASE_ALIGNMENT",
+      "existing_udb_name": "JVT_BASE_ALIGNMENT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The alignment requirement for the BASE field is a direct implementation choice that must be adhered to, making it a parameter."
+    },
+    {
+      "excerpt": "The jvt register is an XLEN-bit WARL read/write register that holds the jump table configuration.",
+      "line_number": 2310,
+      "parameter_name": "JVT_REGISTER_SIZE",
+      "existing_udb_name": "JVT_REGISTER_SIZE",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The size of the jvt register is determined by the XLEN of the implementation, which is a direct choice made by the implementer."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The jvt register must also be implemented, but can contain a read-only value.",
+      "line_number": 2315,
+      "reason": "This is a fixed requirement that all implementations must satisfy, not an implementation choice."
+    },
+    {
+      "excerpt": "If the same function is called with and without linking then it must have two entries in the table.",
+      "line_number": 2340,
+      "reason": "This describes behavior that must be followed, not an implementation-defined parameter."
+    },
+    {
+      "excerpt": "The memory pointed to by jvt.base is treated as instruction memory for the purpose of executing table jump instructions.",
+      "line_number": 2325,
+      "reason": "This is a description of how the memory is treated, not an implementation choice."
+    },
+    {
+      "excerpt": "The jvt CSR adds architectural state to the system software context.",
+      "line_number": 2312,
+      "reason": "This is a description of the CSR's role, not an implementation choice."
+    },
+    {
+      "excerpt": "The jvt register is an XLEN-bit WARL read/write register that holds the jump table configuration.",
+      "line_number": 2310,
+      "reason": "This is a description of the register's purpose, not an implementation choice."
+    }
+  ]
+}
+```

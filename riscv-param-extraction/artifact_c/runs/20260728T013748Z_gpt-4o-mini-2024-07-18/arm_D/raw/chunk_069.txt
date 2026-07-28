@@ -1,0 +1,63 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "New 16-bit variants of LOAD-FP and STORE-FP instructions are added, encoded with a new value for the funct3 width field.",
+      "line_number": 10,
+      "parameter_name": "LOAD_STORE_FUNCT3_WIDTH",
+      "existing_udb_name": "LOAD_STORE_FUNCT3_WIDTH",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The encoding of the funct3 width field for LOAD-FP and STORE-FP instructions is a direct implementation choice, allowing for the addition of new 16-bit variants."
+    },
+    {
+      "excerpt": "If the D extension is present, FCVT.D.H or FCVT.H.D converts a half-precision floating-point number to a double-precision floating-point number, or vice-versa, respectively.",
+      "line_number": 92,
+      "parameter_name": "D_EXTENSION_SUPPORT",
+      "existing_udb_name": "D_EXTENSION_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The presence of the D extension is an implementation choice that affects the availability of certain conversion instructions. This is a binary choice regarding whether the D extension is supported."
+    },
+    {
+      "excerpt": "If the Q extension is present, FCVT.Q.H or FCVT.H.Q converts a half-precision floating-point number to a quad-precision floating-point number, or vice-versa, respectively.",
+      "line_number": 96,
+      "parameter_name": "Q_EXTENSION_SUPPORT",
+      "existing_udb_name": "Q_EXTENSION_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The presence of the Q extension is an implementation choice that affects the availability of certain conversion instructions. This is a binary choice regarding whether the Q extension is supported."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The expectation is that Zfhmin software primarily uses the half-precision format for storage, performing most computation in higher precision.",
+      "line_number": 164,
+      "reason": "This describes a software expectation and does not represent an implementation choice or parameter."
+    },
+    {
+      "excerpt": "Half-precision addition, subtraction, multiplication, division, and square-root operations can be faithfully emulated by converting the half-precision operands to single-precision.",
+      "line_number": 166,
+      "reason": "This describes a method of emulation rather than an architectural parameter or implementation choice."
+    },
+    {
+      "excerpt": "Conversion from 8- or 16-bit integers to half-precision can be emulated by first converting to single-precision, then converting to half-precision.",
+      "line_number": 168,
+      "reason": "This describes a conversion method and does not indicate an implementation-defined parameter."
+    },
+    {
+      "excerpt": "The NaN-boxing scheme described in <<nanboxing>> is extended to allow a half-precision value to be NaN-boxed inside a single-precision value.",
+      "line_number": 5,
+      "reason": "This describes a feature of the NaN-boxing scheme rather than an implementation choice or parameter."
+    },
+    {
+      "excerpt": "FLH and FSH are only guaranteed to execute atomically if the effective address is naturally aligned.",
+      "line_number": 14,
+      "reason": "This describes a condition for atomic execution rather than an architectural parameter."
+    }
+  ]
+}
+```

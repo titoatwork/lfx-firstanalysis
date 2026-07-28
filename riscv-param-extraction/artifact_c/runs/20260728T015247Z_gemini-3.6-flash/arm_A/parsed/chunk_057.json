@@ -1,0 +1,17 @@
+{
+  "chunk_id": "chunk_057",
+  "arm": "A",
+  "model": "gemini-3.6-flash",
+  "parameters": [
+    {
+      "excerpt": "If the UXLEN or SXLEN may never be 32, then the bit 2 is also read-only zero.",
+      "line_number": 390,
+      "parameter_name": "SSP_BIT2_READ_ONLY_ZERO",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "Controls whether bit 2 of the ssp CSR is read-only zero or writable, which depends on whether the implementation can ever support 32-bit execution (UXLEN/SXLEN=32)."
+    }
+  ]
+}

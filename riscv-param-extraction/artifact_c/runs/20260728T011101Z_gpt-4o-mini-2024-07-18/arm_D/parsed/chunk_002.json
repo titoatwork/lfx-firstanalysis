@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_002",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The bitmanip extensions are defined for RV32 and RV64.",
+      "line_number": 12,
+      "parameter_name": "BITMANIP_ARCHITECTURES",
+      "existing_udb_name": "BITMANIP_ARCHITECTURES",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The choice of supporting either RV32 or RV64 for the bitmanip extensions is left to the implementer."
+    },
+    {
+      "excerpt": "The shift and add instructions do a left shift of 1, 2, or 3 because these are commonly found in real-world code.",
+      "line_number": 34,
+      "parameter_name": "MAX_LEFT_SHIFT",
+      "existing_udb_name": "MAX_LEFT_SHIFT",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The maximum left shift amount is a design choice for the implementer, allowing shifts of 1, 2, or 3."
+    },
+    {
+      "excerpt": "The implementation chooses whether mtvec is read-only or read-write.",
+      "line_number": 1217,
+      "parameter_name": "MTVEC_ACCESS",
+      "existing_udb_name": "MTVEC_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice of whether the mtvec register is read-only or read-write is an implementation decision."
+    },
+    {
+      "excerpt": "The `mtvec` register must always be implemented, but can contain a read-only value.",
+      "line_number": 1217,
+      "parameter_name": "MTVEC_ACCESS",
+      "existing_udb_name": "MTVEC_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether mtvec is read-only or read-write. This is a binary choice about the mutability of the register."
+    }
+  ]
+}

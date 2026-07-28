@@ -1,0 +1,67 @@
+{
+  "chunk_id": "chunk_017",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The `miselect` register may be read-only zero if there are no extensions implemented that utilize it.",
+      "line_number": 34,
+      "parameter_name": "MSELECT_READ_ONLY_ZERO",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether the `miselect` register is read-only zero, indicating no extensions are implemented, making this a binary choice."
+    },
+    {
+      "excerpt": "The `siselect` register will support the value range 0..0xFFF at a minimum.",
+      "line_number": 215,
+      "parameter_name": "SSELECT_VALUE_RANGE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The `siselect` register's minimum value range is defined, and future extensions may increase this range, making it a direct implementation choice."
+    },
+    {
+      "excerpt": "The `vsiselect` register will support the value range 0..0xFFF at a minimum.",
+      "line_number": 290,
+      "parameter_name": "VSELECT_VALUE_RANGE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "Similar to `siselect`, the `vsiselect` register has a defined minimum value range, allowing for implementation-defined extensions."
+    },
+    {
+      "excerpt": "Values of `miselect` with the most-significant bit set (bit XLEN - 1 = 1) are designated only for custom use.",
+      "line_number": 34,
+      "parameter_name": "MSELECT_CUSTOM_USE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The specification allows for custom use of certain values in `miselect`, which is a design choice for the implementer."
+    },
+    {
+      "excerpt": "Values of `siselect` with the most-significant bit set (bit XLEN - 1 = 1) are designated only for custom use.",
+      "line_number": 215,
+      "parameter_name": "SSELECT_CUSTOM_USE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The specification allows for custom use of certain values in `siselect`, which is a design choice for the implementer."
+    },
+    {
+      "excerpt": "Values of `vsiselect` with the most-significant bit set (bit XLEN - 1 = 1) are designated only for custom use.",
+      "line_number": 290,
+      "parameter_name": "VSELECT_CUSTOM_USE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The specification allows for custom use of certain values in `vsiselect`, which is a design choice for the implementer."
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "chunk_id": "chunk_061",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The round number is provided by the 5-bit `rnds` unsigned immediate. Legal values are 0 - 31 and indicate which group of two rounds are being performed.",
+      "line_number": 346,
+      "parameter_name": "SM3_COMPRESSION_ROUNDS",
+      "existing_udb_name": "SM3_COMPRESSION_ROUNDS",
+      "class": "NORM_CSR_WARL",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The round number for the SM3 compression is a WARL field with legal values defined as 0 to 31, indicating the implementation-defined groups of rounds."
+    },
+    {
+      "excerpt": "The Round group number (`rnd`) comes from `uimm[2:0]`; the bits in `uimm[4:3]` are ignored. Round group numbers range from 0 to 7 and indicate which group of four round keys are being generated.",
+      "line_number": 431,
+      "parameter_name": "SM4_KEY_EXPANSION_ROUND_GROUP",
+      "existing_udb_name": "SM4_KEY_EXPANSION_ROUND_GROUP",
+      "class": "NORM_CSR_WARL",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The round group number for SM4 key expansion is defined by the `uimm` field, with legal values ranging from 0 to 7, indicating the implementation-defined groups of round keys."
+    },
+    {
+      "excerpt": "The number of element groups to be processed is `vl`/`EGS`. `vl` must be set to the number of `SEW=32` elements to be processed and therefore must be a multiple of `EGS=4`. Likewise, `vstart` must be a multiple of `EGS=4`.",
+      "line_number": 482,
+      "parameter_name": "HW_VLEN_MULTIPLE",
+      "existing_udb_name": "HW_VLEN_MULTIPLE",
+      "class": "SW_RULE",
+      "value_type": "enum",
+      "confidence": "medium",
+      "reasoning": "The implementation must ensure that `vl` and `vstart` are multiples of `EGS`, which is determined by the implementation. This is a deterministic outcome based on the software's adherence to the specification."
+    }
+  ]
+}

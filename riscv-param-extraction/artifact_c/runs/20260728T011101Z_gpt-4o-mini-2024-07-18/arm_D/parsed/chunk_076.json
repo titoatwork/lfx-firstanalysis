@@ -1,0 +1,27 @@
+{
+  "chunk_id": "chunk_076",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "As the access size is 64-bit, accesses are only considered naturally aligned for effective addresses that are a multiple of 8.",
+      "line_number": 15,
+      "parameter_name": "NATURAL_ALIGNMENT",
+      "existing_udb_name": "NATURAL_ALIGNMENT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The specification states that accesses are only considered naturally aligned for effective addresses that are multiples of 8, which is a direct implementation choice."
+    },
+    {
+      "excerpt": "If the effective address is a multiple of 4, then each word access is required to be performed atomically.",
+      "line_number": 19,
+      "parameter_name": "ATOMIC_ACCESS_MULTIPLE_OF_4",
+      "existing_udb_name": "ATOMIC_ACCESS_MULTIPLE_OF_4",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The requirement for atomic access when the effective address is a multiple of 4 is an implementation choice that can vary between implementations."
+    }
+  ]
+}

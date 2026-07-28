@@ -1,0 +1,17 @@
+{
+  "chunk_id": "chunk_072",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The hardware platform may define that accesses to certain CSRs are strongly ordered, as defined by the Memory-Ordering PMAs section in Volume II of this manual.",
+      "line_number": 254,
+      "parameter_name": "HW_CSR_STRONGLY_ORDERED",
+      "existing_udb_name": "HW_CSR_STRONGLY_ORDERED",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether CSR accesses are strongly ordered or not, which is a direct design decision."
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_013",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The F extension adds 32 floating-point registers, `f0-f31`, each 32 bits wide.",
+      "line_number": 8,
+      "parameter_name": "NUM_FLOATING_POINT_REGISTERS",
+      "existing_udb_name": "NUM_FLOATING_POINT_REGISTERS",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The number of floating-point registers is a direct implementation choice, and while the spec states it as 32, it is not a fixed requirement that all implementations must follow."
+    },
+    {
+      "excerpt": "The floating-point control and status register, `fcsr`, is a 32-bit read/write register that selects the dynamic rounding mode for floating-point arithmetic operations.",
+      "line_number": 20,
+      "parameter_name": "FCSR_DYNAMIC_ROUNDING_MODE",
+      "existing_udb_name": "FCSR_DYNAMIC_ROUNDING_MODE",
+      "class": "NORM_CSR_RW",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The `frm` field in the `fcsr` register allows for a set of dynamic rounding modes, which can vary by implementation. This is a read-write choice that affects the behavior of floating-point operations."
+    },
+    {
+      "excerpt": "Rounding modes are encoded as shown in <<norm:dyn_round_enc>>.",
+      "line_number": 20,
+      "parameter_name": "ROUNDING_MODES",
+      "existing_udb_name": "ROUNDING_MODES",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The rounding modes are WARL, meaning the set of legal values can vary by implementation, and this is explicitly defined in the spec."
+    },
+    {
+      "excerpt": "If the rounded result is not representable in the destination format, it is clipped to the nearest value and the invalid flag is set.",
+      "line_number": 50,
+      "parameter_name": "HW_FCVT_CLIPPING",
+      "existing_udb_name": "HW_FCVT_CLIPPING",
+      "class": "SW_RULE",
+      "value_type": "binary",
+      "confidence": "medium",
+      "reasoning": "The behavior of clipping during conversion is implementation-defined, but the outcome is deterministic if software follows the rules regarding valid inputs."
+    }
+  ]
+}

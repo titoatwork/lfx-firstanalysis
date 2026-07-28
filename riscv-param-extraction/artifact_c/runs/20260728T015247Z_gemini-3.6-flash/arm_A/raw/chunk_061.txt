@@ -1,0 +1,27 @@
+```json
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "`zvknha`: `SEW` is any value other than 32",
+      "line_number": 3348,
+      "reason": "This is a fixed architectural reserved encoding rule, not an implementation choice or parameter."
+    },
+    {
+      "excerpt": "The `vd` register group overlaps with either `vs1` or `vs2`",
+      "line_number": 3350,
+      "reason": "This specifies an illegal/reserved encoding constraint mandated for all implementations, not a configurable parameter."
+    },
+    {
+      "excerpt": "The round number is provided by the 5-bit `rnds` unsigned immediate. Legal values are 0 - 31",
+      "line_number": 3496,
+      "reason": "This describes software immediate field semantics for the `vsm3c.vi` instruction, not an architectural implementation parameter."
+    },
+    {
+      "excerpt": "The Round group number (`rnd`) comes from `uimm[2:0]`; the bits in `uimm[4:3]` are ignored.",
+      "line_number": 3701,
+      "reason": "This defines fixed instruction decoding behavior for `vsm4k.vi` immediate bits, not an implementation parameter."
+    }
+  ]
+}
+```

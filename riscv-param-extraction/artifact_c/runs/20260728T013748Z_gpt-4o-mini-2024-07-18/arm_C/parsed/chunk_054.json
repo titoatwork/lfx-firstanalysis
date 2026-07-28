@@ -1,0 +1,27 @@
+{
+  "chunk_id": "chunk_054",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "This extension adds the `STCE` bit to the `menvcfg` CSRs.",
+      "line_number": 20,
+      "parameter_name": "MENVCFG_STCE",
+      "existing_udb_name": "MENVCFG_STCE",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The STCE bit in menvcfg controls whether the stimecmp CSR is operational, representing a binary choice for the implementer."
+    },
+    {
+      "excerpt": "This extension adds a similar facility to the Hypervisor extension for VS-mode.",
+      "line_number": 16,
+      "parameter_name": "HENVCFG_STCE",
+      "existing_udb_name": "HENVCFG_STCE",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The STCE bit in henvcfg controls whether the vs_timecmp CSR is operational, representing a binary choice for the implementer."
+    }
+  ]
+}

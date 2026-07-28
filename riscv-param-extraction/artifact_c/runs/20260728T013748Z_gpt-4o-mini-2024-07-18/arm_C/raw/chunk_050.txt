@@ -1,0 +1,53 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "this extension introduces the `RLB`, `MMWP`, and `MML` fields in the `mseccfg` CSR and their associated rules.",
+      "line_number": 40,
+      "parameter_name": "MSECCFG_FIELDS",
+      "existing_udb_name": "MSECCFG_FIELDS",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The fields RLB, MMWP, and MML in the mseccfg CSR are WARL, and their specific implementation-defined values can vary, making them a parameter."
+    },
+    {
+      "excerpt": "Locked rules cannot be removed or modified until a PMP reset, unless `mseccfg.RLB` is set.",
+      "line_number": 66,
+      "parameter_name": "MSECCFG_RLB_LOCKING",
+      "existing_udb_name": "MSECCFG_RLB_LOCKING",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether the RLB field in mseccfg is read-only or read-write, which affects the mutability of the locking behavior."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "Without the Smepmp extension, it is not possible for a PMP rule to be enforced only on non-Machine modes and denied on Machine mode.",
+      "line_number": 12,
+      "reason": "This describes a limitation of the architecture without the extension, not an implementation choice."
+    },
+    {
+      "excerpt": "It is only possible to have a locked rule that will be enforced on all modes, or a rule that will be enforced on non-Machine modes and be ignored by Machine mode.",
+      "line_number": 14,
+      "reason": "This describes behavior of PMP rules rather than an implementation-defined parameter."
+    },
+    {
+      "excerpt": "Without being able to protect less-privileged modes from Machine mode, it is not possible to prevent the mentioned attack vector.",
+      "line_number": 16,
+      "reason": "This is a statement about security implications rather than an architectural parameter."
+    },
+    {
+      "excerpt": "The physical memory protection rules when `mseccfg.MML` is set to 1 are summarized in the truth table below.",
+      "line_number": 42,
+      "reason": "This refers to a specific condition of the MML field rather than an implementation choice."
+    },
+    {
+      "excerpt": "Since all fields defined in `mseccfg` as part of this extension are locked when set (MMWP/MML) or locked when cleared (RLB), software can't poll them for determining the presence of Smepmp.",
+      "line_number": 70,
+      "reason": "This describes a limitation on software behavior rather than an architectural parameter."
+    }
+  ]
+}
+```

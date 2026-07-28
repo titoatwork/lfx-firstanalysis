@@ -1,0 +1,57 @@
+{
+  "chunk_id": "chunk_020",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The Extensions field is a *WARL* field that can contain writable bits where the implementation allows the supported ISA to be modified.",
+      "line_number": 69,
+      "parameter_name": "MISA_EXTENSIONS",
+      "existing_udb_name": "MISA_EXTENSIONS",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The Extensions field in the misa register is a WARL field, meaning the set of writable bits can vary by implementation, allowing for different supported ISA extensions."
+    },
+    {
+      "excerpt": "The MBE, SBE, and UBE bits in `mstatus` and `mstatush` are *WARL* fields that control the endianness of memory accesses other than instruction fetches.",
+      "line_number": 679,
+      "parameter_name": "M_MODE_ENDIANNESS",
+      "existing_udb_name": "M_MODE_ENDIANNESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The MBE, SBE, and UBE fields are WARL fields that allow the implementation to choose the endianness for different privilege modes, thus defining the read-write nature of these fields."
+    },
+    {
+      "excerpt": "The `mtvec` register is an MXLEN-bit *WARL* read/write register that holds trap vector configuration, consisting of a vector base address (BASE) and a vector mode (MODE).",
+      "line_number": 1217,
+      "parameter_name": "MTVEC_MODES",
+      "existing_udb_name": "MTVEC_MODES",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The mtvec register is a WARL field, and the set of values it can hold for the MODE field can vary by implementation, indicating the implementation-defined nature of the trap vector modes."
+    },
+    {
+      "excerpt": "An implementation may make SXL be a read-only field whose value always ensures that SXLEN=MXLEN.",
+      "line_number": 1000,
+      "parameter_name": "SXL_ACCESS",
+      "existing_udb_name": "SXL_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether the SXL field is read-only or writable, which defines the access characteristics of this CSR field."
+    },
+    {
+      "excerpt": "When MPRV=1, load and store memory addresses are translated and protected, and endianness is applied, as though the current privilege mode were set to MPP.",
+      "line_number": 1000,
+      "parameter_name": "HW_MSTATUS_MPRV",
+      "existing_udb_name": "HW_MSTATUS_MPRV",
+      "class": "SW_RULE",
+      "value_type": "enum",
+      "confidence": "medium",
+      "reasoning": "The behavior of memory accesses under MPRV is implementation-defined, but the outcome is deterministic if software follows the specified rules."
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_038",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The RNMI interrupt trap handler address is implementation-defined.",
+      "line_number": 34,
+      "parameter_name": "RNMI_TRAP_HANDLER_ADDRESS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The RNMI interrupt trap handler address is a direct implementation choice, allowing different implementations to define their own handler addresses."
+    },
+    {
+      "excerpt": "RNMI also has an associated exception trap handler address, which is implementation defined.",
+      "line_number": 37,
+      "parameter_name": "RNMI_EXCEPTION_TRAP_HANDLER_ADDRESS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The exception trap handler address for RNMI is also an implementation-defined choice, indicating flexibility in how implementations handle exceptions."
+    },
+    {
+      "excerpt": "`mnepc` is a WARL register that must be able to hold all valid virtual addresses.",
+      "line_number": 66,
+      "parameter_name": "MNEPC_VALID_ADDRESS_RANGE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The `mnepc` register is defined as WARL, and the set of valid addresses it can hold is implementation-defined, making it a parameter."
+    },
+    {
+      "excerpt": "`mnstatus` also holds the NMIE bit. When NMIE=1, non-maskable interrupts are enabled.",
+      "line_number": 114,
+      "parameter_name": "MNSTATUS_NMIE_ENABLE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The NMIE bit in `mnstatus` can be set or cleared by software, indicating a binary choice for enabling or disabling non-maskable interrupts."
+    }
+  ]
+}

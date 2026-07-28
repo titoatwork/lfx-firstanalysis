@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_046",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "When the Smcdeleg/Ssccfg extensions are enabled (`menvcfg`.CDE=1), it further allows M-mode to delegate select counters to S-mode.",
+      "line_number": 19,
+      "parameter_name": "HW_MCOUNTER_DELEGATION",
+      "existing_udb_name": "HW_MCOUNTER_DELEGATION",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to enable counter delegation from M-mode to S-mode based on the `menvcfg.CDE` bit."
+    },
+    {
+      "excerpt": "For counters delegated to S-mode, the associated `mcountinhibit` bits can be accessed via `scountinhibit`.",
+      "line_number": 83,
+      "parameter_name": "SCOUNTINHIBIT_DELEGATION",
+      "existing_udb_name": "SCOUNTINHIBIT_DELEGATION",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether the `scountinhibit` register is read-write for counters delegated to S-mode."
+    },
+    {
+      "excerpt": "For implementations that support Smcdeleg/Ssccfg, Sscofpmf, and the H extension, when `menvcfg`.CDE=1, attempts to read `scountovf` from VS-mode or VU-mode raise a virtual-instruction exception.",
+      "line_number": 109,
+      "parameter_name": "HW_SCOUNTOVF_VIRTUALIZATION",
+      "existing_udb_name": "HW_SCOUNTOVF_VIRTUALIZATION",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether reading `scountovf` from VS-mode or VU-mode raises a virtual-instruction exception based on the `menvcfg.CDE` bit."
+    },
+    {
+      "excerpt": "For implementations that support Smcdeleg, Sscofpmf, and Smaia, the local-counter-overflow interrupt (LCOFI) bit (bit 13) in each of CSRs `mvip` and `mvien` is implemented and writable.",
+      "line_number": 115,
+      "parameter_name": "HW_LCOFI_IMPLEMENTATION",
+      "existing_udb_name": "HW_LCOFI_IMPLEMENTATION",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to implement and make writable the LCOFI bit in `mvip` and `mvien` based on support for specific extensions."
+    }
+  ]
+}

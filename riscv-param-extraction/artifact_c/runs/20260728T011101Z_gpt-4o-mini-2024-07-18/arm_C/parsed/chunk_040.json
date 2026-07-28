@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_040",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "For resource-constrained embedded applications, we have defined the RV32E subset, which only has 16 registers.",
+      "line_number": 110,
+      "parameter_name": "NUM_REGISTERS_RV32E",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The RV32E subset explicitly defines that it has only 16 registers, which is a direct implementation choice."
+    },
+    {
+      "excerpt": "The EEI will define whether the memory system is little-endian or big-endian.",
+      "line_number": 1030,
+      "parameter_name": "ENDIANNESS",
+      "existing_udb_name": null,
+      "class": "NON_ISA",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The endianness of the memory system is left to the implementation, making it an architectural parameter."
+    },
+    {
+      "excerpt": "The effective address is obtained by adding register _rs1_ to the sign-extended 12-bit offset.",
+      "line_number": 1035,
+      "parameter_name": "LOAD_STORE_ADDRESSING_MODE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The method of calculating the effective address for load/store instructions is a design choice for the implementation."
+    },
+    {
+      "excerpt": "The FENCE mode field _fm_ defines the semantics of the FENCE instruction.",
+      "line_number": 1060,
+      "parameter_name": "FENCE_MODE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The semantics of the FENCE instruction can vary based on the implementation-defined _fm_ field, making it a parameter."
+    }
+  ]
+}

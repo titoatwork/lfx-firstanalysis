@@ -1,0 +1,27 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "If _rs2_ contains the value zero, this instruction writes the value zero to _rd_.  Otherwise, this instruction copies the contents of _rs1_ to _rd_.",
+      "line_number": 15,
+      "parameter_name": "CZERO_EQZ_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The behavior of the czero.eqz instruction is an implementation choice based on the condition of _rs2_. It directly affects how the instruction operates."
+    },
+    {
+      "excerpt": "If _rs2_ contains a nonzero value, this instruction writes the value zero to _rd_.  Otherwise, this instruction copies the contents of _rs1_ to _rd_.",
+      "line_number": 56,
+      "parameter_name": "CZERO_NEZ_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The behavior of the czero.nez instruction is an implementation choice based on the condition of _rs2_. It directly affects how the instruction operates."
+    }
+  ],
+  "skipped_non_parameters": []
+}
+```

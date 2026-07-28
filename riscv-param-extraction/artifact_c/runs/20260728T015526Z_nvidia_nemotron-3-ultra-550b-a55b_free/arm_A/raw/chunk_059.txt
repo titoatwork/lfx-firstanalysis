@@ -1,0 +1,30 @@
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "Implementations may optimize certain OFFSET values for vslideup and vslidedown. In particular, power-of-2 offsets may operate substantially faster than other offsets.",
+      "line_number": 3580,
+      "reason": "This is a performance hint, not an architectural parameter. The behavior of the instructions is architecturally defined regardless of offset value; implementations may choose microarchitectural optimizations."
+    },
+    {
+      "excerpt": "Implementations are allowed to add an additional additive identity to the final result.",
+      "line_number": 3720,
+      "reason": "This describes an implementation freedom in the unordered floating-point sum reduction (vfredusum) that does not affect the architectural result (the additive identity is defined). It is not a parameter that software can query or depend on."
+    },
+    {
+      "excerpt": "Implementations need not propagate NaN payloads through the reduction tree when no elements are active. In particular, if no elements are active and the scalar input is NaN, implementations are permitted to canonicalize the NaN and, if the NaN is signaling, set the invalid exception flag. Implementations are alternatively permitted to pass through the original NaN and set no exception flags, as with vfredosum.",
+      "line_number": 3730,
+      "reason": "This describes implementation-defined behavior for a corner case in vfredusum. It is not an architectural parameter because software cannot control or query which behavior the implementation chooses; both are permitted by the spec."
+    },
+    {
+      "excerpt": "All Zve* extensions have precise traps.",
+      "line_number": 3950,
+      "reason": "This is a fixed requirement for the Zve* extensions, not an implementation choice. The spec mandates precise traps for these standard extensions."
+    },
+    {
+      "excerpt": "The V vector extension has precise traps.",
+      "line_number": 3970,
+      "reason": "This is a fixed requirement for the V extension, not an implementation choice."
+    }
+  ]
+}

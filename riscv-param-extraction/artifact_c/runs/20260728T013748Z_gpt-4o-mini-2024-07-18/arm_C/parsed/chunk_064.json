@@ -1,0 +1,37 @@
+{
+  "chunk_id": "chunk_064",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "This extension defines CAS instructions to operate on 32-bit, 64-bit, and 128-bit (RV64 only) data values.",
+      "line_number": 5,
+      "parameter_name": "CAS_DATA_WIDTHS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The extension allows for implementation choices regarding the data widths (32-bit, 64-bit, 128-bit) that CAS instructions can operate on, which is a direct design decision."
+    },
+    {
+      "excerpt": "The instruction requires the first register in the pair to be even numbered; encodings with odd numbered registers specified in `rs2` and `rd` are reserved.",
+      "line_number": 118,
+      "parameter_name": "AMOCAS_PAIR_REG_EVEN",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The requirement for the first register in a pair to be even numbered is a design choice that can vary by implementation."
+    },
+    {
+      "excerpt": "The memory operation performed by an `AMOCAS.W/D/Q`, when successful, has acquire semantics if `aq` bit is 1 and has release semantics if `rl` bit is 1.",
+      "line_number": 196,
+      "parameter_name": "AMOCAS_AQ_RL_SEMANTICS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to provide acquire and release semantics based on the `aq` and `rl` bits, making this a design choice."
+    }
+  ]
+}

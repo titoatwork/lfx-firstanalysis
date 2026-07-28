@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "Each base integer instruction set is characterized by the width of the integer registers and the corresponding size of the address space and by the number of integer registers.",
+      "line_number": 90,
+      "parameter_name": "XLEN",
+      "existing_udb_name": "XLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "XLEN represents the width of the integer registers, which can be either 32 or 64 bits, and is a direct implementation choice."
+    },
+    {
+      "excerpt": "The base integer ISAs are very similar to that of the early RISC processors except with no branch delay slots and with support for optional variable-length instruction encodings.",
+      "line_number": 88,
+      "parameter_name": "VAR_LENGTH_INSTRUCTIONS",
+      "existing_udb_name": "VAR_LENGTH_INSTRUCTIONS",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to support variable-length instruction encodings or not, making it a binary choice."
+    },
+    {
+      "excerpt": "RISC-V base ISAs have either little-endian or big-endian memory systems, with the privileged architecture further defining bi-endian operation.",
+      "line_number": 646,
+      "parameter_name": "MEMORY_ENDIANNESS",
+      "existing_udb_name": "MEMORY_ENDIANNESS",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The choice of memory endianness (little-endian, big-endian, or bi-endian) is left to the implementer, making it an implementation-defined parameter."
+    },
+    {
+      "excerpt": "The execution environment determines the mapping of hardware resources into a hart's address space.",
+      "line_number": 370,
+      "parameter_name": "HW_RESOURCE_MAPPING",
+      "existing_udb_name": "HW_RESOURCE_MAPPING",
+      "class": "NORM_DIRECT",
+      "value_type": "UNKNOWN",
+      "confidence": "medium",
+      "reasoning": "The mapping of hardware resources into a hart's address space is determined by the execution environment, which is an implementation choice but lacks specific constraints."
+    },
+    {
+      "excerpt": "The execution environment may also add constraints that further limit the perceived reordering of memory accesses.",
+      "line_number": 646,
+      "parameter_name": "MEMORY_ACCESS_REORDERING",
+      "existing_udb_name": "MEMORY_ACCESS_REORDERING",
+      "class": "SW_RULE",
+      "value_type": "UNKNOWN",
+      "confidence": "medium",
+      "reasoning": "The execution environment can impose additional constraints on memory access reordering, which is implementation-defined but can be managed deterministically by software."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The RISC-V ISA is defined avoiding implementation details as much as possible.",
+      "line_number": 10,
+      "reason": "This is a general statement about the ISA design philosophy and does not define a specific implementation choice."
+    },
+    {
+      "excerpt": "The manner in which interrupts are generated, routed to, and enabled by a hart depends on the EEI.",
+      "line_number": 646,
+      "reason": "This describes behavior dependent on the execution environment and does not specify an architectural parameter."
+    },
+    {
+      "excerpt": "The base integer ISA is named 'I' (prefixed by RV32 or RV64 depending on integer register width).",
+      "line_number": 646,
+      "reason": "This is a fixed naming convention and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "The execution environment is responsible for ensuring the eventual forward progress of each of its harts.",
+      "line_number": 646,
+      "reason": "This describes a responsibility of the execution environment rather than an architectural parameter."
+    },
+    {
+      "excerpt": "The RISC-V privileged architecture provides fields in `misa` to control the unprivileged ISA at each level to support emulating different base ISAs on the same hardware.",
+      "line_number": 646,
+      "reason": "This describes a feature of the privileged architecture rather than an implementation choice."
+    }
+  ]
+}
+```

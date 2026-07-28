@@ -1,0 +1,53 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The Zabha extension mandates that the address contained in the `rs1` register must be naturally aligned to the size of the operand.",
+      "line_number": 54,
+      "parameter_name": "ZABHA_RS1_ALIGNMENT",
+      "existing_udb_name": "ZABHA_RS1_ALIGNMENT",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The alignment requirement for the address in `rs1` is a direct implementation choice that can vary based on the operand size. This is not controlled by any CSR field."
+    },
+    {
+      "excerpt": "Similar to the AMOs specified in the A extension, the Zabha extension mandates that the address contained in the `rs1` register must be naturally aligned to the size of the operand.",
+      "line_number": 54,
+      "parameter_name": "ZABHA_AMO_OPERAND_SIZE",
+      "existing_udb_name": "ZABHA_AMO_OPERAND_SIZE",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The operand size for the AMOs is a direct implementation choice that can vary based on the specific instruction used (byte or halfword)."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "Zabha omits _byte_ and _halfword_ support for `LR` and `SC` due to low utility.",
+      "line_number": 66,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a design choice rather than an architectural parameter."
+    },
+    {
+      "excerpt": "The absence of atomic operations for subword data types necessitates emulation strategies.",
+      "line_number": 5,
+      "reason": "This describes a consequence of the current architecture rather than an implementation choice. It does not define a parameter."
+    },
+    {
+      "excerpt": "For non-bitwise operations, emulation is achievable using word-sized `LR`/`SC` instructions.",
+      "line_number": 8,
+      "reason": "This describes a method of emulation rather than an architectural choice. It does not define a parameter."
+    },
+    {
+      "excerpt": "Emulation of narrower AMOs through wider AMO* instructions on non-idempotent IO memory regions may result in unintended side effects.",
+      "line_number": 11,
+      "reason": "This describes potential issues with emulation rather than an implementation choice. It does not define a parameter."
+    },
+    {
+      "excerpt": "Utilizing wider AMO* instructions for emulating narrower AMOs risks activating extraneous breakpoints or watchpoints.",
+      "line_number": 14,
+      "reason": "This describes a risk associated with a specific implementation strategy rather than an architectural parameter."
+    }
+  ]
+}
+```

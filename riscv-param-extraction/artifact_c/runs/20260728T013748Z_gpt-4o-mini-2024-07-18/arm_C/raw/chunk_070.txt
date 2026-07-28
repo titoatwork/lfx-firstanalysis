@@ -1,0 +1,63 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "Floating-point operands of width _w_ < XLEN bits occupy bits _w_-1:0 of an `x` register.",
+      "line_number": 34,
+      "parameter_name": "NARROW_OPERAND_WIDTH",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The width of floating-point operands is an implementation choice, specifically the maximum width that can be used in the `x` registers."
+    },
+    {
+      "excerpt": "Floating-point operations that produce _w_ < XLEN-bit results fill bits XLEN-1: _w_ with copies of bit _w_-1 (the sign bit).",
+      "line_number": 40,
+      "parameter_name": "NARROW_RESULT_WIDTH",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The implementation can choose how to handle the result width of floating-point operations, specifically how to fill the upper bits of the result."
+    },
+    {
+      "excerpt": "The `misa` bits F, D, and Q are hardwired to 0 when the Zfinx extension is implemented.",
+      "line_number": 139,
+      "parameter_name": "MISA_F_D_Q_ZERO",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The implementation defines the state of the `misa` bits F, D, and Q as hardwired to 0, indicating a choice about the support for these extensions."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE]\n====\nThe F extension uses separate `f` registers for floating-point computation, to reduce register pressure and simplify the provision of register-file ports for wide superscalars. However, the additional architectural state increases the minimal implementation cost. By eliminating the `f` registers, the Zfinx extension substantially reduces the cost of simple RISC-V implementations with floating-point instruction-set support. Zfinx also reduces context-switch cost.\n====",
+      "line_number": 6,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "In general, software that assumes the presence of the F extension is incompatible with software that assumes the presence of the Zfinx extension, and vice versa.",
+      "line_number": 10,
+      "reason": "This is a statement about software compatibility, not an architectural parameter."
+    },
+    {
+      "excerpt": "When a double-width floating-point result is written to `x0`, the entire write takes no effect: e.g., for RV32Zdinx, writing a double-precision result to `x0` does not cause `x1` to be written.",
+      "line_number": 83,
+      "reason": "This describes behavior when writing to a specific register, which is determined by the CSR field value at runtime, not an implementation choice."
+    },
+    {
+      "excerpt": "Regardless of endianness, the lower-numbered register holds the low-order bits, and the higher-numbered register holds the high-order bits.",
+      "line_number": 78,
+      "reason": "This describes a fixed behavior regarding register usage and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "A future discoverability mechanism might be used to probe the existence of the Zfinx, Zhinx, and Zdinx extensions.",
+      "line_number": 162,
+      "reason": "This is a speculative statement about future mechanisms, not a current architectural parameter."
+    }
+  ]
+}
+```

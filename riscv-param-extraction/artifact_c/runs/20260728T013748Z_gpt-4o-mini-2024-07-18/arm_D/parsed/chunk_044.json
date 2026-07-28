@@ -1,0 +1,27 @@
+{
+  "chunk_id": "chunk_044",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The entropy source extension defines the `seed` CSR at address `0x015`. This CSR provides up to 16 physical `entropy` bits that can be used to seed cryptographic random bit generators.",
+      "line_number": 3452,
+      "parameter_name": "ENTROPY_SEED_CSR_ADDRESS",
+      "existing_udb_name": "ENTROPY_SEED_CSR_ADDRESS",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The address of the `seed` CSR is a direct implementation choice for the entropy source extension."
+    },
+    {
+      "excerpt": "This instruction exists on RV32 and RV64 base architectures.",
+      "line_number": 3452,
+      "parameter_name": "SUPPORTED_ARCHITECTURES",
+      "existing_udb_name": "SUPPORTED_ARCHITECTURES",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The instruction's availability on RV32 and RV64 is a design choice made by the implementer."
+    }
+  ]
+}

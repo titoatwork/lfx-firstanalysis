@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The number of bits implemented in `hgeip` and `hgeie` for guest external interrupts is UNSPECIFIED and may be zero.",
+      "line_number": 1950,
+      "parameter_name": "GEILEN",
+      "existing_udb_name": "GEILEN",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "GEILEN is an implementation-defined parameter that specifies the number of bits for guest external interrupts, which can vary by implementation."
+    },
+    {
+      "excerpt": "The VSBE bit is a WARL field that controls the endianness of explicit memory accesses made from VS-mode.",
+      "line_number": 1210,
+      "parameter_name": "VSBE",
+      "existing_udb_name": "VSBE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The VSBE field is WARL, allowing implementations to define whether it is read-only or writable, and it controls the endianness of memory accesses."
+    },
+    {
+      "excerpt": "The number of VMID bits is UNSPECIFIED and may be zero.",
+      "line_number": 1664,
+      "parameter_name": "VMIDLEN",
+      "existing_udb_name": "VMIDLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "VMIDLEN is an implementation-defined parameter that specifies the number of bits for the VMID, which can vary by implementation."
+    },
+    {
+      "excerpt": "The `hgatp` register is an HSXLEN-bit read/write register, formatted as shown in <<rv32hgatp>> for HSXLEN=32 and <<rv64hgatp>> for HSXLEN=64.",
+      "line_number": 1664,
+      "parameter_name": "HSXLEN",
+      "existing_udb_name": "HSXLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "HSXLEN is a direct implementation choice that determines the effective width of the `hgatp` register, which can be either 32 or 64 bits."
+    },
+    {
+      "excerpt": "The `henvcfg` CSR is a 64-bit read/write register, formatted as shown in <<henvcfg>>, that controls certain characteristics of the execution environment when virtualization mode V=1.",
+      "line_number": 1546,
+      "parameter_name": "HENVCFG_SIZE",
+      "existing_udb_name": "HENVCFG_SIZE",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "HENVCFG_SIZE is a direct implementation choice that specifies the size of the `henvcfg` register, which is fixed at 64 bits."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] The hypervisor extension has been designed to be efficiently emulable on platforms that do not implement the extension.",
+      "line_number": 1,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a design consideration, not an architectural requirement."
+    },
+    {
+      "excerpt": "When V=1, the `vsstatus` field MXR, which makes execute-only pages readable by explicit loads, only overrides VS-stage page protection.",
+      "line_number": 1,
+      "reason": "This describes behavior based on the value of V, which is runtime behavior, not an implementation choice."
+    },
+    {
+      "excerpt": "When V=0, a write to `vsatp` with an unsupported MODE value is either ignored as it is for `satp`, or the fields of `vsatp` are treated as WARL in the normal way.",
+      "line_number": 1,
+      "reason": "This describes behavior based on the value of V, which is runtime behavior, not an implementation choice."
+    },
+    {
+      "excerpt": "The `hstatus` register tracks and controls a VS-mode guest.",
+      "line_number": 1,
+      "reason": "This is a fixed requirement that describes the purpose of the `hstatus` register, not an implementation choice."
+    },
+    {
+      "excerpt": "The `henvcfg` CSR is a 64-bit read/write register, formatted as shown in <<henvcfg>>, that controls certain characteristics of the execution environment when virtualization mode V=1.",
+      "line_number": 1,
+      "reason": "This describes the function of the `henvcfg` CSR, which is a fixed requirement, not an implementation choice."
+    }
+  ]
+}
+```

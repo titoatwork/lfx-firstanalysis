@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "Implementations may contain additional CSRs, accessible by some subset of the privilege levels using the CSR instructions described in Volume I.",
+      "line_number": 8,
+      "parameter_name": "ADDITIONAL_CSRS_ACCESSIBILITY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to include additional CSRs and determine which privilege levels can access them, making this a direct implementation choice."
+    },
+    {
+      "excerpt": "The top two bits (csr[11:10]) indicate whether the register is read/write (`00`,`01`, or `10`) or read-only (`11`).",
+      "line_number": 30,
+      "parameter_name": "CSR_ACCESSIBILITY_MODES",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The accessibility modes for CSRs are defined as read/write or read-only, which is a choice made by the implementer."
+    },
+    {
+      "excerpt": "Implementations will not raise an exception on writes of unsupported values to a *WARL* field.",
+      "line_number": 118,
+      "parameter_name": "WARL_WRITE_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The behavior of WARL fields regarding unsupported writes is defined, indicating that implementations can choose to handle these writes without raising exceptions."
+    },
+    {
+      "excerpt": "Some read/write CSR fields specify behavior for only a subset of possible bit encodings, with other bit encodings reserved.",
+      "line_number": 112,
+      "parameter_name": "WLRL_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The specification allows for certain fields to have restricted legal values, indicating an implementation-defined behavior for handling writes to these fields."
+    },
+    {
+      "excerpt": "Some read/write CSR fields are only defined for a subset of bit encodings, but allow any value to be written while guaranteeing to return a legal value whenever read.",
+      "line_number": 114,
+      "parameter_name": "WARL_FIELD_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The behavior of WARL fields allows for any value to be written, which is a choice left to the implementer regarding how to handle unsupported values."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "Implementations should raise illegal-instruction exceptions on machine-mode access to the latter set of registers.",
+      "line_number": 40,
+      "reason": "This is a fixed requirement that all implementations must satisfy, not an implementation choice."
+    },
+    {
+      "excerpt": "Software should ignore the values read from these fields, and should preserve the values held in these fields when writing values to other fields of the same register.",
+      "line_number": 118,
+      "reason": "This describes software behavior and requirements, not an architectural parameter."
+    },
+    {
+      "excerpt": "The value returned by an implicit read of a CSR is the same value that would have been returned by an explicit read of the CSR.",
+      "line_number": 134,
+      "reason": "This describes behavior rather than an implementation choice, thus not qualifying as a parameter."
+    },
+    {
+      "excerpt": "Changing the width of a CSR is not a read or write of the CSR and thus does not trigger any side effects.",
+      "line_number": 150,
+      "reason": "This is a description of behavior related to CSR width changes, not an architectural parameter."
+    },
+    {
+      "excerpt": "Some CSR fields are, when writable, defined as aliases of other CSR fields.",
+      "line_number": 144,
+      "reason": "This describes a relationship between CSR fields rather than an implementation choice, thus not qualifying as a parameter."
+    }
+  ]
+}
+```

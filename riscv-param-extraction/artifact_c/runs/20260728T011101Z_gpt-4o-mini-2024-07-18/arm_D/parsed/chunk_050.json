@@ -1,0 +1,27 @@
+{
+  "chunk_id": "chunk_050",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "this extension introduces the `RLB`, `MMWP`, and `MML` fields in the `mseccfg` CSR and their associated rules.",
+      "line_number": 40,
+      "parameter_name": "MSECCFG_FIELDS",
+      "existing_udb_name": "MSECCFG_FIELDS",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The introduction of the RLB, MMWP, and MML fields in the mseccfg CSR is a direct implementation choice, allowing for different configurations of memory protection."
+    },
+    {
+      "excerpt": "Locked rules cannot be removed or modified until a PMP reset, unless `mseccfg.RLB` is set.",
+      "line_number": 66,
+      "parameter_name": "MSECCFG_RLB_LOCKING",
+      "existing_udb_name": "MSECCFG_RLB_LOCKING",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether the RLB field allows for modification of locked rules, creating a binary choice about the mutability of the locking mechanism."
+    }
+  ]
+}

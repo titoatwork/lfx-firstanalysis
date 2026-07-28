@@ -1,0 +1,32 @@
+```json
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "If _rs2_ contains the value zero, this instruction writes the value zero to _rd_.  Otherwise, this instruction copies the contents of _rs1_ to _rd_.",
+      "line_number": 15,
+      "reason": "This describes the behavior of the czero.eqz instruction based on the values of _rs1_ and _rs2_, not an implementation choice."
+    },
+    {
+      "excerpt": "If _rs2_ contains a nonzero value, this instruction writes the value zero to _rd_.  Otherwise, this instruction copies the contents of _rs1_ to _rd_.",
+      "line_number": 45,
+      "reason": "This describes the behavior of the czero.nez instruction based on the values of _rs1_ and _rs2_, not an implementation choice."
+    },
+    {
+      "excerpt": "Furthermore, if the Zkt extension is implemented, this instruction's timing is independent of the data values in _rs1_ and _rs2_.",
+      "line_number": 19,
+      "reason": "This is a conditional statement about timing behavior based on the presence of the Zkt extension, not an architectural parameter."
+    },
+    {
+      "excerpt": "The instructions from this extension can be used to construct sequences that perform conditional-arithmetic, conditional-bitwise-logical, and conditional-select operations.",
+      "line_number": 63,
+      "reason": "This is a general statement about the usage of the instructions, not an implementation choice."
+    },
+    {
+      "excerpt": "This instruction carries a syntactic dependency from both _rs1_ and _rs2_ to _rd_.",
+      "line_number": 15,
+      "reason": "This describes a syntactic dependency in the instruction's operation, not an architectural parameter."
+    }
+  ]
+}
+```

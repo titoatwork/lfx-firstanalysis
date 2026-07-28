@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_052",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The OF bit is set when the corresponding hpmcounter overflows, and remains set until written by software.",
+      "line_number": 43,
+      "parameter_name": "HW_MHPMEVENT_OF_BIT",
+      "existing_udb_name": "HW_MHPMEVENT_OF_BIT",
+      "class": "SW_RULE",
+      "value_type": "binary",
+      "confidence": "medium",
+      "reasoning": "The behavior of the OF bit being set on overflow is implementation-defined, but the outcome is deterministic if software manages the counter correctly."
+    },
+    {
+      "excerpt": "If supervisor mode is implemented, the 32-bit scountovf register contains read-only shadow copies of the OF bits in all 29 mhpmevent registers.",
+      "line_number": 66,
+      "parameter_name": "HW_SCOUNTOVF_SHADOW_COPIES",
+      "existing_udb_name": "HW_SCOUNTOVF_SHADOW_COPIES",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether the scountovf register contains shadow copies of the OF bits based on whether supervisor mode is implemented."
+    },
+    {
+      "excerpt": "Each of the five ``x``INH bits, when set, inhibit counting of events while in privilege mode ``x``.",
+      "line_number": 36,
+      "parameter_name": "HW_MHPMEVENT_INH_BITS",
+      "existing_udb_name": "HW_MHPMEVENT_INH_BITS",
+      "class": "NORM_CSR_WARL",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The xINH bits are WARL fields, and their implementation can vary, allowing for different configurations of event counting inhibition."
+    },
+    {
+      "excerpt": "The `mip`/`sip` LCOFIP and `mie`/`sie` LCOFIE bits are, respectively, the interrupt-pending and interrupt-enable bits for this interrupt.",
+      "line_number": 78,
+      "parameter_name": "HW_LCOFIP_ENABLE",
+      "existing_udb_name": "HW_LCOFIP_ENABLE",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to enable the Local Counter Overflow Interrupt through the LCOFIE bit."
+    }
+  ]
+}

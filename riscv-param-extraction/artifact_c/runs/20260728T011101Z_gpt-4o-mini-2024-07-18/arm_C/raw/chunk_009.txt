@@ -1,0 +1,73 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "the size of a cache block shall be uniform throughout the system.",
+      "line_number": 56,
+      "parameter_name": "CACHE_BLOCK_SIZE",
+      "existing_udb_name": "CACHE_BLOCK_SIZE",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The size of a cache block is a direct implementation choice that must be uniform across the system, making it a clear architectural parameter."
+    },
+    {
+      "excerpt": "An implementation may or may not update the entire set of bytes atomically with a single store operation.",
+      "line_number": 90,
+      "parameter_name": "CACHE_BLOCK_ZERO_ATOMICITY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation has a choice regarding whether the cache block zero instruction updates bytes atomically, which is a design decision."
+    },
+    {
+      "excerpt": "An implementation may opt to cache a copy of the cache block in a cache accessed by an instruction fetch in order to improve memory access latency, but this behavior is not required.",
+      "line_number": 102,
+      "parameter_name": "CACHE_BLOCK_PREFETCH_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to cache a copy of the cache block for instruction fetches is left to the implementation, indicating an architectural parameter."
+    },
+    {
+      "excerpt": "The Zicboz extension introduces an additional supported access type PMA for cache-block zero instructions.",
+      "line_number": 1000,
+      "parameter_name": "CACHE_BLOCK_ZERO_ACCESS_TYPE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The PMA for cache-block zero instructions is WARL, meaning the legal values for this field can vary by implementation."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "A given agent may not be able to access all memory locations in a system, and two different agents may or may not be able to access the same set of memory locations.",
+      "line_number": 20,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "The PMP access control bits shall be the same for all physical addresses in the cache block, and if write permission is granted by the PMP access control bits, read permission shall also be granted.",
+      "line_number": 1000,
+      "reason": "This is a fixed requirement ('shall be the same') that all implementations must satisfy. There is no implementation choice here."
+    },
+    {
+      "excerpt": "Execution of certain CMO instructions may result in traps due to CSR state, described in the csr_state section, or due to the address translation and protection mechanisms.",
+      "line_number": 1000,
+      "reason": "This describes potential runtime behavior and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "The interaction between cache-block management instructions and instruction fetches will be specified in a future extension.",
+      "line_number": 1000,
+      "reason": "This is a statement about future specifications and does not define a current architectural parameter."
+    },
+    {
+      "excerpt": "The behavior of trigger modules with respect to CMO instructions is UNSPECIFIED.",
+      "line_number": 1000,
+      "reason": "This indicates a lack of specification rather than an implementation choice, thus not qualifying as a parameter."
+    }
+  ]
+}
+```

@@ -1,0 +1,63 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "For BF16 these values are: radix (b) 2, significand (p) 8, emax 127.",
+      "line_number": 66,
+      "parameter_name": "BF16_FORMAT_PARAMETERS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The radix, significand, and maximum exponent for the BF16 format are direct implementation choices that define the format's characteristics."
+    },
+    {
+      "excerpt": "RISC-V Floating Point Rounding Modes: 000 | RNE | Round to Nearest, ties to Even, 001 | RTZ | Round towards Zero, 010 | RDN | Round Down (towards −{inf}), 011 | RUP | Round Up (towards +{inf}), 100 | RMM | Round to Nearest, ties to Max Magnitude.",
+      "line_number": 157,
+      "parameter_name": "BF16_ROUNDING_MODES",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The rounding modes supported by BF16 are WARL, and the specific modes available can vary by implementation."
+    },
+    {
+      "excerpt": "The BF16 extensions defined in this specification (i.e., Zfbfmin, Zvfbfmin, and Zvfbfwma) depend on the single-precision floating-point extension F.",
+      "line_number": 370,
+      "parameter_name": "BF16_EXTENSION_DEPENDENCIES",
+      "existing_udb_name": null,
+      "class": "NON_ISA",
+      "value_type": "set",
+      "confidence": "medium",
+      "reasoning": "The dependencies of BF16 extensions on other extensions are implementation choices, but they are not strictly architectural parameters."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] Future floating-point extensions, including those that operate on BF16 values, may chose not to support subnormal numbers.",
+      "line_number": 200,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a potential future choice, not an architectural requirement."
+    },
+    {
+      "excerpt": "BF16 addition, subtraction, multiplication, division, and square-root operations can be faithfully emulated by converting the BF16 operands to single-precision.",
+      "line_number": 490,
+      "reason": "This describes a method of emulation rather than an implementation choice. It does not define a parameter."
+    },
+    {
+      "excerpt": "The default IEEE rounding mode (round to nearest, ties to even) is generally used for arithmetic.",
+      "line_number": 157,
+      "reason": "This is a description of typical behavior rather than an architectural parameter. It does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "RISC-V supports IEEE-defined default exception handling. BF16 is no exception.",
+      "line_number": 200,
+      "reason": "This describes compliance with IEEE standards rather than an implementation choice. It is not a parameter."
+    },
+    {
+      "excerpt": "The group of extensions introduced by the BF16 Instruction Set Extensions is listed here.",
+      "line_number": 370,
+      "reason": "This is an introductory statement about the extensions and does not define a specific architectural parameter."
+    }
+  ]
+}
+```

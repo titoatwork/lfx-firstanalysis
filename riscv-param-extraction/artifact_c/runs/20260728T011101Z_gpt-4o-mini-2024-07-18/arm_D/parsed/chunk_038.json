@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_038",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The RNMI interrupt trap handler address is implementation-defined.",
+      "line_number": 34,
+      "parameter_name": "RNMI_TRAP_HANDLER_ADDRESS",
+      "existing_udb_name": "RNMI_TRAP_HANDLER_ADDRESS",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The RNMI interrupt trap handler address is explicitly stated to be implementation-defined, indicating a choice for the implementer."
+    },
+    {
+      "excerpt": "RNMI also has an associated exception trap handler address, which is implementation defined.",
+      "line_number": 36,
+      "parameter_name": "RNMI_EXCEPTION_TRAP_HANDLER_ADDRESS",
+      "existing_udb_name": "RNMI_EXCEPTION_TRAP_HANDLER_ADDRESS",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The exception trap handler address for RNMI is also implementation-defined, allowing the implementer to choose its value."
+    },
+    {
+      "excerpt": "`mnepc` is a WARL register that must be able to hold all valid virtual addresses.",
+      "line_number": 78,
+      "parameter_name": "MNEPC_VALID_ADDRESS_RANGE",
+      "existing_udb_name": "MNEPC_VALID_ADDRESS_RANGE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The `mnepc` register is defined as WARL, and the set of valid virtual addresses it can hold is implementation-defined."
+    },
+    {
+      "excerpt": "`mnstatus` also holds the NMIE bit. When NMIE=1, non-maskable interrupts are enabled.",
+      "line_number": 134,
+      "parameter_name": "HW_MNSTATUS_NMIE_ENABLE",
+      "existing_udb_name": "HW_MNSTATUS_NMIE_ENABLE",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The NMIE bit in `mnstatus` can be set or cleared by the implementation, indicating a choice between enabling or disabling non-maskable interrupts."
+    }
+  ]
+}

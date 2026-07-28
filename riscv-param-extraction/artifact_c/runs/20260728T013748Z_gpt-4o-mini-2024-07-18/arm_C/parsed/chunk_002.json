@@ -1,0 +1,67 @@
+{
+  "chunk_id": "chunk_002",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The bitmanip extensions are defined for RV32 and RV64.",
+      "line_number": 12,
+      "parameter_name": "BITMANIP_ARCHITECTURES",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The choice of supporting either RV32 or RV64 for the bitmanip extensions is a direct implementation decision."
+    },
+    {
+      "excerpt": "The shift and add instructions do a left shift of 1, 2, or 3 because these are commonly found in real-world code.",
+      "line_number": 20,
+      "parameter_name": "MAX_LEFT_SHIFT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The maximum left shift value (1, 2, or 3) is an implementation choice that can vary based on design decisions."
+    },
+    {
+      "excerpt": "The following instructions comprise the Zba extension:",
+      "line_number": 30,
+      "parameter_name": "ZBA_INSTRUCTIONS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The specific instructions included in the Zba extension are determined by the implementer."
+    },
+    {
+      "excerpt": "The B standard extension comprises instructions provided by the Zba, Zbb, and Zbs extensions.",
+      "line_number": 28,
+      "parameter_name": "B_EXTENSION_COMPOSITION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The composition of the B extension is an implementation choice that can vary based on which extensions are included."
+    },
+    {
+      "excerpt": "The xperm8 instruction operates on bytes.",
+      "line_number": 300,
+      "parameter_name": "XPERM8_OPERAND_TYPE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice of operating on bytes for the xperm8 instruction is a design decision made by the implementer."
+    },
+    {
+      "excerpt": "The xperm4 instruction operates on nibbles.",
+      "line_number": 320,
+      "parameter_name": "XPERM4_OPERAND_TYPE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice of operating on nibbles for the xperm4 instruction is a design decision made by the implementer."
+    }
+  ]
+}

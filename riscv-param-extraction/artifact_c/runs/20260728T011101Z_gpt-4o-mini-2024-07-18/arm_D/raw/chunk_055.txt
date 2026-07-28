@@ -1,0 +1,93 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "When SXLEN=64, it is a WARL field that encodes the current value of UXLEN. In particular, an implementation may make UXL be a read-only field whose value always ensures that UXLEN=SXLEN.",
+      "line_number": 42,
+      "parameter_name": "UXL_ACCESS",
+      "existing_udb_name": "UXL_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether UXL is read-only or read-write, which directly affects how UXLEN is accessed."
+    },
+    {
+      "excerpt": "The UBE bit is a WARL field that controls the endianness of explicit memory accesses made from U-mode, which may differ from the endianness of memory accesses in S-mode.",
+      "line_number": 112,
+      "parameter_name": "UBE_ENDIANNESS",
+      "existing_udb_name": "UBE_ENDIANNESS",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "UBE is a WARL field, and its implementation can vary, allowing for different endianness configurations."
+    },
+    {
+      "excerpt": "The S-mode-disable-trap (`SDT`) bit is a WARL field introduced by the Ssdbltrp extension to address double trap.",
+      "line_number": 198,
+      "parameter_name": "SDT_FIELD",
+      "existing_udb_name": "SDT_FIELD",
+      "class": "NORM_CSR_WARL",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "SDT is a WARL field, and its implementation can vary, allowing for different configurations regarding double traps."
+    },
+    {
+      "excerpt": "The `stvec` register is an SXLEN-bit read/write register that holds trap vector configuration, consisting of a vector base address (BASE) and a vector mode (MODE).",
+      "line_number": 220,
+      "parameter_name": "STVEC_MODE",
+      "existing_udb_name": "STVEC_MODE",
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The MODE field in `stvec` can be implemented in different ways, allowing for various configurations of trap handling."
+    },
+    {
+      "excerpt": "The `satp` CSR is an SXLEN-bit read/write register, formatted as shown in <<rv32satp>> for SXLEN=32 and <<rv64satp>> for SXLEN=64, which controls supervisor-mode address translation and protection.",
+      "line_number": 300,
+      "parameter_name": "SATP_MODE",
+      "existing_udb_name": "SATP_MODE",
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The MODE field in `satp` can be implemented in different ways, allowing for various address translation schemes."
+    },
+    {
+      "excerpt": "The `senvcfg` CSR is an SXLEN-bit read/write register, formatted as shown in <<senvcfg>>, that controls certain characteristics of the U-mode execution environment.",
+      "line_number": 400,
+      "parameter_name": "SENVCFG_FIELDS",
+      "existing_udb_name": "SENVCFG_FIELDS",
+      "class": "NORM_CSR_RW",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The fields in `senvcfg` can be implemented in various ways, allowing for different configurations of the U-mode execution environment."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The implementation must provide a facility for scheduling timer interrupts in terms of the real-time counter, `time`.",
+      "line_number": 500,
+      "reason": "This is a fixed requirement that all implementations must satisfy, not an implementation choice."
+    },
+    {
+      "excerpt": "The `sscratch` CSR is an SXLEN-bit read/write register, dedicated for use by the supervisor.",
+      "line_number": 600,
+      "reason": "This describes the purpose of the `sscratch` CSR, which is a fixed requirement, not an implementation choice."
+    },
+    {
+      "excerpt": "The `stimecmp` CSR is a 64-bit register and has 64-bit precision on all RV32 and RV64 systems.",
+      "line_number": 700,
+      "reason": "This is a fixed requirement about the size and precision of the `stimecmp` CSR, not an implementation choice."
+    },
+    {
+      "excerpt": "The `scause` CSR is an SXLEN-bit read-write register formatted as shown in <<scausereg>>.",
+      "line_number": 800,
+      "reason": "This describes the format of the `scause` CSR, which is a fixed requirement, not an implementation choice."
+    },
+    {
+      "excerpt": "The `sepc` CSR is a WARL register that must be able to hold all valid virtual addresses.",
+      "line_number": 900,
+      "reason": "This is a fixed requirement that all implementations must satisfy, not an implementation choice."
+    }
+  ]
+}
+```

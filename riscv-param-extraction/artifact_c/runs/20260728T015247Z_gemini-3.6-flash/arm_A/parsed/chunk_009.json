@@ -1,0 +1,27 @@
+{
+  "chunk_id": "chunk_009",
+  "arm": "A",
+  "model": "gemini-3.6-flash",
+  "parameters": [
+    {
+      "excerpt": "The capacity and organization of a cache and the size of a cache block are both _implementation-specific_, and the execution environment provides software a means to discover information about the caches and cache blocks in a system.",
+      "line_number": 101,
+      "parameter_name": "CACHE_BLOCK_SIZE",
+      "existing_udb_name": "CACHE_BLOCK_SIZE",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The size of a cache block is explicitly stated to be implementation-specific, representing a direct architectural choice fixed at design time."
+    },
+    {
+      "excerpt": "Each `x{csrname}` register is WARL; however, software should determine the legal values from the execution environment discovery mechanism.",
+      "line_number": 406,
+      "parameter_name": "XENVCFG_CBO_WARL",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The CBO enable fields (CBIE, CBCFE, CBZE) in the xenvcfg registers are WARL, meaning the set of legal/writable field values is implementation-defined."
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_012",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "FLEN can be 32, 64, or 128 depending on which of the F, D, and Q extensions are supported.",
+      "line_number": 7,
+      "parameter_name": "FLEN",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "FLEN represents a direct implementation choice regarding the floating-point register width, with specific allowed values (32, 64, or 128) based on supported extensions."
+    },
+    {
+      "excerpt": "A narrower _n_-bit transfer, _n_<FLEN, into the `f` registers will create a valid NaN-boxed value.",
+      "line_number": 29,
+      "parameter_name": "NARROWER_TRANSFER_NAN_BOXING",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to create a valid NaN-boxed value for narrower transfers, indicating a binary choice in handling these operations."
+    },
+    {
+      "excerpt": "FLD and FSD are only guaranteed to execute atomically if the effective address is naturally aligned and XLEN{ge}64.",
+      "line_number": 83,
+      "parameter_name": "FLD_FSD_ATOMIC_ALIGNMENT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The atomic execution of FLD and FSD depends on the alignment of the effective address and the implementation of XLEN, which is a design-time choice."
+    },
+    {
+      "excerpt": "For XLEN{ge}64 only, instructions are provided to move bit patterns between the floating-point and integer registers.",
+      "line_number": 157,
+      "parameter_name": "XLEN_SUPPORTS_BIT_PATTERN_MOVEMENT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The ability to move bit patterns between floating-point and integer registers is contingent on the implementation of XLEN being 64 or greater, indicating a design choice."
+    }
+  ]
+}

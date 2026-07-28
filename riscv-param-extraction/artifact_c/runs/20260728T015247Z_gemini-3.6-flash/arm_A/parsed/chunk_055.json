@@ -1,0 +1,67 @@
+{
+  "chunk_id": "chunk_055",
+  "arm": "A",
+  "model": "gemini-3.6-flash",
+  "parameters": [
+    {
+      "excerpt": "The UBE bit is a *WARL* field that controls the endianness of explicit memory accesses made from U-mode, which may differ from the endianness of memory accesses in S-mode. An implementation may make UBE be a read-only field that always specifies the same endianness as for S-mode.",
+      "line_number": 207,
+      "parameter_name": "U_MODE_ENDIANNESS",
+      "existing_udb_name": "U_MODE_ENDIANNESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether UBE in sstatus is read-only (fixed endianness) or read-write (dynamic endianness) for U-mode memory accesses."
+    },
+    {
+      "excerpt": "`scounteren` must be implemented. However, any of the bits may be read-only zero, indicating reads to the corresponding counter will cause an exception when executing in U-mode.",
+      "line_number": 458,
+      "parameter_name": "SCOUNTENABLE_EN",
+      "existing_udb_name": "SCOUNTENABLE_EN",
+      "class": "NORM_CSR_WARL",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The bits of scounteren are WARL fields; an implementation chooses which individual counter access bits are writable or read-only zero."
+    },
+    {
+      "excerpt": "On a breakpoint exception raised by an EBREAK or C.EBREAK instruction, `stval` is written with either zero or the virtual address of the instruction.",
+      "line_number": 559,
+      "parameter_name": "REPORT_VA_IN_STVAL_ON_BREAKPOINT",
+      "existing_udb_name": "REPORT_VA_IN_STVAL_ON_BREAKPOINT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "An implementation choice on whether stval is populated with the instruction virtual address or zero upon a breakpoint exception."
+    },
+    {
+      "excerpt": "The `stval` register can optionally also be used to return the faulting instruction bits on an illegal-instruction exception (`sepc` points to the faulting instruction in memory).",
+      "line_number": 580,
+      "parameter_name": "REPORT_ENCODING_IN_STVAL_ON_ILLEGAL_INSTRUCTION",
+      "existing_udb_name": "REPORT_ENCODING_IN_STVAL_ON_ILLEGAL_INSTRUCTION",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "An implementation parameter controlling whether faulting instruction bits are written to stval on an illegal instruction exception."
+    },
+    {
+      "excerpt": "The number of ASID bits is UNSPECIFIED and may be zero.",
+      "line_number": 739,
+      "parameter_name": "ASID_WIDTH",
+      "existing_udb_name": "ASID_WIDTH",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of implemented ASID bits (ASIDLEN) is an architectural parameter chosen by the hardware implementation (from 0 up to ASIDMAX)."
+    },
+    {
+      "excerpt": "For implementations that make `satp`.MODE read-only zero (always Bare), attempts to execute an SFENCE.VMA instruction might raise an illegal-instruction exception.",
+      "line_number": 891,
+      "parameter_name": "TRAP_ON_SFENCE_VMA_WHEN_SATP_MODE_IS_READ_ONLY",
+      "existing_udb_name": "TRAP_ON_SFENCE_VMA_WHEN_SATP_MODE_IS_READ_ONLY",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "When satp.MODE is hardwired to Bare (read-only zero), the implementation chooses whether SFENCE.VMA raises an illegal instruction exception or acts as a no-op."
+    }
+  ]
+}

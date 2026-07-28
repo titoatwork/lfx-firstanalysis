@@ -1,0 +1,93 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "mcyclecfg and minstretcfg are 64-bit registers that configure privilege mode filtering for the cycle and instret counters, respectively.",
+      "line_number": 8,
+      "parameter_name": "MACHINE_COUNTER_CONFIG_REGISTERS",
+      "existing_udb_name": "MACHINE_COUNTER_CONFIG_REGISTERS",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The mcyclecfg and minstretcfg registers are direct implementation choices that configure privilege mode filtering for the respective counters."
+    },
+    {
+      "excerpt": "If set, then counting of events in M-mode is inhibited.",
+      "line_number": 12,
+      "parameter_name": "MINH_INHIBIT",
+      "existing_udb_name": "MINH_INHIBIT",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The MINH field in both mcyclecfg and minstretcfg is a read-write field that determines whether counting is inhibited in M-mode, representing a binary choice."
+    },
+    {
+      "excerpt": "If set, then counting of events in S/HS-mode is inhibited.",
+      "line_number": 13,
+      "parameter_name": "SINH_INHIBIT",
+      "existing_udb_name": "SINH_INHIBIT",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The SINH field in both mcyclecfg and minstretcfg is a read-write field that determines whether counting is inhibited in S/HS-mode, representing a binary choice."
+    },
+    {
+      "excerpt": "If set, then counting of events in U-mode is inhibited.",
+      "line_number": 14,
+      "parameter_name": "UINH_INHIBIT",
+      "existing_udb_name": "UINH_INHIBIT",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The UINH field in both mcyclecfg and minstretcfg is a read-write field that determines whether counting is inhibited in U-mode, representing a binary choice."
+    },
+    {
+      "excerpt": "If set, then counting of events in VS-mode is inhibited.",
+      "line_number": 15,
+      "parameter_name": "VSINH_INHIBIT",
+      "existing_udb_name": "VSINH_INHIBIT",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The VSINH field in both mcyclecfg and minstretcfg is a read-write field that determines whether counting is inhibited in VS-mode, representing a binary choice."
+    },
+    {
+      "excerpt": "If set, then counting of events in VU-mode is inhibited.",
+      "line_number": 16,
+      "parameter_name": "VUINH_INHIBIT",
+      "existing_udb_name": "VUINH_INHIBIT",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The VUINH field in both mcyclecfg and minstretcfg is a read-write field that determines whether counting is inhibited in VU-mode, representing a binary choice."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "By default, these counters are not filtered by privilege mode, and thus they continue to increment while traps (e.g., page faults or interrupts) to more privileged code are handled.",
+      "line_number": 5,
+      "reason": "This describes the default behavior of the counters and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "When all __x__INH bits are zero, event counting is enabled in all modes.",
+      "line_number": 20,
+      "reason": "This describes a condition for behavior rather than an implementation choice or parameter."
+    },
+    {
+      "excerpt": "For each bit in 61:58, if the associated privilege mode is not implemented, the bit is read-only zero.",
+      "line_number": 21,
+      "reason": "This describes a fixed requirement about the behavior of the bits rather than an implementation choice."
+    },
+    {
+      "excerpt": "The fundamental behavior of cycle and instret is modified in that counting does not occur while executing in an inhibited privilege mode.",
+      "line_number": 25,
+      "reason": "This describes the behavior of the counters under certain conditions, not an implementation choice."
+    },
+    {
+      "excerpt": "The instret definition above is intended to ensure that the counter increments in a predictable fashion.",
+      "line_number": 36,
+      "reason": "This describes the intended behavior of the instret counter rather than an implementation choice."
+    }
+  ]
+}
+```

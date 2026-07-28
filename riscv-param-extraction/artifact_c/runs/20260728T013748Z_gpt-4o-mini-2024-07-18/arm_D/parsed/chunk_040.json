@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_040",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "For resource-constrained embedded applications, we have defined the RV32E subset, which only has 16 registers.",
+      "line_number": 110,
+      "parameter_name": "NUM_REGISTERS_RV32E",
+      "existing_udb_name": "NUM_REGISTERS_RV32E",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The RV32E subset is an implementation choice that allows for only 16 registers, contrasting with the standard 32 registers in RV32I."
+    },
+    {
+      "excerpt": "The EEI will define what portions of the address space are legal to access with which instructions (e.g., some addresses might be read only, or support word access only).",
+      "line_number": 1000,
+      "parameter_name": "EEI_ADDRESS_SPACE_ACCESS",
+      "existing_udb_name": "EEI_ADDRESS_SPACE_ACCESS",
+      "class": "NON_ISA",
+      "value_type": "UNKNOWN",
+      "confidence": "medium",
+      "reasoning": "The EEI's definition of address space access is implementation-defined, allowing for various configurations of memory access permissions."
+    },
+    {
+      "excerpt": "The EEI will define whether the memory system is little-endian or big-endian.",
+      "line_number": 1001,
+      "parameter_name": "MEMORY_ENDIANNESS",
+      "existing_udb_name": "MEMORY_ENDIANNESS",
+      "class": "NON_ISA",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The choice of endianness is left to the EEI, making it an architectural parameter that can vary between implementations."
+    },
+    {
+      "excerpt": "The FENCE mode field _fm_ defines the semantics of the FENCE instruction.",
+      "line_number": 1002,
+      "parameter_name": "FENCE_MODE",
+      "existing_udb_name": "FENCE_MODE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The _fm_ field in the FENCE instruction is WARL, allowing implementations to define different semantics for memory ordering."
+    }
+  ]
+}

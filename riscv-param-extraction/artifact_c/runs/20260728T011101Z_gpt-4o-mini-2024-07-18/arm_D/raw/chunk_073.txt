@@ -1,0 +1,32 @@
+```json
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The FENCE.I instruction was designed to support a wide variety of implementations.",
+      "line_number": 10,
+      "reason": "This text describes the design considerations for FENCE.I but does not define an architectural parameter."
+    },
+    {
+      "excerpt": "In particular, for designs that have an incoherent instruction cache and an incoherent data cache, or where the instruction cache refill does not snoop a coherent data cache, both caches must be completely flushed when a FENCE.I instruction is encountered.",
+      "line_number": 20,
+      "reason": "This describes a requirement for certain designs, not an implementation choice, and thus is not a parameter."
+    },
+    {
+      "excerpt": "For this reason, the standard Linux ABI has removed FENCE.I from user-level and now requires a system call to maintain instruction-fetch coherence.",
+      "line_number": 30,
+      "reason": "This is a description of ABI requirements and does not indicate an architectural parameter."
+    },
+    {
+      "excerpt": "Future approaches to instruction-fetch coherence under discussion include providing more restricted versions of FENCE.I that only target a given address specified in _rs1_, and/or allowing software to use an ABI that relies on machine-mode cache-maintenance operations.",
+      "line_number": 40,
+      "reason": "This discusses potential future features but does not define current architectural parameters."
+    },
+    {
+      "excerpt": "Because FENCE.I only orders stores with a hart's own instruction fetches, application code should only rely upon FENCE.I if the application thread will not be migrated to a different hart.",
+      "line_number": 50,
+      "reason": "This is a behavioral guideline rather than a parameter, as it does not specify an implementation choice."
+    }
+  ]
+}
+```

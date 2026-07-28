@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The Zicfilp extensions may be activated for use individually and independently for each privilege mode.",
+      "line_number": 89,
+      "parameter_name": "ZICFILP_ACTIVATION",
+      "existing_udb_name": "ZICFILP_ACTIVATION",
+      "class": "NORM_DIRECT",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The activation of the Zicfilp extension can be chosen independently for each privilege mode, making it a direct implementation choice."
+    },
+    {
+      "excerpt": "The `ELP` state can be one of: * 0 - `NO_LP_EXPECTED` * 1 - `LP_EXPECTED`",
+      "line_number": 157,
+      "parameter_name": "ELP_STATE",
+      "existing_udb_name": "ELP_STATE",
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The `ELP` state is a read-write CSR field that can take on specific values defined by the implementation, indicating whether a landing pad is expected."
+    },
+    {
+      "excerpt": "The landing pad may be optionally associated with a 20-bit label.",
+      "line_number": 103,
+      "parameter_name": "LPAD_LABELING",
+      "existing_udb_name": "LPAD_LABELING",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to associate a landing pad with a label is an implementation decision, allowing for either labeled or unlabeled landing pads."
+    },
+    {
+      "excerpt": "The `ssp` CSR is an unprivileged read-write (URW) CSR that reads and writes XLEN low order bits of the shadow stack pointer (`ssp`).",
+      "line_number": 678,
+      "parameter_name": "SSP_ACCESS",
+      "existing_udb_name": "SSP_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The `ssp` CSR is defined as read-write, allowing implementations to choose how it is accessed."
+    },
+    {
+      "excerpt": "The Zicfiss extension may be activated for use individually and independently for each privilege mode.",
+      "line_number": 678,
+      "parameter_name": "ZICFISS_ACTIVATION",
+      "existing_udb_name": "ZICFISS_ACTIVATION",
+      "class": "NORM_DIRECT",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The activation of the Zicfiss extension can be chosen independently for each privilege mode, making it a direct implementation choice."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "When Zicfilp is not active at a privilege level or when the extension is not implemented, the landing pad instruction executes as a no-op.",
+      "line_number": 103,
+      "reason": "This describes behavior when the extension is not active, not an implementation choice."
+    },
+    {
+      "excerpt": "The `LPAD` instruction requires a 4-byte alignment to address the concatenation of two instructions.",
+      "line_number": 157,
+      "reason": "This is a fixed requirement for instruction alignment, not an implementation choice."
+    },
+    {
+      "excerpt": "Compilers should provide an attribute flag to indicate if the program has been compiled with the Zicfilp extension.",
+      "line_number": 89,
+      "reason": "This is a recommendation for compiler behavior, not an architectural parameter."
+    },
+    {
+      "excerpt": "The `SSPUSH` instruction and its compressed form `C.SSPUSH` can be used to push a link register on the shadow stack.",
+      "line_number": 678,
+      "reason": "This describes the functionality of an instruction, not an implementation choice."
+    },
+    {
+      "excerpt": "The `SSPOPCHK` instruction, and its compressed form `C.SSPOPCHK`, can be used to pop the shadow return address value from the shadow stack.",
+      "line_number": 678,
+      "reason": "This describes the functionality of an instruction, not an implementation choice."
+    }
+  ]
+}
+```

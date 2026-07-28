@@ -1,0 +1,57 @@
+{
+  "chunk_id": "chunk_055",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The UXL field controls the value of XLEN for U-mode, termed _UXLEN_, which may differ from the value of XLEN for S-mode, termed _SXLEN_.",
+      "line_number": 42,
+      "parameter_name": "UXL",
+      "existing_udb_name": "UXL",
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The UXL field is a read-write field that can be implemented in different ways, allowing the implementer to choose the value of UXLEN based on the implementation."
+    },
+    {
+      "excerpt": "When SXLEN=64, it is a WARL field that encodes the current value of UXLEN. In particular, an implementation may make UXL be a read-only field whose value always ensures that UXLEN=SXLEN.",
+      "line_number": 42,
+      "parameter_name": "UXL_READ_ONLY",
+      "existing_udb_name": "UXL_READ_ONLY",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether the UXL field is read-only or writable, which directly affects how UXLEN is determined."
+    },
+    {
+      "excerpt": "The UBE bit is a WARL field that controls the endianness of explicit memory accesses made from U-mode, which may differ from the endianness of memory accesses in S-mode.",
+      "line_number": 42,
+      "parameter_name": "UBE",
+      "existing_udb_name": "UBE",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The UBE field is a WARL field that can be implemented in different ways, allowing the implementer to choose the endianness for U-mode memory accesses."
+    },
+    {
+      "excerpt": "The `satp` CSR is an SXLEN-bit read/write register, formatted as shown in <<rv32satp>> for SXLEN=32 and <<rv64satp>> for SXLEN=64, which controls supervisor-mode address translation and protection.",
+      "line_number": 42,
+      "parameter_name": "SATP_MODE",
+      "existing_udb_name": "SATP_MODE",
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The MODE field in the `satp` register allows the implementer to choose between different address translation schemes, making it an architectural parameter."
+    },
+    {
+      "excerpt": "Implementations may implement zero, 16, or 64 PMP entries; the lowest-numbered PMP entries must be implemented first.",
+      "line_number": 42,
+      "parameter_name": "NUM_PMP_ENTRIES",
+      "existing_udb_name": "NUM_PMP_ENTRIES",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of PMP entries is a direct implementation choice (0, 16, or 64). It is not controlled by any CSR field."
+    }
+  ]
+}

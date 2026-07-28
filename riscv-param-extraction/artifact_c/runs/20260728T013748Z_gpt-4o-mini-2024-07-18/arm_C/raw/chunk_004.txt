@@ -1,0 +1,63 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "For BF16 these values are: radix (b) 2, significand (p) 8, emax 127.",
+      "line_number": 56,
+      "parameter_name": "BF16_FORMAT_PARAMETERS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The radix, significand, and maximum exponent for the BF16 format are direct implementation choices that define the format's characteristics."
+    },
+    {
+      "excerpt": "The BF16 instructions support all 5 RISC-V Floating-point rounding modes.",
+      "line_number": 150,
+      "parameter_name": "BF16_ROUNDING_MODES",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The support for all 5 rounding modes is an implementation choice that defines how BF16 instructions handle rounding."
+    },
+    {
+      "excerpt": "The BF16 extensions defined in this specification (i.e., Zfbfmin, Zvfbfmin, and Zvfbfwma) depend on the single-precision floating-point extension F.",
+      "line_number": 370,
+      "parameter_name": "BF16_EXTENSION_DEPENDENCIES",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The dependencies of BF16 extensions on other extensions (like F) are implementation choices that affect how these extensions can be utilized."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "Future floating-point extensions, including those that operate on BF16 values, may chose not to support subnormal numbers.",
+      "line_number": 162,
+      "reason": "This is a suggestion about future extensions and does not define a current architectural parameter."
+    },
+    {
+      "excerpt": "BF16 addition, subtraction, multiplication, division, and square-root operations can be faithfully emulated by converting the BF16 operands to single-precision.",
+      "line_number": 370,
+      "reason": "This describes a method of emulation rather than an implementation choice or parameter."
+    },
+    {
+      "excerpt": "These extensions are intended to support the case where BF16 values are used as reduced precision versions of FP32 values.",
+      "line_number": 370,
+      "reason": "This is a description of the intended use case for the extensions, not an architectural parameter."
+    },
+    {
+      "excerpt": "RISC-V supports IEEE-defined default exception handling. BF16 is no exception.",
+      "line_number": 150,
+      "reason": "This describes compliance with IEEE standards rather than an implementation choice."
+    },
+    {
+      "excerpt": "The implementation chooses whether mtvec is read-only or read-write.",
+      "line_number": 1217,
+      "reason": "This is a fixed requirement about the mutability of the register, not an architectural parameter."
+    }
+  ]
+}
+```

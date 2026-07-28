@@ -1,0 +1,57 @@
+{
+  "chunk_id": "chunk_060",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The number of element groups to be processed is `vl`/`EGS`.",
+      "line_number": 3340,
+      "parameter_name": "EGS",
+      "existing_udb_name": "EGS",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "EGS is a direct implementation choice that defines how many elements are processed in a vector instruction. It is not controlled by any CSR field."
+    },
+    {
+      "excerpt": "The number of element groups to be processed is `vl`/`EGS`.",
+      "line_number": 3340,
+      "parameter_name": "VL",
+      "existing_udb_name": "VL",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "VL is a direct implementation choice that specifies the vector length for processing. It is not controlled by any CSR field."
+    },
+    {
+      "excerpt": "The `vstart` CSR must be a multiple of `EGS`.",
+      "line_number": 3340,
+      "parameter_name": "VSTART_MULTIPLE",
+      "existing_udb_name": "VSTART_MULTIPLE",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The requirement that `vstart` must be a multiple of `EGS` is a design choice that affects how the vector instructions are executed."
+    },
+    {
+      "excerpt": "The `SEW` differentiates between SHA-256 (`SEW`=32) and SHA-512 (`SEW`=64).",
+      "line_number": 3340,
+      "parameter_name": "SEW",
+      "existing_udb_name": "SEW",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "SEW is a direct implementation choice that specifies the selected element width for vector operations, with specific values for different algorithms."
+    },
+    {
+      "excerpt": "The `LMUL` must always be at least as large as `EGW`.",
+      "line_number": 3340,
+      "parameter_name": "LMUL",
+      "existing_udb_name": "LMUL",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "LMUL is a direct implementation choice that defines the vector register group multiplier, affecting how many registers are used for operations."
+    }
+  ]
+}

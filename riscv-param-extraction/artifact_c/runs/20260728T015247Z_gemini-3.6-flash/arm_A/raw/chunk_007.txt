@@ -1,0 +1,27 @@
+```json
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "If the C extension is implemented, the appropriate compressed floating-point load and store instructions must be provided whenever the relevant standard floating-point extension (F and/or D) is also implemented.",
+      "line_number": 46,
+      "reason": "This is a mandatory requirement ('must be provided') governing extension co-existence, not an implementation-defined choice or parameter."
+    },
+    {
+      "excerpt": "With the addition of the C extension, no instructions can raise instruction-address-misaligned exceptions.",
+      "line_number": 33,
+      "reason": "This states a fixed architectural property resulting from 16-bit instruction alignment, not a design-time parameter."
+    },
+    {
+      "excerpt": "Implementations that handle MV specially, e.g. using register-renaming hardware, may find it more convenient to expand C.MV to MV instead of ADD, at slight additional hardware cost.",
+      "line_number": 621,
+      "reason": "This text is inside an informative [NOTE] block (NON_NORM rule) and describes a microarchitectural optimization suggestion rather than an architectural parameter."
+    },
+    {
+      "excerpt": "HINTs are executed as no-ops on implementations that ignore them.",
+      "line_number": 847,
+      "reason": "HINTs do not alter architectural state regardless of whether hardware ignores them or uses them microarchitecturally, so this is not an architectural parameter."
+    }
+  ]
+}
+```

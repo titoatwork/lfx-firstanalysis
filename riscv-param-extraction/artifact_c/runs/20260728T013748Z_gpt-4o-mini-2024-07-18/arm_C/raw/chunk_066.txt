@@ -1,0 +1,43 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "To support such use cases a second instruction `WRS.STO` (WRS-with-short-timeout) is provided that works like `WRS.NTO` but bounds the stall duration to an implementation-define short timeout such that the stall is terminated on the timeout if no other conditions have occurred to terminate the stall.",
+      "line_number": 20,
+      "parameter_name": "WRS_STO_TIMEOUT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The implementation defines a short timeout for the `WRS.STO` instruction, which is a direct choice made by the implementer."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The instructions in the Zawrs extension are only useful in conjunction with the LR instruction, which is provided by the Zalrsc component of the A extension.",
+      "line_number": 12,
+      "reason": "This text is a note about the utility of the instructions and does not define an architectural parameter."
+    },
+    {
+      "excerpt": "While stalled, an implementation is permitted to occasionally terminate the stall and complete execution for any reason.",
+      "line_number": 45,
+      "reason": "This describes implementation behavior during a stall, not a parameter that is left to the implementer."
+    },
+    {
+      "excerpt": "The duration of a `WRS.STO` instruction's timeout may vary significantly within and among implementations.",
+      "line_number": 66,
+      "reason": "This is a descriptive statement about variability in implementation, not a specific parameter."
+    },
+    {
+      "excerpt": "When executing in VS or VU mode, if the `VTW` bit is set in `hstatus`, the `TW` bit in `mstatus` is clear, and the `WRS.NTO` does not complete within an implementation-specific bounded time limit, the `WRS.NTO` instruction will cause a virtual-instruction exception.",
+      "line_number": 78,
+      "reason": "This describes behavior under specific conditions rather than defining an implementation choice."
+    },
+    {
+      "excerpt": "The `WRS.NTO` and `WRS.STO` instructions cause the hart to temporarily stall execution in a low-power state as long as the reservation set is valid and no pending interrupts, even if disabled, are observed.",
+      "line_number": 34,
+      "reason": "This describes the behavior of the instructions rather than an architectural parameter."
+    }
+  ]
+}
+```

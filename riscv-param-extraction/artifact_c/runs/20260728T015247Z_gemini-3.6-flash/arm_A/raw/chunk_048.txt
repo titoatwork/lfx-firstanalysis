@@ -1,0 +1,68 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "All fields are optional except for M, S, U, and BPFRZ. All unimplemented fields are read-only 0, while all implemented fields are writable.",
+      "line_number": 107,
+      "parameter_name": "MCTRCTL_IMPLEMENTED_FIELDS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The implementation chooses which optional control fields in mctrctl (such as RASEMU, STE, MTE, LCOFIFRZ, and transfer type filter bits) are implemented as writable versus read-only zero."
+    },
+    {
+      "excerpt": "It is implementation-specific which DEPTH value(s) are supported.",
+      "line_number": 167,
+      "parameter_name": "SCTRDEPTH_DEPTH_LEGAL_VALUES",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The DEPTH field in sctrdepth is WARL, and the specific set of legal/supported buffer depth encodings is an implementation choice."
+    },
+    {
+      "excerpt": "MISP is read-only 0 when not implemented.",
+      "line_number": 225,
+      "parameter_name": "CTRTARGET_MISP_IMPLEMENTED",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The MISP bit in ctrtarget is an optional field; the hardware implementer chooses whether it is implemented or read-only zero."
+    },
+    {
+      "excerpt": "An implementation that supports cycle counting must implement CCV and all CCM bits, but may implement 0..4 exponent bits in CCE. Unimplemented CCE bits are read-only 0.",
+      "line_number": 432,
+      "parameter_name": "CTRDATA_CCE_BITS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The implementation chooses the number of CCE exponent bits (between 0 and 4) to implement in ctrdata; unimplemented bits are read-only zero."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The number of records that can be held in the buffer depends upon both the implementation (the maximum supported depth) and the CTR configuration (the software selected depth).",
+      "line_number": 25,
+      "reason": "This is introductory text summarizing buffer depth. The specific architectural parameter controlling legal DEPTH values is explicitly specified later in the sctrdepth register definition."
+    },
+    {
+      "excerpt": "The value 0 must correspond to standard behavior.",
+      "line_number": 104,
+      "reason": "This is a fixed architectural constraint on custom field encodings, applying to all implementations rather than leaving a design choice."
+    },
+    {
+      "excerpt": "The elapsed cycle counter (CtrCycleCounter) increments at the same rate as the `mcycle` counter.",
+      "line_number": 416,
+      "reason": "This describes runtime architectural hardware behavior when cycle counting is active, not an implementation parameter."
+    },
+    {
+      "excerpt": "When the optional `__x__ctrctl`.RASEMU bit is implemented and set to 1, transfer recording behavior is altered to emulate the behavior of a return-address stack (RAS).",
+      "line_number": 468,
+      "reason": "This describes runtime hardware recording behavior when the RASEMU control bit is enabled, rather than defining the parameter itself."
+    }
+  ]
+}
+```

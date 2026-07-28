@@ -1,0 +1,27 @@
+```json
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The B standard extension comprises instructions provided by the Zba, Zbb, and Zbs extensions.",
+      "line_number": 115,
+      "reason": "This is a fixed normative definition specifying which sub-extensions make up the 'B' extension package, not an architectural parameter."
+    },
+    {
+      "excerpt": "In some implementations, the inverter on rs2 used for subtraction can be reused for this purpose.",
+      "line_number": 207,
+      "reason": "This text resides within a non-normative [NOTE] block (Implementation Hint) and describes a microarchitectural optimization suggestion rather than an architectural parameter."
+    },
+    {
+      "excerpt": "For RV32, the encodings corresponding to shamt[5]=1 are reserved.",
+      "line_number": 625,
+      "reason": "This is a fixed ISA rule reserving specific immediate bit encodings for RV32, not an implementation-defined choice."
+    },
+    {
+      "excerpt": "This instruction is available only on RV32.",
+      "line_number": 3381,
+      "reason": "This is a fixed architectural constraint on instruction availability based on base ISA width, not an implementation parameter."
+    }
+  ]
+}
+```

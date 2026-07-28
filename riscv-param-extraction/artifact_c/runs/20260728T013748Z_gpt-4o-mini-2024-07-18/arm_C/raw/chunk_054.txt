@@ -1,0 +1,53 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "This extension adds the `STCE` bit to the `menvcfg` CSRs.",
+      "line_number": 20,
+      "parameter_name": "MENVCFG_STCE",
+      "existing_udb_name": "MENVCFG_STCE",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The STCE bit in menvcfg controls whether the stimecmp CSR is operational, representing a binary choice for the implementer."
+    },
+    {
+      "excerpt": "This extension adds a similar facility to the Hypervisor extension for VS-mode.",
+      "line_number": 16,
+      "parameter_name": "HENVCFG_STCE",
+      "existing_udb_name": "HENVCFG_STCE",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The STCE bit in henvcfg controls whether the vs_timecmp CSR is operational, representing a binary choice for the implementer."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The current Privileged arch specification only defines a hardware mechanism for generating machine-mode timer interrupts.",
+      "line_number": 3,
+      "reason": "This is a fixed requirement describing the existing specification, not an implementation choice."
+    },
+    {
+      "excerpt": "M-mode software then multiplexes these multiple logical timers onto its one physical M-mode timer facility.",
+      "line_number": 9,
+      "reason": "This describes the behavior of M-mode software and does not indicate an architectural parameter."
+    },
+    {
+      "excerpt": "This extension serves to provide supervisor mode with its own CSR-based timer interrupt facility.",
+      "line_number": 5,
+      "reason": "This is a descriptive statement about the purpose of the extension, not an implementation choice."
+    },
+    {
+      "excerpt": "The extension name is 'Sstc' ('Ss' for Privileged arch and Supervisor-level extensions, and 'tc' for timecmp).",
+      "line_number": 11,
+      "reason": "This is a definition of the extension name and does not represent an architectural parameter."
+    },
+    {
+      "excerpt": "This extension adds the S-level `stimecmp` CSR.",
+      "line_number": 13,
+      "reason": "This is a statement about the addition of a CSR, not an implementation choice regarding its behavior or configuration."
+    }
+  ]
+}
+```

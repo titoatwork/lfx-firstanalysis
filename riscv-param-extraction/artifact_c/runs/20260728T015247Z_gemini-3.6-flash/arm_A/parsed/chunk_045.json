@@ -1,0 +1,17 @@
+{
+  "chunk_id": "chunk_045",
+  "arm": "A",
+  "model": "gemini-3.6-flash",
+  "parameters": [
+    {
+      "excerpt": "Implementations may implement `mseccfg` such that `[s,u]seed` is a read-only constant value `0`.",
+      "line_number": 3715,
+      "parameter_name": "MSECCFG_SEED_READ_ONLY",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The spec permits implementations to make mseccfg.sseed and mseccfg.useed read-only constant 0 (disallowing U/S-mode access) or read-write. This is an implementation choice controlling the read-only vs read-write nature of these CSR fields."
+    }
+  ]
+}

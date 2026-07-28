@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "Implementations may contain additional CSRs, accessible by some subset of the privilege levels using the CSR instructions described in Volume I.",
+      "line_number": 8,
+      "parameter_name": "NUM_ADDITIONAL_CSRS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of additional CSRs is an implementation choice, as it is not fixed and can vary based on the design."
+    },
+    {
+      "excerpt": "The top two bits (csr[11:10]) indicate whether the register is read/write (`00`,`01`, or `10`) or read-only (`11`).",
+      "line_number": 30,
+      "parameter_name": "CSR_ACCESSIBILITY",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The accessibility of CSRs is determined by the implementation, allowing for read/write or read-only configurations."
+    },
+    {
+      "excerpt": "Implementations will not raise an exception on writes of unsupported values to a *WARL* field.",
+      "line_number": 127,
+      "parameter_name": "WARL_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The behavior of WARL fields regarding unsupported writes is defined by the implementation, making it a parameter."
+    },
+    {
+      "excerpt": "Implementations can return arbitrary bit patterns on the read of a *WLRL* field when the last write was of an illegal value.",
+      "line_number": 127,
+      "parameter_name": "WLRL_READ_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The behavior of WLRL fields when reading after an illegal write is implementation-defined, thus it is a parameter."
+    },
+    {
+      "excerpt": "The width of the temporary register is changed to the new width.",
+      "line_number": 127,
+      "parameter_name": "CSR_WIDTH_MODULATION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The implementation decides how to handle CSR width changes, making it a design-time choice."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] The CSR address convention uses the upper bits of the CSR address to encode default access privileges.",
+      "line_number": 20,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a convention, not an architectural requirement."
+    },
+    {
+      "excerpt": "Software should ignore the values read from these fields, and should preserve the values held in these fields when writing values to other fields of the same register.",
+      "line_number": 127,
+      "reason": "This describes software behavior and is not an implementation choice, thus it is not a parameter."
+    },
+    {
+      "excerpt": "Implementations can return any legal value on the read of a *WARL* field when the last write was of an illegal value.",
+      "line_number": 127,
+      "reason": "This describes behavior rather than a parameter, as it is contingent on the CSR field's state."
+    },
+    {
+      "excerpt": "Some CSR fields are, when writable, defined as aliases of other CSR fields.",
+      "line_number": 127,
+      "reason": "This describes a relationship between CSR fields rather than an implementation choice, thus it is not a parameter."
+    },
+    {
+      "excerpt": "Changing the width of a CSR is not a read or write of the CSR and thus does not trigger any side effects.",
+      "line_number": 127,
+      "reason": "This is a fixed requirement about CSR behavior, not an implementation choice, and therefore not a parameter."
+    }
+  ]
+}
+```

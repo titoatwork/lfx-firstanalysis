@@ -1,0 +1,592 @@
+[
+  {
+    "name": "Zvbb_Zvkb_Zvkg_Zvkned_Zvknha_Zvksed_Zvksh_Zvks_Zvksc_Zvksg_Zvkt_dependency_Zve32x",
+    "defining_statement": "All of the other Vector Crypto Extensions depend on `Zve32x`.",
+    "line_number": 247
+  },
+  {
+    "name": "Zvknhb_Zvbc_Zvkn_Zvknc_Zvkng_dependency_Zve64x",
+    "defining_statement": "The Zvknhb and Zvbc Vector Crypto Extensions -- and accordingly the composite extensions Zvkn, Zvknc, Zvkng, and Zvksc -- depend on Zve64x.",
+    "line_number": 244
+  },
+  {
+    "name": "Zvbb_extension_dependency",
+    "defining_statement": "This extension is a superset of the Zvkb extension.",
+    "line_number": 270
+  },
+  {
+    "name": "Zvkb_extension_dependency",
+    "defining_statement": "This Zvkb extension is a proper subset of the Zvbb extension.",
+    "line_number": 300
+  },
+  {
+    "name": "Zvkn_extension_composition",
+    "defining_statement": "This extension is shorthand for the following set of other extensions: Zvkned, Zvknhb, Zvkb, Zvkt",
+    "line_number": 485
+  },
+  {
+    "name": "Zvknc_extension_composition",
+    "defining_statement": "This extension is shorthand for the following set of other extensions: Zvkn, Zvbc",
+    "line_number": 505
+  },
+  {
+    "name": "Zvkng_extension_composition",
+    "defining_statement": "This extension is shorthand for the following set of other extensions: Zvkn, Zvkg",
+    "line_number": 523
+  },
+  {
+    "name": "Zvks_extension_composition",
+    "defining_statement": "This extension is shorthand for the following set of other extensions: Zvksed, Zvksh, Zvkb, Zvkt",
+    "line_number": 541
+  },
+  {
+    "name": "Zvksc_extension_composition",
+    "defining_statement": "This extension is shorthand for the following set of other extensions: Zvks, Zvbc",
+    "line_number": 559
+  },
+  {
+    "name": "Zvksg_extension_composition",
+    "defining_statement": "This extension is shorthand for the following set of other extensions: Zvks, Zvkg",
+    "line_number": 577
+  },
+  {
+    "name": "Zvkt_extension_requirement",
+    "defining_statement": "The Zvkt extension requires all implemented instructions from the following list to be executed with data-independent execution latency as defined in the RISC-V Scalar Cryptography Extensions specification.",
+    "line_number": 595
+  },
+  {
+    "name": "Zvkt_data_independent_latency_scope",
+    "defining_statement": "Data-independent execution latency (DIEL) applies to all data operands of an instruction, even those that are not a part of the body or that are inactive. However, DIEL does not apply to other values such as vl, vtype, and the mask (when used to control execution of a masked vector instruction). Also, DIEL does not apply to constant values specified in the instruction encoding such as the use of the zero register (x0), and, in the case of immediate forms of an instruction, the values in the immediate fields (i.e., imm, and uimm).",
+    "line_number": 598
+  },
+  {
+    "name": "Zvkt_control_operand_exemption",
+    "defining_statement": "In some cases --- which are explicitly specified in the lists below --- operands that are used as control rather than data are exempt from DIEL.",
+    "line_number": 604
+  },
+  {
+    "name": "Zvkt_exempt_instructions_list",
+    "defining_statement": "The following instructions are not affected by Zvkt: All storage operations, All floating-point operations, add/sub saturate, clip, compress, divide, average, mask Op, min/max, Multiply-saturate, reduce, shift round, vset",
+    "line_number": 635
+  },
+  {
+    "name": "crypto_vector_indep_timing_requirement",
+    "defining_statement": "All cryptography-specific instructions defined in this Vector Crypto specification (i.e., those in Zvkned, Zvknh, Zvknhb, Zvkg, Zvksed and Zvksh but not Zvbb, Zvkb, or Zvbc) shall be executed with data-independent execution latency as defined in the RISC-V Scalar Cryptography Extensions specification.",
+    "line_number": 252
+  },
+  {
+    "name": "veccrypto_indep_Zkt_independence",
+    "defining_statement": "It is important to note that the Vector Crypto instructions are independent of the implementation of the Zkt extension and do not require that Zkt is implemented.",
+    "line_number": 256
+  },
+  {
+    "name": "crypto_vector_element_groups_definition",
+    "defining_statement": "We treat these operands as a vector of one or more element groups as defined in <<vector-element-groups>>. Each vector crypto instruction that operates on element groups explicitly specifies their three defining parameters: EGW, EGS, and EEW.",
+    "line_number": 178
+  },
+  {
+    "name": "norm_veccrypto_eeweqsew",
+    "defining_statement": "For all of the vector crypto instructions in this specification, EEW=SEW.",
+    "line_number": 186
+  },
+  {
+    "name": "crypto_vector_element_groups_table",
+    "defining_statement": "Instruction Group | Extension | EGW | EEW | EGS | AES | Zvkned | 128 | 32 | 4 | SHA256 | Zvknh, Zvknhb | 128 | 32 | 4 | SHA512 | Zvknh, Zvknhb | 256 | 64 | 4 | GCM | Zvkg | 128 | 32 | 4 | SM4 | Zvksed | 128 | 32 | 4 | SM3 | Zvksh | 256 | 32 | 8",
+    "line_number": 180
+  },
+  {
+    "name": "norm_veccrypto_vl_vstart_egsconstr",
+    "defining_statement": "Since vl and vstart refer to elements, Vector Crypto instructions that use elements groups (See <<crypto-vector-element-groups>>) require that these values are an integer multiple of the Element Group Size (EGS).",
+    "line_number": 200
+  },
+  {
+    "name": "norm_veccrypto_vl_vstart_rsv",
+    "defining_statement": "Instructions that violate the vl or vstart requirements are reserved.",
+    "line_number": 202
+  },
+  {
+    "name": "veccrypto_vl_vstart_constraints_table",
+    "defining_statement": "Instructions | EGS | vaes* | 4 | vsha2* | 4 | vg* | 4 | vsm3* | 8 | vsm4* | 4",
+    "line_number": 204
+  },
+  {
+    "name": "norm_veccrypto_lmul_egwconstr",
+    "defining_statement": "For element-group instructions, LMUL*VLEN must always be at least as large as EGW, otherwise an illegal-instruction exception is raised, even if vl=0.",
+    "line_number": 212
+  },
+  {
+    "name": "veccrypto_lmul_egwconstr_table",
+    "defining_statement": "Instructions | SEW | EGW | vaes* | 32 | 128 | vsha2* | 32 | 128 | vsha2* | 64 | 256 | vg* | 32 | 128 | vsm3* | 32 | 256 | vsm4* | 32 | 128",
+    "line_number": 214
+  },
+  {
+    "name": "norm_veccrypto_sew_rsv",
+    "defining_statement": "Some Vector Crypto instructions are only defined for a specific SEW. In such a case all other SEW values are reserved.",
+    "line_number": 222
+  },
+  {
+    "name": "veccrypto_sew_constraints_table",
+    "defining_statement": "Instructions | Required SEW | vaes* | 32 | Zvknha: vsha2* | 32 | Zvknhb: vsha2* | 32 or 64 | vclmul[h] | 64 | vg* | 32 | vsm3* | 32 | vsm4* | 32",
+    "line_number": 224
+  },
+  {
+    "name": "norm_veccrypto_vsins_vs2",
+    "defining_statement": "In the case of the .vs instructions defined in this specification, vs2 holds a 128-bit scalar element group.",
+    "line_number": 236
+  },
+  {
+    "name": "norm_veccrypto_vsins_vdvs2overlap",
+    "defining_statement": "For implementations with VLEN >= 128, vs2 refers to a single register. Thus, the vd register group must not overlap the vs2 register. However, in implementations where VLEN < 128, vs2 refers to a register group comprised of the number of registers needed to hold the 128-bit scalar element group. In this case, the vd register group must not overlap this vs2 register group.",
+    "line_number": 238
+  },
+  {
+    "name": "norm_veccrypto_vsins_vs2function",
+    "defining_statement": "These instructions enable a single key, specified as a scalar element group in vs2, to be applied to each element group of register group vd.",
+    "line_number": 244
+  },
+  {
+    "name": "norm_veccrypto_vsins_vd",
+    "defining_statement": "they return vector results to vd, which is also a source vector operand.",
+    "line_number": 168
+  },
+  {
+    "name": "norm_veccrypto_vsins_vs2",
+    "defining_statement": "vs2 holds a 128-bit scalar element group.",
+    "line_number": 236
+  },
+  {
+    "name": "application_processor_vlen_requirement",
+    "defining_statement": "Application processors are expected to follow the V-extension and will therefore have VLEN >= 128.",
+    "line_number": 265
+  },
+  {
+    "name": "sha512_sm3_vlen128_lmul_doubling_recommendation",
+    "defining_statement": "Implementations with VLEN = 128, require that LMUL is doubled for these instructions in order to create 256-bit elements across a pair of registers. Code written with this doubling of LMUL will not affect the results returned by implementations with VLEN >= 256 because vl controls how many element groups are processed.",
+    "line_number": 272
+  },
+  {
+    "name": "sha512_sm3_vlen_ge_256_optimization_recommendation",
+    "defining_statement": "While the doubling of LMUL for these instructions is safe for implementations with VLEN >= 256, it may be less optimal as it will result in unnecessary register pressure and might exact a performance penalty in some microarchitectures. Therefore, we suggest that in addition to providing portable code for SHA-512 and SM3, libraries should also include more optimal code for these instructions when VLEN >= 256.",
+    "line_number": 278
+  },
+  {
+    "name": "embedded_processor_vlen_lt_128",
+    "defining_statement": "Embedded processors will typically have implementations with VLEN < 128. This will require code to be written with larger LMUL values to enable the element groups to be formed.",
+    "line_number": 284
+  },
+  {
+    "name": "vs_instructions_vlen_lt_128_scalar_element_groups",
+    "defining_statement": "The .vs instructions require scalar element groups of EGW=128. On implementations with VLEN < 128, these scalar element groups will necessarily be formed across registers.",
+    "line_number": 287
+  },
+  {
+    "name": "embedded_vlen32_vlen64_code_recommendation",
+    "defining_statement": "We recommend that different code be available for VLEN=32 and VLEN=64, as code written for VLEN=32 will likely be too burdensome for VLEN=64 implementations.",
+    "line_number": 292
+  },
+  {
+    "name": "sha512_sm3_vlen_lmul_table",
+    "defining_statement": "Algorithm | Instructions | VLEN | LMUL | SHA-512 | vsha2* | 64 | vl/2 | SM3 | vsm3* | 32 | vl/4",
+    "line_number": 280
+  },
+  {
+    "name": "Zvbc_sew64_only",
+    "defining_statement": "These instructions are only defined for SEW=64.",
+    "line_number": 298
+  },
+  {
+    "name": "Zvkg_egw128b_elem32b",
+    "defining_statement": "All of these instructions work on 128-bit element groups comprised of four 32-bit elements.",
+    "line_number": 313
+  },
+  {
+    "name": "Zvkg_dataindeptiming",
+    "defining_statement": "To help avoid side-channel timing attacks, these instructions shall be implemented with data-independent timing.",
+    "line_number": 320
+  },
+  {
+    "name": "Zvkg_vl_constraint",
+    "defining_statement": "The number of element groups to be processed is vl/EGS. vl must be set to the number of SEW=32 elements to be processed and therefore must be a multiple of EGS=4.",
+    "line_number": 322
+  },
+  {
+    "name": "Zvkg_vstart_constraint",
+    "defining_statement": "Likewise, vstart must be a multiple of EGS=4.",
+    "line_number": 323
+  },
+  {
+    "name": "Zvkned_egw128b_elem32b",
+    "defining_statement": "All of these instructions work on 128-bit element groups comprised of four 32-bit elements.",
+    "line_number": 337
+  },
+  {
+    "name": "Zvkned_dataindeptiming",
+    "defining_statement": "To help avoid side-channel timing attacks, these instructions shall be implemented with data-independent timing.",
+    "line_number": 342
+  },
+  {
+    "name": "Zvkned_vl_constraint",
+    "defining_statement": "The number of element groups to be processed is vl/EGS. vl must be set to the number of SEW=32 elements to be processed and therefore must be a multiple of EGS=4.",
+    "line_number": 344
+  },
+  {
+    "name": "Zvkned_vstart_constraint",
+    "defining_statement": "Likewise, vstart must be a multiple of EGS=4.",
+    "line_number": 345
+  },
+  {
+    "name": "Zvknh_Zvknhb_sha256_egw128b_elem32b",
+    "defining_statement": "SHA-256: these instructions work on 128-bit element groups comprised of four 32-bit elements.",
+    "line_number": 362
+  },
+  {
+    "name": "Zvknhb_sha512_egw256b_elem64b",
+    "defining_statement": "SHA-512: these instructions work on 256-bit element groups comprised of four 64-bit elements.",
+    "line_number": 364
+  },
+  {
+    "name": "Zvknhb_sha256_sha512_support",
+    "defining_statement": "Zvknhb supports SHA-256 and SHA-512.",
+    "line_number": 370
+  },
+  {
+    "name": "Zvknha_sha256_only",
+    "defining_statement": "Zvknha supports only SHA-256.",
+    "line_number": 372
+  },
+  {
+    "name": "Zvknha_Zvknhb_dataindeptiming",
+    "defining_statement": "To help avoid side-channel timing attacks, these instructions shall be implemented with data-independent timing.",
+    "line_number": 378
+  },
+  {
+    "name": "Zvknha_Zvknhb_vl_constraint",
+    "defining_statement": "The number of element groups to be processed is vl/EGS. vl must be set to the number of SEW elements to be processed and therefore must be a multiple of EGS=4.",
+    "line_number": 380
+  },
+  {
+    "name": "Zvknha_Zvknhb_vstart_constraint",
+    "defining_statement": "Likewise, vstart must be a multiple of EGS=4.",
+    "line_number": 381
+  },
+  {
+    "name": "Zvksed_egw128b_elem32b",
+    "defining_statement": "All of these instructions work on 128-bit element groups comprised of four 32-bit elements.",
+    "line_number": 395
+  },
+  {
+    "name": "Zvksed_dataindeptiming",
+    "defining_statement": "To help avoid side-channel timing attacks, these instructions shall be implemented with data-independent timing.",
+    "line_number": 400
+  },
+  {
+    "name": "Zvksed_vl_constraint",
+    "defining_statement": "The number of element groups to be processed is vl/EGS. vl must be set to the number of SEW=32 elements to be processed and therefore must be a multiple of EGS=4.",
+    "line_number": 402
+  },
+  {
+    "name": "Zvksed_vstart_constraint",
+    "defining_statement": "Likewise, vstart must be a multiple of EGS=4.",
+    "line_number": 403
+  },
+  {
+    "name": "Zvksh_egw256b_elem32b",
+    "defining_statement": "All of these instructions work on 256-bit element groups comprised of eight 32-bit elements.",
+    "line_number": 416
+  },
+  {
+    "name": "Zvksh_dataindeptiming",
+    "defining_statement": "To help avoid side-channel timing attacks, these instructions shall be implemented with data-independent timing.",
+    "line_number": 423
+  },
+  {
+    "name": "Zvksh_vl_constraint",
+    "defining_statement": "The number of element groups to be processed is vl/EGS. vl must be set to the number of SEW=32 elements to be processed and therefore must be a multiple of EGS=8.",
+    "line_number": 425
+  },
+  {
+    "name": "Zvksh_vstart_constraint",
+    "defining_statement": "Likewise, vstart must be a multiple of EGS=8.",
+    "line_number": 426
+  },
+  {
+    "name": "vaesdf_final_round",
+    "defining_statement": "A final-round AES block cipher decryption is performed.",
+    "line_number": 655
+  },
+  {
+    "name": "vaesdf_ops",
+    "defining_statement": "The InvShiftRows and InvSubBytes steps are applied to each round state element group from vd.",
+    "line_number": 656
+  },
+  {
+    "name": "vaesdf_xor_form",
+    "defining_statement": "This is then XORed with the round key in either the corresponding element group in vs2 (vector-vector form) or scalar element group in vs2 (vector-scalar form).",
+    "line_number": 657
+  },
+  {
+    "name": "vaesdm_mid_round",
+    "defining_statement": "A middle-round AES block cipher decryption is performed.",
+    "line_number": 715
+  },
+  {
+    "name": "vaesdm_ops",
+    "defining_statement": "The InvShiftRows and InvSubBytes steps are applied to each round state element group from vd.",
+    "line_number": 716
+  },
+  {
+    "name": "vaesdm_xor_form",
+    "defining_statement": "This is then XORed with the round key in either the corresponding element group in vs2 (vector-vector form) or the scalar element group in vs2 (vector-scalar form). The result is then applied to the InvMixColumns step.",
+    "line_number": 717
+  },
+  {
+    "name": "vaesdm_invmix",
+    "defining_statement": "InvMixColumns step.",
+    "line_number": 718
+  },
+  {
+    "name": "vaesef_final_round",
+    "defining_statement": "A final-round encryption function of the AES block cipher is performed.",
+    "line_number": 777
+  },
+  {
+    "name": "vaesef_ops",
+    "defining_statement": "The SubBytes and ShiftRows steps are applied to each round state element group from vd.",
+    "line_number": 778
+  },
+  {
+    "name": "vaesef_xor_form",
+    "defining_statement": "This is then XORed with the round key in either the corresponding element group in vs2 (vector-vector form) or the scalar element group in vs2 (vector-scalar form).",
+    "line_number": 779
+  },
+  {
+    "name": "vaesem_mid_round",
+    "defining_statement": "A middle-round encryption function of the AES block cipher is performed.",
+    "line_number": 839
+  },
+  {
+    "name": "vaesem_ops",
+    "defining_statement": "The SubBytes, ShiftRows, and MixColumns steps are applied to each round state element group from vd.",
+    "line_number": 840
+  },
+  {
+    "name": "vaesem_xor_form",
+    "defining_statement": "This is then XORed with the round key in either the corresponding element group in vs2 (vector-vector form) or the scalar element group in vs2 (vector-scalar form).",
+    "line_number": 841
+  },
+  {
+    "name": "vaeskf1_round",
+    "defining_statement": "A single round of the forward AES-128 KeySchedule is performed.",
+    "line_number": 899
+  },
+  {
+    "name": "vaeskf1_wordgen",
+    "defining_statement": "The next round key is generated word by word from the current round key element group in vs2 and the immediately previous word of the round key. The least significant word is generated using the most significant word of the current round key as well as a round constant which is selected by the round number.",
+    "line_number": 900
+  },
+  {
+    "name": "vaeskf1_uimm_src",
+    "defining_statement": "The round number, which ranges from 1 to 10, comes from uimm[3:0]; uimm[4] is ignored.",
+    "line_number": 902
+  },
+  {
+    "name": "vaeskf1_uimm_map",
+    "defining_statement": "The out-of-range uimm[3:0] values of 0 and 11-15 are mapped to in-range values by inverting uimm[3]. Thus, 0 maps to 8, and 11-15 maps to 3-7.",
+    "line_number": 903
+  },
+  {
+    "name": "vaeskf2_round",
+    "defining_statement": "A single round of the forward AES-256 KeySchedule is performed.",
+    "line_number": 961
+  },
+  {
+    "name": "vaeskf2_wordgen",
+    "defining_statement": "The next round key is generated word by word from the previous round key element group in vd and the immediately previous word of the round key.",
+    "line_number": 962
+  },
+  {
+    "name": "vaeskf2_rcon_lsw",
+    "defining_statement": "The least significant word of the next round key is generated by applying a function to the most significant word of the current round key and then XORing the result with the round constant.",
+    "line_number": 963
+  },
+  {
+    "name": "vaeskf2_rcon_func",
+    "defining_statement": "The round number is used to select the round constant as well as the function.",
+    "line_number": 964
+  },
+  {
+    "name": "vaeskf2_uimm_src",
+    "defining_statement": "The round number, which ranges from 2 to 14, comes from uimm[3:0]; uimm[4] is ignored.",
+    "line_number": 965
+  },
+  {
+    "name": "vaeskf2_uimm_map",
+    "defining_statement": "The out-of-range uimm[3:0] values of 0-1 and 15 are mapped to in-range values by inverting uimm[3]. Thus, 0-1 maps to 8-9, and 15 maps to 7.",
+    "line_number": 966
+  },
+  {
+    "name": "vaesz_round0",
+    "defining_statement": "A round-0 AES block cipher operation is performed. This operation is used for both encryption and decryption.",
+    "line_number": 1023
+  },
+  {
+    "name": "vaesz_vs_only",
+    "defining_statement": "There is only a .vs form of the instruction.",
+    "line_number": 1024
+  },
+  {
+    "name": "vaesz_vs2_rk",
+    "defining_statement": "Vs2 holds a scalar element group that is used as the round key for all of the round state element groups.",
+    "line_number": 1025
+  },
+  {
+    "name": "vandn_op",
+    "defining_statement": "Each bit of Op1 is inverted and logically ANDed with the corresponding bits in vs2.",
+    "line_number": 1083
+  },
+  {
+    "name": "vandn_vx_rs1",
+    "defining_statement": "In the vector-scalar version, Op1 is the sign-extended or truncated value in scalar register rs1.",
+    "line_number": 1084
+  },
+  {
+    "name": "vandn_vv_vs1",
+    "defining_statement": "In the vector-vector version, Op1 is vs1.",
+    "line_number": 1085
+  },
+  {
+    "name": "vbrev_v_op",
+    "defining_statement": "A bit reversal is performed on the bits of each element.",
+    "line_number": 1123
+  },
+  {
+    "name": "vbrev8_v_op",
+    "defining_statement": "A bit reversal is performed on the bits of each byte.",
+    "line_number": 1161
+  },
+  {
+    "name": "vclmul_op",
+    "defining_statement": "Each 64-bit element in the vs2 vector register is carry-less multiplied by either each 64-bit element in vs1 (vector-vector), or the 64-bit value from integer register rs1 (vector-scalar). The result is the least significant 64 bits of the carry-less product.",
+    "line_number": 1211
+  },
+  {
+    "name": "vclmul_sewn64_rsv",
+    "defining_statement": "SEW is any value other than 64",
+    "line_number": 1205
+  },
+  {
+    "name": "vclmulh_op",
+    "defining_statement": "Each 64-bit element in the vs2 vector register is carry-less multiplied by either each 64-bit element in vs1 (vector-vector), or the 64-bit value from integer register rs1 (vector-scalar). The result is the most significant 64 bits of the carry-less product.",
+    "line_number": 1259
+  },
+  {
+    "name": "vclmulh_sewn64_rsv",
+    "defining_statement": "SEW is any value other than 64",
+    "line_number": 1253
+  },
+  {
+    "name": "vclz_v_op",
+    "defining_statement": "A leading zero count is performed on each element.",
+    "line_number": 1293
+  },
+  {
+    "name": "vclz_v_op_zeroinput",
+    "defining_statement": "The result for zero-valued inputs is the value SEW.",
+    "line_number": 1294
+  },
+  {
+    "name": "vcpop_v_op",
+    "defining_statement": "A population count is performed on each element.",
+    "line_number": 1323
+  },
+  {
+    "name": "vctz_v_op",
+    "defining_statement": "A trailing zero count is performed on each element.",
+    "line_number": 1353
+  },
+  {
+    "name": "vghsh_vv_op",
+    "defining_statement": "This instruction treats all of the inputs and outputs as 128-bit polynomials and performs operations over GF[2]. It produces the next partial hash (Y~i+1~) by adding the current partial hash (Y~i~) to the cipher text block (X~i~) and then multiplying (over GF(2^128^)) this sum by the Hash Subkey (H).",
+    "line_number": 1393
+  },
+  {
+    "name": "vghsh_vv_op_gf",
+    "defining_statement": "The multiplication over GF(2^128^) is a carry-less multiply of two 128-bit polynomials modulo GHASH's irreducible polynomial (x^128^ + x^7^ + x^2^ + x + 1).",
+    "line_number": 1394
+  },
+  {
+    "name": "vghsh_vv_op_coeff",
+    "defining_statement": "The NIST specification (see <<zvkg>>) orders the coefficients from left to right x~0~x~1~x~2~...x~127~ for a polynomial x~0~ + x~1~u +x~2~ u^2^ + ... + x~127~u^127^. This can be viewed as a collection of byte elements in memory with the byte containing the lowest coefficients (i.e., 0,1,2,3,4,5,6,7) residing at the lowest memory address. Since the bits in the bytes are reversed, this instruction internally performs bit swaps within bytes to put the bits in the standard ordering (e.g., 7,6,5,4,3,2,1,0).",
+    "line_number": 1395
+  },
+  {
+    "name": "vghsh_vv_exeindepdata",
+    "defining_statement": "This instruction must always be implemented such that its execution latency does not depend on the data being operated upon.",
+    "line_number": 1396
+  },
+  {
+    "name": "vgmul_vv_op",
+    "defining_statement": "This instruction treats all of the inputs and outputs as 128-bit polynomials and performs operations over GF[2]. It produces the product over GF(2^128^) of the two 128-bit inputs.",
+    "line_number": 1453
+  },
+  {
+    "name": "vgmul_vv_op_gf",
+    "defining_statement": "The multiplication over GF(2^128^) is a carry-less multiply of two 128-bit polynomials modulo GHASH's irreducible polynomial (x^128^ + x^7^ + x^2^ + x + 1).",
+    "line_number": 1454
+  },
+  {
+    "name": "vgmul_vv_op_coeff",
+    "defining_statement": "The NIST specification (see <<zvkg>>) orders the coefficients from left to right x~0~x~1~x~2~...x~127~ for a polynomial x~0~ + x~1~u +x~2~ u^2^ + ... + x~127~u^127^. This can be viewed as a collection of byte elements in memory with the byte containing the lowest coefficients (i.e., 0,1,2,3,4,5,6,7) residing at the lowest memory address. Since the bits in the bytes are reversed, This instruction internally performs bit swaps within bytes to put the bits in the standard ordering (e.g., 7,6,5,4,3,2,1,0).",
+    "line_number": 1455
+  },
+  {
+    "name": "vgmul_vv_exeindepdata",
+    "defining_statement": "This instruction must always be implemented such that its execution latency does not depend on the data being operated upon.",
+    "line_number": 1456
+  },
+  {
+    "name": "vrev8_v_op",
+    "defining_statement": "A byte reversal is performed on each element of vs2, effectively performing an endian swap.",
+    "line_number": 1513
+  },
+  {
+    "name": "vrol_op",
+    "defining_statement": "The elements in vs2 are rotated left by the rotate amount specified by either the corresponding elements of vs1 (vector-vector), or integer register rs1 (vector-scalar). Only the low log2(SEW) bits of the rotate-amount value are used, all other bits are ignored.",
+    "line_number": 1553
+  },
+  {
+    "name": "vror_op",
+    "defining_statement": "The elements in vs2 are rotated right by the rotate amount specified by either the corresponding elements of vs1 (vector-vector), integer register rs1 (vector-scalar), or an immediate value (vector-immediate). Only the low log2(SEW) bits of the rotate-amount value are used, all other bits are ignored.",
+    "line_number": 1603
+  },
+  {
+    "name": "vsha2chl_vv_op_sew32",
+    "defining_statement": "SEW=32: 2 rounds of SHA-256 compression are performed (Zvknha and Zvknhb)",
+    "line_number": 1663
+  },
+  {
+    "name": "vsha2chl_vv_op_sew64",
+    "defining_statement": "SEW=64: 2 rounds of SHA-512 compression are performed (Zvknhb)",
+    "line_number": 1664
+  },
+  {
+    "name": "vsha2chl_vv_op",
+    "defining_statement": "Two words of vs1 are processed with the 8 words of current state held in vd and vs2 to perform two rounds of hash computation producing four words of the next state.",
+    "line_number": 1665
+  },
+  {
+    "name": "vsha2chl_vv_Zvknha_sewn32_rsv",
+    "defining_statement": "Zvknha: SEW is any value other than 32",
+    "line_number": 1655
+  },
+  {
+    "name": "vsha2chl_vv_Zvknhb_sewn32or64_rsv",
+    "defining_statement": "Zvknhb: SEW is any value other than 32 or 64",
+    "line_number": 1656
+  },
+  {
+    "name": "vsha2chl_vv_vdoverlapvs1vs2_rsv",
+    "defining_statement": "The vd register group overlaps with either vs1 or vs2",
+    "line_number": 1657
+  }
+]

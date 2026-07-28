@@ -1,0 +1,43 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "To support such use cases a second instruction `WRS.STO` (WRS-with-short-timeout) is provided that works like `WRS.NTO` but bounds the stall duration to an implementation-define short timeout such that the stall is terminated on the timeout if no other conditions have occurred to terminate the stall.",
+      "line_number": 20,
+      "parameter_name": "WRS_STO_TIMEOUT",
+      "existing_udb_name": "WRS_STO_TIMEOUT",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The duration of the stall for the `WRS.STO` instruction is an implementation-defined parameter, allowing the implementer to choose the specific timeout value."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The `WRS.NTO` and `WRS.STO` instructions cause the hart to temporarily stall execution in a low-power state as long as the reservation set is valid and no pending interrupts, even if disabled, are observed.",
+      "line_number": 43,
+      "reason": "This describes the behavior of the instructions under certain conditions, not an implementation choice."
+    },
+    {
+      "excerpt": "While stalled, an implementation is permitted to occasionally terminate the stall and complete execution for any reason.",
+      "line_number": 50,
+      "reason": "This is a permissive statement about implementation behavior, not a parameter that defines a choice."
+    },
+    {
+      "excerpt": "When the `TW` (Timeout Wait) bit in `mstatus` is set and `WRS.NTO` is executed in any privilege mode other than M mode, and it does not complete within an implementation-specific bounded time limit, the `WRS.NTO` instruction will cause an illegal-instruction exception.",
+      "line_number": 66,
+      "reason": "This describes a behavior based on the state of a CSR field, not an implementation-defined parameter."
+    },
+    {
+      "excerpt": "The duration of a `WRS.STO` instruction's timeout may vary significantly within and among implementations.",
+      "line_number": 78,
+      "reason": "This is a descriptive statement about variability, not a specific implementation choice."
+    },
+    {
+      "excerpt": "Since the `WRS.STO` and `WRS.NTO` instructions can complete execution for reasons other than stores to the reservation set, software will likely need a means of looping until the required stores have occurred.",
+      "line_number": 83,
+      "reason": "This describes a software behavior expectation, not an architectural parameter."
+    }
+  ]
+}
+```

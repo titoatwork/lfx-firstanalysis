@@ -1,0 +1,93 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The `miselect` register may be read-only zero if there are no extensions implemented that utilize it.",
+      "line_number": 20,
+      "parameter_name": "MSELECT_ACCESS",
+      "existing_udb_name": "MSELECT_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether the `miselect` register is read-only or read-write, which is a binary choice about the mutability of the register."
+    },
+    {
+      "excerpt": "The `siselect` register will support the value range 0..0xFFF at a minimum.",
+      "line_number": 236,
+      "parameter_name": "SSELECT_VALUE_RANGE",
+      "existing_udb_name": "SSELECT_VALUE_RANGE",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The `siselect` register's value range is a direct implementation choice, with a minimum defined range. Future extensions may define larger ranges."
+    },
+    {
+      "excerpt": "The `vsiselect` register will support the value range 0..0xFFF at a minimum.",
+      "line_number": 292,
+      "parameter_name": "VSELECT_VALUE_RANGE",
+      "existing_udb_name": "VSELECT_VALUE_RANGE",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The `vsiselect` register's value range is a direct implementation choice, with a minimum defined range. Future extensions may define larger ranges."
+    },
+    {
+      "excerpt": "Values of `miselect` with the most-significant bit set (bit XLEN - 1 = 1) are designated only for custom use.",
+      "line_number": 20,
+      "parameter_name": "MSELECT_CUSTOM_USE",
+      "existing_udb_name": "MSELECT_CUSTOM_USE",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation decides whether to use the most-significant bit of `miselect` for custom purposes, which is a design-time choice."
+    },
+    {
+      "excerpt": "Values of `siselect` with the most-significant bit set (bit XLEN - 1 = 1) are designated only for custom use.",
+      "line_number": 236,
+      "parameter_name": "SSELECT_CUSTOM_USE",
+      "existing_udb_name": "SSELECT_CUSTOM_USE",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation decides whether to use the most-significant bit of `siselect` for custom purposes, which is a design-time choice."
+    },
+    {
+      "excerpt": "Values of `vsiselect` with the most-significant bit set (bit XLEN - 1 = 1) are designated only for custom use.",
+      "line_number": 292,
+      "parameter_name": "VSELECT_CUSTOM_USE",
+      "existing_udb_name": "VSELECT_CUSTOM_USE",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation decides whether to use the most-significant bit of `vsiselect` for custom purposes, which is a design-time choice."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The behavior upon accessing `mireg*` from M-mode, while `miselect` holds a value that is not implemented, is UNSPECIFIED.",
+      "line_number": 20,
+      "reason": "This describes behavior when accessing `mireg*` with an unimplemented `miselect` value, which is not an implementation choice but rather a specification of behavior."
+    },
+    {
+      "excerpt": "The behavior upon accessing `sireg*` from M-mode or S-mode, while `siselect` holds a value that is not implemented at supervisor level, is UNSPECIFIED.",
+      "line_number": 236,
+      "reason": "This describes behavior when accessing `sireg*` with an unimplemented `siselect` value, which is not an implementation choice but rather a specification of behavior."
+    },
+    {
+      "excerpt": "The behavior upon accessing `vsireg*` from M-mode or HS-mode, or accessing `sireg*` (really `vsireg*`) from VS-mode, while `vsiselect` holds a value that is not implemented at HS level, is UNSPECIFIED.",
+      "line_number": 292,
+      "reason": "This describes behavior when accessing `vsireg*` with an unimplemented `vsiselect` value, which is not an implementation choice but rather a specification of behavior."
+    },
+    {
+      "excerpt": "An implementation is not required to support any custom values for `miselect`.",
+      "line_number": 20,
+      "reason": "This is a fixed requirement that does not leave any choice to the implementer, thus it is not a parameter."
+    },
+    {
+      "excerpt": "It is expected that implementations will typically raise an illegal-instruction exception for such accesses.",
+      "line_number": 20,
+      "reason": "This is a behavioral expectation rather than an architectural parameter, as it does not define a choice left to the implementer."
+    }
+  ]
+}
+```

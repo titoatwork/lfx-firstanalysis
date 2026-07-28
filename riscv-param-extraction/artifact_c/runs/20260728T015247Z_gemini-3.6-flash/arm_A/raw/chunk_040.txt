@@ -1,0 +1,48 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The EEI will define whether the memory system is little-endian or big-endian.",
+      "line_number": 392,
+      "parameter_name": "U_MODE_ENDIANNESS",
+      "existing_udb_name": "U_MODE_ENDIANNESS",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The execution environment / implementation defines whether the memory system operates in little-endian or big-endian mode."
+    },
+    {
+      "excerpt": "loads and stores that are not naturally aligned may either complete execution successfully or raise an exception.",
+      "line_number": 415,
+      "parameter_name": "MISALIGNED_LDST",
+      "existing_udb_name": "MISALIGNED_LDST",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The specification explicitly leaves support for misaligned loads and stores implementation-defined; an implementation may support them directly/successfully or raise an exception."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "Register `x0` is hardwired with all bits equal to 0.",
+      "line_number": 49,
+      "reason": "This is a fixed requirement applying to all RISC-V implementations, not an implementation choice."
+    },
+    {
+      "excerpt": "An instruction-address-misaligned exception is generated on a taken branch or unconditional jump if the target address is not `IALIGN-bit` aligned.",
+      "line_number": 140,
+      "reason": "This describes mandatory trap generation rules for misaligned jump/branch targets, not an architectural choice."
+    },
+    {
+      "excerpt": "Some platforms may require that opcodes reserved for standard use raise an illegal-instruction exception.",
+      "line_number": 150,
+      "reason": "This text is inside a non-normative [NOTE] block."
+    },
+    {
+      "excerpt": "Implementations are always allowed to ignore the encoded hints.",
+      "line_number": 485,
+      "reason": "This defines standard permission regarding HINT instructions (which do not alter architectural state), rather than an architectural configuration parameter."
+    }
+  ]
+}
+```

@@ -1,0 +1,57 @@
+{
+  "chunk_id": "chunk_011",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The implemented number and width of these additional counters, and the set of events they count, are platform-specific.",
+      "line_number": 197,
+      "parameter_name": "NUM_HPM_COUNTERS",
+      "existing_udb_name": "NUM_HPM_COUNTERS",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number and width of the additional performance counters are implementation choices, making this a direct architectural parameter."
+    },
+    {
+      "excerpt": "The execution environment should provide a means to determine the number and width of the implemented counters, and an interface to configure the events to be counted by each counter.",
+      "line_number": 197,
+      "parameter_name": "HPM_COUNTER_EVENT_CONFIG",
+      "existing_udb_name": "HPM_COUNTER_EVENT_CONFIG",
+      "class": "NORM_DIRECT",
+      "value_type": "UNKNOWN",
+      "confidence": "medium",
+      "reasoning": "The specification indicates that the configuration of events counted by each counter is platform-specific, which implies an implementation choice, but does not specify a clear value type."
+    },
+    {
+      "excerpt": "The rate at which the cycle counter advances will depend on the implementation and operating environment.",
+      "line_number": 113,
+      "parameter_name": "CYCLE_COUNTER_RATE",
+      "existing_udb_name": "CYCLE_COUNTER_RATE",
+      "class": "NORM_DIRECT",
+      "value_type": "UNKNOWN",
+      "confidence": "medium",
+      "reasoning": "The cycle counter's advancement rate is implementation-defined, indicating a choice for the implementer, but lacks specific constraints or a defined value type."
+    },
+    {
+      "excerpt": "The execution environment should provide a means to determine the period of a counter tick (seconds/tick).",
+      "line_number": 113,
+      "parameter_name": "COUNTER_TICK_PERIOD",
+      "existing_udb_name": "COUNTER_TICK_PERIOD",
+      "class": "NORM_DIRECT",
+      "value_type": "UNKNOWN",
+      "confidence": "medium",
+      "reasoning": "The specification states that the period of the counter tick is dependent on the implementation, indicating a choice for the implementer, but does not specify a clear value type."
+    },
+    {
+      "excerpt": "The real-time clocks of all harts must be synchronized to within one tick of the real-time clock.",
+      "line_number": 113,
+      "parameter_name": "HART_CLOCK_SYNC",
+      "existing_udb_name": "HART_CLOCK_SYNC",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The synchronization requirement for harts is a design choice that can be implemented in various ways, making it a direct architectural parameter."
+    }
+  ]
+}

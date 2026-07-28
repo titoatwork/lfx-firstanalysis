@@ -1,0 +1,57 @@
+{
+  "chunk_id": "chunk_057",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The `LPAD` instruction uses the code points defined as HINTs for the `AUIPC` opcode.",
+      "line_number": 123,
+      "parameter_name": "LPAD_ENCODING",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The encoding of the `LPAD` instruction is a direct implementation choice based on the defined HINTs for the `AUIPC` opcode."
+    },
+    {
+      "excerpt": "The `ELP` state can be one of: * 0 - `NO_LP_EXPECTED` * 1 - `LP_EXPECTED`",
+      "line_number": 197,
+      "parameter_name": "ELP_STATE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The `ELP` state is an implementation-defined choice that can be either `NO_LP_EXPECTED` or `LP_EXPECTED`, representing the expected landing pad state."
+    },
+    {
+      "excerpt": "The shadow stack is architecturally protected from inadvertent corruptions and modifications, as detailed in the Privileged specification.",
+      "line_number": 370,
+      "parameter_name": "SHADOW_STACK_PROTECTION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to protect the shadow stack from inadvertent modifications, which is a design decision."
+    },
+    {
+      "excerpt": "The Zicfiss extension may be activated for use individually and independently for each privilege mode.",
+      "line_number": 470,
+      "parameter_name": "ZICFISS_ACTIVATION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The activation of the Zicfiss extension can be controlled independently for each privilege mode, indicating a design choice."
+    },
+    {
+      "excerpt": "The `ssp` CSR is an unprivileged read-write (URW) CSR that reads and writes XLEN low order bits of the shadow stack pointer (`ssp`).",
+      "line_number": 780,
+      "parameter_name": "SSP_ACCESS",
+      "existing_udb_name": "SSP_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The `ssp` CSR can be read and written, indicating a choice about its mutability."
+    }
+  ]
+}

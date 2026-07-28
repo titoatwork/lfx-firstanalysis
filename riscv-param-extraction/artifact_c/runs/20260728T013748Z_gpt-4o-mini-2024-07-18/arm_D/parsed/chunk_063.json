@@ -1,0 +1,37 @@
+{
+  "chunk_id": "chunk_063",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The Zabha extension provides the `AMO[ADD|AND|OR|XOR|SWAP|MIN[U]|MAX[U]].[B|H]` instructions.",
+      "line_number": 20,
+      "parameter_name": "ZABHA_AMO_INSTRUCTIONS",
+      "existing_udb_name": "ZABHA_AMO_INSTRUCTIONS",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The specific AMO instructions provided by the Zabha extension are an implementation choice, allowing for a set of operations that can be supported."
+    },
+    {
+      "excerpt": "If Zacas extension is also implemented, Zabha further provides the `AMOCAS.[B|H]` instructions.",
+      "line_number": 22,
+      "parameter_name": "ZABHA_AMOCAS_INSTRUCTIONS",
+      "existing_udb_name": "ZABHA_AMOCAS_INSTRUCTIONS",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The availability of AMOCAS instructions is contingent on the implementation of the Zacas extension, making it an implementation-defined choice."
+    },
+    {
+      "excerpt": "The address contained in the `rs1` register must be naturally aligned to the size of the operand.",
+      "line_number": 40,
+      "parameter_name": "ZABHA_RS1_ALIGNMENT",
+      "existing_udb_name": "ZABHA_RS1_ALIGNMENT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The requirement for natural alignment of the address in `rs1` is a design choice that can vary based on implementation, thus qualifying as a parameter."
+    }
+  ]
+}

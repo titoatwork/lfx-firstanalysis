@@ -1,0 +1,63 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The round group number (`rnd`) comes from `uimm[2:0]`; the bits in `uimm[4:3]` are ignored. Round group numbers range from 0 to 7 and indicate which group of four round keys are being generated.",
+      "line_number": 3358,
+      "parameter_name": "SM4_ROUND_GROUP",
+      "existing_udb_name": "SM4_ROUND_GROUP",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The round group number is a direct implementation choice that can vary from 0 to 7, indicating which group of four round keys is generated."
+    },
+    {
+      "excerpt": "The number of element groups to be processed is `vl`/`EGS`. `vl` must be set to the number of `SEW=32` elements to be processed and therefore must be a multiple of `EGS=4`. Likewise, `vstart` must be a multiple of `EGS=4`.",
+      "line_number": 3358,
+      "parameter_name": "VSTART_MULTIPLE",
+      "existing_udb_name": "VSTART_MULTIPLE",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The implementation must choose a value for `EGS` that allows `vl` and `vstart` to be multiples of it, which is a design-time decision."
+    },
+    {
+      "excerpt": "The elements in `vs2` are zero-extended to 2*`SEW` bits, then shifted left by the shift amount specified by either the corresponding elements of `vs1` (vector-vector), integer register `rs1` (vector-scalar), or an immediate value (vector-immediate).",
+      "line_number": 4960,
+      "parameter_name": "VWSLL_SHIFT_SOURCE",
+      "existing_udb_name": "VWSLL_SHIFT_SOURCE",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The source of the shift amount can be chosen from three options (vector, scalar, or immediate), which is a design-time decision."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] The endian byte swapping of the input and output words enables us to align with the SM3 specification without requiring that software perform these swaps.",
+      "line_number": 3390,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a software requirement, not an architectural parameter."
+    },
+    {
+      "excerpt": "The current state of eight 32-bit words is read in as an element group from `vd`. Eight 32-bit message words are read in as an element group from `vs2`, although only four of them are used.",
+      "line_number": 3410,
+      "reason": "This describes the behavior of the instruction and does not define an implementation choice. It is not a parameter."
+    },
+    {
+      "excerpt": "The number of element groups to be processed is `vl`/`EGS`.",
+      "line_number": 3415,
+      "reason": "This is a fixed requirement for how to calculate the number of element groups and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "[NOTE] Preventing overlap between `vd` and `vs2` simplifies implementation with `VLEN < EGW`.",
+      "line_number": 3420,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a suggestion for implementation, not an architectural parameter."
+    },
+    {
+      "excerpt": "The `vd` register group overlaps with either `vs1` or `vs2`.",
+      "line_number": 3350,
+      "reason": "This describes a condition for the instruction's operation and does not define an implementation choice. It is not a parameter."
+    }
+  ]
+}
+```

@@ -1,0 +1,43 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "if the Ztso extension is implemented, then vector memory instructions in the V extension and Zve family of extensions follow RVTSO at the instruction level.",
+      "line_number": 29,
+      "parameter_name": "ZTSO_VECTOR_MEMORY_INSTRUCTIONS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation choice to support the Ztso extension for vector memory instructions is a direct decision made by the hardware implementer."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The Ztso extension is meant to facilitate the porting of code originally written for the x86 or SPARC architectures, both of which use TSO by default.",
+      "line_number": 7,
+      "reason": "This text is a note about the purpose of the Ztso extension and does not define an architectural parameter."
+    },
+    {
+      "excerpt": "These rules render all PPO rules except <<overlapping-ordering, 4-7>> redundant.",
+      "line_number": 15,
+      "reason": "This describes the implications of the RVTSO adjustments and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "In both of these memory models, it is the <<ax-load>> that allows a hart to forward a value from its store buffer to a subsequent (in program order) load.",
+      "line_number": 21,
+      "reason": "This is a description of behavior in the memory model, not an architectural parameter."
+    },
+    {
+      "excerpt": "The Ztso extension does not strengthen the ordering of intra-instruction element accesses.",
+      "line_number": 33,
+      "reason": "This is a fixed characteristic of the Ztso extension and does not represent a choice for implementers."
+    },
+    {
+      "excerpt": "Binaries compiled to run only under Ztso should indicate as such via a flag in the binary, so that platforms which do not implement Ztso can simply refuse to run them.",
+      "line_number": 41,
+      "reason": "This describes a software behavior and requirement, not an architectural parameter."
+    }
+  ]
+}
+```

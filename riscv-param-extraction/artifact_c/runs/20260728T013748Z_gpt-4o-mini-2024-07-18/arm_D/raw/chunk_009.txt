@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "the size of a cache block shall be uniform throughout the system.",
+      "line_number": 45,
+      "parameter_name": "CACHE_BLOCK_SIZE_UNIFORMITY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The specification states that the size of a cache block is an implementation choice, and it must be uniform across the system, indicating a direct design decision."
+    },
+    {
+      "excerpt": "An implementation may or may not update the entire set of bytes atomically with a single store operation.",
+      "line_number": 75,
+      "parameter_name": "CACHE_BLOCK_ZERO_ATOMICITY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation has the choice to update the cache block bytes atomically or not, which is a direct design decision."
+    },
+    {
+      "excerpt": "A cache-block management instruction is permitted to access the specified cache block whenever a load instruction or store instruction is permitted to access the corresponding physical addresses.",
+      "line_number": 103,
+      "parameter_name": "CACHE_BLOCK_MANAGEMENT_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The access permissions for cache-block management instructions are implementation-defined, allowing for flexibility in design."
+    },
+    {
+      "excerpt": "A cache-block zero instruction is permitted to access the specified cache block whenever a store instruction is permitted to access the corresponding physical addresses.",
+      "line_number": 104,
+      "parameter_name": "CACHE_BLOCK_ZERO_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The access permissions for cache-block zero instructions are implementation-defined, allowing for flexibility in design."
+    },
+    {
+      "excerpt": "A cache-block prefetch instruction is permitted to access the specified cache block whenever a load instruction, store instruction, or instruction fetch is permitted to access the corresponding physical addresses.",
+      "line_number": 105,
+      "parameter_name": "CACHE_BLOCK_PREFETCH_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The access permissions for cache-block prefetch instructions are implementation-defined, allowing for flexibility in design."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The execution environment provides software a means to discover information about the caches and cache blocks in a system.",
+      "line_number": 60,
+      "reason": "This describes a software capability rather than an implementation choice, thus it is not a parameter."
+    },
+    {
+      "excerpt": "The coherent agents within such a set shall access a given memory location with the same physical address and the same physical memory attributes.",
+      "line_number": 85,
+      "reason": "This is a fixed requirement ('shall') that applies to all implementations, not an implementation choice."
+    },
+    {
+      "excerpt": "The PMP access control bits shall be the same for all physical addresses in the cache block.",
+      "line_number": 100,
+      "reason": "This is a fixed requirement ('shall') that applies to all implementations, not an implementation choice."
+    },
+    {
+      "excerpt": "The PMAs shall be the same for all physical addresses in the cache block.",
+      "line_number": 101,
+      "reason": "This is a fixed requirement ('shall') that applies to all implementations, not an implementation choice."
+    },
+    {
+      "excerpt": "The Zicbom extension does not prohibit agents that fall outside of the above architectural definition.",
+      "line_number": 150,
+      "reason": "This describes a limitation of the extension rather than an implementation choice, thus it is not a parameter."
+    }
+  ]
+}
+```

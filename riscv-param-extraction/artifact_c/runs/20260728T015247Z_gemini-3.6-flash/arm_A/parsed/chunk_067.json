@@ -1,0 +1,37 @@
+{
+  "chunk_id": "chunk_067",
+  "arm": "A",
+  "model": "gemini-3.6-flash",
+  "parameters": [
+    {
+      "excerpt": "If <<Zcmt>> is implemented then _jvt_ must also be implemented, but can contain a read-only value.",
+      "line_number": 2486,
+      "parameter_name": "JVT_READ_ONLY",
+      "existing_udb_name": "JVT_READ_ONLY",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The spec leaves it to the implementation choice whether the jvt CSR is writable or contains a read-only value."
+    },
+    {
+      "excerpt": "If _jvt_ is writable, the set of values the register may hold can vary by implementation.",
+      "line_number": 2486,
+      "parameter_name": "JVT_BASE_TYPE",
+      "existing_udb_name": "JVT_BASE_TYPE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "When jvt is writable, the BASE field is WARL and the specific set of legal/supported base address values varies by implementation."
+    },
+    {
+      "excerpt": "_jvt.mode_ is a *WARL* field, so can only be programmed to modes which are implemented.",
+      "line_number": 2511,
+      "parameter_name": "JVT_MODE_LEGAL_VALUES",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The jvt.mode field is defined as WARL, and the set of supported mode values is an implementation choice."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+```json
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The quad-precision binary floating-point instruction-set extension is named \"Q\"; it depends on the double-precision floating-point extension D.",
+      "line_number": 5,
+      "reason": "This is a fixed requirement about the relationship between the Q extension and the D extension, not an implementation choice."
+    },
+    {
+      "excerpt": "FLQ and FSQ are only guaranteed to execute atomically if the effective address is naturally aligned and XLEN=128.",
+      "line_number": 15,
+      "reason": "This describes a condition under which certain instructions execute atomically, but does not define an implementation choice."
+    },
+    {
+      "excerpt": "The quad-precision floating-point computational instructions are defined analogously to their double-precision counterparts, but operate on quad-precision operands and produce quad-precision results.",
+      "line_number": 35,
+      "reason": "This is a description of how quad-precision instructions relate to double-precision instructions, not an architectural parameter."
+    },
+    {
+      "excerpt": "FCVT.Q.L[U] always produces an exact result and is unaffected by rounding mode.",
+      "line_number": 55,
+      "reason": "This describes the behavior of a specific instruction rather than an implementation choice."
+    },
+    {
+      "excerpt": "FMV.X.Q and FMV.Q.X instructions are not provided in RV32 or RV64, so quad-precision bit patterns must be moved to the integer registers via memory.",
+      "line_number": 85,
+      "reason": "This states a limitation of the instruction set rather than an architectural parameter that can vary by implementation."
+    }
+  ]
+}
+```

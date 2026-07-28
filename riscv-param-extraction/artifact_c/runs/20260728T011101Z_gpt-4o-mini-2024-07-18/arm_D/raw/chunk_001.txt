@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "Each atomic instruction has two bits, _aq_ and _rl_, used to specify additional memory ordering constraints as viewed by other RISC-V harts.",
+      "line_number": 15,
+      "parameter_name": "AQ_RL_BITS",
+      "existing_udb_name": "AQ_RL_BITS",
+      "class": "NORM_DIRECT",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The _aq_ and _rl_ bits are direct implementation choices that specify memory ordering constraints for atomic instructions. The implementer decides how to utilize these bits."
+    },
+    {
+      "excerpt": "An implementation can register an arbitrarily large reservation set on each LR, provided the reservation set includes all bytes of the addressed data word or doubleword.",
+      "line_number": 295,
+      "parameter_name": "LR_RESERVATION_SET_SIZE",
+      "existing_udb_name": "LR_RESERVATION_SET_SIZE",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The size of the reservation set for LR instructions is an implementation choice, allowing for flexibility in how many bytes can be reserved."
+    },
+    {
+      "excerpt": "The misaligned atomicity granule PMA specifies the size of a misaligned atomicity granule, a power-of-two number of bytes.",
+      "line_number": 392,
+      "parameter_name": "MISALIGNED_ATOMICITY_GRANULE",
+      "existing_udb_name": "MISALIGNED_ATOMICITY_GRANULE",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The size of the misaligned atomicity granule is an implementation-defined parameter that can vary, allowing implementers to define how misaligned accesses are handled."
+    },
+    {
+      "excerpt": "If the _aq_ bit is set, then no later memory operations in this RISC-V hart can be observed to take place before the AMO.",
+      "line_number": 455,
+      "parameter_name": "AMO_AQ_SEMANTICS",
+      "existing_udb_name": "AMO_AQ_SEMANTICS",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to set the _aq_ bit for AMO instructions is a direct implementation decision that affects memory operation visibility."
+    },
+    {
+      "excerpt": "If the _rl_ bit is set, then other RISC-V harts will not observe the AMO before memory accesses preceding the AMO in this RISC-V hart.",
+      "line_number": 455,
+      "parameter_name": "AMO_RL_SEMANTICS",
+      "existing_udb_name": "AMO_RL_SEMANTICS",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to set the _rl_ bit for AMO instructions is a direct implementation decision that affects memory operation visibility."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The atomic memory operation (AMO) instructions perform read-modify-write operations for multiprocessor synchronization and are encoded with an R-type instruction format.",
+      "line_number": 392,
+      "reason": "This is a description of the AMO instructions and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "The SC must fail if the address is not within the reservation set of the most recent LR in program order.",
+      "line_number": 392,
+      "reason": "This describes a requirement for SC behavior based on LR state, not an implementation choice."
+    },
+    {
+      "excerpt": "The SC must fail if a store to the reservation set from another hart can be observed to occur between the LR and SC.",
+      "line_number": 392,
+      "reason": "This describes a requirement for SC behavior based on external conditions, not an implementation choice."
+    },
+    {
+      "excerpt": "The precise statement of the atomicity requirements for successful LR/SC sequences is defined by the Atomicity Axiom.",
+      "line_number": 392,
+      "reason": "This is a reference to a defined requirement rather than an implementation choice."
+    },
+    {
+      "excerpt": "The platform should provide a means to determine the size and shape of the reservation set.",
+      "line_number": 392,
+      "reason": "This is a suggestion for platform behavior, not a definitive implementation choice."
+    }
+  ]
+}
+```

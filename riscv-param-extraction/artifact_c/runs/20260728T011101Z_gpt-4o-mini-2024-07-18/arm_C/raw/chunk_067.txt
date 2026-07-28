@@ -1,0 +1,63 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "If jvt.mode is a reserved value, then _cm.jt_ is also reserved. In the future other defined values of jvt.mode may change the behaviour of _cm.jt_.",
+      "line_number": 258,
+      "parameter_name": "JVT_MODE",
+      "existing_udb_name": "JVT_MODE",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The jvt.mode field is WARL, and the set of supported mode values can vary by implementation. The parameter is the set of legal mode values."
+    },
+    {
+      "excerpt": "The value in the BASE field must always be aligned on a 64-byte boundary.",
+      "line_number": 258,
+      "parameter_name": "JVT_BASE_ALIGNMENT",
+      "existing_udb_name": "JVT_BASE_ALIGNMENT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The alignment requirement for the BASE field is a direct implementation choice that must be adhered to."
+    },
+    {
+      "excerpt": "The total stack adjustment represents the total size of the stack frame, which is _stack_adj_base_ added to _spimm_ scaled by 16, as defined above.",
+      "line_number": 258,
+      "parameter_name": "STACK_ADJUSTMENT",
+      "existing_udb_name": "STACK_ADJUSTMENT",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The stack adjustment is a direct implementation choice based on the number of registers being pushed or popped."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] The calls to _<riscv_save_0>/<riscv_restore_0>_ become 64-bit when the target functions are out of the ±1 MB range, increasing the prologue/epilogue size to 22-bytes.",
+      "line_number": 99,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "If an implementation allows interrupts during the sequence, and the interrupt handler uses _sp_ to allocate stack memory, then any stores which were executed before the interrupt may be overwritten by the handler.",
+      "line_number": 99,
+      "reason": "This describes a potential behavior of the implementation rather than an architectural parameter."
+    },
+    {
+      "excerpt": "The jvt register is an XLEN-bit WARL read/write register that holds the jump table configuration.",
+      "line_number": 99,
+      "reason": "This is a description of the CSR itself, not a parameter that is left to the implementer."
+    },
+    {
+      "excerpt": "The jvt register must always be implemented, but can contain a read-only value.",
+      "line_number": 99,
+      "reason": "This is a fixed requirement that applies to all implementations and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "The memory pointed to by _jvt.base_ is treated as instruction memory for the purpose of executing table jump instructions, implying execute access permission.",
+      "line_number": 99,
+      "reason": "This describes the behavior of the memory access rather than an architectural parameter."
+    }
+  ]
+}
+```

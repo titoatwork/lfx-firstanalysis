@@ -1,0 +1,38 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "If the UXLEN or SXLEN may never be 32, then the bit 2 is also read-only zero.",
+      "line_number": 390,
+      "parameter_name": "SSP_BIT2_READ_ONLY_ZERO",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "Controls whether bit 2 of the ssp CSR is read-only zero or writable, which depends on whether the implementation can ever support 32-bit execution (UXLEN/SXLEN=32)."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The ELP state is initialized to NO_LP_EXPECTED by the hart upon reset.",
+      "line_number": 165,
+      "reason": "This is a fixed architectural state reset requirement that applies to all implementations, not an implementation-defined parameter choice."
+    },
+    {
+      "excerpt": "A landing pad may be optionally associated with a 20-bit label.",
+      "line_number": 120,
+      "reason": "This describes software convention and usage flexibility (whether software chooses to use label values or zero), not a hardware implementation choice."
+    },
+    {
+      "excerpt": "Zicfiss implementations may prevent forwarding from a non-shadow-stack store to the SSPOPCHK or the C.SSPOPCHK instructions.",
+      "line_number": 450,
+      "reason": "This text appears inside a non-normative [NOTE] block (NON_NORM) and describes microarchitectural forwarding behavior rather than an architectural parameter."
+    },
+    {
+      "excerpt": "Furthermore, if the Zcmop extension is implemented, the Zicfiss extension also provides the C.SSPUSH and C.SSPOPCHK instructions.",
+      "line_number": 330,
+      "reason": "This states a standard extension dependency rule (conditional presence based on Zcmop), rather than an implementation parameter choice within Zicfiss."
+    }
+  ]
+}
+```

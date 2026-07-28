@@ -1,0 +1,93 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "If set, then counting of events in M-mode is inhibited",
+      "line_number": 15,
+      "parameter_name": "M_MODE_INHIBIT",
+      "existing_udb_name": "M_MODE_INHIBIT",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The MINH bit controls whether counting of events in M-mode is allowed or inhibited, representing a binary choice for the implementer."
+    },
+    {
+      "excerpt": "If set, then counting of events in S/HS-mode is inhibited",
+      "line_number": 16,
+      "parameter_name": "S_MODE_INHIBIT",
+      "existing_udb_name": "S_MODE_INHIBIT",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The SINH bit controls whether counting of events in S/HS-mode is allowed or inhibited, representing a binary choice for the implementer."
+    },
+    {
+      "excerpt": "If set, then counting of events in U-mode is inhibited",
+      "line_number": 17,
+      "parameter_name": "U_MODE_INHIBIT",
+      "existing_udb_name": "U_MODE_INHIBIT",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The UINH bit controls whether counting of events in U-mode is allowed or inhibited, representing a binary choice for the implementer."
+    },
+    {
+      "excerpt": "If set, then counting of events in VS-mode is inhibited",
+      "line_number": 18,
+      "parameter_name": "VS_MODE_INHIBIT",
+      "existing_udb_name": "VS_MODE_INHIBIT",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The VSINH bit controls whether counting of events in VS-mode is allowed or inhibited, representing a binary choice for the implementer."
+    },
+    {
+      "excerpt": "If set, then counting of events in VU-mode is inhibited",
+      "line_number": 19,
+      "parameter_name": "VU_MODE_INHIBIT",
+      "existing_udb_name": "VU_MODE_INHIBIT",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The VUINH bit controls whether counting of events in VU-mode is allowed or inhibited, representing a binary choice for the implementer."
+    },
+    {
+      "excerpt": "The `scountovf` CSR, a 32-bit read-only register that contains shadow copies of the OF bits in the 29 mhpmevent CSRs",
+      "line_number": 97,
+      "parameter_name": "SCOUNTOFV_ACCESS",
+      "existing_udb_name": "SCOUNTOFV_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The access to the `scountovf` register is determined by the implementation of the mhpmevent CSRs, allowing for a binary choice of whether it is accessible or not."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The OF bit is set when the corresponding hpmcounter overflows, and remains set until written by software.",
+      "line_number": 29,
+      "reason": "This describes the behavior of the OF bit when a counter overflows, which is determined by the CSR field value at runtime, not an implementation choice."
+    },
+    {
+      "excerpt": "If an hpmcounter overflows while the associated OF bit is zero, then a 'count overflow interrupt request' is generated.",
+      "line_number": 31,
+      "reason": "This describes the behavior of the system when certain conditions are met, which is not an implementation choice but rather a fixed requirement."
+    },
+    {
+      "excerpt": "Count overflow never results from writes to the mhpmcounter__n__ or mhpmevent__n__ registers, only from hardware increments of counter registers.",
+      "line_number": 33,
+      "reason": "This is a fixed requirement about how count overflow is triggered, not an architectural parameter."
+    },
+    {
+      "excerpt": "Read access to bit _X_ is subject to the same mcounteren (or mcounteren and hcounteren) CSRs that mediate access to the hpmcounter CSRs by S-mode.",
+      "line_number": 101,
+      "reason": "This describes access control for the `scountovf` bits, which is determined by the state of other CSRs, not an implementation choice."
+    },
+    {
+      "excerpt": "This register enables supervisor-level overflow interrupt handler software to quickly and easily determine which counter(s) have overflowed.",
+      "line_number": 99,
+      "reason": "This describes the purpose of the `scountovf` register rather than defining an architectural parameter."
+    }
+  ]
+}
+```

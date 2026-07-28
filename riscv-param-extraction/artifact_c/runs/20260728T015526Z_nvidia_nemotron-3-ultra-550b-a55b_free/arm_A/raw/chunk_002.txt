@@ -1,0 +1,40 @@
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The Logical with Negate instructions can be implemented by inverting the _rs2_ inputs to the base-required AND, OR, and XOR logic instructions. In some implementations, the inverter on rs2 used for subtraction can be reused for this purpose.",
+      "line_number": 145,
+      "reason": "This text is inside a [NOTE] block (Implementation Hint) and is therefore non-normative. It describes a possible implementation technique, not an architectural parameter."
+    },
+    {
+      "excerpt": "The rotate instructions were included to replace a common four-instruction sequence to achieve the same effect (neg; sll/srl; srl/sll; or)",
+      "line_number": 215,
+      "reason": "This text is inside a [NOTE] block (Architecture Explanation) and is therefore non-normative. It provides design rationale, not an implementation choice."
+    },
+    {
+      "excerpt": "The *rev8* mnemonic corresponds to different instruction encodings in RV32 and RV64.",
+      "line_number": 1045,
+      "reason": "This is a fixed architectural requirement (different encodings for RV32 vs RV64), not an implementation-defined choice. The encoding is fully specified for each base ISA."
+    },
+    {
+      "excerpt": "This instruction is available only on RV32.",
+      "line_number": 1185,
+      "reason": "This is a fixed requirement (unzip only exists in RV32), not an implementation parameter. The ISA variant determines availability."
+    },
+    {
+      "excerpt": "For RV32, the `pack` instruction with _rs2_=`x0` is the `zext.h` instruction. Hence, for RV32, any extension that contains the `pack` instruction also contains the `zext.h` instruction",
+      "line_number": 855,
+      "reason": "This describes a fixed architectural relationship between instructions, not an implementation choice. It is a consequence of the encoding allocation."
+    },
+    {
+      "excerpt": "The bitmanip extensions are defined for RV32 and RV64.",
+      "line_number": 25,
+      "reason": "This is a normative requirement stating the base ISAs for which the extensions are defined. It does not leave any choice to the implementer."
+    },
+    {
+      "excerpt": "The B standard extension comprises instructions provided by the Zba, Zbb, and Zbs extensions.",
+      "line_number": 110,
+      "reason": "This is a fixed composition rule for the B extension. An implementer chooses whether to implement B, but the composition is not a parameter."
+    }
+  ]
+}

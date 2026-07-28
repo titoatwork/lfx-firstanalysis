@@ -1,0 +1,57 @@
+{
+  "chunk_id": "chunk_009",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "the size of a cache block shall be uniform throughout the system.",
+      "line_number": 45,
+      "parameter_name": "CACHE_BLOCK_SIZE_UNIFORMITY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The specification states that the size of a cache block is an implementation choice, and it must be uniform across the system, indicating a direct design decision."
+    },
+    {
+      "excerpt": "An implementation may or may not update the entire set of bytes atomically with a single store operation.",
+      "line_number": 75,
+      "parameter_name": "CACHE_BLOCK_ZERO_ATOMICITY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation has the choice to update the cache block bytes atomically or not, which is a direct design decision."
+    },
+    {
+      "excerpt": "A cache-block management instruction is permitted to access the specified cache block whenever a load instruction or store instruction is permitted to access the corresponding physical addresses.",
+      "line_number": 103,
+      "parameter_name": "CACHE_BLOCK_MANAGEMENT_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The access permissions for cache-block management instructions are implementation-defined, allowing for flexibility in design."
+    },
+    {
+      "excerpt": "A cache-block zero instruction is permitted to access the specified cache block whenever a store instruction is permitted to access the corresponding physical addresses.",
+      "line_number": 104,
+      "parameter_name": "CACHE_BLOCK_ZERO_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The access permissions for cache-block zero instructions are implementation-defined, allowing for flexibility in design."
+    },
+    {
+      "excerpt": "A cache-block prefetch instruction is permitted to access the specified cache block whenever a load instruction, store instruction, or instruction fetch is permitted to access the corresponding physical addresses.",
+      "line_number": 105,
+      "parameter_name": "CACHE_BLOCK_PREFETCH_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The access permissions for cache-block prefetch instructions are implementation-defined, allowing for flexibility in design."
+    }
+  ]
+}

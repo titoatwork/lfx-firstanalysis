@@ -1,0 +1,33 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "Implementations are permitted but not required to raise an illegal-instruction exception if an instruction attempts to write a non-supported value to a *WLRL* field.",
+      "line_number": 1001,
+      "parameter_name": "TRAP_ON_ILLEGAL_WLRL",
+      "existing_udb_name": "TRAP_ON_ILLEGAL_WLRL",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The spec explicitly leaves it as an implementation option ('permitted but not required') whether hardware raises an illegal-instruction exception upon writing an unsupported value to a WLRL field."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "Implementations might allow a more-privileged level to trap otherwise permitted CSR accesses by a less-privileged level to allow these accesses to be intercepted.",
+      "line_number": 40,
+      "reason": "This text appears inside an informative [NOTE] block and describes platform/hypervisor trap options, not a normative ISA parameter."
+    },
+    {
+      "excerpt": "For forward compatibility, implementations that do not furnish these fields must make them read-only zero.",
+      "line_number": 968,
+      "reason": "This is a fixed requirement ('must make them read-only zero') for unimplemented WPRI fields, leaving no design choice to the implementer."
+    },
+    {
+      "excerpt": "Implementations will not raise an exception on writes of unsupported values to a *WARL* field.",
+      "line_number": 1018,
+      "reason": "This is a mandatory behavioral rule applying to all implementations for WARL fields, not an architectural parameter."
+    }
+  ]
+}
+```

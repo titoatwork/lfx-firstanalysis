@@ -1,0 +1,37 @@
+{
+  "chunk_id": "chunk_070",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "Floating-point operands of width _w_ < XLEN bits occupy bits _w_-1:0 of an `x` register.",
+      "line_number": 34,
+      "parameter_name": "NARROW_OPERAND_WIDTH",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The width of floating-point operands is an implementation choice, where _w_ can vary as long as it is less than XLEN."
+    },
+    {
+      "excerpt": "Floating-point operations that produce _w_ < XLEN-bit results fill bits XLEN-1: _w_ with copies of bit _w_-1 (the sign bit).",
+      "line_number": 40,
+      "parameter_name": "NARROW_RESULT_WIDTH",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The implementation can choose the width of the results produced by floating-point operations, which can be less than XLEN."
+    },
+    {
+      "excerpt": "The `misa` bits F, D, and Q are hardwired to 0 when the Zfinx extension is implemented.",
+      "line_number": 139,
+      "parameter_name": "MISA_F_D_Q_HARDWIRED",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation must decide whether the bits F, D, and Q in the misa register are hardwired to 0, indicating the absence of those extensions."
+    }
+  ]
+}

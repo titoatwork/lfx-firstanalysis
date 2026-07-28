@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "the C extension can be added to any of the base ISAs (RV32I, RV32E, RV64I, RV64E)",
+      "line_number": 6,
+      "parameter_name": "BASE_ISA_SUPPORT",
+      "existing_udb_name": "BASE_ISA_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The C extension can be implemented with any of the specified base ISAs, which is a direct implementation choice."
+    },
+    {
+      "excerpt": "the appropriate compressed floating-point load and store instructions must be provided whenever the relevant standard floating-point extension (F and/or D) is also implemented.",
+      "line_number": 20,
+      "parameter_name": "FLOATING_POINT_EXTENSION_SUPPORT",
+      "existing_udb_name": "FLOATING_POINT_EXTENSION_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation must choose whether to support the floating-point load and store instructions based on the presence of the F and/or D extensions."
+    },
+    {
+      "excerpt": "C.LDSP is an RV64C-only instruction that loads a 64-bit value from memory into register _rd_.",
+      "line_number": 66,
+      "parameter_name": "RV64C_LOAD_STORE_SUPPORT",
+      "existing_udb_name": "RV64C_LOAD_STORE_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation must choose whether to support RV64C-specific load and store instructions, which is a design-time decision."
+    },
+    {
+      "excerpt": "C.ADDI16SP adds the non-zero sign-extended 6-bit immediate to the value in the stack pointer (`sp=x2`), where the immediate is scaled to represent multiples of 16 in the range [-512, 496].",
+      "line_number": 162,
+      "parameter_name": "C_ADD16SP_IMM_RANGE",
+      "existing_udb_name": "C_ADD16SP_IMM_RANGE",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The range of the immediate value for the C.ADDI16SP instruction is defined, and the implementer can choose how to handle this range."
+    },
+    {
+      "excerpt": "C.ADDI4SPN is valid only when _nzuimm_≠0; the code points with _nzuimm_=0 are reserved.",
+      "line_number": 220,
+      "parameter_name": "C_ADDI4SPN_VALIDITY",
+      "existing_udb_name": "C_ADDI4SPN_VALIDITY",
+      "class": "NORM_CSR_WARL",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The validity of the C.ADDI4SPN instruction is determined by the value of _nzuimm_, which is an implementation-defined choice."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] Removing the 32-bit alignment constraint on the original 32-bit instructions allows significantly greater code density.",
+      "line_number": 12,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "The C extension is not designed to be a stand-alone ISA, and is meant to be used alongside a base ISA.",
+      "line_number": 30,
+      "reason": "This is a fixed requirement about the relationship between the C extension and base ISAs, not an implementation choice."
+    },
+    {
+      "excerpt": "The immediate fields are scrambled in the instruction formats instead of in sequential order so that as many bits as possible are in the same position in every instruction.",
+      "line_number": 80,
+      "reason": "This describes a design decision about instruction format, not an architectural parameter that is left to the implementer."
+    },
+    {
+      "excerpt": "C.JALR is valid only when _rs1_≠`x0`; the code point with _rs1_=`x0` corresponds to the C.EBREAK instruction.",
+      "line_number": 300,
+      "reason": "This describes a validity condition for the C.JALR instruction based on the value of _rs1_, which is not an implementation choice."
+    },
+    {
+      "excerpt": "The code points with _rd_=`x0` and _imm_≠0 are HINTs.",
+      "line_number": 400,
+      "reason": "This describes a specific encoding for HINT instructions, which is not an architectural parameter but rather a fixed requirement."
+    }
+  ]
+}
+```

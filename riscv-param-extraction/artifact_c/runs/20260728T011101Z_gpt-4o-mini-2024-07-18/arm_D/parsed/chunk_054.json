@@ -1,0 +1,17 @@
+{
+  "chunk_id": "chunk_054",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "This extension adds the `STCE` bit to the `menvcfg` CSR.",
+      "line_number": 20,
+      "parameter_name": "STCE_ENABLE",
+      "existing_udb_name": "STCE_ENABLE",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether the STimecmp feature is enabled or disabled by setting the STCE bit in the menvcfg CSR. This is a binary choice about the mutability of the field."
+    }
+  ]
+}

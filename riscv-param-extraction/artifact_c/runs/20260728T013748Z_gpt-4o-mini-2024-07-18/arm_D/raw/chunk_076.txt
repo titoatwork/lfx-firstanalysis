@@ -1,0 +1,63 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "As the access size is 64-bit, accesses are only considered naturally aligned for effective addresses that are a multiple of 8.",
+      "line_number": 15,
+      "parameter_name": "NATURAL_ALIGNMENT",
+      "existing_udb_name": "NATURAL_ALIGNMENT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The alignment requirement for 64-bit accesses is a direct implementation choice, determining whether addresses must be multiples of 8."
+    },
+    {
+      "excerpt": "If the effective address is a multiple of 4, then each word access is required to be performed atomically.",
+      "line_number": 19,
+      "parameter_name": "ATOMIC_WORD_ACCESS",
+      "existing_udb_name": "ATOMIC_WORD_ACCESS",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The requirement for atomicity of word accesses based on address alignment is a design choice for the implementation."
+    },
+    {
+      "excerpt": "If using `x0` as `src` of SD or C.SDSP, the entire 64-bit operand is zero.",
+      "line_number": 29,
+      "parameter_name": "X0_SRC_ZERO_OPERAND",
+      "existing_udb_name": "X0_SRC_ZERO_OPERAND",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The behavior of using `x0` as a source operand is an implementation choice that results in a specific behavior (zero operand)."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "LD instructions with destination `x0` are processed as any other load, but the result is discarded entirely and x1 is not written.",
+      "line_number": 25,
+      "reason": "This describes behavior when a specific register is used, not an implementation choice. The parameter would be the behavior of using `x0` as a destination."
+    },
+    {
+      "excerpt": "To ensure resumable trap handling is possible for the load instructions, the base register must have its original value if a trap is taken.",
+      "line_number": 21,
+      "reason": "This is a fixed requirement for trap handling, not an implementation choice. It does not indicate a parameter."
+    },
+    {
+      "excerpt": "Even if naturally aligned, the memory access might not be performed atomically.",
+      "line_number": 17,
+      "reason": "This describes a potential behavior of memory access rather than an implementation choice. It does not define a parameter."
+    },
+    {
+      "excerpt": "For the purposes of RVWMO and exception handling, LD and SD instructions are considered to be misaligned loads and stores.",
+      "line_number": 31,
+      "reason": "This is a normative statement about how instructions are treated in terms of exception handling, not an implementation choice."
+    },
+    {
+      "excerpt": "Software should make no assumptions about the number or order of accesses these instructions might give rise to, beyond the 4-byte constraint mentioned above.",
+      "line_number": 33,
+      "reason": "This is a guideline for software behavior, not an architectural parameter. It does not indicate an implementation choice."
+    }
+  ]
+}
+```

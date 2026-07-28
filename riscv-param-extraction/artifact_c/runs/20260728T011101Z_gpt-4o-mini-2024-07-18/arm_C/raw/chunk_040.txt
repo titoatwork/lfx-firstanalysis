@@ -1,0 +1,73 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "For resource-constrained embedded applications, we have defined the RV32E subset, which only has 16 registers.",
+      "line_number": 110,
+      "parameter_name": "NUM_REGISTERS_RV32E",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The RV32E subset explicitly defines that it has only 16 registers, which is a direct implementation choice."
+    },
+    {
+      "excerpt": "The EEI will define whether the memory system is little-endian or big-endian.",
+      "line_number": 1030,
+      "parameter_name": "ENDIANNESS",
+      "existing_udb_name": null,
+      "class": "NON_ISA",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The endianness of the memory system is left to the implementation, making it an architectural parameter."
+    },
+    {
+      "excerpt": "The effective address is obtained by adding register _rs1_ to the sign-extended 12-bit offset.",
+      "line_number": 1035,
+      "parameter_name": "LOAD_STORE_ADDRESSING_MODE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The method of calculating the effective address for load/store instructions is a design choice for the implementation."
+    },
+    {
+      "excerpt": "The FENCE mode field _fm_ defines the semantics of the FENCE instruction.",
+      "line_number": 1060,
+      "parameter_name": "FENCE_MODE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The semantics of the FENCE instruction can vary based on the implementation-defined _fm_ field, making it a parameter."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE]\n====\nMost of the commentary for RV32I also applies to the RV64I base.",
+      "line_number": 20,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative."
+    },
+    {
+      "excerpt": "The alignment constraint for base ISA instructions is relaxed to a two-byte boundary when instruction extensions with 16-bit lengths or other odd multiples of 16-bit lengths are added (i.e., IALIGN=16).",
+      "line_number": 100,
+      "reason": "This describes a behavior related to instruction alignment, not an implementation choice."
+    },
+    {
+      "excerpt": "The current PC can be obtained by setting the U-immediate to 0.",
+      "line_number": 1020,
+      "reason": "This describes a method of obtaining the current PC, which is not an architectural parameter."
+    },
+    {
+      "excerpt": "The JAL and JALR instructions will generate an instruction-address-misaligned exception if the target address is not aligned to a four-byte boundary.",
+      "line_number": 1080,
+      "reason": "This describes behavior related to exception handling, not an implementation choice."
+    },
+    {
+      "excerpt": "The optional compressed 16-bit instruction format is designed around the assumption that `x1` is the return address register and `x2` is the stack pointer.",
+      "line_number": 90,
+      "reason": "This describes a design assumption rather than an implementation choice."
+    }
+  ]
+}
+```

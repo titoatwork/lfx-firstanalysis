@@ -1,0 +1,17 @@
+{
+  "chunk_id": "chunk_003",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "This instruction is available only on RV32.",
+      "line_number": 3445,
+      "parameter_name": "ZIP_INSTRUCTION_AVAILABILITY",
+      "existing_udb_name": "ZIP_INSTRUCTION_AVAILABILITY",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The availability of the zip instruction is a direct implementation choice, indicating that it is only supported in RV32 architecture."
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "Each atomic instruction has two bits, _aq_ and _rl_, used to specify additional memory ordering constraints as viewed by other RISC-V harts.",
+      "line_number": 20,
+      "parameter_name": "AQ_RL_BITS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The _aq_ and _rl_ bits are direct implementation choices that specify memory ordering constraints for atomic instructions."
+    },
+    {
+      "excerpt": "An implementation can register an arbitrarily large reservation set on each LR, provided the reservation set includes all bytes of the addressed data word or doubleword.",
+      "line_number": 164,
+      "parameter_name": "LR_RESERVATION_SET_SIZE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The size of the reservation set for LR instructions is an implementation choice, allowing for flexibility in how many bytes can be reserved."
+    },
+    {
+      "excerpt": "The misaligned atomicity granule PMA specifies the size of a misaligned atomicity granule, a power-of-two number of bytes.",
+      "line_number": 290,
+      "parameter_name": "MISALIGNED_ATOMICITY_GRANULE_PMA",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The size of the misaligned atomicity granule is an implementation-defined parameter that can vary, allowing for different implementations to support different sizes."
+    },
+    {
+      "excerpt": "If the _aq_ bit is set, then no later memory operations in this RISC-V hart can be observed to take place before the AMO.",
+      "line_number": 392,
+      "parameter_name": "AMO_AQ_SEMANTICS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to set the _aq_ bit for AMO operations is a direct implementation decision that affects memory operation visibility."
+    },
+    {
+      "excerpt": "If the _rl_ bit is set, then other RISC-V harts will not observe the AMO before memory accesses preceding the AMO in this RISC-V hart.",
+      "line_number": 392,
+      "parameter_name": "AMO_RL_SEMANTICS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to set the _rl_ bit for AMO operations, which affects the visibility of memory operations across harts."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] After much debate, the language community and architecture community appear to have finally settled on release consistency as the standard memory consistency model and so the RISC-V atomic support is built around this model.",
+      "line_number": 7,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a community consensus, not an architectural requirement."
+    },
+    {
+      "excerpt": "[NOTE] Both compare-and-swap (CAS) and LR/SC can be used to build lock-free data structures.",
+      "line_number": 164,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It provides information about implementation techniques, not parameters."
+    },
+    {
+      "excerpt": "The SC must fail if the address is not within the reservation set of the most recent LR in program order.",
+      "line_number": 164,
+      "reason": "This describes a requirement for SC behavior based on LR state, not an implementation choice. It is a fixed requirement."
+    },
+    {
+      "excerpt": "[NOTE] The platform should provide a means to determine the size and shape of the reservation set.",
+      "line_number": 164,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It suggests a platform capability, not an architectural parameter."
+    },
+    {
+      "excerpt": "The atomic memory operation (AMO) instructions perform read-modify-write operations for multiprocessor synchronization and are encoded with an R-type instruction format.",
+      "line_number": 290,
+      "reason": "This is a description of the AMO instructions and their function, not an implementation choice or parameter."
+    }
+  ]
+}
+```

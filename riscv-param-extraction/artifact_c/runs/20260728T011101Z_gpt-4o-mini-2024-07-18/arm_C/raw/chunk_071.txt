@@ -1,0 +1,58 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The Zicond extension defines two R-type instructions that support branchless conditional operations.",
+      "line_number": 1,
+      "parameter_name": "ZICOND_INSTRUCTIONS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The Zicond extension introduces specific instructions (czero.eqz and czero.nez) that are implementation choices, defining the operations available in this extension."
+    },
+    {
+      "excerpt": "If _rs2_ contains the value zero, this instruction writes the value zero to _rd_. Otherwise, this instruction copies the contents of _rs1_ to _rd_.",
+      "line_number": 12,
+      "parameter_name": "CZERO_EQZ_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The behavior of the czero.eqz instruction is defined by the condition of _rs2_, which determines the output to _rd_. This is a direct implementation choice."
+    },
+    {
+      "excerpt": "If _rs2_ contains a nonzero value, this instruction writes the value zero to _rd_. Otherwise, this instruction copies the contents of _rs1_ to _rd_.",
+      "line_number": 66,
+      "parameter_name": "CZERO_NEZ_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The behavior of the czero.nez instruction is defined by the condition of _rs2_, which determines the output to _rd_. This is a direct implementation choice."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "Furthermore, if the Zkt extension is implemented, this instruction's timing is independent of the data values in _rs1_ and _rs2_.",
+      "line_number": 19,
+      "reason": "This describes a behavior contingent on the implementation of the Zkt extension, not a parameter that can be chosen by the implementer."
+    },
+    {
+      "excerpt": "This instruction carries a syntactic dependency from both _rs1_ and _rs2_ to _rd_.",
+      "line_number": 12,
+      "reason": "This describes a syntactic dependency rather than an architectural parameter that can be chosen by the implementer."
+    },
+    {
+      "excerpt": "The instructions from this extension can be used to construct sequences that perform conditional-arithmetic, conditional-bitwise-logical, and conditional-select operations.",
+      "line_number": 78,
+      "reason": "This is a general statement about the usage of the instructions and does not define a specific architectural parameter."
+    },
+    {
+      "excerpt": "This instruction's timing is independent of the data values in _rs1_ and _rs2_.",
+      "line_number": 66,
+      "reason": "This describes timing behavior rather than an implementation choice, and thus does not qualify as a parameter."
+    }
+  ]
+}
+```

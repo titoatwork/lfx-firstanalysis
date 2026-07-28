@@ -1,0 +1,43 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "We use the term XLEN to refer to the width of an integer register in bits (either 32 or 64).",
+      "line_number": 214,
+      "parameter_name": "MXLEN",
+      "existing_udb_name": "MXLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "XLEN specifies the integer register width for the base architecture, which the implementer chooses as 32 or 64 bits."
+    },
+    {
+      "excerpt": "RISC-V base ISAs have either little-endian or big-endian memory systems, with the privileged architecture further defining bi-endian operation.",
+      "line_number": 522,
+      "parameter_name": "U_MODE_ENDIANNESS",
+      "existing_udb_name": "U_MODE_ENDIANNESS",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "medium",
+      "reasoning": "The base ISA memory endianness is an explicit design choice left to the hardware implementation (little-endian, big-endian, or bi-endian)."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "In the unprivileged ISA design, we tried to remove any dependence on particular microarchitectural features, such as cache line size, or on privileged architecture details, such as page translation.",
+      "line_number": 55,
+      "reason": "This text is inside a [NOTE] block and is non-normative."
+    },
+    {
+      "excerpt": "Optionally, an implementation may adopt the stronger model of Total Store Ordering, as defined in Ztso.",
+      "line_number": 432,
+      "reason": "Describes optional support for an extension (Ztso) rather than an explicit architectural configuration parameter."
+    },
+    {
+      "excerpt": "Software can rely on a naturally aligned 32-bit word containing zero to act as an illegal instruction on all RISC-V implementations",
+      "line_number": 511,
+      "reason": "This is a fixed software invariant guaranteed across all RISC-V implementations, not an implementation-defined parameter choice."
+    }
+  ]
+}
+```

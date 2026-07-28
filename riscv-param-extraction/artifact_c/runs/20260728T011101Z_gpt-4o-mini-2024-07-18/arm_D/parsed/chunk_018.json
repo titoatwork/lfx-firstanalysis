@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_018",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "Each base integer instruction set is characterized by the width of the integer registers and the corresponding size of the address space and by the number of integer registers.",
+      "line_number": 66,
+      "parameter_name": "XLEN",
+      "existing_udb_name": "XLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "XLEN represents the width of the integer registers, which can be either 32 or 64 bits, and is a direct implementation choice."
+    },
+    {
+      "excerpt": "RISC-V base ISAs have either little-endian or big-endian memory systems, with the privileged architecture further defining bi-endian operation.",
+      "line_number": 646,
+      "parameter_name": "ENDIANNESS",
+      "existing_udb_name": "ENDIANNESS",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The choice of endianness (little-endian, big-endian, or bi-endian) is left to the implementer, making it an architectural parameter."
+    },
+    {
+      "excerpt": "The execution environment determines the mapping of hardware resources into a hart's address space.",
+      "line_number": 370,
+      "parameter_name": "HW_RESOURCE_MAPPING",
+      "existing_udb_name": "HW_RESOURCE_MAPPING",
+      "class": "NORM_DIRECT",
+      "value_type": "UNKNOWN",
+      "confidence": "medium",
+      "reasoning": "The mapping of hardware resources into a hart's address space is implementation-defined, but the specific details of this mapping are not specified in the text."
+    },
+    {
+      "excerpt": "The execution environment may also add constraints that further limit the perceived reordering of memory accesses.",
+      "line_number": 646,
+      "parameter_name": "MEMORY_ORDERING_CONSTRAINTS",
+      "existing_udb_name": "MEMORY_ORDERING_CONSTRAINTS",
+      "class": "NORM_DIRECT",
+      "value_type": "UNKNOWN",
+      "confidence": "medium",
+      "reasoning": "The execution environment can impose additional constraints on memory ordering, which is an implementation choice but lacks specific details in the text."
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The number of VMID bits is UNSPECIFIED and may be zero.",
+      "line_number": 1664,
+      "parameter_name": "VMIDLEN",
+      "existing_udb_name": "VMIDLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of VMID bits is left unspecified, allowing the implementer to choose how many bits to implement."
+    },
+    {
+      "excerpt": "The number of bits implemented in `hgeip` and `hgeie` for guest external interrupts is UNSPECIFIED and may be zero.",
+      "line_number": 1546,
+      "parameter_name": "GEILEN",
+      "existing_udb_name": "GEILEN",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of bits for guest external interrupts is unspecified, allowing for implementation-defined choices."
+    },
+    {
+      "excerpt": "The VSXL field controls the effective XLEN for VS-mode (known as VSXLEN), which may differ from the XLEN for HS-mode (HSXLEN).",
+      "line_number": 1219,
+      "parameter_name": "VSXLEN",
+      "existing_udb_name": "VSXLEN",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The VSXL field is WARL, allowing implementations to define the effective XLEN for VS-mode."
+    },
+    {
+      "excerpt": "The `henvcfg` CSR is a 64-bit read/write register that controls certain characteristics of the execution environment when virtualization mode V=1.",
+      "line_number": 1546,
+      "parameter_name": "HENVCFG",
+      "existing_udb_name": "HENVCFG",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The `henvcfg` CSR allows for implementation-defined characteristics of the execution environment."
+    },
+    {
+      "excerpt": "The PBMTE bit controls whether the Svpbmt extension is available for use in VS-stage address translation.",
+      "line_number": 1546,
+      "parameter_name": "PBMTE",
+      "existing_udb_name": "PBMTE",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The PBMTE field allows the implementer to choose whether the Svpbmt extension is available, making it a binary choice."
+    },
+    {
+      "excerpt": "The ADUE bit controls whether hardware updating of PTE A/D bits is enabled for VS-stage address translation.",
+      "line_number": 1546,
+      "parameter_name": "ADUE",
+      "existing_udb_name": "ADUE",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The ADUE field allows the implementer to choose whether hardware updates of PTE A/D bits are enabled, making it a binary choice."
+    },
+    {
+      "excerpt": "The `hgatp` register is an HSXLEN-bit read/write register which controls G-stage address translation and protection.",
+      "line_number": 1664,
+      "parameter_name": "HGATP",
+      "existing_udb_name": "HGATP",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The `hgatp` register allows for implementation-defined control over address translation and protection."
+    },
+    {
+      "excerpt": "The `htval` register is an HSXLEN-bit read/write register formatted as shown in <<htvalreg>>.",
+      "line_number": 1603,
+      "parameter_name": "HTVAL",
+      "existing_udb_name": "HTVAL",
+      "class": "NORM_CSR_WARL",
+      "value_type": "WLRL",
+      "confidence": "high",
+      "reasoning": "The `htval` register is a WARL register, allowing implementations to define the values it can hold."
+    },
+    {
+      "excerpt": "The `mtval2` register is an MXLEN-bit read/write register formatted as shown in <<mtval2reg>>.",
+      "line_number": 1603,
+      "parameter_name": "MTVAL2",
+      "existing_udb_name": "MTVAL2",
+      "class": "NORM_CSR_WARL",
+      "value_type": "WLRL",
+      "confidence": "high",
+      "reasoning": "The `mtval2` register is a WARL register, allowing implementations to define the values it can hold."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The `hstatus` register tracks and controls a VS-mode guest.",
+      "line_number": 1536,
+      "reason": "This is a description of the register's purpose, not an implementation choice."
+    },
+    {
+      "excerpt": "The `henvcfg` CSR is a 64-bit read/write register that controls certain characteristics of the execution environment when virtualization mode V=1.",
+      "line_number": 1546,
+      "reason": "This is a description of the CSR's purpose, not an implementation choice."
+    },
+    {
+      "excerpt": "The `hgatp` register is an HSXLEN-bit read/write register which controls G-stage address translation and protection.",
+      "line_number": 1664,
+      "reason": "This is a description of the CSR's purpose, not an implementation choice."
+    },
+    {
+      "excerpt": "The `htval` register is an HSXLEN-bit read/write register formatted as shown in <<htvalreg>>.",
+      "line_number": 1603,
+      "reason": "This is a description of the CSR's purpose, not an implementation choice."
+    },
+    {
+      "excerpt": "The `mtval2` register is an MXLEN-bit read/write register formatted as shown in <<mtval2reg>>.",
+      "line_number": 1603,
+      "reason": "This is a description of the CSR's purpose, not an implementation choice."
+    }
+  ]
+}
+```

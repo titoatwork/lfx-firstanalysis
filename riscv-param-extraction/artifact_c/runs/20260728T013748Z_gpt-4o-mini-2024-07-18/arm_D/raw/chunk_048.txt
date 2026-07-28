@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The number of records that can be held in the buffer depends upon both the implementation (the maximum supported depth) and the CTR configuration (the software selected depth).",
+      "line_number": 12,
+      "parameter_name": "CTR_DEPTH",
+      "existing_udb_name": "CTR_DEPTH",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The maximum depth of the CTR buffer is an implementation choice, allowing for different configurations based on hardware capabilities."
+    },
+    {
+      "excerpt": "The `mctrctl` register is a 64-bit read/write register that enables and configures the CTR capability.",
+      "line_number": 42,
+      "parameter_name": "MCTRCTL_ACCESS",
+      "existing_udb_name": "MCTRCTL_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The `mctrctl` register can be configured to enable or disable recording in different privilege modes, which is a binary choice."
+    },
+    {
+      "excerpt": "All fields are optional except for M, S, U, and BPFRZ.",
+      "line_number": 66,
+      "parameter_name": "MCTRCTL_OPTIONAL_FIELDS",
+      "existing_udb_name": "MCTRCTL_OPTIONAL_FIELDS",
+      "class": "NORM_CSR_RW",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The optional nature of the fields in `mctrctl` allows implementations to choose which fields to support, leading to a bitmask representation of the implemented fields."
+    },
+    {
+      "excerpt": "The 32-bit `sctrdepth` register specifies the depth of the CTR buffer.",
+      "line_number": 134,
+      "parameter_name": "SCTR_DEPTH",
+      "existing_udb_name": "SCTR_DEPTH",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The `sctrdepth` field is WARL, allowing implementations to define which depth values are supported, thus creating a finite set of options."
+    },
+    {
+      "excerpt": "The `ctrdata` register may optionally include a count of CPU cycles elapsed since the prior CTR record.",
+      "line_number": 482,
+      "parameter_name": "CTRDATA_CYCLE_COUNT_OPTIONAL",
+      "existing_udb_name": "CTRDATA_CYCLE_COUNT_OPTIONAL",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The inclusion of cycle counting in the `ctrdata` register is optional, allowing implementations to choose whether to support this feature."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "Only qualified transfers are recorded.",
+      "line_number": 10,
+      "reason": "This describes behavior regarding which transfers are recorded, not an implementation choice."
+    },
+    {
+      "excerpt": "The CTR buffer is accessible through an indirect CSR interface.",
+      "line_number": 20,
+      "reason": "This describes how the buffer is accessed rather than an architectural parameter."
+    },
+    {
+      "excerpt": "The `sctrstatus` register grants access to CTR status information and is updated by the hardware whenever CTR is active.",
+      "line_number": 150,
+      "reason": "This is a description of the register's behavior and not an implementation choice."
+    },
+    {
+      "excerpt": "When `sctrstatus`.FROZEN=1, transfer recording is inhibited.",
+      "line_number": 600,
+      "reason": "This describes the effect of a specific condition rather than an architectural parameter."
+    },
+    {
+      "excerpt": "The `ctrdata` register contains metadata for the recorded transfer.",
+      "line_number": 450,
+      "reason": "This is a description of the register's purpose and not an implementation choice."
+    }
+  ]
+}
+```

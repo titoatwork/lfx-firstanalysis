@@ -1,0 +1,47 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "vsetvli s1, zero, e8,m1,ta,mu",
+      "line_number": 175,
+      "parameter_name": "LMUL_8BIT_COMPUTATION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The choice of LMUL for the 8-bit computation is a direct implementation parameter, as it can be set to different values based on the compiler's optimization strategy."
+    },
+    {
+      "excerpt": "vsetvli s1, zero, e64,m8,ta,mu",
+      "line_number": 175,
+      "parameter_name": "LMUL_64BIT_COMPUTATION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The choice of LMUL for the 64-bit computation is a direct implementation parameter, as it can be set to different values based on the compiler's optimization strategy."
+    },
+    {
+      "excerpt": "vsetvli s1, zero, e8,mf2,ta,mu // LMUL=1/2 !",
+      "line_number": 175,
+      "parameter_name": "FRACTIONAL_LMUL_8BIT_COMPUTATION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The choice of fractional LMUL for the 8-bit computation is a direct implementation parameter, allowing for optimization in register allocation."
+    },
+    {
+      "excerpt": "vsetvli s1, zero, e64,m4,ta,mu // LMUL=4",
+      "line_number": 175,
+      "parameter_name": "FRACTIONAL_LMUL_64BIT_COMPUTATION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The choice of fractional LMUL for the 64-bit computation is a direct implementation parameter, allowing for optimization in register allocation."
+    }
+  ],
+  "skipped_non_parameters": []
+}
+```

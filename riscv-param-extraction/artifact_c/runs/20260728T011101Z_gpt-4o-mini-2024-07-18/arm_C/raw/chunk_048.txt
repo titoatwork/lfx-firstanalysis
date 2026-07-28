@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The number of records that can be held in the buffer depends upon both the implementation (the maximum supported depth) and the CTR configuration (the software selected depth).",
+      "line_number": 20,
+      "parameter_name": "CTR_DEPTH",
+      "existing_udb_name": "CTR_DEPTH",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The maximum depth of the CTR buffer is an implementation choice that can vary based on the hardware and software configuration."
+    },
+    {
+      "excerpt": "All fields are optional except for M, S, U, and BPFRZ.",
+      "line_number": 66,
+      "parameter_name": "MCTRCTL_FIELDS_OPTIONALITY",
+      "existing_udb_name": "MCTRCTL_FIELDS_OPTIONALITY",
+      "class": "NORM_CSR_RW",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The MCTRCTL register fields have a read-write nature, and the optionality of fields is determined by the implementation."
+    },
+    {
+      "excerpt": "The `sctrdepth` register specifies the depth of the CTR buffer.",
+      "line_number": 156,
+      "parameter_name": "SCTR_DEPTH",
+      "existing_udb_name": "SCTR_DEPTH",
+      "class": "NORM_CSR_RW",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The depth of the CTR buffer is a configurable parameter that can vary by implementation."
+    },
+    {
+      "excerpt": "The `ctrdata` register may optionally include a count of CPU cycles elapsed since the prior CTR record.",
+      "line_number": 610,
+      "parameter_name": "CTRDATA_CYCLE_COUNT_OPTIONALITY",
+      "existing_udb_name": "CTRDATA_CYCLE_COUNT_OPTIONALITY",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The inclusion of cycle counting in the CTRDATA register is an optional feature that can be implemented differently across hardware."
+    },
+    {
+      "excerpt": "When the optional `__x__ctrctl`.RASEMU bit is implemented and set to 1, transfer recording behavior is altered to emulate the behavior of a return-address stack (RAS).",
+      "line_number": 670,
+      "parameter_name": "CTR_RAS_EMULATION",
+      "existing_udb_name": "CTR_RAS_EMULATION",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to support RAS emulation mode, making it an architectural parameter."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The CTR buffer is accessible through an indirect CSR interface, such that software can specify which logical entry in the buffer it wishes to read or write.",
+      "line_number": 30,
+      "reason": "This describes the access mechanism for the CTR buffer rather than an implementation choice."
+    },
+    {
+      "excerpt": "The `ctrsource` register contains the source program counter, which is the `pc` of the recorded control transfer instruction, or the epc of the recorded trap.",
+      "line_number": 200,
+      "reason": "This describes the function of the ctrsource register rather than an implementation choice."
+    },
+    {
+      "excerpt": "The `sctrstatus` register grants access to CTR status information and is updated by the hardware whenever CTR is active.",
+      "line_number": 300,
+      "reason": "This describes the behavior of the sctrstatus register rather than an implementation choice."
+    },
+    {
+      "excerpt": "The `ctrdata` register contains metadata for the recorded transfer. This register must be implemented, though all fields within it are optional.",
+      "line_number": 500,
+      "reason": "This is a fixed requirement for the ctrdata register and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "When `sctrstatus`.FROZEN=1, transfer recording is inhibited.",
+      "line_number": 700,
+      "reason": "This describes the behavior of the sctrstatus register rather than an implementation choice."
+    }
+  ]
+}
+```

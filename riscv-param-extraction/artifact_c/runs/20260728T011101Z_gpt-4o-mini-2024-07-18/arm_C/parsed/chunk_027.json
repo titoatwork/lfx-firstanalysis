@@ -1,0 +1,57 @@
+{
+  "chunk_id": "chunk_027",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "When S-mode is implemented, it is determined as follows: ... |  S or HS     | `menvcfg.LPE` |",
+      "line_number": 12,
+      "parameter_name": "LPE_STATE_S_MODE",
+      "existing_udb_name": "LPE_STATE_S_MODE",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The LPE state in S-mode is determined by the `menvcfg.LPE` field, which can be either enabled or disabled, making it a read-write choice."
+    },
+    {
+      "excerpt": "When S-mode is not implemented, it is determined as follows: ... |  U           | `menvcfg.LPE` |",
+      "line_number": 20,
+      "parameter_name": "LPE_STATE_U_MODE",
+      "existing_udb_name": "LPE_STATE_U_MODE",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The LPE state in U-mode is determined by the `menvcfg.LPE` field, which can be either enabled or disabled, making it a read-write choice."
+    },
+    {
+      "excerpt": "When S-mode is implemented, it is determined as follows: ... |  S or HS     | `menvcfg.SSE` |",
+      "line_number": 34,
+      "parameter_name": "SSE_STATE_S_MODE",
+      "existing_udb_name": "SSE_STATE_S_MODE",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The SSE state in S-mode is determined by the `menvcfg.SSE` field, which can be either enabled or disabled, making it a read-write choice."
+    },
+    {
+      "excerpt": "When S-mode is not implemented, then `xSSE` is 0 at both M and U privilege modes.",
+      "line_number": 42,
+      "parameter_name": "SSE_STATE_U_MODE",
+      "existing_udb_name": "SSE_STATE_U_MODE",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The SSE state in U-mode is determined by the `senvcfg.SSE` field, which can be either enabled or disabled, making it a read-write choice."
+    },
+    {
+      "excerpt": "The `ssp` CSR is an unprivileged read-write (URW) CSR that reads and writes XLEN low order bits of the shadow stack pointer.",
+      "line_number": 90,
+      "parameter_name": "SSP_ACCESS",
+      "existing_udb_name": "SSP_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The `ssp` CSR is read-write, allowing implementations to choose how it is accessed, making it a parameter."
+    }
+  ]
+}

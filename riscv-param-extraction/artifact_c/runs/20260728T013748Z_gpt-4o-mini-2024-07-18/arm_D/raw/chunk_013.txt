@@ -1,0 +1,73 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The F extension adds 32 floating-point registers, `f0-f31`, each 32 bits wide.",
+      "line_number": 8,
+      "parameter_name": "NUM_FLOATING_POINT_REGISTERS",
+      "existing_udb_name": "NUM_FLOATING_POINT_REGISTERS",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The number of floating-point registers (32) is a direct implementation choice and is specified in the normative text."
+    },
+    {
+      "excerpt": "The floating-point control and status register, `fcsr`, is a 32-bit read/write register that selects the dynamic rounding mode for floating-point arithmetic operations.",
+      "line_number": 20,
+      "parameter_name": "FCSR_ACCESS",
+      "existing_udb_name": "FCSR_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The `fcsr` register is read/write, which is a choice for the implementer regarding its mutability."
+    },
+    {
+      "excerpt": "Rounding modes are encoded as shown in <<norm:dyn_round_enc>>.",
+      "line_number": 40,
+      "parameter_name": "ROUNDING_MODES",
+      "existing_udb_name": "ROUNDING_MODES",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The `frm` field in the `fcsr` register is WARL, and the set of legal rounding modes varies by implementation."
+    },
+    {
+      "excerpt": "All floating-point conversion instructions set the Inexact exception flag if the rounded result differs from the operand value and the Invalid exception flag is not set.",
+      "line_number": 490,
+      "parameter_name": "HW_FCVT_INEXACT_FLAG",
+      "existing_udb_name": "HW_FCVT_INEXACT_FLAG",
+      "class": "SW_RULE",
+      "value_type": "binary",
+      "confidence": "medium",
+      "reasoning": "The behavior of setting the Inexact flag is implementation-defined, but the outcome is deterministic if software follows the spec rules."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] The C99 language standard effectively mandates the provision of a dynamic rounding mode register.",
+      "line_number": 30,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a standard suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "The behavior of floating-point instructions that depend on rounding mode when executed with a reserved rounding mode is _reserved_.",
+      "line_number": 50,
+      "reason": "This describes behavior under specific conditions rather than an implementation choice. The parameter would be which rounding modes are supported."
+    },
+    {
+      "excerpt": "The base RISC-V ISA does not support generating a trap on the setting of a floating-point exception flag.",
+      "line_number": 70,
+      "reason": "This is a fixed requirement that applies to all implementations and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "[NOTE] We require implementations to return the standard-mandated default values in the case of exceptional conditions.",
+      "line_number": 90,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a design choice rather than an architectural parameter."
+    },
+    {
+      "excerpt": "Floating-point operations use either a static rounding mode encoded in the instruction, or a dynamic rounding mode held in `frm`.",
+      "line_number": 110,
+      "reason": "This describes the behavior of floating-point operations rather than an implementation choice. The parameter would be the legal values for the rounding mode."
+    }
+  ]
+}
+```

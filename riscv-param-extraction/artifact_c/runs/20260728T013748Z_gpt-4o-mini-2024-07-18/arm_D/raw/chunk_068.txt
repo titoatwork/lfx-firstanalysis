@@ -1,0 +1,163 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The correspondence of _rs1_ field values and single-precision floating-point values is shown in <<tab:flis>>.",
+      "line_number": 8,
+      "parameter_name": "FLI_S_VALUES",
+      "existing_udb_name": "FLI_S_VALUES",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The _rs1_ field values for the FLI.S instruction are WARL, and the specific values that can be used correspond to the defined single-precision floating-point constants, which vary by implementation."
+    },
+    {
+      "excerpt": "If the D extension is implemented, FLI.D performs the analogous operation, but loads a double-precision value into floating-point register _rd_.",
+      "line_number": 15,
+      "parameter_name": "FLI_D_SUPPORT",
+      "existing_udb_name": "FLI_D_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to support the FLI.D instruction based on the presence of the D extension, making it a direct implementation choice."
+    },
+    {
+      "excerpt": "If the Q extension is implemented, FLI.Q performs the analogous operation, but loads a quad-precision value into floating-point register _rd_.",
+      "line_number": 20,
+      "parameter_name": "FLI_Q_SUPPORT",
+      "existing_udb_name": "FLI_Q_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to support the FLI.Q instruction based on the presence of the Q extension, making it a direct implementation choice."
+    },
+    {
+      "excerpt": "If the Zfh or Zvfh extension is implemented, FLI.H performs the analogous operation, but loads a half-precision floating-point value into register _rd_.",
+      "line_number": 25,
+      "parameter_name": "FLI_H_SUPPORT",
+      "existing_udb_name": "FLI_H_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to support the FLI.H instruction based on the presence of the Zfh or Zvfh extension, making it a direct implementation choice."
+    },
+    {
+      "excerpt": "If the D extension is implemented, FMINM.D and FMAXM.D instructions are analogously defined to operate on double-precision numbers.",
+      "line_number": 38,
+      "parameter_name": "FMINM_D_SUPPORT",
+      "existing_udb_name": "FMINM_D_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to support the FMINM.D and FMAXM.D instructions based on the presence of the D extension, making it a direct implementation choice."
+    },
+    {
+      "excerpt": "If the Zfh extension is implemented, FMINM.H and FMAXM.H instructions are analogously defined to operate on half-precision numbers.",
+      "line_number": 43,
+      "parameter_name": "FMINM_H_SUPPORT",
+      "existing_udb_name": "FMINM_H_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to support the FMINM.H and FMAXM.H instructions based on the presence of the Zfh extension, making it a direct implementation choice."
+    },
+    {
+      "excerpt": "If the Q extension is implemented, FMINM.Q and FMAXM.Q instructions are analogously defined to operate on quad-precision numbers.",
+      "line_number": 48,
+      "parameter_name": "FMINM_Q_SUPPORT",
+      "existing_udb_name": "FMINM_Q_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to support the FMINM.Q and FMAXM.Q instructions based on the presence of the Q extension, making it a direct implementation choice."
+    },
+    {
+      "excerpt": "If the D extension is implemented, FROUND.D and FROUNDNX.D instructions are analogously defined to operate on double-precision numbers.",
+      "line_number": 56,
+      "parameter_name": "FROUND_D_SUPPORT",
+      "existing_udb_name": "FROUND_D_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to support the FROUND.D and FROUNDNX.D instructions based on the presence of the D extension, making it a direct implementation choice."
+    },
+    {
+      "excerpt": "If the Zfh extension is implemented, FROUND.H and FROUNDNX.H instructions are analogously defined to operate on half-precision numbers.",
+      "line_number": 61,
+      "parameter_name": "FROUND_H_SUPPORT",
+      "existing_udb_name": "FROUND_H_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to support the FROUND.H and FROUNDNX.H instructions based on the presence of the Zfh extension, making it a direct implementation choice."
+    },
+    {
+      "excerpt": "If the Q extension is implemented, FROUND.Q and FROUNDNX.Q instructions are analogously defined to operate on quad-precision numbers.",
+      "line_number": 66,
+      "parameter_name": "FROUND_Q_SUPPORT",
+      "existing_udb_name": "FROUND_Q_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to support the FROUND.Q and FROUNDNX.Q instructions based on the presence of the Q extension, making it a direct implementation choice."
+    },
+    {
+      "excerpt": "This instruction is only provided if the D extension is implemented.",
+      "line_number": 75,
+      "parameter_name": "FCVTMOD_W_D_SUPPORT",
+      "existing_udb_name": "FCVTMOD_W_D_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to support the FCVTMOD.W.D instruction based on the presence of the D extension, making it a direct implementation choice."
+    },
+    {
+      "excerpt": "For RV32 only, if the D extension is implemented, the FMVH.X.D instruction moves bits 63:32 of floating-point register _rs1_ into integer register _rd_.",
+      "line_number": 80,
+      "parameter_name": "FMVH_X_D_SUPPORT",
+      "existing_udb_name": "FMVH_X_D_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to support the FMVH.X.D instruction based on the presence of the D extension and the RV32 architecture, making it a direct implementation choice."
+    },
+    {
+      "excerpt": "For RV64 only, if the Q extension is implemented, the FMVH.X.Q instruction moves bits 127:64 of floating-point register _rs1_ into integer register _rd_.",
+      "line_number": 85,
+      "parameter_name": "FMVH_X_Q_SUPPORT",
+      "existing_udb_name": "FMVH_X_Q_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to support the FMVH.X.Q instruction based on the presence of the Q extension and the RV64 architecture, making it a direct implementation choice."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The preferred assembly syntax for entries 1, 30, and 31 is `min`, `inf`, and `nan`, respectively.",
+      "line_number": 10,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a preferred syntax, not an architectural requirement."
+    },
+    {
+      "excerpt": "The set of 32 constants was chosen by examining floating-point libraries, including the C standard math library, and to optimize fixed-point to floating-point conversion.",
+      "line_number": 12,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes the rationale behind the choice of constants, not an architectural parameter."
+    },
+    {
+      "excerpt": "The FLI._fmt_ instructions never set any floating-point exception flags.",
+      "line_number": 30,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes behavior of the instructions, not an implementation choice."
+    },
+    {
+      "excerpt": "The assembly syntax requires the RTZ rounding mode to be explicitly specified, i.e., `fcvtmod.w.d rd, rs1, rtz`.",
+      "line_number": 75,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes assembly syntax requirements, not an architectural parameter."
+    },
+    {
+      "excerpt": "We do not expect analogous comparison instructions will be added to the vector ISA, since they can be reasonably efficiently emulated using masking.",
+      "line_number": 261,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It expresses an expectation about future instructions, not an implementation choice."
+    }
+  ]
+}
+```

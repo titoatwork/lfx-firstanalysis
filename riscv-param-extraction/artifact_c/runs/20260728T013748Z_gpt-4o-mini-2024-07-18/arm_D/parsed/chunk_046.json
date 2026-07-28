@@ -1,0 +1,57 @@
+{
+  "chunk_id": "chunk_046",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "When the Smcdeleg/Ssccfg extensions are enabled (`menvcfg`.CDE=1), it further allows M-mode to delegate select counters to S-mode.",
+      "line_number": 12,
+      "parameter_name": "CDE_DELEGATION",
+      "existing_udb_name": "CDE_DELEGATION",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to enable counter delegation to S-mode based on the CDE bit in the menvcfg CSR."
+    },
+    {
+      "excerpt": "The `siselect` (and `vsiselect`) index range 0x40-0x5F is reserved for delegated counter access.",
+      "line_number": 20,
+      "parameter_name": "SSELECT_INDEX_RANGE",
+      "existing_udb_name": "SSELECT_INDEX_RANGE",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The range of indices for siselect and vsiselect is defined, but the specific implementation can choose which indices are actually used for delegated counters."
+    },
+    {
+      "excerpt": "For counters delegated to S-mode, the associated `mcountinhibit` bits can be accessed via `scountinhibit`.",
+      "line_number": 66,
+      "parameter_name": "SCOUNTINHIBIT_ACCESS",
+      "existing_udb_name": "SCOUNTINHIBIT_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether the bits in scountinhibit are read-only or read-write based on whether the corresponding counters are delegated to S-mode."
+    },
+    {
+      "excerpt": "If any extension upon which the underlying state depends is not implemented, an attempt from M or S mode to access the given state through `sireg*` raises an illegal-instruction exception.",
+      "line_number": 80,
+      "parameter_name": "SIREG_ACCESS_DEPENDENCY",
+      "existing_udb_name": "SIREG_ACCESS_DEPENDENCY",
+      "class": "SW_RULE",
+      "value_type": "enum",
+      "confidence": "medium",
+      "reasoning": "The behavior of accessing sireg* depends on the implementation of certain extensions, which is a deterministic outcome if software follows the spec rules."
+    },
+    {
+      "excerpt": "For implementations that support Smcdeleg/Ssccfg, Sscofpmf, and the H extension, when `menvcfg`.CDE=1, attempts to read `scountovf` from VS-mode or VU-mode raise a virtual-instruction exception.",
+      "line_number": 90,
+      "parameter_name": "SCOVF_VIRTUAL_INSTRUCTION",
+      "existing_udb_name": "SCOVF_VIRTUAL_INSTRUCTION",
+      "class": "SW_RULE",
+      "value_type": "binary",
+      "confidence": "medium",
+      "reasoning": "The behavior of reading scountovf from VS-mode or VU-mode is implementation-defined based on the support of certain extensions, but the outcome is predictable if software adheres to the rules."
+    }
+  ]
+}

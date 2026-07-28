@@ -1,0 +1,93 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The `seed` CSR provides an interface to a NIST SP 800-90B compliant physical Entropy Source (ES).",
+      "line_number": 3455,
+      "parameter_name": "SEED_CSR_INTERFACE",
+      "existing_udb_name": "SEED_CSR_INTERFACE",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The `seed` CSR's role as an interface to a compliant Entropy Source is a direct implementation choice, indicating whether the CSR is present and how it operates."
+    },
+    {
+      "excerpt": "An implementation may safely set reserved and custom bits to zeros.",
+      "line_number": 3475,
+      "parameter_name": "SEED_CSR_CUSTOM_BITS",
+      "existing_udb_name": "SEED_CSR_CUSTOM_BITS",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to set reserved and custom bits to zero is left to the implementer, making it a direct implementation parameter."
+    },
+    {
+      "excerpt": "The status bits `seed[31:30]` = `OPST` may be `ES16` (10), indicating successful polling, or one of three entropy polling failure statuses `BIST` (00), `WAIT` (01), or `DEAD` (11).",
+      "line_number": 3480,
+      "parameter_name": "SEED_CSR_OPST_VALUES",
+      "existing_udb_name": "SEED_CSR_OPST_VALUES",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The `OPST` field in the `seed` CSR is WARL, and the specific values it can take are implementation-defined, making this a parameter."
+    },
+    {
+      "excerpt": "The `seed` CSR is also access controlled by execution mode, and attempted read or write access will raise an illegal-instruction exception outside M mode unless access is explicitly granted.",
+      "line_number": 3488,
+      "parameter_name": "SEED_CSR_ACCESS_CONTROL",
+      "existing_udb_name": "SEED_CSR_ACCESS_CONTROL",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The access control mechanism for the `seed` CSR based on execution mode is a design choice left to the implementer."
+    },
+    {
+      "excerpt": "Implementations may implement `mseccfg` such that `[s,u]seed` is a read-only constant value `0`.",
+      "line_number": 3500,
+      "parameter_name": "MSECCFG_SEED_ACCESS",
+      "existing_udb_name": "MSECCFG_SEED_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to make the `[s,u]seed` fields read-only or not is an implementation-defined parameter regarding access control."
+    },
+    {
+      "excerpt": "An implementation of the entropy source should meet at least one of the following requirements sets in order to be considered a secure and safe design.",
+      "line_number": 3520,
+      "parameter_name": "ENTROPY_SOURCE_REQUIREMENTS",
+      "existing_udb_name": "ENTROPY_SOURCE_REQUIREMENTS",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The specific requirements for the entropy source are left to the implementer, indicating a choice in how to meet security standards."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The `seed` CSR must always be implemented, but can contain a read-only value.",
+      "line_number": 3470,
+      "reason": "This is a fixed requirement ('must always be implemented') that applies to all implementations, not an implementation choice."
+    },
+    {
+      "excerpt": "Attempts to access the `seed` CSR using a read-only CSR-access instruction raise an illegal-instruction exception.",
+      "line_number": 3485,
+      "reason": "This describes behavior when accessing the CSR, which is determined by the CSR field value at runtime, not an implementation choice."
+    },
+    {
+      "excerpt": "The output `entropy` (`seed[15:0]` in ES16 state) is not necessarily fully conditioned randomness due to hardware and energy limitations.",
+      "line_number": 3525,
+      "reason": "This describes a limitation of the output rather than an implementation choice, thus not qualifying as a parameter."
+    },
+    {
+      "excerpt": "The combination of an Entropy Source, Conditioning, and a DRBG can be used to create random bits securely.",
+      "line_number": 3460,
+      "reason": "This describes a general usage pattern rather than an implementation choice, thus not qualifying as a parameter."
+    },
+    {
+      "excerpt": "The `seed` CSR provides an interface to a NIST SP 800-90B compliant physical Entropy Source (ES).",
+      "line_number": 3455,
+      "reason": "This is a description of the CSR's purpose rather than an implementation choice, thus not qualifying as a parameter."
+    }
+  ]
+}
+```

@@ -1,0 +1,57 @@
+{
+  "chunk_id": "chunk_020",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The Extensions field is a *WARL* field that can contain writable bits where the implementation allows the supported ISA to be modified.",
+      "line_number": 334,
+      "parameter_name": "MISA_EXTENSIONS",
+      "existing_udb_name": "MISA_EXTENSIONS",
+      "class": "NORM_CSR_WARL",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The Extensions field in the misa CSR is a WARL field, allowing implementations to define which extensions are supported, thus making it an architectural parameter."
+    },
+    {
+      "excerpt": "The MBE, SBE, and UBE bits in `mstatus` and `mstatush` are *WARL* fields that control the endianness of memory accesses other than instruction fetches.",
+      "line_number": 679,
+      "parameter_name": "M_MODE_ENDIANNESS",
+      "existing_udb_name": "M_MODE_ENDIANNESS",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The MBE, SBE, and UBE fields are WARL fields that allow implementations to choose the endianness for different privilege modes, making this an architectural parameter."
+    },
+    {
+      "excerpt": "The `mtvec` register is an MXLEN-bit *WARL* read/write register that holds trap vector configuration, consisting of a vector base address (BASE) and a vector mode (MODE).",
+      "line_number": 1219,
+      "parameter_name": "MTVEC_MODES",
+      "existing_udb_name": "MTVEC_MODES",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The mtvec register's MODE field is WARL, and the set of supported mode values can vary by implementation, making it an architectural parameter."
+    },
+    {
+      "excerpt": "For RV64, if S-mode is not supported, then SXL is read-only zero. Otherwise, it is a *WARL* field that encodes the current value of SXLEN.",
+      "line_number": 1020,
+      "parameter_name": "SXL_ACCESS",
+      "existing_udb_name": "SXL_ACCESS",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The SXL field is a WARL field that can vary based on implementation, allowing for different values of SXLEN, thus making it an architectural parameter."
+    },
+    {
+      "excerpt": "The `mcountinhibit` register is a 32-bit *WARL* register that controls which of the hardware performance-monitoring counters increment.",
+      "line_number": 3300,
+      "parameter_name": "MCOUNTINHIBIT_CONTROL",
+      "existing_udb_name": "MCOUNTINHIBIT_CONTROL",
+      "class": "NORM_CSR_WARL",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The mcountinhibit register is a WARL register that allows implementations to define which performance counters are incremented, making it an architectural parameter."
+    }
+  ]
+}

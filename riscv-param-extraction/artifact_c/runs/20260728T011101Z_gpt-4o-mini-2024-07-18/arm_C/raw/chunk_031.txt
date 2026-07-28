@@ -1,0 +1,63 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "Implementations might provide anywhere from 1 to 3 privilege modes trading off reduced isolation for lower implementation cost.",
+      "line_number": 139,
+      "parameter_name": "NUM_PRIVILEGE_MODES",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of privilege modes (1 to 3) is a direct implementation choice, allowing flexibility in design based on cost and isolation requirements."
+    },
+    {
+      "excerpt": "The machine level has the highest privileges and is the only mandatory privilege level for a RISC-V hardware platform.",
+      "line_number": 147,
+      "parameter_name": "M_MODE_MANDATORY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The requirement that M-mode must be implemented is a design choice that indicates whether M-mode is mandatory or optional in the architecture."
+    },
+    {
+      "excerpt": "Implementations may also include a debug mode to support off-chip debugging and/or manufacturing test.",
+      "line_number": 197,
+      "parameter_name": "DEBUG_MODE_SUPPORT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to include a debug mode is left to the implementer, making it an architectural parameter regarding the support for debugging features."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The ABI, SBI, and HBI are still a work-in-progress, but we are now prioritizing support for Type-2 hypervisors where the SBI is provided recursively by an S-mode OS.",
+      "line_number": 113,
+      "reason": "This text describes ongoing development and priorities rather than a fixed architectural choice, thus it is not a parameter."
+    },
+    {
+      "excerpt": "The lock feature of the optional PMP facility can provide some limited protection even with only M-mode implemented.",
+      "line_number": 155,
+      "reason": "This is a suggestion about potential features rather than a definitive architectural choice, making it non-normative."
+    },
+    {
+      "excerpt": "Attempts to perform operations not permitted by the current privilege mode will cause an exception to be raised.",
+      "line_number": 135,
+      "reason": "This describes behavior related to exceptions and privilege modes, not an implementation choice, thus it is not a parameter."
+    },
+    {
+      "excerpt": "The RISC-V privileged architecture provides flexible routing of traps to different privilege layers.",
+      "line_number": 165,
+      "reason": "This describes a feature of the architecture rather than a choice left to the implementer, so it is not a parameter."
+    },
+    {
+      "excerpt": "Each privilege level has a core set of privileged ISA extensions with optional extensions and variants.",
+      "line_number": 151,
+      "reason": "This is a description of the architecture's capabilities rather than a choice for implementers, thus it is not a parameter."
+    }
+  ]
+}
+```

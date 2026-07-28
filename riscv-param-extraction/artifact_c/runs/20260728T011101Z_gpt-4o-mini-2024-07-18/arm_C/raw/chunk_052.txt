@@ -1,0 +1,73 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The OF bit is set when the corresponding hpmcounter overflows, and remains set until written by software.",
+      "line_number": 43,
+      "parameter_name": "HW_MHPMEVENT_OF_BIT",
+      "existing_udb_name": "HW_MHPMEVENT_OF_BIT",
+      "class": "SW_RULE",
+      "value_type": "binary",
+      "confidence": "medium",
+      "reasoning": "The behavior of the OF bit being set on overflow is implementation-defined, but the outcome is deterministic if software manages the counter correctly."
+    },
+    {
+      "excerpt": "If supervisor mode is implemented, the 32-bit scountovf register contains read-only shadow copies of the OF bits in all 29 mhpmevent registers.",
+      "line_number": 66,
+      "parameter_name": "HW_SCOUNTOVF_SHADOW_COPIES",
+      "existing_udb_name": "HW_SCOUNTOVF_SHADOW_COPIES",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether the scountovf register contains shadow copies of the OF bits based on whether supervisor mode is implemented."
+    },
+    {
+      "excerpt": "Each of the five ``x``INH bits, when set, inhibit counting of events while in privilege mode ``x``.",
+      "line_number": 36,
+      "parameter_name": "HW_MHPMEVENT_INH_BITS",
+      "existing_udb_name": "HW_MHPMEVENT_INH_BITS",
+      "class": "NORM_CSR_WARL",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The xINH bits are WARL fields, and their implementation can vary, allowing for different configurations of event counting inhibition."
+    },
+    {
+      "excerpt": "The `mip`/`sip` LCOFIP and `mie`/`sie` LCOFIE bits are, respectively, the interrupt-pending and interrupt-enable bits for this interrupt.",
+      "line_number": 78,
+      "parameter_name": "HW_LCOFIP_ENABLE",
+      "existing_udb_name": "HW_LCOFIP_ENABLE",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to enable the Local Counter Overflow Interrupt through the LCOFIE bit."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "Note that the new count overflow interrupt will be treated as a standard local interrupt that is assigned to bit 13 in the mip/mie/sip/sie registers.",
+      "line_number": 15,
+      "reason": "This is a fixed requirement about how the count overflow interrupt is treated, not an implementation choice."
+    },
+    {
+      "excerpt": "Count overflow never results from writes to the mhpmcounter__n__ or mhpmevent__n__ registers, only from hardware increments of counter registers.",
+      "line_number": 83,
+      "reason": "This describes behavior regarding how count overflow occurs, not an architectural parameter."
+    },
+    {
+      "excerpt": "If an hpmcounter overflows while the associated OF bit is zero, then a 'count overflow interrupt request' is generated.",
+      "line_number": 70,
+      "reason": "This describes the behavior of the system under specific conditions, not an implementation choice."
+    },
+    {
+      "excerpt": "This extension adds the `scountovf` CSR, a 32-bit read-only register that contains shadow copies of the OF bits in the 29 mhpmevent CSRs.",
+      "line_number": 66,
+      "reason": "This is a description of the `scountovf` CSR and its function, not an architectural parameter."
+    },
+    {
+      "excerpt": "The LCOFIP bit is cleared by software before servicing the count overflow interrupt resulting from one or more count overflows.",
+      "line_number": 79,
+      "reason": "This describes a requirement for software behavior, not an implementation choice."
+    }
+  ]
+}
+```

@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_012",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "FLEN can be 32, 64, or 128 depending on which of the F, D, and Q extensions are supported.",
+      "line_number": 6,
+      "parameter_name": "FLEN",
+      "existing_udb_name": "FLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "FLEN represents the width of the floating-point registers and is an implementation choice based on the supported extensions. The specific value can be 32, 64, or 128."
+    },
+    {
+      "excerpt": "A narrower _n_-bit transfer, _n_<FLEN, into the `f` registers will create a valid NaN-boxed value.",
+      "line_number": 20,
+      "parameter_name": "NARROWER_N_BIT_TRANSFER",
+      "existing_udb_name": "NARROWER_N_BIT_TRANSFER",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to support narrower bit transfers into the floating-point registers, which is a direct design decision."
+    },
+    {
+      "excerpt": "FLD and FSD are only guaranteed to execute atomically if the effective address is naturally aligned and XLEN{ge}64.",
+      "line_number": 66,
+      "parameter_name": "FLD_FSD_ATOMIC_ALIGNMENT",
+      "existing_udb_name": "FLD_FSD_ATOMIC_ALIGNMENT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The atomic execution of FLD and FSD is contingent on alignment and XLEN, which are implementation choices."
+    },
+    {
+      "excerpt": "For XLEN{ge}64 only, instructions are provided to move bit patterns between the floating-point and integer registers.",
+      "line_number": 139,
+      "parameter_name": "XLEN_SUPPORT",
+      "existing_udb_name": "XLEN_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The availability of instructions to move bit patterns is dependent on the implementation of XLEN, which is a design choice."
+    }
+  ]
+}

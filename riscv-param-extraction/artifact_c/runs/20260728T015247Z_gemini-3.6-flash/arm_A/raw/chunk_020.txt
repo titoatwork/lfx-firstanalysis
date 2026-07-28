@@ -1,0 +1,93 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "a value of zero can be returned to indicate the `misa` register has not been implemented",
+      "line_number": 35,
+      "parameter_name": "MISA_CSR_IMPLEMENTED",
+      "existing_udb_name": "MISA_CSR_IMPLEMENTED",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "Determines whether the misa CSR is implemented or read-only zero."
+    },
+    {
+      "excerpt": "If S-mode is supported, an implementation may make SBE be a read-only copy of MBE.",
+      "line_number": 378,
+      "parameter_name": "S_MODE_ENDIANNESS",
+      "existing_udb_name": "S_MODE_ENDIANNESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "Controls whether mstatus.SBE is read-write or a read-only copy of MBE, determining S-mode endianness behavior."
+    },
+    {
+      "excerpt": "If an instruction explicitly or implicitly writes a floating-point register or the `fcsr` but does not alter its contents, and FS=Initial or FS=Clean, it is implementation-defined whether FS transitions to Dirty.",
+      "line_number": 544,
+      "parameter_name": "HW_MSTATUS_FS_DIRTY_UPDATE",
+      "existing_udb_name": "HW_MSTATUS_FS_DIRTY_UPDATE",
+      "class": "SW_RULE",
+      "value_type": "enum",
+      "confidence": "medium",
+      "reasoning": "Controls hardware dirtiness tracking behavior when writing FP registers without changing their value."
+    },
+    {
+      "excerpt": "The `mtvec` register must always be implemented, but can contain a read-only value.",
+      "line_number": 643,
+      "parameter_name": "MTVEC_ACCESS",
+      "existing_udb_name": "MTVEC_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "Determines whether mtvec is read-only or read-write."
+    },
+    {
+      "excerpt": "If `mtvec` is writable, the set of values the register may hold can vary by implementation.",
+      "line_number": 644,
+      "parameter_name": "MTVEC_MODES",
+      "existing_udb_name": "MTVEC_MODES",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "Defines the set of supported legal MODE values for mtvec."
+    },
+    {
+      "excerpt": "If the `mcountinhibit` register is not implemented, the implementation behaves as though the register were set to zero.",
+      "line_number": 899,
+      "parameter_name": "COUNTINHIBIT_EN",
+      "existing_udb_name": "COUNTINHIBIT_EN",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "Implementation choice on whether to support the mcountinhibit CSR."
+    },
+    {
+      "excerpt": "The granularity of PMP access control settings are platform-specific, but the standard PMP encoding supports regions as small as four bytes.",
+      "line_number": 1480,
+      "parameter_name": "PMP_GRANULARITY",
+      "existing_udb_name": "PMP_GRANULARITY",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "Specifies the hardware power-of-two granularity for PMP protection regions."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The base width can be quickly ascertained using branches on the sign of the returned misa value...",
+      "line_number": 48,
+      "reason": "Text is inside a non-normative NOTE block."
+    },
+    {
+      "excerpt": "When MODE=Direct, all traps into machine mode cause the pc to be set to the address in the BASE field.",
+      "line_number": 648,
+      "reason": "Describes runtime execution behavior when a CSR field holds a specific value, not an implementation parameter."
+    },
+    {
+      "excerpt": "Platforms provide a real-time counter, exposed as a memory-mapped machine-mode read-write register, mtime.",
+      "line_number": 1133,
+      "reason": "Fixed mandatory platform requirement, not a parameter choice."
+    }
+  ]
+}
+```

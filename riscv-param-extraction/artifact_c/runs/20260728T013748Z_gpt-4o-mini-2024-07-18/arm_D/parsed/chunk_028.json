@@ -1,0 +1,57 @@
+{
+  "chunk_id": "chunk_028",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "Implementations may contain additional CSRs, accessible by some subset of the privilege levels using the CSR instructions described in Volume I.",
+      "line_number": 8,
+      "parameter_name": "NUM_ADDITIONAL_CSRS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of additional CSRs is an implementation choice, as it is not fixed and can vary based on the design."
+    },
+    {
+      "excerpt": "The top two bits (csr[11:10]) indicate whether the register is read/write (`00`,`01`, or `10`) or read-only (`11`).",
+      "line_number": 30,
+      "parameter_name": "CSR_ACCESSIBILITY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The accessibility of CSRs is determined by the implementer, allowing for different configurations of read/write and read-only states."
+    },
+    {
+      "excerpt": "Implementations will not raise an exception on writes of unsupported values to a *WARL* field.",
+      "line_number": 127,
+      "parameter_name": "WARL_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The behavior of WARL fields is defined as implementation-specific, allowing for various legal values to be returned when unsupported values are written."
+    },
+    {
+      "excerpt": "Implementations can return arbitrary bit patterns on the read of a *WLRL* field when the last write was of an illegal value.",
+      "line_number": 127,
+      "parameter_name": "WLRL_BEHAVIOR",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The behavior of WLRL fields is also implementation-defined, allowing for flexibility in how illegal values are handled."
+    },
+    {
+      "excerpt": "Implementations are permitted but not required to raise an illegal-instruction exception if an instruction attempts to write a non-supported value to a *WLRL* field.",
+      "line_number": 127,
+      "parameter_name": "WLRL_EXCEPTION_POLICY",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to raise an exception on illegal writes to WLRL fields is left to the implementer, making it a parameter."
+    }
+  ]
+}

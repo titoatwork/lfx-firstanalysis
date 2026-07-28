@@ -1,0 +1,43 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The hardware platform may define that accesses to certain CSRs are strongly ordered, as defined by the Memory-Ordering PMAs section in Volume II of this manual.",
+      "line_number": 254,
+      "parameter_name": "HW_CSR_STRONGLY_ORDERED",
+      "existing_udb_name": "HW_CSR_STRONGLY_ORDERED",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether CSR accesses are strongly ordered, which is a direct design decision."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE]\n====\nWhile CSRs are primarily used by the privileged architecture, there are several uses in unprivileged code including for counters and timers, and for floating-point status.\n====",
+      "line_number": 5,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a general observation, not an architectural requirement."
+    },
+    {
+      "excerpt": "For any event or consequence that occurs due to a CSR having a particular value, if a write to the CSR gives it that value, the resulting event or consequence is said to be an indirect effect of the write.",
+      "line_number": 215,
+      "reason": "This describes behavior related to CSR writes and their effects, not an implementation choice. It does not define a parameter."
+    },
+    {
+      "excerpt": "Standard CSRs do not have any side effects on reads. Standard CSRs may have side effects on writes.",
+      "line_number": 220,
+      "reason": "This is a fixed requirement about standard CSRs and their behavior, not an implementation choice."
+    },
+    {
+      "excerpt": "The assembler pseudoinstruction to read a CSR, CSRR _rd, csr_, is encoded as CSRRS _rd, csr, x0_.",
+      "line_number": 235,
+      "reason": "This describes how assembler pseudoinstructions are encoded, which is a fixed requirement and not an architectural parameter."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nAs of this writing, no standard CSRs have side effects on field writes.\n====",
+      "line_number": 210,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It provides information about current standards, not an implementation choice."
+    }
+  ]
+}
+```

@@ -1,0 +1,78 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The implementation must produce a result equivalent to a reduction tree composed of binary operator nodes, with the inputs being elements from the source vector register group (`vs2`) and the source scalar value (`vs1[0]`).",
+      "line_number": 487,
+      "parameter_name": "HW_VREDUSUM_TREE",
+      "existing_udb_name": "HW_VREDUSUM_TREE",
+      "class": "SW_RULE",
+      "value_type": "enum",
+      "confidence": "medium",
+      "reasoning": "The behavior of the vfredusum instruction is implementation-defined, but the outcome is deterministic if software follows the specified reduction tree structure."
+    },
+    {
+      "excerpt": "The `vstart` CSR contains the element index on which the trap was taken, and at which execution should resume after a resumable trap is handled.",
+      "line_number": 3386,
+      "parameter_name": "VSTART_RESUME_INDEX",
+      "existing_udb_name": "VSTART",
+      "class": "NORM_CSR_RW",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The vstart CSR is a read-write register that specifies the index of the first element to be executed, which is an implementation choice."
+    },
+    {
+      "excerpt": "The `vtype` SEW can be used to indicate or calculate the effective element size (EEW) of one or more operands of an element group instruction.",
+      "line_number": 3386,
+      "parameter_name": "VTYPE_SEW",
+      "existing_udb_name": "VTYPE",
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The vtype CSR allows the implementer to define the effective element width (SEW) for vector operations, which is an implementation choice."
+    },
+    {
+      "excerpt": "The `vtype` LMUL setting can be used to indicate or calculate the effective length multiplier (EMUL) for one or more operands.",
+      "line_number": 3386,
+      "parameter_name": "VTYPE_LMUL",
+      "existing_udb_name": "VTYPE",
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The LMUL field in the vtype CSR allows the implementer to define how many vector registers can be grouped together, which is an implementation choice."
+    },
+    {
+      "excerpt": "The `vcompress` instruction is encoded as an unmasked instruction (`vm=1`).",
+      "line_number": 5396,
+      "parameter_name": "VCOMPRESS_MASKING",
+      "existing_udb_name": "VCOMPRESS_MASKING",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The encoding of the vcompress instruction as unmasked indicates a design choice regarding how the instruction is implemented."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The `vstart` CSR contains the element index on which the trap was taken, and at which execution should resume after a resumable trap is handled.",
+      "line_number": 3386,
+      "reason": "This is a fixed requirement for the vstart CSR and does not represent an implementation choice."
+    },
+    {
+      "excerpt": "The `vtype` SEW can be used to indicate or calculate the effective element size (EEW) of one or more operands of an element group instruction.",
+      "line_number": 3386,
+      "reason": "This describes the behavior of the vtype CSR but does not define an implementation choice."
+    },
+    {
+      "excerpt": "The `vtype` LMUL setting can be used to indicate or calculate the effective length multiplier (EMUL) for one or more operands.",
+      "line_number": 3386,
+      "reason": "This describes the behavior of the vtype CSR but does not define an implementation choice."
+    },
+    {
+      "excerpt": "The `vcompress` instruction is encoded as an unmasked instruction (`vm=1`).",
+      "line_number": 5396,
+      "reason": "This describes the encoding of the instruction but does not define an implementation choice."
+    }
+  ]
+}
+```

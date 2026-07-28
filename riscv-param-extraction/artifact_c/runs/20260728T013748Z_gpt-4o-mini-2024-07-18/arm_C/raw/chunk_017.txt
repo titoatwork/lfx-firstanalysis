@@ -1,0 +1,93 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The `miselect` register may be read-only zero if there are no extensions implemented that utilize it.",
+      "line_number": 34,
+      "parameter_name": "MSELECT_READ_ONLY_ZERO",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether the `miselect` register is read-only zero, indicating no extensions are implemented, making this a binary choice."
+    },
+    {
+      "excerpt": "The `siselect` register will support the value range 0..0xFFF at a minimum.",
+      "line_number": 215,
+      "parameter_name": "SSELECT_VALUE_RANGE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The `siselect` register's minimum value range is defined, and future extensions may increase this range, making it a direct implementation choice."
+    },
+    {
+      "excerpt": "The `vsiselect` register will support the value range 0..0xFFF at a minimum.",
+      "line_number": 290,
+      "parameter_name": "VSELECT_VALUE_RANGE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "Similar to `siselect`, the `vsiselect` register has a defined minimum value range, allowing for implementation-defined extensions."
+    },
+    {
+      "excerpt": "Values of `miselect` with the most-significant bit set (bit XLEN - 1 = 1) are designated only for custom use.",
+      "line_number": 34,
+      "parameter_name": "MSELECT_CUSTOM_USE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The specification allows for custom use of certain values in `miselect`, which is a design choice for the implementer."
+    },
+    {
+      "excerpt": "Values of `siselect` with the most-significant bit set (bit XLEN - 1 = 1) are designated only for custom use.",
+      "line_number": 215,
+      "parameter_name": "SSELECT_CUSTOM_USE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The specification allows for custom use of certain values in `siselect`, which is a design choice for the implementer."
+    },
+    {
+      "excerpt": "Values of `vsiselect` with the most-significant bit set (bit XLEN - 1 = 1) are designated only for custom use.",
+      "line_number": 290,
+      "parameter_name": "VSELECT_CUSTOM_USE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The specification allows for custom use of certain values in `vsiselect`, which is a design choice for the implementer."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The behavior upon accessing `mireg*` from M-mode, while `miselect` holds a value that is not implemented, is UNSPECIFIED.",
+      "line_number": 34,
+      "reason": "This describes behavior under specific conditions rather than an implementation choice, thus not qualifying as a parameter."
+    },
+    {
+      "excerpt": "The behavior upon accessing `sireg*` from M-mode or S-mode, while `siselect` holds a value that is not implemented at supervisor level, is UNSPECIFIED.",
+      "line_number": 215,
+      "reason": "This describes behavior under specific conditions rather than an implementation choice, thus not qualifying as a parameter."
+    },
+    {
+      "excerpt": "The behavior upon accessing `vsireg*` from M-mode or HS-mode, or accessing `sireg*` (really `vsireg*`) from VS-mode, while `vsiselect` holds a value that is not implemented at HS level, is UNSPECIFIED.",
+      "line_number": 290,
+      "reason": "This describes behavior under specific conditions rather than an implementation choice, thus not qualifying as a parameter."
+    },
+    {
+      "excerpt": "An implementation is not required to support any custom values for `miselect`.",
+      "line_number": 34,
+      "reason": "This is a statement about implementation requirements rather than a parameter that can be chosen by the implementer."
+    },
+    {
+      "excerpt": "An extension is considered not to be implemented at supervisor level if machine level has disabled the extension for S-mode.",
+      "line_number": 215,
+      "reason": "This describes a condition under which an extension is considered implemented, not an implementation choice."
+    }
+  ]
+}
+```

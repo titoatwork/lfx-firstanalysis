@@ -1,0 +1,27 @@
+{
+  "chunk_id": "chunk_069",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "If the D extension is present, the FCVT.D.H and FCVT.H.D instructions are also included.",
+      "line_number": 186,
+      "parameter_name": "D_EXTENSION_SUPPORT",
+      "existing_udb_name": "D_EXTENSION_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The presence of the D extension is an implementation choice that affects the availability of specific conversion instructions. This is a direct implementation parameter."
+    },
+    {
+      "excerpt": "If the Q extension is present, the FCVT.Q.H and FCVT.H.Q instructions are additionally included.",
+      "line_number": 186,
+      "parameter_name": "Q_EXTENSION_SUPPORT",
+      "existing_udb_name": "Q_EXTENSION_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The presence of the Q extension is an implementation choice that affects the availability of specific conversion instructions. This is a direct implementation parameter."
+    }
+  ]
+}

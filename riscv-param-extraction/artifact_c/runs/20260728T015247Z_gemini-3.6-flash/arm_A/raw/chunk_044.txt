@@ -1,0 +1,27 @@
+```json
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "This instruction must _always_ be implemented such that its execution latency does not depend on the data being operated on.",
+      "line_number": 350,
+      "reason": "This is a fixed normative requirement ('must') for instructions in this extension, not an implementation-defined parameter."
+    },
+    {
+      "excerpt": "The entropy source extension defines the `seed` CSR at address `0x015`. This CSR provides up to 16 physical `entropy` bits that can be used to seed cryptographic random bit generators.",
+      "line_number": 301,
+      "reason": "This is an overview summary referencing the normative entropy source specification detailed in a later section."
+    },
+    {
+      "excerpt": "At the time of writing, these discovery mechanisms are still a work in progress.",
+      "line_number": 216,
+      "reason": "Informative text inside a non-normative NOTE block."
+    },
+    {
+      "excerpt": "A core which implements `Zkn` must implement all of the above extensions.",
+      "line_number": 318,
+      "reason": "Mandatory extension dependency rule ('must'), not a parameter choice."
+    }
+  ]
+}
+```

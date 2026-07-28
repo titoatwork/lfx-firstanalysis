@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_013",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "FLEN=32 for the F single-precision floating-point extension.",
+      "line_number": 10,
+      "parameter_name": "FLEN",
+      "existing_udb_name": "FLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "FLEN describes the width of the floating-point registers, which is a direct implementation choice for the F extension."
+    },
+    {
+      "excerpt": "The floating-point control and status register, `fcsr`, is a 32-bit read/write register that selects the dynamic rounding mode for floating-point arithmetic operations.",
+      "line_number": 20,
+      "parameter_name": "FCSR_ACCESS",
+      "existing_udb_name": "FCSR_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The `fcsr` register can be read and written, indicating a choice for the implementer regarding its mutability."
+    },
+    {
+      "excerpt": "Rounding modes are encoded as shown in <<norm:dyn_round_enc>>.",
+      "line_number": 30,
+      "parameter_name": "ROUNDING_MODES",
+      "existing_udb_name": "ROUNDING_MODES",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The `frm` field in the `fcsr` register is WARL, and the set of legal rounding modes varies by implementation."
+    },
+    {
+      "excerpt": "The accrued exception flags indicate the exception conditions that have arisen on any floating-point arithmetic instruction since the field was last reset by software.",
+      "line_number": 40,
+      "parameter_name": "FFLAGS_ACCESS",
+      "existing_udb_name": "FFLAGS_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The `fflags` register can be read and written, indicating a choice for the implementer regarding its mutability."
+    }
+  ]
+}

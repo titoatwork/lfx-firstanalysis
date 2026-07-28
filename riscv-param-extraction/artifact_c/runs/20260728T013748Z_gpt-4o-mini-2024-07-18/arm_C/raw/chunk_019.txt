@@ -1,0 +1,37 @@
+```json
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE]\n====\nWe separate integer multiply and divide out from the base to simplify low-end implementations, or for applications where integer multiply and divide operations are either infrequent or better handled in attached accelerators.\n====",
+      "line_number": 5,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nMULHSU is used in multi-word signed multiplication to multiply the most-significant word of the multiplicand (which contains the sign bit) with the less-significant words of the multiplier (which are unsigned).\n====",
+      "line_number": 20,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a usage suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nIn RV64, MUL can be used to obtain the upper 32 bits of the 64-bit product, but signed arguments must be proper 32-bit signed values, whereas unsigned arguments must have their upper 32 bits clear. If the arguments are not known to be sign- or zero-extended, an alternative is to shift both arguments left by 32 bits, then use MULH[[S]U].\n====",
+      "line_number": 30,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a usage suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nFor both signed and unsigned division, except in the case of overflow, it holds that dividend = divisor {times} quotient + remainder.\n====",
+      "line_number": 43,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a mathematical property, not an architectural requirement."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nWe considered raising exceptions on integer divide by zero, with these exceptions causing a trap in most execution environments. However, this would be the only arithmetic trap in the standard ISA (floating-point exceptions set flags and write default values, but do not cause traps) and would require language implementers to interact with the execution environment's trap handlers for this case. Further, where language standards mandate that a divide-by-zero exception must cause an immediate control flow change, only a single branch instruction needs to be added to each divide operation, and this branch instruction can be inserted after the divide and should normally be very predictably not taken, adding little runtime overhead.\n====",
+      "line_number": 66,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It discusses potential design considerations, not an architectural requirement."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nThe value of all bits set is returned for both unsigned and signed divide by zero to simplify the divider circuitry. The value of all 1s is both the natural value to return for unsigned divide, representing the largest unsigned number, and also the natural result for simple unsigned divider implementations. Signed division is often implemented using an unsigned division circuit and specifying the same overflow result simplifies the hardware.\n====",
+      "line_number": 85,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes implementation details, not an architectural requirement."
+    }
+  ]
+}
+```

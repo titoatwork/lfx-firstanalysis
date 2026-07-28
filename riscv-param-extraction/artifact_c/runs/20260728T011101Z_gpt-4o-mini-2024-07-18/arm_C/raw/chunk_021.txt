@@ -1,0 +1,73 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "Implementations may implement zero, 16, or 64 PMP entries; the lowest-numbered PMP entries must be implemented first.",
+      "line_number": 3340,
+      "parameter_name": "NUM_PMP_ENTRIES",
+      "existing_udb_name": "NUM_PMP_ENTRIES",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of PMP entries is a direct implementation choice (0, 16, or 64). It is not controlled by any CSR field."
+    },
+    {
+      "excerpt": "All PMP CSR fields are WARL and may be read-only zero.",
+      "line_number": 3340,
+      "parameter_name": "PMP_CSR_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The access characteristics of the PMP CSR fields are WARL, indicating that the set of legal values can vary by implementation."
+    },
+    {
+      "excerpt": "The granularity of PMP access control settings are platform-specific, but the standard PMP encoding supports regions as small as four bytes.",
+      "line_number": 3330,
+      "parameter_name": "PMP_GRANULARITY",
+      "existing_udb_name": "PMA_GRANULARITY",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The granularity of PMP access control is a direct implementation choice, with a minimum size of four bytes."
+    },
+    {
+      "excerpt": "Although the PMP mechanism supports regions as small as four bytes, platforms may specify coarser PMP regions.",
+      "line_number": 3340,
+      "parameter_name": "PMP_REGION_GRANULARITY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "medium",
+      "reasoning": "The granularity of PMP regions can be specified by the platform, indicating a design-time choice."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] Platforms vary widely in demands for physical memory protection, and some platforms may provide other PMP structures in addition to or instead of the scheme described in this section.",
+      "line_number": 3330,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "PMP checks are applied to all accesses whose effective privilege mode is S or U, including instruction fetches and data accesses in S and U mode, and data accesses in M-mode when the MPRV bit in `mstatus` is set and the MPP field in `mstatus` contains S or U.",
+      "line_number": 3330,
+      "reason": "This describes the behavior of PMP checks under specific conditions, which is not an implementation choice."
+    },
+    {
+      "excerpt": "PMP violations are always trapped precisely at the processor.",
+      "line_number": 3330,
+      "reason": "This is a fixed requirement ('always trapped precisely') that all implementations must satisfy. There is no implementation choice here."
+    },
+    {
+      "excerpt": "When paging is enabled, instructions that access virtual memory may result in multiple physical-memory accesses, including implicit references to the page tables.",
+      "line_number": 3340,
+      "reason": "This describes behavior under specific conditions (paging enabled), not an implementation-defined parameter."
+    },
+    {
+      "excerpt": "The L bit indicates that the PMP entry is locked, i.e., writes to the configuration register and associated address registers are ignored.",
+      "line_number": 3340,
+      "reason": "This describes the function of a specific bit in the PMP configuration, not an implementation choice."
+    }
+  ]
+}
+```

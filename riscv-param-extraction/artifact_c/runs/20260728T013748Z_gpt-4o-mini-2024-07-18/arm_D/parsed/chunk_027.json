@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_027",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "When S-mode is implemented, it is determined as follows: |Privilege Mode| xLPE |  M           | `mseccfg.MLPE` |  S or HS     | `menvcfg.LPE` |  VS          | `henvcfg.LPE` |  U or VU     | `senvcfg.LPE` |",
+      "line_number": 15,
+      "parameter_name": "LPE_STATE",
+      "existing_udb_name": "LPE_STATE",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The xLPE state is determined by the implementation of the respective CSRs for each privilege mode, making it a direct implementation choice."
+    },
+    {
+      "excerpt": "When S-mode is not implemented, it is determined as follows: |Privilege Mode| xLPE |  M           | `mseccfg.MLPE` |  U           | `menvcfg.LPE` |",
+      "line_number": 22,
+      "parameter_name": "LPE_STATE_NO_S_MODE",
+      "existing_udb_name": "LPE_STATE_NO_S_MODE",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The xLPE state is determined by the implementation of the respective CSRs for each privilege mode when S-mode is not implemented, indicating a design choice."
+    },
+    {
+      "excerpt": "When S-mode is implemented, it is determined as follows: |Privilege Mode| `xSSE` |  M           | `0` |  S or HS     | `menvcfg.SSE` |  VS          | `henvcfg.SSE` |  U or VU     | `senvcfg.SSE` |",
+      "line_number": 45,
+      "parameter_name": "SSE_STATE",
+      "existing_udb_name": "SSE_STATE",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The xSSE state is determined by the implementation of the respective CSRs for each privilege mode, making it a direct implementation choice."
+    },
+    {
+      "excerpt": "When S-mode is not implemented, then `xSSE` is 0 at both M and U privilege modes.",
+      "line_number": 52,
+      "parameter_name": "SSE_STATE_NO_S_MODE",
+      "existing_udb_name": "SSE_STATE_NO_S_MODE",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The xSSE state is fixed to 0 when S-mode is not implemented, indicating a design choice for the implementation."
+    }
+  ]
+}

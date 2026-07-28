@@ -16,6 +16,29 @@ Full write-up and committed artifacts: [`artifact_c/results/PRIMARY_RESULTS.md`]
 
 ---
 
+## Most of a recall figure here is awarded by fuzzy matching, not by naming the parameter
+
+**Measured 2026-07-28.** `analyze.py` credits a gold parameter through an exact name match or through one of five inexact passes (`one_to_many`, `explicit_group`, `concept_group`, `stem`, `fuzzy_name`). Only the totals reach the metrics files, so the split is invisible unless you go looking. Recovering it across eight complete runs:
+
+| Run set | Exact | Inexact | Reported | Exact-name only | Inexact share |
+|---------|------:|--------:|---------:|----------------:|--------------:|
+| gpt-4o-mini, 8 runs | 5–9 | 47–70 | 29.4–44.6% | 2.8–5.1% | **84.5–90.4%** |
+| claude-sonnet-4, Part I | 86 | 43 | 72.9% | 48.6% | 33.3% |
+| gpt-4o-mini, published | 11 | 46 | 32.2% | 6.2% | 80.7% |
+| gpt-4o-mini, v3 prompt | 10 | 52 | 35.0% | 5.6% | 83.9% |
+
+Two consequences.
+
+**The instability is concentrated in the heuristic layer.** Across the eight runs exact matches span a range of 4 while inexact matches span 23. The component carrying roughly seven eighths of the score is the component that moves.
+
+**The published cross-model gap is understated.** On reported adjusted recall it reads 72.9% against 32.2%, about 2.3x. On exact-name recall it reads 48.6% against 6.2%, about 7.8x. The two models differ in kind: one names the parameter, the other is scored on description similarity.
+
+Inexact matching is not wrong; a model answering "support for misaligned loads and stores" has found `MISALIGNED_LDST`. The point is that the credit is mostly heuristic, that is where the noise lives, and neither fact is visible in the headline number.
+
+Reproduce with `python artifact_c/scripts/decompose_matches.py` — deterministic, no API key needed. This analysis was **not preregistered**; it came out of diagnosing the variance above and is reported as exploratory.
+
+---
+
 ## Read this before citing any recall number
 
 **Every recall figure below was produced with the complete list of gold parameter names supplied in the prompt.**

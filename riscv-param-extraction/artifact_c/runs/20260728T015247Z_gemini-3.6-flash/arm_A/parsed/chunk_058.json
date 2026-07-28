@@ -1,0 +1,67 @@
+{
+  "chunk_id": "chunk_058",
+  "arm": "A",
+  "model": "gemini-3.6-flash",
+  "parameters": [
+    {
+      "excerpt": "The maximum size in bits of a vector element that any operation can produce or consume, _ELEN_ {ge} 8, which must be a power of 2.",
+      "line_number": 22,
+      "parameter_name": "ELEN",
+      "existing_udb_name": "ELEN",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "ELEN is an implementation parameter specifying the maximum element width supported by the vector unit."
+    },
+    {
+      "excerpt": "The number of bits in a single vector register, _VLEN_ {ge} ELEN, which must be a power of 2, and must be no greater than 2^16.",
+      "line_number": 24,
+      "parameter_name": "VLEN",
+      "existing_udb_name": "VLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "VLEN is a direct implementation choice for the size of a single vector register in bits."
+    },
+    {
+      "excerpt": "Implementations may have a writable `misa.V` field.",
+      "line_number": 124,
+      "parameter_name": "MUTABLE_MISA_V",
+      "existing_udb_name": "MUTABLE_MISA_V",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "Determines whether the misa.V field is read-only or read-write."
+    },
+    {
+      "excerpt": "Implementations may also change `mstatus.VS` or `vsstatus.VS` from Initial or Clean to Dirty at any time, even when there is no change in vector state.",
+      "line_number": 144,
+      "parameter_name": "HW_MSTATUS_VS_DIRTY_UPDATE",
+      "existing_udb_name": "HW_MSTATUS_VS_DIRTY_UPDATE",
+      "class": "SW_RULE",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "Hardware is permitted to spontaneously transition mstatus.VS/vsstatus.VS to Dirty. Software handles this choice deterministically."
+    },
+    {
+      "excerpt": "`ceil(AVL / 2) {le} vl {le} VLMAX` if `AVL < (2 * VLMAX)`",
+      "line_number": 563,
+      "parameter_name": "RVV_VL_WHEN_AVL_LT_DOUBLE_VLMAX",
+      "existing_udb_name": "RVV_VL_WHEN_AVL_LT_DOUBLE_VLMAX",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "Specifies the implementation-defined calculation for updating vl when AVL is between VLMAX and 2*VLMAX."
+    },
+    {
+      "excerpt": "If an element accessed by a vector memory instruction is not naturally aligned to the size of the element, either the element is transferred successfully or an address-misaligned exception is raised on that element.",
+      "line_number": 720,
+      "parameter_name": "MISALIGNED_LDST",
+      "existing_udb_name": "MISALIGNED_LDST",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The implementer chooses whether unaligned vector memory accesses are supported in hardware or raise misaligned load/store exceptions."
+    }
+  ]
+}

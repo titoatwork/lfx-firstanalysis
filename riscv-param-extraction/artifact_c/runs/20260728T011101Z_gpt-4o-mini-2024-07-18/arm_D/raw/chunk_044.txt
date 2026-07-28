@@ -1,0 +1,63 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The entropy source extension defines the `seed` CSR at address `0x015`. This CSR provides up to 16 physical `entropy` bits that can be used to seed cryptographic random bit generators.",
+      "line_number": 345,
+      "parameter_name": "ENTROPY_SEED_CSR",
+      "existing_udb_name": "ENTROPY_SEED_CSR",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The address of the `seed` CSR and the number of entropy bits it provides are implementation choices that can vary between implementations."
+    },
+    {
+      "excerpt": "This instruction exists on RV32 and RV64 base architectures.",
+      "line_number": 1234,
+      "parameter_name": "SUPPORTED_ARCHITECTURES",
+      "existing_udb_name": "SUPPORTED_ARCHITECTURES",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The choice of whether to implement the instruction on RV32, RV64, or both is left to the implementer."
+    },
+    {
+      "excerpt": "This instruction must _always_ be implemented such that its execution latency does not depend on the data being operated on.",
+      "line_number": 678,
+      "parameter_name": "HW_EXECUTION_LATENCY",
+      "existing_udb_name": "HW_EXECUTION_LATENCY",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The requirement for constant execution latency is a design choice that can be implemented differently by various hardware designers."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] At the time of writing, these discovery mechanisms are still a work in progress.",
+      "line_number": 99,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a status update, not an architectural requirement."
+    },
+    {
+      "excerpt": "This instruction must _always_ be implemented such that its execution latency does not depend on the data being operated on.",
+      "line_number": 1234,
+      "reason": "This is a fixed requirement ('must') that applies to all implementations and does not represent a choice for the implementer."
+    },
+    {
+      "excerpt": "The entire Sigma0 transform for SHA2-512 may be computed on RV32 using the following instruction sequence: sha512sig0l t0, a0, a1 sha512sig0h t1, a1, a0",
+      "line_number": 456,
+      "reason": "This describes a software technique and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "This instruction is based on work done in cite:[MJS:LWSHA:20].",
+      "line_number": 789,
+      "reason": "This is a reference to external work and does not define an architectural parameter."
+    },
+    {
+      "excerpt": "The NIST and ShangMi algorithms suites are separated because their usefulness is heavily dependent on the countries a device is expected to operate in.",
+      "line_number": 101,
+      "reason": "This is a rationale for design choices, not an architectural parameter."
+    }
+  ]
+}
+```

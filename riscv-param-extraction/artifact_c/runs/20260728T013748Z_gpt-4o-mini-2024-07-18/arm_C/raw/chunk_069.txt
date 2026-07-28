@@ -1,0 +1,68 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "New 16-bit variants of LOAD-FP and STORE-FP instructions are added, encoded with a new value for the funct3 width field.",
+      "line_number": 10,
+      "parameter_name": "LOAD_STORE_FP_FUNCT3_WIDTH",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The funct3 width field for LOAD-FP and STORE-FP instructions is a direct implementation choice, allowing for the addition of new 16-bit variants."
+    },
+    {
+      "excerpt": "A new supported format is added to the format field of most instructions, as shown in <<tab:fpextfmth>>.",
+      "line_number": 20,
+      "parameter_name": "SUPPORTED_FORMATS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The addition of new formats to the format field is an implementation choice that defines which formats are supported for instructions."
+    },
+    {
+      "excerpt": "If the D extension is present, FCVT.D.H or FCVT.H.D converts a half-precision floating-point number to a double-precision floating-point number, or vice-versa, respectively.",
+      "line_number": 66,
+      "parameter_name": "D_EXTENSION_SUPPORT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The presence of the D extension is an implementation choice that affects the availability of certain conversion instructions."
+    },
+    {
+      "excerpt": "If the Q extension is present, the FCVT.Q.H and FCVT.H.Q instructions are additionally included.",
+      "line_number": 70,
+      "parameter_name": "Q_EXTENSION_SUPPORT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The presence of the Q extension is an implementation choice that determines the inclusion of specific conversion instructions."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The expectation is that Zfhmin software primarily uses the half-precision format for storage, performing most computation in higher precision.",
+      "line_number": 130,
+      "reason": "This describes a software expectation rather than an implementation choice, thus it is not a parameter."
+    },
+    {
+      "excerpt": "Half-precision addition, subtraction, multiplication, division, and square-root operations can be faithfully emulated by converting the half-precision operands to single-precision.",
+      "line_number": 134,
+      "reason": "This describes a method of emulation rather than an architectural choice, so it is not a parameter."
+    },
+    {
+      "excerpt": "Conversion from 8- or 16-bit integers to half-precision can be emulated by first converting to single-precision, then converting to half-precision.",
+      "line_number": 138,
+      "reason": "This describes a conversion method rather than an implementation-defined parameter."
+    },
+    {
+      "excerpt": "Zfhmin does not include the FSGNJ.H instruction, because it suffices to instead use the FSGNJ.S instruction to move half-precision values between floating-point registers.",
+      "line_number": 126,
+      "reason": "This is a specification of what is included or excluded in the Zfhmin extension, not an implementation choice."
+    }
+  ]
+}
+```

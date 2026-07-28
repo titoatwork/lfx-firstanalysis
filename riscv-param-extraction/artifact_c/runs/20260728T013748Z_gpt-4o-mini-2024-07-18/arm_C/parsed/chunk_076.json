@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_076",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "Operands containing `src` for store instructions and `dest` for load instructions are held in aligned `x`-register pairs, i.e., register numbers must be even.",
+      "line_number": 7,
+      "parameter_name": "REGISTER_PAIR_ALIGNMENT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The specification explicitly states that register numbers must be even for load/store pairs, which is a design choice for the implementation."
+    },
+    {
+      "excerpt": "As the access size is 64-bit, accesses are only considered naturally aligned for effective addresses that are a multiple of 8.",
+      "line_number": 15,
+      "parameter_name": "NATURAL_ALIGNMENT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The specification defines a clear alignment requirement for 64-bit accesses, which is a direct implementation choice."
+    },
+    {
+      "excerpt": "If the effective address is a multiple of 4, then each word access is required to be performed atomically.",
+      "line_number": 19,
+      "parameter_name": "ATOMIC_WORD_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The requirement for atomicity based on effective address alignment is a design choice that can vary by implementation."
+    },
+    {
+      "excerpt": "To ensure resumable trap handling is possible for the load instructions, the base register must have its original value if a trap is taken.",
+      "line_number": 23,
+      "parameter_name": "RESUMABLE_TRAP_HANDLING",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "This is a design choice regarding how traps are handled in relation to the base register, which can vary by implementation."
+    }
+  ]
+}

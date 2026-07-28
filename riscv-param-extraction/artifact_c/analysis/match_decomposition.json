@@ -1,0 +1,167 @@
+{
+  "gold_total": 177,
+  "min_chunks": 60,
+  "rows": [
+    {
+      "by_type": {
+        "exact": 9,
+        "explicit_group": 38,
+        "stem": 6,
+        "fuzzy_name": 7,
+        "none": 200
+      },
+      "exact": 9,
+      "inexact": 51,
+      "matched": 60,
+      "inexact_share": 0.85,
+      "align_matched": 60,
+      "run": "20260727T201408Z_gpt-4o-mini-2024-07-18",
+      "arm": "A",
+      "chunks": 60,
+      "cross_check": "ok"
+    },
+    {
+      "by_type": {
+        "exact": 5,
+        "explicit_group": 34,
+        "stem": 4,
+        "fuzzy_name": 9,
+        "none": 187
+      },
+      "exact": 5,
+      "inexact": 47,
+      "matched": 52,
+      "inexact_share": 0.9038461538461539,
+      "align_matched": 52,
+      "run": "20260727T201408Z_gpt-4o-mini-2024-07-18",
+      "arm": "B",
+      "chunks": 60,
+      "cross_check": "ok"
+    },
+    {
+      "by_type": {
+        "exact": 9,
+        "explicit_group": 59,
+        "stem": 5,
+        "fuzzy_name": 6,
+        "none": 183
+      },
+      "exact": 9,
+      "inexact": 70,
+      "matched": 79,
+      "inexact_share": 0.8860759493670886,
+      "align_matched": 79,
+      "run": "20260727T203634Z_gpt-4o-mini-2024-07-18",
+      "arm": "A",
+      "chunks": 60,
+      "cross_check": "ok"
+    },
+    {
+      "by_type": {
+        "exact": 7,
+        "explicit_group": 34,
+        "stem": 14,
+        "fuzzy_name": 2,
+        "none": 192
+      },
+      "exact": 7,
+      "inexact": 50,
+      "matched": 57,
+      "inexact_share": 0.8771929824561403,
+      "align_matched": 57,
+      "run": "20260727T203634Z_gpt-4o-mini-2024-07-18",
+      "arm": "B",
+      "chunks": 60,
+      "cross_check": "ok"
+    },
+    {
+      "by_type": {
+        "exact": 9,
+        "explicit_group": 34,
+        "stem": 6,
+        "fuzzy_name": 9,
+        "none": 175
+      },
+      "exact": 9,
+      "inexact": 49,
+      "matched": 58,
+      "inexact_share": 0.8448275862068966,
+      "align_matched": 58,
+      "run": "20260728T011101Z_gpt-4o-mini-2024-07-18",
+      "arm": "C",
+      "chunks": 60,
+      "cross_check": "ok"
+    },
+    {
+      "by_type": {
+        "exact": 7,
+        "explicit_group": 39,
+        "stem": 10,
+        "fuzzy_name": 6,
+        "none": 196
+      },
+      "exact": 7,
+      "inexact": 55,
+      "matched": 62,
+      "inexact_share": 0.8870967741935484,
+      "align_matched": 62,
+      "run": "20260728T011101Z_gpt-4o-mini-2024-07-18",
+      "arm": "D",
+      "chunks": 60,
+      "cross_check": "ok"
+    },
+    {
+      "by_type": {
+        "exact": 8,
+        "explicit_group": 50,
+        "stem": 5,
+        "fuzzy_name": 7,
+        "none": 198
+      },
+      "exact": 8,
+      "inexact": 62,
+      "matched": 70,
+      "inexact_share": 0.8857142857142857,
+      "align_matched": 70,
+      "run": "20260728T013748Z_gpt-4o-mini-2024-07-18",
+      "arm": "C",
+      "chunks": 60,
+      "cross_check": "ok"
+    },
+    {
+      "by_type": {
+        "exact": 7,
+        "explicit_group": 34,
+        "stem": 8,
+        "fuzzy_name": 6,
+        "none": 189
+      },
+      "exact": 7,
+      "inexact": 48,
+      "matched": 55,
+      "inexact_share": 0.8727272727272727,
+      "align_matched": 55,
+      "run": "20260728T013748Z_gpt-4o-mini-2024-07-18",
+      "arm": "D",
+      "chunks": 60,
+      "cross_check": "ok"
+    }
+  ],
+  "excluded_fragments": [
+    {
+      "run": "20260727T201017Z_gpt-4o-mini-2024-07-18",
+      "arm": "A",
+      "chunks": 1
+    },
+    {
+      "run": "20260728T015247Z_gemini-3.6-flash",
+      "arm": "A",
+      "chunks": 20
+    },
+    {
+      "run": "20260728T015526Z_nvidia_nemotron-3-ultra-550b-a55b_free",
+      "arm": "A",
+      "chunks": 4
+    }
+  ]
+}

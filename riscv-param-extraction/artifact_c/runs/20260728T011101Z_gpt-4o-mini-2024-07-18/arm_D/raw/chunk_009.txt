@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "the size of a cache block shall be uniform throughout the system.",
+      "line_number": 45,
+      "parameter_name": "CACHE_BLOCK_SIZE_UNIFORMITY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The specification states that the size of a cache block is an implementation choice, and it must be uniform across the system, indicating a direct design decision."
+    },
+    {
+      "excerpt": "An implementation may or may not update the entire set of bytes atomically with a single store operation.",
+      "line_number": 75,
+      "parameter_name": "CACHE_BLOCK_ZERO_ATOMICITY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation has the choice to update the cache block bytes atomically or not, which is a direct design decision."
+    },
+    {
+      "excerpt": "An implementation may opt to cache a copy of the cache block in a cache accessed by an instruction fetch in order to improve memory access latency, but this behavior is not required.",
+      "line_number": 103,
+      "parameter_name": "CACHE_BLOCK_PREFETCH_CACHING",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to cache a copy of the cache block during instruction fetches is left to the implementation, indicating a design decision."
+    },
+    {
+      "excerpt": "An implementation may opt to cache a copy of the cache block in a cache accessed by a data read in order to improve memory access latency, but this behavior is not required.",
+      "line_number": 123,
+      "parameter_name": "CACHE_BLOCK_READ_PREFETCH_CACHING",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation has the option to cache during data reads, which is a design choice."
+    },
+    {
+      "excerpt": "An implementation may opt to cache a copy of the cache block in a cache accessed by a data write in order to improve memory access latency, but this behavior is not required.",
+      "line_number": 143,
+      "parameter_name": "CACHE_BLOCK_WRITE_PREFETCH_CACHING",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to cache during data writes is left to the implementation, indicating a design decision."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The capacity and organization of a cache and the size of a cache block are both implementation-specific.",
+      "line_number": 55,
+      "reason": "This statement describes implementation-specific choices but does not define a specific architectural parameter."
+    },
+    {
+      "excerpt": "The coherent agents within such a set shall access a given memory location with the same physical address and the same physical memory attributes.",
+      "line_number": 85,
+      "reason": "This is a fixed requirement ('shall') that applies to all implementations and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "If the coherence PMA for a given agent indicates a given memory location is not coherent, that agent shall not be a member of a set of coherent agents with any other agent for that memory location.",
+      "line_number": 95,
+      "reason": "This is a fixed requirement ('shall') that applies to all implementations and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "The PMP access control bits shall be the same for all physical addresses in the cache block.",
+      "line_number": 105,
+      "reason": "This is a fixed requirement ('shall') that applies to all implementations and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "The PMAs shall be the same for all physical addresses in the cache block.",
+      "line_number": 115,
+      "reason": "This is a fixed requirement ('shall') that applies to all implementations and does not indicate an implementation choice."
+    }
+  ]
+}
+```

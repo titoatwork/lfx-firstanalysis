@@ -1,0 +1,27 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "This extension adds the `STCE` bit to the `menvcfg` CSR.",
+      "line_number": 20,
+      "parameter_name": "STCE_ENABLE",
+      "existing_udb_name": "STCE_ENABLE",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The `STCE` bit in `menvcfg` is a read/write field that determines whether the `stimecmp` CSR is operational. The implementation can choose to enable or disable this feature."
+    },
+    {
+      "excerpt": "This extension adds the `STCE` bit to the `henvcfg` CSR.",
+      "line_number": 20,
+      "parameter_name": "STCE_ENABLE_VS",
+      "existing_udb_name": "STCE_ENABLE_VS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The `STCE` bit in `henvcfg` is a read/write field that controls the operational status of `stimecmp` in VS-mode. The implementation can choose to enable or disable this feature."
+    }
+  ],
+  "skipped_non_parameters": []
+}
+```

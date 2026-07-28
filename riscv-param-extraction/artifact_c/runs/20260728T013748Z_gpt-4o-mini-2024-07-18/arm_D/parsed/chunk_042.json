@@ -1,0 +1,27 @@
+{
+  "chunk_id": "chunk_042",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "RV64I widens the integer registers and supported user address space to 64 bits (XLEN=64 in <<gprs>>).",
+      "line_number": 5,
+      "parameter_name": "XLEN",
+      "existing_udb_name": "XLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "XLEN is a direct implementation choice that defines the width of integer registers and address space. The specific value (64) is chosen by the implementer."
+    },
+    {
+      "excerpt": "The execution environment will define what portions of the address space are legal to access.",
+      "line_number": 118,
+      "parameter_name": "LEGAL_ADDRESS_SPACE",
+      "existing_udb_name": "LEGAL_ADDRESS_SPACE",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The implementation defines which portions of the 64-bit address space are accessible, making it an architectural parameter."
+    }
+  ]
+}

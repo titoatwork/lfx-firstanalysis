@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The status bits `seed[31:30]` = `OPST` may be `ES16` (10), indicating successful polling, or one of three entropy polling failure statuses `BIST` (00), `WAIT` (01), or `DEAD` (11), discussed below.",
+      "line_number": 3465,
+      "parameter_name": "SEED_OPST_VALUES",
+      "existing_udb_name": "SEED_OPST_VALUES",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The OPST field in the seed CSR is WARL, and the set of values it can take (BIST, WAIT, ES16, DEAD) varies by implementation. This defines the legal values for the field."
+    },
+    {
+      "excerpt": "An implementation may safely set reserved and custom bits to zeros.",
+      "line_number": 3485,
+      "parameter_name": "SEED_CUSTOM_BITS",
+      "existing_udb_name": "SEED_CUSTOM_BITS",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation has the choice to set reserved and custom bits to zero, which is a direct design decision."
+    },
+    {
+      "excerpt": "The `seed` CSR is also access controlled by execution mode, and attempted read or write access will raise an illegal-instruction exception outside M mode unless access is explicitly granted.",
+      "line_number": 3490,
+      "parameter_name": "SEED_ACCESS_CONTROL",
+      "existing_udb_name": "SEED_ACCESS_CONTROL",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The access control to the seed CSR based on execution mode is a design choice that can vary by implementation."
+    },
+    {
+      "excerpt": "Implementations may implement `mseccfg` such that `[s,u]seed` is a read-only constant value `0`.",
+      "line_number": 3500,
+      "parameter_name": "MSECCFG_SEED_ACCESS",
+      "existing_udb_name": "MSECCFG_SEED_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The choice to implement the `[s,u]seed` fields as read-only constants is an implementation-defined decision."
+    },
+    {
+      "excerpt": "An implementation of the entropy source should meet at least one of the following requirements sets in order to be considered a secure and safe design.",
+      "line_number": 3520,
+      "parameter_name": "ENTROPY_SOURCE_REQUIREMENTS",
+      "existing_udb_name": "ENTROPY_SOURCE_REQUIREMENTS",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The choice of which set of requirements to meet for the entropy source is left to the implementer, making it a parameter."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The output `entropy` (`seed[15:0]` in ES16 state) is not necessarily fully conditioned randomness due to hardware and energy limitations of smaller, low-powered implementations.",
+      "line_number": 3510,
+      "reason": "This describes a limitation of the output rather than an implementation choice, thus it is not a parameter."
+    },
+    {
+      "excerpt": "The combination of an Entropy Source, Conditioning, and a DRBG can be used to create random bits securely.",
+      "line_number": 3460,
+      "reason": "This describes a process rather than a choice left to the implementer, so it is not a parameter."
+    },
+    {
+      "excerpt": "The `seed` CSR provides an interface to a NIST SP 800-90B compliant physical Entropy Source (ES).",
+      "line_number": 3455,
+      "reason": "This is a fixed requirement about the CSR's purpose, not an implementation choice."
+    },
+    {
+      "excerpt": "The purpose of the write is to signal polling and flushing.",
+      "line_number": 3480,
+      "reason": "This describes the behavior of the CSR rather than an implementation choice, thus it is not a parameter."
+    },
+    {
+      "excerpt": "The `seed` CSR must always be implemented, but can contain a read-only value.",
+      "line_number": 3495,
+      "reason": "This is a fixed requirement ('must always be implemented') that applies to all implementations, not a parameter."
+    }
+  ]
+}
+```

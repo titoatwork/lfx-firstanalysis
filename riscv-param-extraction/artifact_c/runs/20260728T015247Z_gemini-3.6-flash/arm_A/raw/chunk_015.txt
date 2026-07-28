@@ -1,0 +1,138 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "RISC-V harts that implement the hypervisor extension are encouraged not to hardwire `misa`[7], so that the extension may be disabled.",
+      "line_number": 50,
+      "parameter_name": "MUTABLE_MISA_H",
+      "existing_udb_name": "MUTABLE_MISA_H",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "Controls whether bit 7 of misa (the H extension enable bit) is writable or hardwired."
+    },
+    {
+      "excerpt": "In particular, an implementation may make VSXL be a read-only field whose value always ensures that VSXLEN=HSXLEN.",
+      "line_number": 186,
+      "parameter_name": "HSTATUS_VSXL_READ_ONLY",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation may choose to fix hstatus.VSXL as read-only to match HSXLEN or allow it to be writable."
+    },
+    {
+      "excerpt": "An implementation may have WFI always raise a virtual-instruction exception in VS-mode when VTW=1 (and `mstatus`.TW=0), even if there are pending globally-disabled interrupts when the instruction is executed.",
+      "line_number": 196,
+      "parameter_name": "HSTATUS_VTW_WFI_ALWAYS_TRAP",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "Implementation choice on whether WFI under VTW=1 always traps immediately or waits for a bounded time limit."
+    },
+    {
+      "excerpt": "An implementation may make VSBE a read-only field that always specifies the same endianness as HS-mode.",
+      "line_number": 251,
+      "parameter_name": "VS_MODE_ENDIANNESS",
+      "existing_udb_name": "VS_MODE_ENDIANNESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "Controls whether hstatus.VSBE is writable or a read-only field fixed to HS-mode endianness."
+    },
+    {
+      "excerpt": "The number of bits implemented in `hgeip` and `hgeie` for guest external interrupts is UNSPECIFIED and may be zero. This number is known as _GEILEN_.",
+      "line_number": 389,
+      "parameter_name": "NUM_EXTERNAL_GUEST_INTERRUPTS",
+      "existing_udb_name": "NUM_EXTERNAL_GUEST_INTERRUPTS",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "GEILEN defines the number of implemented guest external interrupt bits (0 to 31/63)."
+    },
+    {
+      "excerpt": "`htval` is a *WARL* register that must be able to hold zero and may be capable of holding only an arbitrary subset of other 2-bit-shifted guest physical addresses, if any.",
+      "line_number": 639,
+      "parameter_name": "HTVAL_WARL_LEGAL_VALUES",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "htval is WARL, and the set of guest physical addresses it can hold is implementation-defined."
+    },
+    {
+      "excerpt": "Implementations are not required to support all defined MODE settings when HSXLEN=64.",
+      "line_number": 697,
+      "parameter_name": "HGATP_MODE_LEGAL_VALUES",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The supported G-stage translation modes (Bare, Sv39x4, Sv48x4, Sv57x4) in hgatp.MODE are an implementation choice."
+    },
+    {
+      "excerpt": "The number of VMID bits is UNSPECIFIED and may be zero.",
+      "line_number": 715,
+      "parameter_name": "VMID_WIDTH",
+      "existing_udb_name": "VMID_WIDTH",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "Defines the number of implemented VMID bits in hgatp (0 to 7 on RV32, 0 to 14 on RV64)."
+    },
+    {
+      "excerpt": "In particular, an implementation may make UXL be a read-only copy of field VSXL of `hstatus`, forcing VU-mode XLEN=VSXLEN.",
+      "line_number": 779,
+      "parameter_name": "VSSTATUS_UXL_READ_ONLY",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "Controls whether vsstatus.UXL is a read-only copy of hstatus.VSXL or a writable field."
+    },
+    {
+      "excerpt": "An implementation may make field UBE be a read-only copy of `hstatus`.VSBE.",
+      "line_number": 810,
+      "parameter_name": "VSSTATUS_UBE_READ_ONLY",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "Controls whether vsstatus.UBE is read-only linked to hstatus.VSBE or independently configurable."
+    },
+    {
+      "excerpt": "When V=0, a write to `vsatp` with an unsupported MODE value is either ignored as it is for `satp`, or the fields of `vsatp` are treated as *WARL* in the normal way.",
+      "line_number": 910,
+      "parameter_name": "IGNORE_INVALID_VSATP_MODE_WRITES_WHEN_V_EQ_ZERO",
+      "existing_udb_name": "IGNORE_INVALID_VSATP_MODE_WRITES_WHEN_V_EQ_ZERO",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "Determines whether writes to vsatp with unsupported MODE values when V=0 are ignored or handled via standard WARL field updates."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The baseline privileged architecture is designed to simplify the use of classic virtualization techniques...",
+      "line_number": 54,
+      "reason": "Inside a non-normative [NOTE] block; informative text, not an architectural parameter."
+    },
+    {
+      "excerpt": "CSR `mtval` must not be read-only zero",
+      "line_number": 40,
+      "reason": "Fixed mandatory requirement for all hypervisor extension implementations, not an implementation choice."
+    },
+    {
+      "excerpt": "When VTVM=1, an attempt in VS-mode to execute SFENCE.VMA or SINVAL.VMA or to access CSR `satp` raises a virtual-instruction exception.",
+      "line_number": 198,
+      "reason": "Describes runtime execution behavior under a specific CSR bit setting, not an architectural parameter."
+    },
+    {
+      "excerpt": "Software may safely treat an unrecognized value in a trap instruction register the same as zero.",
+      "line_number": 1253,
+      "reason": "Software guidance/permission, describing how software should handle values, not a hardware parameter."
+    }
+  ]
+}
+```

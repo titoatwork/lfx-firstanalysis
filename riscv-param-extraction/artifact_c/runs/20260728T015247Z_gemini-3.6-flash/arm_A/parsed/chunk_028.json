@@ -1,0 +1,17 @@
+{
+  "chunk_id": "chunk_028",
+  "arm": "A",
+  "model": "gemini-3.6-flash",
+  "parameters": [
+    {
+      "excerpt": "Implementations are permitted but not required to raise an illegal-instruction exception if an instruction attempts to write a non-supported value to a *WLRL* field.",
+      "line_number": 1001,
+      "parameter_name": "TRAP_ON_ILLEGAL_WLRL",
+      "existing_udb_name": "TRAP_ON_ILLEGAL_WLRL",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The spec explicitly leaves it as an implementation option ('permitted but not required') whether hardware raises an illegal-instruction exception upon writing an unsupported value to a WLRL field."
+    }
+  ]
+}

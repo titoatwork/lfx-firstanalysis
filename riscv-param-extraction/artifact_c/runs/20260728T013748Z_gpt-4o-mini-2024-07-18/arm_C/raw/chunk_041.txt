@@ -1,0 +1,43 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "RV32E and RV64E reduce the integer register count to 16 general-purpose registers, (`x0-x15`), where `x0` is a dedicated zero register.",
+      "line_number": 15,
+      "parameter_name": "NUM_GENERAL_PURPOSE_REGISTERS",
+      "existing_udb_name": "NUM_GENERAL_PURPOSE_REGISTERS",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The number of general-purpose registers is a direct implementation choice, specifically set to 16 in RV32E and RV64E. This is not controlled by any CSR field."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "Unless otherwise stated, standard extensions compatible with RV32I and RV64I are also compatible with RV32E and RV64E, respectively.",
+      "line_number": 25,
+      "reason": "This is a statement about compatibility and does not define an architectural parameter."
+    },
+    {
+      "excerpt": "RV32E was designed to provide an even smaller base core for embedded microcontrollers.",
+      "line_number": 5,
+      "reason": "This is a descriptive statement about the design intent of RV32E, not an implementation choice."
+    },
+    {
+      "excerpt": "We have found that in the small RV32I core implementations, the upper 16 registers consume around one quarter of the total area of the core excluding memories, thus their removal saves around 25% core area with a corresponding core power reduction.",
+      "line_number": 11,
+      "reason": "This is an informative note about the impact of register removal on core area and power, not a parameter."
+    },
+    {
+      "excerpt": "All encodings specifying the other registers `x16-x31` are reserved.",
+      "line_number": 29,
+      "reason": "This describes the status of certain register encodings but does not define an implementation choice or parameter."
+    },
+    {
+      "excerpt": "The previous draft of this chapter made all encodings using the `x16-x31` registers available as custom.",
+      "line_number": 33,
+      "reason": "This is a historical note about changes in the specification and does not define a current architectural parameter."
+    }
+  ]
+}
+```

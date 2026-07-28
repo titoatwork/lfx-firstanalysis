@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The `ssp` CSR is an unprivileged read-write (URW) CSR that reads and writes XLEN low order bits of the shadow stack pointer (`ssp`).",
+      "line_number": 794,
+      "parameter_name": "SSP_ACCESS",
+      "existing_udb_name": "SSP_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The `ssp` CSR is defined as read-write, indicating that the implementation can choose its mutability."
+    },
+    {
+      "excerpt": "The `ssp` is always as wide as the XLEN of the current privilege mode.",
+      "line_number": 795,
+      "parameter_name": "SSP_WIDTH",
+      "existing_udb_name": "SSP_WIDTH",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The width of the `ssp` is determined by the implementation's choice of XLEN, which is a direct design decision."
+    },
+    {
+      "excerpt": "The `ELP` state can be one of: * 0 - `NO_LP_EXPECTED` * 1 - `LP_EXPECTED`",
+      "line_number": 469,
+      "parameter_name": "ELP_STATE",
+      "existing_udb_name": "ELP_STATE",
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The `ELP` state is a CSR field that can take on specific values, indicating an implementation-defined choice regarding landing pad expectations."
+    },
+    {
+      "excerpt": "The Zicfilp extensions may be activated for use individually and independently for each privilege mode.",
+      "line_number": 646,
+      "parameter_name": "ZICFILP_ACTIVATION",
+      "existing_udb_name": "ZICFILP_ACTIVATION",
+      "class": "NORM_DIRECT",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The activation of the Zicfilp extension is a design choice that can vary by privilege mode, making it an architectural parameter."
+    },
+    {
+      "excerpt": "The `LPAD` instruction uses the code points defined as HINTs for the `AUIPC` opcode.",
+      "line_number": 469,
+      "parameter_name": "LPAD_ENCODING",
+      "existing_udb_name": "LPAD_ENCODING",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The encoding of the `LPAD` instruction is a design choice based on the implementation of the `AUIPC` opcode."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] When the register source is a link register and the register destination is `x0`, then it's a return from a procedure and does not require a landing pad at the target.",
+      "line_number": 469,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "When Zicfilp is not active at a privilege level or when the extension is not implemented, the landing pad instruction executes as a no-op.",
+      "line_number": 646,
+      "reason": "This describes behavior under certain conditions rather than an implementation choice, thus it is not a parameter."
+    },
+    {
+      "excerpt": "The `LPAD` requires a 4-byte alignment to address the concatenation of two instructions.",
+      "line_number": 469,
+      "reason": "This is a fixed requirement for the instruction alignment, not an implementation choice."
+    },
+    {
+      "excerpt": "Compilers should flag each object file (for example, using flags in the ELF attributes) to indicate if the object file has been compiled with the Zicfiss instructions.",
+      "line_number": 646,
+      "reason": "This is a recommendation for compiler behavior, not an architectural parameter."
+    },
+    {
+      "excerpt": "The `SSPUSH` instruction and its compressed form `C.SSPUSH` can be used to push a link register on the shadow stack.",
+      "line_number": 646,
+      "reason": "This describes the functionality of an instruction rather than an implementation choice, thus it is not a parameter."
+    }
+  ]
+}
+```

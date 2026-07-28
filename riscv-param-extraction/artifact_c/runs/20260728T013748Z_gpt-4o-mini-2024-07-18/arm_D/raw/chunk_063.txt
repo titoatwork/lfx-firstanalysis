@@ -1,0 +1,63 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The Zabha extension provides the `AMO[ADD|AND|OR|XOR|SWAP|MIN[U]|MAX[U]].[B|H]` instructions.",
+      "line_number": 20,
+      "parameter_name": "ZABHA_AMO_INSTRUCTIONS",
+      "existing_udb_name": "ZABHA_AMO_INSTRUCTIONS",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The specific AMO instructions provided by the Zabha extension are an implementation choice, allowing for a set of operations that can be supported."
+    },
+    {
+      "excerpt": "If Zacas extension is also implemented, Zabha further provides the `AMOCAS.[B|H]` instructions.",
+      "line_number": 22,
+      "parameter_name": "ZABHA_AMOCAS_INSTRUCTIONS",
+      "existing_udb_name": "ZABHA_AMOCAS_INSTRUCTIONS",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The availability of AMOCAS instructions is contingent on the implementation of the Zacas extension, making it an implementation-defined choice."
+    },
+    {
+      "excerpt": "The address contained in the `rs1` register must be naturally aligned to the size of the operand.",
+      "line_number": 40,
+      "parameter_name": "ZABHA_RS1_ALIGNMENT",
+      "existing_udb_name": "ZABHA_RS1_ALIGNMENT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The requirement for natural alignment of the address in `rs1` is a design choice that can vary based on implementation, thus qualifying as a parameter."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "Zabha omits _byte_ and _halfword_ support for `LR` and `SC` due to low utility.",
+      "line_number": 66,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a design decision rather than an architectural parameter."
+    },
+    {
+      "excerpt": "Emulation of narrower AMOs through wider AMO* instructions on non-idempotent IO memory regions may result in unintended side effects.",
+      "line_number": 10,
+      "reason": "This describes potential issues with emulation strategies rather than an implementation choice, thus not qualifying as a parameter."
+    },
+    {
+      "excerpt": "In systems with large-scale or Non-Uniform Memory Access (NUMA) configurations, emulation based on `LR`/`SC` introduces issues related to scalability and fairness.",
+      "line_number": 8,
+      "reason": "This is a behavioral description of the effects of using certain instructions in specific configurations, not an architectural parameter."
+    },
+    {
+      "excerpt": "Utilizing wider AMO* instructions for emulating narrower AMOs risks activating extraneous breakpoints or watchpoints.",
+      "line_number": 12,
+      "reason": "This describes a potential consequence of implementation choices rather than a parameter that can be defined by the implementer."
+    },
+    {
+      "excerpt": "This practice contributes to an increase in code size, with consequent impacts on system performance and memory utilization.",
+      "line_number": 14,
+      "reason": "This is a consequence of a design choice rather than a parameter that specifies an implementation option."
+    }
+  ]
+}
+```

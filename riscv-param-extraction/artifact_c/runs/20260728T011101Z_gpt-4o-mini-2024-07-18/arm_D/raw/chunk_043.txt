@@ -1,0 +1,32 @@
+```json
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE]\n====\n[#norm:rvwmo_only_mainmem]#This chapter defines the memory model for regular main memory operations. The interaction of the memory model with I/O memory, instruction fetches, FENCE.I, page-table walks, and SFENCE.VMA is not (yet) formalized.# Some or all of the above may be formalized in a future revision of this specification. Future ISA extensions such as the V vector and J JIT extensions will need to be incorporated into a future revision as well.",
+      "line_number": 1,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It discusses potential future revisions, not current architectural parameters."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nThe decomposition of misaligned memory operations down to byte granularity facilitates emulation on implementations that do not natively support misaligned accesses. Such implementations might, for example, simply iterate over the bytes of a misaligned access one by one.\n====",
+      "line_number": 1,
+      "reason": "This text is also inside a [NOTE] block and provides implementation suggestions rather than defining architectural parameters."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nIn the memory model literature, the term \"RCpc\" stands for release consistency with processor-consistent synchronization operations, and the term \"RCsc\" stands for release consistency with sequentially consistent synchronization operations.\n====",
+      "line_number": 1,
+      "reason": "This is a non-normative note explaining terminology in the literature, not an architectural parameter."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nThe <<ax-atom, Atomicity Axiom>> theoretically supports LR/SC pairs of different widths and to mismatched addresses, since implementations are permitted to allow SC operations to succeed in such cases. However, in practice, we expect such patterns to be rare, and their use is discouraged.\n====",
+      "line_number": 1,
+      "reason": "This note discusses theoretical support and practical expectations, not a specific implementation choice or parameter."
+    },
+    {
+      "excerpt": "[NOTE]\n====\nGenerally speaking, non-AMO load instructions do not have data source registers, and unconditional non-AMO store instructions do not have destination registers. However, a successful SC instruction is considered to have the register specified in _rd_ as a destination register, and hence it is possible for an instruction to have a syntactic dependency on a successful SC instruction that precedes it in program order.\n====",
+      "line_number": 1,
+      "reason": "This note provides general information about instruction behavior, not an architectural parameter."
+    }
+  ]
+}
+```

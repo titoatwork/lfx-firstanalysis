@@ -1,0 +1,27 @@
+{
+  "chunk_id": "chunk_040",
+  "arm": "A",
+  "model": "gemini-3.6-flash",
+  "parameters": [
+    {
+      "excerpt": "The EEI will define whether the memory system is little-endian or big-endian.",
+      "line_number": 392,
+      "parameter_name": "U_MODE_ENDIANNESS",
+      "existing_udb_name": "U_MODE_ENDIANNESS",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The execution environment / implementation defines whether the memory system operates in little-endian or big-endian mode."
+    },
+    {
+      "excerpt": "loads and stores that are not naturally aligned may either complete execution successfully or raise an exception.",
+      "line_number": 415,
+      "parameter_name": "MISALIGNED_LDST",
+      "existing_udb_name": "MISALIGNED_LDST",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The specification explicitly leaves support for misaligned loads and stores implementation-defined; an implementation may support them directly/successfully or raise an exception."
+    }
+  ]
+}

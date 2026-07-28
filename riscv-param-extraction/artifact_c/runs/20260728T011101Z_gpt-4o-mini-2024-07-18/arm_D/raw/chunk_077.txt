@@ -1,0 +1,53 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The Zimop extension defines 32 MOP instructions named MOP.R.__n__, where __n__ is an integer between 0 and 31, inclusive.",
+      "line_number": 9,
+      "parameter_name": "NUM_ZIMOP_MOP_R_INSTRUCTIONS",
+      "existing_udb_name": "NUM_ZIMOP_MOP_R_INSTRUCTIONS",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of MOP.R instructions is a direct implementation choice (32 instructions). It is not controlled by any CSR field."
+    },
+    {
+      "excerpt": "The Zimop extension additionally defines 8 MOP instructions named MOP.RR.__n__, where __n__ is an integer between 0 and 7, inclusive.",
+      "line_number": 15,
+      "parameter_name": "NUM_ZIMOP_MOP_RR_INSTRUCTIONS",
+      "existing_udb_name": "NUM_ZIMOP_MOP_RR_INSTRUCTIONS",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of MOP.RR instructions is a direct implementation choice (8 instructions). It is not controlled by any CSR field."
+    },
+    {
+      "excerpt": "This section defines the 'Zcmop' extension, which defines eight 16-bit MOP instructions named C.MOP.__n__, where __n__ is an odd integer between 1 and 15, inclusive.",
+      "line_number": 43,
+      "parameter_name": "NUM_ZCMOP_INSTRUCTIONS",
+      "existing_udb_name": "NUM_ZCMOP_INSTRUCTIONS",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of C.MOP instructions is a direct implementation choice (8 instructions). It is not controlled by any CSR field."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "For example, programs with control-flow integrity checks can execute correctly on implementations without the corresponding extension, provided the checks are simply ignored.",
+      "line_number": 5,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "The MOPs defined in the Zimop extension do not carry a syntactic dependency from `x[rs1]` or `x[rs2]` to `x[rd]`, though an extension that redefines the MOP may impose such a requirement.",
+      "line_number": 29,
+      "reason": "This describes a behavior of the MOPs and potential future requirements, not an implementation choice."
+    },
+    {
+      "excerpt": "The expectation is that each Zcmop instruction is equivalent to some Zimop instruction, but the choice of expansion (if any) is left to the extension that redefines the MOP.",
+      "line_number": 109,
+      "reason": "This describes expected behavior and implementation choices for future extensions, not a current architectural parameter."
+    }
+  ]
+}
+```

@@ -1,0 +1,33 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "if the Ztso extension is implemented, then vector memory instructions in the V extension and Zve family of extensions follow RVTSO at the instruction level.",
+      "line_number": 29,
+      "parameter_name": "ZTSO_VECTOR_MEMORY_INSTRUCTIONS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation choice of whether to support the Ztso extension for vector memory instructions is a direct decision made by the hardware implementer."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE]\n====\n_The Ztso extension is meant to facilitate the porting of code originally written for the x86 or SPARC architectures, both of which use TSO by default. It also supports implementations which inherently provide RVTSO behavior and want to expose that fact to software._\n====",
+      "line_number": 5,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes the purpose of the Ztso extension, not an architectural requirement."
+    },
+    {
+      "excerpt": "In spite of the fact that Ztso adds no new instructions to the ISA, code written assuming RVTSO will not run correctly on implementations not supporting Ztso.",
+      "line_number": 45,
+      "reason": "This describes the behavior of code under certain conditions rather than an implementation choice. It does not define a parameter."
+    },
+    {
+      "excerpt": "Binaries compiled to run only under Ztso should indicate as such via a flag in the binary, so that platforms which do not implement Ztso can simply refuse to run them.",
+      "line_number": 47,
+      "reason": "This describes a recommendation for binary behavior rather than an architectural parameter. It does not indicate an implementation choice."
+    }
+  ]
+}
+```

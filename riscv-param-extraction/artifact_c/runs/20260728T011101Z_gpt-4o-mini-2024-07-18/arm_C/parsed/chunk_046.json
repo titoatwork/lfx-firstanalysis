@@ -1,0 +1,57 @@
+{
+  "chunk_id": "chunk_046",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "When the Smcdeleg/Ssccfg extensions are enabled (`menvcfg`.CDE=1), it further allows M-mode to delegate select counters to S-mode.",
+      "line_number": 12,
+      "parameter_name": "HW_MCOUNTER_DELEGATION",
+      "existing_udb_name": "HW_MCOUNTER_DELEGATION",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to enable counter delegation from M-mode to S-mode based on the `menvcfg`.CDE bit."
+    },
+    {
+      "excerpt": "The `siselect` (and `vsiselect`) index range 0x40-0x5F is reserved for delegated counter access.",
+      "line_number": 20,
+      "parameter_name": "SSELECT_INDEX_RANGE",
+      "existing_udb_name": "SSELECT_INDEX_RANGE",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The range of indices for `siselect` and `vsiselect` is an implementation choice, specifically the range 0x40-0x5F for delegated counters."
+    },
+    {
+      "excerpt": "For counters delegated to S-mode, the associated `mcountinhibit` bits can be accessed via `scountinhibit`.",
+      "line_number": 83,
+      "parameter_name": "HW_SCOUNTINHIBIT_ACCESS",
+      "existing_udb_name": "HW_SCOUNTINHIBIT_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether the `scountinhibit` register provides read/write access to the `mcountinhibit` bits for delegated counters."
+    },
+    {
+      "excerpt": "For implementations that support Smcdeleg/Ssccfg, Sscofpmf, and the H extension, when `menvcfg`.CDE=1, attempts to read `scountovf` from VS-mode or VU-mode raise a virtual-instruction exception.",
+      "line_number": 109,
+      "parameter_name": "HW_SCOUNTOVF_VIRTUAL_ACCESS",
+      "existing_udb_name": "HW_SCOUNTOVF_VIRTUAL_ACCESS",
+      "class": "SW_RULE",
+      "value_type": "binary",
+      "confidence": "medium",
+      "reasoning": "The behavior of accessing `scountovf` from VS-mode or VU-mode is implementation-defined based on the support of certain extensions, but the outcome is deterministic if software follows the rules."
+    },
+    {
+      "excerpt": "For implementations that support Smcdeleg, Sscofpmf, and Smaia, the local-counter-overflow interrupt (LCOFI) bit (bit 13) in each of CSRs `mvip` and `mvien` is implemented and writable.",
+      "line_number": 115,
+      "parameter_name": "HW_LCOFI_IMPLEMENTATION",
+      "existing_udb_name": "HW_LCOFI_IMPLEMENTATION",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to implement and allow writing of the LCOFI bit in the `mvip` and `mvien` CSRs based on the support of specific extensions."
+    }
+  ]
+}

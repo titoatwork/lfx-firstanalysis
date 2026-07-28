@@ -1,0 +1,27 @@
+{
+  "chunk_id": "chunk_018",
+  "arm": "A",
+  "model": "gemini-3.6-flash",
+  "parameters": [
+    {
+      "excerpt": "We use the term XLEN to refer to the width of an integer register in bits (either 32 or 64).",
+      "line_number": 214,
+      "parameter_name": "MXLEN",
+      "existing_udb_name": "MXLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "XLEN specifies the integer register width for the base architecture, which the implementer chooses as 32 or 64 bits."
+    },
+    {
+      "excerpt": "RISC-V base ISAs have either little-endian or big-endian memory systems, with the privileged architecture further defining bi-endian operation.",
+      "line_number": 522,
+      "parameter_name": "U_MODE_ENDIANNESS",
+      "existing_udb_name": "U_MODE_ENDIANNESS",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "medium",
+      "reasoning": "The base ISA memory endianness is an explicit design choice left to the hardware implementation (little-endian, big-endian, or bi-endian)."
+    }
+  ]
+}

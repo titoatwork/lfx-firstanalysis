@@ -1,0 +1,27 @@
+{
+  "chunk_id": "chunk_072",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The `fcsr` is a 32-bit read/write register that selects the dynamic rounding mode for floating-point arithmetic operations and holds the accrued exception flags.",
+      "line_number": 254,
+      "parameter_name": "FCSR_ACCESS",
+      "existing_udb_name": "FCSR_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation chooses whether the fcsr is read-only or read-write. This is a binary choice about the mutability of the register."
+    },
+    {
+      "excerpt": "Rounding modes are encoded as follows: 000 RNE, 001 RTZ, 010 RDN, 011 RUP, 100 RMM, 101 Reserved, 110 Reserved, 111 DYN.",
+      "line_number": 254,
+      "parameter_name": "FCSR_ROUNDING_MODES",
+      "existing_udb_name": "FCSR_ROUNDING_MODES",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The rounding modes in the fcsr are WARL, and the set of supported values can vary by implementation. The parameter is the set of legal rounding mode values."
+    }
+  ]
+}

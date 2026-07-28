@@ -1,0 +1,43 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The capacity and organization of a cache and the size of a cache block are both _implementation-specific_, and the execution environment provides software a means to discover information about the caches and cache blocks in a system.",
+      "line_number": 101,
+      "parameter_name": "CACHE_BLOCK_SIZE",
+      "existing_udb_name": "CACHE_BLOCK_SIZE",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The size of a cache block is explicitly stated to be implementation-specific, representing a direct architectural choice fixed at design time."
+    },
+    {
+      "excerpt": "Each `x{csrname}` register is WARL; however, software should determine the legal values from the execution environment discovery mechanism.",
+      "line_number": 406,
+      "parameter_name": "XENVCFG_CBO_WARL",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The CBO enable fields (CBIE, CBCFE, CBZE) in the xenvcfg registers are WARL, meaning the set of legal/writable field values is implementation-defined."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "Memory accesses may be considered to be loads or stores depending on the implementation, i.e. whether an address trigger matches on these instructions when `mcontrol6.load=1` or `mcontrol6.store=1` is _implementation-specific_",
+      "line_number": 350,
+      "reason": "Text appears inside a non-normative [NOTE] block providing recommendations for debug trigger modules."
+    },
+    {
+      "excerpt": "When executing a *cbo.clean* instruction, an implementation may instead perform a flush operation, since the result of that operation is indistinguishable from the sequence of performing a clean operation just before deallocating all cached copies in the set of coherent caches.",
+      "line_number": 938,
+      "reason": "This statement is inside an informative [NOTE] block explaining microarchitectural behavior equivalence."
+    },
+    {
+      "excerpt": "If neither a load instruction nor store instruction is permitted to access the physical addresses, but an instruction fetch is permitted to access the physical addresses, whether a cache-block management instruction is permitted to access the cache block is UNSPECIFIED.",
+      "line_number": 284,
+      "reason": "Defines UNSPECIFIED architectural behavior when attempting CBOs on execution-only memory, rather than a design parameter."
+    }
+  ]
+}
+```

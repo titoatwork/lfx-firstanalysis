@@ -1,0 +1,27 @@
+```json
+{
+  "parameters": [],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "All _cryptography-specific_ instructions defined in this Vector Crypto specification ... shall be executed with data-independent execution latency as defined in the RISC-V Scalar Cryptography Extensions specification.",
+      "line_number": 418,
+      "reason": "This is a fixed, normative requirement ('shall') that applies to all conforming implementations, not an implementation choice or parameter."
+    },
+    {
+      "excerpt": "Element groups can be formed across registers in implementations where `VLEN`< `EGW` by using an `LMUL`>1.",
+      "line_number": 213,
+      "reason": "While VLEN is an architectural parameter, it is defined in the RISC-V Vector extension specification, not in this document. This text merely describes standard execution behavior based on VLEN."
+    },
+    {
+      "excerpt": "It is important to note that the Vector Crypto instructions are independent of the implementation of the `Zkt` extension and do not require that `Zkt` is implemented.",
+      "line_number": 427,
+      "reason": "This clarifies architectural independence between extensions rather than defining an implementation-defined parameter."
+    },
+    {
+      "excerpt": "Implementations may choose to fuse these two instructions to improve performance on GHASH code that doesn't use the add-multiply form of the `vghsh.vv` instruction.",
+      "line_number": 2145,
+      "reason": "This text is inside a non-normative [NOTE] block (Rule 1: NON_NORM) and refers to a microarchitectural optimization (instruction fusion), not an architectural ISA parameter."
+    }
+  ]
+}
+```

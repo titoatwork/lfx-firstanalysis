@@ -1,0 +1,83 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The bits order accesses to one of the two address domains, memory or I/O, depending on which address domain the atomic instruction is accessing.",
+      "line_number": 12,
+      "parameter_name": "AQ_RL_BITS_DOMAIN",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The implementation chooses how to use the _aq_ and _rl_ bits to specify ordering constraints for memory or I/O domains, which is a direct design choice."
+    },
+    {
+      "excerpt": "If only the _aq_ bit is set, the atomic memory operation is treated as an _acquire_ access.",
+      "line_number": 20,
+      "parameter_name": "AQ_SEMANTICS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to treat the atomic operation as an acquire access based on the _aq_ bit, which is a design decision."
+    },
+    {
+      "excerpt": "If only the _rl_ bit is set, the atomic memory operation is treated as a _release_ access.",
+      "line_number": 24,
+      "parameter_name": "RL_SEMANTICS",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to treat the atomic operation as a release access based on the _rl_ bit, which is a design decision."
+    },
+    {
+      "excerpt": "The operations supported are swap, integer add, bitwise AND, bitwise OR, bitwise XOR, and signed and unsigned integer maximum and minimum.",
+      "line_number": 56,
+      "parameter_name": "AMO_OPERATIONS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The set of operations that AMOs can perform is implementation-defined, allowing for a variety of atomic operations based on the implementer's choice."
+    },
+    {
+      "excerpt": "The misaligned atomicity granule PMA specifies the size of a misaligned atomicity granule, a power-of-two number of bytes.",
+      "line_number": 78,
+      "parameter_name": "MISALIGNED_ATOMICITY_GRANULE",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The size of the misaligned atomicity granule is a design choice that can vary by implementation, allowing flexibility in how misaligned accesses are handled."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] After much debate, the language community and architecture community appear to have finally settled on release consistency as the standard memory consistency model and so the RISC-V atomic support is built around this model.",
+      "line_number": 6,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a consensus rather than an architectural requirement."
+    },
+    {
+      "excerpt": "The SC must fail if the address is not within the reservation set of the most recent LR in program order.",
+      "line_number": 118,
+      "reason": "This describes a requirement for SC behavior based on LR state, not an implementation choice. It is a fixed requirement."
+    },
+    {
+      "excerpt": "The platform should provide a means to determine the size and shape of the reservation set.",
+      "line_number": 164,
+      "reason": "This is a suggestion for platform behavior, not a parameter that defines implementation choices."
+    },
+    {
+      "excerpt": "Software should not set the _rl_ bit on an LR instruction unless the _aq_ bit is also set.",
+      "line_number": 232,
+      "reason": "This is a recommendation for software behavior, not an architectural parameter that defines implementation choices."
+    },
+    {
+      "excerpt": "The main disadvantage of LR/SC over CAS is livelock, which we avoid, under certain circumstances, with an architected guarantee of eventual forward progress as described below.",
+      "line_number": 118,
+      "reason": "This describes a behavioral aspect of LR/SC compared to CAS, not an implementation choice or parameter."
+    }
+  ]
+}
+```

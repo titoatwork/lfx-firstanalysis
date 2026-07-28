@@ -1,0 +1,27 @@
+{
+  "chunk_id": "chunk_054",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "This extension adds the `STCE` bit to the `menvcfg` CSR.",
+      "line_number": 20,
+      "parameter_name": "MENVCFG_STCE",
+      "existing_udb_name": "MENVCFG_STCE",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The STCE bit in the menvcfg CSR is a read/write field that enables or disables the operational status of the stimecmp register. This is a binary choice about the mutability of the field."
+    },
+    {
+      "excerpt": "This extension adds the `STCE` bit to the `henvcfg` CSR.",
+      "line_number": 20,
+      "parameter_name": "HENVCFG_STCE",
+      "existing_udb_name": "HENVCFG_STCE",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The STCE bit in the henvcfg CSR is a read/write field that controls the operational status of the stimecmp register in VS-mode. This is a binary choice about the mutability of the field."
+    }
+  ]
+}

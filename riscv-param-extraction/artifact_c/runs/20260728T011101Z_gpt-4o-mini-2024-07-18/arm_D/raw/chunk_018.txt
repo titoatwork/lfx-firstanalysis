@@ -1,0 +1,73 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "Each base integer instruction set is characterized by the width of the integer registers and the corresponding size of the address space and by the number of integer registers.",
+      "line_number": 66,
+      "parameter_name": "XLEN",
+      "existing_udb_name": "XLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "XLEN represents the width of the integer registers, which can be either 32 or 64 bits, and is a direct implementation choice."
+    },
+    {
+      "excerpt": "RISC-V base ISAs have either little-endian or big-endian memory systems, with the privileged architecture further defining bi-endian operation.",
+      "line_number": 646,
+      "parameter_name": "ENDIANNESS",
+      "existing_udb_name": "ENDIANNESS",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The choice of endianness (little-endian, big-endian, or bi-endian) is left to the implementer, making it an architectural parameter."
+    },
+    {
+      "excerpt": "The execution environment determines the mapping of hardware resources into a hart's address space.",
+      "line_number": 370,
+      "parameter_name": "HW_RESOURCE_MAPPING",
+      "existing_udb_name": "HW_RESOURCE_MAPPING",
+      "class": "NORM_DIRECT",
+      "value_type": "UNKNOWN",
+      "confidence": "medium",
+      "reasoning": "The mapping of hardware resources into a hart's address space is implementation-defined, but the specific details of this mapping are not specified in the text."
+    },
+    {
+      "excerpt": "The execution environment may also add constraints that further limit the perceived reordering of memory accesses.",
+      "line_number": 646,
+      "parameter_name": "MEMORY_ORDERING_CONSTRAINTS",
+      "existing_udb_name": "MEMORY_ORDERING_CONSTRAINTS",
+      "class": "NORM_DIRECT",
+      "value_type": "UNKNOWN",
+      "confidence": "medium",
+      "reasoning": "The execution environment can impose additional constraints on memory ordering, which is an implementation choice but lacks specific details in the text."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The RISC-V ISA is defined avoiding implementation details as much as possible.",
+      "line_number": 12,
+      "reason": "This is a general statement about the ISA design philosophy and does not define a specific architectural parameter."
+    },
+    {
+      "excerpt": "The behavior of a RISC-V program depends on the execution environment in which it runs.",
+      "line_number": 150,
+      "reason": "This describes a general characteristic of RISC-V programs rather than a specific implementation choice."
+    },
+    {
+      "excerpt": "The manner in which interrupts are generated, routed to, and enabled by a hart depends on the EEI.",
+      "line_number": 610,
+      "reason": "This describes behavior dependent on the execution environment rather than a parameter that can be defined by the implementer."
+    },
+    {
+      "excerpt": "The base integer ISAs will continue as fully supported standalone ISAs, regardless of any subsequent extensions.",
+      "line_number": 580,
+      "reason": "This is a fixed requirement about the support of base ISAs and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "The execution environment is responsible for ensuring the eventual forward progress of each of its harts.",
+      "line_number": 220,
+      "reason": "This describes a responsibility of the execution environment rather than a parameter that can be defined by the implementer."
+    }
+  ]
+}
+```

@@ -1,0 +1,73 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The OF bit is set when the corresponding hpmcounter overflows, and remains set until written by software.",
+      "line_number": 40,
+      "parameter_name": "HW_MHPMEVENT_OF_BIT",
+      "existing_udb_name": null,
+      "class": "SW_RULE",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The behavior of the OF bit being set upon overflow is implementation-defined, but the outcome is deterministic if software manages the overflow state correctly."
+    },
+    {
+      "excerpt": "If supervisor mode is implemented, the 32-bit scountovf register contains read-only shadow copies of the OF bits in all 29 mhpmevent registers.",
+      "line_number": 78,
+      "parameter_name": "HW_SCOUNTOVF_SHADOW_COPIES",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether the scountovf register contains shadow copies of the OF bits, making it a read-only or writable register based on the implementation."
+    },
+    {
+      "excerpt": "For each ``x``INH bit, if the associated privilege mode is not implemented, the bit is read-only zero.",
+      "line_number": 34,
+      "parameter_name": "HW_MHPMEVENT_INH_BITS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The xINH bits are WARL fields, and their availability depends on whether the associated privilege mode is implemented, thus defining a set of legal values."
+    },
+    {
+      "excerpt": "When Local Counter Overflow interrupts are not delegated to (H)S-mode (_i.e._, `mideleg.LCOFI` is clear), `sip.LCOFIP` is read-only 0.",
+      "line_number": 118,
+      "parameter_name": "HW_LCOFI_DELEGATION",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The delegation of Local Counter Overflow interrupts is a choice made by the implementation, determining whether the LCOFIP bit is writable or read-only."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "Note that the new count overflow interrupt will be treated as a standard local interrupt that is assigned to bit 13 in the mip/mie/sip/sie registers.",
+      "line_number": 15,
+      "reason": "This is a fixed requirement about how the count overflow interrupt is treated, not an implementation choice."
+    },
+    {
+      "excerpt": "Count overflow never results from writes to the mhpmcounter__n__ or mhpmevent__n__ registers, only from hardware increments of counter registers.",
+      "line_number": 66,
+      "reason": "This describes behavior regarding how count overflow occurs, not an architectural parameter."
+    },
+    {
+      "excerpt": "This extension serves to accomplish exactly this within the existing mhpmevent CSRs (and correspondingly avoids the unnecessary creation of whole new sets of CSRs - past just one new CSR).",
+      "line_number": 8,
+      "reason": "This is a statement of purpose and does not define an architectural parameter."
+    },
+    {
+      "excerpt": "The LCOFIP bit is cleared by software before servicing the count overflow interrupt resulting from one or more count overflows.",
+      "line_number": 90,
+      "reason": "This describes a software behavior requirement, not an implementation choice."
+    },
+    {
+      "excerpt": "This register enables supervisor-level overflow interrupt handler software to quickly and easily determine which counter(s) have overflowed.",
+      "line_number": 80,
+      "reason": "This describes the functionality of the scountovf register rather than an implementation choice."
+    }
+  ]
+}
+```

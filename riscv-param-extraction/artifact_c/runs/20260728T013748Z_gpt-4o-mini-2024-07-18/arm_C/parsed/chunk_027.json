@@ -1,0 +1,67 @@
+{
+  "chunk_id": "chunk_027",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "When S-mode is implemented, it is determined as follows: ... |  S or HS     | `menvcfg.LPE`",
+      "line_number": 12,
+      "parameter_name": "LPE_STATE_S_MODE",
+      "existing_udb_name": "LPE_STATE_S_MODE",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The LPE state in S-mode is determined by the `menvcfg.LPE` field, which can be either enabled or disabled, making it a read-write choice."
+    },
+    {
+      "excerpt": "When S-mode is not implemented, it is determined as follows: ... |  U           | `menvcfg.LPE`",
+      "line_number": 18,
+      "parameter_name": "LPE_STATE_U_MODE",
+      "existing_udb_name": "LPE_STATE_U_MODE",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The LPE state in U-mode is determined by the `menvcfg.LPE` field, which can be either enabled or disabled, making it a read-write choice."
+    },
+    {
+      "excerpt": "Attempts to access the `ssp` CSR may result in either an illegal-instruction exception or a virtual-instruction exception, contingent upon the state of the *__x__*`envcfg.SSE` fields.",
+      "line_number": 134,
+      "parameter_name": "SSE_STATE_ACCESS_CONTROL",
+      "existing_udb_name": "SSE_STATE_ACCESS_CONTROL",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The access control for the `ssp` CSR is determined by the `envcfg.SSE` field, which can either allow or disallow access, making it a read-write choice."
+    },
+    {
+      "excerpt": "When S-mode is implemented, it is determined as follows: ... |  S or HS     | `menvcfg.SSE`",
+      "line_number": 145,
+      "parameter_name": "SSE_STATE_S_MODE",
+      "existing_udb_name": "SSE_STATE_S_MODE",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The SSE state in S-mode is determined by the `menvcfg.SSE` field, which can be either enabled or disabled, making it a read-write choice."
+    },
+    {
+      "excerpt": "When S-mode is not implemented, then `xSSE` is 0 at both M and U privilege modes.",
+      "line_number": 152,
+      "parameter_name": "SSE_STATE_U_MODE",
+      "existing_udb_name": "SSE_STATE_U_MODE",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The SSE state in U-mode is determined by the `senvcfg.SSE` field, which can be either enabled or disabled, making it a read-write choice."
+    },
+    {
+      "excerpt": "The `SSPUSH`/`C.SSPUSH`/`SSPOPCHK`/`C.SSPOPCHK` instructions cause a store/AMO access-fault exception.",
+      "line_number": 220,
+      "parameter_name": "SSPUSH_ACCESS_FAULT",
+      "existing_udb_name": "SSPUSH_ACCESS_FAULT",
+      "class": "SW_RULE",
+      "value_type": "enum",
+      "confidence": "medium",
+      "reasoning": "The behavior of the `SSPUSH` instruction causing an access-fault is contingent on the state of the memory and the `ssp` CSR, making it implementation-defined but deterministic based on software behavior."
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "chunk_id": "chunk_069",
+  "arm": "D",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "New 16-bit variants of LOAD-FP and STORE-FP instructions are added, encoded with a new value for the funct3 width field.",
+      "line_number": 10,
+      "parameter_name": "LOAD_STORE_FUNCT3_WIDTH",
+      "existing_udb_name": "LOAD_STORE_FUNCT3_WIDTH",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The encoding of the funct3 width field for LOAD-FP and STORE-FP instructions is a direct implementation choice, allowing for the addition of new 16-bit variants."
+    },
+    {
+      "excerpt": "If the D extension is present, FCVT.D.H or FCVT.H.D converts a half-precision floating-point number to a double-precision floating-point number, or vice-versa, respectively.",
+      "line_number": 92,
+      "parameter_name": "D_EXTENSION_SUPPORT",
+      "existing_udb_name": "D_EXTENSION_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The presence of the D extension is an implementation choice that affects the availability of certain conversion instructions. This is a binary choice regarding whether the D extension is supported."
+    },
+    {
+      "excerpt": "If the Q extension is present, FCVT.Q.H or FCVT.H.Q converts a half-precision floating-point number to a quad-precision floating-point number, or vice-versa, respectively.",
+      "line_number": 96,
+      "parameter_name": "Q_EXTENSION_SUPPORT",
+      "existing_udb_name": "Q_EXTENSION_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The presence of the Q extension is an implementation choice that affects the availability of certain conversion instructions. This is a binary choice regarding whether the Q extension is supported."
+    }
+  ]
+}

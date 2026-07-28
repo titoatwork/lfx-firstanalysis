@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_040",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "For these reasons, we chose a conventional size of 32 integer registers for RV32I.",
+      "line_number": 99,
+      "parameter_name": "NUM_INTEGER_REGISTERS",
+      "existing_udb_name": "NUM_INTEGER_REGISTERS",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The number of integer registers (32) is a direct implementation choice for RV32I, not controlled by any CSR field."
+    },
+    {
+      "excerpt": "The EEI will define whether the memory system is little-endian or big-endian.",
+      "line_number": 103,
+      "parameter_name": "ENDIANNESS",
+      "existing_udb_name": "ENDIANNESS_LITTLE_OR_BIG",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The endianness of the memory system is an implementation-defined choice left to the EEI, allowing for either little-endian or big-endian configurations."
+    },
+    {
+      "excerpt": "An EEI may guarantee that misaligned loads and stores are fully supported, and so the software running inside the execution environment will never experience a contained or fatal address-misaligned trap.",
+      "line_number": 103,
+      "parameter_name": "MISALIGNED_LOAD_STORE_SUPPORT",
+      "existing_udb_name": "MISALIGNED_LDST_EEI_DEPENDENT_BEHAVIOR",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to support misaligned loads and stores, which is a binary decision affecting how these operations are handled."
+    },
+    {
+      "excerpt": "The FENCE mode field _fm_ defines the semantics of the FENCE instruction.",
+      "line_number": 103,
+      "parameter_name": "FENCE_MODE",
+      "existing_udb_name": "FENCE_UNUSED_FLDS_RSV",
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The _fm_ field in the FENCE instruction allows for different semantics, indicating an implementation choice regarding memory operation ordering."
+    }
+  ]
+}

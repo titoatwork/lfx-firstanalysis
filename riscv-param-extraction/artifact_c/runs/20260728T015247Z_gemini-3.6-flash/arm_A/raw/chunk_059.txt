@@ -1,0 +1,38 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "EGSMAX is the largest EGS supported by the implementation.",
+      "line_number": 5139,
+      "parameter_name": "EGSMAX",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "EGSMAX represents the maximum element group size supported by a hardware implementation, which is an implementation-defined parameter for vector element group extensions."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "While we considered using the two unused rounding modes in the scalar FP FMA encoding to provide a few non-destructive FMAs, these would complicate microarchitectures by being the only maskable operation with three inputs and separate output.",
+      "line_number": 3418,
+      "reason": "Text is inside a NOTE block and is non-normative rationale."
+    },
+    {
+      "excerpt": "A node where one input is derived only from elements masked-off or beyond the active vector length may either treat that input as the additive identity of the appropriate EEW or simply copy the other input to its output.",
+      "line_number": 3986,
+      "reason": "This describes implementation flexibility during unordered floating-point reduction tree evaluation, not a static architectural hardware parameter."
+    },
+    {
+      "excerpt": "There is no support for imprecise traps in the current standard extensions.",
+      "line_number": 4847,
+      "reason": "This is a statement defining standard extension specification policy rather than an implementation parameter."
+    },
+    {
+      "excerpt": "Some profiles may choose to provide a privileged mode bit to select between precise and imprecise vector traps.",
+      "line_number": 4851,
+      "reason": "This describes potential future profile design choices rather than a parameter defined in the current specification."
+    }
+  ]
+}
+```

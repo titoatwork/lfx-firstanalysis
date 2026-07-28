@@ -1,0 +1,53 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The Zabha extension mandates that the address contained in the `rs1` register must be naturally aligned to the size of the operand.",
+      "line_number": 54,
+      "parameter_name": "ZABHA_RS1_ADDRESS_ALIGNMENT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The alignment requirement for the address in `rs1` is a direct implementation choice that must be adhered to, specifying that it must match the operand size."
+    },
+    {
+      "excerpt": "Zabha extension provides the `AMO[ADD|AND|OR|XOR|SWAP|MIN[U]|MAX[U]].[B|H]` instructions.",
+      "line_number": 34,
+      "parameter_name": "ZABHA_AMO_INSTRUCTIONS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The set of AMO instructions provided by the Zabha extension is implementation-defined, allowing for variations in the specific instructions supported."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "In the absence of native support for subword atomics, compilers often resort to inlining code sequences to provide the required emulation.",
+      "line_number": 20,
+      "reason": "This describes a software technique rather than an implementation choice, and does not define an architectural parameter."
+    },
+    {
+      "excerpt": "Emulation of narrower AMOs through wider AMO* instructions on non-idempotent IO memory regions may result in unintended side effects.",
+      "line_number": 16,
+      "reason": "This is a behavioral description of potential issues with emulation, not a parameter that defines implementation choices."
+    },
+    {
+      "excerpt": "The absence of atomic operations for subword data types necessitates emulation strategies.",
+      "line_number": 8,
+      "reason": "This is a statement about the need for emulation rather than a parameter that specifies an implementation choice."
+    },
+    {
+      "excerpt": "Utilizing wider AMO* instructions for emulating narrower AMOs risks activating extraneous breakpoints or watchpoints.",
+      "line_number": 18,
+      "reason": "This describes a potential consequence of a design choice rather than defining an architectural parameter."
+    },
+    {
+      "excerpt": "Several limitations arise from this emulation approach:",
+      "line_number": 10,
+      "reason": "This introduces a list of limitations but does not specify any architectural parameters."
+    }
+  ]
+}
+```

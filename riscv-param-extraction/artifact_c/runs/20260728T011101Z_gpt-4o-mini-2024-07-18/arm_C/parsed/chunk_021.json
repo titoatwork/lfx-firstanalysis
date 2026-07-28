@@ -1,0 +1,47 @@
+{
+  "chunk_id": "chunk_021",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "Implementations may implement zero, 16, or 64 PMP entries; the lowest-numbered PMP entries must be implemented first.",
+      "line_number": 3340,
+      "parameter_name": "NUM_PMP_ENTRIES",
+      "existing_udb_name": "NUM_PMP_ENTRIES",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of PMP entries is a direct implementation choice (0, 16, or 64). It is not controlled by any CSR field."
+    },
+    {
+      "excerpt": "All PMP CSR fields are WARL and may be read-only zero.",
+      "line_number": 3340,
+      "parameter_name": "PMP_CSR_ACCESS",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The access characteristics of the PMP CSR fields are WARL, indicating that the set of legal values can vary by implementation."
+    },
+    {
+      "excerpt": "The granularity of PMP access control settings are platform-specific, but the standard PMP encoding supports regions as small as four bytes.",
+      "line_number": 3330,
+      "parameter_name": "PMP_GRANULARITY",
+      "existing_udb_name": "PMA_GRANULARITY",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The granularity of PMP access control is a direct implementation choice, with a minimum size of four bytes."
+    },
+    {
+      "excerpt": "Although the PMP mechanism supports regions as small as four bytes, platforms may specify coarser PMP regions.",
+      "line_number": 3340,
+      "parameter_name": "PMP_REGION_GRANULARITY",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "medium",
+      "reasoning": "The granularity of PMP regions can be specified by the platform, indicating a design-time choice."
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "Double-precision operands in RV32Zdinx are held in aligned `x`-register pairs, i.e., register numbers must be even.",
+      "line_number": 83,
+      "parameter_name": "DOUBLE_PRECISION_REGISTER_ALIGNMENT",
+      "existing_udb_name": "DOUBLE_PRECISION_REGISTER_ALIGNMENT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The alignment of double-precision operands in RV32Zdinx is a direct implementation choice regarding register usage (even-numbered pairs)."
+    },
+    {
+      "excerpt": "Regardless of endianness, the lower-numbered register holds the low-order bits, and the higher-numbered register holds the high-order bits.",
+      "line_number": 89,
+      "parameter_name": "DOUBLE_PRECISION_REGISTER_ENDIANNESS",
+      "existing_udb_name": "DOUBLE_PRECISION_REGISTER_ENDIANNESS",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The specification allows for implementation-defined behavior regarding the endianness of double-precision operands, which is a design choice."
+    },
+    {
+      "excerpt": "The `misa` bits F, D, and Q are hardwired to 0 when the Zfinx extension is implemented.",
+      "line_number": 145,
+      "parameter_name": "MISA_FDQ_HARDWIRED",
+      "existing_udb_name": "MISA_FDQ_HARDWIRED",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The hardwiring of the `misa` bits F, D, and Q to 0 is an implementation-defined choice regarding the support of floating-point extensions."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The Zfinx extension depends on the Zicsr extension for control and status register access.",
+      "line_number": 15,
+      "reason": "This is a dependency statement and does not indicate an implementation choice."
+    },
+    {
+      "excerpt": "Floating-point operations on _w_-bit operands ignore operand bits XLEN-1: _w_.",
+      "line_number": 45,
+      "reason": "This describes behavior of floating-point operations rather than an implementation choice."
+    },
+    {
+      "excerpt": "When a double-width floating-point result is written to `x0`, the entire write takes no effect.",
+      "line_number": 101,
+      "reason": "This describes a specific behavior of the instruction rather than an architectural parameter."
+    },
+    {
+      "excerpt": "In case this is not available, transferring double-precision operands in RV32Zdinx from or to memory requires two loads or stores.",
+      "line_number": 113,
+      "reason": "This describes a fallback mechanism rather than an implementation choice."
+    },
+    {
+      "excerpt": "The Zhinx extension provides analogous half-precision floating-point instructions.",
+      "line_number": 129,
+      "reason": "This is a descriptive statement about the extension and does not indicate an implementation choice."
+    }
+  ]
+}
+```
