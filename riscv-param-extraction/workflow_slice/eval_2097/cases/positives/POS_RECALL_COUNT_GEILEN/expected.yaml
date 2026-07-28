@@ -5,7 +5,7 @@ expect_extract: true
 expect_status: existing
 expect_udb_file: spec/std/isa/param/NUM_EXTERNAL_GUEST_INTERRUPTS.yaml
 must_have_excerpt: true
-skill_signal: implementation-chosen count reached through conditional writability
+skill_signal: count parameter reached through conditional writability
 warl_true_parameter: false
 # Recall-direction positive, added 2026-07-29.
 # Contains no WARL or WLRL token anywhere, so a token-gated signal list misses
