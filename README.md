@@ -1,120 +1,141 @@
-# LFX Mentorship — lfx-firstanalysis
+# AI-assisted extraction of architectural parameters from RISC-V specifications
 
 [![ci](https://github.com/titoatwork/lfx-firstanalysis/actions/workflows/ci.yml/badge.svg)](https://github.com/titoatwork/lfx-firstanalysis/actions/workflows/ci.yml)
 
-**Owner:** Ibteshamul Haque · GitHub: [titoatwork](https://github.com/titoatwork)  
-**Project:** [AI-assisted architectural parameter extraction – Part II](https://mentorship.lfx.linuxfoundation.org/project/22296947-cecb-4a8f-8bcb-4f34710e9f66)  
-**Mentors:** Allen Baum, Ajit Dingankar · **Upstream:** [riscv/riscv-unified-db](https://github.com/riscv/riscv-unified-db)
+Prework for [LFX Fall 2026 Part II](https://mentorship.lfx.linuxfoundation.org/project/22296947-cecb-4a8f-8bcb-4f34710e9f66) · Parameter SIG / [riscv/riscv-unified-db](https://github.com/riscv/riscv-unified-db)
 
-Public prework for LFX Fall 2026 Part II: **coding-challenge pack**, **measured corpus science**, **schema-valid export drafts**, **live multi-model results**, and a **temporal holdout harness** (exploratory null, self-audited).
+Ibteshamul Haque, [@titoatwork](https://github.com/titoatwork)
 
-Spring Part I (extract → analyze → spreadsheet) was built on open UDB PR branches **#1765–#1832** by [@ishaan-arora-1](https://github.com/ishaan-arora-1). This repo **reproduces**, **remeasures**, and **extends**. It does **not** claim Part I authorship.
+**Corpus:** 60 param-bearing chunks of the ISA Manual, ~52,000 lines.
+**Gold:** 185-parameter pinned freeze and a 223-parameter live regeneration.
+**Runs:** 4 preregistered arms, every arm run twice, multiple models.
 
 ---
 
-## 5-minute mentor path
+## Check it without trusting me
 
-| # | Open | Proves |
-|---|------|--------|
-| 1 | **[Challenge pack](./riscv-param-extraction/challenge/)** | Same 2-snippet exam + **denser controls** (4 bad fixtures, 4 hard negatives, n=15, 10 live models) + green CI |
-| 2 | **[Measured tables](./riscv-param-extraction/docs/metrics.md)** | GT remeasure, Artifact A multi-model, B export, WARL prompt **null** |
-| 3 | **[Live multi-model matrix](./riscv-param-extraction/challenge/results/live/MANIFEST.md)** | Honest CMO/CSR per model (failures included) |
-| 4 | **[Temporal holdout](./riscv-param-extraction/challenge/temporal_holdout/)** · [PR #1](https://github.com/titoatwork/lfx-firstanalysis/pull/1) | Preregistered CSR-context pilot; locked **exploratory null** (v1.2 limitations documented) |
-| 5 | **[Export + drafts](./riscv-param-extraction/)** | `export/`, `drafts/param/`, `drafts/param-new/` |
-| 6 | **[Application packet](./application-packet/)** | Essay, 9-week plan, **claim ledger** |
-| 7 | **Upstream work** (below) | Issue-linked fix + adopted review + adversarial eval, not bulk PRs |
+```bash
+./verify.sh
+```
 
-### Upstream (riscv/riscv-unified-db)
+No credentials, no network, no model calls, seconds. It re-derives **every published number in this repository from committed artifacts** and exits non-zero if any figure disagrees with the file it came from. It also runs the fail-closed challenge gate and the evaluation fixtures.
+
+Four claims are reported as **not checkable** rather than passing quietly. `./verify.sh --list` shows the whole claim table and which artifact each number comes from.
+
+---
+
+## Two findings, both of which cost me something
+
+### 1. Recall is not stable across identical runs
+
+Same model, byte-identical prompt, `temperature=0`, run twice thirty minutes apart:
+
+| | run 1 | run 2 |
+|---|---:|---:|
+| adjusted recall | **33.9%** | **44.6%** |
+| `NORM_CSR_RW` | 6/51 | 21/51 |
+
+Prompts match by SHA-256, the scorer is deterministic, and the harness reproduces the published figures exactly, so the variation is in the model and the alignment step amplifies it: run 2 produced *fewer* raw parameters and matched *more* gold.
+
+**Consequence:** every single-run recall figure in this problem space is one sample from a distribution nobody has measured, including mine and including the Spring baseline this project cites. Reported upstream as [#2163](https://github.com/riscv/riscv-unified-db/issues/2163).
+
+**I nearly published the opposite.** After one run, WARL looked like it collapsed without the name catalogue, which is exactly the mechanism I had been arguing publicly. The second run reversed it. The finding was withdrawn, not shipped.
+
+→ [`artifact_c/results/PRIMARY_RESULTS.md`](./riscv-param-extraction/artifact_c/results/PRIMARY_RESULTS.md) · [preregistration](./riscv-param-extraction/artifact_c/PREREGISTRATION.md), committed before any model call
+
+### 2. Published recall measures grounding, not discovery
+
+The Part I prompts inject **all 185 gold parameter names**, a set identical to the ground truth, instructing the model to reuse them exactly:
+
+```
+injected list size : 185
+gold set size      : 185
+identical sets     : True
+```
+
+So `72.9%` means *given the catalogue, locate which entries apply and evidence them*. That is the correct design for producing a spreadsheet and tagging spec text. It is not what the number is usually read to mean, and I was citing it that way myself until I read the prompt assembly.
+
+Corrected here, in the claim ledger, and [publicly upstream](https://github.com/riscv/riscv-unified-db/issues/2053) where I had quoted it uncorrected.
+
+---
+
+## Five-minute path
+
+| # | Open | What it shows |
+|---|------|---------------|
+| 1 | [`verify.sh`](./verify.sh) | every published number re-derives from a committed artifact |
+| 2 | [Artifact C results](./riscv-param-extraction/artifact_c/results/PRIMARY_RESULTS.md) | the variance finding, and the withdrawn one |
+| 3 | [`docs/metrics.md`](./riscv-param-extraction/docs/metrics.md) | all measured tables, each with its condition stated |
+| 4 | [Upstream work](#upstream-riscvriscv-unified-db) | 3 PRs, 4 issues, one adopted review |
+| 5 | [Challenge pack](./riscv-param-extraction/challenge/) | 4 fail-closed fixtures, 4 hard negatives, 10-model live matrix with its failures reported |
+| 6 | [Claim ledger](./application-packet/MEASURED-CLAIM-LEDGER.md) | every claim mapped to a source, plus the claims that are forbidden and why |
+
+---
+
+## Upstream (riscv/riscv-unified-db)
 
 | Item | State |
 |------|-------|
-| [PR #2138](https://github.com/riscv/riscv-unified-db/pull/2138) + [issue #2137](https://github.com/riscv/riscv-unified-db/issues/2137) | **Open.** `4095` is not a power of two but appears in both `unsigned_pow2` schema enums; fixed with a regression test wired into the Ruby test runner |
-| [PR #2146](https://github.com/riscv/riscv-unified-db/pull/2146) + [issue #2145](https://github.com/riscv/riscv-unified-db/issues/2145) | **Open.** `UXLEN`'s description named `SXLEN` as the parameter `mstatus.UXL` changes; `SXLEN`'s option list used scalars against its own array schema. Found while triaging a sweep that flagged the `MXLEN`/`SXLEN` type asymmetry, which was verified **correct** and deliberately left alone |
-| [PR #2090](https://github.com/riscv/riscv-unified-db/pull/2090) | **Merged.** A [review comment](https://github.com/riscv/riscv-unified-db/pull/2090#issuecomment-5084258197) here identified the same defect in the MTVEC alignment enums and the maintainer adopted the correction. **This is the maintainer's PR, not ours; the contribution is the review** |
-| [PR #2097](https://github.com/riscv/riscv-unified-db/pull/2097) | Five-point review + frozen adversarial eval pack ([`workflow_slice/eval_2097/`](./riscv-param-extraction/workflow_slice/eval_2097/)) for the proposed parameter-extraction skill |
-| [Issue #2053](https://github.com/riscv/riscv-unified-db/issues/2053) | Measured WARL and cross-model findings contributed to the Part II scope discussion |
+| [#2137](https://github.com/riscv/riscv-unified-db/issues/2137) → [PR #2138](https://github.com/riscv/riscv-unified-db/pull/2138) | **Approved.** `4095` is not a power of two but sits in both `unsigned_pow2` schema enums. Fixed with a regression test wired into the Ruby runner |
+| [#2145](https://github.com/riscv/riscv-unified-db/issues/2145) → [PR #2146](https://github.com/riscv/riscv-unified-db/pull/2146) | **Approved.** `UXLEN`'s description named `SXLEN` as what `mstatus.UXL` changes. Found while triaging a sweep whose other flag was verified **correct** and deliberately not filed |
+| [PR #2164](https://github.com/riscv/riscv-unified-db/pull/2164) | Parameter-extraction evaluation fixtures, invited by the author of #2097 |
+| [PR #2090](https://github.com/riscv/riscv-unified-db/pull/2090) | **Merged.** A [review comment](https://github.com/riscv/riscv-unified-db/pull/2090#issuecomment-5084258197) here identified the MTVEC alignment defect and the maintainer adopted it. **That PR is the maintainer's; the contribution is the review** |
+| [PR #2097](https://github.com/riscv/riscv-unified-db/pull/2097) | Five-point review, all five adopted by the author |
+| [#2163](https://github.com/riscv/riscv-unified-db/issues/2163) · [#2158](https://github.com/riscv/riscv-unified-db/issues/2158) · [#2053](https://github.com/riscv/riscv-unified-db/issues/2053) | Run-to-run variance · fixture placement · scope discussion |
 
-### Path A vs Path B (do not collapse)
-
-| Path | Proves | Not |
-|------|--------|-----|
-| **A — Challenge** | Optionality extract, grounding, schema YAML, CSR negative control, multi-model on 2 snippets, denser offline controls | Full-manual recall |
-| **B — Corpus** | GT223/185 remeasure, 60-chunk multi-model, bulk export, honest WARL null | Substitute for challenge pack |
-| **Holdout** | Method for leakage-audited CSR context under a frozen pin | Clean temporal proof under v1.2 (see PRIMARY_RESULTS) |
+**No PR of mine has merged yet.** All three are held at the first-time-contributor workflow gate.
 
 ---
 
-## Controls density (challenge surface)
+## Measured numbers
 
-| Control | This monorepo | Typical challenge kit |
-|---------|---------------|------------------------|
-| Bad fixtures (fail-closed) | **4** | often 2 |
-| Hard negatives | **4** | often 2 |
-| Known-param bench | **n=15** + leakage caveat | n≈13 |
-| Live multi-model (2 snippets) | **10** (honest fails) | often 2–3 |
-| CI gate | validate + negatives + markup + strategies + n=15 + holdout tests + export | validate-focused |
-| Full-corpus multi-model + export | **Yes** (Path B) | usually no |
-
----
-
-## Snapshot numbers (measured only)
-
-> **All recall figures below are grounding scores, not discovery scores.** The Part I prompts inject the complete list of 185 gold parameter names, set-identical to the ground truth, instructing the model to reuse them exactly. That is the correct design for building a spreadsheet and tagging spec text, and it is how these numbers were produced. Recall *without* the name list is unmeasured and is the subject of a [preregistered experiment](./riscv-param-extraction/artifact_c/PREREGISTRATION.md). Full explanation in [`docs/metrics.md`](./riscv-param-extraction/docs/metrics.md).
+Every figure below is a **single run**, and single runs on this task are unstable by ~10 points. All are **grounding** scores with the gold name catalogue supplied.
 
 | Item | Value |
 |------|------:|
-| Part I v2 remeasure (GT 185) | adj **72.9%** · class **88.4%** · WARL **50%** |
-| Same vs live GT 223 | adj **64.2%** |
-| Pilot machine.adoc | **model split** gpt-4o + gpt-4o-mini · ~**$0.05** |
-| Artifact A (gpt-4o-mini vs Claude) | adj **32.2%** vs **72.9%** · Jaccard **3.8%** · ~**$0.16** |
-| Artifact B | **83/83** named + **20/20** new schema-valid |
-| named=yes | **87** rows / **83** unique |
-| Holdout v1.2 (primary) | name **0/10** both arms · WARL **0/5** · exploratory null |
+| Part I v2 remeasure (GT 185) | adj **72.9%** · class **88.4%** · WARL **12/24** |
+| Same output vs live GT 223 | adj **64.2%** |
+| Artifact A, gpt-4o-mini | adj **32.2%** · name Jaccard vs Claude **3.8%** |
+| v3 WARL prompt ablation | adj **35.0%** · WARL **2/24**, a null |
+| Artifact B export | **83/83** named · **20/20** new, schema-valid |
+| Artifact C, arm A | **33.9%** then **44.6%** on identical input |
 
-Authoritative tables: [`riscv-param-extraction/docs/metrics.md`](./riscv-param-extraction/docs/metrics.md).  
-Holdout write-up: [`challenge/temporal_holdout/results/PRIMARY_RESULTS.md`](./riscv-param-extraction/challenge/temporal_holdout/results/PRIMARY_RESULTS.md).
+Authoritative: [`docs/metrics.md`](./riscv-param-extraction/docs/metrics.md). Verify: `./verify.sh`.
+
+---
+
+## Credit
+
+Spring Part I (extract → analyze → spreadsheet) is the work of [@ishaan-arora-1](https://github.com/ishaan-arora-1) on UDB PRs **#1765–#1832**. This repository **reproduces, remeasures and extends** it and claims no authorship of it. The mentee has since noted those PRs are a first version and the working pipeline is internal, so the remeasure here is a public snapshot rather than current state.
+
+---
+
+## Limitations
+
+- Every recall figure is a single run; run-to-run variance on this task is ~10 points.
+- All published recall is **grounding** with the name catalogue supplied. Discovery recall is the subject of Artifact C and is not yet complete.
+- The nine dual-model "new" candidates are **not** a validated review queue: `IALIGN` and `FLEN` are derived quantities the gate passed at high confidence.
+- Artifact A's per-chunk outputs were not retained, so its model-exclusive sets cannot be audited. Retention is a hard gate on all later runs.
+- Artifact A's second model is `gpt-4o-mini`, which underperforms Claude on this corpus.
+- The holdout is an **exploratory null** under documented v1.2 prompt limitations, not clean temporal evidence.
+- Challenge results on 2 snippets are not comparable to corpus recall.
 
 ---
 
 ## Layout
 
 ```
-riscv-param-extraction/     mentor product
-  challenge/                coding challenge + CI + live matrix + holdout
-  docs/metrics.md           measured numbers
-  export/  drafts/          Artifact B
-  manifests/  results/      run records
-application-packet/         Part II essay / plan / claim ledger
-upstream-pr-drafts/         issue-linked drafts (open only if unclaimed)
-.github/workflows/ci.yml    fail-closed challenge + export + holdout
+riscv-param-extraction/
+  artifact_c/        preregistered 4-arm experiment, runs, results
+  challenge/         coding challenge, CI gate, live matrix, holdout
+  docs/metrics.md    measured tables
+  scripts/           verify_claims.py
+  export/ drafts/    Artifact B
+  workflow_slice/    evaluation fixtures, review-envelope slice
+application-packet/  essay, nine-week plan, claim ledger
+verify.sh            re-derives every published number
 ```
-
-**Local only (gitignored):** full `riscv-unified-db/` clone, private notes, and secrets.
-
----
-
-## How to run (challenge CI)
-
-```bash
-cd riscv-param-extraction
-pip install -r requirements.txt
-python challenge/scripts/ci_check.py
-```
-
----
-
-## Limitations (honest)
-
-- Artifact A second model is **gpt-4o-mini** (not full gpt-4o); mini **underperforms** Claude on corpus recall.  
-- Pilot used a **model split** (org TPM limits), not pure gpt-4o.  
-- Artifact B drafts are **DRAFT**, not unsolicited bulk UDB merges.  
-- Challenge curated results are CI gold; live multi-model is under `challenge/results/live/` with per-model honesty.  
-- Holdout v1.2 is an **exploratory null** with documented prompt-guidance limitations, not clean temporal-holdout proof.  
-- Do **not** claim challenge n=2 scores beat Spring corpus recall on equal footing.  
-- Upstream STVAL/HPM-style fixes may already be claimed by others. Open UDB PRs only when original and unclaimed.
-
----
 
 ## License
 
-Code under this tree: see [`riscv-param-extraction/LICENSE`](./riscv-param-extraction/LICENSE). Vendored UDB schemas retain upstream BSD-3-Clause-Clear notices.
+See [`riscv-param-extraction/LICENSE`](./riscv-param-extraction/LICENSE). Vendored UDB schemas retain upstream BSD-3-Clause-Clear notices.
