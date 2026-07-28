@@ -33,6 +33,10 @@ COMPETITION*.md
 FINAL-DRAFT*.md
 OVERMATCH*.md
 PLAN-*.md
+
+# Internal agent-to-agent queries. These describe defects in our own
+# artifacts in blunt terms and are written for another agent, not for readers.
+GROK-QUERY-*.md
 TIMELINE*.md
 APPLICATION-PLAN.md
 PHASE1-STATUS.md
