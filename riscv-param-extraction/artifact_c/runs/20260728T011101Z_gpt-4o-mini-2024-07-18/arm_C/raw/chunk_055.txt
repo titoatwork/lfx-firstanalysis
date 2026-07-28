@@ -1,0 +1,93 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The UXL field controls the value of XLEN for U-mode, termed _UXLEN_, which may differ from the value of XLEN for S-mode, termed _SXLEN_.",
+      "line_number": 42,
+      "parameter_name": "UXL",
+      "existing_udb_name": "UXL",
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The UXL field is a read-write field that can take different values based on implementation, controlling the U-mode XLEN."
+    },
+    {
+      "excerpt": "The MXR (Make eXecutable Readable) bit modifies the privilege with which loads access virtual memory.",
+      "line_number": 66,
+      "parameter_name": "MXR_ACCESS",
+      "existing_udb_name": "MXR_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The MXR bit is a binary choice that determines whether loads can access executable pages, making it a direct implementation choice."
+    },
+    {
+      "excerpt": "The SUM (permit Supervisor User Memory access) bit modifies the privilege with which S-mode loads and stores access virtual memory.",
+      "line_number": 78,
+      "parameter_name": "SUM_ACCESS",
+      "existing_udb_name": "SUM_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The SUM bit is a binary choice that allows or disallows S-mode access to U-mode memory, representing an implementation-defined behavior."
+    },
+    {
+      "excerpt": "The UBE bit is a WARL field that controls the endianness of explicit memory accesses made from U-mode.",
+      "line_number": 112,
+      "parameter_name": "UBE_ENDIANNESS",
+      "existing_udb_name": "UBE_ENDIANNESS",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The UBE field is a WARL field that can take different values based on implementation, controlling the endianness of memory accesses."
+    },
+    {
+      "excerpt": "The `satp` CSR is an SXLEN-bit read/write register, formatted as shown in <<rv32satp>> for SXLEN=32 and <<rv64satp>> for SXLEN=64, which controls supervisor-mode address translation and protection.",
+      "line_number": 265,
+      "parameter_name": "SATP_MODE",
+      "existing_udb_name": "SATP_MODE",
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The MODE field in the `satp` CSR is a read-write field that can take different values based on implementation, controlling the address translation scheme."
+    },
+    {
+      "excerpt": "The `srmcfg` register is an SXLEN-bit read/write register used to configure a Resource Control ID (`RCID`) and a Monitoring Counter ID (`MCID`).",
+      "line_number": 269,
+      "parameter_name": "SRMCFG_RCID_MCID",
+      "existing_udb_name": "SRMCFG_RCID_MCID",
+      "class": "NORM_CSR_RW",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The `srmcfg` register contains fields that are read-write and can take different values based on implementation, allowing for configuration of resource management."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] Supervisor mode is deliberately restricted in terms of interactions with underlying physical hardware, such as physical memory and device interrupts, to support clean virtualization.",
+      "line_number": 5,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a platform suggestion, not an architectural requirement."
+    },
+    {
+      "excerpt": "When SXLEN=32, the UXL field does not exist, and UXLEN=32.",
+      "line_number": 45,
+      "reason": "This describes a specific implementation behavior based on the value of SXLEN, not an architectural parameter."
+    },
+    {
+      "excerpt": "The implementation must provide a facility for scheduling timer interrupts in terms of the real-time counter, `time`.",
+      "line_number": 200,
+      "reason": "This is a fixed requirement ('must provide') that all implementations must satisfy. There is no implementation choice here."
+    },
+    {
+      "excerpt": "The `satp` CSR is considered active when the effective privilege mode is S-mode or U-mode.",
+      "line_number": 300,
+      "reason": "This describes a condition for the CSR's behavior rather than an implementation choice."
+    },
+    {
+      "excerpt": "The `sstatus` register is a subset of the `mstatus` register.",
+      "line_number": 120,
+      "reason": "This is a fixed relationship between two registers and does not indicate an implementation choice."
+    }
+  ]
+}
+```

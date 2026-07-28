@@ -1,0 +1,67 @@
+{
+  "chunk_id": "chunk_055",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The UXL field controls the value of XLEN for U-mode, termed _UXLEN_, which may differ from the value of XLEN for S-mode, termed _SXLEN_.",
+      "line_number": 42,
+      "parameter_name": "UXL",
+      "existing_udb_name": "UXL",
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The UXL field is a read-write field that can take different values based on implementation, controlling the U-mode XLEN."
+    },
+    {
+      "excerpt": "The MXR (Make eXecutable Readable) bit modifies the privilege with which loads access virtual memory.",
+      "line_number": 66,
+      "parameter_name": "MXR_ACCESS",
+      "existing_udb_name": "MXR_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The MXR bit is a binary choice that determines whether loads can access executable pages, making it a direct implementation choice."
+    },
+    {
+      "excerpt": "The SUM (permit Supervisor User Memory access) bit modifies the privilege with which S-mode loads and stores access virtual memory.",
+      "line_number": 78,
+      "parameter_name": "SUM_ACCESS",
+      "existing_udb_name": "SUM_ACCESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The SUM bit is a binary choice that allows or disallows S-mode access to U-mode memory, representing an implementation-defined behavior."
+    },
+    {
+      "excerpt": "The UBE bit is a WARL field that controls the endianness of explicit memory accesses made from U-mode.",
+      "line_number": 112,
+      "parameter_name": "UBE_ENDIANNESS",
+      "existing_udb_name": "UBE_ENDIANNESS",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The UBE field is a WARL field that can take different values based on implementation, controlling the endianness of memory accesses."
+    },
+    {
+      "excerpt": "The `satp` CSR is an SXLEN-bit read/write register, formatted as shown in <<rv32satp>> for SXLEN=32 and <<rv64satp>> for SXLEN=64, which controls supervisor-mode address translation and protection.",
+      "line_number": 265,
+      "parameter_name": "SATP_MODE",
+      "existing_udb_name": "SATP_MODE",
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The MODE field in the `satp` CSR is a read-write field that can take different values based on implementation, controlling the address translation scheme."
+    },
+    {
+      "excerpt": "The `srmcfg` register is an SXLEN-bit read/write register used to configure a Resource Control ID (`RCID`) and a Monitoring Counter ID (`MCID`).",
+      "line_number": 269,
+      "parameter_name": "SRMCFG_RCID_MCID",
+      "existing_udb_name": "SRMCFG_RCID_MCID",
+      "class": "NORM_CSR_RW",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The `srmcfg` register contains fields that are read-write and can take different values based on implementation, allowing for configuration of resource management."
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The bitmanip extensions are defined for RV32 and RV64.",
+      "line_number": 12,
+      "parameter_name": "BITMANIP_ARCHITECTURES",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The choice of whether to implement the bitmanip extensions for RV32 or RV64 is left to the implementer."
+    },
+    {
+      "excerpt": "The shift and add instructions do a left shift of 1, 2, or 3 because these are commonly found in real-world code and because they can be implemented with a minimal amount of additional hardware beyond that of the simple adder.",
+      "line_number": 20,
+      "parameter_name": "ZBA_MAX_SHIFT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The maximum left shift value for the Zba instructions is a design choice that can be implemented as 1, 2, or 3."
+    },
+    {
+      "excerpt": "The implementation chooses whether MBE is read-only-0 (always little-endian), read-only-1 (always big-endian), or read-write (dynamic endianness).",
+      "line_number": 679,
+      "parameter_name": "M_MODE_ENDIANNESS",
+      "existing_udb_name": "M_MODE_ENDIANNESS",
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The endianness control bits are read-write, allowing the implementer to choose between different modes of endianness."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE, caption=\"Imp\" ]\n===============================================================\nThe Logical with Negate instructions can be implemented by inverting the _rs2_ inputs to the base-required AND, OR, and XOR logic instructions.",
+      "line_number": 56,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a suggestion for implementation, not an architectural requirement."
+    },
+    {
+      "excerpt": "This instruction counts the number of 0's before the first 1, starting at the most-significant bit (i.e., XLEN-1) and progressing to bit 0.",
+      "line_number": 100,
+      "reason": "This describes the behavior of the clz instruction, which is determined by the CSR field value at runtime, not by an implementation choice."
+    },
+    {
+      "excerpt": "This instruction performs an XLEN-wide addition of two addends.",
+      "line_number": 150,
+      "reason": "This is a fixed requirement describing the behavior of the instruction, not an implementation choice."
+    },
+    {
+      "excerpt": "The *clmulr* instruction is used to accelerate CRC calculations.",
+      "line_number": 200,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a suggestion for implementation, not an architectural requirement."
+    },
+    {
+      "excerpt": "This instruction is useful for implementing the SHA3 cryptographic hash function on a 32-bit architecture.",
+      "line_number": 250,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a suggestion for implementation, not an architectural requirement."
+    }
+  ]
+}
+```

@@ -1,0 +1,27 @@
+{
+  "chunk_id": "chunk_059",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The implementation must produce a result equivalent to a reduction tree composed of binary operator nodes, with the inputs being elements from the source vector register group (`vs2`) and the source scalar value (`vs1[0]`).",
+      "line_number": 4870,
+      "parameter_name": "VREDUSUM_RESULT",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The implementation must determine how to produce the result of the unordered sum reduction, which is an implementation choice."
+    },
+    {
+      "excerpt": "The `vcompress` instruction allows elements selected by a vector mask register from a source vector register group to be packed into contiguous elements at the start of the destination vector register group.",
+      "line_number": 5370,
+      "parameter_name": "VCOMPRESS_OPERATION",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The behavior of the `vcompress` instruction is defined by the implementation's choice of how to pack elements based on the mask."
+    }
+  ]
+}

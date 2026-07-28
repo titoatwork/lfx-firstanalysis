@@ -1,0 +1,63 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The entropy source extension defines the `seed` CSR at address `0x015`. This CSR provides up to 16 physical `entropy` bits that can be used to seed cryptographic random bit generators.",
+      "line_number": 345,
+      "parameter_name": "ENTROPY_SEED_CSR_ADDRESS",
+      "existing_udb_name": "ENTROPY_SEED_CSR_ADDRESS",
+      "class": "NORM_DIRECT",
+      "value_type": "value",
+      "confidence": "high",
+      "reasoning": "The address of the `seed` CSR is a direct implementation choice for the entropy source extension."
+    },
+    {
+      "excerpt": "This instruction exists on RV32 and RV64 base architectures.",
+      "line_number": 1234,
+      "parameter_name": "SUPPORTED_ARCHITECTURES",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The instruction's availability on RV32 and RV64 is an implementation choice, indicating which architectures support it."
+    },
+    {
+      "excerpt": "Note that `rnum` must be in the range `0x0..0xA`. The values `0xB..0xF` are reserved.",
+      "line_number": 678,
+      "parameter_name": "AES_KEY_SCHEDULE_RNUM_RANGE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The valid range for `rnum` in the AES key schedule instruction is a WARL field, defining legal values for implementation."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] At the time of writing, these discovery mechanisms are still a work in progress.",
+      "line_number": 99,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a status update, not an architectural requirement."
+    },
+    {
+      "excerpt": "This instruction must _always_ be implemented such that its execution latency does not depend on the data being operated on.",
+      "line_number": 1010,
+      "reason": "This is a fixed requirement ('must always be implemented') that applies to all implementations, not an architectural parameter."
+    },
+    {
+      "excerpt": "The implementation chooses whether MBE is read-only-0 (always little-endian), read-only-1 (always big-endian), or read-write (dynamic endianness).",
+      "line_number": 1217,
+      "reason": "This describes the behavior of a field rather than the parameter itself. The parameter would be the legal values for the field, not the behavior."
+    },
+    {
+      "excerpt": "This instruction is based on work done in cite:[MJS:LWSHA:20].",
+      "line_number": 1500,
+      "reason": "This is a reference note and does not define an architectural parameter."
+    },
+    {
+      "excerpt": "This instruction is useful for implementing the SHA3 cryptographic hash function on a 32-bit architecture.",
+      "line_number": 2000,
+      "reason": "This is a suggestion for software developers, not an architectural parameter."
+    }
+  ]
+}
+```

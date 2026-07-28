@@ -16,34 +16,26 @@ Replace bracketed contact fields only if the form asks. Numbers below match the 
 I am applying to AI-assisted extraction of architectural parameters from RISC-V
 specifications – Part II (LFX Fall 2026).
 
-While reproducing the Spring pipeline I found that its prompts inject the complete
-list of 185 gold parameter names, set-identical to the ground truth, instructing
-the model to use those exact names. Every published recall figure, including ones
-I had been citing myself, therefore measures grounding against a supplied
-catalogue rather than discovery. That is the right design for building a
-spreadsheet and tagging spec text, but it is not what the numbers are usually read
-to mean. I have corrected my own claims and documented the condition. Discovery
-recall appears unmeasured anywhere public, and I have preregistered the experiment
-that measures it.
+I preregistered an experiment on whether removing the gold name catalogue reduces
+extraction recall, and ran each arm twice. The registered question was answered.
+The useful result was not registered: the same model, byte-identical prompt,
+temperature 0, run twice, scored 33.9% and 44.6%. Prompts match by hash and the
+scorer reproduces the published figures exactly, so the variation is the model and
+the alignment step amplifies it. Single-run recall here cannot carry the
+comparisons it is asked to carry, including my own. Reported upstream as
+riscv-unified-db #2163.
 
-Under that condition the remeasure gives 72.9% adjusted recall on the pinned gold
-and 64.2% against live UDB, with WARL worst at 50%. A prompt-only WARL
-intervention made WARL worse, 12.5% to 8.3%, so the failure is identification
-rather than vocabulary: the model already had every correct name in front of it.
-Two models given that identical catalogue still shared only 3.8% of parameter
-names. I also built a schema-valid UDB export path (83/83 named, 20/20
-candidates).
+I had nearly published the opposite. After one run, WARL looked like it collapsed
+without the catalogue, which is the mechanism I had been arguing. The second run
+reversed it, so I withdrew the finding.
 
-The Spring PRs (#1765–#1832, credit @ishaan-arora-1) are a superseded snapshot.
-The mentee has noted that the working pipeline is internal, so I present my
-remeasure as a public baseline rather than as current state.
+I also found the pipeline injects all 185 gold parameter names, so every published
+recall figure measures grounding rather than discovery. I corrected my own claims.
+Under that condition the remeasure is 72.9% on the pinned gold, with WARL worst at
+50%, and prompt-only WARL guidance made it worse rather than better.
 
-Upstream, I opened riscv-unified-db #2138: a non-power-of-two value in the
-unsigned_pow2 schema enums, with a regression test. A review comment of mine on
-#2090 identified the same defect in the MTVEC alignment enums, and the maintainer
-adopted the correction before that PR merged.
-
-I can commit ≥30 hours/week for the Fall term.
+Upstream: three PRs open, two approved, and a review comment of mine on #2090 was
+adopted by the maintainer before that PR merged. I can commit ≥30 hours/week.
 ```
 
 ---
@@ -65,65 +57,56 @@ superseded snapshot rather than the baseline to build on. That shapes what succe
 means. Not more candidates against a stale reference, but evaluation that stays
 valid while the pipeline underneath it moves.
 
-What I measured, and a correction. Regenerating ground truth on live UDB gives 223
-parameters; the Part I freeze was 185. Re-scoring the committed Claude-sonnet-4
-output: 72.9% adjusted recall and 88.4% classification accuracy on GT185, 64.2% on
-live GT223, WARL worst at 50% (12/24). Running the same 60 chunks and v2 prompt
-through gpt-4o-mini (~$0.16) gave 32.2% adjusted recall, only 21 shared names
-(Jaccard 3.8%), and nine high-confidence proposed-new names common to both models.
-I had described those nine as a prioritised review queue. A contributor on the
-upstream scope thread then checked one: IALIGN is not a parameter at all, since
-UDB derives it in globals.isa from whether C is implemented. I verified that, and
-found FLEN is derived too. So dual-model agreement at high confidence passed at
-least two non-parameters, and the gate I proposed does not do what I claimed. I
-registered his objection as a hypothesis with a rubric fixed in advance rather
-than defending the number. A prompt-only WARL ablation raised overall recall to
-35.0% while cutting WARL recall from 3/24 to 2/24.
+What I measured. Regenerating ground truth on live UDB gives 223 parameters; the
+Part I freeze was 185. Re-scoring the committed Claude-sonnet-4 output: 72.9%
+adjusted recall, 88.4% classification accuracy on GT185, 64.2% on live GT223, WARL
+worst at 50%. gpt-4o-mini on the same 60 chunks reached 32.2%, sharing only 3.8%
+of parameter names with Claude.
 
-The correction matters more than any of those numbers. Building the next
-experiment, I traced the prompt assembly and found that every run injects all 185
-gold parameter names, a set identical to the ground truth, with the instruction to
-reuse them exactly. So these are grounding scores against a supplied catalogue,
-not discovery scores. For the Spring deliverables, a spreadsheet and tagged spec
-text, that is the correct design. But it reframes the WARL result: the model was
-never short of the right name, so the failure is identification, and it explains
-why adding prompt guidance made things worse rather than better. I updated
-metrics.md, the claim ledger and this essay rather than leaving the ambiguity in
-place, and preregistered the measurement of discovery recall before running it.
+Three corrections to my own work, in the order I found them. First, the prompts
+inject all 185 gold parameter names, a set identical to the ground truth, so every
+figure above is a grounding score against a supplied catalogue rather than
+discovery. That is correct design for the Spring deliverables, and it reframes
+WARL: the model was never short of the right name, so the failure is
+identification, which is why prompt-only guidance made it worse.
 
-What I built. An exporter mapping parameters.csv to draft UDB param YAML,
-schema-valid at 83/83 named (87 rows / 83 unique) and 20/20 new candidates. That
-is structural conformance only, not architectural approval. A challenge control
-pack (four fail-closed fixtures, four hard negatives, n=15 known-param mechanics
-under a pretraining caveat, a ten-model live matrix including honest CSR false
-positives, green CI). A temporal holdout harness whose locked primary run returned
-0/10 name recall in both arms, an exploratory null under documented v1.2
-limitations rather than evidence that context fixes WARL.
+Second, I had called nine dual-model candidates a prioritised review queue. A
+contributor checked one: IALIGN is derived in globals.isa from whether C is
+implemented, not a parameter at all. I verified it and found FLEN is derived too,
+so the gate passed at least two non-parameters. I registered his objection as a
+hypothesis with a rubric fixed in advance instead of defending the number.
 
-Upstream. I opened riscv-unified-db #2138 with linked issue #2137: both
-unsigned_pow2 schema enums list 4095, not a power of two, fixed with a regression
-test wired into the Ruby test runner rather than a bare data edit. A review
-comment of mine on #2090 identified the same defect in the MTVEC alignment enums,
-and the maintainer agreed and corrected it before merge. That PR is his, and I
-claim only the review. I also published an adversarial eval pack (five positives,
-four negatives) against the extraction-skill PR #2097, including the sharpest
-case: WARL vocabulary whose legal value set is ISA-fixed, leaving no
-implementation choice. A second pair, #2145/#2146, corrects two parameter
-descriptions found while triaging an automated invariant sweep over all 227 param
-files. The sweep's other flag, an MXLEN/SXLEN type asymmetry, turned out to be
-architecturally correct, so I documented why instead of filing it. My aim upstream
-is small, testable, issue-linked work and useful review, not volume.
+Third, and most consequential, running each arm twice showed adjusted recall
+moving 33.9% to 44.6% with nothing changed. Prompts match by hash and the scorer
+is deterministic, so it is the model, amplified by the alignment step. Every
+single-run figure above, mine and the published baseline alike, is one sample.
+Reported upstream as #2163.
 
-What Part II must do differently. Ground output in CSR/spec context under leakage
-audit and preregistered evaluation; treat cross-model agreement as a review
-signal, not truth; keep provenance (file, anchor, excerpt, class, confidence, run
-id); export only reviewed findings; open small issue-linked PRs, not generated
-dumps.
+What I built. An exporter producing schema-valid draft UDB param YAML (83/83
+named, 20/20 new candidates), which is structural conformance only. A challenge
+control pack with four fail-closed fixtures, four hard negatives and a ten-model
+live matrix that reports its CSR false positives. A temporal holdout harness whose
+locked run returned 0/10 in both arms, an exploratory null rather than evidence
+for anything.
+
+Upstream. Three PRs open, two approved. #2137/#2138 fixes a non-power-of-two value
+in both unsigned_pow2 schema enums and ships a regression test rather than a bare
+data edit. #2145/#2146 corrects two parameter descriptions found while triaging an
+automated sweep over all 227 param files; the sweep's other flag turned out to be
+architecturally correct, so I documented why instead of filing it. #2164
+contributes the evaluation fixtures. A review comment of mine on #2090 identified
+the MTVEC alignment defect and the maintainer adopted it before merge, though that
+PR is his and I claim only the review. My aim upstream is small, testable,
+issue-linked work, not volume.
+
+What Part II must do differently. Ground output in CSR context under leakage audit
+and preregistered evaluation; run more than once before believing a difference;
+treat cross-model agreement as a signal to review rather than truth; keep
+provenance; export only reviewed findings.
 
 Prior credibility. Fourth-year CS undergraduate; research attachment at Universiti
-Malaya under Prof. Por Lip Yee (on-site June 2026), owning an end-to-end IoT IDS
-pipeline with measured evaluation and a manuscript in preparation. Baseline,
-measure, document limits, ship reviewable artifacts.
+Malaya under Prof. Por Lip Yee, owning an end-to-end IoT IDS pipeline with measured
+evaluation and a manuscript in preparation.
 
 Logistics. ≥30 hours/week for ~15 Sep–15 Nov 2026; India (IST), flexible for
 US-Pacific meetings. Prework: https://github.com/titoatwork/lfx-firstanalysis

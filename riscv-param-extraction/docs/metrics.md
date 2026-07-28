@@ -4,6 +4,18 @@ Tables only. Numbers are **user-measured** unless marked pending. Do not invent 
 
 ---
 
+## Every recall figure here is a single run, and single runs are unstable
+
+**Measured 2026-07-28.** The same model, the same byte-identical prompt, `temperature=0`, run twice thirty minutes apart, scored **33.9%** and **44.6%** adjusted recall on the same 60 chunks. Per class it moved further: `NORM_CSR_RW` went 6/51 to 21/51, and `NORM_CSR_WARL` went 2/24 to 9/24 in the other arm.
+
+Verified not to be a harness artefact: prompts byte-identical by SHA-256, `analyze.py` deterministic on re-scoring, and the harness reproduces the published Claude figures exactly. The variance is in the model, and the alias / one-to-many / fuzzy alignment passes amplify it, since run 2 produced *fewer* raw parameters yet matched *more* gold.
+
+**Consequence for everything below.** Every figure in this file is one sample. The numbers are correctly measured and correctly reported, and they do not carry the precision a single decimal place implies. Do not present a difference between two single runs as an improvement or a regression.
+
+Full write-up and committed artifacts: [`artifact_c/results/PRIMARY_RESULTS.md`](../artifact_c/results/PRIMARY_RESULTS.md). Reported upstream as [riscv-unified-db#2163](https://github.com/riscv/riscv-unified-db/issues/2163).
+
+---
+
 ## Read this before citing any recall number
 
 **Every recall figure below was produced with the complete list of gold parameter names supplied in the prompt.**

@@ -1,0 +1,57 @@
+{
+  "chunk_id": "chunk_058",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The maximum size in bits of a vector element that any operation can produce or consume, _ELEN_ >= 8, which must be a power of 2.",
+      "line_number": 12,
+      "parameter_name": "ELEN",
+      "existing_udb_name": "ELEN",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "ELEN is a direct implementation choice that specifies the maximum size of a vector element, with constraints on its minimum value and that it must be a power of 2."
+    },
+    {
+      "excerpt": "The number of bits in a single vector register, _VLEN_ >= ELEN, which must be a power of 2, and must be no greater than 2^16.",
+      "line_number": 13,
+      "parameter_name": "VLEN",
+      "existing_udb_name": "VLEN",
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "VLEN is a direct implementation choice that specifies the number of bits in a vector register, with constraints on its minimum value, maximum value, and that it must be a power of 2."
+    },
+    {
+      "excerpt": "Implementations must support LMUL integer values of 1, 2, 4, and 8.",
+      "line_number": 22,
+      "parameter_name": "LMUL_VALUES",
+      "existing_udb_name": "LMUL_VALUES",
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The LMUL values are a direct implementation choice that specifies the allowed integer values for the vector length multiplier."
+    },
+    {
+      "excerpt": "Implementations must provide fractional LMUL settings that allow the narrowest supported type to occupy a fraction of a vector register corresponding to the ratio of the narrowest supported type's width to that of the largest supported type's width.",
+      "line_number": 22,
+      "parameter_name": "FRACTIONAL_LMUL_SUPPORT",
+      "existing_udb_name": "FRACTIONAL_LMUL_SUPPORT",
+      "class": "NORM_DIRECT",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The support for fractional LMUL settings is a direct implementation choice that allows for more efficient use of vector registers."
+    },
+    {
+      "excerpt": "The vector fixed-point rounding-mode register holds a two-bit read-write rounding-mode field in the least-significant bits (vxrm[1:0]).",
+      "line_number": 22,
+      "parameter_name": "VXRM_MODE",
+      "existing_udb_name": "VXRM_MODE",
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The vxrm CSR allows implementations to choose the rounding mode for fixed-point operations, which is a direct implementation choice."
+    }
+  ]
+}

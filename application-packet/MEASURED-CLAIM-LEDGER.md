@@ -6,6 +6,23 @@
 
 ---
 
+## Single runs are unstable. Never present a single-run difference as an effect
+
+Measured 2026-07-28: identical model, byte-identical prompt, `temperature=0`, run twice, **33.9%** and **44.6%** adjusted recall. Per class worse: `CSR_RW` 6/51 to 21/51; `WARL` 2/24 to 9/24. Not a harness artefact (prompts SHA-identical, scorer deterministic, harness reproduces published Claude figures).
+
+**Forbidden as a result of this:**
+
+| Do not say | Why |
+|------------|-----|
+| "v3 improved adjusted recall from 32.2% to 35.0%" | 2.8 points is inside the measured noise. State it as not distinguishable from run-to-run variation |
+| "mini scored 32.2% and Claude 72.9%, so Claude is better" | The gap is large enough to survive, but say it is one run each |
+| Any per-class comparison from single runs | `WARL` has a 24-item denominator and moved by 7 between identical runs |
+| Quoting recall to one decimal as if precise | Report the range, or say single run |
+
+**Allowed:** "one run of each, and run-to-run variation on this task is around 10 points on the headline metric, so treat single-run differences with care."
+
+---
+
 ## Mandatory qualifier on every recall number
 
 **All published recall figures were produced with the full gold name list in the prompt.** `extract.py` → `build_user_message()` unconditionally injects all 185 names from `udb_param_names.txt`, which is set-identical to `ground_truth.json`. The accompanying instruction is *"When a parameter you find matches one of these known names, use the exact name."*

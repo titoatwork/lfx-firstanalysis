@@ -1,0 +1,93 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "The Extensions field is a *WARL* field that can contain writable bits where the implementation allows the supported ISA to be modified.",
+      "line_number": 334,
+      "parameter_name": "MISA_EXTENSIONS",
+      "existing_udb_name": "MISA_EXTENSIONS",
+      "class": "NORM_CSR_WARL",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The Extensions field in the misa register is a WARL field, allowing implementations to define which extensions are supported, thus making it an architectural parameter."
+    },
+    {
+      "excerpt": "The MBE, SBE, and UBE bits in `mstatus` and `mstatush` are *WARL* fields that control the endianness of memory accesses other than instruction fetches.",
+      "line_number": 679,
+      "parameter_name": "M_MODE_ENDIANNESS",
+      "existing_udb_name": "M_MODE_ENDIANNESS",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The MBE, SBE, and UBE fields are WARL fields that allow implementations to choose the endianness for different modes, making this an architectural parameter."
+    },
+    {
+      "excerpt": "The `mtvec` register is an MXLEN-bit *WARL* read/write register that holds trap vector configuration, consisting of a vector base address (BASE) and a vector mode (MODE).",
+      "line_number": 1219,
+      "parameter_name": "MTVEC_MODES",
+      "existing_udb_name": "MTVEC_MODES",
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The mtvec register's MODE field is WARL, and the set of supported mode values can vary by implementation, making it an architectural parameter."
+    },
+    {
+      "excerpt": "For RV64, if S-mode is not supported, then SXL is read-only zero. Otherwise, it is a *WARL* field that encodes the current value of SXLEN.",
+      "line_number": 1234,
+      "parameter_name": "SXL",
+      "existing_udb_name": "SXL",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The SXL field is a WARL field that can vary by implementation, allowing for different effective XLEN values in S-mode."
+    },
+    {
+      "excerpt": "When MXLEN=64, if U-mode is not supported, then UXL is read-only zero. Otherwise, it is a *WARL* field that encodes the current value of UXLEN.",
+      "line_number": 1235,
+      "parameter_name": "UXL",
+      "existing_udb_name": "UXL",
+      "class": "NORM_CSR_WARL",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The UXL field is a WARL field that can vary by implementation, allowing for different effective XLEN values in U-mode."
+    },
+    {
+      "excerpt": "The `mcountinhibit` register is a 32-bit *WARL* register that controls which of the hardware performance-monitoring counters increment.",
+      "line_number": 3300,
+      "parameter_name": "MCOUNTINHIBIT",
+      "existing_udb_name": "MCOUNTINHIBIT",
+      "class": "NORM_CSR_WARL",
+      "value_type": "bitmask",
+      "confidence": "high",
+      "reasoning": "The mcountinhibit register is a WARL register that allows implementations to define which performance counters are incremented, making it an architectural parameter."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "The `misa` CSR is a *WARL* read-write register# reporting the ISA supported by the hart.",
+      "line_number": 334,
+      "reason": "This is a description of the misa CSR itself, not an architectural parameter."
+    },
+    {
+      "excerpt": "This register must be readable in any implementation.",
+      "line_number": 334,
+      "reason": "This is a fixed requirement that applies to all implementations, not an implementation choice."
+    },
+    {
+      "excerpt": "The `mtvec` register must always be implemented, but can contain a read-only value.",
+      "line_number": 1217,
+      "reason": "This is a fixed requirement that applies to all implementations, not an implementation choice."
+    },
+    {
+      "excerpt": "The `mstatus` fields MIE and MPRV are reset to 0.",
+      "line_number": 334,
+      "reason": "This describes the reset behavior of the mstatus fields, which is a fixed requirement, not an architectural parameter."
+    },
+    {
+      "excerpt": "The `mvendorid` CSR is a 32-bit read-only register providing the JEDEC manufacturer ID of the provider of the core.",
+      "line_number": 334,
+      "reason": "This is a description of the mvendorid CSR itself, not an architectural parameter."
+    }
+  ]
+}
+```

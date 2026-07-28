@@ -1,0 +1,73 @@
+```json
+{
+  "parameters": [
+    {
+      "excerpt": "Each vector crypto instruction that operates on element groups explicitly specifies their three defining parameters: EGW, EGS, and EEW.",
+      "line_number": 334,
+      "parameter_name": "EGW_EGS_EEW",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "EGW, EGS, and EEW are implementation-defined parameters for each vector crypto instruction, specifying the element group width, size, and effective element width respectively."
+    },
+    {
+      "excerpt": "For element-group instructions, LMUL*VLEN must always be at least as large as EGW, otherwise an illegal-instruction exception is raised.",
+      "line_number": 334,
+      "parameter_name": "LMUL_VLEN_EGW",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The relationship between LMUL and VLEN in relation to EGW is a design choice that must be adhered to by implementations."
+    },
+    {
+      "excerpt": "Some Vector Crypto instructions are only defined for a specific SEW. In such a case all other SEW values are reserved.",
+      "line_number": 334,
+      "parameter_name": "SEW_LEGAL_VALUES",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_WARL",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The SEW values that are valid for certain instructions are implementation-defined, making this a WARL parameter."
+    },
+    {
+      "excerpt": "The number of element groups to be processed is vl/EGS. vl must be set to the number of SEW elements to be processed and therefore must be a multiple of EGS.",
+      "line_number": 334,
+      "parameter_name": "VL_EGS_RELATIONSHIP",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "set",
+      "confidence": "high",
+      "reasoning": "The relationship between vl and EGS is a design choice that must be adhered to by implementations."
+    }
+  ],
+  "skipped_non_parameters": [
+    {
+      "excerpt": "[NOTE] Where variables are concatenated, the order shown is how they would appear in a vector register from left to right.",
+      "line_number": 1,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a formatting guideline, not an architectural requirement."
+    },
+    {
+      "excerpt": "This instruction must always be implemented such that its execution latency does not depend on the data being operated upon.",
+      "line_number": 1,
+      "reason": "This is a fixed requirement ('must always be implemented') that all implementations must satisfy. There is no implementation choice here — it is not a parameter."
+    },
+    {
+      "excerpt": "[NOTE] The NIST standard requires the final hash to be in big-endian byte ordering within SEW-sized words.",
+      "line_number": 1,
+      "reason": "This text is inside a [NOTE] block and is therefore non-normative. It describes a requirement based on an external standard, not an architectural choice."
+    },
+    {
+      "excerpt": "The implementation chooses whether mtvec is read-only or read-write.",
+      "line_number": 1,
+      "reason": "This describes a choice about the mutability of the register, but it is not a parameter defined in the provided text."
+    },
+    {
+      "excerpt": "The implementation must ensure that the execution latency does not depend on the data being operated upon.",
+      "line_number": 1,
+      "reason": "This is a fixed requirement that applies to all implementations and does not represent an architectural choice."
+    }
+  ]
+}
+```

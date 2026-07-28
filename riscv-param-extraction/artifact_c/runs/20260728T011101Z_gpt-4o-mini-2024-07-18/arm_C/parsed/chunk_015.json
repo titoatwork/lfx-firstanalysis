@@ -1,0 +1,87 @@
+{
+  "chunk_id": "chunk_015",
+  "arm": "C",
+  "model": "gpt-4o-mini-2024-07-18",
+  "parameters": [
+    {
+      "excerpt": "The number of VMID bits is UNSPECIFIED and may be zero.",
+      "line_number": 1664,
+      "parameter_name": "VMIDLEN",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of VMID bits is left unspecified, allowing the implementer to choose how many bits to implement."
+    },
+    {
+      "excerpt": "The number of bits implemented in `hgeip` and `hgeie` for guest external interrupts is UNSPECIFIED and may be zero.",
+      "line_number": 1546,
+      "parameter_name": "GEILEN",
+      "existing_udb_name": null,
+      "class": "NORM_DIRECT",
+      "value_type": "range",
+      "confidence": "high",
+      "reasoning": "The number of bits for guest external interrupts is unspecified, allowing for implementation-defined choices."
+    },
+    {
+      "excerpt": "The VSXL field controls the effective XLEN for VS-mode (known as VSXLEN), which may differ from the XLEN for HS-mode (HSXLEN).",
+      "line_number": 1219,
+      "parameter_name": "VSXLEN",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "enum",
+      "confidence": "high",
+      "reasoning": "The effective XLEN for VS-mode is determined by the implementation, allowing for different configurations."
+    },
+    {
+      "excerpt": "The PBMTE bit controls whether the Svpbmt extension is available for use in VS-stage address translation.",
+      "line_number": 1546,
+      "parameter_name": "PBMTE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose whether to enable the Svpbmt extension for VS-stage address translation."
+    },
+    {
+      "excerpt": "The ADUE bit controls whether hardware updating of PTE A/D bits is enabled for VS-stage address translation.",
+      "line_number": 1546,
+      "parameter_name": "ADUE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The implementation can choose to enable or disable hardware updating of PTE A/D bits during VS-stage address translation."
+    },
+    {
+      "excerpt": "The `henvcfg` CSR is a 64-bit read/write register that controls certain characteristics of the execution environment when virtualization mode V=1.",
+      "line_number": 1546,
+      "parameter_name": "HENVCFG",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The `henvcfg` CSR allows for implementation-defined characteristics of the execution environment in virtualization mode."
+    },
+    {
+      "excerpt": "The `hstatus` fields VTSR, VTW, and VTVM are defined analogously to the `mstatus` fields TSR, TW, and TVM, but affect execution only in VS-mode.",
+      "line_number": 1219,
+      "parameter_name": "VTSR",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The VTSR field allows the implementation to define whether executing SRET in VS-mode raises a virtual instruction exception."
+    },
+    {
+      "excerpt": "The `hstatus` fields VGEIN, HU, SPVP, SPV, GVA, and VSBE are defined to control various aspects of the hypervisor's operation.",
+      "line_number": 1219,
+      "parameter_name": "VSBE",
+      "existing_udb_name": null,
+      "class": "NORM_CSR_RW",
+      "value_type": "binary",
+      "confidence": "high",
+      "reasoning": "The VSBE field allows the implementation to define the endianness of memory accesses in VS-mode."
+    }
+  ]
+}
