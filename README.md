@@ -22,6 +22,15 @@ No credentials, no network, no model calls, seconds. It re-derives **every publi
 
 Four claims are reported as **not checkable** rather than passing quietly. `./verify.sh --list` shows the whole claim table and which artifact each number comes from.
 
+**AI assistance.** This work was done with an AI coding assistant, recorded in the
+`Co-Authored-By` trailers on 18 of the 93 commits. Given that the subject is
+AI-assisted extraction, stating it plainly seems better than leaving a reader to
+find it. What that changes is nothing you have to take on trust: every number
+re-derives from a committed artifact, every upstream claim links to the file and
+line it came from, and the three findings below each record the version I got
+wrong first. Which claims to publish, which to withdraw, and which flagged
+defects not to file were my calls.
+
 ---
 
 ## Three findings, each of which cost me something
