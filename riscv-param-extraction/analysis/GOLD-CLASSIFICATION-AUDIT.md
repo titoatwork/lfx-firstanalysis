@@ -85,12 +85,18 @@ The 18 are not errors. They are the region where `taxonomy.md`'s two CSR classes
 cannot be separated by inspection, because the same syntax serves both roles:
 
 ```
-if (SATP_MODE_BARE && csr_value.MODE == 0)   decides whether one value is legal
-if (JVT_READ_ONLY) return CSR[jvt].BASE      gates mutability, ignores the write
+satp.yaml:50   sw_write of satp.MODE
+  if (SATP_MODE_BARE && (csr_value.MODE == 0)) {      value legality
+
+jvt.yaml:84    sw_write of jvt.MODE
+  if (JVT_READ_ONLY || (csr_value.MODE != 0)) {       mutability, and legality
 ```
 
-Both are a bare boolean test inside `sw_write`. Telling them apart needs the
-surrounding logic, not a pattern.
+Both are boolean tests on a parameter inside `sw_write`, and the second is the
+clearest case in the set: one expression combines a mutability gate
+(`JVT_READ_ONLY`) with a legality test on the written value (`csr_value.MODE != 0`).
+No rule over syntax separates the two roles when a single condition performs both.
+Telling them apart needs the surrounding logic.
 
 **Two heuristics were built for this and both discarded.** Proximity to `csr_value`
 misfiled the whole `SV*X4_TRANSLATION` family; the enclosing IDL function misfiled
