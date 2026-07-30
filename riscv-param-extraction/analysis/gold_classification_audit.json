@@ -1,4 +1,17 @@
 {
+  "provenance": {
+    "gold_path": "../.udb-corpus/param_extraction/data/ground_truth.json",
+    "gold_canonical_sha256": "acd73bd6d93ab01e2a1c83fca25549e1b604aae0e4625f899ee0616a04991505",
+    "gold_declared_total": 185,
+    "udb": {
+      "head": "b2a17bf9e751b3911beab23b85101906e89d9aeb",
+      "branch": "fix/vs-csr-priv-mode",
+      "dirty": false
+    },
+    "csr_files_scanned": 396,
+    "udb_params_seen": 227,
+    "scanned_sha256": "7dd8de149f41aa55ed56d3b587bfa70859fa501e73114d91bb0a42b83c473239"
+  },
   "gold_size": 185,
   "evidence_params": 10,
   "agree": [
@@ -117,6 +130,15 @@
     "VSXLEN",
     "VUXLEN"
   ],
+  "name_recognition_profile": {
+    "count": 21,
+    "by_class": {
+      "NORM_DIRECT": 21
+    },
+    "by_confidence": {
+      "high": 21
+    }
+  },
   "warl_in_gold": 26,
   "warl_stale": [
     "STVEC_MODE_DIRECT",

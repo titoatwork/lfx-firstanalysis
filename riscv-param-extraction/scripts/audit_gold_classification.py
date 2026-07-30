@@ -27,9 +27,11 @@ from __future__ import annotations
 
 import argparse
 import glob
+import hashlib
 import json
 import os
 import re
+import subprocess
 import sys
 
 MEMBERSHIP = re.compile(r"\$array_includes\?\(\s*([A-Z][A-Z0-9_]+)")
@@ -73,15 +75,95 @@ def legal_value_set_params(udb: str) -> dict[str, set[str]]:
     return found
 
 
-def udb_param_names(udb: str) -> set[str]:
+def param_sources(udb: str) -> list[str]:
     pat = os.path.join(udb, "spec", "std", "isa", "param", "*.yaml")
-    return {os.path.basename(p)[:-5] for p in glob.glob(pat)}
+    return sorted(set(glob.glob(pat)))
+
+
+def udb_param_names(udb: str) -> set[str]:
+    return {os.path.basename(p)[:-5] for p in param_sources(udb)}
 
 
 def load_gold(path: str) -> dict[str, dict]:
     with open(path, encoding="utf-8") as fh:
         doc = json.load(fh)
     return {p["name"]: p for p in doc["parameters"]}
+
+
+def gold_digest(path: str) -> str:
+    """Digest of the gold's *parsed* content, so it survives line-ligature churn.
+
+    A digest of the raw bytes is useless for citation here: this checkout has
+    core.autocrlf on, so the local file is CRLF and GitHub's copy of the same blob
+    is LF. The two hash differently while parsing to an identical document, which
+    is the same trap that once nearly triggered a rewrite of 31 files. Hashing the
+    canonical JSON instead gives a value anyone can reproduce from either copy.
+    """
+    with open(path, encoding="utf-8") as fh:
+        doc = json.load(fh)
+    canon = json.dumps(doc, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(canon.encode("utf-8")).hexdigest()
+
+
+def scanned_digest(paths: list[str], root: str) -> str:
+    """Pin the exact inputs read, independently of git state.
+
+    A git revision alone does not pin this: the tree may be dirty, and the audit
+    can legitimately be pointed at an export rather than a checkout. Digesting the
+    scanned files themselves means a third party can reproduce the value from any
+    copy of the same trees. Newlines are normalised for the CRLF reason in
+    `gold_digest`.
+    """
+    h = hashlib.sha256()
+    for p in sorted(paths, key=lambda q: os.path.relpath(q, root).replace("\\", "/")):
+        rel = os.path.relpath(p, root).replace("\\", "/")
+        try:
+            body = open(p, "rb").read().replace(b"\r\n", b"\n")
+        except OSError:
+            continue
+        h.update(rel.encode("utf-8") + b"\0")
+        h.update(hashlib.sha256(body).digest())
+    return h.hexdigest()
+
+
+def gold_declared_total(path: str) -> object:
+    with open(path, encoding="utf-8") as fh:
+        return (json.load(fh).get("metadata") or {}).get("total_parameters")
+
+
+def udb_revision(udb: str) -> dict:
+    """What was actually scanned, including whether the tree was dirty.
+
+    Recorded rather than assumed: the clone is usually parked on a topic branch,
+    so naming `main` here would be a claim about a tree that was not read.
+    """
+    def git(*a):
+        try:
+            out = subprocess.run(
+                ["git", "-C", udb, *a], capture_output=True, text=True, timeout=60
+            )
+        except (OSError, subprocess.SubprocessError):
+            return None
+        return out.stdout.strip() if out.returncode == 0 else None
+
+    head = git("rev-parse", "HEAD")
+    status = git("status", "--porcelain")
+    return {
+        "head": head,
+        "branch": git("rev-parse", "--abbrev-ref", "HEAD"),
+        # None, not False: when the target is an export rather than a checkout
+        # there is nothing to ask, and reporting "clean" would assert a check
+        # that never ran. `scanned_sha256` is the guarantee in that case.
+        "dirty": None if head is None else bool(status),
+    }
+
+
+def _tally(values) -> dict[str, int]:
+    out: dict[str, int] = {}
+    for v in values:
+        key = "null" if v is None else str(v)
+        out[key] = out.get(key, 0) + 1
+    return dict(sorted(out.items()))
 
 
 def audit(udb: str, gold_path: str) -> dict:
@@ -112,6 +194,18 @@ def audit(udb: str, gold_path: str) -> dict:
         if NAME_RECOGNITION.match((p.get("classification_reasoning") or "").strip())
     ]
 
+    # The finding about this group is not its size, it is that the group is
+    # one-directional: every member got the same class at the same confidence.
+    # Counting the members does not show that, so the distribution is recorded
+    # here and gated, rather than being asserted in prose from a hand read.
+    name_only_profile = {
+        "count": len(name_only),
+        "by_class": _tally(gold[n].get("classification") for n in name_only),
+        "by_confidence": _tally(
+            gold[n].get("classification_confidence") for n in name_only
+        ),
+    }
+
     # gold entries labelled WARL that no evidence supports, split by cause
     warl_gold = [n for n, p in gold.items() if p.get("classification") == LEGAL_VALUE_CLASS]
     unsupported = [n for n in warl_gold if n not in evidence]
@@ -119,12 +213,26 @@ def audit(udb: str, gold_path: str) -> dict:
     undecidable = sorted(n for n in unsupported if n in known)
 
     return {
+        "provenance": {
+            "gold_path": gold_path,
+            "gold_canonical_sha256": gold_digest(gold_path),
+            # The gold states its own size in metadata. Recording it next to the
+            # parsed length turns "185" from one number into two that must agree.
+            "gold_declared_total": gold_declared_total(gold_path),
+            "udb": udb_revision(udb),
+            "csr_files_scanned": len(csr_sources(udb)),
+            "udb_params_seen": len(known),
+            "scanned_sha256": scanned_digest(
+                csr_sources(udb) + param_sources(udb), udb
+            ),
+        },
         "gold_size": len(gold),
         "evidence_params": len(evidence),
         "agree": agree,
         "disagree": disagree,
         "not_in_gold": absent,
         "name_recognition": sorted(name_only),
+        "name_recognition_profile": name_only_profile,
         "warl_in_gold": len(warl_gold),
         "warl_stale": stale,
         "warl_undecidable": undecidable,
@@ -159,7 +267,10 @@ def main() -> int:
     print(f"  disagreeing                    : {len(r['disagree'])}")
     print(f"  not in the pinned gold         : {len(r['not_in_gold'])} {r['not_in_gold']}")
     print()
-    print(f"classified by name recognition alone : {len(r['name_recognition'])}")
+    prof = r["name_recognition_profile"]
+    print(f"classified by name recognition alone : {prof['count']}")
+    print(f"  their classes                  : {prof['by_class']}")
+    print(f"  their confidences              : {prof['by_confidence']}")
     print()
 
     if r["disagree"]:

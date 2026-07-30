@@ -29,6 +29,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 RESULTS = ROOT / "results"
 AC_RUNS = ROOT / "artifact_c" / "runs"
+GOLD_AUDIT = ROOT / "analysis" / "gold_classification_audit.json"
 
 RUN1 = "20260727T201408Z_gpt-4o-mini-2024-07-18"
 RUN2 = "20260727T203634Z_gpt-4o-mini-2024-07-18"
@@ -430,6 +431,91 @@ CLAIMS: list[Claim] = [
               int(m) for c in d["calls"]
               for m in re.findall(r"'X-RateLimit-Limit': '(\d+)'", c.get("error") or "")
           }), -1), tags=["nemotron"]),
+
+    # --- objective-2 gold classification audit -------------------------------
+    # These are gated because they are about to be stated in public on issue
+    # #2200, and rule 4 ("re-derive before and after touching a published
+    # number") only has force over numbers this harness actually knows about.
+    # Every one re-derives from analysis/gold_classification_audit.json, which
+    # is committed; `audit_gold_classification.py` regenerates it offline with
+    # no model call. What is NOT re-derivable from this repo alone is listed in
+    # UNVERIFIABLE below, so the split stays visible.
+    Claim("gold_audit.gold_size", 185, "GOLD-CLASSIFICATION-AUDIT.md, issue #2200",
+          GOLD_AUDIT, lambda d: d["gold_size"], tags=["gold_audit"]),
+    # The gold states its own size in metadata. Gating both means 185 has to
+    # agree with itself from two places, not just be counted once.
+    Claim("gold_audit.gold_declared_total", 185, "GOLD-CLASSIFICATION-AUDIT.md",
+          GOLD_AUDIT, lambda d: d["provenance"]["gold_declared_total"],
+          tags=["gold_audit"]),
+    Claim("gold_audit.evidence_params", 10, "GOLD-CLASSIFICATION-AUDIT.md, issue #2200",
+          GOLD_AUDIT, lambda d: d["evidence_params"], tags=["gold_audit"]),
+    Claim("gold_audit.agree", 4, "GOLD-CLASSIFICATION-AUDIT.md, issue #2200",
+          GOLD_AUDIT, lambda d: len(d["agree"]), tags=["gold_audit"]),
+    Claim("gold_audit.disagree", 4, "GOLD-CLASSIFICATION-AUDIT.md, issue #2200",
+          GOLD_AUDIT, lambda d: len(d["disagree"]), tags=["gold_audit"]),
+    # The four names are the claim, not just their count: naming the wrong
+    # parameter in public is the failure mode a bare "4" would not catch.
+    Claim("gold_audit.disagree_names",
+          ("SXLEN", "UXLEN", "VSXLEN", "VUXLEN"),
+          "GOLD-CLASSIFICATION-AUDIT.md, issue #2200",
+          GOLD_AUDIT, lambda d: tuple(sorted(r["name"] for r in d["disagree"])),
+          tags=["gold_audit"]),
+    # Each disagreeing entry is high confidence. That is what makes the pattern
+    # one-directional rather than a set of hedged guesses.
+    Claim("gold_audit.disagree_all_high", True, "issue #2200",
+          GOLD_AUDIT,
+          lambda d: all(r["confidence"] == "high" for r in d["disagree"]),
+          tags=["gold_audit"]),
+    Claim("gold_audit.not_in_gold", 2, "GOLD-CLASSIFICATION-AUDIT.md",
+          GOLD_AUDIT, lambda d: len(d["not_in_gold"]), tags=["gold_audit"]),
+    Claim("gold_audit.name_recognition", 21, "GOLD-CLASSIFICATION-AUDIT.md, issue #2200",
+          GOLD_AUDIT, lambda d: d["name_recognition_profile"]["count"],
+          tags=["gold_audit"]),
+    # The published assertion is not "21 entries used that template", it is that
+    # all 21 landed on one class at one confidence. Gate the distribution, not
+    # the headcount, or the interesting half of the sentence stays ungated.
+    Claim("gold_audit.name_recognition_classes", (("NORM_DIRECT", 21),),
+          "GOLD-CLASSIFICATION-AUDIT.md, issue #2200",
+          GOLD_AUDIT,
+          lambda d: tuple(sorted(d["name_recognition_profile"]["by_class"].items())),
+          tags=["gold_audit"]),
+    Claim("gold_audit.name_recognition_confidence", (("high", 21),),
+          "GOLD-CLASSIFICATION-AUDIT.md, issue #2200",
+          GOLD_AUDIT,
+          lambda d: tuple(sorted(d["name_recognition_profile"]["by_confidence"].items())),
+          tags=["gold_audit"]),
+    Claim("gold_audit.warl_in_gold", 26, "GOLD-CLASSIFICATION-AUDIT.md, issue #2200",
+          GOLD_AUDIT, lambda d: d["warl_in_gold"], tags=["gold_audit"]),
+    Claim("gold_audit.warl_stale", 4, "GOLD-CLASSIFICATION-AUDIT.md, issue #2200",
+          GOLD_AUDIT, lambda d: len(d["warl_stale"]), tags=["gold_audit"]),
+    Claim("gold_audit.warl_stale_names",
+          ("STVEC_MODE_DIRECT", "STVEC_MODE_VECTORED",
+           "VSTVEC_MODE_DIRECT", "VSTVEC_MODE_VECTORED"),
+          "GOLD-CLASSIFICATION-AUDIT.md, issue #2200",
+          GOLD_AUDIT, lambda d: tuple(sorted(d["warl_stale"])), tags=["gold_audit"]),
+    Claim("gold_audit.warl_undecidable", 18, "GOLD-CLASSIFICATION-AUDIT.md, issue #2200",
+          GOLD_AUDIT, lambda d: len(d["warl_undecidable"]), tags=["gold_audit"]),
+    # "18 of 26" is only honest if 4 + 4 + 18 accounts for all 26 with nothing
+    # double-counted. Gating the partition stops a future edit from moving one
+    # bucket and leaving the published ratio silently wrong.
+    Claim("gold_audit.warl_partitions", True, "issue #2200",
+          GOLD_AUDIT,
+          lambda d: (len(d["agree"]) + len(d["warl_stale"])
+                     + len(d["warl_undecidable"]) == d["warl_in_gold"]),
+          tags=["gold_audit"]),
+    Claim("gold_audit.warl_buckets_disjoint", True, "issue #2200",
+          GOLD_AUDIT,
+          lambda d: len({r["name"] for r in d["agree"]}
+                        | set(d["warl_stale"]) | set(d["warl_undecidable"]))
+                    == d["warl_in_gold"],
+          tags=["gold_audit"]),
+    # The 10 parameters the IDL decides must also account for exactly: those the
+    # gold agrees with, those it disagrees with, and those absent from the gold.
+    Claim("gold_audit.evidence_partitions", True, "issue #2200",
+          GOLD_AUDIT,
+          lambda d: (len(d["agree"]) + len(d["disagree"])
+                     + len(d["not_in_gold"]) == d["evidence_params"]),
+          tags=["gold_audit"]),
 ]
 
 # Claims that are true but cannot be re-derived from anything committed.
@@ -449,6 +535,23 @@ UNVERIFIABLE = [
      "the 429 body is truncated before the quota identifier, so the artifact "
      "shows refusal but never states the allowance; vendor documentation, not "
      "a measurement, and PRIMARY_RESULTS.md now says so"),
+    # The gold_audit.* claims above re-derive from the committed audit JSON, but
+    # regenerating that JSON from scratch needs two inputs this repo does not
+    # carry: the pinned gold (gitignored, and upstream it exists only inside the
+    # unmerged PR #1766) and a UDB checkout. Both are pinned by digest in the
+    # artifact's `provenance` block so a third party can confirm they had the
+    # same bytes, which is the most this repo can offer without vendoring them.
+    ("gold_audit.regenerable_here", "re-running the gold audit end to end",
+     "needs the gitignored pinned gold and a UDB checkout; provenance records "
+     "gold_canonical_sha256 and scanned_sha256 so the inputs are identifiable"),
+    # Confirmed by re-running the audit against an export of main's two scanned
+    # trees: every count and every name list came out identical, with a
+    # different scanned_sha256 proving the trees really did differ. That
+    # comparison is a session result, not a committed artifact.
+    ("gold_audit.branch_independent", "the audit numbers do not depend on which "
+     "UDB branch is scanned",
+     "reproduced against main during review, but only the topic-branch run is "
+     "committed, so the comparison itself is not re-derivable here"),
 ]
 
 
