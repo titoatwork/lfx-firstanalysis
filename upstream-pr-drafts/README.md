@@ -8,8 +8,8 @@ Every candidate defect found during prework is recorded here with its outcome, i
 
 | Candidate | Issue | PR | State |
 |-----------|-------|----|-------|
-| `4095` in both `unsigned_pow2` schema enums, with a regression test in the Ruby runner | [#2137](https://github.com/riscv/riscv-unified-db/issues/2137) | [#2138](https://github.com/riscv/riscv-unified-db/pull/2138) | Open |
-| `UXLEN` description named `SXLEN` as what `mstatus.UXL` changes; `SXLEN` option list used scalars against its own array schema | [#2145](https://github.com/riscv/riscv-unified-db/issues/2145) | [#2146](https://github.com/riscv/riscv-unified-db/pull/2146) | Open |
+| `4095` in both `unsigned_pow2` schema enums, with a regression test in the Ruby runner | [#2137](https://github.com/riscv/riscv-unified-db/issues/2137) | [#2138](https://github.com/riscv/riscv-unified-db/pull/2138) | **Merged** `aee74ee8` |
+| `UXLEN` description named `SXLEN` as what `mstatus.UXL` changes; `SXLEN` option list used scalars against its own array schema | [#2145](https://github.com/riscv/riscv-unified-db/issues/2145) | [#2146](https://github.com/riscv/riscv-unified-db/pull/2146) | **Merged** `278d1edc` |
 
 ## Not filed, and why
 
@@ -21,6 +21,10 @@ Every candidate defect found during prework is recorded here with its outcome, i
 | `fix-hpm-mcountinhibit-typo/` | Subsumed by the HPM_EVENTS candidate above, which covers the same file. Filing it separately would have been noise. |
 
 The draft YAML and PR bodies are kept as-is so the reasoning stays auditable. They are **not** pending work.
+
+This directory covers only the candidates drafted here before filing. The complete
+upstream record, four merged PRs, three open, nine issues and the reviews carried
+into other people's merged work, is in the [root README](../README.md#upstream-riscvriscv-unified-db).
 
 ## Related
 

@@ -20,10 +20,11 @@ Ibteshamul Haque, [@titoatwork](https://github.com/titoatwork)
 
 No credentials, no network, no model calls, seconds. It re-derives **every published number in this repository from committed artifacts** and exits non-zero if any figure disagrees with the file it came from. It also runs the fail-closed challenge gate and the evaluation fixtures.
 
-Four claims are reported as **not checkable** rather than passing quietly. `./verify.sh --list` shows the whole claim table and which artifact each number comes from.
+Six claims are reported as **not checkable** rather than passing quietly. `./verify.sh --list` shows the whole claim table and which artifact each number comes from.
 
-**AI assistance.** This work was done with an AI coding assistant, recorded in the
-`Co-Authored-By` trailers on 18 of the 93 commits. Given that the subject is
+**AI assistance.** This work was done with an AI coding assistant. Twenty of the 98
+commits carry an explicit `Co-Authored-By` trailer; the assistance was not confined
+to those, and later commits record it here rather than one by one. Given that the subject is
 AI-assisted extraction, stating it plainly seems better than leaving a reader to
 find it. What that changes is nothing you have to take on trust: every number
 re-derives from a committed artifact, every upstream claim links to the file and
@@ -97,6 +98,7 @@ Reproduce with `python artifact_c/scripts/decompose_matches.py`, deterministic a
 | 4 | [Upstream work](#upstream-riscvriscv-unified-db) | **4 PRs merged**, 3 open and green, 9 issues filed, and reviews carried into 3 other people's merged PRs |
 | 5 | [Challenge pack](./riscv-param-extraction/challenge/) | 4 fail-closed fixtures, 4 hard negatives, 10-model live matrix with its failures reported |
 | 6 | [Claim ledger](./application-packet/MEASURED-CLAIM-LEDGER.md) | every claim mapped to a source, plus the claims that are forbidden and why |
+| 7 | [Classification audits](./riscv-param-extraction/analysis/) | two independent methods, one reading the IDL and one reading the schema, agreeing on the same four mislabelled parameters out of 227 |
 
 ---
 
@@ -193,11 +195,16 @@ Spring Part I (extract → analyze → spreadsheet) is the work of [@ishaan-aror
 riscv-param-extraction/
   artifact_c/        preregistered 4-arm experiment, runs, results
   challenge/         coding challenge, CI gate, live matrix, holdout
+  analysis/          audits of the gold's own classification labels
   docs/metrics.md    measured tables
-  scripts/           verify_claims.py
+  scripts/           verify_claims.py and the two classification audits
   export/ drafts/    Artifact B
+  pipeline/          agreement and staging code
+  manifests/         one file per run: model, tokens, cost, commit
+  results/           committed per-chunk outputs and alignment files
   workflow_slice/    evaluation fixtures, review-envelope slice
 application-packet/  essay, nine-week plan, claim ledger
+upstream-pr-drafts/  PR bodies and YAML drafted before filing upstream
 verify.sh            re-derives every published number
 ```
 
