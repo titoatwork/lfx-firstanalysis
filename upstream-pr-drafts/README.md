@@ -10,6 +10,7 @@ Every candidate defect found during prework is recorded here with its outcome, i
 |-----------|-------|----|-------|
 | `4095` in both `unsigned_pow2` schema enums, with a regression test in the Ruby runner | [#2137](https://github.com/riscv/riscv-unified-db/issues/2137) | [#2138](https://github.com/riscv/riscv-unified-db/pull/2138) | **Merged** `aee74ee8` |
 | `UXLEN` description named `SXLEN` as what `mstatus.UXL` changes; `SXLEN` option list used scalars against its own array schema | [#2145](https://github.com/riscv/riscv-unified-db/issues/2145) | [#2146](https://github.com/riscv/riscv-unified-db/pull/2146) | **Merged** `278d1edc` |
+| `VSXLEN` and `VUXLEN` bound only the top of their range, so a hart can be configured with VU-mode wider than VS-mode | [#2254](https://github.com/riscv/riscv-unified-db/issues/2254) | [#2255](https://github.com/riscv/riscv-unified-db/pull/2255) | Open |
 
 ## Not filed, and why
 

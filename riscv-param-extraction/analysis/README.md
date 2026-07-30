@@ -62,7 +62,14 @@ re-derive from the committed JSON:
 python scripts/verify_claims.py --tag gold_audit
 ```
 
-The schema-shape audit's counts are **not gated yet**. They re-derive by re-running
-the script against a UnifiedDB checkout, and its artifact is committed, but no
-`Claim(...)` asserts them, so treat them as reproducible rather than guarded until
-that lands.
+The schema-shape audit's counts are gated too, under their own tag:
+
+```bash
+python scripts/verify_claims.py --tag schema_shapes
+```
+
+That set includes the convergence itself as an invariant: the `set_enum` members
+the gold calls `NORM_DIRECT` must equal the `disagree` list in the other audit's
+artifact. The two are derived from different files by different logic, so if a
+future edit breaks the agreement the harness fails rather than the two documents
+quietly disagreeing.

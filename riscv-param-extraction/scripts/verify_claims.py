@@ -30,6 +30,13 @@ ROOT = Path(__file__).resolve().parents[1]
 RESULTS = ROOT / "results"
 AC_RUNS = ROOT / "artifact_c" / "runs"
 GOLD_AUDIT = ROOT / "analysis" / "gold_classification_audit.json"
+SCHEMA_SHAPES = ROOT / "analysis" / "param_schema_shapes.json"
+
+
+def _idl_audit_dissenters() -> tuple:
+    """The parameters the IDL-consumption audit says the gold labels wrongly."""
+    d = json.loads(GOLD_AUDIT.read_text(encoding="utf-8"))
+    return tuple(sorted(r["name"] for r in d["disagree"]))
 
 RUN1 = "20260727T201408Z_gpt-4o-mini-2024-07-18"
 RUN2 = "20260727T203634Z_gpt-4o-mini-2024-07-18"
@@ -516,6 +523,66 @@ CLAIMS: list[Claim] = [
           lambda d: (len(d["agree"]) + len(d["disagree"])
                      + len(d["not_in_gold"]) == d["evidence_params"]),
           tags=["gold_audit"]),
+
+    # --- schema-shape audit, the second and independent route ------------------
+    # These were left ungated when the script landed. They are gated now because
+    # the schema-shape result is cited in PARAM-SCHEMA-SHAPES.md, in the claim
+    # ledger, and in a public comment on issue #2251, and an ungated number that
+    # three documents rely on is exactly what this harness exists to prevent.
+    Claim("schema_shapes.params_scanned", 227, "PARAM-SCHEMA-SHAPES.md",
+          SCHEMA_SHAPES, lambda d: d["params_scanned"], tags=["schema_shapes"]),
+    Claim("schema_shapes.array_params", 15, "PARAM-SCHEMA-SHAPES.md",
+          SCHEMA_SHAPES, lambda d: d["array_params"], tags=["schema_shapes"]),
+    Claim("schema_shapes.set_enum_total", 9, "PARAM-SCHEMA-SHAPES.md, issue #2251",
+          SCHEMA_SHAPES, lambda d: d["summary"]["set_enum"]["total"],
+          tags=["schema_shapes"]),
+    Claim("schema_shapes.bitmask_total", 5, "PARAM-SCHEMA-SHAPES.md",
+          SCHEMA_SHAPES, lambda d: d["summary"]["bitmask"]["total"],
+          tags=["schema_shapes"]),
+    Claim("schema_shapes.set_integer_total", 1, "PARAM-SCHEMA-SHAPES.md",
+          SCHEMA_SHAPES, lambda d: d["summary"]["set_integer"]["total"],
+          tags=["schema_shapes"]),
+    # Every array parameter must land in exactly one of the three shapes. If a
+    # fourth shape ever appears, "all 15 fall into three shapes" stops being true
+    # and the writeup's central sentence is wrong.
+    Claim("schema_shapes.families_partition", True, "PARAM-SCHEMA-SHAPES.md",
+          SCHEMA_SHAPES,
+          lambda d: sum(g["total"] for g in d["summary"].values()) == d["array_params"],
+          tags=["schema_shapes"]),
+    # The published result is that two shapes are labelled consistently and
+    # exactly one is split. Gate all three verdicts, not just the interesting one.
+    Claim("schema_shapes.bitmask_consistent", True, "PARAM-SCHEMA-SHAPES.md",
+          SCHEMA_SHAPES, lambda d: d["summary"]["bitmask"]["consistent"],
+          tags=["schema_shapes"]),
+    Claim("schema_shapes.set_integer_consistent", True, "PARAM-SCHEMA-SHAPES.md",
+          SCHEMA_SHAPES, lambda d: d["summary"]["set_integer"]["consistent"],
+          tags=["schema_shapes"]),
+    Claim("schema_shapes.set_enum_is_split", False, "PARAM-SCHEMA-SHAPES.md",
+          SCHEMA_SHAPES, lambda d: d["summary"]["set_enum"]["consistent"],
+          tags=["schema_shapes"]),
+    Claim("schema_shapes.bitmask_all_csr_rw", (("NORM_CSR_RW", 5),),
+          "PARAM-SCHEMA-SHAPES.md",
+          SCHEMA_SHAPES,
+          lambda d: tuple(sorted(d["summary"]["bitmask"]["labels"].items())),
+          tags=["schema_shapes"]),
+    # The convergence is the finding, so it is gated as an invariant rather than
+    # left as prose. The set_enum members the gold calls NORM_DIRECT must be
+    # exactly the set the IDL-consumption audit flags, derived from a different
+    # artifact by different logic. If a future edit breaks the agreement, this
+    # fails loudly instead of the two documents quietly disagreeing.
+    Claim("schema_shapes.converges_with_idl_audit", True,
+          "PARAM-SCHEMA-SHAPES.md, issue #2251",
+          SCHEMA_SHAPES,
+          lambda d: tuple(sorted(r["name"] for r in d["groups"]["set_enum"]
+                                 if r["gold"] == "NORM_DIRECT")) == _idl_audit_dissenters(),
+          tags=["schema_shapes"]),
+    Claim("schema_shapes.dissenters",
+          ("SXLEN", "UXLEN", "VSXLEN", "VUXLEN"),
+          "PARAM-SCHEMA-SHAPES.md, issue #2251",
+          SCHEMA_SHAPES,
+          lambda d: tuple(sorted(r["name"] for r in d["groups"]["set_enum"]
+                                 if r["gold"] == "NORM_DIRECT")),
+          tags=["schema_shapes"]),
 ]
 
 # Claims that are true but cannot be re-derived from anything committed.
