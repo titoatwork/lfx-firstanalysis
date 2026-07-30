@@ -1,0 +1,147 @@
+{
+  "gold_size": 185,
+  "evidence_params": 10,
+  "agree": [
+    {
+      "name": "HPM_EVENTS",
+      "gold": "NORM_CSR_WARL",
+      "derived": "NORM_CSR_WARL",
+      "idioms": [
+        "membership"
+      ],
+      "confidence": "high",
+      "reason": "Referenced in sw_write() of mhpmevent14.EVENT"
+    },
+    {
+      "name": "MSTATUS_FS_LEGAL_VALUES",
+      "gold": "NORM_CSR_WARL",
+      "derived": "NORM_CSR_WARL",
+      "idioms": [
+        "cardinality",
+        "membership"
+      ],
+      "confidence": "high",
+      "reason": "Referenced in sw_write() of mstatus.FS"
+    },
+    {
+      "name": "MSTATUS_VS_LEGAL_VALUES",
+      "gold": "NORM_CSR_WARL",
+      "derived": "NORM_CSR_WARL",
+      "idioms": [
+        "cardinality",
+        "membership"
+      ],
+      "confidence": "high",
+      "reason": "Referenced in sw_write() of mstatus.VS"
+    },
+    {
+      "name": "MTVEC_MODES",
+      "gold": "NORM_CSR_WARL",
+      "derived": "NORM_CSR_WARL",
+      "idioms": [
+        "cardinality",
+        "membership"
+      ],
+      "confidence": "high",
+      "reason": "Referenced in sw_write() of mtvec.BASE"
+    }
+  ],
+  "disagree": [
+    {
+      "name": "SXLEN",
+      "gold": "NORM_DIRECT",
+      "derived": "NORM_CSR_WARL",
+      "idioms": [
+        "cardinality",
+        "membership"
+      ],
+      "confidence": "high",
+      "reason": "Well-known architectural parameter 'SXLEN'"
+    },
+    {
+      "name": "UXLEN",
+      "gold": "NORM_DIRECT",
+      "derived": "NORM_CSR_WARL",
+      "idioms": [
+        "cardinality"
+      ],
+      "confidence": "high",
+      "reason": "Well-known architectural parameter 'UXLEN'"
+    },
+    {
+      "name": "VSXLEN",
+      "gold": "NORM_DIRECT",
+      "derived": "NORM_CSR_WARL",
+      "idioms": [
+        "cardinality",
+        "membership"
+      ],
+      "confidence": "high",
+      "reason": "Well-known architectural parameter 'VSXLEN'"
+    },
+    {
+      "name": "VUXLEN",
+      "gold": "NORM_DIRECT",
+      "derived": "NORM_CSR_WARL",
+      "idioms": [
+        "cardinality"
+      ],
+      "confidence": "high",
+      "reason": "Well-known architectural parameter 'VUXLEN'"
+    }
+  ],
+  "not_in_gold": [
+    "STVEC_MODES",
+    "VSTVEC_MODES"
+  ],
+  "name_recognition": [
+    "ARCH_ID_VALUE",
+    "ASID_WIDTH",
+    "CACHE_BLOCK_SIZE",
+    "CONFIG_PTR_ADDRESS",
+    "ELEN",
+    "IMP_ID_VALUE",
+    "MXLEN",
+    "NUM_EXTERNAL_GUEST_INTERRUPTS",
+    "NUM_PMP_ENTRIES",
+    "PHYS_ADDR_WIDTH",
+    "PMA_GRANULARITY",
+    "PMLEN",
+    "PMP_GRANULARITY",
+    "SXLEN",
+    "UXLEN",
+    "VENDOR_ID_BANK",
+    "VENDOR_ID_OFFSET",
+    "VLEN",
+    "VMID_WIDTH",
+    "VSXLEN",
+    "VUXLEN"
+  ],
+  "warl_in_gold": 26,
+  "warl_stale": [
+    "STVEC_MODE_DIRECT",
+    "STVEC_MODE_VECTORED",
+    "VSTVEC_MODE_DIRECT",
+    "VSTVEC_MODE_VECTORED"
+  ],
+  "warl_undecidable": [
+    "DBG_HCONTEXT_WIDTH",
+    "DBG_SCONTEXT_WIDTH",
+    "FORCE_UPGRADE_CBO_INVAL_TO_FLUSH",
+    "GSTAGE_MODE_BARE",
+    "IGNORE_INVALID_VSATP_MODE_WRITES_WHEN_V_EQ_ZERO",
+    "JVT_BASE_MASK",
+    "JVT_BASE_TYPE",
+    "JVT_READ_ONLY",
+    "MCID_WIDTH",
+    "MTVEC_BASE_ALIGNMENT_DIRECT",
+    "MTVEC_BASE_ALIGNMENT_VECTORED",
+    "MTVEC_ILLEGAL_WRITE_BEHAVIOR",
+    "RCID_WIDTH",
+    "SATP_MODE_BARE",
+    "SV32X4_TRANSLATION",
+    "SV39X4_TRANSLATION",
+    "SV48X4_TRANSLATION",
+    "SV57X4_TRANSLATION"
+  ]
+}
