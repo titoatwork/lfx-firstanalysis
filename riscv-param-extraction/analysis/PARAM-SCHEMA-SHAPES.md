@@ -53,6 +53,29 @@ NORM_DIRECT     SXLEN  UXLEN  VSXLEN  VUXLEN
 not in gold     STVEC_MODES  VSTVEC_MODES
 ```
 
+## This reproduces a claim already made in public
+
+The nine `set_enum` parameters are not a new discovery here. They were listed
+upstream on 2026-07-28, in a
+[comment on #2097](https://github.com/riscv/riscv-unified-db/pull/2097#issuecomment-5109644710)
+written by reading `param_schema.json` by hand: `MSTATUS_FS_LEGAL_VALUES`,
+`MSTATUS_VS_LEGAL_VALUES`, `MTVEC_MODES`, `STVEC_MODES`, `VSTVEC_MODES`,
+`SXLEN`, `UXLEN`, `VSXLEN` and `VUXLEN`.
+
+This scan selects the same nine mechanically, two days later, from a rule stated
+before the list was consulted. Nine for nine, no additions and no drops.
+
+The same comment predicted the other half of the result, that the boolean-array
+counter parameters are mutability parameters belonging under `NORM_CSR_RW`
+rather than legal-value sets. The `bitmask` group here is `COUNTINHIBIT_EN`,
+`HCOUNTENABLE_EN`, `HPM_COUNTER_EN`, `MCOUNTENABLE_EN` and `SCOUNTENABLE_EN`,
+and the gold labels all five `NORM_CSR_RW`. Five for five.
+
+That is the reason to keep this script rather than treat it as a duplicate: a
+claim argued from a hand reading, restated as a rule, and then re-derived
+without reference to the original list, is a different quality of evidence than
+either half alone.
+
 ## Why this is the finding
 
 The four dissenting parameters are **exactly** the four that the IDL-consumption
