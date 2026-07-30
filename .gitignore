@@ -101,6 +101,8 @@ upstream-pr-drafts/**/COMMENT.md
 # written for us rather than for a reader. PR_BODY.md files stay tracked
 # because they are drafts of text intended to be public anyway.
 upstream-pr-drafts/**/ISSUE.md
+# Slack reply text: chat content, not part of the mentor-facing surface.
+upstream-pr-drafts/**/REPLY.md
 _tmp_*
 **/_scratch*
 
