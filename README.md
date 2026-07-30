@@ -22,9 +22,9 @@ No credentials, no network, no model calls, seconds. It re-derives **every publi
 
 Six claims are reported as **not checkable** rather than passing quietly. `./verify.sh --list` shows the whole claim table and which artifact each number comes from.
 
-**AI assistance.** This work was done with an AI coding assistant. Twenty of the 98
-commits carry an explicit `Co-Authored-By` trailer; the assistance was not confined
-to those, and later commits record it here rather than one by one. Given that the subject is
+**AI assistance.** This work was done with an AI coding assistant. Twenty commits
+carry an explicit `Co-Authored-By` trailer, and the assistance was not confined to
+those, so treat this paragraph rather than the trailers as the disclosure. Given that the subject is
 AI-assisted extraction, stating it plainly seems better than leaving a reader to
 find it. What that changes is nothing you have to take on trust: every number
 re-derives from a committed artifact, every upstream claim links to the file and

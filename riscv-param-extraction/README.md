@@ -5,7 +5,9 @@ Public selection surface for [LFX Mentorship Part II — AI-assisted extraction 
 **Home:** [titoatwork/lfx-firstanalysis](https://github.com/titoatwork/lfx-firstanalysis) · path `riscv-param-extraction/`  
 **Not a second product repo.** Credit Part I to [@ishaan-arora-1](https://github.com/ishaan-arora-1) / [riscv/riscv-unified-db](https://github.com/riscv/riscv-unified-db) PRs #1765–#1832, this work **reproduces and extends**, it does not claim Spring authorship.
 
-Part I already shipped extract → analyze → spreadsheet on open PR branches. This folder adds: **multi-model measurement** (Artifact A), **export of spreadsheet rows to draft UDB param YAML** (Artifact B), and **run manifests** (Obj 3).
+Part I already shipped extract → analyze → spreadsheet on open PR branches. This folder adds: **multi-model measurement** (Artifact A), **export of spreadsheet rows to draft UDB param YAML** (Artifact B), **run manifests** (Obj 3), a **preregistered four-arm experiment** on run-to-run stability (Artifact C), and two **audits of the gold's own classification labels** ([`analysis/`](analysis/)).
+
+Per-class figures are given as fractions rather than percentages throughout. The WARL denominator is 24, where one item moves the rate by four points, and the same class moved by 7 between two byte-identical runs.
 
 > **Every recall figure here is a grounding score.** The Part I prompts supply the complete list of 185 gold parameter names, set-identical to the ground truth. Recall without that catalogue is unmeasured; see [`artifact_c/PREREGISTRATION.md`](artifact_c/PREREGISTRATION.md) and the note at the top of [`docs/metrics.md`](docs/metrics.md).
 
@@ -16,10 +18,10 @@ Part I already shipped extract → analyze → spreadsheet on open PR branches. 
 | Work | Result |
 |------|--------|
 | Phase 1 GT (live UDB) | **223** params; 100% any / **91%** strong match |
-| Part I v2 remeasure (GT 185) | adj recall **72.9%**, class acc **88.4%**, WARL **50%** |
+| Part I v2 remeasure (GT 185) | adj recall **72.9%**, class acc **88.4%**, WARL **12/24** |
 | Same LLM output vs live GT 223 | adj recall **64.2%**, class acc **88.6%**, WARL **50%** |
 | Pilot machine.adoc | **COMPLETE_WITH_MODEL_SPLIT**. 021 **gpt-4o** (6 params), 020 **gpt-4o-mini** (9 params); total ~**$0.05** |
-| **Artifact A** (gpt-4o-mini, 60 chunks, GT185) | Primary finding: under an **identical** v2 prompt, name Jaccard vs Claude is only **3.8%** (21 shared); high-conf “new” overlap **9** of ~220 each, see [docs/metrics.md §5.0](docs/metrics.md). Also: adj recall **32.2%** vs Claude **72.9%** (mini **worse**, honest); WARL **12.5%**; ~**$0.16** |
+| **Artifact A** (gpt-4o-mini, 60 chunks, GT185) | Primary finding: under an **identical** v2 prompt, name Jaccard vs Claude is only **3.8%** (21 shared); high-conf “new” overlap **9** of ~220 each, see [docs/metrics.md §5.0](docs/metrics.md). Also: adj recall **32.2%** vs Claude **72.9%** (mini **worse**, honest); WARL **3/24**; ~**$0.16** |
 | `parameters.csv` named=yes | **87** rows / **83** unique (not 97) |
 | Artifact B named export | **83/83** schema-valid |
 | Artifact B new (limit 20) | **20/20** schema-valid |
