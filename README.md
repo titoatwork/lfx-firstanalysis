@@ -210,4 +210,6 @@ verify.sh            re-derives every published number
 
 ## License
 
-See [`riscv-param-extraction/LICENSE`](./riscv-param-extraction/LICENSE). Vendored UDB schemas retain upstream BSD-3-Clause-Clear notices.
+BSD 3-Clause Clear, the same licence UnifiedDB uses. See [`LICENSE`](./LICENSE); the
+copy under [`riscv-param-extraction/`](./riscv-param-extraction/LICENSE) is identical.
+Vendored UDB schemas retain upstream BSD-3-Clause-Clear notices.
