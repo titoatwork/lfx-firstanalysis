@@ -34,7 +34,7 @@ recall figure measures grounding rather than discovery. I corrected my own claim
 Under that condition the remeasure is 72.9% on the pinned gold, with WARL worst at
 50%, and prompt-only WARL guidance made it worse rather than better.
 
-Upstream: four PRs merged, three open, and a review comment of mine on #2090 was
+Upstream: five PRs merged, two open, and a review comment of mine on #2090 was
 adopted by the maintainer into a PR of his own. I can commit ≥30 hours/week.
 ```
 
@@ -89,7 +89,7 @@ live matrix that reports its CSR false positives. A temporal holdout harness who
 locked run returned 0/10 in both arms, an exploratory null rather than evidence
 for anything.
 
-Upstream. Four PRs merged, three open. #2137/#2138 fixes a non-power-of-two value
+Upstream. Five PRs merged, two open. #2137/#2138 fixes a non-power-of-two value
 in both unsigned_pow2 schema enums and ships a regression test rather than a bare
 data edit. #2145/#2146 corrects two parameter descriptions found while triaging an
 automated sweep over all 227 param files; the sweep's other flag turned out to be

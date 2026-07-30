@@ -23,7 +23,7 @@ Every candidate defect found during prework is recorded here with its outcome, i
 The draft YAML and PR bodies are kept as-is so the reasoning stays auditable. They are **not** pending work.
 
 This directory covers only the candidates drafted here before filing. The complete
-upstream record, four merged PRs, three open, nine issues and the reviews carried
+upstream record, five merged PRs, two open, nine issues and the reviews carried
 into other people's merged work, is in the [root README](../README.md#upstream-riscvriscv-unified-db).
 
 ## Related

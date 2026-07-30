@@ -95,7 +95,7 @@ Reproduce with `python artifact_c/scripts/decompose_matches.py`, deterministic a
 | 1 | [`verify.sh`](./verify.sh) | every published number re-derives from a committed artifact |
 | 2 | [Artifact C results](./riscv-param-extraction/artifact_c/results/PRIMARY_RESULTS.md) | the variance finding, the match decomposition, and the withdrawn one |
 | 3 | [`docs/metrics.md`](./riscv-param-extraction/docs/metrics.md) | all measured tables, each with its condition stated |
-| 4 | [Upstream work](#upstream-riscvriscv-unified-db) | **4 PRs merged**, 3 open and green, 9 issues filed, and reviews carried into 3 other people's merged PRs |
+| 4 | [Upstream work](#upstream-riscvriscv-unified-db) | **5 PRs merged**, 2 open and green, 9 issues filed, and reviews carried into 3 other people's merged PRs |
 | 5 | [Challenge pack](./riscv-param-extraction/challenge/) | 4 fail-closed fixtures, 4 hard negatives, 10-model live matrix with its failures reported |
 | 6 | [Claim ledger](./application-packet/MEASURED-CLAIM-LEDGER.md) | every claim mapped to a source, plus the claims that are forbidden and why |
 | 7 | [Classification audits](./riscv-param-extraction/analysis/) | two independent methods, one reading the IDL and one reading the schema, agreeing on the same four mislabelled parameters out of 227 |
@@ -104,9 +104,8 @@ Reproduce with `python artifact_c/scripts/decompose_matches.py`, deterministic a
 
 ## Upstream (riscv/riscv-unified-db)
 
-**Four PRs merged, three open with every check green.** All four merges landed
-within 36 hours of each other, and each closed an issue I had filed with the
-defect traced to a file and line first.
+**Five PRs merged, two open with every check green.** Each closed an issue I had
+filed with the defect traced to a file and line first, and none has been rejected.
 
 ### Merged
 
@@ -116,13 +115,13 @@ defect traced to a file and line first.
 | [#2145](https://github.com/riscv/riscv-unified-db/issues/2145) → [#2146](https://github.com/riscv/riscv-unified-db/pull/2146) `278d1edc` | `UXLEN`'s description named `SXLEN` as what `mstatus.UXL` changes. Found while triaging a sweep whose other flag was verified **correct** and deliberately not filed |
 | [#2188](https://github.com/riscv/riscv-unified-db/issues/2188) → [#2189](https://github.com/riscv/riscv-unified-db/pull/2189) `57d70cfa` | `CACHE_BLOCK_SIZE` admitted any integer to 2^64-1, though the CMO spec defines a cache block as a naturally aligned power of two |
 | [#2214](https://github.com/riscv/riscv-unified-db/issues/2214) → [#2215](https://github.com/riscv/riscv-unified-db/pull/2215) `f1669021` | `SV32_VSMODE_TRANSLATION`'s requirement concluded `SV39`. Its own comment and `reason` both said Sv32, and it rejected a legal hart whose 32-bit guests use Sv32 |
+| [#2226](https://github.com/riscv/riscv-unified-db/issues/2226) → [#2227](https://github.com/riscv/riscv-unified-db/pull/2227) `86e68458` | `vstval` and `vstvec` carried `priv_mode: S`, gating field widths on `mstatus.SXL` rather than `hstatus.VSXL`. The two differ whenever SXLEN is 64 and VSXLEN is 32 |
 
 ### Open, all checks green
 
 | PR | What it does |
 |---|---|
 | [#2212](https://github.com/riscv/riscv-unified-db/pull/2212) | Closes [#2199](https://github.com/riscv/riscv-unified-db/issues/2199). `Idl::Type` resolved only `uint32`/`uint64` and raised on anything else, so no parameter could reference the shared `unsigned_pow2` defs even though the Z3 path already accepted them |
-| [#2227](https://github.com/riscv/riscv-unified-db/pull/2227) | Closes [#2226](https://github.com/riscv/riscv-unified-db/issues/2226). `vstval` and `vstvec` carried `priv_mode: S`, gating field widths on `mstatus.SXL` instead of `hstatus.VSXL` |
 | [#2164](https://github.com/riscv/riscv-unified-db/pull/2164) | Eleven frozen evaluation fixtures, invited by the author of #2097. Placement raised as [#2158](https://github.com/riscv/riscv-unified-db/issues/2158) rather than assumed |
 
 ### Reviews of other contributors' work
