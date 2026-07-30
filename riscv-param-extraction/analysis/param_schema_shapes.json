@@ -1,0 +1,120 @@
+{
+  "provenance": {
+    "gold_path": "../.udb-corpus/param_extraction/data/ground_truth.json",
+    "gold_canonical_sha256": "acd73bd6d93ab01e2a1c83fca25549e1b604aae0e4625f899ee0616a04991505",
+    "udb_param_files": 227
+  },
+  "params_scanned": 227,
+  "array_params": 15,
+  "groups": {
+    "bitmask": [
+      {
+        "name": "COUNTINHIBIT_EN",
+        "gold": "NORM_CSR_RW",
+        "confidence": "high"
+      },
+      {
+        "name": "HCOUNTENABLE_EN",
+        "gold": "NORM_CSR_RW",
+        "confidence": "high"
+      },
+      {
+        "name": "HPM_COUNTER_EN",
+        "gold": "NORM_CSR_RW",
+        "confidence": "high"
+      },
+      {
+        "name": "MCOUNTENABLE_EN",
+        "gold": "NORM_CSR_RW",
+        "confidence": "high"
+      },
+      {
+        "name": "SCOUNTENABLE_EN",
+        "gold": "NORM_CSR_RW",
+        "confidence": "high"
+      }
+    ],
+    "set_enum": [
+      {
+        "name": "MSTATUS_FS_LEGAL_VALUES",
+        "gold": "NORM_CSR_WARL",
+        "confidence": "high"
+      },
+      {
+        "name": "MSTATUS_VS_LEGAL_VALUES",
+        "gold": "NORM_CSR_WARL",
+        "confidence": "high"
+      },
+      {
+        "name": "MTVEC_MODES",
+        "gold": "NORM_CSR_WARL",
+        "confidence": "high"
+      },
+      {
+        "name": "STVEC_MODES",
+        "gold": null,
+        "confidence": null
+      },
+      {
+        "name": "SXLEN",
+        "gold": "NORM_DIRECT",
+        "confidence": "high"
+      },
+      {
+        "name": "UXLEN",
+        "gold": "NORM_DIRECT",
+        "confidence": "high"
+      },
+      {
+        "name": "VSTVEC_MODES",
+        "gold": null,
+        "confidence": null
+      },
+      {
+        "name": "VSXLEN",
+        "gold": "NORM_DIRECT",
+        "confidence": "high"
+      },
+      {
+        "name": "VUXLEN",
+        "gold": "NORM_DIRECT",
+        "confidence": "high"
+      }
+    ],
+    "set_integer": [
+      {
+        "name": "HPM_EVENTS",
+        "gold": "NORM_CSR_WARL",
+        "confidence": "high"
+      }
+    ]
+  },
+  "summary": {
+    "bitmask": {
+      "total": 5,
+      "in_gold": 5,
+      "labels": {
+        "NORM_CSR_RW": 5
+      },
+      "consistent": true
+    },
+    "set_enum": {
+      "total": 9,
+      "in_gold": 7,
+      "labels": {
+        "NORM_CSR_WARL": 3,
+        "NORM_DIRECT": 4,
+        "not_in_gold": 2
+      },
+      "consistent": false
+    },
+    "set_integer": {
+      "total": 1,
+      "in_gold": 1,
+      "labels": {
+        "NORM_CSR_WARL": 1
+      },
+      "consistent": true
+    }
+  }
+}
