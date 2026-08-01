@@ -6,7 +6,7 @@ Every number in these documents traces to a row in the claim ledger, and every l
 
 | File | Contents |
 |------|----------|
-| [MEASURED-CLAIM-LEDGER.md](./MEASURED-CLAIM-LEDGER.md) | Every claim mapped to its source, forbidden wordings, and the full upstream evidence trail (merged/open PRs, issues, mentorship threads, reviews on others' work) as of 2026-08-01 |
+| [MEASURED-CLAIM-LEDGER.md](./MEASURED-CLAIM-LEDGER.md) | Mentor-facing evidence: measurement limits, metric pointers, and upstream PR/issue/review trail (census 2026-08-01) |
 | [ESSAY-PART-II.md](./ESSAY-PART-II.md) | Application answers |
 | [NINE-WEEK-PLAN.md](./NINE-WEEK-PLAN.md) | Term plan mapped to the five official objectives |
 | [TECHNICAL-FAQ.md](./TECHNICAL-FAQ.md) | Definitions and the questions this work invites, answered directly |
