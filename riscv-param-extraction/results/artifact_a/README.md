@@ -11,11 +11,9 @@ repository. For three days `metrics.md` and the README described the per-chunk o
 files as lost, and `verify_claims.py` carried `artifactA.exclusive_sets` as UNVERIFIABLE on that basis.
 
 They were not lost. They were sitting uncommitted in a `git stash` on the local UDB clone, on branch
-`lfx-1832`, in the stash's untracked-files parent. Nobody ran `git stash list`.
+`lfx-1832`, in the stash's untracked-files parent. They were recovered from a local `git stash` on the UDB clone (`lfx-1832`).
 
-The lesson is the one already written into the retention rule: an artefact that only exists in one
-place, uncommitted, is one careless command from gone, and "I could not find it" is not the same as
-"it does not exist."
+Retention rule: if a number is published, the artifact that produced it is committed here.
 
 ## What is here
 

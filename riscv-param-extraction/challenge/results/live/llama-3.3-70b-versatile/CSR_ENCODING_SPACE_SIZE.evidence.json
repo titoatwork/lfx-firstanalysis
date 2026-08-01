@@ -1,9 +1,0 @@
-{
-  "name": "CSR_ENCODING_SPACE_SIZE",
-  "snippet": "csr_address_mapping.txt",
-  "quote": "a 12-bit encoding space (csr[11:0]) for up to 4,096 CSRs",
-  "model": "llama-3.3-70b-versatile",
-  "provider": "groq",
-  "tier": "groq_free",
-  "notes": "FALSE POSITIVE: fixed CSR address-mapping convention, not an implementation-configurable UDB architectural parameter."
-}

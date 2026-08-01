@@ -1,9 +1,0 @@
-{
-  "name": "MAX_CSRS",
-  "snippet": "csr_address_mapping.txt",
-  "quote": "up to 4,096 CSRs",
-  "model": "llama-3.3-70b-versatile",
-  "provider": "groq",
-  "tier": "groq_free",
-  "notes": "FALSE POSITIVE: fixed CSR address-mapping convention, not an implementation-configurable UDB architectural parameter."
-}

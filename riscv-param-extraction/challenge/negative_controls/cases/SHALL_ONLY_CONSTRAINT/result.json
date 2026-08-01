@@ -1,4 +1,0 @@
-{
-  "parameters": [],
-  "reason": "Shall-only uniformity constraint; not a free parameter by itself (parameterization lives with implementation-specific size elsewhere)."
-}

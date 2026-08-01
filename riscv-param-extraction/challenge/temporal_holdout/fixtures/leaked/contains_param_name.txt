@@ -1,2 +1,0 @@
-Intentional leakage fixture for fail-closed tests.
-This context illegally mentions MTVEC_MODES and should be rejected by leak_scan.

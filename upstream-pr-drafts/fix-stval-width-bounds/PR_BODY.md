@@ -1,15 +1,14 @@
-# PR: fix(param): STVAL_WIDTH bounds match MTVAL_WIDTH
+# PR body (not filed) — STVAL_WIDTH bounds
 
-**Target:** `riscv/riscv-unified-db`  
-**Branch:** `fix/stval-width-bounds` (local commit `f62eacd0` on clone)  
-**Closes:** #2102  
-**Author:** Ibteshamul Haque · `titoatwork`
+**Outcome:** not filed. Covered by [#2103](https://github.com/riscv/riscv-unified-db/pull/2103) for [#2102](https://github.com/riscv/riscv-unified-db/issues/2102).
+
+Draft below is historical.
+
+---
 
 ## Summary
 
-`STVAL_WIDTH` is the number of implemented bits in `stval` (a bit-width), but
-its schema used `maximum: 2^64-1` with **no minimum**. The byte-size idiom
-used for parameters like `CACHE_BLOCK_SIZE`, not for CSR widths.
+`STVAL_WIDTH` is the number of implemented bits in `stval` (a bit-width), but its schema used `maximum: 2^64-1` with **no minimum**. That is the byte-size idiom used for parameters like `CACHE_BLOCK_SIZE`, not for CSR widths.
 
 Bring it to parity with the M-mode twin `MTVAL_WIDTH`:
 
@@ -19,8 +18,7 @@ Bring it to parity with the M-mode twin `MTVAL_WIDTH`:
 | `maximum` | `18446744073709551615` | `64` |
 | `long_name` | `TODO` | `Width of the stval CSR` |
 
-Spec: `stval` is an SXLEN-bit register (SXLEN ∈ {32,64}); a width of 2^64−1
-bits is not representable.
+Spec: `stval` is an SXLEN-bit register (SXLEN ∈ {32,64}); a width of 2^64−1 bits is not representable.
 
 ## Diff scope
 
@@ -29,12 +27,6 @@ bits is not representable.
 
 ## Test plan
 
-- [ ] Visual parity with `MTVAL_WIDTH.yaml` bounds
-- [ ] `./do test:schema` (or project equivalent) still passes
-- [ ] No other files changed
-
-## Suggested title
-
-```
-fix(param): STVAL_WIDTH bounds match MTVAL_WIDTH (#2102)
-```
+- Visual parity with `MTVAL_WIDTH.yaml` bounds
+- Schema validation still passes
+- No other files changed

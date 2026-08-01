@@ -1,5 +1,0 @@
-{
-  "name": "HALLUCINATED_QUOTE",
-  "snippet": "cmo_cache_block.txt",
-  "quote": "the cache line size shall always be exactly sixty-four bytes on all RISC-V systems"
-}

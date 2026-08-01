@@ -1,1 +1,0 @@
-The reservation-set size and strategy for LR/SC is implementation-defined within architectural constraints.

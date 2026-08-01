@@ -1,8 +1,0 @@
-Snippet: csr_address_mapping.txt (Privileged Spec §2.1)
-Model: nvidia/nemotron-3-super-120b-a12b:free (OpenRouter free)
-Prompt: v3_schema_constrained · temperature 0
-
-Result: ZERO parameters (interpreted).
-
-Notes:
-Live API returned literal string '(No output)' on CSR re-run; treated as zero params (degenerate empty response, not a false-positive YAML).

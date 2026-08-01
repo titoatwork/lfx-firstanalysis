@@ -1,8 +1,0 @@
-{
-  "case": "P02",
-  "chars": 2941,
-  "condition": "baseline",
-  "ok": true,
-  "prompt_sha256_expected": "97fa14e3aab547465fa63545127021dcd86722f0942689329c89dda73f7b6b72",
-  "status": "ok"
-}

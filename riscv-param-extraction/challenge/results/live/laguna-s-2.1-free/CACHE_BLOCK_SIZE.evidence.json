@@ -1,9 +1,0 @@
-{
-  "name": "CACHE_BLOCK_SIZE",
-  "snippet": "cmo_cache_block.txt",
-  "quote": "The capacity and organization of a cache and the size of a cache block are both implementation-specific",
-  "model": "poolside/laguna-s-2.1:free",
-  "provider": "openrouter",
-  "tier": "free",
-  "notes": "Under-extract vs curated (only block size)."
-}

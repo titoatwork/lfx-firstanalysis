@@ -1,4 +1,0 @@
-The standard RISC-V ISA sets aside a 12-bit encoding space (csr[11:0])
-for up to 4,096 CSRs. By convention, the upper 4 bits of the CSR address
-(csr[11:8]) are used to encode the read and write accessibility of the
-CSRs according to privilege level as shown in <<csrrwpriv>>. [#norm:Zicsr_rw]#The top two bits (csr[11:10]) indicate whether the register is read/write (`00`,`01`, or `10`) or read-only (`11`).#

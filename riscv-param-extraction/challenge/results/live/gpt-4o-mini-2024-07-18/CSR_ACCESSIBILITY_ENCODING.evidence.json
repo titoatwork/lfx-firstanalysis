@@ -1,7 +1,0 @@
-{
-  "name": "CSR_ACCESSIBILITY_ENCODING",
-  "snippet": "csr_address_mapping.txt",
-  "quote": "the upper 4 bits of the CSR address (csr[11:8]) are used to encode the read and write accessibility of the CSRs according to privilege level",
-  "model": "gpt-4o-mini-2024-07-18",
-  "notes": "FALSE POSITIVE: fixed encoding convention, not an implementation-configurable parameter. Raw model mis-labeled snippet as cmo_cache_block.txt; corrected here to csr_address_mapping.txt for auditability."
-}

@@ -1,8 +1,0 @@
-{
-  "case": "P08",
-  "chars": 1234,
-  "condition": "treatment",
-  "ok": true,
-  "prompt_sha256_expected": "20cc95bd88511fea1e7c6b06150c6f9f0749c4c9d697f7f6c32238d41e5a63b5",
-  "status": "ok"
-}

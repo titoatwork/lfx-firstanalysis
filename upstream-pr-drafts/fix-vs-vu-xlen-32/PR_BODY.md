@@ -1,3 +1,9 @@
+# PR body (filed) — VSXLEN / VUXLEN must support 32 when parent can
+
+**Outcome:** open as [#2255](https://github.com/riscv/riscv-unified-db/pull/2255) · closes [#2254](https://github.com/riscv/riscv-unified-db/issues/2254)
+
+---
+
 fix(param): require VSXLEN and VUXLEN to support 32 when their parent can
 
 ---

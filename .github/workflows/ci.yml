@@ -28,7 +28,7 @@ jobs:
         if: always()
         run: python riscv-param-extraction/scripts/verify_claims.py --list
 
-  challenge-and-export:
+  export-and-workflow:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -43,35 +43,8 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Validate curated challenge results
-        run: python challenge/scripts/validate.py --results challenge/results/curated
-
-      - name: Bad fixtures must fail
-        run: python challenge/scripts/validate.py --results challenge/tests/bad_examples --expect-fail
-
-      - name: Hard negatives
-        run: python challenge/scripts/check_negatives.py
-
-      - name: Markup grounding modes
-        run: python challenge/scripts/check_grounding_modes.py
-
-      - name: Multi-strategy matrix
-        run: python challenge/scripts/score_strategies.py
-
-      - name: Known-param benchmark (n=15, caveat-first)
-        run: python challenge/benchmark/scripts/score_recall.py
-
-      - name: Temporal holdout unit tests
-        run: python challenge/temporal_holdout/tests/test_holdout.py -v
-
-      - name: Temporal holdout leakage gate (fail-closed)
-        run: python challenge/temporal_holdout/scripts/leak_scan.py
-
       - name: Export unit tests
         run: python -m unittest discover -s tests -v
-
-      - name: Full challenge ci_check
-        run: python challenge/scripts/ci_check.py
 
       - name: Evaluation fixtures and review-envelope separation
         run: python workflow_slice/scripts/ci_slice_check.py

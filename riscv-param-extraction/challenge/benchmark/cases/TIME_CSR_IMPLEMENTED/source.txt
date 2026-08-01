@@ -1,1 +1,0 @@
-Whether a real hardware time CSR exists is implementation-defined. Implementations can provide a real CSR or emulate access at M-mode.

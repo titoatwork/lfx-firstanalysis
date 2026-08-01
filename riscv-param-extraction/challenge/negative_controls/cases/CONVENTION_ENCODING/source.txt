@@ -1,5 +1,0 @@
-Source class: fixed encoding convention (CSR-like).
-
-By convention, the upper bits of the address encode access privileges. This
-mapping simplifies hardware decode. Implementations follow the same convention
-so software can rely on the encoding; it is not an optional parameter.

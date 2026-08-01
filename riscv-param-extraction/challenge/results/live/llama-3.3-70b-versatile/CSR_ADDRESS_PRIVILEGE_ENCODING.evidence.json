@@ -1,9 +1,0 @@
-{
-  "name": "CSR_ADDRESS_PRIVILEGE_ENCODING",
-  "snippet": "csr_address_mapping.txt",
-  "quote": "the upper 4 bits of the CSR address (csr[11:8]) are used to encode the read and write accessibility of the CSRs according to privilege level",
-  "model": "llama-3.3-70b-versatile",
-  "provider": "groq",
-  "tier": "groq_free",
-  "notes": "FALSE POSITIVE: fixed CSR address-mapping convention, not an implementation-configurable UDB architectural parameter."
-}

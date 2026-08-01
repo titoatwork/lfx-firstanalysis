@@ -1,6 +1,0 @@
-{
-  "name": "CACHE_BLOCK_SIZE",
-  "snippet": "cmo_cache_block.txt",
-  "quote": "the size of a cache block are both implementation-specific",
-  "notes": "Also constrained by NAPOT alignment and uniform size shall in initial CMO set."
-}

@@ -99,4 +99,3 @@ Compact name list: [results/pilot/param-names-summary.json](../results/pilot/par
 - Result JSON remains on the local UDB tree (large); this repo keeps **names + tokens + cost** only.  
 - Cost figures are approximate from published list-style rates, not a billing CSV.  
 
-Internal pack copy: `PHASE1-IMMERSION/06-measured-local/pilot-manifest.md` (points here as canonical public surface).

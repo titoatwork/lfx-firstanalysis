@@ -1,6 +1,6 @@
 # Clean UDB-shaped parameter YAML — review metadata stripped.
 # Name is ASID_WIDTH (UDB), not ASIDLEN (spec colloquial).
-# yaml-language-server: $schema=../../../../challenge/schema/param_schema.json
+# yaml-language-server: $schema=../../../../export/schemas/param_schema.json
 
 $schema: param_schema.json#
 kind: parameter

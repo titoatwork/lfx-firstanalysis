@@ -2,14 +2,14 @@
 
 **Source:** Artifact A multi-model (gpt-4o-mini vs Claude Part I v2), metrics §5.4  
 **Rule:** These are **candidates**, not confirmed architectural parameters.  
-**Credit:** Spring pipeline @ishaan-arora-1 / PRs #1765–#1832.
+**Credit:** Spring pipeline [@ishaan-arora-1](https://github.com/ishaan-arora-1) / PRs #1765–#1832.
 
 High-confidence proposed-new names appearing in **both** models (n=9):
 
 | Name | Status |
 |------|--------|
-| FLEN | candidate, needs human/SIG review + spec locus |
-| IALIGN | candidate |
+| FLEN | candidate; note: often follows from implemented FP extension (derived) |
+| IALIGN | candidate; note: derived by `function ialign` in `globals.isa` (non-parameter) |
 | ILEN | candidate |
 | MISELECT_ACCESS | candidate |
 | NUM_PRIVILEGE_MODES | candidate |
@@ -17,6 +17,8 @@ High-confidence proposed-new names appearing in **both** models (n=9):
 | RNMI_EXCEPTION_TRAP_HANDLER_ADDRESS | candidate |
 | SEED_CSR_ACCESS_CONTROL | candidate |
 | SISELECT_MIN_RANGE | candidate |
+
+Agreement alone is **not** a validated review gate: at least `IALIGN` and `FLEN` are derived non-parameters.
 
 ## Review card template (fill per name before any upstream PR)
 

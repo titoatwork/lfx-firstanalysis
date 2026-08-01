@@ -1,4 +1,0 @@
-{
-  "parameters": [],
-  "reason": "Fixed by-convention encoding shared by all implementations; not implementation-specific."
-}

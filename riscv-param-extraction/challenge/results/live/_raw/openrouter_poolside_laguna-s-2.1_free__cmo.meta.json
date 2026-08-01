@@ -1,7 +1,0 @@
-{
-  "model": "poolside/laguna-s-2.1:free",
-  "provider": "openrouter",
-  "free_only": true,
-  "text_chars": 953,
-  "useful": true
-}

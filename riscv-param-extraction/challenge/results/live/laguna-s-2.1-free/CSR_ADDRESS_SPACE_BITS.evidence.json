@@ -1,9 +1,0 @@
-{
-  "name": "CSR_ADDRESS_SPACE_BITS",
-  "snippet": "csr_address_mapping.txt",
-  "quote": "The standard RISC-V ISA sets aside a 12-bit encoding space (csr[11:0]) for up to 4,096 CSRs.",
-  "model": "poolside/laguna-s-2.1:free",
-  "provider": "openrouter",
-  "tier": "free",
-  "notes": "FALSE POSITIVE on CSR negative control."
-}

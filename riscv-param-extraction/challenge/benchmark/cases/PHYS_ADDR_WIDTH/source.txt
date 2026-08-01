@@ -1,1 +1,0 @@
-The size of the physical address space is implementation-defined. PHYS_ADDR_WIDTH is the number of bits in a physical address.

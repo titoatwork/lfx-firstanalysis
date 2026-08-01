@@ -1,7 +1,7 @@
 # Auditing the gold's classifications against UnifiedDB structure
 
-**Objective 2 of the Part II project is "extend the classification scheme, only with
-evidence."** This is a slice of that, delivered before the term rather than described.
+**Part II objective 2** is to extend the classification scheme only with evidence.
+This audit is a concrete slice of that work: structural disagreement between gold labels and UnifiedDB.
 
 Every recall and classification figure in this repository is scored against a pinned
 gold of 185 parameters. Each entry carries a class from `taxonomy.md`, a confidence,

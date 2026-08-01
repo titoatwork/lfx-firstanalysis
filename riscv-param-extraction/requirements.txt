@@ -1,4 +1,4 @@
 PyYAML>=6.0
 jsonschema>=4.18
-# Live extract / temporal holdout runner (challenge/temporal_holdout/scripts/run_live.py)
+# Optional: local-only challenge / holdout runners (not in public tree)
 openai>=1.40.0

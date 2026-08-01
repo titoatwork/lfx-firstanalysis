@@ -3,10 +3,9 @@
 **Status:** PREREGISTERED, amended once. Committed **before** any model call in any arm.
 **Registered:** 2026-07-27 (commit `dfa6b23`, public timestamp 13:58:34Z)
 **Amended:** 2026-07-27, same day, **before any run**. See Amendment 1.
-**Supersedes:** the temporal-holdout pilot (`challenge/temporal_holdout/`), which tested a related
-question at n=10 positives under prompt v1.2 and returned an exploratory null with documented
-guidance-leakage limitations. That result is not evidence about the context hypothesis. This is the
-adequately powered test.
+**Supersedes:** an earlier small temporal-holdout pilot (n=10 positives, prompt v1.2) that returned
+an exploratory null with documented guidance-leakage limitations. That pilot is local-only and is not
+evidence about the context hypothesis. This document is the adequately powered test.
 
 ---
 

@@ -1,4 +1,0 @@
-﻿```yaml
-# No parameters extracted because the snippet describes fixed architectural conventions
-# and does not present any implementation-defined or optional choices.
-```

@@ -1,8 +1,8 @@
 # Artifact A — offline plan (Obj 1 + 3)
 
-**Status:** READY for paid gate (STEP 3)  
+**Status:** COMPLETE (see `artifact-a-gpt-4o-mini.md`)  
 **Date planned:** 2026-07-24  
-**Branch (monorepo):** `analysis/artifact-a`  
+**Branch (monorepo):** `analysis/artifact-a` (historical)  
 **UDB clone:** `riscv-unified-db/` · branch **`lfx-1832`** (local, gitignored)  
 **No secrets in this file.**
 

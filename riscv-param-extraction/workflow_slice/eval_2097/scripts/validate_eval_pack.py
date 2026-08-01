@@ -23,7 +23,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 PKG = Path(__file__).resolve().parents[3]  # riscv-param-extraction
-SCHEMA_DIR = PKG / "challenge" / "schema"
+SCHEMA_DIR = PKG / "export" / "schemas"
 MANIFEST = ROOT / "MANIFEST.yaml"
 
 

@@ -1,9 +1,0 @@
-{
-  "name": "CSR_READ_WRITE_ACCESSIBILITY",
-  "snippet": "csr_address_mapping.txt",
-  "quote": "The top two bits (csr[11:10]) indicate whether the register is read/write (00, 01, or 10) or read-only (11)",
-  "model": "llama-3.3-70b-versatile",
-  "provider": "groq",
-  "tier": "groq_free",
-  "notes": "FALSE POSITIVE: fixed CSR address-mapping convention, not an implementation-configurable UDB architectural parameter."
-}

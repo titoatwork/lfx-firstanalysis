@@ -1,7 +1,0 @@
-{
-  "model": "google/gemma-4-26b-a4b-it:free",
-  "provider": "openrouter",
-  "free_only": true,
-  "text_chars": 701,
-  "useful": true
-}

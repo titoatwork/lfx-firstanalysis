@@ -1,6 +1,6 @@
 # Clean UDB-shaped parameter YAML — review metadata stripped.
 # For demonstration / local validation only; not an unsolicited bulk upstream dump.
-# yaml-language-server: $schema=../../../../challenge/schema/param_schema.json
+# yaml-language-server: $schema=../../../../export/schemas/param_schema.json
 
 $schema: param_schema.json#
 kind: parameter

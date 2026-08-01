@@ -1,8 +1,0 @@
-```yaml
-# No parameters extracted — the snippet describes fixed architectural
-# conventions and mandatory encodings with no implementation choices.
-```
-
-```json
-[]
-```

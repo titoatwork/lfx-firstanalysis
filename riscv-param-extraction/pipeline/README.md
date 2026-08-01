@@ -7,7 +7,7 @@ Thin, domain-named tools. **No LLM calls here.**
 | `load_results.py` | Load merged or deduped Part I JSON; UDB name sets |
 | `agreement.py` | Name agreement + high-conf proposed-new overlap |
 | `compare_models.py` | CLI → markdown tables + JSON summary |
-| `stage_for_analyze.py` | Copy `results/v2/all_results_*.json` → where `analyze.py` reads; optional GT185 restore |
+| `stage_for_analyze.py` | Stage extract results for `analyze.py`; optional GT185 restore |
 
 ## Plan
 
@@ -26,12 +26,12 @@ python -m pipeline.compare_models `
 
 Expect Jaccard **100%** and full class agreement on shared names.
 
-## After gpt-4o-mini run
+## After a second-model run
 
-1. `extract.py merge --model gpt4o-mini` (with `PROMPT_VERSION=v2`)  
-2. `python -m pipeline.stage_for_analyze --model-display gpt-4o-mini --restore-gt185`  
-3. `analyze.py all --model gpt-4o-mini`  
-4. `python -m pipeline.compare_models --a <claude deduped> --b <mini deduped> ...`  
-5. Fill `docs/metrics.md` §5 + `manifests/artifact-a-gpt-4o-mini.md`
+1. `extract.py merge --model gpt4o-mini` (with `PROMPT_VERSION=v2`)
+2. `python -m pipeline.stage_for_analyze --model-display gpt-4o-mini --restore-gt185`
+3. `analyze.py all --model gpt-4o-mini`
+4. `python -m pipeline.compare_models --a <claude deduped> --b <mini deduped> ...`
+5. Update `docs/metrics.md` §5 + `manifests/artifact-a-gpt-4o-mini.md`
 
-Do not invent multi-model metrics until a real second-model run exists.
+Do not invent multi-model metrics without a real second-model run.

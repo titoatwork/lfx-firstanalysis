@@ -1,7 +1,0 @@
-{
-  "name": "CACHE_BLOCK_SIZE",
-  "snippet": "cmo_cache_block.txt",
-  "quote": "The capacity and organization of a cache and the size of a cache block are both implementation-specific, and the execution environment provides software a means to discover information about the caches and cache blocks in a system.",
-  "model": "gpt-4o-2024-11-20",
-  "notes": "Live model found block size but under-extracted vs curated (did not emit separate CACHE_CAPACITY / CACHE_ORGANIZATION)."
-}

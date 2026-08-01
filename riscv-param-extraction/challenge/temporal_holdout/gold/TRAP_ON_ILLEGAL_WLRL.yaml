@@ -1,5 +1,0 @@
-kind: parameter
-name: TRAP_ON_ILLEGAL_WLRL
-class: NORM_DIRECT
-schema:
-  type: boolean

@@ -1,8 +1,0 @@
-Snippet: csr_address_mapping.txt (Privileged Spec §2.1)
-Model: inclusionai/ling-3.0-flash:free (OpenRouter free)
-Prompt: v3_schema_constrained · temperature 0
-
-Result: ZERO parameters (interpreted).
-
-Notes:
-Model explicitly returned empty JSON list / no-parameters YAML comment — PASS negative control.

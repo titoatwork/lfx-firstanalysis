@@ -1,5 +1,5 @@
 Source: RISC-V Privileged ISA Manual, Section 19.3.1 (Cache Management Operations)
-Local extract: riscv-isa-manual/src/cmo.adoc (prose cleaned for challenge readability; raw markup in cmo_cache_block.raw.adoc)
+Local extract: riscv-isa-manual/src/cmo.adoc (prose cleaned for readability)
 
 Caches organize copies of data into cache blocks, each of which represents a
 contiguous, naturally aligned power-of-two (or NAPOT) range of memory

@@ -84,6 +84,6 @@ python param_extraction\scripts\analyze.py --model gpt-4o-mini all
 
 ## Limitations
 
-- Prompt-only WARL essay is **insufficient** for Stretch C on this model.  
-- Next WARL work should try CSR-field aux context or stronger model, only with user spend OK.  
+- Prompt-only WARL guidance is **insufficient** on this model.  
+- Follow-on WARL work should try CSR-field auxiliary context or a stronger model.  
 - Class accuracy denominators remain small (exact name matches).  

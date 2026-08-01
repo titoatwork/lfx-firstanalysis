@@ -1,8 +1,0 @@
-{
-  "case": "P10",
-  "chars": 1959,
-  "condition": "baseline",
-  "ok": true,
-  "prompt_sha256_expected": "9e4fcd583fcc230f4319b0c4f5ca88cef99ab91f1e581d4c2b5ad04e90bd6381",
-  "status": "ok"
-}

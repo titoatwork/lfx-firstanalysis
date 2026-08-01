@@ -1,9 +1,0 @@
-==== Physical Memory Protection CSRs
-
-[#norm:pmp_entry_structure]#PMP entries are described by an 8-bit configuration register and one
-MXLEN-bit address register. Some PMP settings additionally use the
-address register associated with the preceding PMP entry.# [#norm:pmp_entry_count]#Up to 64 PMP
-entries are supported. Implementations may implement zero, 16, or 64 PMP
-entries; the lowest-numbered PMP entries must be implemented first.# [#norm:pmp_csrs_warl_access]#All
-PMP CSR fields are *WARL* and may be read-only zero.# [#norm:pmp_csr_mode]#PMP CSRs are only
-accessible to M-mode.#

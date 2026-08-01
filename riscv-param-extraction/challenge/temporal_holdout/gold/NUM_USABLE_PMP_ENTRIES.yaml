@@ -1,7 +1,0 @@
-kind: parameter
-name: NUM_USABLE_PMP_ENTRIES
-class: NORM_DIRECT
-schema:
-  type: integer
-  minimum: 0
-  maximum: 64

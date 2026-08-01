@@ -7,6 +7,10 @@ riscv-unified-db/
 # Worktree of the lfx-1832 corpus branch (chunks, gold, Part I results)
 .udb-corpus/
 
+# Official coding-challenge pack: local only until after application submission.
+# Keep on disk for personal work; do not re-add to the public tree.
+riscv-param-extraction/challenge/
+
 # Scratch / duplicate immersion workspace
 immersion-workspace/
 
@@ -51,7 +55,7 @@ DEEP-STUDY*.md
 STUDY-AI*.md
 SARGANTANA*.md
 
-# Early / superseded prework (application-packet is canonical)
+# Early / superseded prework trees (public surface is docs/ + package READMEs)
 lfx-riscv-param-extraction-prework/
 prework-draft/
 
@@ -92,27 +96,24 @@ venv/
 # Local runbooks
 TOMORROW*.md
 
-# Agent-process artifacts: internal triage, draft comment text, strategy notes.
-# The sweep SCRIPT is public (it backs an essay claim); its OUTPUT is not,
-# because generated findings carry local temp paths and triage-vs-competitor notes.
+# Local process artifacts (not the public portfolio surface):
+# - sweep OUTPUT (may contain machine-local paths); the sweep SCRIPT stays tracked
+# - draft COMMENT / ISSUE / REPLY text until deliberately published as PR_BODY
 riscv-param-extraction/workflow_slice/findings/
 upstream-pr-drafts/**/COMMENT.md
-# Same reasoning: these carry verification tables and approval status,
-# written for us rather than for a reader. PR_BODY.md files stay tracked
-# because they are drafts of text intended to be public anyway.
 upstream-pr-drafts/**/ISSUE.md
-# Slack reply text: chat content, not part of the mentor-facing surface.
 upstream-pr-drafts/**/REPLY.md
+upstream-pr-drafts/**/NOTES.md
+upstream-pr-drafts/**/POST_BODY.md
+# Local scratch scripts next to drafts
+upstream-pr-drafts/**/*.py
 _tmp_*
 **/_scratch*
 
-# Personal-data drafts and self-prep. Kept local, not part of the mentor surface.
-# RESUME-CONTENT holds unfilled contact placeholders; INTERVIEW-SHEET is prep
-# material whose useful content now lives in application-packet/TECHNICAL-FAQ.md.
+# Personal drafts (local only). Public FAQ lives under docs/.
 application-packet/RESUME-CONTENT.md
 application-packet/INTERVIEW-SHEET.md
 
-# Daily work journals. Written as internal notes; the run records they describe
-# are published properly under manifests/ and docs/metrics.md.
+# Daily work journals (local). Public run records live under manifests/ and docs/metrics.md.
 riscv-param-extraction/docs/WORKLOG-*.md
 

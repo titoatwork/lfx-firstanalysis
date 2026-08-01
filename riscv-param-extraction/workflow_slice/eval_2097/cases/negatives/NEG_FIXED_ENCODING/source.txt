@@ -1,5 +1,5 @@
 Source: RISC-V Privileged ISA Manual, Section 2.1 (CSR Address Mapping Conventions)
-Local extract: riscv-isa-manual/src/priv-csrs.adoc (prose cleaned for challenge readability; raw markup in csr_address_mapping.raw.adoc)
+Local extract: riscv-isa-manual/src/priv-csrs.adoc (prose cleaned for readability)
 
 The standard RISC-V ISA sets aside a 12-bit encoding space (csr[11:0]) for up
 to 4,096 CSRs. By convention, the upper 4 bits of the CSR address

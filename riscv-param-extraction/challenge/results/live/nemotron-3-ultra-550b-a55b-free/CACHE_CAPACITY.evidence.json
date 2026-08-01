@@ -1,9 +1,0 @@
-{
-  "name": "CACHE_CAPACITY",
-  "snippet": "cmo_cache_block.txt",
-  "quote": "The capacity and organization of a cache and the size of a cache block are both implementation-specific",
-  "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
-  "provider": "openrouter",
-  "tier": "free",
-  "notes": "definedBy normalized from free-form extension string to schema-valid anyOf."
-}

@@ -1,29 +1,28 @@
-# Decision — RESOLVED: do **not** open. Superseded upstream.
+# Decision: do not open a competing PR
 
 **Opened:** 2026-07-27 · **Closed:** 2026-07-27  
-**Outcome:** the fix landed in the maintainer's PR. This branch is retired unopened.
+**Outcome:** fix landed in the maintainer's PR. Local branch retired unopened.
 
 ## What happened
 
 | Item | Status |
 |------|--------|
-| Maintainer PR [#2090](https://github.com/riscv/riscv-unified-db/pull/2090) | **MERGED** 2026-07-27 |
-| Our comment on #2090 (26 Jul) | Flagged `0xfff` (4095) in both MTVEC alignment enums against a schema requiring a power of two |
-| Maintainer reply | jordancarlin: *"Looks like this was an issue in the old decimal version too … I agree that it should be 4096. Updated accordingly."* |
-| `0xfff` on upstream `main` | **Gone**. Verified after merge |
-| Our branch `fix/mtvec-base-alignment-4096` | **Retired unopened** |
+| Maintainer PR [#2090](https://github.com/riscv/riscv-unified-db/pull/2090) | **Merged** 2026-07-27 |
+| Review comment on #2090 (26 Jul) | Flagged `0xfff` (4095) in both MTVEC alignment enums against a schema requiring a power of two |
+| Maintainer reply | Agreement that the value should be 4096; PR updated accordingly |
+| `0xfff` on upstream `main` after merge | **Gone** |
+| Local branch `fix/mtvec-base-alignment-4096` | **Retired unopened** |
 
-## Why this was the right call
+## Why
 
-Opening a competing PR against files already under active maintainer edit would have been a visible race for credit on a one-token fix. Raising it as a review comment got the same defect corrected, in the maintainer's own PR, in under 12 hours.
+Opening a second PR against files already under active maintainer edit would race for credit on a one-token change. A review comment produced the same correction inside the maintainer's PR.
 
 ## How to describe it
 
 > Review comment on #2090 identified a non-power-of-two value in both MTVEC alignment enums; the maintainer adopted the correction and #2090 merged with `0x1000`.
 
-Do **not** describe #2090 as our merged PR. It is jordancarlin's.
+Do **not** describe #2090 as an authored merge by titoatwork. It is jordancarlin's PR.
 
-## Related, still open
+## Related authored work
 
-The same `4095` defect exists in the shared schema enums and is fixed by our own PR
-[**#2138**](https://github.com/riscv/riscv-unified-db/pull/2138), `spec/schemas/schema_defs.json` plus a regression test. That one is ours and is awaiting review.
+The same `4095` defect in shared schema enums was fixed in authored PR [#2138](https://github.com/riscv/riscv-unified-db/pull/2138) (`spec/schemas/schema_defs.json` plus a regression test). **Merged.**

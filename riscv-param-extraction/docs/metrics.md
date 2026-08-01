@@ -258,7 +258,7 @@ Same model (**gpt-4o-mini**), same 60 param-bearing chunks, **PROMPT_VERSION=v3*
 
 **Honest claim:** Adding WARL-focused prompt text **did not improve** gold WARL recall; it **worsened** it. Overall adjusted recall ticked up slightly (mostly DIRECT). Raw extraction tagged more rows as WARL (**59** raw class labels vs **~36** on v2), but those did **not** translate into more GT WARL hits, over-labeling without better name/alignment quality.
 
-**Do not** present v3 as a successful Stretch C WARL attack. Treat as a measured **prompt ablation null result** (useful for the Fall plan: need CSR-field aux context or different strategy, not prompt-only WARL essay).
+**Do not** present v3 as a successful WARL fix. Treat as a measured **prompt ablation null result**: need CSR-field auxiliary context or a different strategy, not prompt-only WARL text.
 
 ### 6.1 Run cost (v3 full corpus)
 
@@ -316,37 +316,14 @@ Schema fragments for enum/range/set still need human domain fill (CSV does not e
 
 ---
 
-## 8. Challenge pack controls (Path A)
+## 8. Coding-challenge pack (not in the public tree)
 
-| Control | Value |
-|---------|------:|
-| Snippets | 2 (CMO + CSR zero) |
-| Fail-closed bad fixtures | **4** |
-| Hard negatives | **4** |
-| Markup robustness cases | **3** (naive vs tag-aware) |
-| Known-param bench | **n=15** |
-| Existence (committed extraction pairs) | **15/15** |
-| Type fidelity (same pairs) | **15/15** |
-| Live multi-model dirs | **10** |
+The official two-snippet coding challenge and related local pilots are kept **local only**
+(see monorepo `.gitignore`: `riscv-param-extraction/challenge/`) until after application
+submission. They are not published as part of this repository surface.
 
-**Known-param note:** n=15 scores **mechanics** of paired ground_truth.yaml + extraction.yaml under the scorer. It is **not** a live multi-model re-derive table and **not** equal to Spring corpus adjusted recall. Pretraining leakage applies to any known-param public UDB set.
-
-Source: python challenge/benchmark/scripts/score_recall.py; live matrix challenge/results/live/MANIFEST.md.
+Corpus-scale measurement, export, and variance work remain under `artifact_c/`, `export/`,
+`results/`, and the tables above.
 
 ---
-
-## 9. Temporal holdout pilot (exploratory primary)
-
-**Status:** locked primary 20260726T164713Z_gpt-4o-mini-2024-07-18 · **26/26** calls  
-**Write-up:** [challenge/temporal_holdout/results/PRIMARY_RESULTS.md](../challenge/temporal_holdout/results/PRIMARY_RESULTS.md)  
-**PR:** https://github.com/titoatwork/lfx-firstanalysis/pull/1
-
-| Condition | Name recall | Detect | WARL | Schema docs | Ground | Neg FP |
-|-----------|------------:|-------:|-----:|------------:|-------:|-------:|
-| baseline | **0/10** | 0/10 | 0/5 | 11/11 | 10/11 | 1/3 |
-| treatment | **0/10** | 0/10 | 0/5 | 4/4 | 4/4 | 2/3 |
-
-**Claim level:** reproducible harness demonstration + **exploratory null** under prompt **v1.2**.  
-**Not:** clean temporal-holdout evidence (v1.2 had case-specific guidance / label-revealing negatives).  
-**Not:** treatment caused worse negative FPs (N01–N03 prompts byte-identical across arms).
 
