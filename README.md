@@ -25,7 +25,28 @@ Public technical portfolio: measurement, export tooling, evaluation fixtures, an
 
 No API keys, no network model calls. Failures print which artifact disagreed.
 
+Windows (from repo root):
+
+```powershell
+$env:PYTHONPATH = "riscv-param-extraction"
+python riscv-param-extraction/scripts/verify_claims.py
+```
+
 More detail: [`docs/`](./docs/README.md) · metrics: [`riscv-param-extraction/docs/metrics.md`](./riscv-param-extraction/docs/metrics.md)
+
+---
+
+## Five-minute review path
+
+| Step | What to open | Why |
+|------|----------------|-----|
+| 1 | `./verify.sh` or `verify_claims.py` | Published numbers re-derive from committed files |
+| 2 | [`riscv-param-extraction/docs/metrics.md`](./riscv-param-extraction/docs/metrics.md) | Full tables + grounding / noise caveats |
+| 3 | [`docs/EVIDENCE.md`](./docs/EVIDENCE.md) | Upstream PR/issue/review index with links |
+| 4 | [`artifact_c/results/PRIMARY_RESULTS.md`](./riscv-param-extraction/artifact_c/results/PRIMARY_RESULTS.md) | Dual-run variance; registered hypotheses vs noise |
+| 5 | [`analysis/`](./riscv-param-extraction/analysis/) | Offline gold-label audits (IDL + schema shape) |
+
+Honest limitations are intentional: single-run recall is noisy; published recall is **grounding** (gold names in the prompt); schema-valid export is structural only.
 
 ---
 

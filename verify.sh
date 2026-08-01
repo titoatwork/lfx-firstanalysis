@@ -41,19 +41,7 @@ fi
 step "published claims re-derive from committed artifacts" \
   "$PY" riscv-param-extraction/scripts/verify_claims.py
 
-# 2. Optional local coding-challenge pack (gitignored; not part of public tree).
-if [ -f riscv-param-extraction/challenge/scripts/ci_check.py ]; then
-  step "coding challenge CI gate (local only)" \
-    "$PY" riscv-param-extraction/challenge/scripts/ci_check.py
-else
-  hr
-  echo "## coding challenge CI gate"
-  hr
-  echo "   skipped (challenge/ not present; local-only pack)"
-  echo
-fi
-
-# 3. Evaluation fixtures intact (including the WARL distinction they exist to
+# 2. Evaluation fixtures intact (including the WARL distinction they exist to
 #    protect), and review metadata kept out of UDB-valid YAML.
 step "eval fixtures + review-envelope separation" \
   "$PY" riscv-param-extraction/workflow_slice/scripts/ci_slice_check.py

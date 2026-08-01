@@ -316,14 +316,11 @@ Schema fragments for enum/range/set still need human domain fill (CSV does not e
 
 ---
 
-## 8. Coding-challenge pack (not in the public tree)
+## 8. Scope of this metrics file
 
-The official two-snippet coding challenge and related local pilots are kept **local only**
-(see monorepo `.gitignore`: `riscv-param-extraction/challenge/`) until after application
-submission. They are not published as part of this repository surface.
-
-Corpus-scale measurement, export, and variance work remain under `artifact_c/`, `export/`,
-`results/`, and the tables above.
+Tables above cover corpus remeasure, Artifact A/B, WARL ablation, and related audits.
+Snippet-scale coding-challenge demos are outside this document; they are not part of the
+published recall figures.
 
 ---
 
