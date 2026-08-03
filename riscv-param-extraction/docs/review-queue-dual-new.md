@@ -1,4 +1,4 @@
-# Review queue — dual-model high-confidence “new” names
+# Review queue: dual-model high-confidence “new” names
 
 **Source:** Artifact A multi-model (gpt-4o-mini vs Claude Part I v2), metrics §5.4  
 **Rule:** These are **candidates**, not confirmed architectural parameters.  

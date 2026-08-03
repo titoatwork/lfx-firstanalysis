@@ -39,7 +39,7 @@ The two complete arm A runs put the same gap at 9.6x, from a different extractio
 
 Inexact matching is not wrong; a model answering "support for misaligned loads and stores" has found `MISALIGNED_LDST`. The point is that the credit is mostly heuristic, that is where the noise lives, and neither fact is visible in the headline number.
 
-Reproduce with `python artifact_c/scripts/decompose_matches.py` — deterministic, no API key needed. This analysis was **not preregistered**; it came out of diagnosing the variance above and is reported as exploratory.
+Reproduce with `python artifact_c/scripts/decompose_matches.py`; deterministic, no API key needed. This analysis was **not preregistered**; it came out of diagnosing the variance above and is reported as exploratory.
 
 ---
 
@@ -65,7 +65,7 @@ Do not present any figure below as discovery recall. State the name-list conditi
 
 *Added 2026-07-27 on discovering the condition while building Artifact C. The figures themselves are unchanged and remain correctly measured for what they measure.*
 
-Credit: Part I pipeline and committed results — [@ishaan-arora-1](https://github.com/ishaan-arora-1) / [riscv/riscv-unified-db](https://github.com/riscv/riscv-unified-db) PRs #1765–#1832. Remeasure and pilot here are independent reproduction, **not** Part I authorship.
+Credit for the Part I pipeline and committed results: [@ishaan-arora-1](https://github.com/ishaan-arora-1) / [riscv/riscv-unified-db](https://github.com/riscv/riscv-unified-db) PRs #1765–#1832. Remeasure and pilot here are independent reproduction, **not** Part I authorship.
 
 ---
 
@@ -104,7 +104,7 @@ Against **live GT 223** (same LLM output): adjusted recall **64.2%**, class acc 
 
 ---
 
-## 3. Pilot — machine.adoc (2026-07-22)
+## 3. Pilot: machine.adoc (2026-07-22)
 
 **Status:** `COMPLETE_WITH_MODEL_SPLIT`  
 **Manifest:** [manifests/pilot-machine-adoc.md](../manifests/pilot-machine-adoc.md)
@@ -137,7 +137,7 @@ Do **not** claim 97 named params without re-counting the CSV in use.
 
 ---
 
-## 5. Artifact A — multi-model (gpt-4o-mini vs Claude Part I)
+## 5. Artifact A: multi-model (gpt-4o-mini vs Claude Part I)
 
 > **Condition: gold name list supplied to both models.** The cross-model comparison is therefore between two models doing the *same grounding task* with the same catalogue. The 3.8% name Jaccard is measured under that condition, which makes the disagreement more striking rather than less: both models had the identical list of 185 names available and still shared only 21.
 
@@ -235,11 +235,11 @@ Low both-model overlap on “new” names → most proposed-new are model-privat
 
 ---
 
-## 6. Stretch C ablation — prompt v3 WARL guidance (gpt-4o-mini)
+## 6. Stretch C ablation: prompt v3 WARL guidance (gpt-4o-mini)
 
 > **Condition: gold name list supplied in both arms.** The v3 WARL guidance was therefore added *on top of* an already-supplied catalogue of names. That the model labelled more items WARL without matching more gold WARL entries is a failure of identification, not of vocabulary, since it already had every correct name in front of it.
 
-**Status:** `COMPLETE` (2026-07-25) — **honest null / negative for WARL**  
+**Status:** `COMPLETE` (2026-07-25), **honest null / negative for WARL**  
 **Manifest:** [manifests/stretch-c-v3-warl.md](../manifests/stretch-c-v3-warl.md)  
 **Metrics JSON:** [results/metrics_gpt-4o-mini.v3.json](../results/metrics_gpt-4o-mini.v3.json)
 
@@ -278,7 +278,7 @@ Same model (**gpt-4o-mini**), same 60 param-bearing chunks, **PROMPT_VERSION=v3*
 
 ---
 
-## 7. Artifact B — export validation (2026-07-22)
+## 7. Artifact B: export validation (2026-07-22)
 
 Reports: `results/export_b_named.json`, `results/export_b_new.json`.
 
@@ -316,9 +316,33 @@ Schema fragments for enum/range/set still need human domain fill (CSV does not e
 
 ---
 
-## 8. Scope of this metrics file
+## 8. Measurements first published on UDB issues / PR threads
 
-Tables above cover corpus remeasure, Artifact A/B, WARL ablation, and related audits.
+These are **the same measurements** as in this repo, but they were also argued **in public upstream comments** (not only local markdown). That is part of prework: the evaluation story was stress-tested where maintainers and other applicants can see it.
+
+| Where (upstream) | What was measured / claimed | Repo side |
+|------------------|----------------------------|-----------|
+| [#2053](https://github.com/riscv/riscv-unified-db/issues/2053) | Gold names injected in Part I prompts → published recall is **grounding**, not discovery; dual-model "new" lists can include derived non-parameters (e.g. `IALIGN`); single-run class claims corrected when unsupported | §§ above + `artifact_c/` |
+| [#2163](https://github.com/riscv/riscv-unified-db/issues/2163) (author) | Dual-run noise **33.9%** vs **44.6%** (same model, byte-identical prompt, T=0); exact vs inexact decomposition (mini multi-run inexact share **~84–90%** of matches; Claude Part I exact **86** / inexact **43**; adjusted **72.9%** vs mini **32.2%**; exact-name class **48.6%** vs **6.2%**) | §1, §5, `artifact_c/results/PRIMARY_RESULTS.md` |
+| [#2200](https://github.com/riscv/riscv-unified-db/issues/2200) (author) | Of **26** gold `NORM_CSR_WARL` labels: **4** decidable from IDL idioms, **4** stale, **18** undecidable from syntax; self-correction on *XLEN family labelled DIRECT while IDL uses legal-value-set shape; small-denominator notes **8/9**, **6/7** | `analysis/GOLD-CLASSIFICATION-AUDIT.md` (gated in `verify_claims.py` under `gold_audit.*`) |
+| [#2251](https://github.com/riscv/riscv-unified-db/issues/2251) (participant) | **9** main-tree params with `array`+`items.enum` closed sets; WARL string hits in CSR prose (**48** files / **34** under `csr/`) are a **different unit** from the **26** gold WARL labels; Layer 2 should key on schema/IDL idioms, not the WARL token alone | analysis + #2200 counts |
+| [#2097](https://github.com/riscv/riscv-unified-db/pull/2097) (review) | Three-way classification (absence vs cardinality vs plain RW behaviour); fixtures discussion | design review, not a recall table |
+
+### Review-thread measurements (defects / schema checks, not recall %)
+
+| Where | Measurement / check |
+|-------|---------------------|
+| [#2192](https://github.com/riscv/riscv-unified-db/pull/2192) | Validator walks only top-level `schema`; **15/227** params have nested `items` / `additionalItems` that the unknown-keyword check can miss |
+| [#2090](https://github.com/riscv/riscv-unified-db/pull/2090) | Non-power-of-two values in MTVEC alignment enums (adopted) |
+| [#2284](https://github.com/riscv/riscv-unified-db/pull/2284) / [#2256](https://github.com/riscv/riscv-unified-db/pull/2256) discussion | `sd` RV32 gated `Zclsd` while `definedBy`/`ld` use `Zilsd`; latent Zilsd path (no `cfgs/` enable) for 64-bit vs `XReg` notes → issues [#2282](https://github.com/riscv/riscv-unified-db/issues/2282), [#2283](https://github.com/riscv/riscv-unified-db/issues/2283) |
+
+**How to cite:** say the figure was measured in this repository **and** filed or discussed on the linked UDB issue/PR. Do not invent a second independent number unless a new run is committed here.
+
+---
+
+## 9. Scope of this metrics file
+
+Tables above cover corpus remeasure, Artifact A/B, WARL ablation, related audits, and the upstream-thread measurement index (§8).
 Snippet-scale coding-challenge demos are outside this document; they are not part of the
 published recall figures.
 

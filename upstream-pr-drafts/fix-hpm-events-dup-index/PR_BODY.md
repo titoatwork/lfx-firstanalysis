@@ -1,4 +1,4 @@
-# PR body (not filed) — HPM_EVENTS duplicate index
+# PR body (not filed): HPM_EVENTS duplicate index
 
 **Outcome:** not filed. Already owned for [#2046](https://github.com/riscv/riscv-unified-db/issues/2046).
 

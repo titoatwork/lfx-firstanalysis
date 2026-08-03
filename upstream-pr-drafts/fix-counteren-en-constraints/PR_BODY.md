@@ -1,4 +1,4 @@
-# PR body (filed) — counter-enable requirements
+# PR body (filed): counter-enable requirements
 
 **Outcome:** merged as [#2266](https://github.com/riscv/riscv-unified-db/pull/2266) · closes [#2265](https://github.com/riscv/riscv-unified-db/issues/2265)
 

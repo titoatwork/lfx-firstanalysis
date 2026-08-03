@@ -1,4 +1,4 @@
-# manifests/ — reproducible run records
+# manifests/: reproducible run records
 
 One file per serious extraction or analysis run. **No API keys. No secrets.**
 

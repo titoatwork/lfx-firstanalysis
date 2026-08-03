@@ -1,7 +1,7 @@
 # Term plan: nine weeks mapped to Part II objectives
 
 **Author:** Ibteshamul Haque ([@titoatwork](https://github.com/titoatwork))  
-**Project:** [LFX Fall 2026 Part II](https://mentorship.lfx.linuxfoundation.org/project/22296947-cecb-4a8f-8bcb-4f34710e9f66) — AI-assisted architectural parameter extraction  
+**Project:** [LFX Fall 2026 Part II](https://mentorship.lfx.linuxfoundation.org/project/22296947-cecb-4a8f-8bcb-4f34710e9f66), AI-assisted architectural parameter extraction  
 **Term (last verified):** ~2026-09-15 → 2026-11-15 · ≥30 h/week  
 **Hours:** India (IST); flexible for US-Pacific  
 **This repo:** https://github.com/titoatwork/lfx-firstanalysis  
@@ -30,7 +30,7 @@ Which figure the term optimizes is a Week 0 decision with mentors. They are diff
 
 ---
 
-## Week 0 — Pre-start coordination
+## Week 0: Pre-start coordination
 
 | Work | Obj | Deliverable |
 |------|-----|-------------|
@@ -42,7 +42,7 @@ Which figure the term optimizes is a Week 0 decision with mentors. They are diff
 
 ---
 
-## Week 1 — Sep 15–21: Pinned reproduction
+## Week 1, Sep 15–21: Pinned reproduction
 
 | Work | Obj | Deliverable |
 |------|-----|-------------|
@@ -54,7 +54,7 @@ Which figure the term optimizes is a Week 0 decision with mentors. They are diff
 
 ---
 
-## Week 2 — Sep 22–28: Reconcile golds + review semantics
+## Week 2, Sep 22–28: Reconcile golds + review semantics
 
 | Work | Obj | Deliverable |
 |------|-----|-------------|
@@ -67,7 +67,7 @@ Which figure the term optimizes is a Week 0 decision with mentors. They are diff
 
 ---
 
-## Week 3 — Sep 29–Oct 5: Grounded WARL experiment
+## Week 3, Sep 29–Oct 5: Grounded WARL experiment
 
 | Work | Obj | Deliverable |
 |------|-----|-------------|
@@ -81,7 +81,7 @@ Which figure the term optimizes is a Week 0 decision with mentors. They are diff
 
 ---
 
-## Week 4 — Oct 6–12: Extraction / classification candidate
+## Week 4, Oct 6–12: Extraction / classification candidate
 
 | Work | Obj | Deliverable |
 |------|-----|-------------|
@@ -96,7 +96,7 @@ Which figure the term optimizes is a Week 0 decision with mentors. They are diff
 
 ---
 
-## Week 5 — Oct 13–19: Reproducible pipeline / workflow packaging
+## Week 5, Oct 13–19: Reproducible pipeline / workflow packaging
 
 | Work | Obj | Deliverable |
 |------|-----|-------------|
@@ -109,7 +109,7 @@ Which figure the term optimizes is a Week 0 decision with mentors. They are diff
 
 ---
 
-## Week 6 — Oct 20–26: UDB export integration
+## Week 6, Oct 20–26: UDB export integration
 
 | Work | Obj | Deliverable |
 |------|-----|-------------|
@@ -122,7 +122,7 @@ Which figure the term optimizes is a Week 0 decision with mentors. They are diff
 
 ---
 
-## Week 7 — Oct 27–Nov 2: Review queue + PR shaping
+## Week 7, Oct 27–Nov 2: Review queue + PR shaping
 
 | Work | Obj | Deliverable |
 |------|-----|-------------|
@@ -134,7 +134,7 @@ Which figure the term optimizes is a Week 0 decision with mentors. They are diff
 
 ---
 
-## Week 8 — Nov 3–9: Upstream contribution
+## Week 8, Nov 3–9: Upstream contribution
 
 | Work | Obj | Deliverable |
 |------|-----|-------------|
@@ -146,7 +146,7 @@ Which figure the term optimizes is a Week 0 decision with mentors. They are diff
 
 ---
 
-## Week 9 — Nov 10–15: Merge follow-up + handoff
+## Week 9, Nov 10–15: Merge follow-up + handoff
 
 | Work | Obj | Deliverable |
 |------|-----|-------------|

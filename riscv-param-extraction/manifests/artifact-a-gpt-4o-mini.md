@@ -1,4 +1,4 @@
-# Manifest — Artifact A (gpt-4o-mini)
+# Manifest: Artifact A (gpt-4o-mini)
 
 **Status:** `COMPLETE`  
 **Date:** 2026-07-24 → 2026-07-25 (IST)  
@@ -38,7 +38,7 @@ Second-model extraction with **gpt-4o-mini-2024-07-18** and **PROMPT_VERSION=v2*
 ```powershell
 cd <path-to>/riscv-unified-db
 $env:PROMPT_VERSION = "v2"
-# OPENAI_API_KEY in session or gitignored .env — never committed
+# OPENAI_API_KEY in session or gitignored .env; never committed
 python param_extraction\scripts\extract.py run --model gpt4o-mini --retries 0 --delay 1.0
 python param_extraction\scripts\extract.py merge --model gpt4o-mini
 ```

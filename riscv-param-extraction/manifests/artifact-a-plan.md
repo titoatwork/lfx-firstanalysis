@@ -1,4 +1,4 @@
-# Artifact A — offline plan (Obj 1 + 3)
+# Artifact A: offline plan (Obj 1 + 3)
 
 **Status:** COMPLETE (see `artifact-a-gpt-4o-mini.md`)  
 **Date planned:** 2026-07-24  
@@ -30,7 +30,7 @@ Honest numbers if mini is worse than Claude. **Not** a pure gpt-4o multi-model m
 | `gpt4o-mini` alias + `--chunk` | Present (local extract.py) |
 | Chunks | 79 total · **60** param-bearing (Claude complete) |
 | Claude v2 baseline | `results/v2/all_results_claude-sonnet-4.json` + deduped + metrics **72.9%** |
-| GT live working tree | **223** (dirty remeasure) — **do not** use for headline A vs Part I |
+| GT live working tree | **223** (dirty remeasure); **do not** use for headline A vs Part I |
 | GT at `HEAD` on lfx-1832 | **185** (restore before analyze) |
 | Pilot mini | `v2/gpt-4o-mini/chunk_020.json` only (will be **skipped** without `--force`) |
 | Pilot gpt-4o | chunk_021 OK; chunk_020 error (TPM), irrelevant to mini A path |
@@ -66,11 +66,11 @@ If the burn rate after the first **5** new chunks projects a total above **$4.50
 
 ---
 
-## Exact commands (paid — only after key + cap)
+## Exact commands (paid, only after key + cap)
 
 ```powershell
 cd <workspace>\riscv-unified-db
-# Key: put OPENAI_API_KEY in .env (gitignored) OR set in session — never commit/echo
+# Key: put OPENAI_API_KEY in .env (gitignored) OR set in session; never commit/echo
 git check-ignore .env   # must print .env if using file
 $env:PROMPT_VERSION = "v2"
 # $env:OPENAI_API_KEY = "<session only>"

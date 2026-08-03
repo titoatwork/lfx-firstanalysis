@@ -41,10 +41,11 @@ More detail: [`docs/`](./docs/README.md) · metrics: [`riscv-param-extraction/do
 | Step | What to open | Why |
 |------|----------------|-----|
 | 1 | `./verify.sh` or `verify_claims.py` | Published numbers re-derive from committed files |
-| 2 | [`riscv-param-extraction/docs/metrics.md`](./riscv-param-extraction/docs/metrics.md) | Full tables + grounding / noise caveats |
+| 2 | [`riscv-param-extraction/docs/metrics.md`](./riscv-param-extraction/docs/metrics.md) | Full tables + grounding / noise; **§8** = figures also on UDB threads |
 | 3 | [`docs/EVIDENCE.md`](./docs/EVIDENCE.md) | Upstream PR/issue/review index with links |
-| 4 | [`artifact_c/results/PRIMARY_RESULTS.md`](./riscv-param-extraction/artifact_c/results/PRIMARY_RESULTS.md) | Dual-run variance; registered hypotheses vs noise |
-| 5 | [`analysis/`](./riscv-param-extraction/analysis/) | Offline gold-label audits (IDL + schema shape) |
+| 4 | [#2163](https://github.com/riscv/riscv-unified-db/issues/2163) / [#2053](https://github.com/riscv/riscv-unified-db/issues/2053) | Same evaluation claims on the public tracker |
+| 5 | [`artifact_c/results/PRIMARY_RESULTS.md`](./riscv-param-extraction/artifact_c/results/PRIMARY_RESULTS.md) | Dual-run variance; registered hypotheses vs noise |
+| 6 | [`analysis/`](./riscv-param-extraction/analysis/) | Offline gold-label audits (IDL + schema shape) |
 
 Honest limitations are intentional: single-run recall is noisy; published recall is **grounding** (gold names in the prompt); schema-valid export is structural only.
 
@@ -90,25 +91,32 @@ Discussed on [riscv-unified-db#2053](https://github.com/riscv/riscv-unified-db/i
 
 ### Exact vs inexact scoring
 
-Most of the weaker model's adjusted score is carried by inexact alignment passes; exact-name rates differ more sharply across models. Decomposition scripts live under `artifact_c/scripts/`.
+Most of the weaker model's adjusted score is carried by inexact alignment passes; exact-name rates differ more sharply across models. Decomposition scripts live under `artifact_c/scripts/`. Full tables: [`docs/metrics.md` §5 and §8](./riscv-param-extraction/docs/metrics.md).
+
+### Upstream threads are part of the measurement record
+
+Several figures were also posted on UDB issues (not only in this repo): dual-run noise and exact/inexact split on [#2163](https://github.com/riscv/riscv-unified-db/issues/2163); grounding correction and dual-model limits on [#2053](https://github.com/riscv/riscv-unified-db/issues/2053); WARL decidability **4 / 4 / 18** of **26** on [#2200](https://github.com/riscv/riscv-unified-db/issues/2200); closed-set schema counts on [#2251](https://github.com/riscv/riscv-unified-db/issues/2251). Index: [`metrics.md` §8](./riscv-param-extraction/docs/metrics.md).
 
 ---
 
 ## Upstream (riscv/riscv-unified-db)
 
-Census **2026-08-01**. Live list and discussion links: [`docs/EVIDENCE.md`](./docs/EVIDENCE.md).
+Census **2026-08-02**. Live list and discussion links: [`docs/EVIDENCE.md`](./docs/EVIDENCE.md).
 
 | Kind | Count |
 |------|------:|
 | Merged PRs authored | **7** |
 | Open PRs authored | **4** |
 | Issues authored | **11** |
+| Unique issues+PRs involving this author (search) | **38** |
 
 **Merged:** [#2138](https://github.com/riscv/riscv-unified-db/pull/2138), [#2146](https://github.com/riscv/riscv-unified-db/pull/2146), [#2189](https://github.com/riscv/riscv-unified-db/pull/2189), [#2215](https://github.com/riscv/riscv-unified-db/pull/2215), [#2227](https://github.com/riscv/riscv-unified-db/pull/2227), [#2256](https://github.com/riscv/riscv-unified-db/pull/2256), [#2266](https://github.com/riscv/riscv-unified-db/pull/2266)
 
-**Open:** [#2289](https://github.com/riscv/riscv-unified-db/pull/2289), [#2255](https://github.com/riscv/riscv-unified-db/pull/2255), [#2212](https://github.com/riscv/riscv-unified-db/pull/2212), [#2164](https://github.com/riscv/riscv-unified-db/pull/2164)
+**Open:** [#2289](https://github.com/riscv/riscv-unified-db/pull/2289) (draft), [#2255](https://github.com/riscv/riscv-unified-db/pull/2255), [#2212](https://github.com/riscv/riscv-unified-db/pull/2212), [#2164](https://github.com/riscv/riscv-unified-db/pull/2164)
 
-Also: technical comments on other contributors' PRs (e.g. [#2090](https://github.com/riscv/riscv-unified-db/pull/2090), [#2103](https://github.com/riscv/riscv-unified-db/pull/2103), [#2245](https://github.com/riscv/riscv-unified-db/pull/2245)) and design threads ([#2053](https://github.com/riscv/riscv-unified-db/issues/2053), [#2251](https://github.com/riscv/riscv-unified-db/issues/2251), [#2200](https://github.com/riscv/riscv-unified-db/issues/2200)).
+**Reviews / other PRs (examples):** [#2090](https://github.com/riscv/riscv-unified-db/pull/2090), [#2103](https://github.com/riscv/riscv-unified-db/pull/2103), [#2192](https://github.com/riscv/riscv-unified-db/pull/2192), [#2245](https://github.com/riscv/riscv-unified-db/pull/2245), [#2284](https://github.com/riscv/riscv-unified-db/pull/2284)
+
+**Measurement threads:** [#2053](https://github.com/riscv/riscv-unified-db/issues/2053), [#2163](https://github.com/riscv/riscv-unified-db/issues/2163), [#2200](https://github.com/riscv/riscv-unified-db/issues/2200), [#2251](https://github.com/riscv/riscv-unified-db/issues/2251): see metrics §8.
 
 ---
 
@@ -128,7 +136,7 @@ All figures below are **single-run** unless noted, and use the **gold name list 
 
 ## AI assistance
 
-This repository was developed with an AI coding assistant. Prefer the technical artifacts and `./verify.sh` over commit trailers when judging the work. Judgement calls (what to file, what to withdraw, what not to file) are the author's.
+This repository was developed with an AI coding assistant. Prefer the technical artifacts and `./verify.sh` over commit trailers when judging the work. Judgement calls (what to file, what to correct, what not to file) are the author's.
 
 ---
 

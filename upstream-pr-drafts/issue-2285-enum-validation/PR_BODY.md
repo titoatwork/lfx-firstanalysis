@@ -1,4 +1,4 @@
-# PR body (filed) — string-enum param literal smoke check
+# PR body (filed): string-enum param literal smoke check
 
 **Outcome:** open as [#2289](https://github.com/riscv/riscv-unified-db/pull/2289) · closes [#2285](https://github.com/riscv/riscv-unified-db/issues/2285)
 

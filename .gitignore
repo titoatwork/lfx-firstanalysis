@@ -1,77 +1,88 @@
 # =============================================================================
-# Local-only paths — not part of the public mentor surface
+# Large external checkouts
 # =============================================================================
 
-# Full UDB clone (large nested git)
+# Full UDB clone (separate git repository, never committed here)
 riscv-unified-db/
 # Worktree of the lfx-1832 corpus branch (chunks, gold, Part I results)
 .udb-corpus/
 
-# Official coding-challenge pack: local only until after application submission.
-# Keep on disk for personal work; do not re-add to the public tree.
+# =============================================================================
+# Local-only working material
+# =============================================================================
+
+# Official coding-challenge pack: local until the application is submitted.
 riscv-param-extraction/challenge/
 
-# Scratch / duplicate immersion workspace
+# Scratch workspaces
 immersion-workspace/
+_tmp_*
+**/_scratch*
 
-# Private working notes and tool config
-AGENTS.md
-AGENT-RULES.md
-AGENT-LANES.md
-HANDSOFF.md
-RECURRING_MISTAKES.md
+# Working notes and agent configuration. Drafts and personal process material,
+# not part of the reviewed public surface.
 .grok/
 **/AGENTS.md
-
-# Session / planning notes
+AGENT-*.md
 HANDOFF*.md
+HANDSOFF.md
 NEXT-SESSION*.md
-LEFTOVER-WORK.md
+RECURRING_MISTAKES.md
 PROGRESS.md
 LEFT-TODO.md
+LEFTOVER-WORK.md
 72H-CHECKLIST.md
 LIVE-VERIFY*.md
+TOMORROW*.md
 
-# Private strategy and study notes
-COMPETITION*.md
-FINAL-DRAFT*.md
-OVERMATCH*.md
-PLAN-*.md
-
-# Internal agent-to-agent queries. These describe defects in our own
-# artifacts in blunt terms and are written for another agent, not for readers.
-GROK-QUERY-*.md
-TIMELINE*.md
+# Personal planning, study and application drafts. These live outside this
+# repository; the patterns are a safety net, not a description of the tree.
 APPLICATION-PLAN.md
-PHASE1-STATUS.md
-PHASE1-CLOSEOUT.md
+PHASE*-*.md
 PHASE1-IMMERSION/
-PHASE2-PLAN.md
-Prompt.md
+PLAN-*.md
 PROJECTS.md
-RESUME-DRAFT.md
-GITHUB-PRESENTATION.md
-DEEP-STUDY*.md
-STUDY-AI*.md
-SARGANTANA*.md
+Prompt.md
+STUDY-*.md
+TIMELINE*.md
+*-DRAFT.md
+DRAFT-*.md
+application-packet/RESUME-CONTENT.md
+application-packet/INTERVIEW-SHEET.md
 
-# Early / superseded prework trees (public surface is docs/ + package READMEs)
+# Superseded prework trees (public surface is docs/ + package READMEs)
 lfx-riscv-param-extraction-prework/
 prework-draft/
 
-# Membership / personal forms, and screenshots of personal dashboards
-SCHEDULE*.docx
-dashboard-*.webp
-dashboard-*.png
-*-dashboard.png
-Screenshot*.png
-**/*Schedule*A*
-**/slack-notes.md
+# Daily work journals. Public run records live under manifests/ and docs/metrics.md.
+riscv-param-extraction/docs/WORKLOG-*.md
+
+# Local process artifacts:
+# - sweep OUTPUT may carry machine-local paths; the sweep SCRIPT stays tracked
+# - draft comment text until deliberately published as PR_BODY
+riscv-param-extraction/workflow_slice/findings/
+upstream-pr-drafts/**/COMMENT.md
+upstream-pr-drafts/**/ISSUE.md
+upstream-pr-drafts/**/REPLY.md
+upstream-pr-drafts/**/NOTES.md
+upstream-pr-drafts/**/POST_BODY.md
+upstream-pr-drafts/**/*.py
+
+# =============================================================================
+# Personal data and secrets
+# =============================================================================
+
 **/private/
 **/PERSONAL*.md
 **/*-PRIVATE.md
+**/slack-notes.md
+**/*Schedule*A*
+SCHEDULE*.docx
+Screenshot*.png
+dashboard-*.webp
+dashboard-*.png
+*-dashboard.png
 
-# Secrets / env
 .env
 .env.*
 *.pem
@@ -79,41 +90,19 @@ Screenshot*.png
 **/*API*KEY*
 **/*api*key*.txt
 
-# OS / editor
+# =============================================================================
+# Build, cache and editor artifacts
+# =============================================================================
+
 .DS_Store
 Thumbs.db
 .vscode/
 .idea/
 
-# Python
 __pycache__/
 *.py[cod]
 .venv/
 venv/
 *.egg-info/
 .pytest_cache/
-
-# Local runbooks
-TOMORROW*.md
-
-# Local process artifacts (not the public portfolio surface):
-# - sweep OUTPUT (may contain machine-local paths); the sweep SCRIPT stays tracked
-# - draft COMMENT / ISSUE / REPLY text until deliberately published as PR_BODY
-riscv-param-extraction/workflow_slice/findings/
-upstream-pr-drafts/**/COMMENT.md
-upstream-pr-drafts/**/ISSUE.md
-upstream-pr-drafts/**/REPLY.md
-upstream-pr-drafts/**/NOTES.md
-upstream-pr-drafts/**/POST_BODY.md
-# Local scratch scripts next to drafts
-upstream-pr-drafts/**/*.py
-_tmp_*
-**/_scratch*
-
-# Personal drafts (local only). Public FAQ lives under docs/.
-application-packet/RESUME-CONTENT.md
-application-packet/INTERVIEW-SHEET.md
-
-# Daily work journals (local). Public run records live under manifests/ and docs/metrics.md.
-riscv-param-extraction/docs/WORKLOG-*.md
-
+.ruff_cache/

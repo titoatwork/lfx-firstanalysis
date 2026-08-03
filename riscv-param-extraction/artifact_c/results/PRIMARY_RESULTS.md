@@ -107,11 +107,11 @@ Three checks:
 
 One caveat found while building the decomposition, recorded because it would otherwise trip the next person: `exact_matches_evaluated` in the metrics file counts exact matches *that also carried a comparable class* ([`analyze.py:510`](https://github.com/riscv/riscv-unified-db/blob/99f9dad81c7d58e7dcb43739c0828bc396ed2d86/param_extraction/scripts/analyze.py#L510)), so it is a lower bound rather than the exact-match count. It happens to equal the true count in all eleven runs checked here, but the figures above are taken from the alignment file's own tally, which is the right source. Symmetrically, the alignment file lists one entry per LLM parameter, so its sum can exceed the gold-side `matched_udb_count` when several outputs land on one gold parameter; it does on the Claude run, 133 against 129. The script reports gold-side counts and flags any disagreement.
 
-## A finding that was withdrawn
+## A finding the second run corrected
 
 After run 1, WARL looked like it collapsed when the catalogue was removed: 9/24 in arm A against 2/24 in arm B, while DIRECT stayed flat. That is precisely the mechanism argued in [#2053](https://github.com/riscv/riscv-unified-db/issues/2053), and it was one decision away from being published.
 
-Run 2 reversed it. Arm A fell to 7/24 and arm B rose to 9/24, higher than arm A. The finding was withdrawn.
+Run 2 reversed the direction. Arm A fell to 7/24 and arm B rose to 9/24, above arm A. What supersedes the run-1 reading is the narrower and more useful statement: on this corpus the arm A / arm B WARL contrast sits inside run-to-run noise, so no catalogue-removal effect is separable from it at N = 1. That is the result this experiment reports.
 
 ## What this means beyond this experiment
 

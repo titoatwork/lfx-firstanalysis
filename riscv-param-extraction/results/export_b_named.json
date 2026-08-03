@@ -1,9 +1,9 @@
 {
   "generated_at": "2026-07-22T16:39:43Z",
   "mode": "named",
-  "csv_path": "C:/Users/Ibteshamul Haque/Desktop/LFX-Mentorship/riscv-param-extraction/data/parameters.csv",
+  "csv_path": "riscv-param-extraction/data/parameters.csv",
   "out_dir": "drafts/param",
-  "udb_root": "C:/Users/Ibteshamul Haque/Desktop/LFX-Mentorship/riscv-unified-db",
+  "udb_root": "riscv-unified-db",
   "rows_read": 346,
   "unique_names": 342,
   "named_yes_rows": 87,

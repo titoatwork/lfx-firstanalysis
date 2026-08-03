@@ -1,4 +1,4 @@
-# Manifest — Stretch C ablation (prompt v3 WARL)
+# Manifest: Stretch C ablation (prompt v3 WARL)
 
 **Status:** `COMPLETE` (honest **null / negative** for WARL recall)  
 **Date:** 2026-07-25 (IST)  

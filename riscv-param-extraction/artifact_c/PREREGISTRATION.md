@@ -9,7 +9,7 @@ evidence about the context hypothesis. This document is the adequately powered t
 
 ---
 
-## Amendment 1 — design widened from two arms to four
+## Amendment 1: design widened from two arms to four
 
 **What changed.** The registered design compared prose-only against prose-plus-CSR-context. It now
 also varies whether the gold parameter name list is supplied.

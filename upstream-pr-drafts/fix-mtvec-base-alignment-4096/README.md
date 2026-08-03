@@ -2,7 +2,7 @@
 
 | | |
 |--|--|
-| **Outcome** | **Not filed as our PR** — fixed via review on another's PR |
+| **Outcome** | **Not filed as our PR**, fixed via review on another's PR |
 | Upstream | Maintainer PR [#2090](https://github.com/riscv/riscv-unified-db/pull/2090) (**merged**) |
 | Related authored fix | Schema-level `4095` in `unsigned_pow2`: [#2138](https://github.com/riscv/riscv-unified-db/pull/2138) (**merged**) |
 

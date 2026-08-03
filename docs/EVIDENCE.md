@@ -3,12 +3,11 @@
 **Author:** Ibteshamul Haque ([@titoatwork](https://github.com/titoatwork))  
 **Project:** [LFX Fall 2026 Part II](https://mentorship.lfx.linuxfoundation.org/project/22296947-cecb-4a8f-8bcb-4f34710e9f66)  
 **Repository:** https://github.com/titoatwork/lfx-firstanalysis  
-**Upstream census:** 2026-08-01, re-checked same day (GitHub API on [riscv/riscv-unified-db](https://github.com/riscv/riscv-unified-db); **7** merged / **4** open / **11** issues)
+**Upstream census:** 2026-08-02 (GitHub API on [riscv/riscv-unified-db](https://github.com/riscv/riscv-unified-db); **7** merged / **4** open authored PRs / **11** authored issues; **38** unique issues+PRs involving `@titoatwork`)
 
 This page records **what was measured** and **what was contributed upstream**, with links. Spring Part I pipeline and committed Claude results are by [@ishaan-arora-1](https://github.com/ishaan-arora-1) (PRs #1765-#1832); this repository **reproduces and extends** that public surface and does not claim Spring authorship.
 
-Primary metric tables: [`docs/metrics.md`](../riscv-param-extraction/docs/metrics.md). Re-check numbers with [`./verify.sh`](../verify.sh).
-
+Primary metric tables (including **§8 upstream-thread measurements**): [`docs/metrics.md`](../riscv-param-extraction/docs/metrics.md). Re-check numbers with [`./verify.sh`](../verify.sh).
 ---
 
 ## 1. Measurement notes (eval honesty)
@@ -104,15 +103,17 @@ These PRs are **not** authored by titoatwork. Comments verify or refine the auth
 | [#2155](https://github.com/riscv/riscv-unified-db/pull/2155) | Bhupesh-081 | open | Review of `long_name` replacements |
 | [#2097](https://github.com/riscv/riscv-unified-db/pull/2097) | uditjainstjis | open | Design review of parameter-extraction skill; fixtures; later WARL reframe ([thread](https://github.com/riscv/riscv-unified-db/pull/2097)) |
 
-### 2.5 Mentorship and design discussion threads
+### 2.5 Mentorship and design discussion threads (measurements on the tracker)
 
-| Thread | Role | Contribution (summary) |
-|--------|------|------------------------|
-| [#2053](https://github.com/riscv/riscv-unified-db/issues/2053) | Participant (10 comments) | Clarified Spring public vs internal baseline; documented gold-name prompt injection; corrected dual-model "new param" cases (e.g. IALIGN); dual-run instability; withdrew unsupported single-run class claims. Example: [withdrawal](https://github.com/riscv/riscv-unified-db/issues/2053#issuecomment-5117676758) |
-| [#2163](https://github.com/riscv/riscv-unified-db/issues/2163) | Author | Run-to-run variance; exact vs inexact alignment share |
-| [#2200](https://github.com/riscv/riscv-unified-db/issues/2200) | Author | Taxonomy vs IDL; membership/cardinality idioms; 4 decidable / 4 stale / 18 undecidable on the labelled set |
-| [#2251](https://github.com/riscv/riscv-unified-db/issues/2251) | Participant (not author) | Measurements on schema-shape / "decidable" for Layer 2 WARL validation; units for gold vs prose ([e.g.](https://github.com/riscv/riscv-unified-db/issues/2251#issuecomment-5147443108)) |
-| [#1748](https://github.com/riscv/riscv-unified-db/issues/1748) | Participant | Taxonomy class examples (WARL vs RW parameters) |
+These threads carry **numbers**, not only opinions. Full figure list: [`metrics.md` §8](../riscv-param-extraction/docs/metrics.md).
+
+| Thread | Role | Measured contribution (summary) |
+|--------|------|----------------------------------|
+| [#2053](https://github.com/riscv/riscv-unified-db/issues/2053) | Participant | Grounding vs discovery; dual-model limits (e.g. `IALIGN`); claim corrections. [correction example](https://github.com/riscv/riscv-unified-db/issues/2053#issuecomment-5117676758) |
+| [#2163](https://github.com/riscv/riscv-unified-db/issues/2163) | Author | **33.9% / 44.6%** dual-run; exact vs inexact tables (**72.9%** vs **32.2%** adjusted; exact-name **48.6%** vs **6.2%**) |
+| [#2200](https://github.com/riscv/riscv-unified-db/issues/2200) | Author | WARL gold **26** = **4** decidable + **4** stale + **18** undecidable; IDL self-correction notes |
+| [#2251](https://github.com/riscv/riscv-unified-db/issues/2251) | Participant (not proposal owner) | **9** closed-set schema params; WARL file-token vs gold-label unit split |
+| [#1748](https://github.com/riscv/riscv-unified-db/issues/1748) | Participant | Taxonomy / parameter class examples |
 
 #2251 is a Fall design discussion thread; contributions there are technical comments, not ownership of that proposal.
 

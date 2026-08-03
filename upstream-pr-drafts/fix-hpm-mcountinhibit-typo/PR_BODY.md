@@ -1,4 +1,4 @@
-# PR body (not filed) — HPM_COUNTER_EN mcountinhibit spelling
+# PR body (not filed): HPM_COUNTER_EN mcountinhibit spelling
 
 **Outcome:** not filed as a standalone PR. Subsumed by the HPM_EVENTS candidate / upstream ownership of #2046.
 
@@ -19,7 +19,7 @@ Also replaces placeholder `long_name: TODO` with a real short title.
 ## Why it mattered
 
 - Param YAML should not name a non-existent CSR.
-- One file, reviewable in minutes — but not worth a race against owned HPM work.
+- One file, reviewable in minutes, but not worth a race against owned HPM work.
 
 ## Minimal change
 

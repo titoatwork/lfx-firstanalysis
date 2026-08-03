@@ -26,7 +26,7 @@ Part I code remains upstream; this monorepo does not re-host the full UDB tree.
 ## Artifact B decisions
 
 1. **Input** is Part I `parameters.csv`, not raw LLM JSON, matching the spreadsheet review surface.
-2. **`named=yes` first** — **87** rows / **83** unique names; **all 83 already exist** under `spec/std/isa/param/`. Export is a schema-valid draft generator + provenance path, not “invent 83 new params.”
+2. **`named=yes` first**, **87** rows / **83** unique names; **all 83 already exist** under `spec/std/isa/param/`. Export is a schema-valid draft generator + provenance path, not “invent 83 new params.”
 3. **New drafts** (`--mode new --limit 20`) target high-confidence `named=no` names **absent** from UDB.
 4. **`definedBy`:** copy from existing UDB YAML when `--udb-root` is set; otherwise conservative adoc→extension map.
 5. **`schema` field:** map Part I `value_type` without inventing enum members or range bounds. Incomplete domains labeled DRAFT.

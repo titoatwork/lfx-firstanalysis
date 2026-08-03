@@ -1,4 +1,4 @@
-# PR body (not filed) — STVAL_WIDTH bounds
+# PR body (not filed): STVAL_WIDTH bounds
 
 **Outcome:** not filed. Covered by [#2103](https://github.com/riscv/riscv-unified-db/pull/2103) for [#2102](https://github.com/riscv/riscv-unified-db/issues/2102).
 

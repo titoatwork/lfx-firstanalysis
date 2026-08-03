@@ -1,4 +1,4 @@
-# PR body (not filed) — MTVEC alignment 4095 → 4096
+# PR body (not filed): MTVEC alignment 4095 → 4096
 
 **Outcome:** not opened. Same defect fixed via review on [#2090](https://github.com/riscv/riscv-unified-db/pull/2090). See [`OPEN-DECISION.md`](./OPEN-DECISION.md).
 

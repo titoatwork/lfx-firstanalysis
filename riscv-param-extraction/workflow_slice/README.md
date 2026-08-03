@@ -1,4 +1,4 @@
-# Workflow slice — review and export path
+# Workflow slice: review and export path
 
 **Purpose:** Convert monorepo measurement depth into maintainer-usable artifacts without bulk PRs or model spam.
 

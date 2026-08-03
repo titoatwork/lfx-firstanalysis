@@ -38,7 +38,7 @@ Per-class rates use small denominators (WARL n=24). One item moves the rate by a
 Full tables: [docs/metrics.md](docs/metrics.md).  
 Re-derive from the monorepo root: `../verify.sh`.
 
-### Artifact A — cross-model disagreement
+### Artifact A: cross-model disagreement
 
 Under the **same** v2 prompt and chunk set:
 
@@ -47,8 +47,8 @@ Under the **same** v2 prompt and chunk set:
 | Adjusted recall | **72.9%** | **32.2%** |
 | WARL recall | **50%** | **12.5%** |
 | Deduped params | 346 | 230 |
-| Name Jaccard | — | **3.8%** |
-| High-conf “new” both models | — | **9** |
+| Name Jaccard | n/a | **3.8%** |
+| High-conf “new” both models | n/a | **9** |
 
 High-confidence overlap is not a validated review gate: shared lists have included derived non-parameters (e.g. `IALIGN`). Details: [docs/metrics.md](docs/metrics.md) §5.
 

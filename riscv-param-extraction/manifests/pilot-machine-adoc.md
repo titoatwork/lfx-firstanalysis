@@ -1,4 +1,4 @@
-# Manifest — machine.adoc pilot (Obj 3)
+# Manifest: machine.adoc pilot (Obj 3)
 
 **Status:** `COMPLETE_WITH_MODEL_SPLIT`  
 **Date:** 2026-07-22  
@@ -38,11 +38,11 @@ cd <path-to>/riscv-unified-db
 $env:PROMPT_VERSION = "v2"
 $env:OPENAI_API_KEY = "<your key, not committed>"
 
-# chunk_021 (gpt-4o) — historical command form
+# chunk_021 (gpt-4o): historical command form
 python param_extraction\scripts\extract.py pilot --model gpt4o --retries 0 -v
 # (machine.adoc both chunks; 020 failed TPM, 021 succeeded)
 
-# chunk_020 only (gpt-4o-mini) — completion
+# chunk_020 only (gpt-4o-mini): completion
 python param_extraction\scripts\extract.py pilot --model gpt4o-mini --chunk chunk_020 --retries 0 -v
 ```
 
@@ -52,7 +52,7 @@ Local code note: `gpt4o-mini` alias + `--chunk` filter were added on the local U
 
 ## Results
 
-### chunk_021 — gpt-4o
+### chunk_021: gpt-4o
 
 | Field | Value |
 |-------|------:|
@@ -65,7 +65,7 @@ Local code note: `gpt4o-mini` alias + `--chunk` filter were added on the local U
 
 Parameters: `PMP_GRANULARITY`, `PMP_HARDWIRED_PRIVILEGES`, `PMP_CHECKS_ON_M_MODE`, `NUM_PMP_ENTRIES`, `PMPADDR_WIDTH`, `PMP_REGION_GRAIN`
 
-### chunk_020 — gpt-4o-mini
+### chunk_020: gpt-4o-mini
 
 | Field | Value |
 |-------|------:|

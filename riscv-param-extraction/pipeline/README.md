@@ -1,4 +1,4 @@
-# pipeline/ — Artifact A (multi-model, offline analysis)
+# pipeline/: Artifact A (multi-model, offline analysis)
 
 Thin, domain-named tools. **No LLM calls here.**
 

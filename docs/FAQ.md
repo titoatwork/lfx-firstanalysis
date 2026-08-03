@@ -42,3 +42,6 @@ The harness completed under a pinned model and immutable run directory. Limitati
 
 **Where is the list of UDB PRs and issues?**  
 [`EVIDENCE.md`](./EVIDENCE.md), re-checked against GitHub as of the census date on that page.
+
+**Are issue/PR comments part of the prework measurements?**  
+Yes. Several recall and taxonomy figures were first or also posted on UDB threads (#2053, #2163, #2200, #2251). They are indexed in [`metrics.md` §8](../riscv-param-extraction/docs/metrics.md) next to the local tables. Cite the issue link when you mean the public discussion; cite this repo when you mean the offline artifact re-derivation.
