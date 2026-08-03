@@ -11,7 +11,7 @@ coding-challenge-submission/
   SUBMISSION.md             # the submission: LLMs, prompts, results, cross-check
   LLM-DETAILS.md            # ten models on both snippets, full pass/fail matrix
   prompts/                  # v1 naive, v2 keyword-anchored, v3 final
-  snippets/                 # the two challenge snippets, verbatim
+  snippets/                 # the two challenge snippets, verbatim, + NOTICE.md
   results/
     cmo_cache_blocks.yaml   # 3 parameters, fields as the challenge asks
     csr_address_mapping.yaml  # empty list, which is the correct answer
@@ -32,3 +32,9 @@ aligned power of two, was missing from the database's own file for that
 parameter. It is encoded here, and upstream, because I filed
 [#2188](https://github.com/riscv/riscv-unified-db/issues/2188) and fixed it in
 [#2189](https://github.com/riscv/riscv-unified-db/pull/2189).
+
+## Attribution
+
+The snippets are RISC-V ISA Manual text, CC-BY-4.0. See
+[`snippets/NOTICE.md`](./snippets/NOTICE.md). Everything else here is my own work
+under the repository [LICENSE](../LICENSE).

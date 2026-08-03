@@ -1,6 +1,6 @@
 # Same extraction as results/cmo_cache_blocks.yaml, in the schema a real UDB
-# parameter file uses. Evidence lives in the .evidence.json beside this file,
-# because evidence_quote is not a valid UDB key.
+# parameter file uses. Evidence for all three parameters lives in EVIDENCE.json
+# in this directory, because evidence_quote is not a valid UDB key.
 #
 # This file matches what riscv/riscv-unified-db carries today. The power-of-two
 # enum is not a guess: upstream had `minimum: 1, maximum: 18446744073709551615`
