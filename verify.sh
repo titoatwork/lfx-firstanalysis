@@ -36,6 +36,16 @@ if [ "${1:-}" = "--list" ]; then
   exit 0
 fi
 
+# Preflight. Fail with an instruction rather than a traceback three checks in.
+if ! "$PY" -c "import yaml, jsonschema" 2>/dev/null; then
+  echo "Missing verification dependencies (PyYAML, jsonschema)."
+  echo
+  echo "  pip install -r riscv-param-extraction/requirements.txt"
+  echo
+  echo "Nothing else is required. Verification is offline and uses no API key."
+  exit 1
+fi
+
 # 1. Every number published in metrics.md and PRIMARY_RESULTS.md must re-derive
 #    from a committed artifact.
 step "published claims re-derive from committed artifacts" \

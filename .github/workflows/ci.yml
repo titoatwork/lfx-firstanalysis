@@ -6,6 +6,27 @@ on:
   pull_request:
 
 jobs:
+  # The entrypoint a reviewer is told to run, exercised exactly as documented in
+  # the README: clone, install requirements, ./verify.sh. This job is what makes
+  # the badge mean "the documented command works", not merely "the scripts run".
+  reviewer-path:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies exactly as the README says
+        run: pip install -r riscv-param-extraction/requirements.txt
+
+      - name: Verify the executable bit survived the checkout
+        run: test -x verify.sh
+
+      - name: ./verify.sh
+        run: ./verify.sh
+
   # Every number published in this repository must re-derive from a committed
   # artifact. If a figure in metrics.md, PRIMARY_RESULTS.md or the README stops
   # agreeing with the file it came from, this job fails and the badge goes red.

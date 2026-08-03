@@ -27,10 +27,13 @@ Measurement, export tooling, evaluation fixtures, and merged upstream fixes for 
 ```bash
 git clone https://github.com/titoatwork/lfx-firstanalysis
 cd lfx-firstanalysis
+pip install -r riscv-param-extraction/requirements.txt   # PyYAML, jsonschema
 ./verify.sh
 ```
 
-No credentials, no network model calls, no API key. Every failure prints which artifact disagreed with which published number. `./verify.sh --list` prints the claim table without running the checks.
+Two dependencies, both pure data handling. No credentials, no network model calls, no API key, no model SDK. Every failure prints which artifact disagreed with which published number. `./verify.sh --list` prints the claim table without running the checks.
+
+CI runs this exact path on every push, so the badge above tracks the same command a reviewer would type.
 
 Windows, from the repository root:
 
