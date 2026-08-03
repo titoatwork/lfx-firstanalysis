@@ -3,7 +3,7 @@
 **Author:** Ibteshamul Haque ([@titoatwork](https://github.com/titoatwork))  
 **Project:** [LFX Fall 2026 Part II](https://mentorship.lfx.linuxfoundation.org/project/22296947-cecb-4a8f-8bcb-4f34710e9f66)  
 **Repository:** https://github.com/titoatwork/lfx-firstanalysis  
-**Upstream census:** 2026-08-02 (GitHub API on [riscv/riscv-unified-db](https://github.com/riscv/riscv-unified-db); **7** merged / **4** open authored PRs / **11** authored issues; **38** unique issues+PRs involving `@titoatwork`)
+**Upstream census:** 2026-08-04 (GitHub API on [riscv/riscv-unified-db](https://github.com/riscv/riscv-unified-db); **7** merged / **4** open authored PRs / **11** authored issues; **38** unique issues+PRs involving `@titoatwork`; **0** PRs closed unmerged)
 
 This page records **what was measured** and **what was contributed upstream**, with links. Spring Part I pipeline and committed Claude results are by [@ishaan-arora-1](https://github.com/ishaan-arora-1) (PRs #1765-#1832); this repository **reproduces and extends** that public surface and does not claim Spring authorship.
 
