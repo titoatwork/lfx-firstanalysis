@@ -138,5 +138,3 @@ One snippet from this challenge, four upstream items, two of them merged.
 1. Take `prompts/v3_final.txt` and replace `{{SNIPPET}}` with a file from `snippets/`.
 2. Temperature 0.
 3. Check every `evidence_quote` appears in the snippet, whitespace-normalized, and that the CSR snippet returns an empty list.
-
-I can commit at least 30 hours per week for the Fall term.
