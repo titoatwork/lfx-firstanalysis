@@ -1,0 +1,26 @@
+# Candidate parameter, not present in riscv/riscv-unified-db today.
+# Extracted from the snippet; offered for SIG review, not proposed upstream.
+#
+# yaml-language-server: $schema=https://raw.githubusercontent.com/riscv/riscv-unified-db/main/spec/schemas/param_schema.json
+
+$schema: param_schema.json#
+kind: parameter
+name: CACHE_ORGANIZATION
+long_name: cache organization
+description: |
+  The organization of a cache, marked implementation-specific in the passage.
+  Software can discover it through the execution environment, so it is
+  software-visible.
+
+  Modeling note: the snippet gives no enumerable value space, so the schema is a
+  plain string rather than an invented enum. Inventing one here would be
+  hallucination at the schema layer. If the SIG wants this modeled, the value
+  domain has to come from a source this excerpt does not contain.
+definedBy:
+  extension:
+    anyOf:
+      - name: Zicbom
+      - name: Zicbop
+      - name: Zicboz
+schema:
+  type: string

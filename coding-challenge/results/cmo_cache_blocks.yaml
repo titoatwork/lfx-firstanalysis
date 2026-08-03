@@ -1,0 +1,80 @@
+# Privileged Spec 19.3.1, cache maintenance operations / cache blocks
+# Source snippet : snippets/priv_19.3.1_cmo_cache_blocks.txt
+# Prompt         : prompts/v3_final.txt (temperature 0)
+# Model          : gemini-3.6-flash reproduces this parameter set; the
+#                  power_of_two constraint was added on review, see SUBMISSION.md section 4
+# UDB-shaped form: results/udb-shaped/
+
+parameters:
+  - name: CACHE_BLOCK_SIZE
+    long_name: Cache block size
+    description: >
+      The observable size of a cache block, in bytes. The size of a cache block
+      is implementation-specific. A cache block is a contiguous, naturally
+      aligned power-of-two (NAPOT) range of memory locations, and is identified
+      by any of the physical addresses of those locations.
+    type: integer
+    constraints:
+      power_of_two: true
+      minimum: 1
+      uniform_across_system: true
+      maximum: null
+      notes: >
+        power_of_two is taken from "naturally aligned power-of-two (or NAPOT)".
+        It is the only machine-checkable constraint in the passage, and no model
+        encoded it; every model that found this parameter left NAPOT in prose
+        and emitted an unbounded integer. Upstream UDB had the same gap
+        (minimum 1, maximum 2**64-1) until riscv/riscv-unified-db#2189.
+
+        uniform_across_system records "the size of a cache block shall be
+        uniform throughout the system". A per-configuration parameter cannot
+        actually express agreement across the whole system, so this is carried
+        as a documented invariant rather than an enforceable bound.
+
+        maximum is null because the snippet states no upper bound. It is left
+        unset rather than invented.
+    evidence_quote: >
+      The capacity and organization of a cache and the size of a cache block are
+      both implementation-specific
+
+  - name: CACHE_CAPACITY
+    long_name: Cache capacity
+    description: >
+      The capacity of a cache. Marked implementation-specific in the passage.
+      Treated as an axis independent of block size and organization, because
+      the snippet states no constraint tying their value spaces together.
+    type: integer
+    constraints:
+      minimum: 1
+      maximum: null
+      notes: >
+        No value space is given in the snippet. Candidate only: no CACHE_CAPACITY
+        parameter exists in UDB today, and capacity is not observable to software
+        through the CMO extensions, which may be why.
+    evidence_quote: >
+      The capacity and organization of a cache and the size of a cache block are
+      both implementation-specific
+
+  - name: CACHE_ORGANIZATION
+    long_name: Cache organization
+    description: >
+      The organization of a cache. Marked implementation-specific in the
+      passage. The execution environment provides software a means to discover
+      it, so it is software-visible, but the snippet does not enumerate legal
+      values.
+    type: string
+    constraints:
+      enum: null
+      notes: >
+        Deliberately opaque. The text gives no enumerable domain, so no enum is
+        invented; that would be hallucination at the schema layer rather than at
+        the quote layer. Candidate only: no CACHE_ORGANIZATION parameter exists
+        in UDB today.
+    evidence_quote: >
+      The capacity and organization of a cache and the size of a cache block are
+      both implementation-specific
+
+# Parameter count is a modeling judgment. "are both implementation-specific"
+# joins two noun phrases naming three properties, so one, two or three are all
+# defensible. Three is chosen because the properties vary independently.
+# See SUBMISSION.md section 3.

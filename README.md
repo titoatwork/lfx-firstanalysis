@@ -57,6 +57,7 @@ Every row is checkable without trusting this page.
 | Two independent audits converge on the same four names | [`PARAM-SCHEMA-SHAPES.md`](./riscv-param-extraction/analysis/PARAM-SCHEMA-SHAPES.md) | Schema-shape scan and IDL scan both dissent on `SXLEN`, `UXLEN`, `VSXLEN`, `VUXLEN`. The equality is gated as an invariant in `verify_claims.py` |
 | Export produces schema-valid UDB YAML | [`export/`](./riscv-param-extraction/export/) | **83/83** named, **20/20** new drafts. Structural validity only, not architectural approval |
 | Findings became merged upstream fixes | [`docs/EVIDENCE.md`](./docs/EVIDENCE.md) | 7 merged PRs, each closing an issue filed from this measurement work |
+| The extraction task itself found a real defect | [`coding-challenge/`](./coding-challenge/) | The Part II challenge snippet describes a cache block as a power of two. UDB's own parameter did not enforce it, until [#2189](https://github.com/riscv/riscv-unified-db/pull/2189) |
 
 ---
 
@@ -109,6 +110,7 @@ docs/
   EVIDENCE.md          measurement limits and the upstream contribution index
   FAQ.md               how to read the numbers
   TERM-PLAN.md         nine-week plan mapped to the official objectives
+coding-challenge/      Part II challenge submission: prompts, ten-model matrix, results
 upstream-pr-drafts/    local drafts for filed and not-filed defects (historical archive)
 verify.sh              offline verification entrypoint
 ```

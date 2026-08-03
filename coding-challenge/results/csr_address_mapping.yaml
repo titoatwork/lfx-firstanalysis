@@ -1,0 +1,24 @@
+# Privileged Spec 2.1, "Conventional" R/W accessibility of CSRs by address mapping
+# Source snippet : snippets/priv_2.1_csr_address_mapping.txt
+# Prompt         : prompts/v3_final.txt (temperature 0)
+# Model          : gemini-3.6-flash returns zero here, as do 5 of the other 9 models tested
+
+parameters: []
+
+# Zero parameters is the correct extraction, not a failure to find any.
+#
+# The passage contains none of the optionality triggers: no may, might, should,
+# optional, optionally, implementation-defined or implementation-specific. It
+# describes a fixed, shared encoding of the 12-bit CSR address space. "By
+# convention" signals an architectural convention every implementation follows,
+# which is the opposite of an implementation choice.
+#
+# Specifically not parameters:
+#   csr[11:0] 12-bit space, up to 4096 CSRs  fixed encoding space
+#   csr[11:10] read/write versus read-only   fixed convention
+#   csr[9:8]  lowest privilege level         fixed convention
+#
+# A model emitting NUM_CSRS, CSR_ADDRESS_SPACE_SIZE, CSR_ADDRESS_SPACE_BITS or
+# CSR_ACCESSIBILITY_ENCODING from this text has hallucinated. Four of the ten
+# models tested did exactly that, with those four names among the outputs, so
+# this snippet discriminates rather than merely being easy.

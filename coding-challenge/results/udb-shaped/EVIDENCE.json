@@ -1,0 +1,40 @@
+{
+  "snippet": "snippets/priv_19.3.1_cmo_cache_blocks.txt",
+  "source": "RISC-V Privileged Spec 19.3.1",
+  "prompt": "prompts/v3_final.txt",
+  "temperature": 0,
+  "note": "Evidence is kept out of the parameter files because evidence_quote is not a valid UDB key. Every quote below is a verbatim, whitespace-normalized substring of the snippet.",
+  "parameters": [
+    {
+      "name": "CACHE_BLOCK_SIZE",
+      "quote": "The capacity and organization of a cache and the size of a cache block are both implementation-specific",
+      "constraint_quotes": [
+        "a contiguous, naturally aligned power-of-two (or NAPOT) range of memory locations",
+        "the size of a cache block shall be uniform throughout the system"
+      ],
+      "exists_upstream": true,
+      "upstream_path": "spec/std/isa/param/CACHE_BLOCK_SIZE.yaml",
+      "provenance": "Upstream carried type integer, minimum 1, maximum 18446744073709551615 and long_name TODO until riscv/riscv-unified-db#2189 (issue #2188), merged as 57d70cfa. The power-of-two enum in this file is that fix."
+    },
+    {
+      "name": "CACHE_CAPACITY",
+      "quote": "The capacity and organization of a cache and the size of a cache block are both implementation-specific",
+      "exists_upstream": false,
+      "status": "candidate, offered for SIG review"
+    },
+    {
+      "name": "CACHE_ORGANIZATION",
+      "quote": "The capacity and organization of a cache and the size of a cache block are both implementation-specific",
+      "supporting_quote": "the execution environment provides software a means to discover information about the caches and cache blocks in a system",
+      "exists_upstream": false,
+      "status": "candidate, offered for SIG review"
+    }
+  ],
+  "cross_check": {
+    "date": "2026-08-04",
+    "udb_parameter_count": 227,
+    "cache_parameters_upstream": ["CACHE_BLOCK_SIZE"],
+    "definedBy_inferred": "anyOf [Zicbom, Zicbop, Zicboz]",
+    "definedBy_matches_upstream": true
+  }
+}

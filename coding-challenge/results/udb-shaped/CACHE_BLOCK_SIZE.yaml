@@ -1,0 +1,100 @@
+# Same extraction as results/cmo_cache_blocks.yaml, in the schema a real UDB
+# parameter file uses. Evidence lives in the .evidence.json beside this file,
+# because evidence_quote is not a valid UDB key.
+#
+# This file matches what riscv/riscv-unified-db carries today. The power-of-two
+# enum is not a guess: upstream had `minimum: 1, maximum: 18446744073709551615`
+# until #2188 / #2189, which I filed and fixed.
+#
+# yaml-language-server: $schema=https://raw.githubusercontent.com/riscv/riscv-unified-db/main/spec/schemas/param_schema.json
+
+$schema: param_schema.json#
+kind: parameter
+name: CACHE_BLOCK_SIZE
+long_name: cache block size
+description: |
+  The observable size of a cache block, in bytes. A cache block is a naturally
+  aligned power-of-two (NAPOT) range of memory.
+
+  In the initial set of CMO extensions the size shall be uniform throughout the
+  system. That is a system-level invariant and is not expressible in a
+  per-configuration parameter, so it is documented here rather than encoded.
+definedBy:
+  extension:
+    anyOf:
+      - name: Zicbom
+      - name: Zicbop
+      - name: Zicboz
+schema:
+  type: integer
+  enum:
+    [
+      0x1,
+      0x2,
+      0x4,
+      0x8,
+      0x10,
+      0x20,
+      0x40,
+      0x80,
+      0x100,
+      0x200,
+      0x400,
+      0x800,
+      0x1000,
+      0x2000,
+      0x4000,
+      0x8000,
+      0x10000,
+      0x20000,
+      0x40000,
+      0x80000,
+      0x100000,
+      0x200000,
+      0x400000,
+      0x800000,
+      0x1000000,
+      0x2000000,
+      0x4000000,
+      0x8000000,
+      0x10000000,
+      0x20000000,
+      0x40000000,
+      0x80000000,
+      0x100000000,
+      0x200000000,
+      0x400000000,
+      0x800000000,
+      0x1000000000,
+      0x2000000000,
+      0x4000000000,
+      0x8000000000,
+      0x10000000000,
+      0x20000000000,
+      0x40000000000,
+      0x80000000000,
+      0x100000000000,
+      0x200000000000,
+      0x400000000000,
+      0x800000000000,
+      0x1000000000000,
+      0x2000000000000,
+      0x4000000000000,
+      0x8000000000000,
+      0x10000000000000,
+      0x20000000000000,
+      0x40000000000000,
+      0x80000000000000,
+      0x100000000000000,
+      0x200000000000000,
+      0x400000000000000,
+      0x800000000000000,
+      0x1000000000000000,
+      0x2000000000000000,
+      0x4000000000000000,
+      0x8000000000000000,
+    ]
+# An inline enum rather than a $ref to $defs/64bit_unsigned_pow2, because
+# parameter schemas cannot reference those definitions: idlc raises
+# "unhandled ref". Filed as #2199, fix proposed in #2212. That definition also
+# contained 4095, which is not a power of two, filed as #2137 and fixed in #2138.

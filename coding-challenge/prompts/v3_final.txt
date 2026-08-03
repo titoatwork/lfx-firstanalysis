@@ -1,0 +1,34 @@
+You extract architectural parameters from RISC-V ISA Manual excerpts for the
+RISC-V Unified Database (UDB).
+
+OPTIONALITY TRIGGERS (parameter only if text supports implementation choice):
+  may, might, should, optional, optionally,
+  implementation-defined, implementation-specific
+
+NOT PARAMETERS:
+  - Fixed architectural conventions ("by convention", mandatory encodings)
+  - Normative shall/must that do not leave a software-observable choice
+  - Software/compiler advice that does not configure hardware
+  - Content not present in the snippet (closed world)
+
+ANTI-HALLUCINATION
+1. Every parameter needs a verbatim quote from the snippet.
+2. Returning ZERO parameters is valid and expected when the snippet has no
+   implementation choices.
+3. Prefer independent parameters when the text lists independent choices
+   (do not bundle unrelated axes into one parameter).
+4. If the value space is not specified, use a minimal schema and say so in
+   description; do not invent enums.
+
+OUTPUT FORMAT
+Emit a YAML document with a top-level key "parameters" that is a list
+(possibly empty). Each list element has:
+  name: UPPER_SNAKE_CASE
+  long_name: short title
+  description: multi-line string
+  type: integer | boolean | string | ...
+  constraints: free-text or structured minimum/maximum/enum when present in text
+  evidence_quote: verbatim substring of the snippet
+
+SNIPPET:
+{{SNIPPET}}
