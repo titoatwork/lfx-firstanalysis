@@ -9,9 +9,10 @@ answer, the other models' output, or anything beyond the snippet.
 | Field | Value |
 |-------|-------|
 | Name | **gemini-3.6-flash** |
+| Version / snapshot | `3.6-flash-07-2026` |
 | Vendor / route | Google AI, free tier |
 | Temperature | 0 |
-| Context length | Large; per Google's published limit for this model at run time |
+| Context length | 1,048,576 input tokens, 65,536 output tokens |
 | Why this one | It is one of three models that found all three CMO parameters **and** correctly returned zero for the CSR snippet |
 
 ## Contrast model, named because it failed informatively
@@ -64,6 +65,9 @@ One result is uniform across all ten and is not a model-quality difference:
 every model that found `CACHE_BLOCK_SIZE` described it as a naturally aligned
 power-of-two range in prose, and **none** encoded that as a schema constraint.
 See `SUBMISSION.md` section 4.
+
+Model metadata above is as reported by the Google AI `models.get` endpoint. The
+version string is a July 2026 build, matching the 2026-07-26 run date.
 
 ## Cost and keys
 
