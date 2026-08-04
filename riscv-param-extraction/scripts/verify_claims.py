@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """
-Re-derive every published number from committed artifacts, and fail on mismatch.
+Re-derive every registered number from committed artifacts, and fail on mismatch.
+
+Coverage is the CLAIMS table below, not a scan of the prose. This proves the
+registered figures against their artifacts; it does not prove that every figure
+appearing in the documents was registered here.
 
 Nothing here trusts prose. Each claim names the file it must come from and the
 path within it. If a claim cannot be checked from a committed artifact, it is

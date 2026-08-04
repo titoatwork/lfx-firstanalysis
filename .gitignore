@@ -19,6 +19,13 @@ immersion-workspace/
 _tmp_*
 **/_scratch*
 
+# Personal-contact documents. This repository is public and is cited from the
+# submitted application PDFs, so nothing carrying a phone number or a postal
+# address belongs in it, not even untracked in the working tree where one
+# `git add -A` would publish it.
+*[Rr]esume*.pdf
+*[Cc][Vv].pdf
+
 # Working notes and agent configuration. Drafts and personal process material,
 # not part of the reviewed public surface.
 .grok/

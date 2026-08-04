@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
-# Re-derive every published number from committed artifacts. No credentials, no
-# network, no model calls. Fails if any published figure disagrees with the file
-# it came from.
+# Re-derive every registered number from committed artifacts. No credentials, no
+# network, no model calls. Fails if a registered figure disagrees with the file
+# it came from. Coverage is the claim table in scripts/verify_claims.py, not a
+# scan of the prose, so this proves the registered figures, not that every
+# figure got registered.
 #
 #   ./verify.sh          everything
 #   ./verify.sh --list   show the claim table without checking
@@ -48,7 +50,7 @@ fi
 
 # 1. Every number published in metrics.md and PRIMARY_RESULTS.md must re-derive
 #    from a committed artifact.
-step "published claims re-derive from committed artifacts" \
+step "registered claims re-derive from committed artifacts" \
   "$PY" riscv-param-extraction/scripts/verify_claims.py
 
 # 2. Evaluation fixtures intact (including the WARL distinction they exist to
@@ -58,7 +60,7 @@ step "eval fixtures + review-envelope separation" \
 
 hr
 if [ "$fail" -eq 0 ]; then
-  echo "PASS  every published number re-derives, and every gate holds"
+  echo "PASS  every registered number re-derives, and every gate holds"
 else
   echo "FAIL  see above"
 fi
