@@ -16,6 +16,7 @@ cd "$(dirname "$0")"
 export PYTHONUTF8=1
 PY="${PYTHON:-python}"
 fail=0
+skipped=0
 
 hr() { printf '%.0s-' {1..66}; echo; }
 
@@ -30,6 +31,23 @@ step() {
     echo "   FAILED (exit $?)"
     fail=1
   fi
+  echo
+}
+
+# Same as step, but exit 3 means "could not run here". Reported as skipped, and
+# never folded into the pass line, so an unrun check cannot read as a passing one.
+step_skippable() {
+  local name="$1"; shift
+  local rc=0
+  hr
+  echo "## $name"
+  hr
+  "$@" || rc=$?
+  case "$rc" in
+    0) echo "   ok" ;;
+    3) echo "   SKIPPED, not checked here" ; skipped=$((skipped + 1)) ;;
+    *) echo "   FAILED (exit $rc)" ; fail=1 ;;
+  esac
   echo
 }
 
@@ -58,9 +76,16 @@ step "registered claims re-derive from committed artifacts" \
 step "eval fixtures + review-envelope separation" \
   "$PY" riscv-param-extraction/workflow_slice/scripts/ci_slice_check.py
 
+# 3. The H5 evidence types are pin-dependent, so the documents name a commit for
+#    each one. This checks the repository still says what they claim. Needs a UDB
+#    clone beside this one; skips loudly without it.
+step_skippable "H5 evidence types match UDB at their pinned commits" \
+  "$PY" riscv-param-extraction/artifact_c/scripts/test_derivation_detector.py
+
 hr
 if [ "$fail" -eq 0 ]; then
   echo "PASS  every registered number re-derives, and every gate holds"
+  [ "$skipped" -gt 0 ] && echo "      ($skipped check(s) skipped above, not counted as passing)"
 else
   echo "FAIL  see above"
 fi

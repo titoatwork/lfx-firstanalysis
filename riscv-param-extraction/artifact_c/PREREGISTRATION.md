@@ -1,8 +1,14 @@
 # Preregistration: does leakage-audited CSR-field context improve parameter extraction?
 
-**Status:** PREREGISTERED, amended once. Committed **before** any model call in any arm.
+**Status:** PREREGISTERED, amended three times, every amendment before the run it governs. Committed
+**before** any model call in any arm.
 **Registered:** 2026-07-27 (commit `dfa6b23`, public timestamp 13:58:34Z)
 **Amended:** 2026-07-27, same day, **before any run**. See Amendment 1.
+**Amended:** 2026-07-28, **before any run**. H5 rubric: categories and evidence type, in §H5 below.
+**Amended:** 2026-08-05, **before the H5 run** (no H5 output exists yet). The `executable` evidence
+type was defined too narrowly, and evidence types were recorded without the commit they were
+determined against, which matters because the labelling corpus is a fork that predates upstream
+changes to the derivations being labelled. Correction and its consequences in §H5 below.
 **Supersedes:** an earlier small temporal-holdout pilot (n=10 positives, prompt v1.2) that returned
 an exploratory null with documented guidance-leakage limitations. That pilot is local-only and is not
 evidence about the context hypothesis. This document is the adequately powered test.
@@ -110,13 +116,26 @@ exclusive, is labelled against UDB as exactly one of:
 | **2** | Absent because UDB **derives** it from other choices rather than treating it as a parameter | a function in `globals.isa`, or determined by which extension is implemented |
 | **3** | Absent because it is **out of scope**: microarchitectural, or execution-environment | not ISA-visible |
 
-**Every label also records its evidence type**, because two labels of the same category are not equally strong. `IALIGN` has an executable definition, so its derivation is a fact about the model and is machine-checkable across the whole repository. `FLEN` has prose in `F.yaml` saying the width follows from `F`/`D`/`Q`, which is a fact about the documentation and is not. Both are category 2; only one can be found automatically.
+**Every label also records its evidence type**, because two labels of the same category are not equally strong. An executable derivation is a fact about the model and is machine-checkable across the whole repository; prose asserting a derivation is a fact about the documentation and is not.
 
 | Evidence type | Meaning |
 |---------------|---------|
-| `executable` | a derivation function exists, e.g. `function ialign` in `globals.isa` |
+| `executable` | IDL defines the derivation, in **either** form: a function (`function ialign` in `globals.isa`) or a global constant (`U32 FLEN = …` in `fp.idl`). The whole `globals.isa` include tree counts, not `globals.isa` alone |
 | `documented` | prose in a UDB file states the derivation, but nothing executes it |
 | `absent` | neither; the label rests on the labeller's reading |
+
+**An evidence type is only meaningful with a commit attached.** Labelling runs against `.udb-corpus`,
+which is a fork and not `main`, so a derivation can be `documented` at the pin and `executable`
+upstream. Every evidence type is recorded with the commit it was determined against, and where the pin
+and `main` disagree, both are reported rather than one being presented as the state of UDB.
+
+**Amended 2026-08-05, before the H5 run** (no H5 output exists yet). Two defects, one in the rubric and one in the script.
+
+*Evidence type is pin-dependent and was not pinned.* The `executable` row previously read "a derivation function exists", and this paragraph used `IALIGN` and `FLEN` as the worked contrast between executable and documented evidence, concluding that only one of the two is findable at scale. That holds at the labelling corpus and not at UDB `main`. `.udb-corpus` is pinned at `c184e313`, which forked from `main` at `ba151afc` on 2026-04-02; at that pin `fp.idl:12` is `U32 FLEN = 64;` with the derivation in a trailing comment, so `documented` was the right label there. Upstream [#1813](https://github.com/riscv/riscv-unified-db/pull/1813) (`e9be82db`, 2026-05-08) replaced the constant with `U32 FLEN = implemented?(ExtensionName::Q) ? 128 : (implemented?(ExtensionName::D) ? 64 : 32)`, eleven weeks before the label was written. On `main` the evidence type is `executable`. **Every evidence type now records the commit it was determined against**, and where corpus and `main` disagree both are reported, because an evidence type without a pin cannot be checked by a reader. The split itself is kept: `documented` and `absent` stay distinct from `executable`, and the reason for reporting them separately is unchanged. What is withdrawn is `FLEN` as the worked example of the split, and nothing replaces it, because no remaining candidate has been verified as documented-only at both states.
+
+*The detector was narrower than the rubric.* `analyze_h5.py` searched `globals.isa` alone for `function <name>`, so a derivation written as a global constant, or written in any of the six files `globals.isa` includes, was invisible to it. Against the pinned corpus this returned the correct label for `FLEN` for the wrong reason; against a current checkout it returns the wrong one. It now searches the whole include tree for both forms. The recorded labels are unaffected, since they were produced against the pin where no executable `FLEN` derivation existed.
+
+The **category** assignments do not move. `FLEN` is category 2 at both states, so the registered result that at least two of the nine are not missed parameters does not depend on the pin.
 
 Counts are reported per category **and** per evidence type. A category-2 finding resting entirely on `documented` evidence is a weaker result than one resting on `executable`, and collapsing them would hide that. Distinction raised by @RAJVEER42.
 
@@ -135,10 +154,16 @@ Applying the rubric to the existing nine:
 - `IALIGN` is **category 2, verified**. `spec/std/isa/isa/globals.isa` defines `function ialign`
   returning 16 or 32 depending on `C` and `misa.C`. No parameter file exists. Two models proposed it as
   a new parameter at high confidence and it is not one. Found by @RAJVEER42.
-- `FLEN` is **category 2**, less cleanly. No parameter file and no derivation function, but the width
-  follows from which of `F`/`D`/`Q` is implemented and UDB states this in extension prose.
-- `ILEN` is **unresolved between 2 and 3**. No parameter file, no function, and its only whole-word
-  appearance under `spec/std/isa` is inside a prose constraint in `Ziccif.yaml`.
+- `FLEN` is **category 2 at both states; evidence type differs by pin** (pinned 2026-08-05). No
+  parameter file exists at either. At the corpus pin `c184e313`, `fp.idl:12` reads `U32 FLEN = 64;`
+  with the derivation in a trailing comment, so the evidence is `documented` and rests on extension
+  prose in `F.yaml`. On `main`, `e9be82db` makes it `U32 FLEN = implemented?(ExtensionName::Q) ? 128 :
+  (implemented?(ExtensionName::D) ? 64 : 32)`, reached through `globals.isa:10`, so the evidence is
+  `executable`. Only the evidence type moves; the category does not.
+- `ILEN` is **unresolved between 2 and 3**. No parameter file, no function, no global, and its only
+  whole-word appearance under `spec/std/isa` is inside a prose constraint in `Ziccif.yaml:14`.
+  Re-checked 2026-08-05 against both the pin and `main`, searching the full include tree for both
+  derivation forms. Unresolved at both.
 
 So at least two of the nine dual-model candidates are not missed parameters, with a third unclear.
 Dual-model agreement at high confidence did not filter them. That is a stronger and more damaging

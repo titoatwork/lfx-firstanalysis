@@ -18,8 +18,13 @@ rather than left to good intentions:
 
 Categories, from the preregistration:
   1  absent from UDB and arguably should exist   (a real gap)
-  2  absent because UDB derives it               (function, or follows from an extension)
+  2  absent because UDB derives it               (IDL function or global, or follows
+                                                  from which extension is implemented)
   3  absent because it is out of scope           (microarchitectural / execution environment)
+
+Evidence type is pin-dependent and is recorded with the commit it was determined
+against. `.udb-corpus` is a fork, not `main`, and a derivation can be `documented`
+at the pin while being `executable` upstream. See the 2026-08-05 amendment.
 
 Only category 1 is a genuine missed parameter.
 
@@ -48,14 +53,30 @@ def gold_names() -> set[str]:
 
 
 def udb_signals() -> tuple[set[str], str]:
-    """Mechanical signals used for blind labelling: existing params, and globals.isa."""
+    """Mechanical signals used for blind labelling: existing params, and the IDL.
+
+    The IDL text is `globals.isa` **plus every file it includes**. Reading
+    `globals.isa` alone was the original bug: `FLEN` is defined in `fp.idl`,
+    which `globals.isa:10` includes, so a globals-only read reported no
+    derivation and the absence was read as evidence. See the 2026-08-05
+    amendment in ../PREREGISTRATION.md.
+    """
     params = set()
     pdir = CORPUS / "spec" / "std" / "isa" / "param"
     if pdir.exists():
         params = {p.stem for p in pdir.glob("*.yaml")}
-    g = CORPUS / "spec" / "std" / "isa" / "isa" / "globals.isa"
-    globals_src = g.read_text(encoding="utf-8", errors="replace") if g.exists() else ""
-    return params, globals_src
+
+    isa_dir = CORPUS / "spec" / "std" / "isa" / "isa"
+    g = isa_dir / "globals.isa"
+    if not g.exists():
+        return params, ""
+
+    parts = [g.read_text(encoding="utf-8", errors="replace")]
+    for inc in re.findall(r'^\s*include\s+"([^"]+)"', parts[0], re.M):
+        f = isa_dir / inc
+        if f.exists():
+            parts.append(f.read_text(encoding="utf-8", errors="replace"))
+    return params, "\n".join(parts)
 
 
 def collect(run_dirs: list[Path]) -> dict[tuple[str, str], dict[str, dict]]:
@@ -100,24 +121,62 @@ def proposed_new(recs: dict[str, dict], gold: set[str], existing: set[str]) -> s
     return out
 
 
-def label_signals(name: str, existing: set[str], globals_src: str) -> dict:
+def strip_idl_comments(src: str) -> str:
+    """Drop `#` comments. Required, not cosmetic: at corpus pin c184e313
+    `fp.idl:12` is `U32 FLEN = 64; # implemented?(...)`, so a config-dependence
+    test that reads comments would call a hard-coded constant a derivation."""
+    return re.sub(r"#[^\n]*", "", src)
+
+
+CONFIG_DEPENDENT = ("implemented?(", "CSR[", "ExtensionName::")
+
+
+def idl_derivation(name: str, idl_src: str) -> str | None:
+    """Return how IDL derives `name`, or None. Executable evidence only.
+
+      "function"  `function ialign { ... return 16 ... return 32 }`
+      "global"    `U32 FLEN = implemented?(ExtensionName::Q) ? 128 : ...;`
+      "constant"  `U32 FLEN = 64;` — a declaration, NOT a derivation
+      None        no declaration of any form
+
+    Three distinctions matter here and each one was got wrong at some point:
+    a derivation can be a global rather than a function; it can live in any of
+    the files `globals.isa` includes rather than in `globals.isa`; and a global
+    bound to a literal is a fixed value, not something derived from config.
+    Only "function" and "global" are executable evidence. "constant" and None
+    go to a human, who records `documented` or `absent`.
+    """
+    src = strip_idl_comments(idl_src)
+    if re.search(r"function\s+" + re.escape(name.lower()) + r"\s*\{", src):
+        return "function"
+    # <Type> NAME = <init>; where <Type> may carry a width, e.g. Bits<32>.
+    m = re.search(r"^[ \t]*[A-Za-z_][A-Za-z0-9_]*(?:<[^>\n]*>)?[ \t]+"
+                  + re.escape(name) + r"[ \t]*=([^;]*);", src, re.M)
+    if not m:
+        return None
+    init = m.group(1)
+    return "global" if any(t in init for t in CONFIG_DEPENDENT) else "constant"
+
+
+def label_signals(name: str, existing: set[str], idl_src: str) -> dict:
     """Mechanical signals only. No judgement, no arm, no model.
 
     Evidence type is recorded alongside the category because two category-2
-    labels are not equally strong. A derivation function is executable and can be
-    found automatically across the repository; prose stating a derivation cannot.
+    labels are not equally strong. An executable derivation can be found
+    automatically across the repository; prose stating a derivation cannot.
     Collapsing them would hide that difference. (@RAJVEER42)
     """
-    fn = re.search(r"function\s+" + re.escape(name.lower()) + r"\s*\{", globals_src)
+    form = idl_derivation(name, idl_src)
     if name in existing:
-        return {"has_param_file": True, "derived_by_function_in_globals_isa": bool(fn),
+        return {"has_param_file": True, "idl_derivation": form,
                 "auto_category": "not-a-candidate", "evidence_type": "n/a"}
-    if fn:
-        return {"has_param_file": False, "derived_by_function_in_globals_isa": True,
+    if form in ("function", "global"):
+        return {"has_param_file": False, "idl_derivation": form,
                 "auto_category": 2, "evidence_type": "executable"}
-    # Prose-level derivation cannot be detected mechanically; a human decides,
-    # and records evidence_type as documented or absent when they do.
-    return {"has_param_file": False, "derived_by_function_in_globals_isa": False,
+    # "constant" and None both fall here. A literal-valued global is a fixed
+    # value, not a derivation, and prose-level derivation cannot be detected
+    # mechanically at all; a human decides and records documented or absent.
+    return {"has_param_file": False, "idl_derivation": form,
             "auto_category": "", "evidence_type": "TODO-human"}
 
 
@@ -127,8 +186,8 @@ def main() -> int:
     args = ap.parse_args()
 
     gold = gold_names()
-    existing, globals_src = udb_signals()
-    if not globals_src:
+    existing, idl_src = udb_signals()
+    if not idl_src:
         print("warning: globals.isa not found, category-2 auto-detection disabled",
               file=sys.stderr)
 
@@ -175,7 +234,7 @@ def main() -> int:
     worksheet = []
     for n in sorted(every):
         row = {"candidate": n}
-        row.update(label_signals(n, existing, globals_src))
+        row.update(label_signals(n, existing, idl_src))
         row["category"] = row.pop("auto_category")
         row["labelled_by"] = "auto" if row["category"] else "TODO-human"
         worksheet.append(row)
