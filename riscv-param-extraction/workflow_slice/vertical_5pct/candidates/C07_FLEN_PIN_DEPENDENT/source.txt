@@ -1,0 +1,30 @@
+Source: spec/std/isa/isa/fp.idl, line 12
+Two revisions, because the answer differs between them.
+
+--- at corpus pin c184e3135ea60fe73d6bcec56cef2c3ac09ca18d ---
+
+# floating point register file
+U32 FLEN = 64; # implemented?(ExtensionName::D) ? 7'd64 : 7'd32;
+
+  A global bound to a literal. The derivation sits in a trailing comment,
+  where nothing executes it. Evidence for "derived" is documentation only.
+
+--- at origin/main 52822ae69b6889eb18fd1c8f7a9010ae28d47d56 ---
+
+U32 FLEN = implemented?(ExtensionName::Q) ? 8'd128 : (implemented?(ExtensionName::D) ? 7'd64 : 7'd32);
+
+  A global bound to a config-dependent expression. Executable.
+  Changed by riscv/riscv-unified-db#1813, commit e9be82db, 2026-05-08.
+  Reached from spec/std/isa/isa/globals.isa line 10: include "fp.idl"
+
+--- supporting prose, present at both revisions ---
+
+Source: spec/std/isa/ext/F.yaml, lines 32-34
+
+  We use the term FLEN to describe the width of the floating-point registers
+  in the RISC-V ISA, and FLEN=32 for the F single-precision floating-point
+  extension.
+
+--- negative evidence ---
+
+No file matches spec/std/isa/param/FLEN.yaml at either revision.

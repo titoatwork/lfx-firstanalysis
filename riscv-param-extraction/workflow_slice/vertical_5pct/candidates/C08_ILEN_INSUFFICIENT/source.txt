@@ -1,0 +1,22 @@
+Source: spec/std/isa/ext/Ziccif.yaml, line 14
+Pin:    origin/main @ 52822ae69b6889eb18fd1c8f7a9010ae28d47d56 (2026-08-05)
+Also verified at corpus pin c184e3135ea60fe73d6bcec56cef2c3ac09ca18d
+
+description: |
+  Main memory regions with both the cacheability and coherence PMAs must support instruction
+  fetch, and any instruction fetches of naturally aligned power-of-2 sizes up to
+  min(ILEN,XLEN) (i.e., 32 bits for RVA22) are atomic.
+
+--- negative evidence, which is the whole of the case ---
+
+Searched at both revisions, over spec/std/isa/isa/globals.isa and every file
+it includes (builtin_functions.idl, interrupts.idl, fetch.idl, util.idl,
+fp.idl, vec.idl), for both derivation forms:
+
+  no spec/std/isa/param/ILEN.yaml
+  no `function ilen`
+  no `<Type> ILEN = ...` global
+  no other whole-word appearance of ILEN anywhere under spec/
+
+The line above is the only place the name occurs, and it occurs inside a
+constraint about something else. It is used, never defined.

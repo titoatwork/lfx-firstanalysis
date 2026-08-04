@@ -1,0 +1,24 @@
+Source: spec/std/isa/isa/globals.isa, lines 797-809
+Pin:    origin/main @ 52822ae69b6889eb18fd1c8f7a9010ae28d47d56 (2026-08-05)
+Also present, unchanged, at corpus pin c184e3135ea60fe73d6bcec56cef2c3ac09ca18d
+
+function ialign {
+  returns Bits<6>
+  description {
+    Returns IALIGN, the smallest instruction encoding size, in bits.
+  }
+  body {
+    if (implemented?(ExtensionName::C) && (CSR[misa].C == 0x1)) {
+      return 16;
+    } else {
+      return 32;
+    }
+  }
+}
+
+--- negative evidence, recorded because the rejection rests on it ---
+
+No file matches spec/std/isa/param/IALIGN.yaml at either revision.
+Two models proposed IALIGN as a new parameter at high confidence and agreed
+on it, so dual-model agreement did not filter it. The candidate was surfaced
+by @RAJVEER42 on riscv/riscv-unified-db#2053.

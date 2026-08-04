@@ -1,0 +1,79 @@
+# Review envelope — NOT a UDB param file.
+# Neither approved nor rejected. The evidence does not decide it.
+candidate_id: C08_ILEN_INSUFFICIENT
+pipeline_stage: human_review_record
+
+evidence:
+  excerpt: >-
+    Main memory regions with both the cacheability and coherence PMAs must
+    support instruction fetch, and any instruction fetches of naturally aligned
+    power-of-2 sizes up to min(ILEN,XLEN) (i.e., 32 bits for RVA22) are atomic.
+  source_file: spec/std/isa/ext/Ziccif.yaml
+  source_commit_pin: 52822ae69b6889eb18fd1c8f7a9010ae28d47d56
+  also_verified_at: c184e3135ea60fe73d6bcec56cef2c3ac09ca18d
+  subsection: Ziccif — atomic instruction fetch
+  anchor: ext:ziccif_description
+
+classification:
+  class: UNRESOLVED
+  named: true
+  config_dependent: null
+  uncertainty: high
+  evidence_type: absent
+  evidence_type_pin: both
+  rationale: >
+    ILEN is used and never defined. There is no parameter file, no derivation
+    of either form anywhere in the IDL include tree, and no other whole-word
+    appearance under spec/. That is consistent with two different readings and
+    does not separate them. It could be a genuine gap, a quantity UDB has not
+    needed to model yet, or something the database deliberately leaves to the
+    profile because the constraint is about fetch atomicity rather than about
+    instruction length. Absence of a definition is not evidence for any one of
+    those.
+
+duplicate_decision:
+  status: not_applicable
+  related_existing: null
+  rationale: >
+    Cannot be assessed. Deduplication requires knowing what the candidate is,
+    and that is the open question.
+
+proposed:
+  name: null
+  definedBy: null
+  note: >
+    No proposal. Emitting a draft ILEN.yaml here would convert an open question
+    into a database entry, which is the failure this slice exists to prevent.
+
+schema_validation:
+  review_envelope_is_udb_valid: false
+  clean_param_yaml: null
+  clean_param_valid: null
+  reason: no export without a decision
+
+reviewer:
+  decision: needs_more_evidence
+  reject_reason: null
+  decision_date: "2026-08-05"
+  unresolved_questions:
+    - >
+      Is ILEN absent because UDB derives it, or because it is a real gap? The
+      repository does not say, and the two readings imply opposite actions.
+    - >
+      Would a maintainer treat "used in a profile constraint, never defined"
+      as intentional? That is architectural judgment, not something a search
+      settles, and it is the kind of question this workflow should route to a
+      human rather than resolve.
+  evidence_that_would_resolve:
+    - a parameter file, a derivation function, or an IDL global named ILEN
+    - a maintainer statement that instruction length is intentionally not modelled
+    - a second independent appearance of ILEN in a normative rather than
+      illustrative position
+  notes: >
+    The most important case in the slice and the least impressive one. A rubric
+    that never returns "unresolved" on a real candidate is not being applied
+    honestly, it is being applied to make the output look decisive. ILEN was
+    left unresolved when first labelled on 2026-07-28 and is still unresolved
+    after re-checking both revisions with a corrected search, so the abstention
+    has survived a deliberate attempt to close it. That is what makes it worth
+    committing rather than quietly resolving in whichever direction is cheaper.

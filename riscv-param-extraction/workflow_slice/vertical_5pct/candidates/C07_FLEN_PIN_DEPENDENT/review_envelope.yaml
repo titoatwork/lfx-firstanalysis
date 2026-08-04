@@ -1,0 +1,71 @@
+# Review envelope — NOT a UDB param file.
+# Reject, but the evidence for the rejection is different at each revision.
+candidate_id: C07_FLEN_PIN_DEPENDENT
+pipeline_stage: human_review_record
+
+evidence:
+  excerpt: >-
+    U32 FLEN = implemented?(ExtensionName::Q) ? 8'd128 :
+    (implemented?(ExtensionName::D) ? 7'd64 : 7'd32);
+  source_file: spec/std/isa/isa/fp.idl
+  source_commit_pin: 52822ae69b6889eb18fd1c8f7a9010ae28d47d56
+  also_verified_at: c184e3135ea60fe73d6bcec56cef2c3ac09ca18d
+  subsection: IDL globals — floating-point register width
+  anchor: idl:global_flen
+  note: >
+    The excerpt is the main text. At the corpus pin the same line reads
+    `U32 FLEN = 64;` with the derivation in a comment. Both are in source.txt
+    because the disagreement between them is the point of this case.
+
+classification:
+  class: DERIVED_NOT_PARAM
+  named: true
+  config_dependent: true
+  uncertainty: null
+  evidence_type: executable
+  evidence_type_pin: main_only
+  evidence_type_at_corpus_pin: documented
+  rationale: >
+    FLEN is derived at both revisions and is a parameter at neither, so the
+    disposition does not move. What moves is the evidence. On main the
+    derivation is executable IDL and a repository sweep finds it. At the corpus
+    pin the executable line is a literal and the only support for "derived" is
+    prose in F.yaml, which no sweep can find. Same name, same disposition, two
+    different strengths of evidence, decided by which commit was read.
+
+duplicate_decision:
+  status: not_applicable
+  related_existing: null
+  rationale: >
+    No FLEN.yaml at either revision. Recorded as negative evidence in
+    source.txt rather than left implied.
+
+proposed:
+  name: null
+  definedBy: null
+  note: No UDB name; rejection is the decision at both revisions.
+
+schema_validation:
+  review_envelope_is_udb_valid: false
+  clean_param_yaml: null
+  clean_param_valid: null
+  reason: no export on reject
+
+reviewer:
+  decision: reject
+  reject_reason: derived_from_existing_choices_not_a_parameter
+  decision_date: "2026-08-05"
+  unresolved_questions:
+    - >
+      Which revision should the reviewer's evidence type be recorded against
+      when the labelling corpus and main disagree? This slice records both and
+      names each. Recording only one is what produced the wrong public claim.
+  notes: >
+    This case exists because the project got it wrong in public. The write-up on
+    riscv/riscv-unified-db#2053 called FLEN documentation-only evidence and
+    contrasted it with IALIGN as the executable case that "generalises". That
+    was true of the labelling corpus and false of main, where #1813 had made the
+    derivation executable eleven weeks earlier, and it went out without naming a
+    pin. The lesson is not about FLEN. It is that an evidence type is a claim
+    about a tree, so it is not checkable unless the tree is named. The fixture
+    is kept as a regression test on the reviewer, not just on the tooling.

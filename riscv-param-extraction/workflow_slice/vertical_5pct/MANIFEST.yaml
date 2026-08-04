@@ -19,7 +19,11 @@ rules:
   - review_envelope never mixed into param.yaml
   - param.yaml emitted only when decision is approve_export
   - reject cases have review_envelope only
+  - needs_more_evidence cases have review_envelope only, and must list what
+    evidence would resolve them
   - every decision cites exact excerpt + source pin
+  - an evidence_type is a claim about a tree, so it carries the pin it was
+    determined against; where revisions disagree, both are recorded
 
 candidates:
   - id: C01_CACHE_BLOCK_SIZE
@@ -60,3 +64,47 @@ candidates:
     notes: >
       MODE value encodings 0/1 are ISA-fixed field semantics, not an
       implementation-defined architectural parameter. Hard judgment case.
+
+  # Added 2026-08-05. The first five cases exercise approve and one kind of
+  # reject. These three cover the dispositions that were still unbuilt: a
+  # derived quantity, a case whose evidence depends on which commit is read,
+  # and an honest abstention. All three are drawn from candidates that two
+  # models proposed as new parameters at high confidence, so they are real
+  # failures of dual-model agreement rather than invented fixtures.
+  - id: C06_REJECT_IALIGN_DERIVED
+    path: candidates/C06_REJECT_IALIGN_DERIVED/
+    class: DERIVED_NOT_PARAM
+    decision: reject
+    duplicate_status: not_applicable
+    evidence_type: executable
+    evidence_type_pin: both
+    notes: >
+      Config-dependent and named in the specification, so every surface signal
+      says parameter. `function ialign` in globals.isa settles it. The one case
+      here that an automated derivation sweep can find without a human.
+
+  - id: C07_FLEN_PIN_DEPENDENT
+    path: candidates/C07_FLEN_PIN_DEPENDENT/
+    class: DERIVED_NOT_PARAM
+    decision: reject
+    duplicate_status: not_applicable
+    evidence_type: executable
+    evidence_type_pin: main_only
+    evidence_type_at_corpus_pin: documented
+    notes: >
+      Same disposition at both revisions, different evidence. `U32 FLEN = 64;`
+      at the corpus pin, a config-dependent global on main after #1813. The
+      project published the corpus-pin reading as a fact about UDB, which is
+      the mistake this fixture pins.
+
+  - id: C08_ILEN_INSUFFICIENT
+    path: candidates/C08_ILEN_INSUFFICIENT/
+    class: UNRESOLVED
+    decision: needs_more_evidence
+    duplicate_status: not_applicable
+    evidence_type: absent
+    evidence_type_pin: both
+    notes: >
+      Used in a Ziccif constraint, defined nowhere, at either revision and
+      under both derivation forms. Neither approved nor rejected, and no
+      param.yaml. The abstention is the result.

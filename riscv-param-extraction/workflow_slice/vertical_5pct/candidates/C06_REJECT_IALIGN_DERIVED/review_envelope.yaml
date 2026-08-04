@@ -1,0 +1,63 @@
+# Review envelope — NOT a UDB param file.
+# Reject: derived quantity with an executable definition, not a parameter.
+candidate_id: C06_REJECT_IALIGN_DERIVED
+pipeline_stage: human_review_record
+
+evidence:
+  excerpt: >-
+    function ialign { returns Bits<6> description { Returns IALIGN, the
+    smallest instruction encoding size, in bits. } body { if
+    (implemented?(ExtensionName::C) && (CSR[misa].C == 0x1)) { return 16; }
+    else { return 32; } } }
+  source_file: spec/std/isa/isa/globals.isa
+  source_commit_pin: 52822ae69b6889eb18fd1c8f7a9010ae28d47d56
+  also_verified_at: c184e3135ea60fe73d6bcec56cef2c3ac09ca18d
+  subsection: IDL globals — instruction alignment
+  anchor: idl:function_ialign
+
+classification:
+  class: DERIVED_NOT_PARAM
+  named: true
+  config_dependent: true
+  uncertainty: null
+  evidence_type: executable
+  evidence_type_pin: both
+  rationale: >
+    IALIGN is a real architectural quantity and it is config-dependent, which
+    is exactly why it reads as a parameter. It is not one. Its value is a
+    function of a choice already modelled elsewhere: whether C is implemented
+    and whether misa.C is set. Adding IALIGN.yaml would introduce a second
+    place to state a fact the database already derives, and the two could then
+    disagree. Config-dependence is not the test for a parameter; being an
+    independent implementation choice is.
+
+duplicate_decision:
+  status: not_applicable
+  related_existing: null
+  rationale: >
+    Nothing to deduplicate against. The check that matters is the absence of
+    spec/std/isa/param/IALIGN.yaml at both pins, which is recorded in
+    source.txt as negative evidence rather than left implied.
+
+proposed:
+  name: null
+  definedBy: null
+  note: No UDB name; rejection is the decision.
+
+schema_validation:
+  review_envelope_is_udb_valid: false
+  clean_param_yaml: null
+  clean_param_valid: null
+  reason: no export on reject
+
+reviewer:
+  decision: reject
+  reject_reason: derived_from_existing_choices_not_a_parameter
+  decision_date: "2026-08-05"
+  unresolved_questions: []
+  notes: >
+    This is the case a name-based reviewer gets wrong. IALIGN appears in the
+    specification text, has a fixed meaning, and varies per configuration, so
+    every surface signal says parameter. Only reading the IDL settles it. It is
+    also the one case in this slice where a derivation search generalises: a
+    sweep for a derivation across the repository finds this without a human.

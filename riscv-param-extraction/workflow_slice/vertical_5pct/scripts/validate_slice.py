@@ -3,14 +3,17 @@
 Validate the 5% vertical slice.
 
 Checks:
-  - five candidates present with source + review_envelope
+  - every manifest candidate present with source + review_envelope
   - approve_export candidates have clean param.yaml that validates as UDB param
-  - reject candidates have NO param.yaml
+  - reject and needs_more_evidence candidates have NO param.yaml
   - review envelope is never a valid UDB param document
   - excerpt text appears in source.txt
   - required reviewer fields present
   - WARL dedup case records rename alignment
   - reject case records csr_field_not_architectural_parameter
+  - needs_more_evidence cases name what evidence would resolve them, rather
+    than deferring with no exit condition
+  - any evidence_type carries the pin it was determined against
 
 Exit 0 = slice intact and reproducible.
 """
@@ -57,13 +60,14 @@ def main() -> int:
     man = yaml.safe_load(MANIFEST.read_text(encoding="utf-8"))
     candidates = man.get("candidates") or []
 
-    if len(candidates) != 5:
-        errors.append(f"expected exactly 5 candidates, got {len(candidates)}")
+    if len(candidates) < 8:
+        errors.append(f"expected at least 8 candidates, got {len(candidates)}")
 
     saw_warl_dedup = False
     saw_reject_field = False
     approve_n = 0
     reject_n = 0
+    unresolved_n = 0
 
     for case in candidates:
         cid = case["id"]
@@ -148,8 +152,27 @@ def main() -> int:
                 if cls != "CSR_FIELD_NOT_PARAM":
                     errors.append(f"{cid}: reject needs reject_reason or CSR_FIELD_NOT_PARAM class")
             saw_reject_field = True
+        elif decision == "needs_more_evidence":
+            unresolved_n += 1
+            if param_path.is_file():
+                errors.append(f"{cid}: needs_more_evidence must not ship param.yaml")
+            # An abstention with no exit condition is a way of never deciding.
+            # Saying what would settle it is what separates the two.
+            resolvers = reviewer.get("evidence_that_would_resolve") or []
+            if not isinstance(resolvers, list) or not resolvers:
+                errors.append(f"{cid}: needs_more_evidence must list "
+                              f"evidence_that_would_resolve")
+            if not (reviewer.get("unresolved_questions") or []):
+                errors.append(f"{cid}: needs_more_evidence must record the open "
+                              f"questions")
         else:
             errors.append(f"{cid}: unknown decision {decision!r}")
+
+        # An evidence type is a claim about a tree. Without a pin it cannot be
+        # checked, which is exactly how a stale label reached a public thread.
+        cls = env.get("classification") or {}
+        if cls.get("evidence_type") and not cls.get("evidence_type_pin"):
+            errors.append(f"{cid}: evidence_type without evidence_type_pin")
 
         # special cases
         if cid == "C04_ASIDLEN_TO_ASID_WIDTH":
@@ -175,8 +198,13 @@ def main() -> int:
         errors.append("slice missing CSR-field reject candidate (C05)")
     if approve_n < 4:
         errors.append(f"expected >=4 approve_export, got {approve_n}")
-    if reject_n < 1:
-        errors.append(f"expected >=1 reject, got {reject_n}")
+    if reject_n < 3:
+        errors.append(f"expected >=3 reject, got {reject_n}")
+    # A slice that can only approve and reject cannot represent not knowing,
+    # and a workflow that cannot abstain will resolve every hard case wrongly
+    # in whichever direction is cheaper.
+    if unresolved_n < 1:
+        errors.append(f"expected >=1 needs_more_evidence, got {unresolved_n}")
 
     if errors:
         print("vertical_5pct FAILED:")
@@ -188,8 +216,10 @@ def main() -> int:
     print(f"  candidates: {len(candidates)}")
     print(f"  approve_export: {approve_n}")
     print(f"  reject: {reject_n}")
+    print(f"  needs_more_evidence: {unresolved_n}")
     print("  review envelopes separated from UDB-valid param.yaml")
-    print("  includes WARL dedup (C04) and CSR-field reject (C05)")
+    print("  includes WARL dedup (C04), CSR-field reject (C05), derived reject")
+    print("  (C06), pin-dependent evidence (C07) and honest abstention (C08)")
     return 0
 
 
