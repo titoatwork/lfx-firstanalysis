@@ -26,9 +26,9 @@ Per-class rates use small denominators (WARL n=24). One item moves the rate by a
 
 | Work | Result |
 |------|--------|
-| Phase 1 GT (live UDB) | **223** params; 100% any / **91%** strong match |
+| Phase 1 GT (UDB at corpus pin `c184e313`) | **223** params; 100% any / **91%** strong match |
 | Part I v2 remeasure (GT 185) | adj recall **72.9%**, class acc **88.4%**, WARL **12/24** |
-| Same LLM output vs live GT 223 | adj recall **64.2%**, class acc **88.6%**, WARL **50%** |
+| Same LLM output vs GT 223 (corpus pin) | adj recall **64.2%**, class acc **88.6%**, WARL **50%** |
 | Pilot machine.adoc | **COMPLETE_WITH_MODEL_SPLIT**. 021 **gpt-4o** (6 params), 020 **gpt-4o-mini** (9 params); total ~**$0.05** |
 | **Artifact A** (gpt-4o-mini, 60 chunks, GT185) | adj recall **32.2%**; name Jaccard vs Claude **3.8%**; WARL **3/24**; ~**$0.16** |
 | `parameters.csv` named=yes | **87** rows / **83** unique |

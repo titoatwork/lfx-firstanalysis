@@ -30,9 +30,9 @@ Filed and discussed upstream: [#2163](https://github.com/riscv/riscv-unified-db/
 
 | Measurement | Result | Source |
 |-------------|--------|--------|
-| Live UDB parameter count (regenerated gold) | **223** | metrics |
+| UDB parameter count at corpus pin `c184e313` (regenerated gold) | **223** | metrics |
 | Part I Claude output vs pinned GT185 | adj recall **72.9%**, class acc **88.4%**, WARL **12/24** | metrics; remeasure |
-| Same output vs live GT223 | adj recall **64.2%** | metrics |
+| Same output vs GT223 (corpus pin, not main) | adj recall **64.2%** | metrics |
 | gpt-4o-mini Artifact A vs GT185 | adj recall **32.2%** (name list supplied) | metrics |
 | Cross-model name Jaccard (same chunks/prompt) | **3.8%** | metrics |
 | Schema-valid export (named / new drafts) | **83/83** and **20/20** structural only | metrics |

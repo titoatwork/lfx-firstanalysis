@@ -77,7 +77,8 @@ def is_proposed_new(param: dict, udb_names: set[str]) -> bool:
     """True if the param is not an existing UDB name.
 
     Uses ``existing_udb_name`` when present; always checks the name against
-    the UDB name set (stricter: name must not be a live UDB param either).
+    the UDB name set (stricter: the name must not be a param in the scanned
+    UDB tree either, whichever revision that tree is on).
     """
     name = param.get("parameter_name") or ""
     existing = param.get("existing_udb_name")

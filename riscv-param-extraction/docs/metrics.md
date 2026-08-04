@@ -69,11 +69,23 @@ Credit for the Part I pipeline and committed results: [@ishaan-arora-1](https://
 
 ---
 
-## 1. Phase 1 ground truth (regenerated on live UDB)
+## 1. Phase 1 ground truth (regenerated on UDB at corpus pin `c184e313`)
+
+> **"live UDB" was the wrong description, corrected 2026-08-05.** This section and the
+> [#2053 scope reply](https://github.com/riscv/riscv-unified-db/issues/2053#issuecomment-5091343921)
+> both described 223 as a parameter count on UDB as it then stood. It is the count at the corpus pin
+> `c184e313`, on a branch that forked from `main` at `ba151afc` on 2026-04-02. `main` carried **227**
+> at the moment that comment was posted (2026-07-27) and still carries 227 at `52822ae6`. The
+> measurement is unaffected, since it was scored against a real gold pinned by digest
+> (`gold_canonical_sha256: acd73bd6…`), and the argument it supports gets slightly stronger rather
+> than weaker: the point was that the Part I freeze of 185 understates the database, and the true gap
+> is 42 rather than 38. What was wrong is the word "live" for a number measured on a fork. Re-deriving
+> the gold against `main` is registered as Week 1 work in [`TERM-PLAN.md`](../../docs/TERM-PLAN.md)
+> rather than estimated here.
 
 | Metric | Value |
 |--------|------:|
-| Real parameters | **223** (Part I freeze was 185; +38) |
+| Real parameters | **223** at corpus pin `c184e313` (Part I freeze was 185; +38) |
 | Spec files / lines | 74 / ~52 878 |
 | Any keyword match / strong | 100% / 91% |
 | Classes | DIRECT 140 · CSR_RW 55 · WARL 26 · SW_RULE 2 |
@@ -100,7 +112,7 @@ Source: local `export_udb_params` → `map_params_to_spec` → `generate_report`
 | NORM_CSR_WARL | 12 | 24 |
 | SW_RULE | 2 | 2 |
 
-Against **live GT 223** (same LLM output): adjusted recall **64.2%**, class acc **88.6%**, WARL still **50%**.
+Against **GT 223** at corpus pin `c184e313` (same LLM output): adjusted recall **64.2%**, class acc **88.6%**, WARL still **50%**.
 
 ---
 

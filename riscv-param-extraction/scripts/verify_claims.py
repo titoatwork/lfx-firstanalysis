@@ -592,10 +592,15 @@ CLAIMS: list[Claim] = [
 # Claims that are true but cannot be re-derived from anything committed.
 # Listed so the harness is honest about its own coverage.
 UNVERIFIABLE = [
-    ("gt223.total", "223 live UDB parameters",
+    # "live" was the wrong word for both of these and was corrected 2026-08-05.
+    # 223 is the parameter count at the corpus pin `c184e313`, not on main:
+    # `.udb-corpus` forked from main at `ba151afc` (2026-04-02) and main carries
+    # 227 as of `52822ae6`. A pinned number described as live invites a reader to
+    # compare it against a tree it was never measured on.
+    ("gt223.total", "223 UDB parameters at corpus pin c184e313 (main: 227 at 52822ae6)",
      "regenerated from a local UDB checkout; ground_truth.json is not committed"),
-    ("part1.vs_gt223", "64.2% adjusted recall against live GT223",
-     "scored against the uncommitted live gold"),
+    ("part1.vs_gt223", "64.2% adjusted recall against GT223, the corpus-pin gold",
+     "scored against the uncommitted corpus-pin gold, not against main"),
     # artifactA.exclusive_sets was listed here from 2026-07-25 to 2026-07-28.
     # It is now checkable: the deduped lists were recovered from a git stash on
     # the UDB clone, and `pipeline/agreement.py` reproduces the committed counts

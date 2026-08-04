@@ -47,7 +47,7 @@ Which figure the term optimizes is a Week 0 decision with mentors. They are diff
 | Work | Obj | Deliverable |
 |------|-----|-------------|
 | Pin UDB, ISA Manual, Spring PR SHAs, prompts, golds | 1,3 | Environment lock + SHAs |
-| Reproduce Part I end-to-end; verify GT185 / live GT223 | 1 | Baseline metrics report |
+| Reproduce Part I end-to-end; verify GT185 / GT223, and re-derive the gold against main rather than the corpus pin | 1 | Baseline metrics report |
 | Record commands, model IDs, prompt hashes, costs | 3 | Reproduction manifest |
 
 **Exit:** Every reported baseline recreatable; mismatches explained.

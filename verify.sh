@@ -76,7 +76,12 @@ step "registered claims re-derive from committed artifacts" \
 step "eval fixtures + review-envelope separation" \
   "$PY" riscv-param-extraction/workflow_slice/scripts/ci_slice_check.py
 
-# 3. The H5 evidence types are pin-dependent, so the documents name a commit for
+# 3. No figure measured against the pinned corpus may be described as if it came
+#    from live UDB. Pure wording gate, no UDB checkout needed.
+step "no figure claims currency it cannot have" \
+  "$PY" riscv-param-extraction/scripts/check_pinned_wording.py
+
+# 4. The H5 evidence types are pin-dependent, so the documents name a commit for
 #    each one. This checks the repository still says what they claim. Needs a UDB
 #    clone beside this one; skips loudly without it.
 step_skippable "H5 evidence types match UDB at their pinned commits" \

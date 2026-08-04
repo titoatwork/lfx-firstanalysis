@@ -4,7 +4,8 @@ Artifact B — parameters.csv → draft UDB param YAML.
 
 Maps Part I spreadsheet rows to draft files under drafts/param/, validates
 each document against a vendored copy of UDB param_schema.json, and (when
---udb-root is given) reports name-overlap / definedBy reuse against live UDB.
+--udb-root is given) reports name-overlap / definedBy reuse against whatever
+checkout --udb-root names, which may be a fork rather than main.
 
 Does **not** claim merge readiness. Every file is marked DRAFT.
 

@@ -2,7 +2,12 @@
   "provenance": {
     "gold_path": "../.udb-corpus/param_extraction/data/ground_truth.json",
     "gold_canonical_sha256": "acd73bd6d93ab01e2a1c83fca25549e1b604aae0e4625f899ee0616a04991505",
-    "udb_param_files": 227
+    "udb_param_files": 227,
+    "udb": {
+      "head": "52822ae69b6889eb18fd1c8f7a9010ae28d47d56",
+      "branch": "HEAD",
+      "dirty": false
+    }
   },
   "params_scanned": 227,
   "array_params": 15,

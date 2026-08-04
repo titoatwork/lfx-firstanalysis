@@ -42,6 +42,11 @@ import json
 import os
 import sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+# Same helper the gold audit uses, imported rather than copied so the two audits
+# cannot drift into recording provenance differently.
+from audit_gold_classification import udb_revision  # noqa: E402
+
 try:
     import yaml
 except ImportError:  # pragma: no cover
@@ -144,6 +149,12 @@ def audit(udb: str, gold_path: str) -> dict:
             "gold_path": gold_path,
             "gold_canonical_sha256": gold_digest(gold_path),
             "udb_param_files": len(files),
+            # Added 2026-08-05. Without this the audit reported a parameter
+            # count with no way to say which tree produced it, and the gold it
+            # scores against comes from `.udb-corpus`, a fork ~300 commits
+            # behind main. Two numbers from two different UDB states are not
+            # comparable, and a reader cannot tell without the revision.
+            "udb": udb_revision(udb),
         },
         "params_scanned": len(files),
         "array_params": sum(len(v) for v in groups.values()),
