@@ -45,12 +45,13 @@ parameters:
       the snippet states no constraint tying their value spaces together.
     type: integer
     constraints:
-      minimum: 1
-      maximum: null
       notes: >
-        No value space is given in the snippet. Candidate only: no CACHE_CAPACITY
-        parameter exists in UDB today, and capacity is not observable to software
-        through the CMO extensions, which may be why.
+        No value space is given in the snippet, so no bound is asserted. An
+        earlier draft carried minimum: 1; the passage does not state it, and
+        inventing a lower bound here would be the same error this pack charges
+        the models with. Candidate only: no CACHE_CAPACITY parameter exists in
+        UDB today, and capacity is not observable to software through the CMO
+        extensions, which may be why.
     evidence_quote: >
       The capacity and organization of a cache and the size of a cache block are
       both implementation-specific
