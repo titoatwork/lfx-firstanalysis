@@ -235,6 +235,18 @@ CLAIMS: list[Claim] = [
           RESULTS / "artifact_a_agreement.json",
           lambda m: round(float(m["agreement"]["class_agreement_rate"]) * 100, 1),
           tol=0.06, tags=["agreement"]),
+    # metrics.md §5.4 said "~440 combined exclusive". The artifact carries the two
+    # halves exactly, 227 and 209, so the approximation was replaced by the sum.
+    Claim("agreement.model_private_total", 436, "metrics.md §5.4",
+          RESULTS / "artifact_a_agreement.json",
+          lambda d: (d["hallucination_overlap"]["n_only_a"]
+                     + d["hallucination_overlap"]["n_only_b"]), tags=["agreement"]),
+    Claim("agreement.model_private_claude", 227, "metrics.md §5.4",
+          RESULTS / "artifact_a_agreement.json",
+          lambda d: d["hallucination_overlap"]["n_only_a"], tags=["agreement"]),
+    Claim("agreement.model_private_mini", 209, "metrics.md §5.4",
+          RESULTS / "artifact_a_agreement.json",
+          lambda d: d["hallucination_overlap"]["n_only_b"], tags=["agreement"]),
     Claim("agreement.proposed_new_both", 9, "metrics.md §5.4",
           RESULTS / "artifact_a_agreement.json",
           lambda m: m["hallucination_overlap"]["n_both"], tags=["agreement"]),
@@ -256,6 +268,11 @@ CLAIMS: list[Claim] = [
     # The WARL ratios are registered; the percentages the documents actually print
     # beside them were not, so a typo in either would have gone unnoticed. Both
     # come from the same artifact as the ratio above.
+    # metrics.md §5 prints the exact/inexact split beside the total; only the total
+    # and the exact half were registered.
+    Claim("part1.inexact_matches", 43, "metrics.md §5, §8",
+          RESULTS / "metrics_claude-sonnet-4.part1-committed.json",
+          lambda m: m["matched_udb_count"] - m["exact_matches_evaluated"], tags=["decomp"]),
     Claim("artifactA.matched_non_debug", 57, "metrics.md §5 comparison table",
           RESULTS / "metrics_gpt-4o-mini.json",
           lambda m: m["matched_udb_count"], tags=["artifactA"]),
