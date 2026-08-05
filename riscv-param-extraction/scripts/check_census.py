@@ -36,6 +36,19 @@ ROW = re.compile(r"^\|\s*\[#(\d{3,6})\]")
 HEADLINE = re.compile(r"\*\*(\d+)\*\*\s+unique issues\+PRs")
 README_ROW = re.compile(r"\|\s*Unique issues and PRs involving this author\s*\|\s*\*\*(\d+)\*\*\s*\|")
 
+# The census table in README.md carries the three authored counts one per row.
+COUNT_ROWS = {
+    "merged": re.compile(r"\|\s*Merged PRs authored\s*\|\s*\*\*(\d+)\*\*\s*\|"),
+    "open": re.compile(r"\|\s*Open PRs authored\s*\|\s*\*\*(\d+)\*\*\s*\|"),
+    "issues": re.compile(r"\|\s*Issues authored\s*\|\s*\*\*(\d+)\*\*\s*\|"),
+}
+# The reviewer summary at the top of README.md restates the same three numbers in
+# prose. It drifted to "8 merged, 5 open, 13 issues" against a table saying 8/6/14,
+# because nothing compared them. This is that comparison.
+SUMMARY = re.compile(
+    r"\*\*(\d+) merged\*\* upstream PRs, \*\*(\d+)\*\* open, \*\*(\d+)\*\* issues filed"
+)
+
 
 def listed_threads(text: str) -> tuple[set[int], dict[int, list[str]]]:
     """Thread numbers in the first column of the 2.1-2.5 tables, with their sections."""
@@ -111,6 +124,19 @@ def main() -> int:
         print("  (listed twice, counted once: "
               + ", ".join(f"#{n} in {'+'.join(s)}" for n, s in sorted(dupes.items())) + ")")
 
+    table = {k: one(p, readme, f"the README.md '{k}' census row") for k, p in COUNT_ROWS.items()}
+    s = SUMMARY.findall(readme)
+    if len(s) != 1:
+        print(f"could not read the README.md reviewer summary counts: "
+              f"{len(s)} matches, expected 1")
+        raise SystemExit(2)
+    summary = dict(zip(("merged", "open", "issues"), (int(x) for x in s[0])))
+
+    print(f"README.md census table    merged {table['merged']}, "
+          f"open {table['open']}, issues {table['issues']}")
+    print(f"README.md reviewer summary merged {summary['merged']}, "
+          f"open {summary['open']}, issues {summary['issues']}")
+
     bad = 0
     if headline != len(listed):
         print(f"\nMISMATCH  headline says {headline}, 2.1-2.5 list {len(listed)}")
@@ -118,6 +144,11 @@ def main() -> int:
     if readme_count != headline:
         print(f"\nMISMATCH  README says {readme_count}, EVIDENCE.md says {headline}")
         bad = 1
+    for k in ("merged", "open", "issues"):
+        if table[k] != summary[k]:
+            print(f"\nMISMATCH  README census table says {table[k]} {k}, "
+                  f"the reviewer summary says {summary[k]}")
+            bad = 1
 
     if args.online:
         live = api_threads()
