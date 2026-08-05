@@ -256,6 +256,9 @@ CLAIMS: list[Claim] = [
     # The WARL ratios are registered; the percentages the documents actually print
     # beside them were not, so a typo in either would have gone unnoticed. Both
     # come from the same artifact as the ratio above.
+    Claim("artifactA.matched_non_debug", 57, "metrics.md §5 comparison table",
+          RESULTS / "metrics_gpt-4o-mini.json",
+          lambda m: m["matched_udb_count"], tags=["artifactA"]),
     Claim("artifactA.warl_pct", 12.5, "metrics.md §5.2, §6 comparison, riscv-param-extraction/README.md",
           RESULTS / "metrics_gpt-4o-mini.json",
           lambda m: round(100 * m["per_class_recall"]["NORM_CSR_WARL"]["found"]
@@ -650,6 +653,15 @@ UNVERIFIABLE = [
     ("gt223.strong_match", "91% strong match when GT223 was regenerated at c184e313",
      "property of the regeneration run against an uncommitted gold; the run log is "
      "not in this repository"),
+    # Derivation traced 2026-08-06 and recorded here so the next reader does not
+    # repeat it. data/parameters.csv holds 346 rows and 342 unique names, 83
+    # named=yes and 259 named=no with no overlap. Two of those 259,
+    # VECTOR_LS_SEG_PARTIAL_ACCESS and VSSTATUS_VS_EXISTS, do exist in
+    # spec/std/isa/param on main at 4cf908e8, so "not in UDB" is 257 and not 259.
+    # The CSV half is committed; the subtraction needs a UDB checkout.
+    ("export.unique_names_not_in_udb",
+     "257 unique names not in UDB (259 named=no in parameters.csv, less the 2 that exist)",
+     "the CSV is committed but the UDB parameter list it is differenced against is not"),
     # EVIDENCE.md 2.4 republishes this from the #2317 comment, in bold, and it was
     # the only bold figure on the public surface that was neither checked nor
     # declared. It stays declared rather than registered because the criterion is
