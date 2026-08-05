@@ -102,7 +102,7 @@ The passage contains none of the optionality triggers. "By convention" describes
 
 I did not stop at producing YAML. I checked all three parameters against `riscv/riscv-unified-db`.
 
-**Only one of the three exists.** Of 227 parameters in `spec/std/isa/param/`, there is exactly one cache parameter, `CACHE_BLOCK_SIZE`. There is no `CACHE_CAPACITY` and no `CACHE_ORGANIZATION`. I report those two as candidates, not as misses: the snippet does mark them implementation-specific, but neither is observable to software through the CMO extensions, which is a plausible reason the SIG has not modeled them. Deciding that is a mentor call, not mine.
+**Only one of the three exists.** Of the 227 parameters in `spec/std/isa/param/`, there is exactly one cache parameter, `CACHE_BLOCK_SIZE`. That count is 227 at `52822ae6`, the revision the analyses in this repository scanned, and still 227 at `4cf908e8`, checked 2026-08-06. There is no `CACHE_CAPACITY` and no `CACHE_ORGANIZATION`. I report those two as candidates, not as misses: the snippet does mark them implementation-specific, but neither is observable to software through the CMO extensions, which is a plausible reason the SIG has not modeled them. Deciding that is a mentor call, not mine.
 
 **The extension gating was a hit.** I inferred `definedBy: anyOf [Zicbom, Zicbop, Zicboz]` from the section context. That matches the upstream file exactly.
 
@@ -129,7 +129,7 @@ One snippet from this challenge, four upstream items, two of them merged.
 ## 5. Honest limitations
 
 - The submitted YAML is a human-reviewed reference result. `gemini-3.6-flash` reproduces the parameter set and the empty CSR answer; the power-of-two constraint is mine, and no model produced it.
-- Three parameters from snippet 1 is a modeling judgment, not a fact. The live database currently models one.
+- Three parameters from snippet 1 is a modeling judgment, not a fact. UnifiedDB models one, at `52822ae6` and still at `4cf908e8`.
 - Extension gating on the CMO extensions follows the section context. Whether cache capacity should be gated that way is a SIG question.
 - These are two snippets. Nothing here is a recall measurement, and it should not be read as one.
 

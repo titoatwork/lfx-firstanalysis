@@ -32,7 +32,8 @@ of legal values." That can be checked from how the IDL uses a parameter, or from
 the parameter's schema declares it to be. The two routes share no code and no logic
 beyond reading the same gold.
 
-They agree. Out of 227 parameters, both single out the same four as labelled
+They agree. Out of the 227 parameters each scan drew from, recorded as
+`provenance.udb.head` in both artifacts, they single out the same four as labelled
 `NORM_DIRECT` when the evidence says otherwise:
 
 ```
