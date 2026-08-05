@@ -51,7 +51,9 @@ BANNED = [
 # Historical records of things already said in public. Correcting these would
 # falsify the archive; the correction belongs in the thread, not in the copy.
 EXEMPT_DIRS = {"upstream-pr-drafts"}
-EXEMPT_FILES = {"check_pinned_wording.py"}
+# check_pinned_wording.py holds the patterns; test_gates.py holds the fixtures that
+# prove they fire. Both must contain the banned phrasings to do their job.
+EXEMPT_FILES = {"check_pinned_wording.py", "test_gates.py"}
 
 SEARCH_GLOBS = ("*.md", "*.py")
 
