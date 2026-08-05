@@ -28,6 +28,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "riscv-param-extraction"))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from scripts.verify_claims import CLAIMS, UNVERIFIABLE  # noqa: E402
 
@@ -45,8 +46,20 @@ GOVERNED = (
 
 BOLD_NUMBER = re.compile(r"\*\*(\d+(?:\.\d+)?)\s*%?\*\*")
 
-# check_census.py owns these and compares them across three documents.
-CENSUS_OWNED = {"8", "6", "14", "45"}
+def census_owned() -> set[str]:
+    """The four figures check_census.py already compares across three documents.
+
+    Read from README.md rather than hardcoded. A literal set went stale the moment
+    the census moved from 8 merged / 6 open to 9 / 5, and only kept passing because
+    "9" and "5" happen to appear in unrelated claims.
+    """
+    import check_census
+
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    values: set[str] = set()
+    for pattern in (*check_census.COUNT_ROWS.values(), check_census.README_ROW):
+        values.update(pattern.findall(readme))
+    return values
 
 # Raised only by someone who has read the two paragraphs above.
 BASELINE = 0
@@ -54,7 +67,7 @@ BASELINE = 0
 
 def accounted_values() -> set[str]:
     """Every number a reader can trace: registered, declared, or census-owned."""
-    out: set[str] = set(CENSUS_OWNED)
+    out: set[str] = set(census_owned())
     for c in CLAIMS:
         for tok in re.findall(r"\d+(?:\.\d+)?", str(c.stated)):
             out.add(tok)
