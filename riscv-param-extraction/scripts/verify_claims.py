@@ -253,6 +253,20 @@ CLAIMS: list[Claim] = [
           RESULTS / "metrics_gpt-4o-mini.v3.json",
           lambda m: cls(m, "NORM_CSR_WARL"), tags=["v3"]),
 
+    # The WARL ratios are registered; the percentages the documents actually print
+    # beside them were not, so a typo in either would have gone unnoticed. Both
+    # come from the same artifact as the ratio above.
+    Claim("artifactA.warl_pct", 12.5, "metrics.md §5.2, §6 comparison, riscv-param-extraction/README.md",
+          RESULTS / "metrics_gpt-4o-mini.json",
+          lambda m: round(100 * m["per_class_recall"]["NORM_CSR_WARL"]["found"]
+                          / m["per_class_recall"]["NORM_CSR_WARL"]["total"], 1),
+          tol=0.05, tags=["artifactA"]),
+    Claim("v3.warl_pct", 8.3, "metrics.md §6 comparison",
+          RESULTS / "metrics_gpt-4o-mini.v3.json",
+          lambda m: round(100 * m["per_class_recall"]["NORM_CSR_WARL"]["found"]
+                          / m["per_class_recall"]["NORM_CSR_WARL"]["total"], 1),
+          tol=0.05, tags=["v3"]),
+
     # ---- metrics.md section 7, Artifact B export ----
     Claim("artifactB.named_schema_valid", (83, 83), "metrics.md §7",
           RESULTS / "export_b_named.json",
@@ -278,6 +292,14 @@ CLAIMS: list[Claim] = [
     Claim("artifactC.armA_run2", 44.6, "PRIMARY_RESULTS.md",
           arm_metrics(RUN2, "A"), lambda m: pct(m, "adjusted_recall"), tol=0.05,
           tags=["artifactC"]),
+    # The spread is the number the variance argument rests on, and it was printed
+    # in the arm table without being derived from the two runs beside it.
+    Claim("artifactC.armA_spread", 10.7, "PRIMARY_RESULTS.md arm table",
+          arm_metrics(RUN2, "A"),
+          lambda m: round(pct(m, "adjusted_recall")
+                          - pct(json.loads(arm_metrics(RUN1, "A").read_text(encoding="utf-8")),
+                                "adjusted_recall"), 1),
+          tol=0.05, tags=["artifactC"]),
     Claim("artifactC.armB_run1", 29.4, "PRIMARY_RESULTS.md",
           arm_metrics(RUN1, "B"), lambda m: pct(m, "adjusted_recall"), tol=0.05,
           tags=["artifactC"]),
@@ -621,6 +643,13 @@ UNVERIFIABLE = [
      "regenerated from a local UDB checkout; ground_truth.json is not committed"),
     ("part1.vs_gt223", "64.2% adjusted recall against GT223, the corpus-pin gold",
      "scored against the uncommitted corpus-pin gold, not against main"),
+    # Published in the same breath as 64.2 and unaccounted for the same reason.
+    # Separated out so a reader looking for either finds it by name.
+    ("part1.vs_gt223_class_acc", "88.6% classification accuracy against GT223",
+     "same uncommitted corpus-pin gold as part1.vs_gt223"),
+    ("gt223.strong_match", "91% strong match when GT223 was regenerated at c184e313",
+     "property of the regeneration run against an uncommitted gold; the run log is "
+     "not in this repository"),
     # EVIDENCE.md 2.4 republishes this from the #2317 comment, in bold, and it was
     # the only bold figure on the public surface that was neither checked nor
     # declared. It stays declared rather than registered because the criterion is
