@@ -87,6 +87,35 @@ class CensusIssueStateTests(unittest.TestCase):
     def test_no_2_3_section_is_not_a_crash(self) -> None:
         self.assertEqual(check_census.claimed_issue_states("# nothing here\n"), [])
 
+    def test_2_4_states_are_found_in_a_different_column(self) -> None:
+        # 2.3 puts state in column 2, 2.4 in column 3. Checking only 2.3 left
+        # fourteen rows ungated, which is why the column is found by content.
+        fixture = (
+            "### 2.4 Reviews on other contributors' PRs\n\n"
+            "| PR | Author | State | Contribution |\n"
+            "|----|--------|-------|--------------|\n"
+            "| [#2171](https://example/pull/2171) | someone | merged | a review |\n"
+            "| [#2090](https://example/pull/2090) | another | open | another |\n\n"
+            "## 3. Something else\n"
+        )
+        self.assertEqual(check_census.claimed_issue_states(fixture),
+                         [(2171, "merged"), (2090, "open")])
+
+    def test_both_sections_are_collected_together(self) -> None:
+        combined = self.FIXTURE.replace("### 2.4 Something else\n", "") + (
+            "### 2.4 Reviews\n\n"
+            "| PR | Author | State | What |\n"
+            "|----|--------|-------|------|\n"
+            "| [#2090](https://example/pull/2090) | x | merged | y |\n")
+        numbers = [n for n, _ in check_census.claimed_issue_states(combined)]
+        self.assertEqual(sorted(numbers), [2090, 2137, 2364])
+
+    def test_a_row_with_no_state_word_is_skipped(self) -> None:
+        fixture = ("### 2.5 Threads\n\n"
+                   "| Thread | Note |\n|---|---|\n"
+                   "| [#2053](https://example/issues/2053) | scope discussion |\n")
+        self.assertEqual(check_census.claimed_issue_states(fixture), [])
+
 
 class PinnedWordingTests(unittest.TestCase):
     """223 is the corpus-pin count. docs/FAQ.md called it live and passed."""

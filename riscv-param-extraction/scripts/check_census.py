@@ -82,13 +82,27 @@ def one(pattern: re.Pattern[str], text: str, label: str) -> int:
     return int(found[0])
 
 
+STATE_WORDS = {"open", "closed", "merged", "draft"}
+
+
 def claimed_issue_states(text: str) -> list[tuple[int, str]]:
-    """(number, state) from the second column of the 2.3 table."""
-    m = re.search(r"^### 2\.3\b(.*?)(?=^### )", text, re.S | re.M)
-    if not m:
-        return []
-    return [(int(n), s.lower())
-            for n, s in re.findall(r"^\|\s*\[#(\d+)\]\([^)]*\)\s*\|\s*(\w+)\s*\|", m.group(1), re.M)]
+    """(number, state) from every 2.x table that carries a state column.
+
+    2.3 puts the state in column 2 and 2.4 puts it in column 3, so the column is
+    found by looking for a state word rather than by position. Checking only 2.3,
+    as the first version did, left 2.4's fourteen states ungated.
+    """
+    out: list[tuple[int, str]] = []
+    for body in re.findall(r"^### 2\.\d\b(.*?)(?=^### |\Z)", text, re.S | re.M):
+        for line in body.splitlines():
+            m = re.match(r"^\|\s*\[#(\d+)\]\([^)]*\)\s*\|", line)
+            if not m:
+                continue
+            cells = [c.strip().lower() for c in line.strip().strip("|").split("|")[1:]]
+            state = next((c for c in cells if c in STATE_WORDS), None)
+            if state:
+                out.append((int(m.group(1)), state))
+    return out
 
 
 def api_states(numbers: list[int]) -> dict[int, str] | None:
@@ -209,7 +223,7 @@ def main() -> int:
         else:
             wrong = [(n, c, live_states[n]) for n, c in claimed
                      if n in live_states and c != live_states[n]]
-            print(f"\n2.3 issue states checked   {len(claimed)}")
+            print(f"\nissue and PR states checked {len(claimed)}")
             for n, c, live in wrong:
                 print(f"  #{n} listed {c}, GitHub says {live}")
             if wrong:
