@@ -621,6 +621,19 @@ UNVERIFIABLE = [
      "regenerated from a local UDB checkout; ground_truth.json is not committed"),
     ("part1.vs_gt223", "64.2% adjusted recall against GT223, the corpus-pin gold",
      "scored against the uncommitted corpus-pin gold, not against main"),
+    # EVIDENCE.md 2.4 republishes this from the #2317 comment, in bold, and it was
+    # the only bold figure on the public surface that was neither checked nor
+    # declared. It stays declared rather than registered because the criterion is
+    # stated in prose ("live requirements that reference a different parameter")
+    # and never encoded. Re-deriving it here by regex over origin/main at 4cf908e8
+    # gives 48 counting every parameter name, 37 excluding MXLEN, 31 excluding the
+    # whole XLEN family. None is 44, and a regex is a worse instrument than the IDL
+    # the original reading used, so this reports the figure as posted upstream and
+    # does not assert it is right.
+    ("upstream.param_to_param_requirements",
+     "44 of 227 params carry live requirements referencing another param (issue #2317)",
+     "criterion stated in prose, not encoded; needs the IDL front end rather than a "
+     "regex, and no toolchain here runs it"),
     # artifactA.exclusive_sets was listed here from 2026-07-25 to 2026-07-28.
     # It is now checkable: the deduped lists were recovered from a git stash on
     # the UDB clone, and `pipeline/agreement.py` reproduces the committed counts
