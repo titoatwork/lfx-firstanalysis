@@ -49,7 +49,7 @@ BOLD_NUMBER = re.compile(r"\*\*(\d+(?:\.\d+)?)\s*%?\*\*")
 CENSUS_OWNED = {"8", "6", "14", "45"}
 
 # Raised only by someone who has read the two paragraphs above.
-BASELINE = 3
+BASELINE = 0
 
 
 def accounted_values() -> set[str]:

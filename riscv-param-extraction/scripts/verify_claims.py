@@ -97,6 +97,24 @@ def cls(m: dict, name: str) -> tuple[int, int] | None:
     return None
 
 
+def count_class(doc: object, name: str) -> int:
+    """Every `class` field equal to `name`, anywhere in a raw extraction dump.
+
+    The per-chunk shape varies across runs, so this walks rather than indexes.
+    """
+    total = 0
+    stack = [doc]
+    while stack:
+        node = stack.pop()
+        if isinstance(node, dict):
+            if node.get("class") == name:
+                total += 1
+            stack.extend(node.values())
+        elif isinstance(node, list):
+            stack.extend(node)
+    return total
+
+
 def arm_metrics(run: str, arm: str) -> Path:
     return AC_RUNS / run / f"metrics_arm_{arm}.json"
 
@@ -264,6 +282,17 @@ CLAIMS: list[Claim] = [
     Claim("v3.warl", (2, 24), "metrics.md §6",
           RESULTS / "metrics_gpt-4o-mini.v3.json",
           lambda m: cls(m, "NORM_CSR_WARL"), tags=["v3"]),
+
+    # metrics.md §6 argues v3 over-labelled: more raw WARL tags, no more GT hits.
+    # The two raw counts carrying that argument were typed, and one was written
+    # "~36" when the artifact gives 36 exactly. Both count `class` fields in the
+    # committed extraction output.
+    Claim("v3.raw_warl_labels", 59, "metrics.md §6",
+          RESULTS / "artifact_a" / "v3" / "all_results_gpt-4o-mini.json",
+          lambda d: count_class(d, "NORM_CSR_WARL"), tags=["v3"]),
+    Claim("v2.raw_warl_labels", 36, "metrics.md §6",
+          RESULTS / "artifact_a" / "v2" / "all_results_gpt-4o-mini.json",
+          lambda d: count_class(d, "NORM_CSR_WARL"), tags=["artifactA"]),
 
     # The WARL ratios are registered; the percentages the documents actually print
     # beside them were not, so a typo in either would have gone unnoticed. Both
@@ -679,6 +708,17 @@ UNVERIFIABLE = [
     ("export.unique_names_not_in_udb",
      "257 unique names not in UDB (259 named=no in parameters.csv, less the 2 that exist)",
      "the CSV is committed but the UDB parameter list it is differenced against is not"),
+    # Reproduces exactly against a checkout: `git grep -il WARL -- 'spec/std/isa/csr/**'`
+    # on origin/main at 4cf908e8 returns 34. Re-checked 2026-08-06.
+    ("upstream.warl_prose_hits_csr",
+     "34 files under spec/std/isa/csr mention WARL in prose (issue #2251)",
+     "a grep over a UDB checkout, which is not committed here"),
+    # Not a measurement. EVIDENCE.md 2.6 records that the census once published 41
+    # against an API answer of 43 and tables enumerating 38. The number has to stay
+    # readable as the wrong one it was, so it is declared rather than corrected.
+    ("census.historical_wrong_figure",
+     "41, the unique-thread count this page published before it was derived",
+     "a record of a past error, deliberately not re-derivable"),
     # EVIDENCE.md 2.4 republishes this from the #2317 comment, in bold, and it was
     # the only bold figure on the public surface that was neither checked nor
     # declared. It stays declared rather than registered because the criterion is

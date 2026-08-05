@@ -272,7 +272,7 @@ Same model (**gpt-4o-mini**), same 60 param-bearing chunks, **PROMPT_VERSION=v3*
 | Deduped LLM params | 230 | 204 | −26 |
 | Class acc (exact only) | 100% (11/11) | 80% (8/10) | small n |
 
-**Honest claim:** Adding WARL-focused prompt text **did not improve** gold WARL recall; it **worsened** it. Overall adjusted recall ticked up slightly (mostly DIRECT). Raw extraction tagged more rows as WARL (**59** raw class labels vs **~36** on v2), but those did **not** translate into more GT WARL hits, over-labeling without better name/alignment quality.
+**Honest claim:** Adding WARL-focused prompt text **did not improve** gold WARL recall; it **worsened** it. Overall adjusted recall ticked up slightly (mostly DIRECT). Raw extraction tagged more rows as WARL (**59** raw class labels vs **36** on v2), but those did **not** translate into more GT WARL hits, over-labeling without better name/alignment quality.
 
 **Do not** present v3 as a successful WARL fix. Treat as a measured **prompt ablation null result**: need CSR-field auxiliary context or a different strategy, not prompt-only WARL text.
 

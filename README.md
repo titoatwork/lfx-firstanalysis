@@ -17,7 +17,7 @@ Measurement, export tooling, evaluation fixtures, and merged upstream fixes for 
 | **What was investigated** | Whether the published Part I extraction figures measure what they are read as measuring, and whether the UDB parameter data they are scored against is itself self-consistent |
 | **What was contributed** | **8 merged** upstream PRs, **6** open, **14** issues filed, review comments adopted into other contributors' merged code. Zero PRs rejected |
 | **What was learned** | The headline recall number measures **grounding, not discovery**; most of it is awarded by fuzzy matching; and it moves ~10 points between byte-identical runs |
-| **How to check it** | `./verify.sh` re-derives each registered figure from the artifact it came from, and reports anything it cannot check rather than passing it. **117/117** checkable claims pass, offline, no API key |
+| **How to check it** | `./verify.sh` re-derives each registered figure from the artifact it came from, and reports anything it cannot check rather than passing it. **119/119** checkable claims pass, offline, no API key |
 | **What comes next** | [`docs/TERM-PLAN.md`](./docs/TERM-PLAN.md), nine weeks mapped to the five official Part II objectives |
 
 ---
