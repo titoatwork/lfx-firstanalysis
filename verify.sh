@@ -87,6 +87,12 @@ step "no figure claims currency it cannot have" \
 step_skippable "H5 evidence types match UDB at their pinned commits" \
   "$PY" riscv-param-extraction/artifact_c/scripts/test_derivation_detector.py
 
+# 5. The published census count must equal the threads actually listed. Offline
+#    only: GitHub is the source of the count, and refreshing it is the --online
+#    run documented in EVIDENCE.md 2.6.
+step "census figures equal the threads listed" \
+  "$PY" riscv-param-extraction/scripts/check_census.py
+
 hr
 if [ "$fail" -eq 0 ]; then
   echo "PASS  every registered number re-derives, and every gate holds"

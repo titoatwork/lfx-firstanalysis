@@ -82,7 +82,7 @@ Census **2026-08-05**, re-derived from the GitHub API. Full index with links: [`
 | Merged PRs authored | **8** |
 | Open PRs authored | **5** |
 | Issues authored | **13** |
-| Unique issues and PRs involving this author | **41** |
+| Unique issues and PRs involving this author | **43** |
 | PRs rejected | **0** |
 
 **Merged:** [#2138](https://github.com/riscv/riscv-unified-db/pull/2138) · [#2146](https://github.com/riscv/riscv-unified-db/pull/2146) · [#2189](https://github.com/riscv/riscv-unified-db/pull/2189) · [#2215](https://github.com/riscv/riscv-unified-db/pull/2215) · [#2227](https://github.com/riscv/riscv-unified-db/pull/2227) · [#2256](https://github.com/riscv/riscv-unified-db/pull/2256) · [#2266](https://github.com/riscv/riscv-unified-db/pull/2266) · [#2362](https://github.com/riscv/riscv-unified-db/pull/2362)

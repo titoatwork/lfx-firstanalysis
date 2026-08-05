@@ -3,7 +3,7 @@
 **Author:** Ibteshamul Haque ([@titoatwork](https://github.com/titoatwork))  
 **Project:** [LFX Fall 2026 Part II](https://mentorship.lfx.linuxfoundation.org/project/22296947-cecb-4a8f-8bcb-4f34710e9f66)  
 **Repository:** https://github.com/titoatwork/lfx-firstanalysis  
-**Upstream census:** 2026-08-05 (GitHub API on [riscv/riscv-unified-db](https://github.com/riscv/riscv-unified-db); **8** merged / **5** open authored PRs / **13** authored issues; **41** unique issues+PRs involving `@titoatwork`; **0** PRs closed unmerged)
+**Upstream census:** 2026-08-05 (GitHub API on [riscv/riscv-unified-db](https://github.com/riscv/riscv-unified-db); **8** merged / **5** open authored PRs / **13** authored issues; **43** unique issues+PRs involving `@titoatwork`; **0** PRs closed unmerged). Every figure here is produced by a command in [§2.6](#26-how-to-re-check-the-census).
 
 This page records **what was measured** and **what was contributed upstream**, with links. Spring Part I pipeline and committed Claude results are by [@ishaan-arora-1](https://github.com/ishaan-arora-1) (PRs #1765-#1832); this repository **reproduces and extends** that public surface and does not claim Spring authorship.
 
@@ -91,21 +91,29 @@ All links are under https://github.com/riscv/riscv-unified-db unless noted.
 | [#2361](https://github.com/riscv/riscv-unified-db/issues/2361) | closed | Supervisor/VS trap CSRs carry `length: 64` instead of SXLEN/VSXLEN |
 | [#2364](https://github.com/riscv/riscv-unified-db/issues/2364) | open | `senvcfg` carries `length: 64` instead of SXLEN |
 
-### 2.4 Reviews and technical comments on other contributors' PRs
+### 2.4 Reviews and technical comments on other contributors' PRs and issues
 
-These PRs are **not** authored by titoatwork. Comments verify or refine the author's change.
+These threads are **not** authored by titoatwork. Comments verify or refine the author's change, or
+the thread exists because of an earlier comment. One row is a **mention** by another contributor
+rather than a comment and is marked as such: `gh search --involves` counts mentions, so omitting it
+would leave this table disagreeing with the command that produces the headline count.
 
-| PR | Author | Status | Comment / review |
+| Thread | Author | Status | Comment / review |
 |----|--------|--------|------------------|
 | [#2090](https://github.com/riscv/riscv-unified-db/pull/2090) | jordancarlin | merged | Flagged non-power-of-two `0xfff` in MTVEC alignment enums ([comment](https://github.com/riscv/riscv-unified-db/pull/2090#issuecomment-5084258197)) |
 | [#2109](https://github.com/riscv/riscv-unified-db/pull/2109) | krrishverma1805-web | merged | Review of unreachable `array_size == 0` branches |
 | [#2197](https://github.com/riscv/riscv-unified-db/pull/2197) | krrishverma1805-web | merged | Follow-up correcting earlier FS-guard feedback ([comment](https://github.com/riscv/riscv-unified-db/pull/2197#issuecomment-5110068008)) |
 | [#2103](https://github.com/riscv/riscv-unified-db/pull/2103) | uditjainstjis | merged | Corroboration of STVAL_WIDTH bounds ([comment](https://github.com/riscv/riscv-unified-db/pull/2103#issuecomment-5118523007)) |
 | [#2245](https://github.com/riscv/riscv-unified-db/pull/2245) | Hiteshsai007 | merged | Independent check of three FP description fixes ([comment](https://github.com/riscv/riscv-unified-db/pull/2245#issuecomment-5142526646)) |
-| [#2284](https://github.com/riscv/riscv-unified-db/pull/2284) | lntutor | open | Verified Zilsd vs Zclsd for RV32 `sd` ([comment](https://github.com/riscv/riscv-unified-db/pull/2284#issuecomment-5146172752)) |
+| [#2284](https://github.com/riscv/riscv-unified-db/pull/2284) | lntutor | merged | Verified Zilsd vs Zclsd for RV32 `sd` ([comment](https://github.com/riscv/riscv-unified-db/pull/2284#issuecomment-5146172752)) |
 | [#2192](https://github.com/riscv/riscv-unified-db/pull/2192) | Hiteshsai007 | open | Review connecting emitter/validator to extraction fixtures ([comment](https://github.com/riscv/riscv-unified-db/pull/2192#issuecomment-5125684081)) |
 | [#2155](https://github.com/riscv/riscv-unified-db/pull/2155) | Bhupesh-081 | open | Review of `long_name` replacements |
 | [#2097](https://github.com/riscv/riscv-unified-db/pull/2097) | uditjainstjis | open | Design review of parameter-extraction skill; fixtures; later WARL reframe ([thread](https://github.com/riscv/riscv-unified-db/pull/2097)) |
+| [#2282](https://github.com/riscv/riscv-unified-db/issues/2282) | ThinkOpenly | open | Withdrew my own `read_memory` return-type proposal from #2256 once henrikg-qc clarified the interface, and located the actual defect in the `ld`/`sd` IDL ([comment](https://github.com/riscv/riscv-unified-db/issues/2282#issuecomment-5162446049)) |
+| [#2283](https://github.com/riscv/riscv-unified-db/issues/2283) | ThinkOpenly | closed | Filed by the maintainer from my #2256 comment: `sd` (RV32) checks `Zilcd` where it should check `Zilsd` |
+| [#2285](https://github.com/riscv/riscv-unified-db/issues/2285) | ThinkOpenly | open | Took assignment for the enum-conditional validation this issue asks for; #2289 is that work ([comment](https://github.com/riscv/riscv-unified-db/issues/2285#issuecomment-5155460381)) |
+| [#2317](https://github.com/riscv/riscv-unified-db/issues/2317) | Princess0407 | open | Showed the named blocker on the `MTVAL_WIDTH` TODO is already gone (**44** of **227** params carry requirements referencing another param), and that `SXLEN` being an array stops the M-mode form porting to S-mode ([comment](https://github.com/riscv/riscv-unified-db/issues/2317#issuecomment-5173500696)) |
+| [#2171](https://github.com/riscv/riscv-unified-db/pull/2171) | Hiteshsai007 | merged | **Mention, not a comment.** The author cites the power-of-two test from #2138 as what actually catches this defect class, hex notation being readability only ([comment](https://github.com/riscv/riscv-unified-db/pull/2171#issuecomment-5106864830)) |
 
 ### 2.5 Mentorship and design discussion threads (measurements on the tracker)
 
@@ -124,10 +132,24 @@ These threads carry **numbers**, not only opinions. Full figure list: [`metrics.
 ### 2.6 How to re-check the census
 
 ```bash
+# authored: 8 merged, 5 open, 0 closed unmerged, 13 issues
 gh pr list --repo riscv/riscv-unified-db --author titoatwork --state merged
 gh pr list --repo riscv/riscv-unified-db --author titoatwork --state open
+gh pr list --repo riscv/riscv-unified-db --author titoatwork --state closed   # merged ones re-listed; 0 others
 gh issue list --repo riscv/riscv-unified-db --author titoatwork --state all
+
+# unique threads involving the author (author OR assignee OR commenter OR mentioned): 43
+{ gh search issues --involves=titoatwork --repo=riscv/riscv-unified-db --limit 200 --json number --jq '.[].number'
+  gh search prs    --involves=titoatwork --repo=riscv/riscv-unified-db --limit 200 --json number --jq '.[].number'
+} | sort -un | wc -l
 ```
+
+The last command is the definition of the unique-thread figure, not a check on it. Until 2026-08-05
+this page carried **41**, which was reached by hand and matched nothing: the API returns 43, and the
+tables in §2.1-§2.5 then enumerated 38 distinct threads (40 rows, with #2163 and #2200 each listed
+twice). The five it was missing are #2171, #2282, #2283, #2285 and #2317, now added to §2.4. With
+those in place the tables enumerate exactly the 43 threads the command returns, so the two can be
+diffed instead of trusted.
 
 ---
 
