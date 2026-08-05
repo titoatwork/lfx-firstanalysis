@@ -33,6 +33,8 @@ pip install -r riscv-param-extraction/requirements.txt   # PyYAML, jsonschema
 
 Two dependencies, both pure data handling. No credentials, no network model calls, no API key, no model SDK. Every failure prints which artifact disagreed with which published number. `./verify.sh --list` prints the claim table without running the checks.
 
+Six gates run. Five check what is published; the sixth checks what *escaped* being published as a claim, because a number that was never registered cannot be re-derived and will not fail. That gap is currently zero and held there, so a new figure added to any governed document without a claim behind it fails the build.
+
 CI runs this exact path on every push, so the badge above tracks the same command a reviewer would type.
 
 Windows, from the repository root:
