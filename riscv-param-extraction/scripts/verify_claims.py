@@ -356,6 +356,26 @@ CLAIMS: list[Claim] = [
           RESULTS / "metrics_gpt-4o-mini.json",
           lambda m: round(100 * (m["matched_udb_count"] - m["exact_matches_evaluated"])
                           / m["matched_udb_count"], 1), tol=0.05, tags=["decomp"]),
+
+    # The exact-name pair is the sharpest number on the public surface: it is the
+    # "7.8x, not 2.3x" in README.md's proof table and in EVIDENCE.md 2.5. It was
+    # published in five places and registered in none, so verify.sh never checked
+    # it. The denominator is the scored per-class total (100+51+24+2 = 177), not
+    # total_udb_params (185); the eight-entry difference is why 86/185 does not
+    # reproduce 48.6.
+    Claim("decomp.claude_exact_name_recall", 48.6, "README.md, metrics.md §5, PRIMARY_RESULTS.md",
+          RESULTS / "metrics_claude-sonnet-4.part1-committed.json",
+          lambda m: round(100 * m["exact_matches_evaluated"]
+                          / sum(c["total"] for c in m["per_class_recall"].values()), 1),
+          tol=0.05, tags=["decomp"]),
+    Claim("decomp.mini_exact_name_recall", 6.2, "README.md, metrics.md §5, PRIMARY_RESULTS.md",
+          RESULTS / "metrics_gpt-4o-mini.json",
+          lambda m: round(100 * m["exact_matches_evaluated"]
+                          / sum(c["total"] for c in m["per_class_recall"].values()), 1),
+          tol=0.05, tags=["decomp"]),
+    Claim("decomp.exact_name_denominator", 177, "metrics.md §5",
+          RESULTS / "metrics_claude-sonnet-4.part1-committed.json",
+          lambda m: sum(c["total"] for c in m["per_class_recall"].values()), tags=["decomp"]),
     Claim("decomp.v3_exact", 10, "PRIMARY_RESULTS.md",
           RESULTS / "metrics_gpt-4o-mini.v3.json",
           lambda m: m["exact_matches_evaluated"], tags=["decomp"]),
