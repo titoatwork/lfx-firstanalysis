@@ -80,14 +80,14 @@ Census **2026-08-05**, re-derived from the GitHub API. Full index with links: [`
 | Kind | Count |
 |---|---:|
 | Merged PRs authored | **8** |
-| Open PRs authored | **5** |
-| Issues authored | **13** |
-| Unique issues and PRs involving this author | **43** |
+| Open PRs authored | **6** |
+| Issues authored | **14** |
+| Unique issues and PRs involving this author | **45** |
 | PRs rejected | **0** |
 
 **Merged:** [#2138](https://github.com/riscv/riscv-unified-db/pull/2138) · [#2146](https://github.com/riscv/riscv-unified-db/pull/2146) · [#2189](https://github.com/riscv/riscv-unified-db/pull/2189) · [#2215](https://github.com/riscv/riscv-unified-db/pull/2215) · [#2227](https://github.com/riscv/riscv-unified-db/pull/2227) · [#2256](https://github.com/riscv/riscv-unified-db/pull/2256) · [#2266](https://github.com/riscv/riscv-unified-db/pull/2266) · [#2362](https://github.com/riscv/riscv-unified-db/pull/2362)
 
-**Open:** [#2289](https://github.com/riscv/riscv-unified-db/pull/2289) (draft, under review) · [#2255](https://github.com/riscv/riscv-unified-db/pull/2255) · [#2212](https://github.com/riscv/riscv-unified-db/pull/2212) · [#2164](https://github.com/riscv/riscv-unified-db/pull/2164) · [#2384](https://github.com/riscv/riscv-unified-db/pull/2384)
+**Open:** [#2289](https://github.com/riscv/riscv-unified-db/pull/2289) (draft, under review) · [#2255](https://github.com/riscv/riscv-unified-db/pull/2255) · [#2212](https://github.com/riscv/riscv-unified-db/pull/2212) · [#2164](https://github.com/riscv/riscv-unified-db/pull/2164) · [#2384](https://github.com/riscv/riscv-unified-db/pull/2384) · [#2395](https://github.com/riscv/riscv-unified-db/pull/2395)
 
 **Review comments carried into other people's merged PRs:** [#2090](https://github.com/riscv/riscv-unified-db/pull/2090) (alignment defect adopted by the maintainer) · [#2109](https://github.com/riscv/riscv-unified-db/pull/2109) · [#2197](https://github.com/riscv/riscv-unified-db/pull/2197) (own earlier advice corrected after the author had built on it; the merged code follows the correction) · [#2245](https://github.com/riscv/riscv-unified-db/pull/2245) · [#2284](https://github.com/riscv/riscv-unified-db/pull/2284)
 

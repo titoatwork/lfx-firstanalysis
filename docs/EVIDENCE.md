@@ -3,7 +3,7 @@
 **Author:** Ibteshamul Haque ([@titoatwork](https://github.com/titoatwork))  
 **Project:** [LFX Fall 2026 Part II](https://mentorship.lfx.linuxfoundation.org/project/22296947-cecb-4a8f-8bcb-4f34710e9f66)  
 **Repository:** https://github.com/titoatwork/lfx-firstanalysis  
-**Upstream census:** 2026-08-05 (GitHub API on [riscv/riscv-unified-db](https://github.com/riscv/riscv-unified-db); **8** merged / **5** open authored PRs / **13** authored issues; **43** unique issues+PRs involving `@titoatwork`; **0** PRs closed unmerged). Every figure here is produced by a command in [§2.6](#26-how-to-re-check-the-census).
+**Upstream census:** 2026-08-05 (GitHub API on [riscv/riscv-unified-db](https://github.com/riscv/riscv-unified-db); **8** merged / **6** open authored PRs / **14** authored issues; **45** unique issues+PRs involving `@titoatwork`; **0** PRs closed unmerged). Every figure here is produced by a command in [§2.6](#26-how-to-re-check-the-census).
 
 This page records **what was measured** and **what was contributed upstream**, with links. Spring Part I pipeline and committed Claude results are by [@ishaan-arora-1](https://github.com/ishaan-arora-1) (PRs #1765-#1832); this repository **reproduces and extends** that public surface and does not claim Spring authorship.
 
@@ -63,7 +63,7 @@ All links are under https://github.com/riscv/riscv-unified-db unless noted.
 | [#2266](https://github.com/riscv/riscv-unified-db/pull/2266) | 2026-07-31 | Counter-enable parameters enforce description rules | [#2265](https://github.com/riscv/riscv-unified-db/issues/2265) |
 | [#2362](https://github.com/riscv/riscv-unified-db/pull/2362) | 2026-08-04 | Supervisor and VS-mode trap CSRs take `length: SXLEN`/`VSXLEN`, not 64 | [#2361](https://github.com/riscv/riscv-unified-db/issues/2361) |
 
-### 2.2 Open pull requests authored by titoatwork (5)
+### 2.2 Open pull requests authored by titoatwork (6)
 
 | PR | Summary | Relates |
 |----|---------|---------|
@@ -72,8 +72,9 @@ All links are under https://github.com/riscv/riscv-unified-db unless noted.
 | [#2212](https://github.com/riscv/riscv-unified-db/pull/2212) | idlc resolves `unsigned_pow2` schema $refs | [#2199](https://github.com/riscv/riscv-unified-db/issues/2199) |
 | [#2164](https://github.com/riscv/riscv-unified-db/pull/2164) | Parameter-extraction evaluation fixtures | [#2158](https://github.com/riscv/riscv-unified-db/issues/2158), [#2097](https://github.com/riscv/riscv-unified-db/pull/2097) |
 | [#2384](https://github.com/riscv/riscv-unified-db/pull/2384) | `senvcfg` takes `length: SXLEN`, not 64 | [#2364](https://github.com/riscv/riscv-unified-db/issues/2364), opened at the maintainer's request on [#2361](https://github.com/riscv/riscv-unified-db/issues/2361) |
+| [#2395](https://github.com/riscv/riscv-unified-db/pull/2395) | `sstateen0`-`sstateen3` take `length: SXLEN`, not MXLEN | [#2394](https://github.com/riscv/riscv-unified-db/issues/2394) |
 
-### 2.3 Issues filed by titoatwork (13)
+### 2.3 Issues filed by titoatwork (14)
 
 | Issue | State | Topic |
 |-------|-------|--------|
@@ -90,6 +91,7 @@ All links are under https://github.com/riscv/riscv-unified-db unless noted.
 | [#2265](https://github.com/riscv/riscv-unified-db/issues/2265) | closed | Counter-enable requirements incomplete |
 | [#2361](https://github.com/riscv/riscv-unified-db/issues/2361) | closed | Supervisor/VS trap CSRs carry `length: 64` instead of SXLEN/VSXLEN |
 | [#2364](https://github.com/riscv/riscv-unified-db/issues/2364) | open | `senvcfg` carries `length: 64` instead of SXLEN |
+| [#2394](https://github.com/riscv/riscv-unified-db/issues/2394) | open | `sstateen0`-`sstateen3` carry `length: MXLEN` instead of SXLEN |
 
 ### 2.4 Reviews and technical comments on other contributors' PRs and issues
 
