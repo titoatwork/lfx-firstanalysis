@@ -98,7 +98,7 @@ refresh is due 2026-08-08 and re-derives all four figures from §2.6.
 | [#2254](https://github.com/riscv/riscv-unified-db/issues/2254) | open | VSXLEN/VUXLEN parent-child 32 support |
 | [#2265](https://github.com/riscv/riscv-unified-db/issues/2265) | closed | Counter-enable requirements incomplete |
 | [#2361](https://github.com/riscv/riscv-unified-db/issues/2361) | closed | Supervisor/VS trap CSRs carry `length: 64` instead of SXLEN/VSXLEN |
-| [#2364](https://github.com/riscv/riscv-unified-db/issues/2364) | open | `senvcfg` carries `length: 64` instead of SXLEN |
+| [#2364](https://github.com/riscv/riscv-unified-db/issues/2364) | closed | `senvcfg` carries `length: 64` instead of SXLEN, closed by [#2384](https://github.com/riscv/riscv-unified-db/pull/2384) |
 | [#2394](https://github.com/riscv/riscv-unified-db/issues/2394) | open | `sstateen0`-`sstateen3` carry `length: MXLEN` instead of SXLEN |
 
 ### 2.4 Reviews and technical comments on other contributors' PRs and issues

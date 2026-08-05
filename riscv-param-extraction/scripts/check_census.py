@@ -18,6 +18,7 @@ Exit 0 consistent, 1 mismatch, 2 could not parse.
 from __future__ import annotations
 
 import argparse
+import json
 import re
 import shutil
 import subprocess
@@ -79,6 +80,40 @@ def one(pattern: re.Pattern[str], text: str, label: str) -> int:
         print(f"could not read {label}: {len(found)} matches, expected 1")
         raise SystemExit(2)
     return int(found[0])
+
+
+def claimed_issue_states(text: str) -> list[tuple[int, str]]:
+    """(number, state) from the second column of the 2.3 table."""
+    m = re.search(r"^### 2\.3\b(.*?)(?=^### )", text, re.S | re.M)
+    if not m:
+        return []
+    return [(int(n), s.lower())
+            for n, s in re.findall(r"^\|\s*\[#(\d+)\]\([^)]*\)\s*\|\s*(\w+)\s*\|", m.group(1), re.M)]
+
+
+def api_states(numbers: list[int]) -> dict[int, str] | None:
+    """Live open/closed for each number. None if gh is unavailable."""
+    if not shutil.which("gh") or not numbers:
+        return None
+    fields = " ".join(
+        f"n{n}: issueOrPullRequest(number:{n}) "
+        f"{{... on Issue {{state}} ... on PullRequest {{state}}}}" for n in numbers)
+    query = f'{{repository(owner:"riscv",name:"riscv-unified-db"){{{fields}}}}}'
+    try:
+        out = subprocess.run(["gh", "api", "graphql", "-f", f"query={query}"],
+                             capture_output=True, text=True, timeout=120)
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        print(f"gh graphql failed: {exc}")
+        return None
+    if out.returncode != 0:
+        print(f"gh graphql failed: {out.stderr.strip()}")
+        return None
+    try:
+        node = json.loads(out.stdout)["data"]["repository"]
+    except (ValueError, KeyError) as exc:
+        print(f"could not parse gh graphql response: {exc}")
+        return None
+    return {int(k[1:]): v["state"].lower() for k, v in node.items() if v}
 
 
 def api_threads() -> set[int] | None:
@@ -164,6 +199,21 @@ def main() -> int:
             print("  listed but not returned: " + ", ".join(f"#{n}" for n in extra))
         if missing or extra:
             bad = 1
+
+        # A state column goes stale silently: #2364 read "open" for a day after
+        # #2384 merged and closed it. Counts were unaffected, so nothing caught it.
+        claimed = claimed_issue_states(evidence)
+        live_states = api_states([n for n, _ in claimed])
+        if live_states is None:
+            print("  issue-state check skipped: gh graphql unavailable")
+        else:
+            wrong = [(n, c, live_states[n]) for n, c in claimed
+                     if n in live_states and c != live_states[n]]
+            print(f"\n2.3 issue states checked   {len(claimed)}")
+            for n, c, live in wrong:
+                print(f"  #{n} listed {c}, GitHub says {live}")
+            if wrong:
+                bad = 1
 
     print("\n" + ("FAIL  the census disagrees with itself" if bad
                   else "ok  every published census figure equals the threads listed"))
