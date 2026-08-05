@@ -126,7 +126,7 @@ verify.sh              offline verification entrypoint
 - Schema-valid export is **structural** validity. It is not a claim that a parameter is architecturally correct.
 - Most of the adjusted score is awarded by inexact alignment passes, and that is where the run-to-run variance concentrates.
 - Recall is a regression signal, not a coverage measure. A parameter that should exist but is absent from the gold cannot score as a miss.
-- No Ruby or Node on the development machine, so CI is the only validator for `.rb` changes and for whether `idlc` accepts new IDL.
+- No Ruby toolchain on the development machine, so CI is the only validator for `.rb` changes and for whether `idlc` accepts new IDL. Nothing in this repository needs Ruby; the limitation applies to the UnifiedDB changes filed from it.
 
 Fuller treatment: [`docs/EVIDENCE.md`](./docs/EVIDENCE.md) and [`docs/FAQ.md`](./docs/FAQ.md).
 
