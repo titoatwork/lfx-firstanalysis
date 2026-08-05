@@ -93,6 +93,13 @@ step_skippable "H5 evidence types match UDB at their pinned commits" \
 step "census figures equal the threads listed" \
   "$PY" riscv-param-extraction/scripts/check_census.py
 
+# 6. Step 1 proves every registered number re-derives. It cannot notice a number
+#    that was published and never registered, which is how "exact-name 48.6% vs
+#    6.2%" and "44 of 227" reached the public surface ungated. This reports that
+#    gap and holds it to a recorded baseline so it can shrink but not grow.
+step "no new published figure escapes the claim table" \
+  "$PY" riscv-param-extraction/scripts/check_claim_coverage.py
+
 hr
 if [ "$fail" -eq 0 ]; then
   echo "PASS  every registered number re-derives, and every gate holds"
