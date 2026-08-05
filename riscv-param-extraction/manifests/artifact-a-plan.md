@@ -30,7 +30,7 @@ Honest numbers if mini is worse than Claude. **Not** a pure gpt-4o multi-model m
 | `gpt4o-mini` alias + `--chunk` | Present (local extract.py) |
 | Chunks | 79 total · **60** param-bearing (Claude complete) |
 | Claude v2 baseline | `results/v2/all_results_claude-sonnet-4.json` + deduped + metrics **72.9%** |
-| GT live working tree | **223** (dirty remeasure); **do not** use for headline A vs Part I |
+| GT in the working tree then, corpus fork `lfx-1832` | **223** (dirty remeasure); **do not** use for headline A vs Part I |
 | GT at `HEAD` on lfx-1832 | **185** (restore before analyze) |
 | Pilot mini | `v2/gpt-4o-mini/chunk_020.json` only (will be **skipped** without `--force`) |
 | Pilot gpt-4o | chunk_021 OK; chunk_020 error (TPM), irrelevant to mini A path |

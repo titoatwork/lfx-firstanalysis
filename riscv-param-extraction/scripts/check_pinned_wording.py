@@ -37,6 +37,15 @@ BANNED = [
      "GT223 is the corpus-pin gold, not a live one"),
     (r"current\s+UDB\s+parameter\s+count",
      "say which commit, or say 'at pin <sha>'"),
+    # The two above only catch the exact phrasings that were wrong the first time.
+    # docs/FAQ.md then said "223 live ones", which is the same claim in words
+    # neither pattern matched. Adjacency only, deliberately: a wider window flags
+    # the sentence that does the correcting ("223 ... not a live figure"), and a
+    # rule that punishes the correction is worse than the gap it closes.
+    (r"\b223\s+live\b",
+     "223 is the corpus-pin count; name the pin instead of calling it live"),
+    (r"\blive\s+223\b",
+     "223 is the corpus-pin count; name the pin instead of calling it live"),
 ]
 
 # Historical records of things already said in public. Correcting these would

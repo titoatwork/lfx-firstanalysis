@@ -27,7 +27,7 @@ Yes. WARL at 12/24 with all correct names already supplied is an identification 
 Exact requires identical names; adjusted allows Part I alignments. Headline remeasure uses adjusted; both appear in metrics.
 
 **Why does recall fall from 72.9% to 64.2%?**  
-The gold set grew from 185 pinned parameters to 223 live ones. Same LLM output, larger denominator.
+The gold set grew from the 185-parameter Part I freeze to the **223** UDB carried at corpus pin `c184e313`. Same LLM output, larger denominator. 223 is the count at that pin and not a live figure: `main` carried 227 when this was first published, which is corrected on [#2053](https://github.com/riscv/riscv-unified-db/issues/2053).
 
 **Why does a 3.8% name Jaccard matter?**  
 Same prompt and chunk set across models, so disagreement is largely model-side. Dual-model agreement alone is not a sufficient review gate (derived non-parameters have appeared in high-confidence overlap lists).
