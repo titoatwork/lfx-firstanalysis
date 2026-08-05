@@ -77,6 +77,8 @@ The same discipline retired a second claim of my own: a run-1 result suggesting 
 
 Census **2026-08-05**, re-derived from the GitHub API. Full index with links: [`docs/EVIDENCE.md`](./docs/EVIDENCE.md).
 
+A dated snapshot rather than a live count. [#2384](https://github.com/riscv/riscv-unified-db/pull/2384) is listed below as open and merged later the same day; the figures are left as the API returned them, since patching a census by hand between refreshes is how the last one went wrong. Next refresh 2026-08-08.
+
 | Kind | Count |
 |---|---:|
 | Merged PRs authored | **8** |

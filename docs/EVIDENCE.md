@@ -50,6 +50,14 @@ Issue [#2053](https://github.com/riscv/riscv-unified-db/issues/2053) records tha
 
 All links are under https://github.com/riscv/riscv-unified-db unless noted.
 
+**This is a dated snapshot, not a live view.** Every count and table below is the
+census taken on 2026-08-05 by the commands in [§2.6](#26-how-to-re-check-the-census).
+Upstream has moved since: [#2384](https://github.com/riscv/riscv-unified-db/pull/2384),
+listed under open PRs in §2.2, merged later the same day. The counts are left as
+taken rather than edited in place, because a census that is patched by hand between
+refreshes stops being reproducible by the commands that produced it. The next
+refresh is due 2026-08-08 and re-derives all four figures from §2.6.
+
 ### 2.1 Merged pull requests authored by titoatwork (8)
 
 | PR | Merged | Summary | Closes |
