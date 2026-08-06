@@ -140,7 +140,7 @@ Fuller treatment: [`docs/EVIDENCE.md`](./docs/EVIDENCE.md) and [`docs/FAQ.md`](.
 
 ## AI assistance
 
-This repository was developed with an AI coding assistant. Prefer the technical artifacts and `./verify.sh` over commit trailers when judging the work. Judgement calls, what to file, what to correct, and what not to file, are the author's.
+This repository was developed with an AI coding assistant. Judge it on the technical artifacts and on `./verify.sh`, which re-derives every registered figure from a committed artifact and reports what it cannot check rather than passing it quietly. Which claims to publish, which to withdraw, which findings to file upstream and which to leave alone were the author's calls, as were the corrections recorded in the three findings above.
 
 ---
 
