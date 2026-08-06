@@ -1,0 +1,37 @@
+fix(csr): hstateen0h-3h must read through their parent's sw_read
+
+hstateen0h through hstateen3h read their parent with
+`$bits(CSR[hstateenN])[63:32]`, which returns raw field storage and
+never runs the parent's `sw_read()`. That body is where the mstateen
+read-only-zero rule is implemented, so on RV32 the rule is not applied
+to any bit only the high half can reach.
+
+The two forms are different reads rather than two spellings of one.
+`CSR[x]` as an rvalue compiles to `_hw_read()`, composed straight from
+field storage, while `CSR[x].sw_read()` compiles to `_sw_read()`, which
+carries the custom body. builtin_functions.idl declares them apart for
+this reason: csr_hw_read returns "the raw value of csr", csr_sw_read
+"the software view of the register".
+
+Reachable without anything exotic, since mstateen0 has no field
+sw_write and clearing a bit there leaves hstateen0's storage alone: set
+mstateen0.ENVCFG, write hstateen0h.ENVCFG (accepted and forwarded by
+its own sw_write), then clear mstateen0.ENVCFG. hstateen0h bit 30 still
+reads one where the rule requires zero.
+
+Each of these files already masks on the write side field by field, so
+the read path is the only asymmetry, and hstateen0h's CTR description
+states the rule three lines above the read that skips it. Seven of
+hstateen0's ten fields sit in bits 63:32; hstateen1-3 model only SE0 at
+bit 63, so on RV32 their sw_read() masks an empty half.
+
+The replacement is the idiom henvcfgh already uses against henvcfg,
+which is the only other high-half CSR here whose parent has read logic.
+mstateen0h-3h keep `$bits()` correctly, because mstateen0-3 have no
+sw_read() and there the raw value is the software view.
+
+RV64 is unaffected: these four are definedBy xlen: 32.
+
+Closes #2413
+
+Signed-off-by: Ibteshamul Haque <ibteshamulhaque01@gmail.com>
