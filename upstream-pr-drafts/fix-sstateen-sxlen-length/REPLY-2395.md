@@ -1,0 +1,5 @@
+Applying the four suggestions as-is leaves `location_rv32: 31-0` on the `DATA` field of `sstateen1`, `sstateen2` and `sstateen3`, inside a register that would now be fixed at 64 bits. Nothing else in the tree is shaped that way: of the 461 CSRs under `spec/`, the 137 that carry an XLEN-dependent field location all have a symbolic `length`, and none of the 112 with a fixed integer `length` do. `CsrField#location` only warns when the range exceeds the CSR length, and 31 is inside 64, so nothing would flag it either.
+
+Do you want the `location_rv32`/`location_rv64` pair dropped and `DATA` collapsed to `location: 63-0` as part of this? Happy to do it that way, I just do not want to leave the files half-converted.
+
+One thing worth confirming is deliberate: #2362 moved `sepc`, `sip`, `sscratch`, `stval` and `stvec` from `length: 64` to `length: SXLEN`, and 22 supervisor CSRs now use `SXLEN`. A fixed 64 here runs the other way, which is fine if it is intentional for the `*stateen*` family specifically.

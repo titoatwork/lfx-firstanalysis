@@ -3,7 +3,7 @@
 **Author:** Ibteshamul Haque ([@titoatwork](https://github.com/titoatwork))  
 **Project:** [LFX Fall 2026 Part II](https://mentorship.lfx.linuxfoundation.org/project/22296947-cecb-4a8f-8bcb-4f34710e9f66)  
 **Repository:** https://github.com/titoatwork/lfx-firstanalysis  
-**Upstream census:** 2026-08-06 (GitHub API on [riscv/riscv-unified-db](https://github.com/riscv/riscv-unified-db); **9** merged / **7** open authored PRs / **16** authored issues; **49** unique issues+PRs involving `@titoatwork`; **0** PRs closed unmerged). Every figure here is produced by a command in [§2.6](#26-how-to-re-check-the-census).
+**Upstream census:** 2026-08-11 (GitHub API on [riscv/riscv-unified-db](https://github.com/riscv/riscv-unified-db); **9** merged / **8** open authored PRs / **17** authored issues; **51** unique issues+PRs involving `@titoatwork`; **0** PRs closed unmerged). Every figure here is produced by a command in [§2.6](#26-how-to-re-check-the-census).
 
 This page records **what was measured** and **what was contributed upstream**, with links. Spring Part I pipeline and committed Claude results are by [@ishaan-arora-1](https://github.com/ishaan-arora-1) (PRs #1765-#1832); this repository **reproduces and extends** that public surface and does not claim Spring authorship.
 
@@ -64,7 +64,7 @@ All links are under https://github.com/riscv/riscv-unified-db unless noted.
 | [#2362](https://github.com/riscv/riscv-unified-db/pull/2362) | 2026-08-04 | Supervisor and VS-mode trap CSRs take `length: SXLEN`/`VSXLEN`, not 64 | [#2361](https://github.com/riscv/riscv-unified-db/issues/2361) |
 | [#2384](https://github.com/riscv/riscv-unified-db/pull/2384) | 2026-08-05 | `senvcfg` takes `length: SXLEN`, not 64 | [#2364](https://github.com/riscv/riscv-unified-db/issues/2364), opened at the maintainer's request on [#2361](https://github.com/riscv/riscv-unified-db/issues/2361) |
 
-### 2.2 Open pull requests authored by titoatwork (7)
+### 2.2 Open pull requests authored by titoatwork (8)
 
 | PR | Summary | Relates |
 |----|---------|---------|
@@ -75,8 +75,9 @@ All links are under https://github.com/riscv/riscv-unified-db unless noted.
 | [#2395](https://github.com/riscv/riscv-unified-db/pull/2395) | `sstateen0`-`sstateen3` take `length: SXLEN`, not MXLEN | [#2394](https://github.com/riscv/riscv-unified-db/issues/2394) |
 | [#2414](https://github.com/riscv/riscv-unified-db/pull/2414) | `hstateen0h`-`hstateen3h` read through their parent's `sw_read` | [#2413](https://github.com/riscv/riscv-unified-db/issues/2413) |
 | [#2419](https://github.com/riscv/riscv-unified-db/pull/2419) | `c.sdsp` uses its full 5-bit register index | [#2418](https://github.com/riscv/riscv-unified-db/issues/2418) |
+| [#2435](https://github.com/riscv/riscv-unified-db/pull/2435) | misa-gated illegal-instruction checks consult `MISA_CSR_IMPLEMENTED` and route through `reserved_instruction()` | [#2434](https://github.com/riscv/riscv-unified-db/issues/2434) |
 
-### 2.3 Issues filed by titoatwork (16)
+### 2.3 Issues filed by titoatwork (17)
 
 | Issue | State | Topic |
 |-------|-------|--------|
@@ -96,6 +97,7 @@ All links are under https://github.com/riscv/riscv-unified-db unless noted.
 | [#2394](https://github.com/riscv/riscv-unified-db/issues/2394) | open | `sstateen0`-`sstateen3` carry `length: MXLEN` instead of SXLEN |
 | [#2413](https://github.com/riscv/riscv-unified-db/issues/2413) | open | `hstateen0h`-`hstateen3h` read around the `mstateen` mask their parent applies |
 | [#2418](https://github.com/riscv/riscv-unified-db/issues/2418) | open | `c.sdsp` maps its 5-bit `rs2` through `creg2reg`, so it stores from the wrong register |
+| [#2434](https://github.com/riscv/riscv-unified-db/issues/2434) | open | misa-gated illegal-instruction checks do not honor `MISA_CSR_IMPLEMENTED` |
 
 ### 2.4 Reviews and technical comments on other contributors' PRs and issues
 
@@ -138,24 +140,30 @@ These threads carry **numbers**, not only opinions. Full figure list: [`metrics.
 ### 2.6 How to re-check the census
 
 ```bash
-# authored: 9 merged, 5 open, 0 closed unmerged, 14 issues
+# authored: 9 merged, 8 open, 0 closed unmerged, 17 issues
 gh pr list --repo riscv/riscv-unified-db --author titoatwork --state merged
 gh pr list --repo riscv/riscv-unified-db --author titoatwork --state open
 gh pr list --repo riscv/riscv-unified-db --author titoatwork --state closed   # merged ones re-listed; 0 others
 gh issue list --repo riscv/riscv-unified-db --author titoatwork --state all
 
-# unique threads involving the author (author OR assignee OR commenter OR mentioned): 45
+# unique threads involving the author (author OR assignee OR commenter OR mentioned): 51
 { gh search issues --involves=titoatwork --repo=riscv/riscv-unified-db --limit 200 --json number --jq '.[].number'
   gh search prs    --involves=titoatwork --repo=riscv/riscv-unified-db --limit 200 --json number --jq '.[].number'
 } | sort -un | wc -l
 ```
 
 The last command is the definition of the unique-thread figure, not a check on it. Until 2026-08-05
-this page carried **41**, which was reached by hand and matched nothing: the API returns 43, and the
+this page carried **41**, which was reached by hand and matched nothing: the API returned 43, and the
 tables in §2.1-§2.5 then enumerated 38 distinct threads (40 rows, with #2163 and #2200 each listed
 twice). The five it was missing are #2171, #2282, #2283, #2285 and #2317, now added to §2.4. With
-those in place the tables enumerate exactly the 43 threads the command returns, so the two can be
+those in place the tables enumerate exactly the threads the command returns, so the two can be
 diffed instead of trusted.
+
+The figure only moves when a new thread opens, so it goes stale silently. `check_census.py`
+(offline) holds the headline, the README census row and the §2.1-§2.5 tables to one number;
+`check_census.py --online` diffs that number against the API and names any thread listed nowhere.
+That is what caught #2434 and #2435 missing on 2026-08-11, when the page still said 49 and the API
+said **51**. Run the `--online` form before publishing the figure anywhere outside this repository.
 
 ---
 
