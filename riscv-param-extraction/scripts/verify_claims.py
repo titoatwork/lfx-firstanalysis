@@ -688,14 +688,25 @@ UNVERIFIABLE = [
     # `.udb-corpus` forked from main at `ba151afc` (2026-04-02) and main carries
     # 227 as of `52822ae6`. A pinned number described as live invites a reader to
     # compare it against a tree it was never measured on.
+    #
+    # These three stay listed here because the corpus pin is gitignored, so they
+    # are still not derivable from anything *committed*. What changed on
+    # 2026-08-11 is the reason: the gold was thought to be unrebuildable, and it
+    # is not. `export_udb_params.py` regenerates it from the pin's parameter
+    # files deterministically, so verify.sh gate 8
+    # (scripts/check_gt223_rescore.py) re-runs the real Part I scorer and
+    # confirms all three, after checking the GT185 control so a drifting
+    # pipeline cannot produce a falsely passing GT223 number.
     ("gt223.total", "223 UDB parameters at corpus pin c184e313 (main: 227 at 52822ae6)",
-     "regenerated from a local UDB checkout; ground_truth.json is not committed"),
+     "the gold is gitignored, not unrebuildable: gate 8 regenerates it from the "
+     "pin and counts 223"),
     ("part1.vs_gt223", "64.2% adjusted recall against GT223, the corpus-pin gold",
-     "scored against the uncommitted corpus-pin gold, not against main"),
-    # Published in the same breath as 64.2 and unaccounted for the same reason.
+     "needs the pin, which is gitignored; gate 8 re-scores the committed Part I "
+     "output against the rebuilt gold and gets 138 of 215 non-debug"),
+    # Published in the same breath as 64.2 and covered by the same gate.
     # Separated out so a reader looking for either finds it by name.
     ("part1.vs_gt223_class_acc", "88.6% classification accuracy against GT223",
-     "same uncommitted corpus-pin gold as part1.vs_gt223"),
+     "same rebuilt corpus-pin gold as part1.vs_gt223, same gate 8"),
     ("gt223.strong_match", "91% strong match when GT223 was regenerated at c184e313",
      "property of the regeneration run against an uncommitted gold; the run log is "
      "not in this repository"),

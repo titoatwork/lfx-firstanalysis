@@ -108,6 +108,15 @@ step "no new published figure escapes the claim table" \
 step "coding-challenge model figures re-derive from the raw outputs" \
   "$PY" riscv-param-extraction/scripts/check_challenge_matrix.py
 
+# 8. The GT223 figures were carried in verify_claims.py's UNVERIFIABLE list until
+#    2026-08-11, on the belief that the 223-parameter gold could not be rebuilt.
+#    It can: the corpus pin holds the parameter files and the Part I exporter is
+#    deterministic. This re-runs the actual scorer, checks the GT185 control first
+#    so a drifting pipeline cannot yield a falsely passing GT223 number, and never
+#    writes to the corpus. Needs the pin beside this repo; skips loudly without it.
+step_skippable "GT223 figures re-derive by re-running the Part I scorer" \
+  "$PY" riscv-param-extraction/scripts/check_gt223_rescore.py
+
 hr
 if [ "$fail" -eq 0 ]; then
   echo "PASS  every registered number re-derives, and every gate holds"
