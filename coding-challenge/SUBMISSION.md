@@ -135,6 +135,28 @@ One snippet from this challenge, six upstream items, two of them merged.
 
 ## 6. Reproducing
 
+**Checking this submission needs no API key and no model call.** From the repository root:
+
+```
+./verify.sh
+```
+
+Gate 7 re-derives every figure in §1 from the raw per-model responses in
+[`riscv-param-extraction/challenge/results/live/_raw/`](../riscv-param-extraction/challenge/results/live/_raw/):
+the 4 CSR hallucinations, the 5 under-extractions, and the 3 fully correct. It
+also holds §1's stricter "3" against the scorer's "4" so the two cannot drift
+apart. The other six gates cover the rest of the repository.
+
+To re-score or re-validate directly:
+
+```
+python riscv-param-extraction/challenge/scripts/score_live_matrix.py   # the ten-model matrix
+python riscv-param-extraction/challenge/scripts/check_negatives.py     # 4 negative controls
+python riscv-param-extraction/challenge/scripts/validate.py --results <dir>
+```
+
+**To re-run the models themselves**, which does need keys:
+
 1. Take `prompts/v3_final.txt` and replace `{{SNIPPET}}` with a file from `snippets/`.
 2. Temperature 0.
 3. Check every `evidence_quote` appears in the snippet, whitespace-normalized, and that the CSR snippet returns an empty list.

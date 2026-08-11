@@ -57,9 +57,17 @@ row as a pass. This page publishes **3**, excluding
 `nemotron-3-super-120b-a12b`, on the rule that returning nothing is not the same
 as answering zero: a model that emits no output has not demonstrated it can
 decline. The other caveat row, `nemotron-3-nano-30b-a3b`, is excluded either way,
-since it found 1 of 3 CMO parameters. Both numbers are correct under their own
-rule and the stricter one is published. Run the scorer and you will see 4; the
-difference is this paragraph, not a disagreement about the data.
+since it found 1 of 3 CMO parameters.
+
+The difference is visible in the raw captures, not in the curated results, which
+write the same `NO_PARAMETERS_FOUND` marker for both cases. In
+`challenge/results/live/_raw/`, the CSR response from
+`nemotron-3-super-120b-a12b` is `(No output)`, while
+`nemotron-3-ultra-550b-a55b` returned
+`(No parameters extracted — the snippet describes fixed architectural conventions only.)`
+and `gemini-3.6-flash` returned a refusal with its reasoning. Both numbers are
+correct under their own rule and the stricter one is published;
+`check_challenge_matrix.py` holds the two together so they cannot drift.
 
 ## What this matrix does and does not show
 

@@ -100,6 +100,14 @@ step "census figures equal the threads listed" \
 step "no new published figure escapes the claim table" \
   "$PY" riscv-param-extraction/scripts/check_claim_coverage.py
 
+# 7. The coding-challenge pack publishes three figures about ten models on two
+#    snippets. Until the raw outputs were published on 2026-08-11 those were prose
+#    and nothing could contradict them. This re-derives all three from the
+#    committed per-model responses. Offline: the model calls happened once, on
+#    2026-07-26, and their outputs are in the tree.
+step "coding-challenge model figures re-derive from the raw outputs" \
+  "$PY" riscv-param-extraction/scripts/check_challenge_matrix.py
+
 hr
 if [ "$fail" -eq 0 ]; then
   echo "PASS  every registered number re-derives, and every gate holds"

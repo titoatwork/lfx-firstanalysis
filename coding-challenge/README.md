@@ -6,6 +6,15 @@ Ibteshamul Haque (`@titoatwork`), LFX Fall 2026 Part II.
 section 4 records what happened when the extracted parameters were checked
 against the live RISC-V Unified Database.
 
+**To check it rather than trust it,** run `./verify.sh` from the repository root.
+No API key, no network, no model call. Gate 7 re-derives every model figure in
+this pack from the raw per-model responses committed under
+[`riscv-param-extraction/challenge/`](../riscv-param-extraction/challenge/),
+which holds the 43 raw captures, the scorer, four negative-control cases and
+fifteen benchmark cases whose ground truth is the real upstream UDB file rather
+than a hand-written key. Those runs are dated 2026-07-26; the directory was
+published on 2026-08-11, after the application was submitted.
+
 ```text
 coding-challenge-submission/
   SUBMISSION.md             # the submission: LLMs, prompts, results, cross-check
