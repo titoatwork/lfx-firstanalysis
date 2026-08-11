@@ -52,6 +52,10 @@ than an explicit empty list. Counted as zero, flagged rather than hidden.
 **Totals: 4 of 10 hallucinated on the CSR snippet. 5 of 10 under-extracted the
 CMO snippet. 3 of 10 got both fully right.**
 
+_Added 2026-08-11, after submission, when the raw outputs were published. It
+changes no figure on this page; it explains one. See "Changes since submission"
+in `SUBMISSION.md`._
+
 The scorer counts the "fully right" figure as **4**, because it treats a caveat
 row as a pass. This page publishes **3**, excluding
 `nemotron-3-super-120b-a12b`, on the rule that returning nothing is not the same

@@ -16,6 +16,32 @@ The challenge asks for three things: details of the LLMs used, how the prompts w
 
 ---
 
+## Changes since submission
+
+This pack was submitted on **2026-08-04**. The answer has not changed since:
+`results/`, `prompts/` and `snippets/` are byte-identical to the submitted
+version, and no parameter, prompt, model figure or conclusion has been revised.
+
+Three things changed on **2026-08-11**, all of them in prose, and all listed here
+so the repository can be diffed against the submitted PDF without surprises:
+
+1. **A number was corrected.** §4 said "four upstream items" where the submitted
+   PDF correctly says **six**. The public copy had understated it since first
+   publication.
+2. **The evidence base was published**, at
+   [`riscv-param-extraction/challenge/`](../riscv-param-extraction/challenge/).
+   Those runs are dated **2026-07-26**, before submission; the directory was held
+   back pending review and simply never un-ignored. Nothing in it was produced
+   after the deadline.
+3. **Pointers and one disclosure were added.** §6 now names the offline command
+   that checks this pack, and `LLM-DETAILS.md` explains why the newly published
+   scorer prints 4 where the page publishes 3. That paragraph exists because
+   publishing the scorer would otherwise leave a visible contradiction.
+
+The git history carries all of it with timestamps.
+
+---
+
 ## 1. LLMs used
 
 Ten models were run on both snippets under the same v3 prompt at temperature 0. Full table in `LLM-DETAILS.md`.
