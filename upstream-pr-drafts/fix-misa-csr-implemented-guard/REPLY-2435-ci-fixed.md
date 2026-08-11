@@ -1,0 +1,3 @@
+Following up on the CI note above: that is fixed. #2455 landed at 2026-08-11 01:53 UTC and `regress-pre-commit` passed at 02:46 UTC on #2395. The cause was a node version rather than the prek version, which I had it wrong about on #2419: the `prettier` hook declares `devEngines` requiring node 24.18.0 and the runner had 22.23.1.
+
+The run here is from 2026-08-10 21:43 UTC, before the fix, so the red is stale. No rebase is needed, since `regress.yml` runs on `pull_request` and checks out `refs/pull/N/merge`, which brings the corrected `.mise.toml` in from `main`. A re-run is enough whenever someone gets to this.

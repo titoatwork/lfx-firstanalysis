@@ -23,6 +23,21 @@ The `-175` on the second commit is 139 `raise` lines plus 36 lines of comment
 about reporting `mode()` rather than `effective_ldst_mode()`, which the 18
 `Zalrsc` sites carried and which `reserved_instruction()` makes redundant.
 
+## Posted
+
+| File | Where |
+|---|---|
+| `PR_BODY.md` | PR #2435 body |
+| `REPLY-2435.md` | `issuecomment-5246384873`, 2026-08-10 21:44 UTC |
+| `REPLY-2435-ci-fixed.md` | `issuecomment-5248517389`, 2026-08-11 03:04 UTC |
+
+`REPLY-2435.md` closes by saying CI would stay red "until the `prek` issue is
+sorted". Calling it a prek issue was a mislabel carried over from the wrong root
+cause posted on #2419; the actual cause was a node `devEngines` mismatch, fixed
+by #2455 at 2026-08-11 01:53 UTC. `REPLY-2435-ci-fixed.md` is that correction.
+The full account is in
+[`../fix-c-sdsp-full-register-index/README.md`](../fix-c-sdsp-full-register-index/README.md).
+
 Found by sweeping the pattern behind ThinkOpenly's #1175 (`MISA extension bits
 mean "supported" and "maybe?"`). #1175 itself is stalled on an unresolved design
 question — dhower-qc proposed a `STRICT_MISA_EXTENSION_BITS` parameter,
