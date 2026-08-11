@@ -1,0 +1,9 @@
+{
+  "name": "CSR_LOWEST_PRIVILEGE_LEVEL",
+  "snippet": "csr_address_mapping.txt",
+  "quote": "The next two bits (csr[9:8]) encode the lowest privilege level that can access the CSR",
+  "model": "llama-3.3-70b-versatile",
+  "provider": "groq",
+  "tier": "groq_free",
+  "notes": "FALSE POSITIVE: fixed CSR address-mapping convention, not an implementation-configurable UDB architectural parameter."
+}

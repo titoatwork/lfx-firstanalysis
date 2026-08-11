@@ -11,8 +11,9 @@ riscv-unified-db/
 # Local-only working material
 # =============================================================================
 
-# Official coding-challenge pack: local until the application is submitted.
-riscv-param-extraction/challenge/
+# riscv-param-extraction/challenge/ was held here until the application was
+# submitted (2026-08-04). Published 2026-08-11; the rule is kept as a record of
+# why it was absent from the history before that date.
 
 # Scratch workspaces
 immersion-workspace/

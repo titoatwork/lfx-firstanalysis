@@ -1,0 +1,17 @@
+# Live extract: google/gemma-4-26b-a4b-it:free via OpenRouter free tier
+# Prompt: v3 · temperature 0 · useful dual-snippet filter passed
+# yaml-language-server: $schema=../../schema/param_schema.json
+
+$schema: param_schema.json#
+kind: parameter
+name: CSR_ADDRESS_SPACE_SIZE
+long_name: CSR Address Space Size
+description: |
+  The total number of available CSR encoding slots in the 12-bit CSR address space
+  (model false positive: fixed convention, not implementation choice).
+definedBy:
+  extension:
+    name: Sm
+schema:
+  type: integer
+  minimum: 1

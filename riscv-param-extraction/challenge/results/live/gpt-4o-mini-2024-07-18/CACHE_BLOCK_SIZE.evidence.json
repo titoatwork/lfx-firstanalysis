@@ -1,0 +1,7 @@
+{
+  "name": "CACHE_BLOCK_SIZE",
+  "snippet": "cmo_cache_block.txt",
+  "quote": "the size of a cache block shall be uniform throughout the system.",
+  "model": "gpt-4o-mini-2024-07-18",
+  "notes": "Live model under-extracted vs curated (missed CACHE_CAPACITY, CACHE_ORGANIZATION)."
+}

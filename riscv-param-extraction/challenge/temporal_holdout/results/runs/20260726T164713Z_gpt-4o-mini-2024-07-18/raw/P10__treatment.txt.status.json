@@ -1,0 +1,8 @@
+{
+  "case": "P10",
+  "chars": 1962,
+  "condition": "treatment",
+  "ok": true,
+  "prompt_sha256_expected": "46df8934d1506d613ce7365d752a91a7a568ea00c65734a4b8b0aa7928c18240",
+  "status": "ok"
+}

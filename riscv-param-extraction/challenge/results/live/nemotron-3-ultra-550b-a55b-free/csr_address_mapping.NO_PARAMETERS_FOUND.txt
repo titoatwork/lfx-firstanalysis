@@ -1,0 +1,8 @@
+Snippet: csr_address_mapping.txt (Privileged Spec §2.1)
+Model: nvidia/nemotron-3-ultra-550b-a55b:free (OpenRouter free tier)
+Prompt: v3_schema_constrained · temperature 0
+
+Result: ZERO parameters.
+
+Live model: snippet describes fixed architectural conventions only.
+Matches challenge negative-control expectation.

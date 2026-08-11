@@ -1,0 +1,11 @@
+{
+  "provider": "groq",
+  "model": "llama-3.3-70b-versatile",
+  "free_tier": true,
+  "usage": {
+    "prompt_tokens": 685,
+    "completion_tokens": 784,
+    "total_tokens": 1469
+  },
+  "text_chars": 2799
+}

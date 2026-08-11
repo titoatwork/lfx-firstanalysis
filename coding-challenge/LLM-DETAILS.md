@@ -52,6 +52,15 @@ than an explicit empty list. Counted as zero, flagged rather than hidden.
 **Totals: 4 of 10 hallucinated on the CSR snippet. 5 of 10 under-extracted the
 CMO snippet. 3 of 10 got both fully right.**
 
+The scorer counts the "fully right" figure as **4**, because it treats a caveat
+row as a pass. This page publishes **3**, excluding
+`nemotron-3-super-120b-a12b`, on the rule that returning nothing is not the same
+as answering zero: a model that emits no output has not demonstrated it can
+decline. The other caveat row, `nemotron-3-nano-30b-a3b`, is excluded either way,
+since it found 1 of 3 CMO parameters. Both numbers are correct under their own
+rule and the stricter one is published. Run the scorer and you will see 4; the
+difference is this paragraph, not a disagreement about the data.
+
 ## What this matrix does and does not show
 
 It shows model choice changes the answer on a two-snippet task, and that a

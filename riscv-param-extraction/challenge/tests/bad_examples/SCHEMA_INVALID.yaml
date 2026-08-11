@@ -1,0 +1,10 @@
+$schema: param_schema.json#
+kind: parameter
+name: schema_invalid_lowercase_name
+long_name: Deliberately broken fixture
+# missing required description
+definedBy:
+  extension:
+    name: Zicbom
+schema:
+  type: integer

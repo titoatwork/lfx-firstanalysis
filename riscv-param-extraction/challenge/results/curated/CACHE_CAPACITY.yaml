@@ -1,0 +1,24 @@
+# Challenge curated result — independent axis from the same implementation-specific clause.
+# yaml-language-server: $schema=../../schema/param_schema.json
+
+$schema: param_schema.json#
+kind: parameter
+name: CACHE_CAPACITY
+long_name: Cache capacity
+description: |
+  Capacity of a cache. The capacity and organization of a cache and the size of
+  a cache block are both implementation-specific.
+
+  Modeling note: treated as an independent parameter from block size and
+  organization (no shared constraint in the snippet ties their value spaces).
+  Extension gating follows CMO context of the source section; whether capacity
+  should be gated only on CMO extensions is a SIG modeling question.
+definedBy:
+  extension:
+    anyOf:
+      - name: Zicbom
+      - name: Zicbop
+      - name: Zicboz
+schema:
+  type: integer
+  minimum: 1

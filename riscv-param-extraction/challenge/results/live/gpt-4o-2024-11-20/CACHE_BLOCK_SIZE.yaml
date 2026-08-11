@@ -1,0 +1,23 @@
+# Live extract: gpt-4o-2024-11-20 · snippet cmo_cache_block.txt
+# Prompt: challenge/prompts/v3_schema_constrained.md · temperature 0 · retries 0
+# yaml-language-server: $schema=../../schema/param_schema.json
+
+$schema: param_schema.json#
+kind: parameter
+name: CACHE_BLOCK_SIZE
+long_name: Cache block size
+description: |
+  The size of a cache block, which is a contiguous, naturally aligned power-of-two
+  (NAPOT) range of memory locations. The size of a cache block is
+  implementation-specific, and the execution environment provides software a means
+  to discover this information. In the initial set of CMO extensions, the size of a
+  cache block shall be uniform throughout the system.
+definedBy:
+  extension:
+    anyOf:
+      - name: Zicbom
+      - name: Zicbop
+      - name: Zicboz
+schema:
+  type: integer
+  minimum: 1

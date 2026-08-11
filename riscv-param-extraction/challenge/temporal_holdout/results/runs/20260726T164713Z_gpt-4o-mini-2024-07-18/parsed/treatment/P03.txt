@@ -1,0 +1,57 @@
+```yaml
+- $schema: param_schema.json#
+  kind: parameter
+  name: SATP_MODE
+  long_name: Translation Mode
+  description: |
+    Controls the current translation mode according to the table below.
+    - 0: Bare - No translation -> virtual address == physical address
+    - 8: Sv39 - 39-bit virtual address translation
+    - 9: Sv48 - 48-bit virtual address translation
+    - 10: Sv57 - 57-bit virtual address translation
+    Any other value shall be ignored on a write.
+  definedBy: extension: { name: S }
+  schema: { type: integer }
+
+- $schema: param_schema.json#
+  kind: parameter
+  name: SATP_ASID
+  long_name: Address Space ID
+  description: |
+    The Address Space ID (ASID) is used to distinguish between different address spaces.
+  definedBy: extension: { name: S }
+  schema: { type: integer }
+
+- $schema: param_schema.json#
+  kind: parameter
+  name: SATP_PPN
+  long_name: Physical Page Number
+  description: |
+    The physical address of the active root page table is PPN << 12.
+    Can only hold values that correspond to a valid page table base, which will be implementation-dependent.
+  definedBy: extension: { name: S }
+  schema: { type: integer }
+```
+
+```json
+{
+  "eval": true,
+  "items": [
+    {
+      "name": "SATP_MODE",
+      "class": "NORM_CSR_RW",
+      "quote": "Controls the current translation mode according to the table below."
+    },
+    {
+      "name": "SATP_ASID",
+      "class": "NORM_CSR_RW",
+      "quote": "Address Space ID"
+    },
+    {
+      "name": "SATP_PPN",
+      "class": "NORM_CSR_RW",
+      "quote": "The physical address of the active root page table is PPN << 12."
+    }
+  ]
+}
+```

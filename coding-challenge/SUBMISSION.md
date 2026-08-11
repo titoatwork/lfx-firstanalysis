@@ -122,7 +122,7 @@ So the shape every model produced, `type: integer, minimum: 1`, is character for
 
 **Why the fix is an inline enum and not a reference.** UDB has a reusable `$defs/64bit_unsigned_pow2`. Two things were in the way. That definition contained `4095`, which is not a power of two, which I filed as [#2137](https://github.com/riscv/riscv-unified-db/issues/2137) and fixed in [#2138](https://github.com/riscv/riscv-unified-db/pull/2138) with a regression test. And parameter schemas still cannot reference those definitions at all, because `idlc` raises "unhandled ref", which is open as [#2199](https://github.com/riscv/riscv-unified-db/issues/2199) with a fix in [#2212](https://github.com/riscv/riscv-unified-db/pull/2212).
 
-One snippet from this challenge, four upstream items, two of them merged.
+One snippet from this challenge, six upstream items, two of them merged.
 
 ---
 

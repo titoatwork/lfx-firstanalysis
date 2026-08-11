@@ -1,0 +1,24 @@
+```yaml
+$schema: param_schema.json#
+kind: parameter
+name: CACHE_BLOCK_SIZE
+long_name: Cache block size
+description: |
+  The size of a cache block in bytes. The size of a cache block is
+  implementation-specific, and the execution environment provides software a
+  means to discover information about the caches and cache blocks in a system.
+  In the initial set of CMO extensions, the size of a cache block shall be
+  uniform throughout the system.
+definedBy: Zicbom/Zicbop/Zicboz
+schema:
+  type: integer
+  minimum: 1
+```
+
+```json
+{
+  "name": "CACHE_BLOCK_SIZE",
+  "snippet": "cmo_cache_block.txt",
+  "quote": "The capacity and organization of a cache and the size of a cache block are both implementation-specific, and the execution environment provides software a means to discover information about the caches and cache blocks in a system. In the initial set of CMO extensions, the size of a cache block shall be uniform throughout the system."
+}
+```

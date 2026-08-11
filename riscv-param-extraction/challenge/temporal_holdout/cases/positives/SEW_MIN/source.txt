@@ -1,0 +1,55 @@
+NOTE: With only integer LMUL values, a loop operating on a range of
+sizes would have to allocate at least one whole vector register
+(LMUL=1) for the narrowest data type and then would consume multiple
+vector registers (LMUL>1) to form a vector register group for each
+wider vector operand.  This can limit the number of vector register groups
+available.  With fractional LMUL, the widest values need occupy only a
+single vector register while narrower values can occupy a fraction of
+a single vector register, allowing all 32 architectural vector
+register names to be used for different values in a vector loop even
+when handling mixed-width values.  Fractional LMUL implies portions of
+vector registers are unused, but in some cases, having more shorter
+register-resident vectors improves efficiency relative to fewer longer
+register-resident vectors.
+
+[[norm:vtype-lmul_fval]]
+Implementations must provide fractional LMUL settings that allow the
+narrowest supported type to occupy a fraction of a vector register
+corresponding to the ratio of the narrowest supported type's width to
+that of the largest supported type's width.  In general, the
+requirement is to support LMUL {ge} SEW~MIN~/ELEN, where SEW~MIN~ is
+the narrowest supported SEW value and ELEN is the widest supported SEW
+value.  In the standard extensions, SEW~MIN~=8.  For
+standard vector extensions with ELEN=32, fractional LMULs of 1/2 and
+1/4 must be supported.  For standard vector extensions with ELEN=64,
+fractional LMULs of 1/2, 1/4, and 1/8 must be supported.
+
+NOTE: When LMUL < SEW~MIN~/ELEN, there is no guarantee
+an implementation would have enough bits in the fractional vector
+register to store at least one element, as VLEN=ELEN is a
+valid implementation choice. For example, with VLEN=ELEN=32,
+and SEW~MIN~=8, an LMUL of 1/8 would only provide four bits of
+storage in a vector register.
+
+[[norm:vtype-sew_val]]
+For a given supported fractional LMUL setting, implementations must support
+SEW settings between SEW~MIN~ and LMUL * ELEN, inclusive.
+
+[[norm:vtype-lmul_fval_rsv]]
+The use of `vtype` encodings with LMUL < SEW~MIN~/ELEN is
+__reserved__, but implementations can set `vill` if they do not
+support these configurations.
+
+NOTE: Requiring all implementations to set `vill` in this case would
+prohibit future use of this case in an extension, so to allow for a
+future definition of LMUL<SEW~MIN~/ELEN behavior, we
+consider the use of this case to be __reserved__.
+
+NOTE: It is recommended that assemblers provide a warning (not an
+error) if a `vsetvli` instruction attempts to write an LMUL < SEW~MIN~/ELEN.
+
+[[norm:lmul]]
+LMUL is set by the signed `vlmul` field in `vtype` (i.e., LMUL =
+2^`vlmul[2:0]`^).
+
+[[norm:vlmax]]

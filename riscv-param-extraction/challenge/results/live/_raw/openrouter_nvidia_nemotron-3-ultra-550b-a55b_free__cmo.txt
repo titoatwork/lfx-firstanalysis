@@ -1,0 +1,39 @@
+$schema: param_schema.json#
+kind: parameter
+name: CACHE_BLOCK_SIZE
+long_name: Cache Block Size
+description: |
+  Size of a cache block in bytes. The snippet states cache blocks are "contiguous, naturally aligned power-of-two (or NAPOT) range of memory locations"
+  and "the size of a cache block shall be uniform throughout the system" for initial CMO extensions. Value space not fully specified beyond power-of-two;
+  minimum 1 byte.
+definedBy: "Zicbom, Zicbop, Zicboz"
+schema:
+  type: integer
+  minimum: 1
+---
+{"name": "CACHE_BLOCK_SIZE", "snippet": "cmo_cache_block.txt", "quote": "The capacity and organization of a cache and the size of a cache block are both implementation-specific"}
+$schema: param_schema.json#
+kind: parameter
+name: CACHE_CAPACITY
+long_name: Cache Capacity
+description: |
+  Total capacity of a cache in bytes. The snippet states "The capacity and organization of a cache ... are both implementation-specific".
+  Value space not specified in snippet; minimum 0.
+definedBy: "Zicbom, Zicbop, Zicboz"
+schema:
+  type: integer
+  minimum: 0
+---
+{"name": "CACHE_CAPACITY", "snippet": "cmo_cache_block.txt", "quote": "The capacity and organization of a cache and the size of a cache block are both implementation-specific"}
+$schema: param_schema.json#
+kind: parameter
+name: CACHE_ORGANIZATION
+long_name: Cache Organization
+description: |
+  Organization of a cache (e.g., associativity, number of sets, replacement policy). The snippet states "The capacity and organization of a cache ... are both implementation-specific".
+  Value space not specified in snippet; represented as a free-form string.
+definedBy: "Zicbom, Zicbop, Zicboz"
+schema:
+  type: string
+---
+{"name": "CACHE_ORGANIZATION", "snippet": "cmo_cache_block.txt", "quote": "The capacity and organization of a cache and the size of a cache block are both implementation-specific"}

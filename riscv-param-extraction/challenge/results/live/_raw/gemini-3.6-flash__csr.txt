@@ -1,0 +1,6 @@
+No parameters extracted.
+
+### Reasoning
+- **Optionality Triggers:** None present (`may`, `might`, `should`, `optional`, `implementation-defined`, `implementation-specific`).
+- **Exclusions:** The snippet describes standard fixed architectural layout and encoding conventions ("By convention, the upper 4 bits..."). As per the prompt rules, fixed architectural conventions and standard encoding rules are not parameters.
+- **Result:** 0 parameters extracted.
