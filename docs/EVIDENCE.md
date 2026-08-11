@@ -3,7 +3,7 @@
 **Author:** Ibteshamul Haque ([@titoatwork](https://github.com/titoatwork))  
 **Project:** [LFX Fall 2026 Part II](https://mentorship.lfx.linuxfoundation.org/project/22296947-cecb-4a8f-8bcb-4f34710e9f66)  
 **Repository:** https://github.com/titoatwork/lfx-firstanalysis  
-**Upstream census:** 2026-08-11 (GitHub API on [riscv/riscv-unified-db](https://github.com/riscv/riscv-unified-db); **9** merged / **8** open authored PRs / **17** authored issues; **51** unique issues+PRs involving `@titoatwork`; **0** PRs closed unmerged). Every figure here is produced by a command in [§2.6](#26-how-to-re-check-the-census).
+**Upstream census:** 2026-08-11 (GitHub API on [riscv/riscv-unified-db](https://github.com/riscv/riscv-unified-db); **9** merged / **9** open authored PRs / **18** authored issues; **53** unique issues+PRs involving `@titoatwork`; **0** PRs closed unmerged). Every figure here is produced by a command in [§2.6](#26-how-to-re-check-the-census).
 
 This page records **what was measured** and **what was contributed upstream**, with links. Spring Part I pipeline and committed Claude results are by [@ishaan-arora-1](https://github.com/ishaan-arora-1) (PRs #1765-#1832); this repository **reproduces and extends** that public surface and does not claim Spring authorship.
 
@@ -64,7 +64,7 @@ All links are under https://github.com/riscv/riscv-unified-db unless noted.
 | [#2362](https://github.com/riscv/riscv-unified-db/pull/2362) | 2026-08-04 | Supervisor and VS-mode trap CSRs take `length: SXLEN`/`VSXLEN`, not 64 | [#2361](https://github.com/riscv/riscv-unified-db/issues/2361) |
 | [#2384](https://github.com/riscv/riscv-unified-db/pull/2384) | 2026-08-05 | `senvcfg` takes `length: SXLEN`, not 64 | [#2364](https://github.com/riscv/riscv-unified-db/issues/2364), opened at the maintainer's request on [#2361](https://github.com/riscv/riscv-unified-db/issues/2361) |
 
-### 2.2 Open pull requests authored by titoatwork (8)
+### 2.2 Open pull requests authored by titoatwork (9)
 
 | PR | Summary | Relates |
 |----|---------|---------|
@@ -76,8 +76,9 @@ All links are under https://github.com/riscv/riscv-unified-db unless noted.
 | [#2414](https://github.com/riscv/riscv-unified-db/pull/2414) | `hstateen0h`-`hstateen3h` read through their parent's `sw_read` | [#2413](https://github.com/riscv/riscv-unified-db/issues/2413) |
 | [#2419](https://github.com/riscv/riscv-unified-db/pull/2419) | `c.sdsp` uses its full 5-bit register index | [#2418](https://github.com/riscv/riscv-unified-db/issues/2418) |
 | [#2435](https://github.com/riscv/riscv-unified-db/pull/2435) | misa-gated illegal-instruction checks consult `MISA_CSR_IMPLEMENTED` and route through `reserved_instruction()` | [#2434](https://github.com/riscv/riscv-unified-db/issues/2434) |
+| [#2459](https://github.com/riscv/riscv-unified-db/pull/2459) | Instruction descriptions name the operands their own `assembly:` line declares (`xs1`/`xd`, and the RVC primes) | [#2458](https://github.com/riscv/riscv-unified-db/issues/2458) |
 
-### 2.3 Issues filed by titoatwork (17)
+### 2.3 Issues filed by titoatwork (18)
 
 | Issue | State | Topic |
 |-------|-------|--------|
@@ -98,6 +99,7 @@ All links are under https://github.com/riscv/riscv-unified-db unless noted.
 | [#2413](https://github.com/riscv/riscv-unified-db/issues/2413) | open | `hstateen0h`-`hstateen3h` read around the `mstateen` mask their parent applies |
 | [#2418](https://github.com/riscv/riscv-unified-db/issues/2418) | open | `c.sdsp` maps its 5-bit `rs2` through `creg2reg`, so it stores from the wrong register |
 | [#2434](https://github.com/riscv/riscv-unified-db/issues/2434) | open | misa-gated illegal-instruction checks do not honor `MISA_CSR_IMPLEMENTED` |
+| [#2458](https://github.com/riscv/riscv-unified-db/issues/2458) | open | Instruction descriptions name operands the instruction does not declare; 33 files, 3 deliberately excluded as already correct |
 
 ### 2.4 Reviews and technical comments on other contributors' PRs and issues
 
@@ -140,13 +142,13 @@ These threads carry **numbers**, not only opinions. Full figure list: [`metrics.
 ### 2.6 How to re-check the census
 
 ```bash
-# authored: 9 merged, 8 open, 0 closed unmerged, 17 issues
+# authored: 9 merged, 9 open, 0 closed unmerged, 18 issues
 gh pr list --repo riscv/riscv-unified-db --author titoatwork --state merged
 gh pr list --repo riscv/riscv-unified-db --author titoatwork --state open
 gh pr list --repo riscv/riscv-unified-db --author titoatwork --state closed   # merged ones re-listed; 0 others
 gh issue list --repo riscv/riscv-unified-db --author titoatwork --state all
 
-# unique threads involving the author (author OR assignee OR commenter OR mentioned): 51
+# unique threads involving the author (author OR assignee OR commenter OR mentioned): 53
 { gh search issues --involves=titoatwork --repo=riscv/riscv-unified-db --limit 200 --json number --jq '.[].number'
   gh search prs    --involves=titoatwork --repo=riscv/riscv-unified-db --limit 200 --json number --jq '.[].number'
 } | sort -un | wc -l
