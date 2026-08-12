@@ -27,11 +27,13 @@ them would break that, so the attribution lives here instead.
 
 ## Both section labels above are the challenge's, and one of them is wrong
 
-Recorded 2026-08-12, checked against `riscv-isa-manual` at revision `310a111`,
-the revision `riscv/riscv-unified-db` pins.
+Recorded 2026-08-12, checked against `riscv-isa-manual` at two revisions:
+`310a111`, pinned by `riscv/riscv-unified-db` main, and `b2e69ab2`, pinned by the
+branch behind PR #2164. The passage sits at the same path and the same lines in
+both, so nothing below depends on which one you look at.
 
 **`priv_19.3.1_cmo_cache_blocks.txt` is not Privileged 19.3.1.** The passage
-appears exactly once in the manual, in `src/unpriv/cmo.adoc` lines 86-92, in the
+appears exactly once in the manual, in `src/unpriv/cmo.adoc` lines 86-93, in the
 *Unprivileged* volume, under Background > Memory and Caches within Chapter 19,
 "CMO Extensions for Base Cache Management Operation ISA". By the heading nesting
 in that file the section is 19.2.1; 19.3.1 is "Memory Ordering". `src/cmo.adoc`

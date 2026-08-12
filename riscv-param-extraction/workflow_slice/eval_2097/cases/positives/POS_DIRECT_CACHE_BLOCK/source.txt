@@ -1,10 +1,10 @@
 Source: text as supplied in the LFX Fall 2026 Part II coding challenge, which
   labelled it "Privileged Spec 19.3.1". That label is wrong on both counts.
 Actual location: RISC-V *Unprivileged* ISA Manual, Chapter 19 (CMO Extensions),
-  under Background > Memory and Caches. In the manual revision this repository
-  pins, riscv-isa-manual 310a111, that is src/unpriv/cmo.adoc lines 86-92. By
-  heading nesting the section is 19.2.1; 19.3.1 is "Memory Ordering".
-  src/cmo.adoc does not exist at that revision.
+  under Background > Memory and Caches. That is src/unpriv/cmo.adoc lines 86-93,
+  identically at riscv-isa-manual b2e69ab2 (pinned by riscv-unified-db PR #2164)
+  and at 310a111 (pinned by its main). By heading nesting the section is 19.2.1;
+  19.3.1 is "Memory Ordering". src/cmo.adoc exists at neither revision.
 Fidelity: the text below is byte-faithful to the challenge. Against the manual it
   differs only by "(or NAPOT)" where the manual reads "(NAPOT)".
 
