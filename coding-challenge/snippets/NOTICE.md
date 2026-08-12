@@ -34,12 +34,20 @@ both, so nothing below depends on which one you look at.
 
 **`priv_19.3.1_cmo_cache_blocks.txt` is not Privileged 19.3.1.** The passage
 appears exactly once in the manual, in `src/unpriv/cmo.adoc` lines 86-93, in the
-*Unprivileged* volume, under Background > Memory and Caches within Chapter 19,
-"CMO Extensions for Base Cache Management Operation ISA". By the heading nesting
-in that file the section is 19.2.1; 19.3.1 is "Memory Ordering". `src/cmo.adoc`
-does not exist. So the label names the wrong volume and the wrong subsection, and
-only the chapter number is right. The text itself is verbatim apart from
+*Unprivileged* volume, under Background > Memory and Caches. `src/cmo.adoc` does
+not exist. The volume is wrong under any reading; the text is verbatim apart from
 "(or NAPOT)", where the manual reads "(NAPOT)".
+
+The section number depends on which rendering you read, so it is worth being
+exact. `modules/unpriv/nav.adoc` labels `cmo.adoc` "Chapter 19. \"CMO\"
+Extensions for Base Cache Management Operation ISA", and under that page
+numbering the heading nesting in the file puts the passage at 19.2.1, with
+19.3.1 being "Memory Ordering". That is the rendering in which a citation of the
+form 19.3.1 refers to CMO at all, and the challenge's label is wrong within it.
+In the monolithic build there is no `leveloffset` on the include chain
+(`riscv-spec.adoc` to `unpriv/unpriv.adoc` to `unpriv/zi.adoc` to `cmo.adoc`), so
+`cmo.adoc` is a section inside the "Scalar Integer Extensions" chapter and the
+numbers differ entirely.
 
 **`priv_2.1_csr_address_mapping.txt` is correctly labelled**, at
 `src/priv/csrs.adoc`: chapter 2, "Control and Status Registers (CSRs)", section

@@ -1,6 +1,6 @@
 {
   "snippet": "snippets/priv_19.3.1_cmo_cache_blocks.txt",
-  "source": "RISC-V Unprivileged ISA Manual, ch. 19 CMO Extensions, Background > Memory and Caches (src/unpriv/cmo.adoc lines 86-93, identical at riscv-isa-manual 310a111 and b2e69ab2)",
+  "source": "RISC-V Unprivileged ISA Manual, CMO Extensions, Background > Memory and Caches (src/unpriv/cmo.adoc lines 86-93, identical at riscv-isa-manual 310a111 and b2e69ab2). Section number depends on the rendering; see snippets/NOTICE.md.",
   "source_label_as_supplied": "Privileged Spec 19.3.1. This is the label the LFX Fall 2026 Part II challenge attached to the snippet. It names the wrong volume and the wrong subsection; it is kept here because the snippet filename and the result files still use it as an identifier. See snippets/NOTICE.md.",
   "prompt": "prompts/v3_final.txt",
   "temperature": 0,
