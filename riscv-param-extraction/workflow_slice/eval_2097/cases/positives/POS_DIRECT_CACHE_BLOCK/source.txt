@@ -1,5 +1,12 @@
-Source: RISC-V Privileged ISA Manual, Section 19.3.1 (Cache Management Operations)
-Local extract: riscv-isa-manual/src/cmo.adoc (prose cleaned for readability)
+Source: text as supplied in the LFX Fall 2026 Part II coding challenge, which
+  labelled it "Privileged Spec 19.3.1". That label is wrong on both counts.
+Actual location: RISC-V *Unprivileged* ISA Manual, Chapter 19 (CMO Extensions),
+  under Background > Memory and Caches. In the manual revision this repository
+  pins, riscv-isa-manual 310a111, that is src/unpriv/cmo.adoc lines 86-92. By
+  heading nesting the section is 19.2.1; 19.3.1 is "Memory Ordering".
+  src/cmo.adoc does not exist at that revision.
+Fidelity: the text below is byte-faithful to the challenge. Against the manual it
+  differs only by "(or NAPOT)" where the manual reads "(NAPOT)".
 
 Caches organize copies of data into cache blocks, each of which represents a
 contiguous, naturally aligned power-of-two (or NAPOT) range of memory
