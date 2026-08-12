@@ -15,7 +15,7 @@ Measurement, export tooling, evaluation fixtures, and merged upstream fixes for 
 | Question | Answer |
 |---|---|
 | **What was investigated** | Whether the published Part I extraction figures measure what they are read as measuring, and whether the UDB parameter data they are scored against is itself self-consistent |
-| **What was contributed** | **9 merged** upstream PRs, **9** open, **18** issues filed, review comments adopted into other contributors' merged code. Zero PRs rejected |
+| **What was contributed** | **9 merged** upstream PRs, **9** open, **19** issues filed, review comments adopted into other contributors' merged code. Zero PRs rejected |
 | **What was learned** | The headline recall number measures **grounding, not discovery**; most of it is awarded by fuzzy matching; and it moves ~10 points between byte-identical runs |
 | **How to check it** | `./verify.sh` re-derives each registered figure from the artifact it came from, and reports anything it cannot check rather than passing it. **119/119** checkable claims pass, offline, no API key |
 | **What comes next** | [`docs/TERM-PLAN.md`](./docs/TERM-PLAN.md), nine weeks mapped to the five official Part II objectives |
@@ -77,14 +77,14 @@ The same discipline retired a second claim of my own: a run-1 result suggesting 
 
 ## Upstream contribution record
 
-Census **2026-08-11**, re-derived from the GitHub API. Full index with links: [`docs/EVIDENCE.md`](./docs/EVIDENCE.md).
+Census **2026-08-12**, re-derived from the GitHub API. Full index with links: [`docs/EVIDENCE.md`](./docs/EVIDENCE.md).
 
 | Kind | Count |
 |---|---:|
 | Merged PRs authored | **9** |
 | Open PRs authored | **9** |
-| Issues authored | **18** |
-| Unique issues and PRs involving this author | **53** |
+| Issues authored | **19** |
+| Unique issues and PRs involving this author | **54** |
 | PRs rejected | **0** |
 
 **Merged:** [#2138](https://github.com/riscv/riscv-unified-db/pull/2138) · [#2146](https://github.com/riscv/riscv-unified-db/pull/2146) · [#2189](https://github.com/riscv/riscv-unified-db/pull/2189) · [#2215](https://github.com/riscv/riscv-unified-db/pull/2215) · [#2227](https://github.com/riscv/riscv-unified-db/pull/2227) · [#2256](https://github.com/riscv/riscv-unified-db/pull/2256) · [#2266](https://github.com/riscv/riscv-unified-db/pull/2266) · [#2362](https://github.com/riscv/riscv-unified-db/pull/2362) · [#2384](https://github.com/riscv/riscv-unified-db/pull/2384)
