@@ -724,6 +724,22 @@ UNVERIFIABLE = [
     ("upstream.warl_prose_hits_csr",
      "34 files under spec/std/isa/csr mention WARL in prose (issue #2251)",
      "a grep over a UDB checkout, which is not committed here"),
+    # Posted on #2251 (2026-08-16 and 2026-08-17), both at UDB main `560dddf7`.
+    # The two denominators differ by which part of the field is read, and the
+    # difference is the whole point of the comment, so they are listed apart.
+    # Counting `str(field)` instead of the IDL bodies gives 883, because prose
+    # descriptions mention parameter names too. That is the wrong denominator and
+    # is recorded here so the number is not "corrected" to it later.
+    #   848: fields with >=1 IDL body (any `key(...)` entry) naming a parameter
+    #   822: the subset whose `type()` body names one, i.e. writability is a
+    #        configuration choice; those 822 split across five idioms, 0 unmatched
+    # Both reproduce with the script published in the #2251 comment itself.
+    ("upstream.csr_fields_referencing_params",
+     "848 CSR fields whose IDL bodies reference a parameter, at pin 560dddf7 (issue #2251)",
+     "counted over a UDB checkout at a pin, which is not committed here"),
+    ("upstream.csr_fields_param_writability",
+     "822 CSR fields whose type() reads a parameter, at pin 560dddf7 (issue #2251)",
+     "same uncommitted checkout as upstream.csr_fields_referencing_params"),
     # Not a measurement. EVIDENCE.md 2.6 records that the census once published 41
     # against an API answer of 43 and tables enumerating 38. The number has to stay
     # readable as the wrong one it was, so it is declared rather than corrected.

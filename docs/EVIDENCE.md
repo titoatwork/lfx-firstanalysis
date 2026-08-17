@@ -3,7 +3,7 @@
 **Author:** Ibteshamul Haque ([@titoatwork](https://github.com/titoatwork))  
 **Project:** [LFX Fall 2026 Part II](https://mentorship.lfx.linuxfoundation.org/project/22296947-cecb-4a8f-8bcb-4f34710e9f66)  
 **Repository:** https://github.com/titoatwork/lfx-firstanalysis  
-**Upstream census:** 2026-08-12 (GitHub API on [riscv/riscv-unified-db](https://github.com/riscv/riscv-unified-db); **9** merged / **9** open authored PRs / **19** authored issues; **54** unique issues+PRs involving `@titoatwork`; **0** PRs closed unmerged). Every figure here is produced by a command in [§2.6](#26-how-to-re-check-the-census).
+**Upstream census:** 2026-08-17 (GitHub API on [riscv/riscv-unified-db](https://github.com/riscv/riscv-unified-db); **10** merged / **8** open authored PRs / **21** authored issues; **57** unique issues+PRs involving `@titoatwork`; **0** PRs closed unmerged). Every figure here is produced by a command in [§2.6](#26-how-to-re-check-the-census).
 
 This page records **what was measured** and **what was contributed upstream**, with links. Spring Part I pipeline and committed Claude results are by [@ishaan-arora-1](https://github.com/ishaan-arora-1) (PRs #1765-#1832); this repository **reproduces and extends** that public surface and does not claim Spring authorship.
 
@@ -50,7 +50,7 @@ Issue [#2053](https://github.com/riscv/riscv-unified-db/issues/2053) records tha
 
 All links are under https://github.com/riscv/riscv-unified-db unless noted.
 
-### 2.1 Merged pull requests authored by titoatwork (9)
+### 2.1 Merged pull requests authored by titoatwork (10)
 
 | PR | Merged | Summary | Closes |
 |----|--------|---------|--------|
@@ -63,8 +63,9 @@ All links are under https://github.com/riscv/riscv-unified-db unless noted.
 | [#2266](https://github.com/riscv/riscv-unified-db/pull/2266) | 2026-07-31 | Counter-enable parameters enforce description rules | [#2265](https://github.com/riscv/riscv-unified-db/issues/2265) |
 | [#2362](https://github.com/riscv/riscv-unified-db/pull/2362) | 2026-08-04 | Supervisor and VS-mode trap CSRs take `length: SXLEN`/`VSXLEN`, not 64 | [#2361](https://github.com/riscv/riscv-unified-db/issues/2361) |
 | [#2384](https://github.com/riscv/riscv-unified-db/pull/2384) | 2026-08-05 | `senvcfg` takes `length: SXLEN`, not 64 | [#2364](https://github.com/riscv/riscv-unified-db/issues/2364), opened at the maintainer's request on [#2361](https://github.com/riscv/riscv-unified-db/issues/2361) |
+| [#2414](https://github.com/riscv/riscv-unified-db/pull/2414) | 2026-08-14 | `hstateen0h`-`hstateen3h` read through their parent's `sw_read` | [#2413](https://github.com/riscv/riscv-unified-db/issues/2413) |
 
-### 2.2 Open pull requests authored by titoatwork (9)
+### 2.2 Open pull requests authored by titoatwork (8)
 
 | PR | Summary | Relates |
 |----|---------|---------|
@@ -73,12 +74,11 @@ All links are under https://github.com/riscv/riscv-unified-db unless noted.
 | [#2212](https://github.com/riscv/riscv-unified-db/pull/2212) | idlc resolves `unsigned_pow2` schema $refs | [#2199](https://github.com/riscv/riscv-unified-db/issues/2199) |
 | [#2164](https://github.com/riscv/riscv-unified-db/pull/2164) | Parameter-extraction evaluation fixtures | [#2158](https://github.com/riscv/riscv-unified-db/issues/2158), [#2097](https://github.com/riscv/riscv-unified-db/pull/2097) |
 | [#2395](https://github.com/riscv/riscv-unified-db/pull/2395) | `sstateen0`-`sstateen3` take `length: SXLEN`, not MXLEN | [#2394](https://github.com/riscv/riscv-unified-db/issues/2394) |
-| [#2414](https://github.com/riscv/riscv-unified-db/pull/2414) | `hstateen0h`-`hstateen3h` read through their parent's `sw_read` | [#2413](https://github.com/riscv/riscv-unified-db/issues/2413) |
 | [#2419](https://github.com/riscv/riscv-unified-db/pull/2419) | `c.sdsp` uses its full 5-bit register index | [#2418](https://github.com/riscv/riscv-unified-db/issues/2418) |
 | [#2435](https://github.com/riscv/riscv-unified-db/pull/2435) | misa-gated illegal-instruction checks consult `MISA_CSR_IMPLEMENTED` and route through `reserved_instruction()` | [#2434](https://github.com/riscv/riscv-unified-db/issues/2434) |
 | [#2459](https://github.com/riscv/riscv-unified-db/pull/2459) | Instruction descriptions name the operands their own `assembly:` line declares (`xs1`/`xd`, and the RVC primes) | [#2458](https://github.com/riscv/riscv-unified-db/issues/2458) |
 
-### 2.3 Issues filed by titoatwork (19)
+### 2.3 Issues filed by titoatwork (21)
 
 | Issue | State | Topic |
 |-------|-------|--------|
@@ -96,11 +96,13 @@ All links are under https://github.com/riscv/riscv-unified-db unless noted.
 | [#2361](https://github.com/riscv/riscv-unified-db/issues/2361) | closed | Supervisor/VS trap CSRs carry `length: 64` instead of SXLEN/VSXLEN |
 | [#2364](https://github.com/riscv/riscv-unified-db/issues/2364) | closed | `senvcfg` carries `length: 64` instead of SXLEN, closed by [#2384](https://github.com/riscv/riscv-unified-db/pull/2384) |
 | [#2394](https://github.com/riscv/riscv-unified-db/issues/2394) | open | `sstateen0`-`sstateen3` carry `length: MXLEN` instead of SXLEN |
-| [#2413](https://github.com/riscv/riscv-unified-db/issues/2413) | open | `hstateen0h`-`hstateen3h` read around the `mstateen` mask their parent applies |
+| [#2413](https://github.com/riscv/riscv-unified-db/issues/2413) | closed | `hstateen0h`-`hstateen3h` read around the `mstateen` mask their parent applies, closed by [#2414](https://github.com/riscv/riscv-unified-db/pull/2414) |
 | [#2418](https://github.com/riscv/riscv-unified-db/issues/2418) | open | `c.sdsp` maps its 5-bit `rs2` through `creg2reg`, so it stores from the wrong register |
 | [#2434](https://github.com/riscv/riscv-unified-db/issues/2434) | open | misa-gated illegal-instruction checks do not honor `MISA_CSR_IMPLEMENTED` |
 | [#2458](https://github.com/riscv/riscv-unified-db/issues/2458) | open | Instruction descriptions name operands the instruction does not declare. 33 files in six groups: **18** mechanical (fixed in [#2459](https://github.com/riscv/riscv-unified-db/pull/2459)), **3** correct as written, **1** already fixed by [#2419](https://github.com/riscv/riscv-unified-db/pull/2419), **11** needing a maintainer decision |
 | [#2463](https://github.com/riscv/riscv-unified-db/issues/2463) | open | CSR length is computed without U or VU mode, and `max_length` raises on a core without the M extension |
+| [#2477](https://github.com/riscv/riscv-unified-db/issues/2477) | open | `mie`/`mip` cannot express that a standard interrupt is unimplemented |
+| [#2478](https://github.com/riscv/riscv-unified-db/issues/2478) | open | Smctr: five registers named in the normative rules have no model in UDB. `sctrdepth` and `sctrstatus` are ordinary CSRs and unblocked; `ctrsource`/`ctrtarget`/`ctrdata` reach through the `Smcsrind` window and would be the first CSRs in the tree to use `indirect_address`/`indirect_slot` |
 
 ### 2.4 Reviews and technical comments on other contributors' PRs and issues
 
@@ -125,6 +127,7 @@ would leave this table disagreeing with the command that produces the headline c
 | [#2285](https://github.com/riscv/riscv-unified-db/issues/2285) | ThinkOpenly | open | Took assignment for the enum-conditional validation this issue asks for; #2289 is that work ([comment](https://github.com/riscv/riscv-unified-db/issues/2285#issuecomment-5155460381)) |
 | [#2317](https://github.com/riscv/riscv-unified-db/issues/2317) | Princess0407 | open | Showed the named blocker on the `MTVAL_WIDTH` TODO is already gone (**44** of **227** params carry requirements referencing another param), and that `SXLEN` being an array stops the M-mode form porting to S-mode ([comment](https://github.com/riscv/riscv-unified-db/issues/2317#issuecomment-5173500696)) |
 | [#2171](https://github.com/riscv/riscv-unified-db/pull/2171) | Hiteshsai007 | merged | **Mention, not a comment.** The author cites the power-of-two test from #2138 as what actually catches this defect class, hex notation being readability only ([comment](https://github.com/riscv/riscv-unified-db/pull/2171#issuecomment-5106864830)) |
+| [#2481](https://github.com/riscv/riscv-unified-db/pull/2481) | Ganesh-403 | open | Answers the `sctrdepth`/`sctrstatus` half of my [#2478](https://github.com/riscv/riscv-unified-db/issues/2478), which he asked to take. Review against the ratified Smctr text: both CSRs are fixed 32-bit rather than `SXLEN`, `sctrstatus.WRAP` is not a field in the spec, `mctrstatus` exists only in a note about a hypothetical future extension, and the new `SCTRDEPTH_DEPTH_LEGAL_VALUES` parameter is not read by anything ([review](https://github.com/riscv/riscv-unified-db/pull/2481#pullrequestreview-4948365266)) |
 
 ### 2.5 Mentorship and design discussion threads (measurements on the tracker)
 
@@ -135,7 +138,7 @@ These threads carry **numbers**, not only opinions. Full figure list: [`metrics.
 | [#2053](https://github.com/riscv/riscv-unified-db/issues/2053) | Participant | Grounding vs discovery; dual-model limits (e.g. `IALIGN`); claim corrections. [correction example](https://github.com/riscv/riscv-unified-db/issues/2053#issuecomment-5117676758) |
 | [#2163](https://github.com/riscv/riscv-unified-db/issues/2163) | Author | **33.9% / 44.6%** dual-run; exact vs inexact tables (**72.9%** vs **32.2%** adjusted; exact-name **48.6%** vs **6.2%**) |
 | [#2200](https://github.com/riscv/riscv-unified-db/issues/2200) | Author | WARL gold **26** = **4** decidable + **4** stale + **18** undecidable; IDL self-correction notes |
-| [#2251](https://github.com/riscv/riscv-unified-db/issues/2251) | Participant (not proposal owner) | **9** closed-set schema params; WARL file-token vs gold-label unit split |
+| [#2251](https://github.com/riscv/riscv-unified-db/issues/2251) | Participant (not proposal owner) | **9** closed-set schema params; WARL file-token vs gold-label unit split; at pin `560dddf7`, **848** CSR fields reference a parameter and **822** decide writability through one, split across **five** structurally unrelated idioms with **0** unmatched, so a count keyed on any single idiom measures only that idiom |
 | [#1748](https://github.com/riscv/riscv-unified-db/issues/1748) | Participant | Taxonomy / parameter class examples |
 
 #2251 is a Fall design discussion thread; contributions there are technical comments, not ownership of that proposal.
@@ -143,13 +146,13 @@ These threads carry **numbers**, not only opinions. Full figure list: [`metrics.
 ### 2.6 How to re-check the census
 
 ```bash
-# authored: 9 merged, 9 open, 0 closed unmerged, 19 issues
+# authored: 10 merged, 8 open, 0 closed unmerged, 21 issues
 gh pr list --repo riscv/riscv-unified-db --author titoatwork --state merged
 gh pr list --repo riscv/riscv-unified-db --author titoatwork --state open
 gh pr list --repo riscv/riscv-unified-db --author titoatwork --state closed   # merged ones re-listed; 0 others
 gh issue list --repo riscv/riscv-unified-db --author titoatwork --state all
 
-# unique threads involving the author (author OR assignee OR commenter OR mentioned): 54
+# unique threads involving the author (author OR assignee OR commenter OR mentioned): 57
 { gh search issues --involves=titoatwork --repo=riscv/riscv-unified-db --limit 200 --json number --jq '.[].number'
   gh search prs    --involves=titoatwork --repo=riscv/riscv-unified-db --limit 200 --json number --jq '.[].number'
 } | sort -un | wc -l
