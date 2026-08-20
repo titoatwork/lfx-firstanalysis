@@ -37,6 +37,16 @@ ROW = re.compile(r"^\|\s*\[#(\d{3,6})\]")
 HEADLINE = re.compile(r"\*\*(\d+)\*\*\s+unique issues\+PRs")
 README_ROW = re.compile(r"\|\s*Unique issues and PRs involving this author\s*\|\s*\*\*(\d+)\*\*\s*\|")
 
+# README.md also splits the merged PRs by what each one did for an issue. That
+# sentence is three more hand-typed numbers sitting on top of the 2.1 table, so
+# it is derived from that table's Closes column rather than trusted.
+DISPOSITION = re.compile(
+    r"(\d+) merged PRs; \*\*(\d+)\*\* closed an issue filed from this measurement work, "
+    r"\*\*(\d+)\*\* took up a maintainer's open request[^,]*, and "
+    r"\*\*(\d+)\*\* advance ")
+# A Closes cell that only names an issue rather than closing it.
+SOFT_CLOSE = ("partially addresses", "relates to", "related to")
+
 # The census table in README.md carries the three authored counts one per row.
 COUNT_ROWS = {
     "merged": re.compile(r"\|\s*Merged PRs authored\s*\|\s*\*\*(\d+)\*\*\s*\|"),
@@ -103,6 +113,37 @@ def claimed_issue_states(text: str) -> list[tuple[int, str]]:
             if state:
                 out.append((int(m.group(1)), state))
     return out
+
+
+def section_rows(text: str, want: str) -> list[str]:
+    """The table rows under '### 2.<want> ', raw."""
+    for head, body in re.findall(r"^### 2\.(\d)\b(.*?)(?=^### |\Z)", text, re.S | re.M):
+        if head == want:
+            return [l for l in body.splitlines() if ROW.match(l)]
+    return []
+
+
+def merged_disposition(text: str) -> tuple[int, int, int]:
+    """Split the 2.1 merged rows by what each PR did for an issue.
+
+    A merged PR either closed an issue this author filed (so the issue is listed
+    in 2.3), closed one somebody else filed, or named an issue it advances
+    without closing. Read out of the Closes column, so the README sentence cannot
+    drift from the table underneath it the way "9 of 10" would have once the
+    census moved on.
+    """
+    own = {int(ROW.match(l).group(1)) for l in section_rows(text, "3")}
+    closed_own = for_others = advances = 0
+    for line in section_rows(text, "1"):
+        cell = line.strip().strip("|").split("|")[-1].strip()
+        refs = [int(n) for n in re.findall(r"/issues/(\d+)\)", cell)]
+        if any(w in cell.lower() for w in SOFT_CLOSE):
+            advances += 1
+        elif any(n in own for n in refs):
+            closed_own += 1
+        elif refs:
+            for_others += 1
+    return closed_own, for_others, advances
 
 
 def api_states(numbers: list[int]) -> dict[int, str] | None:
@@ -198,6 +239,25 @@ def main() -> int:
             print(f"\nMISMATCH  README census table says {table[k]} {k}, "
                   f"the reviewer summary says {summary[k]}")
             bad = 1
+
+    d = DISPOSITION.findall(readme)
+    if len(d) != 1:
+        print(f"could not read the README.md merged-PR disposition: "
+              f"{len(d)} matches, expected 1")
+        raise SystemExit(2)
+    stated_total, *stated = (int(x) for x in d[0])
+    derived = merged_disposition(evidence)
+    print(f"README.md merged split    {stated[0]} closed own, "
+          f"{stated[1]} maintainer request, {stated[2]} advance only "
+          f"(2.1 derives {derived[0]}/{derived[1]}/{derived[2]})")
+    if tuple(stated) != derived:
+        print(f"\nMISMATCH  README splits the merged PRs {tuple(stated)}, "
+              f"the 2.1 Closes column derives {derived}")
+        bad = 1
+    if stated_total != table["merged"] or sum(derived) != table["merged"]:
+        print(f"\nMISMATCH  the merged split covers {stated_total} stated / "
+              f"{sum(derived)} derived PRs, the census says {table['merged']}")
+        bad = 1
 
     if args.online:
         live = api_threads()

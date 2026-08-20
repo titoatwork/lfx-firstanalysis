@@ -15,7 +15,7 @@ Measurement, export tooling, evaluation fixtures, and merged upstream fixes for 
 | Question | Answer |
 |---|---|
 | **What was investigated** | Whether the published Part I extraction figures measure what they are read as measuring, and whether the UDB parameter data they are scored against is itself self-consistent |
-| **What was contributed** | **10 merged** upstream PRs, **8** open, **21** issues filed, review comments adopted into other contributors' merged code. Zero PRs rejected |
+| **What was contributed** | **16 merged** upstream PRs, **5** open, **22** issues filed, review comments adopted into other contributors' merged code. Zero PRs rejected |
 | **What was learned** | The headline recall number measures **grounding, not discovery**; most of it is awarded by fuzzy matching; and it moves ~10 points between byte-identical runs |
 | **How to check it** | `./verify.sh` re-derives each registered figure from the artifact it came from, and reports anything it cannot check rather than passing it. **119/119** checkable claims pass, offline, no API key |
 | **What comes next** | [`docs/TERM-PLAN.md`](./docs/TERM-PLAN.md), nine weeks mapped to the five official Part II objectives |
@@ -58,7 +58,7 @@ Every row is checkable without trusting this page.
 | Gold WARL labels are largely undecidable from syntax | [`GOLD-CLASSIFICATION-AUDIT.md`](./riscv-param-extraction/analysis/GOLD-CLASSIFICATION-AUDIT.md) | Of **26** gold WARL labels: **4** decidable, **4** stale, **18** undecidable. Posted on [#2200](https://github.com/riscv/riscv-unified-db/issues/2200) |
 | Two independent audits converge on the same four names | [`PARAM-SCHEMA-SHAPES.md`](./riscv-param-extraction/analysis/PARAM-SCHEMA-SHAPES.md) | Schema-shape scan and IDL scan both dissent on `SXLEN`, `UXLEN`, `VSXLEN`, `VUXLEN`. The equality is gated as an invariant in `verify_claims.py` |
 | Export produces schema-valid UDB YAML | [`export/`](./riscv-param-extraction/export/) | **83/83** named, **20/20** new drafts. Structural validity only, not architectural approval |
-| Findings became merged upstream fixes | [`docs/EVIDENCE.md`](./docs/EVIDENCE.md) | 10 merged PRs; 9 closed an issue filed from this measurement work, the tenth took up a maintainer's open request |
+| Findings became merged upstream fixes | [`docs/EVIDENCE.md`](./docs/EVIDENCE.md) | 16 merged PRs; **13** closed an issue filed from this measurement work, **1** took up a maintainer's open request ([#2253](https://github.com/riscv/riscv-unified-db/issues/2253)), and **2** advance [#2463](https://github.com/riscv/riscv-unified-db/issues/2463) without closing it |
 | The extraction task itself found a real defect | [`coding-challenge/`](./coding-challenge/) | The Part II challenge snippet describes a cache block as a power of two. UDB's own parameter did not enforce it, until [#2189](https://github.com/riscv/riscv-unified-db/pull/2189) |
 
 ---
@@ -77,19 +77,19 @@ The same discipline retired a second claim of my own: a run-1 result suggesting 
 
 ## Upstream contribution record
 
-Census **2026-08-17**, re-derived from the GitHub API. Full index with links: [`docs/EVIDENCE.md`](./docs/EVIDENCE.md).
+Census **2026-08-20**, re-derived from the GitHub API. Full index with links: [`docs/EVIDENCE.md`](./docs/EVIDENCE.md).
 
 | Kind | Count |
 |---|---:|
-| Merged PRs authored | **10** |
-| Open PRs authored | **8** |
-| Issues authored | **21** |
-| Unique issues and PRs involving this author | **57** |
+| Merged PRs authored | **16** |
+| Open PRs authored | **5** |
+| Issues authored | **22** |
+| Unique issues and PRs involving this author | **62** |
 | PRs rejected | **0** |
 
-**Merged:** [#2138](https://github.com/riscv/riscv-unified-db/pull/2138) · [#2146](https://github.com/riscv/riscv-unified-db/pull/2146) · [#2189](https://github.com/riscv/riscv-unified-db/pull/2189) · [#2215](https://github.com/riscv/riscv-unified-db/pull/2215) · [#2227](https://github.com/riscv/riscv-unified-db/pull/2227) · [#2256](https://github.com/riscv/riscv-unified-db/pull/2256) · [#2266](https://github.com/riscv/riscv-unified-db/pull/2266) · [#2362](https://github.com/riscv/riscv-unified-db/pull/2362) · [#2384](https://github.com/riscv/riscv-unified-db/pull/2384) · [#2414](https://github.com/riscv/riscv-unified-db/pull/2414)
+**Merged:** [#2138](https://github.com/riscv/riscv-unified-db/pull/2138) · [#2146](https://github.com/riscv/riscv-unified-db/pull/2146) · [#2189](https://github.com/riscv/riscv-unified-db/pull/2189) · [#2215](https://github.com/riscv/riscv-unified-db/pull/2215) · [#2227](https://github.com/riscv/riscv-unified-db/pull/2227) · [#2256](https://github.com/riscv/riscv-unified-db/pull/2256) · [#2266](https://github.com/riscv/riscv-unified-db/pull/2266) · [#2362](https://github.com/riscv/riscv-unified-db/pull/2362) · [#2384](https://github.com/riscv/riscv-unified-db/pull/2384) · [#2395](https://github.com/riscv/riscv-unified-db/pull/2395) · [#2414](https://github.com/riscv/riscv-unified-db/pull/2414) · [#2419](https://github.com/riscv/riscv-unified-db/pull/2419) · [#2435](https://github.com/riscv/riscv-unified-db/pull/2435) · [#2489](https://github.com/riscv/riscv-unified-db/pull/2489) · [#2491](https://github.com/riscv/riscv-unified-db/pull/2491) · [#2496](https://github.com/riscv/riscv-unified-db/pull/2496)
 
-**Open:** [#2289](https://github.com/riscv/riscv-unified-db/pull/2289) · [#2255](https://github.com/riscv/riscv-unified-db/pull/2255) · [#2212](https://github.com/riscv/riscv-unified-db/pull/2212) · [#2164](https://github.com/riscv/riscv-unified-db/pull/2164) · [#2395](https://github.com/riscv/riscv-unified-db/pull/2395) · [#2419](https://github.com/riscv/riscv-unified-db/pull/2419) · [#2435](https://github.com/riscv/riscv-unified-db/pull/2435) · [#2459](https://github.com/riscv/riscv-unified-db/pull/2459)
+**Open:** [#2289](https://github.com/riscv/riscv-unified-db/pull/2289) · [#2255](https://github.com/riscv/riscv-unified-db/pull/2255) · [#2212](https://github.com/riscv/riscv-unified-db/pull/2212) · [#2164](https://github.com/riscv/riscv-unified-db/pull/2164) · [#2459](https://github.com/riscv/riscv-unified-db/pull/2459)
 
 **Review comments carried into other people's merged PRs:** [#2090](https://github.com/riscv/riscv-unified-db/pull/2090) (alignment defect adopted by the maintainer) · [#2109](https://github.com/riscv/riscv-unified-db/pull/2109) · [#2197](https://github.com/riscv/riscv-unified-db/pull/2197) (own earlier advice corrected after the author had built on it; the merged code follows the correction) · [#2245](https://github.com/riscv/riscv-unified-db/pull/2245) · [#2284](https://github.com/riscv/riscv-unified-db/pull/2284)
 

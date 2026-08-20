@@ -59,6 +59,10 @@ def census_owned() -> set[str]:
     values: set[str] = set()
     for pattern in (*check_census.COUNT_ROWS.values(), check_census.README_ROW):
         values.update(pattern.findall(readme))
+    # The merged-PR split is multi-group, and check_census derives it from the
+    # EVIDENCE.md 2.1 Closes column rather than taking the README's word for it.
+    for groups in check_census.DISPOSITION.findall(readme):
+        values.update(groups)
     return values
 
 # Raised only by someone who has read the two paragraphs above.
