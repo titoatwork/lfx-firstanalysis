@@ -3,7 +3,7 @@
 **Author:** Ibteshamul Haque ([@titoatwork](https://github.com/titoatwork))  
 **Project:** [LFX Fall 2026 Part II](https://mentorship.lfx.linuxfoundation.org/project/22296947-cecb-4a8f-8bcb-4f34710e9f66)  
 **Repository:** https://github.com/titoatwork/lfx-firstanalysis  
-**Upstream census:** 2026-08-20 (GitHub API on [riscv/riscv-unified-db](https://github.com/riscv/riscv-unified-db); **16** merged / **5** open authored PRs / **22** authored issues; **62** unique issues+PRs involving `@titoatwork`; **0** PRs closed unmerged). Every figure here is produced by a command in [§2.6](#26-how-to-re-check-the-census).
+**Upstream census:** 2026-08-26 (GitHub API on [riscv/riscv-unified-db](https://github.com/riscv/riscv-unified-db); **16** merged / **7** open authored PRs / **22** authored issues; **65** unique issues+PRs involving `@titoatwork`; **0** PRs closed unmerged). Every figure here is produced by a command in [§2.6](#26-how-to-re-check-the-census).
 
 This page records **what was measured** and **what was contributed upstream**, with links. Spring Part I pipeline and committed Claude results are by [@ishaan-arora-1](https://github.com/ishaan-arora-1) (PRs #1765-#1832); this repository **reproduces and extends** that public surface and does not claim Spring authorship.
 
@@ -71,10 +71,12 @@ All links are under https://github.com/riscv/riscv-unified-db unless noted.
 | [#2491](https://github.com/riscv/riscv-unified-db/pull/2491) | 2026-08-18 | Compressed FP load/stores use the float register file, and `c.fld` maps through `creg2reg` | [#2490](https://github.com/riscv/riscv-unified-db/issues/2490) |
 | [#2496](https://github.com/riscv/riscv-unified-db/pull/2496) | 2026-08-20 | `Csr#max_length` guards its MXLEN branch on `Sm` (machine mode), not `M` (integer multiply) | relates to [#2463](https://github.com/riscv/riscv-unified-db/issues/2463) |
 
-### 2.2 Open pull requests authored by titoatwork (5)
+### 2.2 Open pull requests authored by titoatwork (7)
 
 | PR | Summary | Relates |
 |----|---------|---------|
+| [#2523](https://github.com/riscv/riscv-unified-db/pull/2523) | `mcountinhibit` HPM fields state a read-only reason that cannot hold where the text renders | [#2511](https://github.com/riscv/riscv-unified-db/issues/2511) |
+| [#2512](https://github.com/riscv/riscv-unified-db/pull/2512) | CSR length condition omits U and VU mode, and `length_pretty` leaves a literal `%%` | [#2463](https://github.com/riscv/riscv-unified-db/issues/2463) |
 | [#2289](https://github.com/riscv/riscv-unified-db/pull/2289) | Smoke check: string-enum params vs IDL string literals | [#2285](https://github.com/riscv/riscv-unified-db/issues/2285); data instance fixed earlier in [#2271](https://github.com/riscv/riscv-unified-db/pull/2271) |
 | [#2255](https://github.com/riscv/riscv-unified-db/pull/2255) | VSXLEN/VUXLEN must support 32 when the parent mode can | [#2254](https://github.com/riscv/riscv-unified-db/issues/2254) |
 | [#2212](https://github.com/riscv/riscv-unified-db/pull/2212) | idlc resolves `unsigned_pow2` schema $refs | [#2199](https://github.com/riscv/riscv-unified-db/issues/2199) |
@@ -117,6 +119,7 @@ would leave this table disagreeing with the command that produces the headline c
 
 | Thread | Author | Status | Comment / review |
 |----|--------|--------|------------------|
+| [#2511](https://github.com/riscv/riscv-unified-db/issues/2511) | davidharrishmc | open | Confirmed the constraint is enforced rather than advisory, showed the manual does not require it, and flagged the 29 contradictory field descriptions fixed in [#2523](https://github.com/riscv/riscv-unified-db/pull/2523) |
 | [#2090](https://github.com/riscv/riscv-unified-db/pull/2090) | jordancarlin | merged | Flagged non-power-of-two `0xfff` in MTVEC alignment enums ([comment](https://github.com/riscv/riscv-unified-db/pull/2090#issuecomment-5084258197)) |
 | [#2109](https://github.com/riscv/riscv-unified-db/pull/2109) | krrishverma1805-web | merged | Review of unreachable `array_size == 0` branches |
 | [#2197](https://github.com/riscv/riscv-unified-db/pull/2197) | krrishverma1805-web | merged | Follow-up correcting earlier FS-guard feedback ([comment](https://github.com/riscv/riscv-unified-db/pull/2197#issuecomment-5110068008)) |
