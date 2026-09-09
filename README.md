@@ -77,19 +77,19 @@ The same discipline retired a second claim of my own: a run-1 result suggesting 
 
 ## Upstream contribution record
 
-Census **2026-08-26**, re-derived from the GitHub API. Full index with links: [`docs/EVIDENCE.md`](./docs/EVIDENCE.md).
+Census **2026-09-09**, re-derived from the GitHub API. Full index with links: [`docs/EVIDENCE.md`](./docs/EVIDENCE.md).
 
 | Kind | Count |
 |---|---:|
-| Merged PRs authored | **16** |
-| Open PRs authored | **7** |
-| Issues authored | **22** |
-| Unique issues and PRs involving this author | **65** |
+| Merged PRs authored | **18** |
+| Open PRs authored | **5** |
+| Issues authored | **24** |
+| Unique issues and PRs involving this author | **68** |
 | PRs rejected | **0** |
 
-**Merged:** [#2138](https://github.com/riscv/riscv-unified-db/pull/2138) · [#2146](https://github.com/riscv/riscv-unified-db/pull/2146) · [#2189](https://github.com/riscv/riscv-unified-db/pull/2189) · [#2215](https://github.com/riscv/riscv-unified-db/pull/2215) · [#2227](https://github.com/riscv/riscv-unified-db/pull/2227) · [#2256](https://github.com/riscv/riscv-unified-db/pull/2256) · [#2266](https://github.com/riscv/riscv-unified-db/pull/2266) · [#2362](https://github.com/riscv/riscv-unified-db/pull/2362) · [#2384](https://github.com/riscv/riscv-unified-db/pull/2384) · [#2395](https://github.com/riscv/riscv-unified-db/pull/2395) · [#2414](https://github.com/riscv/riscv-unified-db/pull/2414) · [#2419](https://github.com/riscv/riscv-unified-db/pull/2419) · [#2435](https://github.com/riscv/riscv-unified-db/pull/2435) · [#2489](https://github.com/riscv/riscv-unified-db/pull/2489) · [#2491](https://github.com/riscv/riscv-unified-db/pull/2491) · [#2496](https://github.com/riscv/riscv-unified-db/pull/2496)
+**Merged:** [#2138](https://github.com/riscv/riscv-unified-db/pull/2138) &middot; [#2146](https://github.com/riscv/riscv-unified-db/pull/2146) &middot; [#2189](https://github.com/riscv/riscv-unified-db/pull/2189) &middot; [#2215](https://github.com/riscv/riscv-unified-db/pull/2215) &middot; [#2227](https://github.com/riscv/riscv-unified-db/pull/2227) &middot; [#2256](https://github.com/riscv/riscv-unified-db/pull/2256) &middot; [#2266](https://github.com/riscv/riscv-unified-db/pull/2266) &middot; [#2362](https://github.com/riscv/riscv-unified-db/pull/2362) &middot; [#2384](https://github.com/riscv/riscv-unified-db/pull/2384) &middot; [#2395](https://github.com/riscv/riscv-unified-db/pull/2395) &middot; [#2414](https://github.com/riscv/riscv-unified-db/pull/2414) &middot; [#2419](https://github.com/riscv/riscv-unified-db/pull/2419) &middot; [#2435](https://github.com/riscv/riscv-unified-db/pull/2435) &middot; [#2489](https://github.com/riscv/riscv-unified-db/pull/2489) &middot; [#2491](https://github.com/riscv/riscv-unified-db/pull/2491) &middot; [#2496](https://github.com/riscv/riscv-unified-db/pull/2496) &middot; [#2512](https://github.com/riscv/riscv-unified-db/pull/2512) &middot; [#2523](https://github.com/riscv/riscv-unified-db/pull/2523)
 
-**Open:** [#2523](https://github.com/riscv/riscv-unified-db/pull/2523) · [#2512](https://github.com/riscv/riscv-unified-db/pull/2512) · [#2289](https://github.com/riscv/riscv-unified-db/pull/2289) · [#2255](https://github.com/riscv/riscv-unified-db/pull/2255) · [#2212](https://github.com/riscv/riscv-unified-db/pull/2212) · [#2164](https://github.com/riscv/riscv-unified-db/pull/2164) · [#2459](https://github.com/riscv/riscv-unified-db/pull/2459)
+**Open:** [#2164](https://github.com/riscv/riscv-unified-db/pull/2164) &middot; [#2212](https://github.com/riscv/riscv-unified-db/pull/2212) &middot; [#2255](https://github.com/riscv/riscv-unified-db/pull/2255) &middot; [#2289](https://github.com/riscv/riscv-unified-db/pull/2289) &middot; [#2459](https://github.com/riscv/riscv-unified-db/pull/2459)
 
 **Review comments carried into other people's merged PRs:** [#2090](https://github.com/riscv/riscv-unified-db/pull/2090) (alignment defect adopted by the maintainer) · [#2109](https://github.com/riscv/riscv-unified-db/pull/2109) · [#2197](https://github.com/riscv/riscv-unified-db/pull/2197) (own earlier advice corrected after the author had built on it; the merged code follows the correction) · [#2245](https://github.com/riscv/riscv-unified-db/pull/2245) · [#2284](https://github.com/riscv/riscv-unified-db/pull/2284)
 
